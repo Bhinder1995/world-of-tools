@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Meta Tag Generator - Create Meta Tags | WorldOfTools</title>
+    <meta name="description"
+        content="Free SEO meta tag generator with live SERP preview. Create optimized title tags, meta descriptions, and Open Graph tags.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .char-count {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #718096;
+            margin-top: 0.25rem;
+            font-family: monospace;
+        }
+
+        .char-count.warning {
+            color: #d69e2e;
+        }
+
+        .char-count.error {
+            color: #e53e3e;
+        }
+
+        .preview-container {
+            margin: 2rem 0;
+        }
+
+        .serp-preview {
+            background: #fff;
+            border: 1px solid #dfe1e5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: arial, sans-serif;
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .serp-preview h3 {
+            font-size: 0.75rem;
+            color: #70757a;
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        .serp-brand {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .serp-brand-icon {
+            width: 26px;
+            height: 26px;
+            background: #f1f3f4;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 14px;
+        }
+
+        .serp-site-name {
+            color: #202124;
+            font-size: 14px;
+        }
+
+        .serp-url {
+            color: #202124;
+            font-size: 12px;
+        }
+
+        .serp-title {
+            color: #1a0dab;
+            font-size: 20px;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .serp-title:hover {
+            text-decoration: underline;
+        }
+
+        .serp-description {
+            color: #4d5156;
+            font-size: 14px;
+            line-height: 1.58;
+        }
+
+        .code-output {
+            background: #1a202c;
+            color: #a0aec0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 2rem;
+            border: 1px solid #4a5568;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .code-line {
+            margin-bottom: 2px;
+        }
+
+        .tag-name {
+            color: #fc8181;
+        }
+
+        .attr-name {
+            color: #f6ad55;
+        }
+
+        .attr-value {
+            color: #68d391;
+        }
+
+        .comment {
+            color: #718096;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header></header> <!-- Injected by js/common.js -->
+
+    <main class="container">
+        <section class="card text-center">
+            <h1>🏷️ SEO Meta Tag Generator</h1>
+            <p>Generate optimized meta tags for better search engine rankings with live preview</p>
+        </section>
+
+        <section class="row">
+            <div class="col" style="flex: 1; min-width: 300px;">
+                <div class="card">
+                    <h3>Page Details</h3>
+                    <div class="form-group mb-2">
+                        <label>Page Title:</label>
+                        <input type="text" id="title" placeholder="Enter your page title" maxlength="70"
+                            oninput="updatePreview()">
+                        <div class="char-count" id="titleCount">0 / 60 (optimal)</div>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label>Meta Description:</label>
+                        <textarea id="description" placeholder="Enter your meta description" maxlength="160" rows="3"
+                            oninput="updatePreview()"></textarea>
+                        <div class="char-count" id="descCount">0 / 155 (optimal)</div>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label>Page URL:</label>
+                        <input type="url" id="url" placeholder="https://example.com/page" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label>Keywords (comma separated):</label>
+                        <input type="text" id="keywords" placeholder="seo, marketing, tools" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label>Author Name (optional):</label>
+                        <input type="text" id="author" placeholder="Your Name" oninput="updatePreview()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" style="flex: 1; min-width: 300px;">
+                <div class="card text-center" style="position: sticky; top: 1rem;">
+                    <h3>Google Search Preview</h3>
+                    <div class="preview-container">
+                        <div class="serp-preview">
+                            <div class="serp-brand">
+                                <div class="serp-brand-icon">🌐</div>
+                                <div>
+                                    <div class="serp-site-name">Your Site Name</div>
+                                    <div class="serp-url" id="serpUrl">https://example.com › page</div>
+                                </div>
+                            </div>
+                            <a href="#" class="serp-title" id="serpTitle">Your Title Here | Brand Name</a>
+                            <div class="serp-description" id="serpDesc">Your meta description will appear here. Make it
+                                compelling to improve click-through rates from search results.</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="copyCode()">Copy Meta Tags</button>
+                        <button class="btn btn-outline" onclick="downloadHTML()">Download HTML</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Generated Code</h3>
+            <div class="code-output" id="codeOutput"></div>
+        </section>
+    </main>
+
+    <footer></footer> <!-- Injected by js/common.js -->
+
+    <script src="js/common.js"></script>
+    <script>
+        function updatePreview() {
+            const title = document.getElementById('title').value || 'Your Title Here | Brand Name';
+            const description = document.getElementById('description').value || 'Your meta description will appear here. Make it compelling to improve click-through rates from search results.';
+            const url = document.getElementById('url').value || 'https://example.com/page';
+            let formattedUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+            if (formattedUrl.length > 40) formattedUrl = formattedUrl.substring(0, 37) + '...';
+
+            const keywords = document.getElementById('keywords').value;
+            const author = document.getElementById('author').value;
+
+            // Update SERP Preview
+            document.getElementById('serpTitle').textContent = title;
+            document.getElementById('serpUrl').textContent = url; // Full URL in text
+            document.getElementById('serpDesc').textContent = description;
+
+            // Character counts
+            const titleLen = title.length;
+            const descLen = description.length;
+
+            const titleCount = document.getElementById('titleCount');
+            titleCount.textContent = `${titleLen} / 60 (optimal)`;
+            titleCount.className = 'char-count' + (titleLen > 60 ? ' warning' : '');
+
+            const descCount = document.getElementById('descCount');
+            descCount.textContent = `${descLen} / 155 (optimal)`;
+            descCount.className = 'char-count' + (descLen > 155 ? ' warning' : '');
+
+            // Generate colored code
+            const esc = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+            let html = `
+<span class="comment">&lt;!-- Basic Meta Tags --&gt;</span>
+<span class="tag-name">&lt;title&gt;</span>${esc(title)}<span class="tag-name">&lt;/title&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">name</span>=<span class="attr-value">"description"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(description)}"</span><span class="tag-name">&gt;</span>`;
+
+            if (keywords) {
+                html += `
+<span class="tag-name">&lt;meta</span> <span class="attr-name">name</span>=<span class="attr-value">"keywords"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(keywords)}"</span><span class="tag-name">&gt;</span>`;
+            }
+
+            if (author) {
+                html += `
+<span class="tag-name">&lt;meta</span> <span class="attr-name">name</span>=<span class="attr-value">"author"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(author)}"</span><span class="tag-name">&gt;</span>`;
+            }
+
+            html += `
+
+<span class="comment">&lt;!-- Open Graph / Facebook --&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">property</span>=<span class="attr-value">"og:type"</span> <span class="attr-name">content</span>=<span class="attr-value">"website"</span><span class="tag-name">&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">property</span>=<span class="attr-value">"og:url"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(url)}"</span><span class="tag-name">&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">property</span>=<span class="attr-value">"og:title"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(title)}"</span><span class="tag-name">&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">property</span>=<span class="attr-value">"og:description"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(description)}"</span><span class="tag-name">&gt;</span>
+
+<span class="comment">&lt;!-- Twitter --&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">property</span>=<span class="attr-value">"twitter:card"</span> <span class="attr-name">content</span>=<span class="attr-value">"summary_large_image"</span><span class="tag-name">&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">property</span>=<span class="attr-value">"twitter:url"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(url)}"</span><span class="tag-name">&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">property</span>=<span class="attr-value">"twitter:title"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(title)}"</span><span class="tag-name">&gt;</span>
+<span class="tag-name">&lt;meta</span> <span class="attr-name">property</span>=<span class="attr-value">"twitter:description"</span> <span class="attr-name">content</span>=<span class="attr-value">"${esc(description)}"</span><span class="tag-name">&gt;</span>`;
+
+            document.getElementById('codeOutput').innerHTML = html;
+        }
+
+        function copyCode() {
+            const codeContainer = document.getElementById('codeOutput');
+            // temporary element to get text content without HTML tags but with newlines
+            const temp = document.createElement('div');
+            temp.innerHTML = codeContainer.innerHTML.replace(/<br>/g, '\n');
+            navigator.clipboard.writeText(temp.textContent);
+            alert('Meta tags copied to clipboard!');
+        }
+
+        function downloadHTML() {
+            const codeContainer = document.getElementById('codeOutput');
+            const temp = document.createElement('div');
+            temp.innerHTML = codeContainer.innerHTML;
+            const code = temp.textContent;
+
+            const blob = new Blob([code], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'meta-tags.html';
+            a.click();
+        }
+
+        updatePreview();
+    </script>
+</body>
+
+</html>

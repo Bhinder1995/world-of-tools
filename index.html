@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldOfTools - 10+ Free Online Utility Tools | Fast & Private</title>
+    <meta name="description"
+        content="Access free online tools: Calculators, Text Tools, and Generators. No signup, no installation, privacy-focused.">
+    <meta name="keywords"
+        content="age calculator, word counter, password generator, percentage calculator, unit converter, link shortener, free online tools">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <header></header> <!-- Injected by js/common.js -->
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="card text-center" style="background: #f0f0f0; border-bottom: 4px solid var(--border-color);">
+            <h1>WorldOfTools</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Efficient, private, and free online utilities.
+                <br><strong>No Server Uploads. Your Data Stays with You.</strong></p>
+            <input type="text" id="searchTools" placeholder="Type to search tools... (e.g. 'age', 'tax', 'link')">
+        </section>
+
+        <!-- Calculators -->
+        <section id="calculators" class="mb-4">
+            <h2>Calculators</h2>
+            <div class="tools-grid">
+                <a href="age-calculator.html" class="tool-card">
+                    <div class="tool-icon">🎂</div>
+                    <div class="tool-title">Age Calculator</div>
+                    <div class="tool-desc">Calculate exact age, next birthday, and life milestones.</div>
+                </a>
+                <a href="percentage-calculator.html" class="tool-card">
+                    <div class="tool-icon">%</div>
+                    <div class="tool-title">Percentage Calc</div>
+                    <div class="tool-desc">Calculate discounts, increases, and percentage portions.</div>
+                </a>
+                <a href="emi-calculator.html" class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <div class="tool-title">EMI Calculator</div>
+                    <div class="tool-desc">Loan amortization schedules and monthly payment estimator.</div>
+                </a>
+                <a href="gst-calculator.html" class="tool-card">
+                    <div class="tool-icon">🧾</div>
+                    <div class="tool-title">GST Calculator</div>
+                    <div class="tool-desc">Quickly add or remove GST tax from any amount.</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Content & SEO -->
+        <section id="tools" class="mb-4">
+            <h2>Text & SEO Tools</h2>
+            <div class="tools-grid">
+                <a href="word-counter.html" class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <div class="tool-title">Word Counter</div>
+                    <div class="tool-desc">Count words, characters, sentences, and reading time.</div>
+                </a>
+                <a href="seo-meta-tag-generator.html" class="tool-card">
+                    <div class="tool-icon">🏷️</div>
+                    <div class="tool-title">Meta Tag Gen</div>
+                    <div class="tool-desc">Create SEO-friendly meta tags for your website.</div>
+                </a>
+                <a href="link-shortener.html" class="tool-card">
+                    <div class="tool-icon">🔗</div>
+                    <div class="tool-title">Link Shortener</div>
+                    <div class="tool-desc">Shorten long URLs instantly using TinyURL API.</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Utilities -->
+        <section id="utilities" class="mb-4">
+            <h2>Utilities</h2>
+            <div class="tools-grid">
+                <a href="password-generator.html" class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <div class="tool-title">Password Gen</div>
+                    <div class="tool-desc">Create strong, secure passwords with custom rules.</div>
+                </a>
+                <a href="unit-converter.html" class="tool-card">
+                    <div class="tool-icon">⚖️</div>
+                    <div class="tool-title">Unit Converter</div>
+                    <div class="tool-desc">Length, Weight, Temperature, and Volume conversions.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer> <!-- Injected by js/common.js -->
+
+    <script src="js/common.js"></script>
+    <script>
+        // Simple search functionality
+        document.getElementById('searchTools').addEventListener('input', function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const toolCards = document.querySelectorAll('.tool-card');
+
+            toolCards.forEach(card => {
+                const title = card.querySelector('.tool-title').textContent.toLowerCase();
+                const description = card.querySelector('.tool-desc').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

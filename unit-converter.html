@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter - Convert Length, Weight, Temperature & More | WorldOfTools</title>
+    <meta name="description"
+        content="Free online Unit Converter. Convert between Length, Weight, Temperature, Area, Speed, and Volume units instantly. support for metric and imperial units.">
+    <meta name="keywords"
+        content="unit converter, measurement converter, length converter, weight converter, temperature converter, online converter, speed converter, area converter">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header></header> <!-- Injected by js/common.js -->
+
+    <main class="container">
+        <section class="card text-center">
+            <h1>🔄 Unit Converter</h1>
+            <p>Convert between common units of measurement instantly</p>
+        </section>
+
+        <section class="card">
+            <div class="form-group mb-4">
+                <label>Select Category</label>
+                <select id="category" onchange="updateUnits()" style="font-size: 1.1rem; padding: 0.75rem;">
+                    <option value="length">📏 Length</option>
+                    <option value="weight">⚖️ Weight</option>
+                    <option value="temperature">🌡️ Temperature</option>
+                    <option value="area">📐 Area</option>
+                    <option value="speed">🚀 Speed</option>
+                    <option value="volume">🧊 Volume</option>
+                </select>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center;">
+                <div>
+                    <input type="number" id="fromValue" placeholder="Enter value" oninput="convert()">
+                    <select id="fromUnit" onchange="convert()" style="margin-top: 0.5rem;"></select>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="btn btn-outline" onclick="swapUnits()"
+                        style="padding: 0.5rem; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">⇄</button>
+                </div>
+
+                <div>
+                    <input type="number" id="toValue" readonly style="background: #f7fafc; cursor: default;">
+                    <select id="toUnit" onchange="convert()" style="margin-top: 0.5rem;"></select>
+                </div>
+            </div>
+
+            <div id="result" style="display: none; margin-top: 2rem; text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);" id="resultText"></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>How to Use the Unit Converter</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem;">
+                <li><strong>Select a Category</strong> (e.g., Length, Weight, Temperature) from the drop-down.</li>
+                <li><strong>Choose the Units</strong> you want to convert from and to.</li>
+                <li><strong>Enter the Value</strong> in the first box.</li>
+                <li>The converted value will appear <strong>instantly</strong> in the second box.</li>
+                <li>Use the <strong>⇄ button</strong> to quickly swap the units.</li>
+            </ol>
+
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <div class="faq-item" style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Which unit categories are supported?</h3>
+                <p>We currently support Length, Weight/Mass, Temperature, Area, Speed, and Volume conversions, covering
+                    the most common calculations needed for daily use.</p>
+            </div>
+            <div class="faq-item" style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Are the conversions accurate?</h3>
+                <p>Yes, we use standard, high-precision conversion factors for all calculations to ensure accuracy.</p>
+            </div>
+            <div class="faq-item">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I convert negative numbers?</h3>
+                <p>For categories where it makes sense (like Temperature), yes. For physical quantities like Length or
+                    Weight, negative values generally aren't applicable but the tool will still calculate the math.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer> <!-- Injected by js/common.js -->
+
+    <script src="js/common.js"></script>
+    <script>
+        const conversions = {
+            length: {
+                meter: 1,
+                kilometer: 1000,
+                centimeter: 0.01,
+                millimeter: 0.001,
+                mile: 1609.34,
+                yard: 0.9144,
+                foot: 0.3048,
+                inch: 0.0254
+            },
+            weight: {
+                kilogram: 1,
+                gram: 0.001,
+                milligram: 0.000001,
+                pound: 0.453592,
+                ounce: 0.0283495,
+                ton: 1000
+            },
+            temperature: {
+                celsius: 'C',
+                fahrenheit: 'F',
+                kelvin: 'K'
+            },
+            area: {
+                square_meter: 1,
+                square_kilometer: 1000000,
+                square_foot: 0.092903,
+                acre: 4046.86,
+                hectare: 10000
+            },
+            speed: {
+                meter_per_second: 1,
+                kilometer_per_hour: 0.277778,
+                mile_per_hour: 0.44704,
+                knot: 0.514444
+            },
+            volume: {
+                liter: 1,
+                milliliter: 0.001,
+                cubic_meter: 1000,
+                gallon: 3.78541,
+                quart: 0.946353,
+                pint: 0.473176,
+                cup: 0.24
+            }
+        };
+
+        function updateUnits() {
+            const category = document.getElementById('category').value;
+            const units = Object.keys(conversions[category]);
+
+            const fromUnit = document.getElementById('fromUnit');
+            const toUnit = document.getElementById('toUnit');
+
+            fromUnit.innerHTML = '';
+            toUnit.innerHTML = '';
+
+            units.forEach(unit => {
+                const label = unit.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                fromUnit.innerHTML += `<option value="${unit}">${label}</option>`;
+                toUnit.innerHTML += `<option value="${unit}">${label}</option>`;
+            });
+
+            if (units.length > 1) toUnit.selectedIndex = 1;
+            convert();
+        }
+
+        function convert() {
+            const category = document.getElementById('category').value;
+            const fromValue = parseFloat(document.getElementById('fromValue').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+
+            if (isNaN(fromValue)) {
+                document.getElementById('toValue').value = '';
+                document.getElementById('result').style.display = 'none';
+                return;
+            }
+
+            let result;
+
+            if (category === 'temperature') {
+                result = convertTemperature(fromValue, fromUnit, toUnit);
+            } else {
+                const valueInBaseUnit = fromValue * conversions[category][fromUnit];
+                result = valueInBaseUnit / conversions[category][toUnit];
+            }
+
+            // Smart rounding
+            const resultRounded = Math.round(result * 1000000) / 1000000;
+
+            document.getElementById('toValue').value = resultRounded;
+
+            const fromLabel = fromUnit.replace(/_/g, ' ');
+            const toLabel = toUnit.replace(/_/g, ' ');
+
+            document.getElementById('resultText').textContent =
+                `${fromValue} ${fromLabel} = ${resultRounded} ${toLabel}`;
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function convertTemperature(value, from, to) {
+            let celsius;
+
+            if (from === 'celsius') celsius = value;
+            else if (from === 'fahrenheit') celsius = (value - 32) * 5 / 9;
+            else if (from === 'kelvin') celsius = value - 273.15;
+
+            if (to === 'celsius') return celsius;
+            if (to === 'fahrenheit') return celsius * 9 / 5 + 32;
+            if (to === 'kelvin') return celsius + 273.15;
+            return celsius;
+        }
+
+        function swapUnits() {
+            const fromUnit = document.getElementById('fromUnit');
+            const toUnit = document.getElementById('toUnit');
+            const temp = fromUnit.value;
+            fromUnit.value = toUnit.value;
+            toUnit.value = temp;
+            convert();
+        }
+
+        // Initialize
+        updateUnits();
+    </script>
+</body>
+
+</html>

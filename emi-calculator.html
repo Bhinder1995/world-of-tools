@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator - Calculate Home, Car & Personal Loan EMI | WorldOfTools</title>
+    <meta name="description"
+        content="Free EMI Calculator for Home Loans, Car Loans, and Personal Loans. Get accurate monthly installment (EMI), total interest, and amortization schedule.">
+    <meta name="keywords"
+        content="emi calculator, loan calculator, home loan emi, car loan emi, interest rate calculator, loan repayment schedule, monthly installment">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header></header> <!-- Injected by js/common.js -->
+
+    <main class="container">
+        <section class="card text-center">
+            <h1>🏦 EMI Calculator</h1>
+            <p>Plan your loans with accurate monthly installment calculations</p>
+        </section>
+
+        <section class="card">
+            <form id="emiForm" class="mb-4">
+                <div class="form-group">
+                    <label>Loan Amount (₹)</label>
+                    <input type="number" id="principal" value="500000" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Interest Rate (% P.A.)</label>
+                    <input type="number" id="interest" value="10.5" step="0.1" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Loan Tenure</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="number" id="tenure" value="5" min="0" style="flex: 1;">
+                        <select id="tenureType" style="width: 100px;">
+                            <option value="years">Years</option>
+                            <option value="months">Months</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Calculate EMI</button>
+            </form>
+
+            <div id="resultSummary"
+                style="display: none; background: #e6fffa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; text-align: center;">
+                    <div>
+                        <div style="color: var(--text-color); margin-bottom: 0.25rem;">Monthly EMI</div>
+                        <div id="emiValue" style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">₹0
+                        </div>
+                    </div>
+                    <div>
+                        <div style="color: var(--text-color); margin-bottom: 0.25rem;">Total Interest</div>
+                        <div id="totalInterest" style="font-size: 1.25rem; font-weight: bold; color: #dd6b20;">₹0</div>
+                    </div>
+                    <div>
+                        <div style="color: var(--text-color); margin-bottom: 0.25rem;">Total Amount</div>
+                        <div id="totalAmount" style="font-size: 1.25rem; font-weight: bold;">₹0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="amortization" style="display: none;">
+                <h3>Repayment Schedule (First Year)</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem;">
+                        <thead style="background: #f7fafc;">
+                            <tr>
+                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e5e7eb;">Month
+                                </th>
+                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e5e7eb;">
+                                    Principal</th>
+                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e5e7eb;">
+                                    Interest</th>
+                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e5e7eb;">
+                                    Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="amortBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>How to Use the EMI Calculator</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem;">
+                <li>Enter the <strong>Loan Amount</strong> (Principal) you wish to borrow.</li>
+                <li>Enter the annual <strong>Interest Rate</strong> offered by the bank.</li>
+                <li>Enter the <strong>Loan Tenure</strong> in years or months.</li>
+                <li>Click <strong>Calculate EMI</strong> to see your monthly payment breakdown.</li>
+            </ol>
+
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <div class="faq-item" style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is EMI?</h3>
+                <p>EMI stands for Equated Monthly Installment. It is a fixed amount paid by a borrower to a lender at a
+                    specified date each calendar month. EMIs are used to pay off both interest and principal each month.
+                </p>
+            </div>
+            <div class="faq-item" style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How does tenure affect my EMI?</h3>
+                <p>A longer tenure (more years) reduces your monthly EMI amount but increases the total interest you pay
+                    over the life of the loan. A shorter tenure increases your EMI but saves you money on interest.</p>
+            </div>
+            <div class="faq-item">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I use this for Home and Car loans?</h3>
+                <p>Yes, this calculator works for any loan that follows a standard reducing balance method, including
+                    Home Loans, Car Loans, and Personal Loans.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer> <!-- Injected by js/common.js -->
+
+    <script src="js/common.js"></script>
+    <script>
+        document.getElementById('emiForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            calculateEMI();
+        });
+
+        function calculateEMI() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            let tenure = parseFloat(document.getElementById('tenure').value);
+            const annualRate = parseFloat(document.getElementById('interest').value);
+            const tenureType = document.getElementById('tenureType').value;
+
+            if (tenureType === 'years') tenure *= 12;
+
+            const monthlyRate = annualRate / 12 / 100;
+            const emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, tenure)) / (Math.pow(1 + monthlyRate, tenure) - 1);
+            const totalAmount = emi * tenure;
+            const totalInterest = totalAmount - principal;
+
+            document.getElementById('emiValue').textContent = '₹' + emi.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+            document.getElementById('totalInterest').textContent = '₹' + totalInterest.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+            document.getElementById('totalAmount').textContent = '₹' + totalAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+
+            document.getElementById('resultSummary').style.display = 'block';
+
+            generateAmortization(principal, emi, monthlyRate);
+        }
+
+        function generateAmortization(principal, emi, rate) {
+            const tbody = document.getElementById('amortBody');
+            tbody.innerHTML = '';
+            let balance = principal;
+
+            // Show first 12 months or less
+            for (let month = 1; month <= 12 && balance > 0; month++) {
+                const interest = balance * rate;
+                const principalPart = emi - interest;
+                balance -= principalPart;
+
+                // Adjust for last payment small errors
+                if (balance < 0) balance = 0;
+
+                const row = `<tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${month}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">₹${principalPart.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">₹${interest.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">₹${Math.max(0, balance).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            }
+
+            document.getElementById('amortization').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

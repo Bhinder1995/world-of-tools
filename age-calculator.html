@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - Calculate Your Exact Age | WorldOfTools</title>
+    <meta name="description"
+        content="Free online age calculator. Calculate your exact age in years, months, days, hours, and minutes. See countdown to your next birthday.">
+    <meta name="keywords" content="age calculator, calculate age, age in days, birthday calculator, how old am i">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header></header> <!-- Injected by js/common.js -->
+
+    <main class="container">
+        <section class="card text-center">
+            <h1>🎂 Age Calculator</h1>
+            <p>Calculate your exact age in years, months, days, and more</p>
+        </section>
+
+        <section class="card">
+            <form id="ageForm" style="max-width: 500px; margin: 0 auto;">
+                <div class="mb-2">
+                    <label for="birthdate">Enter Your Date of Birth:</label>
+                    <input type="date" id="birthdate" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Age</button>
+            </form>
+
+            <div id="results" style="display: none; margin-top: 2rem;">
+                <div class="card text-center" style="background: #eef2ff; border-color: var(--primary-color);">
+                    <h3>Your Current Age</h3>
+                    <div id="mainAge"
+                        style="font-size: 2rem; font-weight: 800; margin: 1rem 0; color: var(--primary-color);"></div>
+
+                    <div class="tools-grid"
+                        style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
+                        <div class="text-center p-2" style="background: white; border: 2px solid #ddd; padding: 1rem;">
+                            <span id="totalMonths" style="display: block; font-weight: bold; font-size: 1.2rem;"></span>
+                            <span style="font-size: 0.8rem;">Months</span>
+                        </div>
+                        <div class="text-center p-2" style="background: white; border: 2px solid #ddd; padding: 1rem;">
+                            <span id="totalWeeks" style="display: block; font-weight: bold; font-size: 1.2rem;"></span>
+                            <span style="font-size: 0.8rem;">Weeks</span>
+                        </div>
+                        <div class="text-center p-2" style="background: white; border: 2px solid #ddd; padding: 1rem;">
+                            <span id="totalDays" style="display: block; font-weight: bold; font-size: 1.2rem;"></span>
+                            <span style="font-size: 0.8rem;">Days</span>
+                        </div>
+                        <div class="text-center p-2" style="background: white; border: 2px solid #ddd; padding: 1rem;">
+                            <span id="totalHours" style="display: block; font-weight: bold; font-size: 1.2rem;"></span>
+                            <span style="font-size: 0.8rem;">Hours</span>
+                        </div>
+                        <div class="text-center p-2" style="background: white; border: 2px solid #ddd; padding: 1rem;">
+                            <span id="totalMinutes"
+                                style="display: block; font-weight: bold; font-size: 1.2rem;"></span>
+                            <span style="font-size: 0.8rem;">Minutes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h1>📅 Age Calculator</h1>
+                <p>Calculate your exact age in years, months, and days</p>
+        </section>
+
+        <section class="card">
+            <div class="form-group mb-4">
+                <label>Date of Birth:</label>
+                <input type="date" id="dob" style="font-size: 1.25rem;">
+            </div>
+            <button class="btn btn-primary" onclick="calculateAge()">Calculate Age</button>
+
+            <div class="result-box" id="result"
+                style="display: none; margin-top: 2rem; background: #ebf8ff; padding: 1.5rem; border-radius: 8px;">
+                <h3 style="color: var(--primary-color);">Your Age Is:</h3>
+                <div id="ageOutput" style="font-size: 1.5rem; font-weight: bold; margin: 1rem 0;"></div>
+                <div id="ageDetails" style="color: var(--text-color); opacity: 0.8;"></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>How to Use the Age Calculator</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem;">
+                <li><strong>Select your Date of Birth</strong> using the calendar picker.</li>
+                <li>Click the <strong>"Calculate Age"</strong> button.</li>
+                <li>View your exact age displayed in years, months, and days.</li>
+                <li>See additional details like total days, hours, and minutes lived!</li>
+            </ol>
+
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <div class="faq-item" style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How accurate is this Age Calculator?</h3>
+                <p>This calculator is 100% accurate. It calculates the exact duration between your birth date and the
+                    current date, taking into account leap years and the varying number of days in each month.</p>
+            </div>
+            <div class="faq-item" style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Does this calculator store my birth date?</h3>
+                <p>No, we do not store any of your personal information. All calculations are performed instantly in
+                    your browser (client-side), ensuring your privacy.</p>
+            </div>
+            <div class="faq-item">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I calculate age for a future date?</h3>
+                <p>Currently, this tool determines your age based on "today." However, you can input a past date as your
+                    "Date of Birth" to find the duration between that date and today.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer> <!-- Injected by js/common.js -->
+
+    <script src="js/common.js"></script>
+    <script>
+        function calculateAge() {
+            const dobInput = document.getElementById('dob').value;
+            if (!dobInput) {
+                alert('Please select your date of birth');
+                return;
+            }
+
+            const dob = new Date(dobInput);
+            const now = new Date();
+
+            let years = now.getFullYear() - dob.getFullYear();
+            let months = now.getMonth() - dob.getMonth();
+            let days = now.getDate() - dob.getDate();
+
+            if (days < 0) {
+                months--;
+                days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+            }
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            const output = `${years} Years, ${months} Months, ${days} Days`;
+
+            // Calculate total details
+            const diffTime = Math.abs(now - dob);
+            const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const totalWeeks = Math.floor(totalDays / 7);
+            calculateNextBirthday(birthdate, today);
+
+            // Show results
+            document.getElementById('results').style.display = 'block';
+        }
+
+        function calculateNextBirthday(birthdate, today) {
+            let nextBirthday = new Date(today.getFullYear(), birthdate.getMonth(), birthdate.getDate());
+
+            if (nextBirthday < today) {
+                nextBirthday.setFullYear(today.getFullYear() + 1);
+            }
+
+            // Clear existing interval if any
+            if (window.birthdayInterval) clearInterval(window.birthdayInterval);
+
+            updateCountdown(nextBirthday);
+
+            // Update countdown every second
+            window.birthdayInterval = setInterval(() => updateCountdown(nextBirthday), 1000);
+        }
+
+        function updateCountdown(nextBirthday) {
+            const now = new Date();
+            const diff = nextBirthday - now;
+
+            if (diff < 0) {
+                document.getElementById('birthdayCountdown').textContent = "Happy Birthday! 🎂";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('birthdayCountdown').textContent =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+    </script>
+</body>
+
+</html>
