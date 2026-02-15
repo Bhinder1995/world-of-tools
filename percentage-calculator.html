@@ -38,18 +38,20 @@
                 accurate math tools.</p>
         </section>
 
-        <div class="tools-grid"
-            style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
+        <div class="tools-grid">
+
             <!-- Find Percentage -->
             <div class="card">
                 <h3>Find Percentage</h3>
                 <p class="tool-desc">Calculate a portion of a number.</p>
                 <div class="mb-4">
                     <label>What is</label>
-                    <div style="display: flex; gap: 0.5rem; align-items: center;">
-                        <input type="number" id="p1_per" placeholder="%" oninput="calcP1()" style="flex: 1;">
+                    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                        <input type="number" id="p1_per" placeholder="%" oninput="calcP1()"
+                            style="flex: 1; min-width: 60px;">
                         <span>% of</span>
-                        <input type="number" id="p1_num" placeholder="Number" oninput="calcP1()" style="flex: 2;">
+                        <input type="number" id="p1_num" placeholder="Number" oninput="calcP1()"
+                            style="flex: 2; min-width: 120px;">
                     </div>
                 </div>
                 <div class="card" id="res1_card"
@@ -63,10 +65,12 @@
                 <h3>Find Part</h3>
                 <p class="tool-desc">Find what percentage one number is of another.</p>
                 <div class="mb-4">
-                    <div style="display: flex; gap: 0.5rem; align-items: center;">
-                        <input type="number" id="p2_num1" placeholder="Number" oninput="calcP2()" style="flex: 1;">
+                    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                        <input type="number" id="p2_num1" placeholder="Number" oninput="calcP2()"
+                            style="flex: 1; min-width: 100px;">
                         <span>is what % of</span>
-                        <input type="number" id="p2_num2" placeholder="Total" oninput="calcP2()" style="flex: 1;">
+                        <input type="number" id="p2_num2" placeholder="Total" oninput="calcP2()"
+                            style="flex: 1; min-width: 100px;">
                     </div>
                 </div>
                 <div class="card" id="res2_card"
@@ -80,12 +84,12 @@
                 <h3>Percentage Change</h3>
                 <p class="tool-desc">Calculate increase or decrease between two values.</p>
                 <div class="mb-4">
-                    <div style="display: flex; gap: 0.5rem; align-items: center;">
-                        <div style="flex: 1;">
+                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 120px;">
                             <label>From</label>
                             <input type="number" id="p3_from" placeholder="Old" oninput="calcP3()">
                         </div>
-                        <div style="flex: 1;">
+                        <div style="flex: 1; min-width: 120px;">
                             <label>To</label>
                             <input type="number" id="p3_to" placeholder="New" oninput="calcP3()">
                         </div>

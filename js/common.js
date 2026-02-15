@@ -14,7 +14,10 @@ function injectHeader() {
                 <a href="index.html" class="logo">
                     <span>⚡</span> HUB
                 </a>
-                <nav>
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    ☰
+                </button>
+                <nav id="main-nav">
                     <ul>
                         <li><a href="index.html#calculators">Calculators</a></li>
                         <li><a href="index.html#tools">Text Tools</a></li>
@@ -30,6 +33,36 @@ function injectHeader() {
     const header = document.querySelector('header');
     if (header) {
         header.innerHTML = headerHTML;
+        setupMobileMenu();
+    }
+}
+
+function setupMobileMenu() {
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('main-nav');
+
+    if (toggle && nav) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nav.classList.toggle('active');
+            toggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (nav.classList.contains('active') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+                nav.classList.remove('active');
+                toggle.textContent = '☰';
+            }
+        });
+
+        // Close menu when clicking a link
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                toggle.textContent = '☰';
+            });
+        });
     }
 }
 
