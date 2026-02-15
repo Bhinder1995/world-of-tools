@@ -59,7 +59,7 @@
     </style>
     <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js/id=G-CCYN1G2F05"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -76,84 +76,137 @@
     <header></header> <!-- Injected by js/common.js -->
 
     <main class="container">
-        <section class="card text-center">
+        <section class="text-center" style="margin-bottom: 3rem;">
             <h1>🧾 GST Calculator</h1>
-            <p>Calculate GST inclusive and exclusive amounts accurately</p>
+            <p class="section-desc">Calculate GST inclusive and exclusive amounts accurately for all standard tax slabs
+                (3%, 5%, 12%, 18%, 28%).</p>
         </section>
 
-        <section class="card">
-            <div class="mode-switch">
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                    <input type="radio" name="mode" value="exclusive" checked onchange="calculateGST()">
-                    GST Exclusive (Add GST)
-                </label>
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                    <input type="radio" name="mode" value="inclusive" onchange="calculateGST()">
-                    GST Inclusive (Remove GST)
-                </label>
+        <section class="card mb-4" style="max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div class="card mb-4" style="background: #f8fafc; border: none; padding: 1.5rem;">
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; font-weight: 600;">
+                        <input type="radio" name="mode" value="exclusive" checked onchange="calculateGST()"
+                            style="width: 1.2rem; height: 1.2rem; accent-color: var(--primary-color);">
+                        GST Exclusive (Add Tax)
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; font-weight: 600;">
+                        <input type="radio" name="mode" value="inclusive" onchange="calculateGST()"
+                            style="width: 1.2rem; height: 1.2rem; accent-color: var(--primary-color);">
+                        GST Inclusive (Remove Tax)
+                    </label>
+                </div>
             </div>
 
-            <div class="form-group mb-4">
+            <div class="mb-4">
                 <label>Amount (₹)</label>
-                <input type="number" id="amount" placeholder="Enter Amount" oninput="calculateGST()">
+                <input type="number" id="amount" placeholder="e.g. 1000" oninput="calculateGST()"
+                    style="font-size: 1.5rem; padding: 1rem;">
             </div>
 
-            <div class="mb-2"><strong>Tax Rate:</strong></div>
-            <div class="tax-slabs">
-                <button class="slab-btn" onclick="setRate(3)">3%</button>
-                <button class="slab-btn" onclick="setRate(5)">5%</button>
-                <button class="slab-btn" onclick="setRate(12)">12%</button>
-                <button class="slab-btn active" onclick="setRate(18)">18%</button>
-                <button class="slab-btn" onclick="setRate(28)">28%</button>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <input type="number" id="customRate" placeholder="Custom"
-                        style="width: 80px; padding: 0.25rem 0.5rem;" oninput="setCustomRate()"> %
+            <div class="mb-2" style="font-weight: 600; color: var(--text-muted);">Select Tax Rate:</div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <button class="btn btn-secondary slab-btn" style="flex: 1; min-width: 60px; padding: 0.75rem;"
+                    onclick="setRate(3)">3%</button>
+                <button class="btn btn-secondary slab-btn" style="flex: 1; min-width: 60px; padding: 0.75rem;"
+                    onclick="setRate(5)">5%</button>
+                <button class="btn btn-secondary slab-btn" style="flex: 1; min-width: 60px; padding: 0.75rem;"
+                    onclick="setRate(12)">12%</button>
+                <button class="btn btn-primary slab-btn" style="flex: 1; min-width: 60px; padding: 0.75rem;"
+                    id="defaultRateBtn" onclick="setRate(18)">18%</button>
+                <button class="btn btn-secondary slab-btn" style="flex: 1; min-width: 60px; padding: 0.75rem;"
+                    onclick="setRate(28)">28%</button>
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex: 2; min-width: 120px;">
+                    <input type="number" id="customRate" placeholder="Custom %" oninput="setCustomRate()">
                 </div>
             </div>
 
-            <div id="result"
-                style="background: #f7fafc; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; display: none;">
-                <div class="result-row">
-                    <span>Net Amount:</span>
-                    <span id="netAmount">₹0</span>
+            <div id="result" style="display: none; border-top: 2px dashed var(--border-color); padding-top: 2rem;">
+                <div class="text-center mb-4">
+                    <h3 style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase;">Total Amount
+                    </h3>
+                    <div id="totalAmount" style="font-size: 2.5rem; font-weight: 900; color: var(--primary-color);">
+                    </div>
                 </div>
-                <div class="result-row">
-                    <span>GST Amount:</span>
-                    <span id="gstAmount">₹0</span>
-                </div>
-                <div class="result-row">
-                    <span>Total Amount:</span>
-                    <span id="totalAmount">₹0</span>
+
+                <div class="tools-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
+                    <div class="card text-center" style="padding: 1rem; background: #f8fafc;">
+                        <span
+                            style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; display: block;">Net
+                            Amount</span>
+                        <span id="netAmount" style="font-weight: 800; font-size: 1.25rem;"></span>
+                    </div>
+                    <div class="card text-center" style="padding: 1rem; background: #f8fafc;">
+                        <span
+                            style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; display: block;">GST
+                            Portion</span>
+                        <span id="gstAmount"
+                            style="font-weight: 800; font-size: 1.25rem; color: var(--secondary-color);"></span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="card">
-            <h2>How to Use the GST Calculator</h2>
-            <ol style="margin-left: 1.5rem; margin-bottom: 2rem;">
-                <li><strong>Select Mode:</strong> Choose "Exclusive" if you want to add tax to a price, or "Inclusive"
-                    if the tax is already included in the price.</li>
-                <li><strong>Enter Amount:</strong> Input the base amount.</li>
-                <li><strong>Select Tax Rate:</strong> Choose a standard GST slab (3%, 5%, 12%, 18%, 28%) or enter a
-                    custom rate.</li>
-                <li>The calculator will instantly show the Net Amount, GST Amount, and Total.</li>
-            </ol>
+        <!-- SEO Content Section -->
+        <section class="seo-content container" style="max-width: 800px;">
+            <h2>About Our Online GST Calculator</h2>
+            <p>Our **GST Calculator** is designed to simplify the complex tax calculations used in India and several
+                other countries. Whether you're a business owner, a consumer, or a freelancer, understanding how Goods
+                and Services Tax affects your pricing is crucial for financial transparency.</p>
 
-            <h2>Frequently Asked Questions (FAQ)</h2>
-            <div class="faq-item" style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is GST Exclusive?</h3>
-                <p>GST Exclusive means the tax is calculated on top of the product price. For example, if a product
-                    costs ₹100 and GST is 18%, the total you pay is ₹118.</p>
-            </div>
-            <div class="faq-item" style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is GST Inclusive?</h3>
-                <p>GST Inclusive means the tax is already part of the total price. For example, if you pay ₹118 for a
-                    product with 18% GST (Inclusive), the actual product price is ₹100 and tax is ₹18.</p>
+            <h3>GST Inclusive vs Exclusive: What's the Difference?</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li><strong>GST Exclusive:</strong> This is when you want to add tax to a base price. It's commonly used
+                    when quoting services to clients.</li>
+                <li><strong>GST Inclusive:</strong> This is when the price already includes the tax. Use this to find
+                    out how much of your receipt total was actually tax.</li>
+            </ul>
+
+            <h3>Standard GST Slabs in India</h3>
+            <p>Our tool supports all official Indian tax slabs:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li><strong>3%:</strong> For gold and silver ornaments.</li>
+                <li><strong>5%:</strong> For essential household items and packaged food.</li>
+                <li><strong>12%:</strong> For processed foods and apparel.</li>
+                <li><strong>18%:</strong> The standard rate for services and electronic goods.</li>
+                <li><strong>28%:</strong> For luxury items and luxury cars.</li>
+            </ul>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section container" style="max-width: 800px;">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is this calculator compliant with CGST and SGST?</h3>
+                <p>Yes. In standard domestic transactions, the 'GST Amount' calculated by our tool is simply split
+                    evenly between CGST (Central GST) and SGST (State GST).</p>
             </div>
             <div class="faq-item">
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Which GST rates are supported?</h3>
-                <p>We support all standard Indian GST slabs: 3% (Gold), 5%, 12%, 18%, and 28%. You can also enter any
-                    custom percentage.</p>
+                <h3>Can I enter a custom tax rate?</h3>
+                <p>Absolutely. Use the 'Custom %' field to enter any tax rate from 0% to 100% for specific products or
+                    international tax regions.</p>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top: 4rem;">
+            <h2 class="text-center" style="margin-bottom: 2.5rem;">Try Other Related Tools</h2>
+            <div class="tools-grid">
+                <a href="emi-calculator.html" class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <div class="tool-title">EMI Calculator</div>
+                    <div class="tool-desc">Plan your loans and monthly payments.</div>
+                </a>
+                <a href="percentage-calculator.html" class="tool-card">
+                    <div class="tool-icon">%</div>
+                    <div class="tool-title">Percentage Calc</div>
+                    <div class="tool-desc">Calculate discounts and growth portions.</div>
+                </a>
+                <a href="age-calculator.html" class="tool-card">
+                    <div class="tool-icon">🎂</div>
+                    <div class="tool-title">Age Calculator</div>
+                    <div class="tool-desc">Calculate your exact age and milestones.</div>
+                </a>
             </div>
         </section>
     </main>
@@ -162,18 +215,36 @@
 
     <script src="js/common.js"></script>
     <script>
+        // Structured Data (JSON-LD)
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Advanced GST Calculator",
+            "description": "Calculate GST inclusive and exclusive tax amounts for Indian and international tax slabs instantly.",
+            "url": "https://worldoftools.in/gst-calculator.html",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "offers": { "@type": "Offer", "price": "0" }
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
         let currentRate = 18;
 
         function setRate(rate) {
             currentRate = rate;
             document.getElementById('customRate').value = '';
 
-            // Update UI
             document.querySelectorAll('.slab-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (parseFloat(btn.textContent) === rate) btn.classList.add('active');
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+                if (parseFloat(btn.textContent) === rate) {
+                    btn.classList.add('btn-primary');
+                    btn.classList.remove('btn-secondary');
+                }
             });
-
             calculateGST();
         }
 
@@ -181,15 +252,19 @@
             const val = parseFloat(document.getElementById('customRate').value);
             if (!isNaN(val)) {
                 currentRate = val;
-                document.querySelectorAll('.slab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.slab-btn').forEach(btn => {
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-secondary');
+                });
                 calculateGST();
             }
         }
 
         function calculateGST() {
             const amount = parseFloat(document.getElementById('amount').value);
+            const resultDiv = document.getElementById('result');
             if (isNaN(amount)) {
-                document.getElementById('result').style.display = 'none';
+                resultDiv.style.display = 'none';
                 return;
             }
 
@@ -201,9 +276,6 @@
                 gstAmount = (amount * currentRate) / 100;
                 totalAmount = netAmount + gstAmount;
             } else {
-                // Inclusive: Total = Net + (Net * Rate / 100)
-                // Total = Net * (1 + Rate / 100)
-                // Net = Total / (1 + Rate / 100)
                 netAmount = amount / (1 + currentRate / 100);
                 gstAmount = amount - netAmount;
                 totalAmount = amount;
@@ -212,7 +284,7 @@
             document.getElementById('netAmount').textContent = '₹' + netAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 });
             document.getElementById('gstAmount').textContent = '₹' + gstAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 });
             document.getElementById('totalAmount').textContent = '₹' + totalAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-            document.getElementById('result').style.display = 'block';
+            resultDiv.style.display = 'block';
         }
     </script>
 </body>

@@ -32,77 +32,157 @@
 
     <main class="container">
         <!-- Hero Section -->
-        <section class="card text-center" style="background: #f0f0f0; border-bottom: 4px solid var(--border-color);">
-            <h1 class="hero-title">WorldOfTools</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Efficient, private, and free online utilities.
-                <br><strong>No Server Uploads. Your Data Stays with You.</strong>
+        <section class="text-center"
+            style="padding: 6rem 0; background: radial-gradient(circle at top, rgba(79, 70, 229, 0.05) 0%, transparent 70%);">
+            <h1 class="hero-title" style="font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1.5rem;">One Hub. No
+                Limits. <span
+                    style="background: linear-gradient(135deg, var(--primary-color), #818cf8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Browser
+                    Based.</span></h1>
+            <p class="hero-subtitle"
+                style="font-size: 1.25rem; max-width: 800px; margin: 0 auto 3rem; color: var(--text-muted); line-height: 1.6;">
+                Unlock a suite of professional utility tools designed for privacy and speed. Every calculation,
+                transformation, and generation happens 100% on your device.
             </p>
-            <input type="text" id="searchTools" placeholder="Type to search tools... (e.g. 'age', 'tax', 'link')">
+
+            <div class="search-container"
+                style="max-width: 650px; margin: 0 auto; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.08));">
+                <input type="text" id="searchTools"
+                    placeholder="Search 10+ professional tools (e.g. 'age', 'link', 'tax')..."
+                    style="padding: 1.25rem 2rem; border-radius: 50px; font-size: 1.1rem; border: 2px solid #e2e8f0; transition: all 0.3s ease;">
+            </div>
+        </section>
+
+        <!-- Trust Signals / Features -->
+        <section class="container" style="margin-bottom: 6rem;">
+            <div class="tools-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <div class="card text-center" style="padding: 2rem; border-color: rgba(79, 70, 229, 0.1);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
+                    <h3 style="margin-bottom: 0.75rem;">Privacy First</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Your data NEVER leaves your browser. No
+                        server uploads, no data collection.</p>
+                </div>
+                <div class="card text-center" style="padding: 2rem; border-color: rgba(79, 70, 229, 0.1);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
+                    <h3 style="margin-bottom: 0.75rem;">Instant Speed</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Zero latency. Calculations happen in
+                        real-time as you type, powered by your CPU.</p>
+                </div>
+                <div class="card text-center" style="padding: 2rem; border-color: rgba(79, 70, 229, 0.1);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🆓</div>
+                    <h3 style="margin-bottom: 0.75rem;">Always Free</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">No subscriptions, no hidden fees, and no
+                        account required. Just open and use.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Calculators -->
         <section id="calculators" class="mb-4">
-            <h2>Calculators</h2>
+            <div class="section-header">
+                <h2>Financial & Life Calculators</h2>
+                <p class="section-desc">Accurate tools for financial planning, tax calculations, and age milestones.</p>
+            </div>
             <div class="tools-grid">
                 <a href="age-calculator.html" class="tool-card">
                     <div class="tool-icon">🎂</div>
                     <div class="tool-title">Age Calculator</div>
                     <div class="tool-desc">Calculate exact age, next birthday, and life milestones.</div>
-                </a>
-                <a href="percentage-calculator.html" class="tool-card">
-                    <div class="tool-icon">%</div>
-                    <div class="tool-title">Percentage Calc</div>
-                    <div class="tool-desc">Calculate discounts, increases, and percentage portions.</div>
-                </a>
-                <a href="emi-calculator.html" class="tool-card">
-                    <div class="tool-icon">💰</div>
-                    <div class="tool-title">EMI Calculator</div>
-                    <div class="tool-desc">Loan amortization schedules and monthly payment estimator.</div>
+                    <div class="trust-badge">🛡️ Browser-based</div>
                 </a>
                 <a href="gst-calculator.html" class="tool-card">
                     <div class="tool-icon">🧾</div>
                     <div class="tool-title">GST Calculator</div>
                     <div class="tool-desc">Quickly add or remove GST tax from any amount.</div>
+                    <div class="trust-badge">✅ Accurate</div>
+                </a>
+                <a href="emi-calculator.html" class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <div class="tool-title">EMI Calculator</div>
+                    <div class="tool-desc">Loan amortization schedules and monthly payment estimator.</div>
+                    <div class="trust-badge">🔒 100% Private</div>
+                </a>
+                <a href="percentage-calculator.html" class="tool-card">
+                    <div class="tool-icon">%</div>
+                    <div class="tool-title">Percentage Calc</div>
+                    <div class="tool-desc">Calculate discounts, increases, and percentage portions.</div>
+                    <div class="trust-badge">⚡ Instant</div>
                 </a>
             </div>
         </section>
 
         <!-- Content & SEO -->
-        <section id="tools" class="mb-4">
-            <h2>Text & SEO Tools</h2>
+        <section id="tools" class="mb-4" style="margin-top: 5rem;">
+            <div class="section-header">
+                <h2>Content, SEO & Web Tools</h2>
+                <p class="section-desc">Essential productivity tools for developers, writers, and digital marketers.</p>
+            </div>
             <div class="tools-grid">
                 <a href="word-counter.html" class="tool-card">
                     <div class="tool-icon">📝</div>
                     <div class="tool-title">Word Counter</div>
                     <div class="tool-desc">Count words, characters, sentences, and reading time.</div>
+                    <div class="trust-badge">📝 Local Analysis</div>
                 </a>
                 <a href="seo-meta-tag-generator.html" class="tool-card">
                     <div class="tool-icon">🏷️</div>
                     <div class="tool-title">Meta Tag Gen</div>
-                    <div class="tool-desc">Create SEO-friendly meta tags for your website.</div>
+                    <div class="tool-desc">Create SEO-friendly meta tags with live SERP preview.</div>
+                    <div class="trust-badge">🚀 SEO Boost</div>
                 </a>
                 <a href="link-shortener.html" class="tool-card">
                     <div class="tool-icon">🔗</div>
                     <div class="tool-title">Link Shortener</div>
-                    <div class="tool-desc">Shorten long URLs instantly using TinyURL API.</div>
+                    <div class="tool-desc">Shorten long URLs instantly using the TinyURL API.</div>
+                    <div class="trust-badge">🔗 Permanent</div>
                 </a>
             </div>
         </section>
 
         <!-- Utilities -->
-        <section id="utilities" class="mb-4">
-            <h2>Utilities</h2>
+        <section id="utilities" class="mb-4" style="margin-top: 5rem;">
+            <div class="section-header">
+                <h2>Security & General Utility</h2>
+                <p class="section-desc">Reliable utilities for password security and international measurement
+                    conversions.</p>
+            </div>
             <div class="tools-grid">
                 <a href="password-generator.html" class="tool-card">
                     <div class="tool-icon">🔐</div>
                     <div class="tool-title">Password Gen</div>
                     <div class="tool-desc">Create strong, secure passwords with custom rules.</div>
+                    <div class="trust-badge">🛡️ Offline-ready</div>
                 </a>
                 <a href="unit-converter.html" class="tool-card">
                     <div class="tool-icon">⚖️</div>
                     <div class="tool-title">Unit Converter</div>
                     <div class="tool-desc">Length, Weight, Temperature, and Volume conversions.</div>
+                    <div class="trust-badge">⚖️ Precise</div>
                 </a>
+            </div>
+        </section>
+
+        <!-- SEO Content for Discovery -->
+        <section class="container" style="margin-top: 8rem; max-width: 900px; line-height: 1.8;">
+            <div
+                style="background: white; padding: 3rem; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);">
+                <h2 style="margin-bottom: 2rem;">Why Creators Choose WorldOfTools</h2>
+                <p>In an era where every click is tracked, **WorldOfTools** offers a breath of fresh air. Our mission is
+                    to provide <strong>high-quality, free online utility tools</strong> that respect your privacy. By
+                    processing all data client-side in your browser, we ensure that your sensitive financial
+                    calculations, complex passwords, and private text never touch our servers.</p>
+
+                <h3 style="margin-top: 2rem;">A Growing Directory of Productivity Tools</h3>
+                <p>Whether you're a student calculating your GPA, a developer generating meta tags for a new project, or
+                    a homeowner estimating an EMI, we've got you covered. Our suite includes:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+                    <li><strong>Financial Tools:</strong> EMI, GST, and Percentage calculators for quick math.</li>
+                    <li><strong>Optimization Tools:</strong> Word counters and meta tag generators for content creators.
+                    </li>
+                    <li><strong>Measurement Tools:</strong> Multi-category unit converters for international standards.
+                    </li>
+                    <li><strong>Security Tools:</strong> High-entropy password generators and secure URL shorteners.
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
@@ -111,6 +191,24 @@
 
     <script src="js/common.js"></script>
     <script>
+        // Structured Data (JSON-LD)
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "WorldOfTools",
+            "description": "Premium collection of free online utility tools for developers, creators, and professionals.",
+            "url": "https://worldoftools.in",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://worldoftools.in/?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
         // Simple search functionality
         document.getElementById('searchTools').addEventListener('input', function (e) {
             const searchTerm = e.target.value.toLowerCase();
@@ -126,6 +224,23 @@
                     card.style.display = 'none';
                 }
             });
+
+            // Handle sections (hide if no tools visible)
+            document.querySelectorAll('section[id]').forEach(section => {
+                const visible = Array.from(section.querySelectorAll('.tool-card')).some(c => c.style.display !== 'none');
+                section.style.display = visible ? 'block' : 'none';
+            });
+        });
+
+        // Add sticky header behavior
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header nav');
+            if (header && window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else if (header) {
+                header.style.backgroundColor = 'white';
+            }
         });
     </script>
 </body>

@@ -11,68 +11,6 @@
         content="word counter, character count, text count tool, online word counter, reading time calculator">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        textarea {
-            width: 100%;
-            height: 300px;
-            padding: 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            resize: vertical;
-            margin-bottom: 1rem;
-            transition: border-color 0.2s;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-card {
-            background: #f7fafc;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            line-height: 1.2;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .toolbar {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .toolbar button {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-        }
-    </style>
     <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
@@ -92,72 +30,132 @@
     <header></header> <!-- Injected by js/common.js -->
 
     <main class="container">
-        <section class="card text-center">
+        <section class="text-center" style="margin-bottom: 3rem;">
             <h1>📝 Word Counter</h1>
-            <p>Count words, characters, sentences, and analyze reading time</p>
+            <p class="section-desc">Count words, characters, sentences, and paragraphs in real-time. Analyze reading
+                time and text density instantly.</p>
         </section>
 
-        <section class="card">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="wordCount">0</div>
-                    <div class="stat-label">Words</div>
+        <section class="card mb-4">
+            <div class="tools-grid"
+                style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div class="card text-center" style="padding: 1rem;">
+                    <div id="wordCount" style="font-size: 1.75rem; font-weight: 900; color: var(--primary-color);">0
+                    </div>
+                    <div
+                        style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+                        Words</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="charCount">0</div>
-                    <div class="stat-label">Characters</div>
+                <div class="card text-center" style="padding: 1rem;">
+                    <div id="charCount" style="font-size: 1.75rem; font-weight: 900; color: var(--primary-color);">0
+                    </div>
+                    <div
+                        style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+                        Chars</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="sentenceCount">0</div>
-                    <div class="stat-label">Sentences</div>
+                <div class="card text-center" style="padding: 1rem;">
+                    <div id="sentenceCount" style="font-size: 1.75rem; font-weight: 900; color: var(--primary-color);">0
+                    </div>
+                    <div
+                        style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+                        Sentences</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="paragraphCount">0</div>
-                    <div class="stat-label">Paragraphs</div>
+                <div class="card text-center" style="padding: 1rem;">
+                    <div id="paragraphCount" style="font-size: 1.75rem; font-weight: 900; color: var(--primary-color);">
+                        0</div>
+                    <div
+                        style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+                        Paras</div>
                 </div>
             </div>
 
-            <div class="toolbar">
-                <button class="btn btn-outline" onclick="transformText('upper')">UPPERCASE</button>
-                <button class="btn btn-outline" onclick="transformText('lower')">lowercase</button>
-                <button class="btn btn-outline" onclick="transformText('capitalize')">Capitalize</button>
-                <button class="btn btn-outline" onclick="copyText()">📋 Copy Text</button>
-                <button class="btn btn-outline" onclick="clearText()" style="color: #c53030; border-color: #c53030;">🗑️
-                    Clear</button>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <button class="btn btn-secondary" onclick="transformText('upper')"
+                    style="padding: 0.5rem 1rem; font-size: 0.85rem;">UPPERCASE</button>
+                <button class="btn btn-secondary" onclick="transformText('lower')"
+                    style="padding: 0.5rem 1rem; font-size: 0.85rem;">lowercase</button>
+                <button class="btn btn-secondary" onclick="transformText('capitalize')"
+                    style="padding: 0.5rem 1rem; font-size: 0.85rem;">Capitalize</button>
+                <button class="btn btn-secondary" onclick="copyText()"
+                    style="padding: 0.5rem 1rem; font-size: 0.85rem;">📋 Copy</button>
+                <button class="btn btn-secondary" onclick="clearText()"
+                    style="padding: 0.5rem 1rem; font-size: 0.85rem; color: #e53e3e;">🗑️ Clear</button>
             </div>
 
-            <textarea id="textInput" placeholder="Type or paste your text here to begin counting..."></textarea>
+            <textarea id="textInput" placeholder="Type or paste your text here to begin counting..."
+                style="width: 100%; height: 350px; padding: 1.5rem; border: 2px solid var(--border-color); border-radius: 12px; font-family: inherit; font-size: 1.1rem; resize: vertical; margin-bottom: 1rem; transition: border-color 0.2s;"></textarea>
 
-            <div class="row" style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-color); opacity: 0.8;">
-                <div class="col">Reading Time: <strong id="readTime">0</strong> min</div>
-                <div class="col" style="text-align: right;">Characters (no spaces): <strong
-                        id="charNoSpaceCount">0</strong></div>
+            <div
+                style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">
+                <div>Estimated Reading Time: <span id="readTime" style="color: var(--primary-color);">0</span> min</div>
+                <div>Characters (no spaces): <span id="charNoSpaceCount">0</span></div>
             </div>
         </section>
 
-        <section class="card">
-            <h2>How to Use the Word Counter</h2>
-            <ol style="margin-left: 1.5rem; margin-bottom: 2rem;">
-                <li><strong>Type or Paste</strong> your text into the large box above.</li>
-                <li>The <strong>Counters</strong> (Words, Characters, Sentences) will update instantly.</li>
-                <li>Use the <strong>Toolbar Buttons</strong> to change case (UPPER/lower) or copy/clear text.</li>
-                <li>Check the bottom for estimated <strong>Reading Time</strong> and characters without spaces.</li>
-            </ol>
+        <!-- SEO Content Section -->
+        <section class="seo-content container" style="max-width: 800px;">
+            <h2>About Our Online Word Counter</h2>
+            <p>Our **Word Counter** is a professional-grade text analysis tool designed for writers, students, social
+                media managers, and SEO specialists. It provides instantaneous feedback on your writing, helping you
+                stay within strict character limits or reach your daily word count goals.</p>
 
-            <h2>Frequently Asked Questions (FAQ)</h2>
-            <div class="faq-item" style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Does it count spaces as characters?</h3>
-                <p>We show you both! The main "Characters" count includes spaces, but we also display "Characters (no
-                    spaces)" below the text box for your convenience.</p>
-            </div>
-            <div class="faq-item" style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is my text saved or sent to a server?</h3>
-                <p>No, absolutely not. All analysis happens 100% in your browser. Your text never leaves your device,
-                    ensuring complete privacy.</p>
+            <h3>Why Accurate Word Counting Matters</h3>
+            <p>In the digital age, precision is key. Our tool helps you with:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li><strong>SEO Optimization:</strong> Ensure your meta descriptions and titles are the perfect length
+                    for Google.</li>
+                <li><strong>Academic Writing:</strong> Stay precisely within the limits assigned for essays and thesis
+                    papers.</li>
+                <li><strong>Social Media:</strong> Draft perfect posts for Twitter (X), LinkedIn, and Instagram without
+                    guessing the character count.</li>
+                <li><strong>Privacy Guaranteed:</strong> Unlike other tools, your text is never stored on our servers.
+                    Processing is 100% local.</li>
+            </ul>
+
+            <h3>Key Features</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li><strong>Real-time Tracking:</strong> Every keystroke updates the counters immediately.</li>
+                <li><strong>Reading Time Analysis:</strong> Useful for speechwriters and bloggers to estimate how long
+                    it takes to consume the content.</li>
+                <li><strong>One-Click Transformation:</strong> Quickly switch between cases (Uppercase, Lowercase, Title
+                    Case) without re-typing.</li>
+            </ul>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section container" style="max-width: 800px;">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is there a limit to how many words I can count?</h3>
+                <p>No. Our tool is capable of handling long-form manuscripts, including entire book chapters, directly
+                    in your browser.</p>
             </div>
             <div class="faq-item">
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How is reading time calculated?</h3>
-                <p>We estimate reading time based on an average reading speed of 200 words per minute.</p>
+                <h3>Does the word counter handle multiple whitespace characters?</h3>
+                <p>Yes. Our algorithm is designed to ignore multiple spaces, tabs, and newlines to provide you with the
+                    most accurate word count possible.</p>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top: 4rem;">
+            <h2 class="text-center" style="margin-bottom: 2.5rem;">Try Other Related Tools</h2>
+            <div class="tools-grid">
+                <a href="password-generator.html" class="tool-card">
+                    <div class="tool-icon">🔑</div>
+                    <div class="tool-title">Password Gen</div>
+                    <div class="tool-desc">Create secure, random passwords instantly.</div>
+                </a>
+                <a href="seo-meta-tag-generator.html" class="tool-card">
+                    <div class="tool-icon">🏷️</div>
+                    <div class="tool-title">Meta Generator</div>
+                    <div class="tool-desc">Draft SEO tags for your website boost.</div>
+                </a>
+                <a href="unit-converter.html" class="tool-card">
+                    <div class="tool-icon">⚖️</div>
+                    <div class="tool-title">Unit Converter</div>
+                    <div class="tool-desc">Convert weight, length, and more.</div>
+                </a>
             </div>
         </section>
     </main>
@@ -166,59 +164,59 @@
 
     <script src="js/common.js"></script>
     <script>
+        // Structured Data (JSON-LD)
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Professional Word Counter",
+            "description": "Free online tool to count words, characters, sentences, and paragraphs in real-time with reading time analysis.",
+            "url": "https://worldoftools.in/word-counter.html",
+            "applicationCategory": "TextApplication",
+            "operatingSystem": "Any",
+            "offers": { "@type": "Offer", "price": "0" }
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
         const textarea = document.getElementById('textInput');
         textarea.addEventListener('input', countStats);
 
         function countStats() {
             const text = textarea.value;
-
-            // Words
             const words = text.trim().split(/\s+/).filter(word => word.length > 0);
-            document.getElementById('wordCount').textContent = words.length;
-
-            // Characters
-            document.getElementById('charCount').textContent = text.length;
-            document.getElementById('charNoSpaceCount').textContent = text.replace(/\s/g, '').length;
-
-            // Sentences
+            document.getElementById('wordCount').textContent = words.length.toLocaleString();
+            document.getElementById('charCount').textContent = text.length.toLocaleString();
+            document.getElementById('charNoSpaceCount').textContent = text.replace(/\s/g, '').length.toLocaleString();
             const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-            document.getElementById('sentenceCount').textContent = sentences.length;
-
-            // Paragraphs
+            document.getElementById('sentenceCount').textContent = sentences.length.toLocaleString();
             const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
-            document.getElementById('paragraphCount').textContent = paragraphs.length;
-
-            // Reading time (average 200 words per minute)
+            document.getElementById('paragraphCount').textContent = paragraphs.length.toLocaleString();
             const readTime = Math.ceil(words.length / 200);
             document.getElementById('readTime').textContent = readTime || 0;
         }
 
         function transformText(type) {
             if (!textarea.value) return;
-
-            if (type === 'upper') {
-                textarea.value = textarea.value.toUpperCase();
-            } else if (type === 'lower') {
-                textarea.value = textarea.value.toLowerCase();
-            } else if (type === 'capitalize') {
-                textarea.value = textarea.value.replace(/\b\w/g, l => l.toUpperCase());
-            }
+            if (type === 'upper') textarea.value = textarea.value.toUpperCase();
+            else if (type === 'lower') textarea.value = textarea.value.toLowerCase();
+            else if (type === 'capitalize') textarea.value = textarea.value.replace(/\b\w/g, l => l.toUpperCase());
             countStats();
         }
 
         function copyText() {
             if (!textarea.value) return;
-            textarea.select();
-            document.execCommand('copy');
-            // Visual feedback
-            const btn = document.querySelector('button[onclick="copyText()"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Copied!';
-            setTimeout(() => btn.textContent = originalText, 1500);
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                const btn = document.querySelector('button[onclick="copyText()"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = originalText, 1500);
+            });
         }
 
         function clearText() {
-            if (confirm('Are you sure you want to clear the text?')) {
+            if (confirm('Clear all text?')) {
                 textarea.value = '';
                 countStats();
             }
