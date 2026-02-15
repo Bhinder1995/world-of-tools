@@ -2,8 +2,8 @@ const CACHE_NAME = 'world-of-tools-v3';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
-    '/css/style.css',
-    '/js/common.js',
+    '/css/style.css?v=1.1',
+    '/js/common.js?v=1.1',
     '/age-calculator.html',
     '/percentage-calculator.html',
     '/word-counter.html',
