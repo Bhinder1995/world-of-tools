@@ -77,10 +77,30 @@ function registerServiceWorker() {
             navigator.serviceWorker.register('sw.js')
                 .then(registration => {
                     console.log('ServiceWorker registration successful');
+
+                    // Check for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New worker is installed and waiting
+                                // controllerchange listener below will handle the reload
+                            }
+                        });
+                    });
                 })
                 .catch(err => {
                     console.log('ServiceWorker registration failed: ', err);
                 });
+        });
+
+        // Reload the page once when the new service worker takes over
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                window.location.reload();
+            }
         });
     }
 }

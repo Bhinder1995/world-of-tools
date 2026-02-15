@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mega-utility-hub-v1';
+const CACHE_NAME = 'world-of-tools-v2';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
@@ -9,11 +9,15 @@ const ASSETS_TO_CACHE = [
     '/word-counter.html',
     '/emi-calculator.html',
     '/password-generator.html',
-    '/unit-converter.html'
+    '/unit-converter.html',
+    '/contact.html',
+    '/privacy.html',
+    '/terms.html'
     // Add other tools here as they are created
 ];
 
 self.addEventListener('install', (event) => {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
