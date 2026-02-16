@@ -1,9 +1,12 @@
-const CACHE_NAME = 'world-of-tools-v7';
+const CACHE_NAME = 'world-of-tools-v8';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
     '/css/style.css?v=1.2',
     '/js/common.js?v=1.2',
+    '/manifest.json',
+    '/favicon.png',
+    '/favicon.ico',
     '/age-calculator.html',
     '/percentage-calculator.html',
     '/word-counter.html',
