@@ -172,21 +172,35 @@
             result.style.display = 'none';
             loader.style.display = 'block';
 
-            try {
-                const response = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURIComponent(longUrl)}`);
-                if (response.ok) {
-                    const shortUrl = await response.text();
-                    document.getElementById('shortUrl').textContent = shortUrl;
-                    result.style.display = 'block';
-                } else {
-                    throw new Error('API Error');
-                }
-            } catch (err) {
-                error.textContent = 'Failed to shorten link. Please try again later.';
-                error.style.display = 'block';
-            } finally {
+            // Use JSONP to bypass CORS
+            const callbackName = 'isgdCallback_' + Math.floor(Math.random() * 100000);
+            window[callbackName] = function (data) {
                 loader.style.display = 'none';
-            }
+                if (data.shorturl) {
+                    document.getElementById('shortUrl').textContent = data.shorturl;
+                    result.style.display = 'block';
+                } else if (data.errormessage) {
+                    error.textContent = 'Error: ' + data.errormessage;
+                    error.style.display = 'block';
+                } else {
+                    error.textContent = 'Failed to shorten link. Please try again later.';
+                    error.style.display = 'block';
+                }
+                // Cleanup
+                delete window[callbackName];
+                document.getElementById('isgd-jsonp')?.remove();
+            };
+
+            const script = document.createElement('script');
+            script.id = 'isgd-jsonp';
+            script.src = `https://is.gd/create.php?format=json&callback=${callbackName}&url=${encodeURIComponent(longUrl)}`;
+            script.onerror = function () {
+                loader.style.display = 'none';
+                error.textContent = 'Failed to connect to the shortening service.';
+                error.style.display = 'block';
+                delete window[callbackName];
+            };
+            document.body.appendChild(script);
         }
 
         function copyShortUrl() {
