@@ -1,9 +1,9 @@
-const CACHE_NAME = 'world-of-tools-v3';
+const CACHE_NAME = 'world-of-tools-v4';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
-    '/css/style.css?v=1.1',
-    '/js/common.js?v=1.1',
+    '/css/style.css?v=1.2',
+    '/js/common.js?v=1.2',
     '/age-calculator.html',
     '/percentage-calculator.html',
     '/word-counter.html',
@@ -12,8 +12,10 @@ const ASSETS_TO_CACHE = [
     '/unit-converter.html',
     '/contact.html',
     '/privacy.html',
-    '/terms.html'
-    // Add other tools here as they are created
+    '/terms.html',
+    '/seo-meta-tag-generator.html',
+    '/link-shortener.html',
+    '/gst-calculator.html'
 ];
 
 self.addEventListener('install', (event) => {
@@ -38,14 +40,17 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames.map((cacheName) => {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
+        Promise.all([
+            caches.keys().then((cacheNames) => {
+                return Promise.all(
+                    cacheNames.map((cacheName) => {
+                        if (cacheWhitelist.indexOf(cacheName) === -1) {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            }),
+            self.clients.claim()
+        ])
     );
 });

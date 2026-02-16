@@ -4,145 +4,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEO Meta Tag Generator - Create Optimized Meta Tags | WorldOfTools</title>
+    <title>SEO Meta Tag Generator - Optimize Your Search Presence | WorldOfTools</title>
     <meta name="description"
-        content="Improve your site's SEO ranking. Generate perfectly optimized title tags, meta descriptions, and keywords with live SERP preview.">
+        content="Create perfect SEO meta tags for your website. Preview how your site appears on Google in real-time. Free online SEO tool.">
     <meta name="keywords"
-        content="meta tag generator, SEO tags, generate meta tags, SEO meta description, title tag generator">
-    <link rel="stylesheet" href="css/style.css">
+        content="seo meta tag generator, meta title generator, meta description tool, google preview tool, seo tags">
+    <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
     <style>
-        .char-count {
-            text-align: right;
-            font-size: 0.8rem;
-            color: #718096;
-            margin-top: 0.25rem;
-            font-family: monospace;
+        .generator-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.5rem;
+            align-items: flex-start;
         }
 
-        .char-count.warning {
-            color: #d69e2e;
-        }
-
-        .char-count.error {
-            color: #e53e3e;
-        }
-
-        .preview-container {
-            margin: 2rem 0;
+        @media (max-width: 1024px) {
+            .generator-layout {
+                grid-template-columns: 1fr;
+            }
         }
 
         .serp-preview {
-            background: #fff;
-            border: 1px solid #dfe1e5;
-            border-radius: 8px;
-            padding: 1.5rem;
-            font-family: arial, sans-serif;
-            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.1);
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .google-result {
+            font-family: Arial, sans-serif;
             max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
+            margin-top: 1rem;
         }
 
-        .serp-preview h3 {
-            font-size: 0.75rem;
-            color: #70757a;
-            margin-bottom: 0.5rem;
-            font-weight: normal;
-            margin-top: 0;
-        }
-
-        .serp-brand {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 6px;
-        }
-
-        .serp-brand-icon {
-            width: 26px;
-            height: 26px;
-            background: #f1f3f4;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            font-size: 14px;
-        }
-
-        .serp-site-name {
+        .google-url {
             color: #202124;
-            font-size: 14px;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .serp-url {
-            color: #202124;
-            font-size: 12px;
-        }
-
-        .serp-title {
+        .google-title {
             color: #1a0dab;
-            font-size: 20px;
+            font-size: 1.25rem;
             line-height: 1.3;
-            margin-bottom: 4px;
+            margin-bottom: 0.25rem;
             cursor: pointer;
-            text-decoration: none;
-            display: block;
+            word-wrap: break-word;
         }
 
-        .serp-title:hover {
+        .google-title:hover {
             text-decoration: underline;
         }
 
-        .serp-description {
+        .google-desc {
             color: #4d5156;
-            font-size: 14px;
+            font-size: 0.875rem;
             line-height: 1.58;
+            word-wrap: break-word;
         }
 
         .code-output {
-            background: #1a202c;
-            color: #a0aec0;
+            background: #1e293b;
+            color: #e2e8f0;
             padding: 1.5rem;
-            border-radius: 8px;
-            font-family: 'Consolas', 'Monaco', monospace;
+            border-radius: 12px;
+            font-family: 'Fira Code', 'Courier New', monospace;
             font-size: 0.9rem;
+            position: relative;
+            margin-top: 1.5rem;
             overflow-x: auto;
-            margin-top: 2rem;
-            border: 1px solid #4a5568;
-            white-space: pre-wrap;
-            word-break: break-all;
         }
 
-        .code-line {
-            margin-bottom: 2px;
+        .copy-code-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .tag-name {
-            color: #fc8181;
+        .copy-code-btn:hover {
+            background: var(--primary-color);
         }
 
-        .attr-name {
-            color: #f6ad55;
+        .char-counter {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 0.4rem;
+            text-align: right;
         }
 
-        .attr-value {
-            color: #68d391;
+        .limit-ok {
+            color: #10b981;
         }
 
-        .comment {
-            color: #718096;
-            font-style: italic;
+        .limit-warn {
+            color: #f59e0b;
+        }
+
+        .limit-over {
+            color: #ef4444;
         }
     </style>
     <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-CCYN1G2F05');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
@@ -151,151 +134,106 @@
 </head>
 
 <body>
-    <header></header> <!-- Injected by js/common.js -->
+    <header></header>
 
     <main class="container">
-        <section class="text-center" style="margin-bottom: 3rem;">
+        <section style="text-align: center; margin-bottom: 4rem;">
             <h1>🏷️ SEO Meta Tag Generator</h1>
-            <p class="section-desc">Create perfectly optimized meta tags for Google, Facebook, and Twitter. Preview your
-                search snippet in real-time.</p>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Enhance your website's visibility
+                with perfect meta tags and live Google preview.</p>
         </section>
 
-        <section class="row">
-            <div class="col" style="flex: 1; min-width: 350px;">
-                <div class="card h-100">
-                    <h3 style="margin-bottom: 1.5rem;">Page Details</h3>
-                    <div class="mb-4">
-                        <label style="display: flex; justify-content: space-between;">
-                            <span>Page Title</span>
-                            <span id="titleCount" style="font-size: 0.75rem; font-weight: 700;">0 / 60</span>
-                        </label>
-                        <input type="text" id="title" placeholder="e.g. My Awesome Website | Home" maxlength="100"
-                            oninput="updatePreview()" style="margin-top: 0.5rem;">
-                    </div>
+        <div class="generator-layout">
+            <!-- Left Config -->
+            <div class="card">
+                <h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="color: var(--primary-color);">⚙️</span> Meta Configuration
+                </h3>
 
-                    <div class="mb-4">
-                        <label style="display: flex; justify-content: space-between;">
-                            <span>Meta Description</span>
-                            <span id="descCount" style="font-size: 0.75rem; font-weight: 700;">0 / 155</span>
-                        </label>
-                        <textarea id="description" placeholder="Write a catchy description to improve your CTR..."
-                            maxlength="200" rows="4" oninput="updatePreview()"
-                            style="margin-top: 0.5rem; resize: none;"></textarea>
-                    </div>
+                <div class="input-group">
+                    <label>Page Title</label>
+                    <input type="text" id="title" placeholder="Enter descriptive page title" maxlength="70"
+                        oninput="updatePreview()">
+                    <div id="titleCount" class="char-counter">0 / 60 characters (Recommended)</div>
+                </div>
 
-                    <div class="mb-4">
-                        <label>Canonical URL</label>
-                        <input type="url" id="url" placeholder="https://worldoftools.in/page.html"
-                            oninput="updatePreview()" style="margin-top: 0.5rem;">
-                    </div>
+                <div class="input-group">
+                    <label>Meta Description</label>
+                    <textarea id="description" placeholder="Enter a compelling summary of your page"
+                        style="min-height: 120px;" oninput="updatePreview()"></textarea>
+                    <div id="descCount" class="char-counter">0 / 155 characters (Recommended)</div>
+                </div>
 
-                    <div class="mb-4">
-                        <label>Keywords (comma separated)</label>
-                        <input type="text" id="keywords" placeholder="seo, tools, meta tags" oninput="updatePreview()"
-                            style="margin-top: 0.5rem;">
-                    </div>
+                <div class="input-group">
+                    <label>Canonical URL</label>
+                    <input type="text" id="url" placeholder="https://yourwebsite.com/page" oninput="updatePreview()">
+                </div>
+
+                <div class="input-group">
+                    <label>Keywords (Optional)</label>
+                    <input type="text" id="keywords" placeholder="keyword1, keyword2, keyword3"
+                        oninput="updatePreview()">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear Form</button>
+                    <button class="btn btn-primary" onclick="copyCode()">📋 Copy Meta Tags</button>
                 </div>
             </div>
 
-            <div class="col" style="flex: 1; min-width: 350px;">
-                <div class="card h-100" style="background: #f8fafc;">
-                    <h3 style="margin-bottom: 1.5rem; color: #1a0dab;">Google Search Preview</h3>
+            <!-- Right Preview & Output -->
+            <div class="preview-area">
+                <div class="serp-preview">
                     <div
-                        style="background: white; border: 1px solid #dfe1e5; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: left; max-width: 600px; margin: 0 auto;">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-                            <div
-                                style="width: 28px; height: 28px; background: #f1f3f4; border-radius: 50%; display: grid; place-items: center; font-size: 14px;">
-                                🌐</div>
-                            <div>
-                                <div style="font-size: 14px; color: #202124;" id="previewSiteName">Your Website</div>
-                                <div style="font-size: 12px; color: #202124;" id="serpUrl">https://example.com › ...
-                                </div>
-                            </div>
-                        </div>
-                        <div id="serpTitle"
-                            style="color: #1a0dab; font-size: 20px; font-family: arial, sans-serif; line-height: 1.3; margin-bottom: 3px; cursor: pointer; display: block;">
-                            Your Title Here</div>
-                        <div id="serpDesc"
-                            style="color: #4d5156; font-size: 14px; font-family: arial, sans-serif; line-height: 1.58; word-wrap: break-word;">
-                            Your meta description will appear here. A well-written description can significantly improve
-                            your click-through rate.</div>
+                        style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></span>
+                        Live Google Search Preview
                     </div>
+                    <div class="google-result">
+                        <div class="google-url" id="serpUrl">https://yourwebsite.com › page</div>
+                        <div class="google-title" id="serpTitle">Enter Title Above</div>
+                        <div class="google-desc" id="serpDesc">Enter a description to see how your website will appear
+                            in Google search results. This text serves as a preview...</div>
+                    </div>
+                </div>
 
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-                        <button class="btn btn-primary" onclick="copyCode()">📋 Copy Meta Tags</button>
+                <div class="card" style="margin-top: 2rem;">
+                    <div
+                        style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;">
+                        Generated HTML Code</div>
+                    <div class="code-output">
+                        <button class="copy-code-btn" onclick="copyCode()">Copy</button>
+                        <pre id="codeOutput"></pre>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="card mb-4" style="margin-top: 2rem;">
-            <h3 style="margin-bottom: 1rem;">Generated HTML Code</h3>
-            <div id="codeOutput"
-                style="background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', 'Consolas', monospace; font-size: 0.9rem; overflow-x: auto; white-space: pre-wrap; line-height: 1.6;">
-            </div>
-        </section>
-
-        <!-- SEO Content Section -->
-        <section class="seo-content container" style="max-width: 800px;">
-            <h2>The Importance of Meta Tags in SEO</h2>
-            <p>Meta tags are snippets of text that describe a page's content; they don't appear on the page itself, but
-                only in the page's source code. Our **SEO Meta Tag Generator** helps you craft these invisible signals
-                to communicate effectively with search engine crawlers.</p>
-
-            <h3>Key Tags for Modern Web Optimization</h3>
-            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                <li><strong>Title Tag:</strong> The most important on-page SEO element. It should be concise and include
-                    your primary keyword.</li>
-                <li><strong>Meta Description:</strong> While not a direct ranking factor, it is your "sales pitch" in
-                    search results. A high click-through rate (CTR) can indirectly boost your rankings.</li>
-                <li><strong>Open Graph (OG) Tags:</strong> These control how your website looks when shared on Facebook,
-                    LinkedIn, and WhatsApp.</li>
-                <li><strong>Twitter Cards:</strong> Similar to OG tags, but specifically optimized for the X (Twitter)
-                    feed.</li>
-            </ul>
-
-            <h3>Best Practices for Better Rankings</h3>
-            <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                <li>Keep titles between 50-60 characters to avoid being cut off.</li>
-                <li>Descriptions should be under 155 characters for the best display on desktop and mobile.</li>
-                <li>Always include a canonical URL to prevent duplicate content issues.</li>
-            </ol>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="faq-section container" style="max-width: 800px;">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>Do keywords meta tags still work?</h3>
-                <p>Most major search engines like Google no longer use the 'keywords' meta tag for ranking. However,
-                    some minor search engines and internal search systems still use them, so it's a good practice to
-                    include a few relevant terms.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Is the preview 100% accurate?</h3>
-                <p>Our preview simulates the standard Google search layout as of 2024. However, Google may choose to
-                    display different text from your page depending on the user's search query.</p>
-            </div>
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>Why Use an SEO Meta Tag Generator?</h2>
+            <p>Meta tags are invisible elements of your website's HTML that tell search engines what your page is about.
+                Our professional **Meta Tag Generator** ensures your tags follow 2024 SEO best practices, helping you
+                improve your Click-Through Rate (CTR) and search engine ranking.</p>
         </section>
 
         <!-- Related Tools -->
-        <section class="container" style="margin-top: 4rem;">
-            <h2 class="text-center" style="margin-bottom: 2.5rem;">Try Other Related Tools</h2>
+        <section style="margin-top: 0;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Powerful Tools</h2>
             <div class="tools-grid">
                 <a href="word-counter.html" class="tool-card">
                     <div class="tool-icon">📝</div>
                     <div class="tool-title">Word Counter</div>
-                    <div class="tool-desc">Analyze your content length and density.</div>
+                    <div class="tool-desc">Analyze text length and reading time.</div>
                 </a>
-                <a href="link-shortener.html" class="tool-card">
-                    <div class="tool-icon">🔗</div>
-                    <div class="tool-title">Link Shortener</div>
-                    <div class="tool-desc">Create clean, trackable short URLs.</div>
+                <a href="percentage-calculator.html" class="tool-card">
+                    <div class="tool-icon">%</div>
+                    <div class="tool-title">Percentage Calc</div>
+                    <div class="tool-desc">Calculate discounts and growth instantly.</div>
                 </a>
-                <a href="unit-converter.html" class="tool-card">
-                    <div class="tool-icon">⚖️</div>
-                    <div class="tool-title">Unit Converter</div>
-                    <div class="tool-desc">Fast unit conversions for many types.</div>
+                <a href="password-generator.html" class="tool-card">
+                    <div class="tool-icon">🔑</div>
+                    <div class="tool-title">Password Gen</div>
+                    <div class="tool-desc">Create secure and random passwords.</div>
                 </a>
             </div>
         </section>
@@ -303,76 +241,62 @@
 
     <footer></footer>
 
-    <script src="js/common.js"></script>
+    <script src="js/common.js?v=1.2"></script>
     <script>
-        // Structured Data (JSON-LD)
-        const schemaData = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Advanced SEO Meta Tag Generator",
-            "description": "Generate optimized meta tags for titles, descriptions, social media, and more with a live Google SERP preview.",
-            "url": "https://worldoftools.in/seo-meta-tag-generator.html",
-            "applicationCategory": "SEOApplication",
-            "operatingSystem": "Any",
-            "offers": { "@type": "Offer", "price": "0" }
-        };
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schemaData);
-        document.head.appendChild(script);
-
         function updatePreview() {
-            const title = document.getElementById('title').value || 'Your Title Here';
-            const desc = document.getElementById('description').value || 'Your meta description will appear here. Make it compelling to improve click-through rates from search results.';
-            const url = document.getElementById('url').value || 'https://example.com/page';
+            const title = document.getElementById('title').value || "Enter Title Above";
+            const desc = document.getElementById('description').value || "Enter a description to see how your website will appear in Google search results. This text serves as a preview...";
+            const url = document.getElementById('url').value || "https://yourwebsite.com/page";
             const keywords = document.getElementById('keywords').value;
 
+            // Update Counters
+            const tLen = document.getElementById('title').value.length;
+            const dLen = document.getElementById('description').value.length;
+
+            const tCount = document.getElementById('titleCount');
+            tCount.textContent = `${tLen} / 60 characters (Recommended)`;
+            tCount.className = 'char-counter ' + (tLen > 60 ? 'limit-over' : tLen > 50 ? 'limit-warn' : 'limit-ok');
+
+            const dCount = document.getElementById('descCount');
+            dCount.textContent = `${dLen} / 155 characters (Recommended)`;
+            dCount.className = 'char-counter ' + (dLen > 155 ? 'limit-over' : dLen > 140 ? 'limit-warn' : 'limit-ok');
+
+            // Update SERP
             document.getElementById('serpTitle').textContent = title;
             document.getElementById('serpDesc').textContent = desc;
-            document.getElementById('serpUrl').textContent = url.replace(/^https?:\/\//, '').replace(/\/$/, '') + ' › ...';
-
-            const titleLen = title.length;
-            const descLen = desc.length;
-
-            const titleCount = document.getElementById('titleCount');
-            titleCount.textContent = `${titleLen} / 60`;
-            titleCount.style.color = titleLen > 60 ? '#f87171' : (titleLen > 40 ? '#34d399' : '#94a3b8');
-
-            const descCount = document.getElementById('descCount');
-            descCount.textContent = `${descLen} / 155`;
-            descCount.style.color = descLen > 155 ? '#f87171' : (descLen > 120 ? '#34d399' : '#94a3b8');
+            document.getElementById('serpUrl').textContent = url.replace(/https?:\/\//, '').replace(/\/$/, '').replace(/\//g, ' › ');
 
             const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-            let html = `<!-- Basic SEO -->
-<title>${esc(title)}</title>
-<meta name="description" content="${esc(desc)}">`;
+            // Update Code
+            let html = `<!-- Primary Meta Tags -->\n<title>${esc(title)}</title>\n<meta name="title" content="${esc(title)}">\n<meta name="description" content="${esc(desc)}">\n`;
+            if (keywords) html += `<meta name="keywords" content="${esc(keywords)}">\n`;
+            if (url) html += `<link rel="canonical" href="${esc(url)}">\n`;
 
-            if (keywords) html += `\n<meta name="keywords" content="${esc(keywords)}">`;
-            if (url) html += `\n<link rel="canonical" href="${esc(url)}">`;
-
-            html += `\n\n<!-- Open Graph (Facebook/Social) -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="${esc(url)}">
-<meta property="og:title" content="${esc(title)}">
-<meta property="og:description" content="${esc(desc)}">
-
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${esc(title)}">
-<meta name="twitter:description" content="${esc(desc)}">`;
+            // Add Social
+            html += `\n<!-- Open Graph / Facebook -->\n<meta property="og:type" content="website">\n<meta property="og:url" content="${esc(url)}">\n<meta property="og:title" content="${esc(title)}">\n<meta property="og:description" content="${esc(desc)}">\n\n<!-- Twitter -->\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="${esc(title)}">\n<meta name="twitter:description" content="${esc(desc)}">`;
 
             document.getElementById('codeOutput').textContent = html;
         }
 
         function copyCode() {
             const code = document.getElementById('codeOutput').textContent;
+            if (!code) return;
             navigator.clipboard.writeText(code).then(() => {
-                const btn = document.querySelector('button[onclick="copyCode()"]');
-                const originalText = btn.textContent;
-                btn.textContent = 'COPIED!';
-                setTimeout(() => btn.textContent = originalText, 1500);
+                const btn = document.querySelector('.copy-code-btn');
+                const old = btn.textContent; btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = old, 1500);
             });
+        }
+
+        function clearAll() {
+            if (confirm('Clear all fields?')) {
+                document.getElementById('title').value = '';
+                document.getElementById('description').value = '';
+                document.getElementById('url').value = '';
+                document.getElementById('keywords').value = '';
+                updatePreview();
+            }
         }
 
         updatePreview();

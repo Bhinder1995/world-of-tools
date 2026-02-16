@@ -9,17 +9,15 @@
         content="Calculate EMI for Home Loan, Car Loan, and Personal Loans with our free online EMI calculator. Get full amortization schedules.">
     <meta name="keywords"
         content="EMI calculator, loan EMI calculator, monthly installment calculator, home loan EMI, car loan EMI">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
     <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-CCYN1G2F05');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
@@ -31,75 +29,79 @@
     <header></header> <!-- Injected by js/common.js -->
 
     <main class="container">
-        <section class="text-center" style="margin-bottom: 3rem;">
+        <section style="text-align: center; margin-bottom: 4rem;">
             <h1>🏦 EMI Calculator</h1>
-            <p class="section-desc">Plan your loans with accurate monthly installment calculations and full repayment
-                schedules.</p>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Plan your loans with accurate
+                monthly installment calculations and full schedules.</p>
         </section>
 
-        <section class="card mb-4" style="max-width: 800px; margin-left: auto; margin-right: auto;">
-            <form id="emiForm" class="mb-4">
-                <div class="tools-grid"
-                    style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div>
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <form id="emiForm" style="margin-bottom: 0;">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="input-group">
                         <label>Loan Amount (₹)</label>
                         <input type="number" id="principal" value="500000" min="0">
                     </div>
-                    <div>
+                    <div class="input-group">
                         <label>Interest Rate (% P.A.)</label>
                         <input type="number" id="interest" value="10.5" step="0.1" min="0">
                     </div>
-                    <div>
+                    <div class="input-group">
                         <label>Loan Tenure</label>
                         <div style="display: flex; gap: 0.5rem;">
                             <input type="number" id="tenure" value="5" min="0" style="flex: 1;">
-                            <select id="tenureType" style="width: 100px;">
+                            <select id="tenureType" style="width: 120px;">
                                 <option value="years">Years</option>
                                 <option value="months">Months</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate My EMI</button>
+                <button type="submit" class="btn" style="width: 100%; border-radius: 12px; height: 3.5rem;">Calculate My
+                    EMI</button>
             </form>
 
-            <div id="resultSummary" style="display: none; margin-top: 3rem;">
-                <div class="text-center mb-4">
-                    <h3
-                        style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                        Your Monthly EMI</h3>
-                    <div id="emiValue"
-                        style="font-size: 2.5rem; font-weight: 900; color: var(--primary-color); margin: 0.5rem 0;">
-                    </div>
-                    <div class="trust-badge" style="margin-top: 0.5rem;">🔒 Private & Secure</div>
+            <div id="resultSummary" style="display: none; margin-top: 4rem; animation: subtitleFade 0.5s ease-out;">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div
+                        style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                        Your Monthly EMI</div>
+                    <div id="emiValue" class="result-value"
+                        style="margin: 0.5rem 0; font-size: clamp(2.5rem, 8vw, 4rem);"></div>
+                    <div
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; background: #eff6ff; color: #1e40af; padding: 0.5rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600;">
+                        🔒 Secure & Browser-Based</div>
                 </div>
 
-                <div class="tools-grid"
-                    style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 3rem;">
-                    <div class="card text-center" style="padding: 1.5rem; border-color: #fbd38d;">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
+                    <div class="card"
+                        style="padding: 1.5rem; text-align: center; background: white; border-color: #fbd38d;">
                         <span id="totalInterest"
-                            style="display: block; font-weight: 800; font-size: 1.5rem; color: #dd6b20;"></span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Total
+                            style="display: block; font-weight: 800; font-size: 1.75rem; color: #dd6b20;"></span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Total
                             Interest</span>
                     </div>
-                    <div class="card text-center" style="padding: 1.5rem;">
+                    <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
                         <span id="totalAmount"
-                            style="display: block; font-weight: 800; font-size: 1.5rem; color: var(--text-color);"></span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Total
+                            style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--text-color);"></span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Total
                             Repayment</span>
                     </div>
                 </div>
 
                 <div id="amortization" style="display: none;">
-                    <h3>Repayment Schedule (First Year)</h3>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.95rem;">
+                    <h3 style="margin-bottom: 1.5rem;">Repayment Schedule (First Year)</h3>
+                    <div
+                        style="overflow-x: auto; background: white; border-radius: 16px; border: 1px solid var(--border-color);">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
                             <thead style="background: #f8fafc; border-bottom: 2px solid var(--border-color);">
                                 <tr>
-                                    <th style="padding: 1rem; text-align: left;">Month</th>
-                                    <th style="padding: 1rem; text-align: left;">Principal</th>
-                                    <th style="padding: 1rem; text-align: left;">Interest</th>
-                                    <th style="padding: 1rem; text-align: left;">Balance</th>
+                                    <th style="padding: 1.25rem; text-align: left;">Month</th>
+                                    <th style="padding: 1.25rem; text-align: left;">Principal</th>
+                                    <th style="padding: 1.25rem; text-align: left;">Interest</th>
+                                    <th style="padding: 1.25rem; text-align: left;">Balance</th>
                                 </tr>
                             </thead>
                             <tbody id="amortBody"></tbody>
@@ -107,56 +109,22 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- SEO Content Section -->
-        <section class="seo-content container" style="max-width: 800px;">
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
             <h2>About Our Online EMI Calculator</h2>
             <p>Moving towards a big purchase like a new home or a car often requires financial planning. Our **EMI
                 Calculator** (Equated Monthly Installment) is designed to give you clarity on your future payments,
                 helping you manage your budget with confidence.</p>
-
             <h3>What is an EMI?</h3>
             <p>An EMI is a fixed amount of money that a borrower pays to a lender at a specific date each month. It
-                consists of two components:</p>
-            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                <li><strong>Principal Component:</strong> The actual loan amount that is being paid back.</li>
-                <li><strong>Interest Component:</strong> The cost of borrowing the money, calculated on the reducing
-                    balance.</li>
-            </ul>
-
-            <h3>Why Use WorldOfTools EMI Calculator?</h3>
-            <p>Our tool is built for transparency and speed:</p>
-            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                <li><strong>Amortization Schedule:</strong> See exactly how your interest and principal components
-                    change month by month.</li>
-                <li><strong>Loan Comparison:</strong> Quickly test different interest rates and tenures to find the most
-                    affordable option.</li>
-                <li><strong>Universal Use:</strong> Works perfectly as a **Home Loan EMI Calculator**, **Car Loan EMI
-                    Calculator**, or **Personal Loan EMI Calculator**.</li>
-                <li><strong>No Data Tracking:</strong> Your financial inputs stay in your browser. We don't track your
-                    loan details.</li>
-            </ul>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="faq-section container" style="max-width: 800px;">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>Does a longer tenure decrease the total interest?</h3>
-                <p>No, a longer tenure decreases your monthly EMI but significantly **increases** the total interest you
-                    pay over the life of the loan. Use our calculator to find the right balance for your finances.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What is a reducing balance rate?</h3>
-                <p>Most bank loans use a reducing balance method where interest is calculated only on the remaining
-                    principal amount each month, rather than the initial loan amount.</p>
-            </div>
+                consists of two components: Principal and Interest.</p>
         </section>
 
         <!-- Related Tools -->
-        <section class="container" style="margin-top: 4rem;">
-            <h2 class="text-center" style="margin-bottom: 2.5rem;">Try Other Related Tools</h2>
+        <section style="margin-top: 2rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Related Tools</h2>
             <div class="tools-grid">
                 <a href="gst-calculator.html" class="tool-card">
                     <div class="tool-icon">🧾</div>
@@ -179,9 +147,9 @@
 
     <footer></footer>
 
-    <script src="js/common.js"></script>
+    <script src="js/common.js?v=1.2"></script>
     <script>
-        // Structured Data (JSON-LD)
+        // Structured Data
         const schemaData = {
             "@context": "https://schema.org",
             "@type": "WebApplication",
@@ -189,8 +157,7 @@
             "description": "Calculate monthly loan installments (EMI) for home, car, or personal loans with full amortization schedules.",
             "url": "https://worldoftools.in/emi-calculator.html",
             "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": { "@type": "Offer", "price": "0" }
+            "operatingSystem": "Any"
         };
         const script = document.createElement('script');
         script.type = "application/ld+json";
@@ -237,10 +204,10 @@
                 if (balance < 0) balance = 0;
 
                 const row = `<tr>
-                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">${month}</td>
-                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">₹${principalPart.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
-                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">₹${interest.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
-                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">₹${Math.max(0, balance).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+                    <td style="padding: 1.25rem; border-bottom: 1px solid var(--border-color);">${month}</td>
+                    <td style="padding: 1.25rem; border-bottom: 1px solid var(--border-color);">₹${principalPart.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+                    <td style="padding: 1.25rem; border-bottom: 1px solid var(--border-color);">₹${interest.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+                    <td style="padding: 1.25rem; border-bottom: 1px solid var(--border-color);">₹${Math.max(0, balance).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
                 </tr>`;
                 tbody.innerHTML += row;
             }

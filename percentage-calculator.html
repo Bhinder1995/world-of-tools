@@ -5,22 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Percentage Calculator - Calculate Percent Increase & Decrease | WorldOfTools</title>
-    <title>Advanced Percentage Calculator | WorldOfTools</title>
     <meta name="description"
         content="Calculate percent of a number, percentage change between values, and part ratios instantly.">
     <meta name="keywords"
         content="percentage calculator, calculate percentage, percent increase, percent decrease, discount calculator">
-    <link rel="stylesheet" href="css/style.css?v=1.1">
+    <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
+    <style>
+        .calc-group {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .calc-group:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-inline {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .input-inline input {
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+        }
+
+        .result-box {
+            padding: 1.25rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px dashed var(--primary-color);
+            text-align: center;
+            animation: subtitleFade 0.5s ease-out;
+        }
+
+        .res-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .res-val {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+    </style>
     <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-CCYN1G2F05');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
@@ -29,125 +81,85 @@
 </head>
 
 <body>
-    <header></header> <!-- Injected by js/common.js -->
+    <header></header>
 
     <main class="container">
-        <section class="text-center" style="margin-bottom: 3rem;">
+        <section style="text-align: center; margin-bottom: 4rem;">
             <h1>✖️ Percentage Calculator</h1>
-            <p class="section-desc">Solve percentages, find parts, and calculate percentage change instantly with our
-                accurate math tools.</p>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Solve math problems, find part
+                ratios, and calculate growth instantly.</p>
         </section>
 
-        <div class="tools-grid">
+        <div class="card" style="max-width: 900px; margin: 0 auto; padding: 2.5rem;">
 
             <!-- Find Percentage -->
-            <div class="card">
-                <h3>Find Percentage</h3>
-                <p class="tool-desc">Calculate a portion of a number.</p>
-                <div class="mb-4">
-                    <label>What is</label>
-                    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-                        <input type="number" id="p1_per" placeholder="%" oninput="calcP1()"
-                            style="flex: 1; min-width: 60px;">
-                        <span>% of</span>
-                        <input type="number" id="p1_num" placeholder="Number" oninput="calcP1()"
-                            style="flex: 2; min-width: 120px;">
-                    </div>
+            <div class="calc-group">
+                <h3 style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">
+                    <span
+                        style="background: var(--primary-color); color: white; width: 28px; height: 28px; border-radius: 6px; display: grid; place-items: center; font-size: 0.9rem;">1</span>
+                    Find Percentage
+                </h3>
+                <div class="input-inline">
+                    <span>What is</span>
+                    <input type="number" id="p1_per" placeholder="%" oninput="calcP1()" style="width: 100px;">
+                    <span>% of</span>
+                    <input type="number" id="p1_num" placeholder="Number" oninput="calcP1()" style="width: 180px;">
                 </div>
-                <div class="card" id="res1_card"
-                    style="padding: 1rem; background: #eff6ff; border-style: dashed; display: none;">
-                    <div id="res1" style="font-weight: 800; color: var(--primary-color); font-size: 1.25rem;"></div>
+                <div id="res1_card" class="result-box" style="display: none;">
+                    <span class="res-label">Result</span>
+                    <span id="res1" class="res-val"></span>
                 </div>
             </div>
 
             <!-- Find Part -->
-            <div class="card">
-                <h3>Find Part</h3>
-                <p class="tool-desc">Find what percentage one number is of another.</p>
-                <div class="mb-4">
-                    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-                        <input type="number" id="p2_num1" placeholder="Number" oninput="calcP2()"
-                            style="flex: 1; min-width: 100px;">
-                        <span>is what % of</span>
-                        <input type="number" id="p2_num2" placeholder="Total" oninput="calcP2()"
-                            style="flex: 1; min-width: 100px;">
-                    </div>
+            <div class="calc-group">
+                <h3 style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">
+                    <span
+                        style="background: var(--primary-color); color: white; width: 28px; height: 28px; border-radius: 6px; display: grid; place-items: center; font-size: 0.9rem;">2</span>
+                    Find Part (%)
+                </h3>
+                <div class="input-inline">
+                    <input type="number" id="p2_num1" placeholder="Number" oninput="calcP2()" style="width: 180px;">
+                    <span>is what % of</span>
+                    <input type="number" id="p2_num2" placeholder="Total" oninput="calcP2()" style="width: 180px;">
                 </div>
-                <div class="card" id="res2_card"
-                    style="padding: 1rem; background: #eff6ff; border-style: dashed; display: none;">
-                    <div id="res2" style="font-weight: 800; color: var(--primary-color); font-size: 1.25rem;"></div>
+                <div id="res2_card" class="result-box" style="display: none;">
+                    <span class="res-label">Result</span>
+                    <span id="res2" class="res-val"></span>
                 </div>
             </div>
 
             <!-- Percentage Change -->
-            <div class="card">
-                <h3>Percentage Change</h3>
-                <p class="tool-desc">Calculate increase or decrease between two values.</p>
-                <div class="mb-4">
-                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 120px;">
-                            <label>From</label>
-                            <input type="number" id="p3_from" placeholder="Old" oninput="calcP3()">
-                        </div>
-                        <div style="flex: 1; min-width: 120px;">
-                            <label>To</label>
-                            <input type="number" id="p3_to" placeholder="New" oninput="calcP3()">
-                        </div>
-                    </div>
+            <div class="calc-group">
+                <h3 style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">
+                    <span
+                        style="background: var(--primary-color); color: white; width: 28px; height: 28px; border-radius: 6px; display: grid; place-items: center; font-size: 0.9rem;">3</span>
+                    Percentage Change
+                </h3>
+                <div class="input-inline">
+                    <span>Price/Value from</span>
+                    <input type="number" id="p3_from" placeholder="Old" oninput="calcP3()" style="width: 150px;">
+                    <span>to</span>
+                    <input type="number" id="p3_to" placeholder="New" oninput="calcP3()" style="width: 150px;">
                 </div>
-                <div class="card" id="res3_card"
-                    style="padding: 1rem; background: #eff6ff; border-style: dashed; display: none;">
-                    <div id="res3" style="font-weight: 800; color: var(--primary-color); font-size: 1.25rem;"></div>
+                <div id="res3_card" class="result-box" style="display: none;">
+                    <span class="res-label">Result</span>
+                    <span id="res3" class="res-val"></span>
                 </div>
             </div>
+
         </div>
 
-        <!-- SEO Content Section -->
-        <section class="seo-content container" style="max-width: 800px;">
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
             <h2>About Our Percentage Calculator</h2>
             <p>Our **Percentage Calculator** is a versatile math tool designed to simplify everyday calculations. From
                 determining sales tax and discounts to analyzing business growth and financial ratios, knowing how to
                 calculate percentages is essential.</p>
-
-            <h3>Why Use WorldOfTools Percentage Tool?</h3>
-            <p>We've optimized our calculator to provide instant feedback as you type. Here’s what makes it better:</p>
-            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                <li><strong>Multiple Modes:</strong> Easily switch between basic percent finding, part determination,
-                    and value change.</li>
-                <li><strong>Live Calculations:</strong> No "Submit" button required. See results instantly as you change
-                    input values.</li>
-                <li><strong>Privacy First:</strong> Like all our tools, data processing is kept entirely on your device.
-                </li>
-                <li><strong>Mobile Optimized:</strong> Large input fields make it easy to use on smartphones.</li>
-            </ul>
-
-            <h3>Common Formulas Used</h3>
-            <p>Our tool uses standard mathematical formulas for calculation:</p>
-            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                <li><strong>Portion:</strong> `(Percentage / 100) * Number`</li>
-                <li><strong>Find Part %:</strong> `(Part / Total) * 100`</li>
-                <li><strong>Change %:</strong> `((New Value - Old Value) / Old Value) * 100`</li>
-            </ul>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="faq-section container" style="max-width: 800px;">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>How do I calculate percentage increase?</h3>
-                <p>Use the **Percentage Change** tool. Enter your original value in 'From' and the target value in 'To'.
-                    The result will show you the exact percentage growth.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Is this calculator useful for taxes?</h3>
-                <p>Absolutely. You can find the tax portion by entering the tax percentage (e.g., 5%) and the total
-                    amount. For GST-specific needs, we also recommend our [GST Calculator](gst-calculator.html).</p>
-            </div>
         </section>
 
         <!-- Related Tools -->
-        <section class="container" style="margin-top: 4rem;">
-            <h2 class="text-center" style="margin-bottom: 2.5rem;">Try Other Related Tools</h2>
+        <section style="margin-top: 0;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Related Tools</h2>
             <div class="tools-grid">
                 <a href="age-calculator.html" class="tool-card">
                     <div class="tool-icon">🎂</div>
@@ -170,18 +182,16 @@
 
     <footer></footer>
 
-    <script src="js/common.js?v=1.1"></script>
+    <script src="js/common.js?v=1.2"></script>
     <script>
-        // Structured Data (JSON-LD)
         const schemaData = {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Advanced Percentage Calculator",
-            "description": "Calculate percent of a number, percentage change between values, and part ratios instantly.",
+            "description": "Calculate percent of a number, percentage change, and part ratios instantly.",
             "url": "https://worldoftools.in/percentage-calculator.html",
             "applicationCategory": "MathApplication",
-            "operatingSystem": "Any",
-            "offers": { "@type": "Offer", "price": "0" }
+            "operatingSystem": "Any"
         };
         const script = document.createElement('script');
         script.type = "application/ld+json";
@@ -193,11 +203,9 @@
             const num = parseFloat(document.getElementById('p1_num').value);
             const card = document.getElementById('res1_card');
             if (!isNaN(per) && !isNaN(num)) {
-                document.getElementById('res1').textContent = `Result: ${(per / 100 * num).toFixed(2)}`;
+                document.getElementById('res1').textContent = (per / 100 * num).toLocaleString('en-IN', { maximumFractionDigits: 2 });
                 card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+            } else { card.style.display = 'none'; }
         }
 
         function calcP2() {
@@ -205,11 +213,9 @@
             const num2 = parseFloat(document.getElementById('p2_num2').value);
             const card = document.getElementById('res2_card');
             if (!isNaN(num1) && !isNaN(num2) && num2 !== 0) {
-                document.getElementById('res2').textContent = `Result: ${(num1 / num2 * 100).toFixed(2)}%`;
+                document.getElementById('res2').textContent = (num1 / num2 * 100).toFixed(2) + '%';
                 card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+            } else { card.style.display = 'none'; }
         }
 
         function calcP3() {
@@ -217,14 +223,11 @@
             const to = parseFloat(document.getElementById('p3_to').value);
             const card = document.getElementById('res3_card');
             if (!isNaN(from) && !isNaN(to) && from !== 0) {
-                const diff = to - from;
-                const per = (diff / from) * 100;
+                const per = ((to - from) / from) * 100;
                 const type = per >= 0 ? 'Increase' : 'Decrease';
-                document.getElementById('res3').textContent = `Result: ${Math.abs(per).toFixed(2)}% ${type}`;
+                document.getElementById('res3').textContent = `${Math.abs(per).toFixed(2)}% ${type}`;
                 card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+            } else { card.style.display = 'none'; }
         }
     </script>
 </body>
