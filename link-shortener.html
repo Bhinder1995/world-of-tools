@@ -215,7 +215,8 @@
         document.head.appendChild(faqScript);
 
         async function shortenLink() {
-            const longUrl = document.getElementById('longUrl').value.trim();
+            const longUrlInput = document.getElementById('longUrl');
+            const longUrl = longUrlInput.value.trim();
             const error = document.getElementById('error');
             const result = document.getElementById('result');
             const loader = document.getElementById('loader');
@@ -231,8 +232,8 @@
             result.style.display = 'none';
             loader.style.display = 'block';
 
+            // Provider 1: Gotiny (JSON POST)
             try {
-                // Primary: Try Gotiny API (Supports CORS)
                 const response = await fetch('https://gotiny.cc/api', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -241,48 +242,70 @@
 
                 if (response.ok) {
                     const data = await response.json();
-                    if (data && data.length > 0 && data[0].code) {
-                        const shortUrl = `https://gotiny.cc/${data[0].code}`;
-                        document.getElementById('shortUrl').textContent = shortUrl;
-                        result.style.display = 'block';
-                        loader.style.display = 'none';
+                    if (data && data[0] && data[0].code) {
+                        displayResult(`https://gotiny.cc/${data[0].code}`);
                         return;
                     }
                 }
-            } catch (e) {
-                console.warn('Primary API failed, trying fallback...');
-            }
+            } catch (e) { console.warn('Gotiny failed, trying Spoo.me...'); }
 
-            // Fallback: Use is.gd JSONP (Bypasses CORS)
+            // Provider 2: Spoo.me (Form POST)
+            try {
+                const formData = new FormData();
+                formData.append('url', longUrl);
+
+                const response = await fetch('https://spoo.me/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.short_url) {
+                        displayResult(data.short_url);
+                        return;
+                    }
+                }
+            } catch (e) { console.warn('Spoo.me failed, trying is.gd...'); }
+
+            // Provider 3: is.gd (JSONP Fallback)
             const callbackName = 'isgdCallback_' + Math.floor(Math.random() * 100000);
             window[callbackName] = function (data) {
-                loader.style.display = 'none';
                 if (data.shorturl) {
-                    document.getElementById('shortUrl').textContent = data.shorturl;
-                    result.style.display = 'block';
-                } else if (data.errormessage) {
-                    error.textContent = 'Error: ' + data.errormessage;
-                    error.style.display = 'block';
+                    displayResult(data.shorturl);
                 } else {
-                    error.textContent = 'Failed to shorten link. Please try again later.';
-                    error.style.display = 'block';
+                    handleFailure(data.errormessage || 'Service unavailable');
                 }
-                // Cleanup
-                delete window[callbackName];
-                const oldScript = document.getElementById('isgd-jsonp');
-                if (oldScript) oldScript.remove();
+                cleanupIsgd(callbackName);
             };
 
             const script = document.createElement('script');
             script.id = 'isgd-jsonp';
             script.src = `https://is.gd/create.php?format=json&callback=${callbackName}&url=${encodeURIComponent(longUrl)}`;
-            script.onerror = function () {
-                loader.style.display = 'none';
-                error.textContent = 'Failed to connect to the shortening service.';
-                error.style.display = 'block';
-                delete window[callbackName];
+            script.onerror = () => {
+                handleFailure('Failed to connect to shortening services.');
+                cleanupIsgd(callbackName);
             };
             document.body.appendChild(script);
+
+            function displayResult(shortUrl) {
+                document.getElementById('shortUrl').textContent = shortUrl;
+                result.style.display = 'block';
+                loader.style.display = 'none';
+            }
+
+            function handleFailure(msg) {
+                loader.style.display = 'none';
+                error.textContent = 'Error: ' + msg;
+                error.style.display = 'block';
+            }
+
+            function cleanupIsgd(cbName) {
+                delete window[cbName];
+                const s = document.getElementById('isgd-jsonp');
+                if (s) s.remove();
+            }
         }
 
         function copyShortUrl() {
