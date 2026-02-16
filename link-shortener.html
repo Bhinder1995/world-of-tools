@@ -232,20 +232,41 @@
             result.style.display = 'none';
             loader.style.display = 'block';
 
-            // Provider 1: shrtco.de (shrtcode)
+            // Provider 1: Custom go.worldoftools.in (Masking Mode via Worker + KV)
             try {
-                const response = await fetch(`https://api.shrtco.de/v2/shorten?url=${encodeURIComponent(longUrl)}`);
-                const data = await response.json();
+                const response = await fetch("https://go.worldoftools.in/create", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ longUrl })
+                });
 
-                if (data.ok && data.result && data.result.full_short_link) {
-                    displayResult(data.result.full_short_link);
-                    return;
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.shortUrl) {
+                        displayResult(data.shortUrl);
+                        return;
+                    }
                 }
             } catch (e) {
-                console.warn('shrtcode failed, trying fallback...');
+                console.warn('Custom Masking API failed, trying TinyURL fallback...');
             }
 
-            // Provider 2: is.gd (Reliable keyless fallback)
+            // Provider 2: TinyURL Fallback (Direct browser-side shortening)
+            try {
+                // Using CORS proxy for TinyURL API-create
+                const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`);
+                if (response.ok) {
+                    const shortUrl = await response.text();
+                    if (shortUrl.includes('tinyurl.com')) {
+                        displayResult(shortUrl);
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.warn('TinyURL failed, trying is.gd...');
+            }
+
+            // Provider 3: is.gd (Last resort fallback)
             const callbackName = 'isgdCallback_' + Math.floor(Math.random() * 100000);
             window[callbackName] = function (data) {
                 if (data.shorturl) {
