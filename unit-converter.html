@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter - Online Measurement Conversion Tool | WorldOfTools</title>
+    <title>Best Online Unit Converter - Fast & Accurate Conversion | WorldOfTools</title>
     <meta name="description"
-        content="Convert units for Length, Weight, Temperature, and Volume with our easy online unit converter. Fast and accurate results.">
+        content="Convert weight, length, volume, and more with the best free online unit converter. Accurate results for all standard measurement units. Instant and 100% private.">
     <meta name="keywords"
-        content="unit converter, online unit conversion, measurement converter, length converter, weight converter">
+        content="unit converter online, best unit converter tool, length converter, weight converter, volume converter online, metric conversion tool, calculate units online, temperature converter">
+    <link rel="canonical" href="https://worldoftools.in/unit-converter.html" />
     <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
@@ -144,10 +145,36 @@
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h2>About Our Unit Converter</h2>
-            <p>Our **Unit Converter** is a professional tool for quick and accurate measurement transformations. Whether
-                you're working on a DIY project, studying, or cooking, we provide reliable conversion factors for all
-                primary measurement systems.</p>
+            <h3>How to Use the Online Unit Converter</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Select a Category:</strong> Choose from Length, Weight, Temperature, Area, Speed, or Volume.
+                </li>
+                <li><strong>Enter "From" Value:</strong> Type the number you want to convert in the first box.</li>
+                <li><strong>Choose Units:</strong> Select the starting unit and the target unit from the dropdown menus.
+                </li>
+                <li><strong>View Comparison:</strong> The "To" box and the result display will update instantly with the
+                    precise conversion.</li>
+            </ol>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is this the best unit converter for metric and imperial?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! We support cross-system conversions
+                        (e.g., meters to feet, kilograms to pounds) for all major measurement categories.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">How accurate are the conversion results?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">We use precise mathematical constants for
+                        every unit to ensure that your results are scientifically accurate up to 6 decimal places.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Can I use this for cooking measurements?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Absolutely. Our volume and weight
+                        categories include common units like liters, milliliters, and grams used in professional
+                        kitchens.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Related Tools -->
@@ -177,6 +204,38 @@
 
     <script src="js/common.js?v=1.2"></script>
     <script>
+        // FAQ Schema Data
+        const faqSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How do I convert units online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Select your category, enter the value, and pick your units. Our converter provides instant, accurate results for metric and imperial measurements."
+                }
+            }, {
+                "@type": "Question",
+                "name": "What units can I convert here?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can convert between units for length, weight, area, volume, speed, and temperature using our comprehensive tool."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Is this unit converter mobile-friendly?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our unit converter is fully responsive and works perfectly on smartphones, tablets, and desktops."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqSchemaData);
+        document.head.appendChild(faqScript);
+
         const conversions = {
             length: { meter: 1, kilometer: 1000, centimeter: 0.01, millimeter: 0.001, mile: 1609.34, yard: 0.9144, foot: 0.3048, inch: 0.0254 },
             weight: { kilogram: 1, gram: 0.001, milligram: 0.000001, pound: 0.453592, ounce: 0.0283495, ton: 1000 },

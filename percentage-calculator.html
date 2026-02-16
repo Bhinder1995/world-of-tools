@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Percentage Calculator - Calculate Percent Increase & Decrease | WorldOfTools</title>
+    <title>Best Percentage Calculator Online - Free & Instant | WorldOfTools</title>
     <meta name="description"
-        content="Calculate percent of a number, percentage change between values, and part ratios instantly.">
+        content="Calculate discounts, percentage increases, and portions with the best online percentage calculator. Get instant results for all your percentage math needs. Free and private.">
     <meta name="keywords"
-        content="percentage calculator, calculate percentage, percent increase, percent decrease, discount calculator">
+        content="percentage calculator online, calculation of percentage, discount calculator online, percent increase calculator, best percentage calculator free, how to find percentage, calculate discount online">
+    <link rel="canonical" href="https://worldoftools.in/percentage-calculator.html" />
     <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
@@ -151,10 +152,37 @@
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h2>About Our Percentage Calculator</h2>
-            <p>Our **Percentage Calculator** is a versatile math tool designed to simplify everyday calculations. From
-                determining sales tax and discounts to analyzing business growth and financial ratios, knowing how to
-                calculate percentages is essential.</p>
+            <h3>How to Use the Online Percentage Calculator</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Choose your Problem:</strong> Select whether you want to find a percentage of a number,
+                    finding what percentage one number is of another, or calculating the percentage change.</li>
+                <li><strong>Enter Values:</strong> Type your numbers into the respective input fields for the chosen
+                    calculation.</li>
+                <li><strong>Instant Calculation:</strong> The result will appear automatically as soon as you finish
+                    typing.</li>
+                <li><strong>Swap and Repeat:</strong> You can clear the fields and perform multiple different types of
+                    percentage calculations in seconds.</li>
+            </ol>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">How do I calculate a 20% discount?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Use the "Find Percentage" tool. Enter 20 in
+                        the percentage box and your total price in the number box. The result is your discount amount.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">What is the percentage increase formula?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Percentage Increase = [(New Value - Old
+                        Value) / Old Value] x 100. Our "Percentage Change" tool handles this automatically for you.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is this calculator free for students?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! WorldOfTools is designed to be a free
+                        educational and professional resource for everyone.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Related Tools -->
@@ -197,6 +225,38 @@
         script.type = "application/ld+json";
         script.text = JSON.stringify(schemaData);
         document.head.appendChild(script);
+
+        // FAQ Schema Data
+        const faqSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How do I calculate percentage online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simply enter your values into our online percentage calculator to instantly find the percentage of a number or the percentage difference between two values."
+                }
+            }, {
+                "@type": "Question",
+                "name": "How to calculate a percentage increase?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Input the old and new values into the Percentage Change tool. It will automatically show you the percentage increase or decrease."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Can I use this for sales tax calculations?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is perfect for quickly determining sales tax or discounts on any purchase amount."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqSchemaData);
+        document.head.appendChild(faqScript);
 
         function calcP1() {
             const per = parseFloat(document.getElementById('p1_per').value);

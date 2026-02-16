@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Counter - Online Character & Text Count Tool | WorldOfTools</title>
+    <title>Best Free Word Counter Online - Count Words & Characters | WorldOfTools</title>
     <meta name="description"
-        content="Count words, characters, sentences, and paragraphs in real-time. Analyze reading time and text density with our free tool.">
+        content="Count words, characters, sentences, and paragraphs in real-time. Analyze reading time and keyword density with the best free online word counter. 100% Private.">
     <meta name="keywords"
-        content="word counter, character count, text count tool, online word counter, reading time calculator">
+        content="free word counter, character count tool online, word count tool, reading time calculator, best word counter, online character count, text analysis tool">
+    <link rel="canonical" href="https://worldoftools.in/word-counter.html" />
     <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
@@ -163,10 +164,37 @@
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h2>About Our Online Word Counter</h2>
-            <p>Our **Word Counter** is a professional-grade text analysis tool designed for writers, students, social
-                media managers, and SEO specialists. It provides instantaneous feedback on your writing, helping you
-                stay within character limits or reach word count goals.</p>
+            <h3>How to Use the Online Word Counter</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Paste your Text:</strong> Simply type or paste your content into the large text area.</li>
+                <li><strong>Real-time Stats:</strong> Watch the word, character, sentence, and paragraph counts update
+                    instantly as you type.</li>
+                <li><strong>Format Text:</strong> Use the action buttons to quickly convert text to UPPERCASE,
+                    lowercase, or Title Case.</li>
+                <li><strong>Copy or Clear:</strong> Once finished, click "Copy" to save your work or "Clear" to start a
+                    new analysis.</li>
+            </ol>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is there a word limit for this counter?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">No, WorldOfTools allows you to analyze text
+                        of any length. Whether it's a short social media post or a long essay, our tool handles it
+                        instantly.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Does it count spaces as characters?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">We provide both! You can see the total
+                        character count (including spaces) and a specific count excluding spaces for more detailed
+                        analysis.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is my text saved on your servers?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Never. All text processing happens locally
+                        in your browser. Your content is 100% private and is never uploaded anywhere.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Related Tools -->
@@ -209,6 +237,38 @@
         script.type = "application/ld+json";
         script.text = JSON.stringify(schemaData);
         document.head.appendChild(script);
+
+        // FAQ Schema Data
+        const faqSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How do I count words online for free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simply paste your text into our free Word Counter tool, and it will give you an instant breakdown of word and character counts."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Can I count characters excluding spaces?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool provides a dedicated count for characters excluding spaces, which is often required for specific writing assignments."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Is this word counter safe for sensitive documents?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. Since all calculations happen 100% in your browser, your sensitive text never leaves your computer."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqSchemaData);
+        document.head.appendChild(faqScript);
 
         const textarea = document.getElementById('textInput');
         textarea.addEventListener('input', countStats);

@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GST Calculator - Calculate GST Inclusive & Exclusive | WorldOfTools</title>
+    <title>Best GST Calculator - Online GST Inclusive & Exclusive Tax | WorldOfTools</title>
     <meta name="description"
-        content="Quickly calculate GST (Good and Services Tax) amount with our online GST calculator. Add or remove GST from any amount instantly.">
+        content="Calculate GST (Goods and Services Tax) instantly with our online GST calculator. Add or remove GST from any amount using standard tax slabs (5%, 12%, 18%, 28%).">
     <meta name="keywords"
-        content="GST calculator, calculate GST online, GST tax calculator, GST inclusive exclusive, tax amount calculator">
+        content="gst calculator online, best gst calculator India, calculate gst inclusive exclusive, online tax calculator, gst amount calculator, add tax online">
+    <link rel="canonical" href="https://worldoftools.in/gst-calculator.html" />
     <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
@@ -155,10 +156,34 @@
 
         <!-- SEO Content Section -->
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h2>About Our Online GST Calculator</h2>
-            <p>Our **GST Calculator** is designed to simplify the complex tax calculations used in India and several
-                other countries. Whether you're a business owner, a consumer, or a freelancer, understanding how Goods
-                and Services Tax affects your pricing is crucial for financial transparency.</p>
+            <h3>How to Use the GST Calculator Online</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Enter Base Amount:</strong> Type the initial price or amount in the input field.</li>
+                <li><strong>Select Calculation Mode:</strong> Choose "GST Exclusive" (to add tax) or "GST Inclusive" (to
+                    see the tax-free price).</li>
+                <li><strong>Pick GST Slab:</strong> Click on 5%, 12%, 18%, or 28%, or enter a custom percentage.</li>
+                <li><strong>Instant Breakdown:</strong> View the Net Amount, the GST portion, and the final Total Amount
+                    in real-time.</li>
+            </ol>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">What is GST Inclusive and Exclusive?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">GST Exclusive means the price does not
+                        include tax yet. GST Inclusive means the price already includes the tax amount.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is this the best GST calculator for India?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! It supports all Indian standard GST
+                        slabs (3%, 5%, 12%, 18%, 28%) and provides a clean breakdown for businesses and consumers.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">How do I calculate GST?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">To add GST, multiply the amount by (GST
+                        rate/100). To remove GST, divide the amount by (1 + GST rate/100).</p>
+                </div>
+            </div>
         </section>
 
         <!-- Related Tools -->
@@ -202,6 +227,38 @@
         script.type = "application/ld+json";
         script.text = JSON.stringify(schemaData);
         document.head.appendChild(script);
+
+        // FAQ Schema Data
+        const faqSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How is GST calculated?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "GST is calculated by either adding a percentage of tax to a net amount or extracting the tax portion from an inclusive total amount. Our online tool handles both calculations instantly."
+                }
+            }, {
+                "@type": "Question",
+                "name": "What are the common GST tax slabs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "In many countries like India, common GST slabs include 5%, 12%, 18%, and 28%. Our calculator supports all these plus custom rates."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Is this tool free for business owners?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our online GST calculator is completely free for business owners, accountants, and individuals."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqSchemaData);
+        document.head.appendChild(faqScript);
 
         let currentRate = 18;
 

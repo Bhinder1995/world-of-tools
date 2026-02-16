@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener - Fast & Free Link Shortener | WorldOfTools</title>
+    <title>Best Free URL Shortener - Shorten Long Links Instantly | WorldOfTools</title>
     <meta name="description"
-        content="Shorten long links instantly with our free URL shortener. Create simple, shareable links with direct redirects. No registration needed.">
+        content="Shorten long URLs instantly with our free link shortener. Create simple, shareable links with direct redirects. No registration required. Best TinyURL alternative.">
     <meta name="keywords"
-        content="link shortener, URL shortener, shorten link, is.gd, custom URL shortener, free link shortener, direct redirect">
+        content="link shortener online, best url shortener free, shorten url, tinyurl alternative, bitly alternative free, shorten link instantly, create short link">
+    <link rel="canonical" href="https://worldoftools.in/link-shortener.html" />
     <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="manifest" href="manifest.json">
@@ -110,10 +111,36 @@
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h2>The Best Free URL Shortener</h2>
-            <p>Our **URL Shortener** is a lightweight, high-speed tool designed to help you clean up long links for
-                social media, emails, and presentations. By converting bulky URLs into compact strings, you improve
-                readability and user trust.</p>
+            <h3>How to Use the URL Shortener</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Copy your Long URL:</strong> Head to the website you want to shorten and copy its full
+                    address.</li>
+                <li><strong>Paste and Shorten:</strong> Paste the link into the input box above and click the "Shorten"
+                    button.</li>
+                <li><strong>Instant Result:</strong> Our tool will generate a compact, shareable link in less than a
+                    second.</li>
+                <li><strong>Copy and Share:</strong> Use the "Copy" button to grab your new link and share it on social
+                    media, emails, or messages.</li>
+            </ol>
+
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">How forever will my short link last?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Links created through our service are
+                        designed to be permanent, provided they comply with our terms of service.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is this the best free Bitly alternative?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! Unlike other services, we don't
+                        require registration, and we don't show annoying landing pages or ads before redirecting.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Are the redirects direct?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Absolutely. We provide immediate redirects
+                        to ensure your users reach the destination as fast as possible.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Related Tools -->
@@ -154,6 +181,38 @@
         script.type = "application/ld+json";
         script.text = JSON.stringify(schemaData);
         document.head.appendChild(script);
+
+        // FAQ Schema Data
+        const faqSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How do I shorten a link online for free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Just paste your long URL into the WorldOfTools link shortener and click 'Shorten' to get a compact link instantly."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Does this URL shortener require an account?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No account or registration is required to use our free link shortening service."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Are the shortened links safe to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we use reliable providers and direct redirects to ensure a safe and fast experience for your users."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqSchemaData);
+        document.head.appendChild(faqScript);
 
         async function shortenLink() {
             const longUrl = document.getElementById('longUrl').value.trim();
