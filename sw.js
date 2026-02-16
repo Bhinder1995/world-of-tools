@@ -1,24 +1,23 @@
-const CACHE_NAME = 'world-of-tools-v8';
+const CACHE_NAME = 'world-of-tools-v9';
 const ASSETS_TO_CACHE = [
     '/',
-    '/index.html',
     '/css/style.css?v=1.2',
     '/js/common.js?v=1.2',
     '/manifest.json',
     '/favicon.png',
     '/favicon.ico',
-    '/age-calculator.html',
-    '/percentage-calculator.html',
-    '/word-counter.html',
-    '/emi-calculator.html',
-    '/password-generator.html',
-    '/unit-converter.html',
-    '/contact.html',
-    '/privacy.html',
-    '/terms.html',
-    '/seo-meta-tag-generator.html',
-    '/link-shortener.html',
-    '/gst-calculator.html'
+    '/age-calculator',
+    '/percentage-calculator',
+    '/word-counter',
+    '/emi-calculator',
+    '/password-generator',
+    '/unit-converter',
+    '/contact',
+    '/privacy',
+    '/terms',
+    '/seo-meta-tag-generator',
+    '/link-shortener',
+    '/gst-calculator'
 ];
 
 self.addEventListener('install', (event) => {
@@ -32,10 +31,27 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+    // Only handle GET requests
+    if (event.request.method !== 'GET') return;
+
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                return response || fetch(event.request);
+                // If we have a cached response, check if it's redirected
+                // Service Workers cannot serve a Response with the .redirected property set to true for navigations
+                if (response) {
+                    if (response.redirected) {
+                        // If it was redirected, don't use it, fetch fresh
+                        return fetch(event.request);
+                    }
+                    return response;
+                }
+
+                // Fallback to network
+                return fetch(event.request).then(fetchRes => {
+                    // Optional: If we want to cache extension-less versions on the fly
+                    return fetchRes;
+                });
             })
     );
 });

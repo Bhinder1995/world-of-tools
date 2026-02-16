@@ -11,7 +11,7 @@ function injectHeader() {
     const headerHTML = `
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">
+                <a href="index" class="logo">
                     <span>⚡</span> HUB
                 </a>
                 <button class="menu-toggle" aria-label="Toggle navigation">
@@ -19,10 +19,10 @@ function injectHeader() {
                 </button>
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html#calculators">Calculators</a></li>
-                        <li><a href="index.html#tools">Text Tools</a></li>
-                        <li><a href="index.html#converters">Converters</a></li>
-                        <li><a href="index.html#generators">Generators</a></li>
+                        <li><a href="index#calculators">Calculators</a></li>
+                        <li><a href="index#tools">Text Tools</a></li>
+                        <li><a href="index#converters">Converters</a></li>
+                        <li><a href="index#generators">Generators</a></li>
                     </ul>
                 </nav>
             </div>
@@ -77,18 +77,18 @@ function injectFooter() {
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="age-calculator.html">Age Calculator</a></li>
-                        <li><a href="link-shortener.html">Link Shortener</a></li>
-                        <li><a href="password-generator.html">Password Gen</a></li>
+                        <li><a href="index">Home</a></li>
+                        <li><a href="age-calculator">Age Calculator</a></li>
+                        <li><a href="link-shortener">Link Shortener</a></li>
+                        <li><a href="password-generator">Password Gen</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy">Privacy Policy</a></li>
+                        <li><a href="terms">Terms of Service</a></li>
+                        <li><a href="contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
