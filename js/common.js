@@ -108,7 +108,7 @@ function injectFooter() {
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('/service-worker.js', { updateViaCache: 'none' })
                 .then(registration => {
                     console.log('ServiceWorker registration successful');
 
