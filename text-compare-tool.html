@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Two Texts Online – Free Text Difference Checker | WorldOfTools</title>
+    <meta name="description"
+        content="Easily compare two texts, documents, or code snippets online. Highlight differences in green and red with our free side-by-side and inline diff checker. 100% private.">
+    <meta name="keywords"
+        content="text compare online, diff checker, compare two documents, code comparison tool, online text difference tool, side by side diff, inline diff">
+    <link rel="canonical" href="https://worldoftools.in/text-compare-tool" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1.5;
+            resize: vertical;
+            background: white;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .diff-output {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            min-height: 200px;
+        }
+
+        .diff-added {
+            background-color: #dcfce7;
+            color: #166534;
+            text-decoration: none;
+        }
+
+        .diff-removed {
+            background-color: #fee2e2;
+            color: #991b1b;
+            text-decoration: line-through;
+        }
+
+        .side-by-side-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.25rem 0;
+        }
+
+        .side-by-side-col {
+            padding: 0.5rem;
+        }
+
+        .view-controls {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            background: #f1f5f9;
+            padding: 0.75rem;
+            border-radius: 12px;
+            align-items: center;
+        }
+
+        .active-view {
+            background: var(--primary-color) !important;
+            color: white !important;
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>Text Compare Tool</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Find differences between two
+                texts instantly with visual highlighting.</p>
+        </section>
+
+        <div class="card" style="max-width: 1200px; margin: 0 auto; padding: 2.5rem;">
+            <div class="compare-grid">
+                <div class="input-group">
+                    <label>Original Text</label>
+                    <textarea id="textA" placeholder="Enter original text here..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Changed Text</label>
+                    <textarea id="textB" placeholder="Enter new version of text here..."></textarea>
+                </div>
+            </div>
+
+            <div class="view-controls">
+                <button id="btnInline" class="btn btn-secondary active-view" onclick="setViewMode('inline')">Inline
+                    View</button>
+                <button id="btnSide" class="btn btn-secondary" onclick="setViewMode('side')">Side-by-Side</button>
+                <div style="flex-grow: 1;"></div>
+                <button class="btn btn-secondary" onclick="compareTexts()"
+                    style="background: var(--primary-color); color: white; border: none;">🚀 Compare Now</button>
+                <button class="btn btn-secondary" onclick="clearAll()" style="color: #ef4444;">🗑️ Clear</button>
+            </div>
+
+            <div id="diffResult" class="diff-output">Results will appear here...</div>
+        </div>
+
+        <section class="container" style="max-width: 850px; padding: 6rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Why You Need a Text Difference Checker</h2>
+            <p style="margin-bottom: 1.5rem; line-height: 1.8;">In the world of documentation, coding, and writing,
+                tracking changes is crucial. Manually scanning two documents or long strings of code for minor
+                deviations is not only time-consuming but also prone to human error. A <strong>Text Compare
+                    Tool</strong> automates this process, highlighting every addition, deletion, and modification in
+                seconds.</p>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Common Use Cases</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Code Comparison:</strong> Developers can quickly verify changes in snippets or scripts
+                    before committing them to a repository.</li>
+                <li><strong>Document Auditing:</strong> Legal professionals and students can compare different versions
+                    of contracts, essays, or reports to ensure no unauthorized changes were made.</li>
+                <li><strong>SEO Content Review:</strong> Content managers can track how articles have evolved over time
+                    or compare staging content vs. live content.</li>
+                <li><strong>Privacy Disclosure:</strong> Compare Privacy Policies or Terms of Service updates to see
+                    exactly what changed in the fine print.</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Side-by-Side vs. Inline View</h3>
+            <p style="margin-bottom: 1.5rem; line-height: 1.8;">Our tool offers two powerful visualization modes. The
+                <strong>Inline View</strong> shows changes sequentially, making it easy to read the flow of the text
+                with color-coded notations. The <strong>Side-by-Side View</strong> (Alpha) allows for a direct
+                horizontal comparison, which is ideal for identifying structural changes in lists or code blocks.</p>
+
+            <h3 style="margin-top: 2rem;">Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is my text secure when using this online tool?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes. WorldOfTools uses client-side
+                        JavaScript to perform the comparison. Your text stays entirely within your browser and is never
+                        uploaded to our servers, ensuring 100% privacy.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Can I compare code with this tool?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Absolutely! While it works great for plain
+                        text, it is also highly effective for HTML, CSS, JavaScript, and other programming languages.
+                        The courier font ensures proper alignment for code segments.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Does it support large files?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Our tool can handle several thousand lines
+                        of text comfortably. Performance depends on your browser's processing power since all
+                        calculations happen locally.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Links -->
+        <section style="margin-top: 0; padding-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Text & Content Utilities</h2>
+            <div class="tools-grid">
+                <a href="word-counter" class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <div class="tool-title">Word Counter</div>
+                    <div class="tool-desc">Analyze word counts and reading time.</div>
+                </a>
+                <a href="json-formatter" class="tool-card">
+                    <div class="tool-icon">✨</div>
+                    <div class="tool-title">JSON Formatter</div>
+                    <div class="tool-desc">Beautify and validate JSON code.</div>
+                </a>
+                <a href="case-converter" class="tool-card">
+                    <div class="tool-icon">Aa</div>
+                    <div class="tool-title">Case Converter</div>
+                    <div class="tool-desc">Change text casing (UPPER, lower, Title).</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        let viewMode = 'inline';
+        const textA = document.getElementById('textA');
+        const textB = document.getElementById('textB');
+        const result = document.getElementById('diffResult');
+
+        function setViewMode(mode) {
+            viewMode = mode;
+            document.getElementById('btnInline').classList.toggle('active-view', mode === 'inline');
+            document.getElementById('btnSide').classList.toggle('active-view', mode === 'side');
+            if (textA.value || textB.value) compareTexts();
+        }
+
+        function compareTexts() {
+            const one = textA.value;
+            const other = textB.value;
+
+            if (!one && !other) {
+                result.textContent = "Please enter some text to compare.";
+                return;
+            }
+
+            const diff = Diff.diffWords(one, other);
+            result.innerHTML = '';
+
+            if (viewMode === 'inline') {
+                const fragment = document.createDocumentFragment();
+                diff.forEach((part) => {
+                    const span = document.createElement('span');
+                    span.className = part.added ? 'diff-added' : part.removed ? 'diff-removed' : '';
+                    span.appendChild(document.createTextNode(part.value));
+                    fragment.appendChild(span);
+                });
+                result.appendChild(fragment);
+            } else {
+                // Simplified Side-by-side view
+                const container = document.createElement('div');
+                const row = document.createElement('div');
+                row.className = 'side-by-side-row';
+
+                const colA = document.createElement('div');
+                colA.className = 'side-by-side-col';
+                const colB = document.createElement('div');
+                colB.className = 'side-by-side-col';
+
+                diff.forEach(part => {
+                    if (part.removed) {
+                        const span = document.createElement('span');
+                        span.className = 'diff-removed';
+                        span.textContent = part.value;
+                        colA.appendChild(span);
+                    } else if (part.added) {
+                        const span = document.createElement('span');
+                        span.className = 'diff-added';
+                        span.textContent = part.value;
+                        colB.appendChild(span);
+                    } else {
+                        colA.appendChild(document.createTextNode(part.value));
+                        colB.appendChild(document.createTextNode(part.value));
+                    }
+                });
+
+                row.appendChild(colA);
+                row.appendChild(colB);
+                container.appendChild(row);
+                result.appendChild(container);
+            }
+        }
+
+        function clearAll() {
+            if (confirm('Clear both text inputs?')) {
+                textA.value = '';
+                textB.value = '';
+                result.textContent = 'Results will appear here...';
+            }
+        }
+
+        // Schema Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Text Compare Tool",
+            "description": "Free online tool to compare two texts and highlight differences.",
+            "url": "https://worldoftools.in/text-compare-tool",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
+        // FAQ Schema
+        const faqData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How do I compare two pieces of text online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Paste the original text in the first box and the modified version in the second box. Click 'Compare Now' to see visual highlights of additions and deletions."
+                }
+            }, {
+                "@type": "Question",
+                "name": "What is the difference between inline and side-by-side view?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Inline view shows all changes in a single combined text flow. Side-by-side view places the two versions next to each other to help identify structural row-based changes."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Is my data stored during comparison?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. The comparison is performed entirely in your browser using JavaScript. No text is ever uploaded to our servers."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqData);
+        document.head.appendChild(faqScript);
+    </script>
+</body>
+
+</html>

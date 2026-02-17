@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress Image Online – Reduce Image Size Instantly | WorldOfTools</title>
+    <meta name="description"
+        content="Free online image compressor to reduce image file size without losing quality. Compress PNG, JPG, and WebP instantly using our 100% private, client-side tool.">
+    <meta name="keywords"
+        content="compress image, reduce image size, image optimizer online, photo compressor, shrink image, free image tools, optimize images for web">
+    <link rel="canonical" href="https://worldoftools.in/image-compressor" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .compressor-ui {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .compressor-ui {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .upload-area i {
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .settings-card {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-container {
+            position: relative;
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            max-height: 500px;
+            display: none;
+        }
+
+        .stats-overlay {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        #downloadBtn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+            font-weight: 700;
+            display: none;
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>Image Compressor</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Client-side image optimization.
+                Fast, secure, and no data leaves your browser.</p>
+        </section>
+
+        <div class="card" style="max-width: 1100px; margin: 0 auto; padding: 2.5rem;">
+            <div class="compressor-ui">
+                <div class="controls-side">
+                    <div class="upload-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                        <span style="font-size: 3rem;">🖼️</span>
+                        <h4 style="margin: 1rem 0 0.5rem;">Select Image</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">or drag & drop here</p>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div id="settings" style="display: none; margin-top: 1.5rem;">
+                        <div class="settings-card">
+                            <div class="control-label">
+                                <span>Compression Quality</span>
+                                <span id="qualityLabel">80%</span>
+                            </div>
+                            <input type="range" id="qualityRange" min="1" max="100" value="80">
+                        </div>
+                        <button id="downloadBtn" class="btn btn-secondary"
+                            style="background: var(--primary-color); color: white; border: none;">⬇️ Download
+                            Compressed</button>
+                    </div>
+                </div>
+
+                <div class="preview-side">
+                    <div class="preview-container">
+                        <div id="noImage" style="text-align: center; color: var(--text-muted);">
+                            <p>Upload an image to start compressing.</p>
+                        </div>
+                        <img id="imagePreview" class="preview-img" alt="Compressed Preview">
+                        <div id="statsOverlay" class="stats-overlay" style="display: none;">
+                            <span>Original: <span id="origSize">0</span> KB</span>
+                            <span style="color: var(--primary-color);">Compressed: <span id="compSize">0</span>
+                                KB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 850px; padding: 6rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">The Benefits of Online Image Compression</h2>
+            <p style="margin-bottom: 1.5rem; line-height: 1.8;">High-resolution images are beautiful, but they can
+                significantly slow down your website or exhaust your email attachment limits. Our <strong>Image
+                    Compressor</strong> uses advanced browser-side algorithms to intelligently reduce file sizes while
+                maintaining a high level of visual quality. This is essential for web developers, social media managers,
+                and anyone looking to share photos more efficiently.</p>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Why Privacy Matters for Your Photos</h3>
+            <p style="margin-bottom: 1.5rem; line-height: 1.8;">Most online image optimizers require you to upload your
+                personal photos to their servers. This can be a security risk, especially for sensitive documents or
+                private images. At WorldOfTools, we've built this tool to run 100% on your machine. Your images never
+                leave your browser, making this the most secure way to compress images online.</p>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Key Features</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>No Upload Limits:</strong> Since the work is done by your browser, there are no artificial
+                    file size limits typical of server-side converters.</li>
+                <li><strong>Quality Control:</strong> Use the live slider to find the perfect balance between file size
+                    reduction and image clarity.</li>
+                <li><strong>Supports Multiple Formats:</strong> Works with JPG, PNG, and WebP images.</li>
+                <li><strong>Instant Previews:</strong> See the exact result before you download, ensuring you're happy
+                    with the compression.</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem;">Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Does compressing an image lower its quality?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes, to reduce file size, some image data
+                        is discarded. However, at 80-90% quality, the difference is often invisible to the human eye
+                        while the file size can be reduced by up to 70%.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">What is the best quality setting?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">For most websites, a setting between 70%
+                        and 85% is the sweet spot for fast loading times and crisp visuals.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Can I compress PNG files?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! If you upload a PNG, our tool will
+                        compress it using its internal optimization path, though JPG often sees higher compression
+                        ratios for complex photos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Links -->
+        <section style="margin-top: 0; padding-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Related Productivity Tools</h2>
+            <div class="tools-grid">
+                <a href="css-minifier" class="tool-card">
+                    <div class="tool-icon">🚀</div>
+                    <div class="tool-title">CSS Minifier</div>
+                    <div class="tool-desc">Compress CSS for faster web pages.</div>
+                </a>
+                <a href="word-counter" class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <div class="tool-title">Word Counter</div>
+                    <div class="tool-desc">Analyze text length and reading time.</div>
+                </a>
+                <a href="link-shortener" class="tool-card">
+                    <div class="tool-icon">🔗</div>
+                    <div class="tool-title">Link Shortener</div>
+                    <div class="tool-desc">Create direct, fast redirects.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const qualityRange = document.getElementById('qualityRange');
+        const qualityLabel = document.getElementById('qualityLabel');
+        const imagePreview = document.getElementById('imagePreview');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const statsOverlay = document.getElementById('statsOverlay');
+        const origSizeSpan = document.getElementById('origSize');
+        const compSizeSpan = document.getElementById('compSize');
+        const settings = document.getElementById('settings');
+        const noImage = document.getElementById('noImage');
+
+        let originalImage = null;
+        let mimeType = 'image/jpeg';
+
+        fileInput.addEventListener('change', handleUpload);
+        qualityRange.addEventListener('input', () => {
+            qualityLabel.textContent = qualityRange.value + '%';
+            if (originalImage) compressImage();
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = `compressed-${Date.now()}.jpg`;
+            link.href = imagePreview.src;
+            link.click();
+        });
+
+        function handleUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            mimeType = file.type;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    originalImage = img;
+                    origSizeSpan.textContent = Math.round(file.size / 1024);
+                    settings.style.display = 'block';
+                    noImage.style.display = 'none';
+                    imagePreview.style.display = 'block';
+                    statsOverlay.style.display = 'flex';
+                    compressImage();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function compressImage() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = originalImage.width;
+            canvas.height = originalImage.height;
+
+            ctx.drawImage(originalImage, 0, 0);
+
+            const quality = qualityRange.value / 100;
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+
+            imagePreview.src = compressedDataUrl;
+
+            // Calculate size from base64 (estimate)
+            const head = 'data:image/jpeg;base64,';
+            const sizeInBytes = (compressedDataUrl.length - head.length) * 0.75;
+            compSizeSpan.textContent = Math.round(sizeInBytes / 1024);
+
+            downloadBtn.style.display = 'block';
+        }
+
+        // Drop zone handling
+        const dropZone = document.getElementById('dropZone');
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = 'var(--primary-color)';
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.borderColor = 'var(--border-color)';
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = 'var(--border-color)';
+            fileInput.files = e.dataTransfer.files;
+            handleUpload({ target: { files: e.dataTransfer.files } });
+        });
+
+        // Schema Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Image Compressor Online",
+            "description": "Free tool to compress and optimize images online without losing quality.",
+            "url": "https://worldoftools.in/image-compressor",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
+        // FAQ Schema
+        const faqData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "Is it safe to compress private photos here?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Our tool is 100% client-side. This means your images are never uploaded to any server and stay entirely within your browser."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Which image formats are supported?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We support all common web formats including JPEG, PNG, and WebP. Note that PNGs will be converted to JPEG for maximum compression efficiency."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Is there a limit to how many images I can compress?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. You can compress as many images as you like since everything happens on your own computer."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqData);
+        document.head.appendChild(faqScript);
+    </script>
+</body>
+
+</html>

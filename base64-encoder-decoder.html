@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encode & Decode Online Tool – Free Utility | WorldOfTools</title>
+    <meta name="description"
+        content="Free Base64 encoder and decoder. Convert text to Base64, decode Base64 strings, or turn images into Base64 strings instantly. 100% private and secure.">
+    <meta name="keywords"
+        content="base64 encode, base64 decode, image to base64, base64 to image, online base64 converter, developer tools, free web utilities">
+    <link rel="canonical" href="https://worldoftools.in/base64-encoder-decoder" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .base64-controls {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            background: #f1f5f9;
+            padding: 0.75rem;
+            border-radius: 12px;
+            align-items: center;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            resize: vertical;
+            background: #f8fafc;
+            margin-bottom: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .image-preview-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            background: #f8fafc;
+            margin-bottom: 1rem;
+        }
+
+        #previewImg {
+            max-width: 100%;
+            max-height: 400px;
+            display: none;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>Base64 Encoder / Decoder</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Securely convert text and images
+                to and from Base64 format.</p>
+        </section>
+
+        <div class="card" style="max-width: 1000px; margin: 0 auto; padding: 2.5rem;">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('text')">Text Mode</button>
+                <button class="tab-btn" onclick="switchTab('image')">Image Mode</button>
+            </div>
+
+            <!-- Text Tab -->
+            <div id="textMode">
+                <div class="base64-controls">
+                    <button class="btn btn-secondary" onclick="processText('encode')"
+                        style="background: var(--primary-color); color: white; border: none; padding: 0.5rem 1.5rem; font-weight: 700;">🔒
+                        Encode</button>
+                    <button class="btn btn-secondary" onclick="processText('decode')"
+                        style="padding: 0.5rem 1.5rem; font-weight: 700;">🔓 Decode</button>
+                    <div style="flex-grow: 1;"></div>
+                    <button class="btn btn-secondary" onclick="copyText('textInput')"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
+                    <button class="btn btn-secondary" onclick="clearInput('textInput')"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
+                        Clear</button>
+                </div>
+                <textarea id="textInput" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+            </div>
+
+            <!-- Image Tab -->
+            <div id="imageMode" class="hidden">
+                <div class="base64-controls">
+                    <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()"
+                        style="background: var(--primary-color); color: white; border: none; padding: 0.5rem 1.5rem; font-weight: 700;">🖼️
+                        Upload Image</button>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;"
+                        onchange="handleImage(this)">
+                    <div style="flex-grow: 1;"></div>
+                    <button class="btn btn-secondary" onclick="copyText('imageOutput')"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy Base64</button>
+                    <button class="btn btn-secondary" onclick="clearImage()"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
+                        Clear</button>
+                </div>
+
+                <textarea id="imageOutput" placeholder="Base64 string will appear here, or paste one to preview..."
+                    oninput="previewBase64()"></textarea>
+
+                <div class="image-preview-area">
+                    <div id="noImgText" style="color: var(--text-muted);">Image preview will appear here</div>
+                    <img id="previewImg" alt="Base64 Content">
+                </div>
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 850px; padding: 6rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Understanding Base64 Encoding</h2>
+            <p style="margin-bottom: 1.5rem; line-height: 1.8;">Base64 is a binary-to-text encoding scheme that
+                represents binary data in an ASCII string format. It is widely used in web development to embed images
+                directly into HTML or CSS (Data URIs), to transmit data over media that only supports text, and to
+                handle authentication headers in APIs. Our <strong>Base64 Encoder / Decoder</strong> provides a simple,
+                secure way to handle these conversions without external dependencies.</p>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Common Developer Use Cases</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Embedding Small Assets:</strong> Convert icons or small logos to Base64 to reduce the number
+                    of HTTP requests on your website.</li>
+                <li><strong>Data URIs:</strong> Use Base64 strings directly in your `src` or `url()` attributes in HTML
+                    and CSS.</li>
+                <li><strong>Testing APIs:</strong> Encode credentials or payload data for testing Basic Auth or data
+                    transfers.</li>
+                <li><strong>Debugging:</strong> Inspect the contents of a Base64 string by decoding it back to its
+                    original text or image form.</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Why Privacy is Crucial for Encoding</h3>
+            <p style="margin-bottom: 1.5rem; line-height: 1.8;">Base64 is not encryption; it's just a different way of
+                representing data. However, encoding sensitive information using an online tool can be risky if that
+                data is sent to a server. WorldOfTools processes all Base64 conversions locally in your browser. This
+                means your text and images never leave your local environment, ensuring your sensitive development data
+                remains private.</p>
+
+            <h3 style="margin-top: 2rem;">Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is Base64 a form of encryption?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">No. Base64 is an encoding method, not
+                        encryption. Anyone who sees a Base64 string can easily decode it. Never use it to "hide"
+                        passwords or sensitive keys.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Does Base64 increase file size?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes. Base64 encoding typically increases
+                        the size of the data by about 33% compared to the original binary format. It is best used for
+                        small assets.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Can I convert private images to Base64 safely?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes. Since our tool runs entirely on the
+                        client-side, your images are processed within your browser and are never uploaded to any server.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Links -->
+        <section style="margin-top: 0; padding-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Other Developer Utilities</h2>
+            <div class="tools-grid">
+                <a href="json-formatter" class="tool-card">
+                    <div class="tool-icon">✨</div>
+                    <div class="tool-title">JSON Formatter</div>
+                    <div class="tool-desc">Beautify and validate JSON code.</div>
+                </a>
+                <a href="css-minifier" class="tool-card">
+                    <div class="tool-icon">🚀</div>
+                    <div class="tool-title">CSS Minifier</div>
+                    <div class="tool-desc">Compress CSS for faster pages.</div>
+                </a>
+                <a href="text-compare-tool" class="tool-card">
+                    <div class="tool-icon">⚖️</div>
+                    <div class="tool-title">Text Compare</div>
+                    <div class="tool-desc">Compare two versions of text.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        function switchTab(mode) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.tab-btn[onclick="switchTab('${mode}')"]`).classList.add('active');
+
+            document.getElementById('textMode').classList.toggle('hidden', mode !== 'text');
+            document.getElementById('imageMode').classList.toggle('hidden', mode !== 'image');
+        }
+
+        function processText(type) {
+            const input = document.getElementById('textInput');
+            try {
+                if (type === 'encode') {
+                    input.value = btoa(unescape(encodeURIComponent(input.value)));
+                } else {
+                    input.value = decodeURIComponent(escape(atob(input.value)));
+                }
+            } catch (e) {
+                alert('Error: ' + e.message + '. Make sure the input is valid for this operation.');
+            }
+        }
+
+        function handleImage(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('imageOutput').value = e.target.result;
+                previewBase64();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewBase64() {
+            const val = document.getElementById('imageOutput').value.trim();
+            const preview = document.getElementById('previewImg');
+            const noImgText = document.getElementById('noImgText');
+
+            if (val && (val.startsWith('data:image/') || /^[a-zA-Z0-9+/=]+$/.test(val))) {
+                preview.src = val.startsWith('data:image/') ? val : `data:image/png;base64,${val}`;
+                preview.style.display = 'block';
+                noImgText.style.display = 'none';
+
+                preview.onerror = () => {
+                    preview.style.display = 'none';
+                    noImgText.style.display = 'block';
+                    noImgText.textContent = 'Invalid Base64 Image string';
+                }
+            } else {
+                preview.style.display = 'none';
+                noImgText.style.display = 'block';
+                noImgText.textContent = val ? 'Invalid input format' : 'Image preview will appear here';
+            }
+        }
+
+        function copyText(id) {
+            const textarea = document.getElementById(id);
+            if (!textarea.value) return;
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                const btn = event.target;
+                const old = btn.textContent; btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        }
+
+        function clearInput(id) {
+            if (confirm('Clear input?')) {
+                document.getElementById(id).value = '';
+            }
+        }
+
+        function clearImage() {
+            if (confirm('Clear image and Base64?')) {
+                document.getElementById('imageOutput').value = '';
+                document.getElementById('fileInput').value = '';
+                previewBase64();
+            }
+        }
+
+        // Schema Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Base64 Encoder & Decoder",
+            "description": "Free tool to encode text or images to Base64 and decode Base64 strings online.",
+            "url": "https://worldoftools.in/base64-encoder-decoder",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
+        // FAQ Schema
+        const faqData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How do I encode text to Base64?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Paste your text into the input field and click the 'Encode' button. The Base64 string will instantly replace your original text."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Can I convert an image to a Base64 string?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, switch to 'Image Mode', click 'Upload Image', and the corresponding Base64 Data URI will be generated for you to copy."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Is it safe to use this tool for sensitive data?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Our tool is client-side only. Your information is processed locally in your browser and never leaves your computer."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqData);
+        document.head.appendChild(faqScript);
+    </script>
+</body>
+
+</html>

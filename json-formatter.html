@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator Online – Free & Instant Tool | WorldOfTools</title>
+    <meta name="description"
+        content="Format, beautify and validate JSON instantly online. Use our free JSON formatter to clean up messy code, minify JSON, and check for syntax errors. 100% private.">
+    <meta name="keywords"
+        content="json formatter, json validator, beautify json, minify json, check json online, json parser, free developer tools">
+    <link rel="canonical" href="https://worldoftools.in/json-formatter" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .json-controls {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            background: #f1f5f9;
+            padding: 0.75rem;
+            border-radius: 12px;
+            align-items: center;
+        }
+
+        .badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-none {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 450px;
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            resize: vertical;
+            transition: all 0.2s;
+            background: #f8fafc;
+            margin-bottom: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+            padding: 0.75rem;
+            background: #fff5f5;
+            border-radius: 8px;
+            border-left: 4px solid #ef4444;
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>JSON Formatter & Validator</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Clean, format, and validate your
+                JSON data instantly in the browser.</p>
+        </section>
+
+        <div class="card" style="max-width: 1100px; margin: 0 auto; padding: 2.5rem;">
+            <div class="json-controls">
+                <button class="btn btn-secondary" onclick="processJSON('format')"
+                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">✨ Beautify</button>
+                <button class="btn btn-secondary" onclick="processJSON('minify')"
+                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">🗜️ Minify</button>
+                <div style="flex-grow: 1;"></div>
+                <div id="validationBadge" class="badge badge-none">No Input</div>
+                <button class="btn btn-secondary" onclick="copyText()"
+                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
+                <button class="btn btn-secondary" onclick="clearText()"
+                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
+                    Clear</button>
+            </div>
+
+            <textarea id="jsonInput" placeholder="Paste your JSON here..."></textarea>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+
+        <section class="container" style="max-width: 850px; padding: 6rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">What is JSON and Why Use a Formatter?</h2>
+            <p style="margin-bottom: 1.5rem; line-height: 1.8;">JSON (JavaScript Object Notation) is the standard format
+                for data exchange on the web. It is used by APIs, configuration files, and databases because it is
+                lightweight and easy for humans to read and write. However, machine-generated JSON is often minified
+                into a single line, making it nearly impossible for developers to debug or audit without a <strong>JSON
+                    Formatter</strong>.</p>
+
+            <p style="margin-bottom: 1.5rem; line-height: 1.8;">Our tool helps you bridge the gap between
+                machine-readable and human-readable data. By using the "Beautify" function, you can instantly turn a
+                mess of curly braces and brackets into a clean, hierarchical structure. This makes it easier to spot
+                inconsistencies, missing values, or nesting errors in your data structures.</p>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Key Features of Our JSON Tool</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Real-time Validation:</strong> Immediately see if your JSON is valid with our live status
+                    badge. No more guessing where a missing comma might be.</li>
+                <li><strong>One-Click Formatting:</strong> Instantly beautify your code with standard 2-space
+                    indentation for maximum readability.</li>
+                <li><strong>JSON Minification:</strong> Ready to deploy to production? Use the minify option to remove
+                    all whitespace and line breaks, reducing payload size.</li>
+                <li><strong>Local Browser Processing:</strong> Your data reaches our servers... never. All parsing
+                    happens locally in your JavaScript engine, ensuring total privacy for sensitive API keys or user
+                    data.</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem;">Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is this JSON Formatter safe to use with sensitive data?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes. Unlike other online tools that send
+                        your data to a backend server for processing, WorldOfTools processes everything within your own
+                        browser. Your data never leaves your computer.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">What does JSON validation do?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Validation checks your data against the
+                        official JSON specification. It detects common errors like trailing commas, missing quotes, or
+                        mismatched brackets that would cause your application to crash.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Can I convert minified JSON back to readable format?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Absolutely. Just paste your minified JSON
+                        string and click "Beautify" to restore the proper indentation and line breaks.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Links -->
+        <section style="margin-top: 0; padding-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Developer Productivity Tools</h2>
+            <div class="tools-grid">
+                <a href="word-counter" class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <div class="tool-title">Word Counter</div>
+                    <div class="tool-desc">Analyze text length and reading time.</div>
+                </a>
+                <a href="seo-meta-tag-generator" class="tool-card">
+                    <div class="tool-icon">🏷️</div>
+                    <div class="tool-title">Meta Gen</div>
+                    <div class="tool-desc">Create SEO tags for your website.</div>
+                </a>
+                <a href="unit-converter" class="tool-card">
+                    <div class="tool-icon">⚖️</div>
+                    <div class="tool-title">Unit Converter</div>
+                    <div class="tool-desc">Convert common measurements easily.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        const textarea = document.getElementById('jsonInput');
+        const badge = document.getElementById('validationBadge');
+        const errorDiv = document.getElementById('errorMessage');
+
+        textarea.addEventListener('input', validateJSON);
+
+        function validateJSON() {
+            const val = textarea.value.trim();
+            if (!val) {
+                badge.className = 'badge badge-none';
+                badge.textContent = 'No Input';
+                errorDiv.style.display = 'none';
+                return;
+            }
+
+            try {
+                JSON.parse(val);
+                badge.className = 'badge badge-success';
+                badge.textContent = 'Valid JSON';
+                errorDiv.style.display = 'none';
+            } catch (e) {
+                badge.className = 'badge badge-error';
+                badge.textContent = 'Invalid JSON';
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = 'Error: ' + e.message;
+            }
+        }
+
+        function processJSON(type) {
+            const val = textarea.value.trim();
+            if (!val) return;
+
+            try {
+                const parsed = JSON.parse(val);
+                if (type === 'format') {
+                    textarea.value = JSON.stringify(parsed, null, 2);
+                } else if (type === 'minify') {
+                    textarea.value = JSON.stringify(parsed);
+                }
+                validateJSON();
+            } catch (e) {
+                // validation already handles badge and error message
+            }
+        }
+
+        function copyText() {
+            if (!textarea.value) return;
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                const btn = document.querySelector('button[onclick="copyText()"]');
+                const old = btn.textContent; btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        }
+
+        function clearText() {
+            if (confirm('Clear input?')) {
+                textarea.value = '';
+                validateJSON();
+            }
+        }
+
+        // Schema Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "JSON Formatter & Validator",
+            "description": "Free tool to format, beautify and validate JSON instantly online.",
+            "url": "https://worldoftools.in/json-formatter",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
+        // FAQ Schema
+        const faqData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How do I format JSON online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simply paste your minified or messy JSON into the text area and click 'Beautify'. The tool will instantly indent the code for better readability."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Can this tool validate my JSON structure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, it provides real-time validation. If your JSON has syntax errors, a red 'Invalid JSON' badge will appear with a detailed error message."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Is my data stored when using this tool?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. All processing happens on the client-side within your browser. Your data is never uploaded to any server."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqData);
+        document.head.appendChild(faqScript);
+    </script>
+</body>
+
+</html>

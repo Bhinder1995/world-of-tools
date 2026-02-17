@@ -79,7 +79,8 @@ function injectFooter() {
                     <ul>
                         <li><a href="index">Home</a></li>
                         <li><a href="age-calculator">Age Calculator</a></li>
-                        <li><a href="link-shortener">Link Shortener</a></li>
+                        <li><a href="json-formatter">JSON Formatter</a></li>
+                        <li><a href="image-compressor">Image Compressor</a></li>
                         <li><a href="password-generator">Password Gen</a></li>
                     </ul>
                 </div>
