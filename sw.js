@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v16';
+const CACHE_NAME = 'world-of-tools-v17';
 const ASSETS_TO_CACHE = [
     '/',
     '/css/style.css?v=1.2',
@@ -39,23 +39,50 @@ self.addEventListener('fetch', (event) => {
     // Only handle GET requests
     if (event.request.method !== 'GET') return;
 
+    const url = new URL(event.request.url);
+
+    // Network-first strategy for HTML pages (navigations)
+    // This ensures users always get the latest version of the site
+    if (event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/') {
+        event.respondWith(
+            fetch(event.request)
+                .then((response) => {
+                    // Start caching a copy for offline use
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseClone);
+                    });
+                    return response;
+                })
+                .catch(() => {
+                    // If network fails, try cache
+                    return caches.match(event.request);
+                })
+        );
+        return;
+    }
+
+    // Cache-first strategy for static assets (CSS, JS, Images, Fonts)
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                // If we have a cached response, check if it's redirected
-                // Service Workers cannot serve a Response with the .redirected property set to true for navigations
                 if (response) {
-                    if (response.redirected) {
-                        // If it was redirected, don't use it, fetch fresh
-                        return fetch(event.request);
-                    }
                     return response;
                 }
 
-                // Fallback to network
-                return fetch(event.request).then(fetchRes => {
-                    // Optional: If we want to cache extension-less versions on the fly
-                    return fetchRes;
+                // If not in cache, fetch from network
+                return fetch(event.request).then((response) => {
+                    // Cache the new resource
+                    if (!response || response.status !== 200 || response.type !== 'basic') {
+                        return response;
+                    }
+
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseClone);
+                    });
+
+                    return response;
                 });
             })
     );
