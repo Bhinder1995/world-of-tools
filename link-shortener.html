@@ -232,59 +232,22 @@
             result.style.display = 'none';
             loader.style.display = 'block';
 
-            // Provider 1: Custom go.worldoftools.in (Masking Mode via Worker + KV)
+            // Custom API
             try {
-                const response = await fetch("https://go.worldoftools.in/create", {
+                const res = await fetch("/go", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ longUrl })
+                    body: JSON.stringify({ url: longUrl })
                 });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data && data.shortUrl) {
-                        displayResult(data.shortUrl);
-                        return;
-                    }
-                }
-            } catch (e) {
-                console.warn('Custom Masking API failed, trying TinyURL fallback...');
-            }
-
-            // Provider 2: TinyURL Fallback (Direct browser-side shortening)
-            try {
-                // Using CORS proxy for TinyURL API-create
-                const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`);
-                if (response.ok) {
-                    const shortUrl = await response.text();
-                    if (shortUrl.includes('tinyurl.com')) {
-                        displayResult(shortUrl);
-                        return;
-                    }
-                }
-            } catch (e) {
-                console.warn('TinyURL failed, trying is.gd...');
-            }
-
-            // Provider 3: is.gd (Last resort fallback)
-            const callbackName = 'isgdCallback_' + Math.floor(Math.random() * 100000);
-            window[callbackName] = function (data) {
-                if (data.shorturl) {
-                    displayResult(data.shorturl);
+                const data = await res.json();
+                if (data.shortUrl) {
+                    displayResult(data.shortUrl);
                 } else {
-                    handleFailure(data.errormessage || 'Service unavailable');
+                    handleFailure(data.error || 'Service unavailable');
                 }
-                cleanupIsgd(callbackName);
-            };
-
-            const script = document.createElement('script');
-            script.id = 'isgd-jsonp';
-            script.src = `https://is.gd/create.php?format=json&callback=${callbackName}&url=${encodeURIComponent(longUrl)}`;
-            script.onerror = () => {
-                handleFailure('Failed to connect to shortening services.');
-                cleanupIsgd(callbackName);
-            };
-            document.body.appendChild(script);
+            } catch (e) {
+                handleFailure('Failed to connect to shortening service.');
+            }
 
             function displayResult(shortUrl) {
                 document.getElementById('shortUrl').textContent = shortUrl;
@@ -296,12 +259,6 @@
                 loader.style.display = 'none';
                 error.textContent = 'Error: ' + msg;
                 error.style.display = 'block';
-            }
-
-            function cleanupIsgd(cbName) {
-                delete window[cbName];
-                const s = document.getElementById('isgd-jsonp');
-                if (s) s.remove();
             }
         }
 
