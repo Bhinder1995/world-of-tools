@@ -312,7 +312,7 @@
                 qrcodeContainer.innerHTML = '';
                 const canvas = document.createElement('canvas');
                 await QRCode.toCanvas(canvas, data, {
-                    width: 250,
+                    width: 300,
                     margin: 2,
                     color: {
                         dark: '#000000',
@@ -321,19 +321,24 @@
                 });
                 qrcodeContainer.appendChild(canvas);
             } catch (err) {
-                console.error(err);
+                console.error('QR Generation Error:', err);
             }
         }
 
         async function downloadQR(format) {
             const data = getQRData();
+            if (!data || data === 'mailto:?subject=&body=' || data === 'tel:') {
+                alert('Please enter some details first!');
+                return;
+            }
+
             const filename = `qrcode-worldoftools-${currentType}-${Date.now()}`;
 
-            if (format === 'svg') {
-                try {
+            try {
+                if (format === 'svg') {
                     const svgString = await QRCode.toString(data, {
                         type: 'svg',
-                        width: 512,
+                        width: 1024,
                         margin: 2
                     });
                     const blob = new Blob([svgString], { type: 'image/svg+xml' });
@@ -343,19 +348,34 @@
                     a.download = `${filename}.svg`;
                     document.body.appendChild(a);
                     a.click();
-                    document.body.removeChild(a);
-                } catch (err) {
-                    alert('Error generating SVG');
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }, 100);
+                } else {
+                    // Generate a high-res canvas for download
+                    const hiddenCanvas = document.createElement('canvas');
+                    await QRCode.toCanvas(hiddenCanvas, data, {
+                        width: 1024,
+                        margin: 2,
+                        color: {
+                            dark: '#000000',
+                            light: '#ffffff'
+                        }
+                    });
+                    const url = hiddenCanvas.toDataURL('image/png');
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${filename}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                    }, 100);
                 }
-            } else {
-                const canvas = qrcodeContainer.querySelector('canvas');
-                const url = canvas.toDataURL('image/png');
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `${filename}.png`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+            } catch (err) {
+                console.error('Download Error:', err);
+                alert('Failed to generate download. Please try again.');
             }
         }
 
