@@ -314,7 +314,7 @@
         }
 
         const imgUrls = {
-            max: '', sd: '', hq: '', mq: ''
+            max: '', hq720: '', sd: '', hq: '', mq: ''
         };
 
         function getThumbnails() {
@@ -333,30 +333,48 @@
             error.style.display = "none";
             results.style.display = "block";
 
+            // YouTube Thumbnail Quality URLs
+            // maxresdefault is 1280x720 or higher
+            // hq720.jpg is specifically 1280x720
+            // sddefault is 640x480
+            // hqdefault is 480x360
             imgUrls.max = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            imgUrls.hq720 = `https://img.youtube.com/vi/${videoId}/hq720.jpg`;
             imgUrls.sd = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
             imgUrls.hq = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-            imgUrls.mq = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 
-            document.getElementById('img-max').src = imgUrls.max;
-            document.getElementById('img-sd').src = imgUrls.sd;
-            document.getElementById('img-hq').src = imgUrls.hq;
-
-            // Handle those cases where maxres doesn't exist (YT returns a 120x90 placeholder)
             const imgMax = document.getElementById('img-max');
+            const descMax = document.getElementById('desc-max');
+
+            // Try MaxRes first
+            imgMax.src = imgUrls.max;
             imgMax.onload = function () {
-                if (this.naturalWidth === 120) {
-                    document.getElementById('card-max').style.opacity = '0.5';
-                    document.getElementById('desc-max').textContent = "Maximum resolution not available for this video.";
+                if (this.naturalWidth <= 120) {
+                    // Fallback to hq720 if maxres fails
+                    imgMax.src = imgUrls.hq720;
+                    imgMax.onload = function () {
+                        if (this.naturalWidth <= 120) {
+                            document.getElementById('card-max').style.opacity = '0.5';
+                            descMax.textContent = "HD resolution not available for this video.";
+                            imgMax.src = imgUrls.hq; // last resort for preview
+                        } else {
+                            document.getElementById('card-max').style.opacity = '1';
+                            descMax.textContent = "High Quality (720p) available.";
+                            imgUrls.max = imgUrls.hq720;
+                        }
+                    }
                 } else {
                     document.getElementById('card-max').style.opacity = '1';
-                    document.getElementById('desc-max').textContent = "Highest quality available for this video (HD/4K).";
+                    descMax.textContent = "Maximum Resolution (HD/4K) available.";
                 }
             };
 
+            document.getElementById('img-sd').src = imgUrls.sd;
+            document.getElementById('img-hq').src = imgUrls.hq;
+
             const imgSd = document.getElementById('img-sd');
             imgSd.onload = function () {
-                if (this.naturalWidth === 120) {
+                if (this.naturalWidth <= 120) {
                     document.getElementById('card-sd').style.display = 'none';
                 } else {
                     document.getElementById('card-sd').style.display = 'block';
