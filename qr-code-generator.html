@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free QR Code Generator - Create Custom QR Codes Instantly | WorldOfTools</title>
+    <meta name="description"
+        content="Create custom QR codes for WhatsApp, Email, Phone Numbers, and URLs. 100% free, private, and browser-side. Download as SVG or PNG. No registration required.">
+    <meta name="keywords"
+        content="qr code generator, free qr code creator, whatsapp qr code, email qr generator, phone number qr, custom qr code, svg qr code, qr code for business, print qr code">
+    <link rel="canonical" href="https://worldoftools.in/qr-code-generator" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/png" href="/app-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .qr-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 850px) {
+            .qr-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .qr-preview-card {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            position: sticky;
+            top: 2rem;
+        }
+
+        #qrcode {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        #qrcode img,
+        #qrcode canvas,
+        #qrcode svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .download-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>🔳 QR Code Generator</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Create high-quality, custom QR
+                codes for anything. 100% private and runs in your browser.</p>
+        </section>
+
+        <div class="qr-layout">
+            <div class="card" style="padding: 2rem;">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('text')">🔗 URL / Text</button>
+                    <button class="tab-btn" onclick="switchTab('whatsapp')">💬 WhatsApp</button>
+                    <button class="tab-btn" onclick="switchTab('email')">📧 Email</button>
+                    <button class="tab-btn" onclick="switchTab('phone')">📞 Phone</button>
+                </div>
+
+                <div id="text-tab" class="tab-content">
+                    <div class="input-group">
+                        <label for="textInput">Enter URL or Text</label>
+                        <textarea id="textInput" placeholder="https://worldoftools.in"
+                            style="width: 100%; height: 120px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-family: inherit; font-size: 1rem;"></textarea>
+                    </div>
+                </div>
+
+                <div id="whatsapp-tab" class="tab-content" style="display: none;">
+                    <div class="input-group">
+                        <label for="waNumber">Phone Number (with Country Code)</label>
+                        <input type="text" id="waNumber" placeholder="919876543210"
+                            style="width: 100%; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color);">
+                    </div>
+                    <div class="input-group">
+                        <label for="waMsg">Message (Optional)</label>
+                        <textarea id="waMsg" placeholder="Hello! I'm interested in..."
+                            style="width: 100%; height: 80px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color);"></textarea>
+                    </div>
+                </div>
+
+                <div id="email-tab" class="tab-content" style="display: none;">
+                    <div class="input-group">
+                        <label for="emailAddr">Email Address</label>
+                        <input type="email" id="emailAddr" placeholder="hello@example.com"
+                            style="width: 100%; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color);">
+                    </div>
+                    <div class="input-group">
+                        <label for="emailSub">Subject</label>
+                        <input type="text" id="emailSub" placeholder="Inquiry"
+                            style="width: 100%; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color);">
+                    </div>
+                    <div class="input-group">
+                        <label for="emailBody">Body</label>
+                        <textarea id="emailBody" placeholder="Message content..."
+                            style="width: 100%; height: 80px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color);"></textarea>
+                    </div>
+                </div>
+
+                <div id="phone-tab" class="tab-content" style="display: none;">
+                    <div class="input-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" id="phoneNumber" placeholder="+1234567890"
+                            style="width: 100%; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="qr-preview-card">
+                <div id="qrcode"></div>
+                <div class="download-actions">
+                    <button class="btn btn-primary" onclick="downloadQR('png')" style="width: 100%;">📥 Download
+                        PNG</button>
+                    <button class="btn btn-secondary" onclick="downloadQR('svg')"
+                        style="width: 100%; background: #0ea5e9; border-color: #0ea5e9; color: white;">🖼️ Download
+                        SVG</button>
+                    <button class="btn btn-secondary" onclick="window.print()" style="width: 100%;">🖨️ Print QR
+                        Code</button>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">Scanning will trigger the
+                    corresponding action on most smartphones.</p>
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 900px; padding: 6rem 0;">
+            <h3>How it Works</h3>
+            <p>Our QR Code Generator works entirely in your browser. When you type or paste data, our JavaScript library
+                generates the QR code locally on your device. This ensures your data—whether it's an email address, a
+                phone number, or a private message—never touches our servers.</p>
+
+            <ol style="margin-left: 1.5rem; margin-top: 1.5rem; line-height: 1.8;">
+                <li><strong>Select Type:</strong> Choose the type of QR code you want (URL, WhatsApp, Email, or Phone).
+                </li>
+                <li><strong>Enter Details:</strong> Fill in the required fields. For WhatsApp, include your country code
+                    without the '+' or '00'.</li>
+                <li><strong>Instant Preview:</strong> The QR code updates automatically as you type.</li>
+                <li><strong>Download & Use:</strong> Download your QR code as a high-quality PNG for web use, or an SVG
+                    for professional printing and resizing.</li>
+            </ol>
+
+            <h3 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 2rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is this QR code generator free and safe?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! It is 100% free and safe. Because all
+                        processing happens client-side, your information is never transmitted or stored, making it the
+                        most private way to create QR codes.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Why use SVG for QR codes?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">SVG (Scalable Vector Graphics) allows you
+                        to resize the QR code to any size—from a business card to a billboard—without losing any quality
+                        or sharpness.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Can I change the QR code later?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">These are static QR codes. Once generated
+                        and printed, the content cannot be changed. If you need to update the link, you would need to
+                        generate a new QR code.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Will these QR codes expire?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">No, static QR codes never expire. They will
+                        work as long as the underlying link or information remains valid.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section style="margin-top: 0;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Related Tools</h2>
+            <div class="tools-grid">
+                <a href="link-shortener" class="tool-card">
+                    <div class="tool-icon">🔗</div>
+                    <div class="tool-title">Link Shortener</div>
+                    <div class="tool-desc">Shorten links for your QR codes.</div>
+                </a>
+                <a href="password-generator" class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <div class="tool-title">Password Gen</div>
+                    <div class="tool-desc">Generate secure passwords for any use.</div>
+                </a>
+                <a href="image-compressor" class="tool-card">
+                    <div class="tool-icon">🖼️</div>
+                    <div class="tool-title">Image Compressor</div>
+                    <div class="tool-desc">Optimize images before sharing.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        let currentType = 'text';
+        const qrcodeContainer = document.getElementById('qrcode');
+
+        // Initial Generation
+        window.onload = () => {
+            updateQR();
+            // Add listeners
+            document.querySelectorAll('input, textarea').forEach(el => {
+                el.addEventListener('input', updateQR);
+            });
+        };
+
+        function switchTab(type) {
+            currentType = type;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.tab-btn[onclick="switchTab('${type}')"]`).classList.add('active');
+
+            document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+            document.getElementById(`${type}-tab`).style.display = 'block';
+            updateQR();
+        }
+
+        function getQRData() {
+            switch (currentType) {
+                case 'whatsapp':
+                    const num = document.getElementById('waNumber').value.replace(/\D/g, '');
+                    const msg = encodeURIComponent(document.getElementById('waMsg').value);
+                    return `https://wa.me/${num}${msg ? '?text=' + msg : ''}`;
+                case 'email':
+                    const addr = document.getElementById('emailAddr').value;
+                    const sub = encodeURIComponent(document.getElementById('emailSub').value);
+                    const body = encodeURIComponent(document.getElementById('emailBody').value);
+                    return `mailto:${addr}?subject=${sub}&body=${body}`;
+                case 'phone':
+                    return `tel:${document.getElementById('phoneNumber').value}`;
+                default:
+                    return document.getElementById('textInput').value || 'https://worldoftools.in';
+            }
+        }
+
+        async function updateQR() {
+            const data = getQRData();
+            if (!data) return;
+
+            try {
+                // Clear and render to canvas
+                qrcodeContainer.innerHTML = '';
+                const canvas = document.createElement('canvas');
+                await QRCode.toCanvas(canvas, data, {
+                    width: 250,
+                    margin: 2,
+                    color: {
+                        dark: '#000000',
+                        light: '#ffffff'
+                    }
+                });
+                qrcodeContainer.appendChild(canvas);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function downloadQR(format) {
+            const data = getQRData();
+            const filename = `qrcode-worldoftools-${currentType}-${Date.now()}`;
+
+            if (format === 'svg') {
+                try {
+                    const svgString = await QRCode.toString(data, {
+                        type: 'svg',
+                        width: 512,
+                        margin: 2
+                    });
+                    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${filename}.svg`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                } catch (err) {
+                    alert('Error generating SVG');
+                }
+            } else {
+                const canvas = qrcodeContainer.querySelector('canvas');
+                const url = canvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${filename}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        }
+
+        // Schema Data
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "QR Code Generator - WorldOfTools",
+            "description": "Generate custom QR codes for WhatsApp, Email, URLs and more instantly.",
+            "url": "https://worldoftools.in/qr-code-generator.html",
+            "applicationCategory": "Utility"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schema);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>
