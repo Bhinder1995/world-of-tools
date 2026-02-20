@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v19';
+const CACHE_NAME = 'world-of-tools-v20';
 const ASSETS_TO_CACHE = [
     '/',
     '/css/style.css?v=1.2',
@@ -24,7 +24,9 @@ const ASSETS_TO_CACHE = [
     '/image-compressor',
     '/base64-encoder-decoder',
     '/qr-code-generator',
-    '/youtube-thumbnail-downloader'
+    '/youtube-thumbnail-downloader',
+    '/logo.svg',
+    '/app-icon.png'
 ];
 
 self.addEventListener('install', (event) => {
