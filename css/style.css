@@ -375,6 +375,41 @@ textarea:focus {
     color: var(--text-muted);
 }
 
+/* Search Bar Styles */
+.search-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.search-wrapper input {
+    padding: 1.25rem 2rem 1.25rem 3.5rem;
+    border-radius: 99px;
+    border: 2px solid var(--border-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.search-wrapper input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.1);
+    transform: scale(1.02);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 /* Animations */
 @keyframes titleFade {
     from {
