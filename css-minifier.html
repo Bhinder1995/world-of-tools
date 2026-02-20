@@ -112,52 +112,65 @@
         </div>
 
         <section class="container" style="max-width: 850px; padding: 6rem 0;">
-            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">The Importance of CSS Optimization</h2>
-            <p style="margin-bottom: 1.5rem; line-height: 1.8;">Every byte counts when it comes to website performance.
-                Large, unoptimized CSS files can delay the "First Contentful Paint" (FCP) of your website, leading to a
-                poor user experience and lower SEO rankings. A <strong>CSS Minifier</strong> works by stripping away
-                non-essential characters like comments, extra spaces, and line breaks that the browser doesn't need to
-                interpret your styles.</p>
+            <h2>How to Use the CSS Minifier</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Paste Your CSS:</strong> Copy your stylesheet code from your code editor and paste it into
+                    the text area.</li>
+                <li><strong>Click Minify CSS:</strong> Hit the "Minify CSS" button to instantly compress the code.</li>
+                <li><strong>Check the Savings:</strong> Review the stats bar showing Original size, Minified size, and
+                    percentage saved.</li>
+                <li><strong>Copy & Deploy:</strong> Click "Copy" to copy the minified CSS to your clipboard for use in
+                    production.</li>
+            </ol>
 
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">How Minification Boosts Performance</h3>
-            <p style="margin-bottom: 1.5rem; line-height: 1.8;">When you minify your CSS, you're essentially creating a
-                more compact version of your code. This results in smaller file sizes, which means faster downloads for
-                your users. Search engines like Google also prioritize fast-loading websites, so using a minifier is a
-                simple yet effective way to improve your site's search visibility.</p>
-
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Why Choose Our CSS Compressor?</h3>
+            <h2 style="margin-top: 3rem;">Key Features</h2>
             <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
-                <li><strong>Safe and Reliable:</strong> Our algorithm ensures that your CSS logic remains intact while
-                    only removing the "visual fluff."</li>
-                <li><strong>Instant Results:</strong> Watch your code shrink in real-time as soon as you click the
-                    button.</li>
-                <li><strong>Privacy Guaranteed:</strong> Like all tools at WorldOfTools, your code is processed locally.
-                    We never store or transmit your stylesheets.</li>
-                <li><strong>Detailed Savings:</strong> We show you exactly how much space you've saved, giving you a
-                    clear picture of the optimization impact.</li>
+                <li><strong>Safe & Reliable:</strong> Our algorithm removes whitespace and comments while keeping CSS
+                    logic 100% intact.</li>
+                <li><strong>Instant Results:</strong> Minification happens in your browser instantly — no page reload
+                    required.</li>
+                <li><strong>Privacy Guaranteed:</strong> Your code is processed locally and never sent to any server.
+                </li>
+                <li><strong>Detailed Savings:</strong> Shows original size, minified size, and the exact percentage of
+                    bytes saved.</li>
+                <li><strong>One-Click Copy:</strong> Copy minified CSS to clipboard with a single click for immediate
+                    production use.</li>
             </ul>
 
-            <h3 style="margin-top: 2rem;">Frequently Asked Questions (FAQ)</h3>
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
             <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Will minifying CSS break my website?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Will minifying CSS break my website?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">No. Minification only removes whitespace
                         and comments, which are ignored by browsers when rendering pages. Your styles will look and
                         function exactly the same.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Should I keep a non-minified version of my CSS?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Should I keep a non-minified version of my
+                        CSS?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! It is best practice to keep a
                         "development" version (readable) for editing and a "production" version (minified) for your live
                         website.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Can I reverse the minification process?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I reverse the minification process?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">While you can't perfectly restore comments,
                         you can use a "CSS Unminifier" or "Beautifier" to restore indentation and readability to
                         minified code.</p>
                 </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How much can CSS minification reduce file
+                        size?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Typical CSS files see a 20–40% reduction in
+                        size after minification, which directly translates to faster browser load times and improved
+                        Google Core Web Vitals scores.</p>
+                </div>
             </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">Our free CSS Minifier is the fastest, most private way to compress your
+                stylesheets for production. Reduce CSS file size by up to 40%, improve page load times, and boost your
+                Core Web Vitals scores — all without uploading a single byte to a server. Paste, minify, copy, done.</p>
         </section>
 
         <!-- Tool Links -->
@@ -280,6 +293,27 @@
         faqScript.type = "application/ld+json";
         faqScript.text = JSON.stringify(faqData);
         document.head.appendChild(faqScript);
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "CSS Minifier",
+                "item": "https://worldoftools.in/css-minifier"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
     </script>
 </body>
 

@@ -145,43 +145,67 @@
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h3>How to Use the Online Unit Converter</h3>
+            <h2>How to Use the Online Unit Converter</h2>
             <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
                 <li><strong>Select a Category:</strong> Choose from Length, Weight, Temperature, Area, Speed, or Volume.
                 </li>
                 <li><strong>Enter "From" Value:</strong> Type the number you want to convert in the first box.</li>
                 <li><strong>Choose Units:</strong> Select the starting unit and the target unit from the dropdown menus.
                 </li>
-                <li><strong>View Comparison:</strong> The "To" box and the result display will update instantly with the
+                <li><strong>View Result:</strong> The "To" box and the result display will update instantly with the
                     precise conversion.</li>
             </ol>
 
-            <h3>Frequently Asked Questions (FAQ)</h3>
+            <h2 style="margin-top: 3rem;">Key Features</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>6 Conversion Categories:</strong> Length, Weight, Temperature, Area, Speed, and Volume — all
+                    in one tool.</li>
+                <li><strong>Metric & Imperial:</strong> Supports cross-system conversion (meters ↔ feet, kg ↔ lb, etc.).
+                </li>
+                <li><strong>Swap Button:</strong> Instantly reverse the direction of any conversion with one click.</li>
+                <li><strong>Scientific Precision:</strong> Results accurate up to 6 decimal places using exact
+                    constants.</li>
+                <li><strong>Instant & Private:</strong> No server calls — all calculations happen locally in your
+                    browser.</li>
+            </ul>
+
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
             <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Is this the best unit converter for metric and imperial?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is this the best unit converter for metric and
+                        imperial?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! We support cross-system conversions
                         (e.g., meters to feet, kilograms to pounds) for all major measurement categories.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">How accurate are the conversion results?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How accurate are the conversion results?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">We use precise mathematical constants for
-                        every unit to ensure that your results are scientifically accurate up to 6 decimal places.</p>
+                        every unit to ensure scientifically accurate results up to 6 decimal places.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Can I use this for cooking measurements?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I use this for cooking measurements?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Absolutely. Our volume and weight
                         categories include common units like liters, milliliters, and grams used in professional
                         kitchens.</p>
                 </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I convert temperature?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! Our temperature converter supports
+                        Celsius, Fahrenheit, and Kelvin with exact conversion formulas.</p>
+                </div>
             </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">Our Unit Converter is your all-in-one measurement conversion tool — covering
+                length, weight, temperature, area, speed, and volume. Whether you're a student, engineer, chef, or
+                traveler, get instant and precise conversions entirely in your browser, with zero data uploads.</p>
         </section>
 
         <!-- Related Tools -->
         <section style="margin-top: 0;">
             <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Related Tools</h2>
             <div class="tools-grid">
-                <a href="percentage-calculator.html" class="tool-card">
+                <a href="percentage-calculator" class="tool-card">
                     <div class="tool-icon">%</div>
                     <div class="tool-title">Percentage Calc</div>
                     <div class="tool-desc">Calculate discounts and growth portions.</div>
@@ -235,6 +259,27 @@
         faqScript.type = "application/ld+json";
         faqScript.text = JSON.stringify(faqSchemaData);
         document.head.appendChild(faqScript);
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Unit Converter",
+                "item": "https://worldoftools.in/unit-converter"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
 
         const conversions = {
             length: { meter: 1, kilometer: 1000, centimeter: 0.01, millimeter: 0.001, mile: 1609.34, yard: 0.9144, foot: 0.3048, inch: 0.0254 },

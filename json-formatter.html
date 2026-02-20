@@ -123,51 +123,66 @@
         </div>
 
         <section class="container" style="max-width: 850px; padding: 6rem 0;">
-            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">What is JSON and Why Use a Formatter?</h2>
-            <p style="margin-bottom: 1.5rem; line-height: 1.8;">JSON (JavaScript Object Notation) is the standard format
-                for data exchange on the web. It is used by APIs, configuration files, and databases because it is
-                lightweight and easy for humans to read and write. However, machine-generated JSON is often minified
-                into a single line, making it nearly impossible for developers to debug or audit without a <strong>JSON
-                    Formatter</strong>.</p>
+            <h2>How to Use the JSON Formatter & Validator</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Paste your JSON:</strong> Copy any JSON string — minified or messy — and paste it into the
+                    text area.</li>
+                <li><strong>Validate:</strong> The live validation badge updates instantly to show if your JSON is valid
+                    or contains errors.</li>
+                <li><strong>Beautify or Minify:</strong> Click "Beautify" for readable indented output, or "Minify" to
+                    compress it for production.</li>
+                <li><strong>Copy & Use:</strong> Click the "Copy" button to copy the formatted JSON directly to your
+                    clipboard.</li>
+            </ol>
 
-            <p style="margin-bottom: 1.5rem; line-height: 1.8;">Our tool helps you bridge the gap between
-                machine-readable and human-readable data. By using the "Beautify" function, you can instantly turn a
-                mess of curly braces and brackets into a clean, hierarchical structure. This makes it easier to spot
-                inconsistencies, missing values, or nesting errors in your data structures.</p>
-
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Key Features of Our JSON Tool</h3>
+            <h2 style="margin-top: 3rem;">Key Features</h2>
             <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
-                <li><strong>Real-time Validation:</strong> Immediately see if your JSON is valid with our live status
+                <li><strong>Real-time Validation:</strong> Immediately see if your JSON is valid with a live status
                     badge. No more guessing where a missing comma might be.</li>
                 <li><strong>One-Click Formatting:</strong> Instantly beautify your code with standard 2-space
                     indentation for maximum readability.</li>
-                <li><strong>JSON Minification:</strong> Ready to deploy to production? Use the minify option to remove
-                    all whitespace and line breaks, reducing payload size.</li>
-                <li><strong>Local Browser Processing:</strong> Your data reaches our servers... never. All parsing
-                    happens locally in your JavaScript engine, ensuring total privacy for sensitive API keys or user
-                    data.</li>
+                <li><strong>JSON Minification:</strong> Remove all whitespace and line breaks to compress JSON for
+                    production deployment.</li>
+                <li><strong>Local Browser Processing:</strong> Your data never reaches our servers. All parsing happens
+                    locally in your browser, ensuring total privacy for sensitive API keys or user data.</li>
+                <li><strong>Error Details:</strong> When JSON is invalid, the tool displays a precise error message to
+                    help you locate the exact problem.</li>
             </ul>
 
-            <h3 style="margin-top: 2rem;">Frequently Asked Questions (FAQ)</h3>
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
             <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Is this JSON Formatter safe to use with sensitive data?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is this JSON Formatter safe to use with
+                        sensitive data?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Yes. Unlike other online tools that send
                         your data to a backend server for processing, WorldOfTools processes everything within your own
                         browser. Your data never leaves your computer.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">What does JSON validation do?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What does JSON validation do?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Validation checks your data against the
                         official JSON specification. It detects common errors like trailing commas, missing quotes, or
                         mismatched brackets that would cause your application to crash.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Can I convert minified JSON back to readable format?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I convert minified JSON back to readable
+                        format?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Absolutely. Just paste your minified JSON
                         string and click "Beautify" to restore the proper indentation and line breaks.</p>
                 </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What causes a JSON syntax error?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Common JSON errors include trailing commas
+                        after the last item, missing closing brackets, unquoted property names, or using single quotes
+                        instead of double quotes. Our validator identifies the exact location of the error.</p>
+                </div>
             </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">Our free JSON Formatter & Validator is the fastest way to debug, clean, and
+                prepare JSON data. Whether you're a developer inspecting API responses, a data analyst cleaning
+                datasets, or a student learning about data formats — get instant, private, and accurate JSON formatting
+                in one click.</p>
         </section>
 
         <!-- Tool Links -->
@@ -309,6 +324,27 @@
         faqScript.type = "application/ld+json";
         faqScript.text = JSON.stringify(faqData);
         document.head.appendChild(faqScript);
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "JSON Formatter",
+                "item": "https://worldoftools.in/json-formatter"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
     </script>
 </body>
 

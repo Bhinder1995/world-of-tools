@@ -211,11 +211,11 @@
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h3>How to Use the Meta Tag Generator</h3>
+            <h2>How to Use the Meta Tag Generator</h2>
             <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
                 <li><strong>Enter Page Details:</strong> Provide your page title, a compelling meta description, and the
                     canonical URL.</li>
-                <li><strong>Check Life Preview:</strong> Watch the Google SERP preview update in real-time to ensure
+                <li><strong>Check Live Preview:</strong> Watch the Google SERP preview update in real-time to ensure
                     your title and description look great and aren't truncated.</li>
                 <li><strong>Generate Code:</strong> Our tool automatically creates the HTML code for Primary Meta Tags,
                     Open Graph (Facebook), and Twitter Cards.</li>
@@ -224,27 +224,53 @@
                 </li>
             </ol>
 
-            <h3>Frequently Asked Questions (FAQ)</h3>
+            <h2 style="margin-top: 3rem;">Key Features</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Live Google SERP Preview:</strong> See exactly how your page will look in Google search
+                    results before publishing.</li>
+                <li><strong>Character Limit Warnings:</strong> Visual indicators when your title or description exceeds
+                    recommended lengths.</li>
+                <li><strong>Open Graph Tags:</strong> Automatically generates Facebook and Twitter Card meta tags for
+                    perfect social sharing.</li>
+                <li><strong>Canonical URL Support:</strong> Generates the correct canonical tag to prevent duplicate
+                    content issues.</li>
+                <li><strong>One-Click Copy:</strong> Copy all generated HTML tags to your clipboard instantly.</li>
+            </ul>
+
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
             <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Why are meta tags important for SEO?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Why are meta tags important for SEO?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Meta tags help search engines understand
-                        the content of your page. A well-written title and description can also significantly improve
-                        your click-through rate (CTR) from search results.</p>
+                        the content of your page. A well-written title and description can significantly improve your
+                        click-through rate (CTR) from search results.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Is this social media tag compatible?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is this social media tag compatible?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! We generate Open Graph tags for
                         Facebook and Twitter Cards to ensure your links look professional when shared on social
                         platforms.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">What is a canonical URL?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is a canonical URL?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">A canonical URL tells search engines which
                         version of a URL is the "master" one, preventing duplicate content issues that can hurt your
                         rankings.</p>
                 </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What length should my meta description be?
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Google typically shows 155-160 characters
+                        of your meta description. Keep it under 155 characters and make it compelling to maximize your
+                        click-through rate.</p>
+                </div>
             </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">Our free SEO Meta Tag Generator is the easiest way to create professional,
+                optimized HTML meta tags for any website. With a live Google preview, social media tag support, and
+                instant copy functionality — it's everything a developer, blogger, or marketer needs to boost their
+                search visibility.</p>
         </section>
 
         <!-- Related Tools -->
@@ -256,12 +282,12 @@
                     <div class="tool-title">Word Counter</div>
                     <div class="tool-desc">Analyze text length and reading time.</div>
                 </a>
-                <a href="percentage-calculator.html" class="tool-card">
+                <a href="percentage-calculator" class="tool-card">
                     <div class="tool-icon">%</div>
                     <div class="tool-title">Percentage Calc</div>
                     <div class="tool-desc">Calculate discounts and growth instantly.</div>
                 </a>
-                <a href="password-generator.html" class="tool-card">
+                <a href="password-generator" class="tool-card">
                     <div class="tool-icon">🔑</div>
                     <div class="tool-title">Password Gen</div>
                     <div class="tool-desc">Create secure and random passwords.</div>
@@ -305,6 +331,27 @@
         faqScript.type = "application/ld+json";
         faqScript.text = JSON.stringify(faqSchemaData);
         document.head.appendChild(faqScript);
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "SEO Meta Tag Generator",
+                "item": "https://worldoftools.in/seo-meta-tag-generator"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
 
         function updatePreview() {
             const title = document.getElementById('title').value || "Enter Title Above";

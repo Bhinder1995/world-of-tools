@@ -255,6 +255,26 @@
         script.text = JSON.stringify(schemaData);
         document.head.appendChild(script);
 
+        // Organization Schema
+        const orgData = {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "WorldOfTools",
+            "url": "https://worldoftools.in",
+            "logo": "https://worldoftools.in/app-icon.png",
+            "description": "WorldOfTools offers a premium collection of free online utility tools for developers, creators, and professionals — all 100% client-side for maximum privacy.",
+            "sameAs": [],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "url": "https://worldoftools.in"
+            }
+        };
+        const orgScript = document.createElement('script');
+        orgScript.type = "application/ld+json";
+        orgScript.text = JSON.stringify(orgData);
+        document.head.appendChild(orgScript);
+
         // Instant Search
         document.getElementById('searchTools').addEventListener('input', function (e) {
             const searchTerm = e.target.value.toLowerCase();

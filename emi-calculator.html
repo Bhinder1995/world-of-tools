@@ -114,11 +114,7 @@
 
         <!-- SEO Content Section -->
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h2>About Our Online EMI Calculator</h2>
-            <p>Moving towards a big purchase like a new home or a car often requires financial planning. Our **EMI
-                Calculator** (Equated Monthly Installment) is designed to give you clarity on your future payments,
-                helping you manage your budget with confidence.</p>
-            <h3>How to Use the EMI Calculator</h3>
+            <h2>How to Use the EMI Calculator</h2>
             <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
                 <li><strong>Enter Loan Amount:</strong> Input the total principal amount you wish to borrow.</li>
                 <li><strong>Set Interest Rate:</strong> Provide the annual interest rate (P.A.) offered by your bank.
@@ -130,26 +126,50 @@
                     year's repayment schedule.</li>
             </ol>
 
-            <h3>Frequently Asked Questions (FAQ)</h3>
+            <h2 style="margin-top: 3rem;">Key Features</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Amortization Schedule:</strong> View a month-by-month breakdown of principal vs interest
+                    payments.</li>
+                <li><strong>Flexible Tenure:</strong> Enter loan duration in years or months for full flexibility.</li>
+                <li><strong>Any Loan Type:</strong> Supports Home Loan, Car Loan, Personal Loan, and Business Loan
+                    calculations.</li>
+                <li><strong>100% Private:</strong> All calculations happen in your browser — no data is sent to our
+                    servers.</li>
+                <li><strong>Instant Results:</strong> Get your EMI, total interest, and total repayment in one click.
+                </li>
+            </ul>
+
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
             <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">What is an EMI?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is an EMI?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">An Equated Monthly Installment (EMI) is a
                         fixed payment amount made by a borrower to a lender at a specified date each calendar month. It
                         includes both interest and principal components.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Can I use this for a Car Loan EMI?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I use this for a Car Loan EMI?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Absolutely! This calculator works for any
                         reducing balance loan, including Car Loans, Home Loans, and Personal Loans.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">How is the EMI calculated?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How is the EMI calculated?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Our calculator uses the standard formula [P
                         x R x (1+R)^N]/[(1+R)^N-1], where P is Principal, R is monthly interest rate, and N is the
                         number of installments.</p>
                 </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is a good EMI-to-income ratio?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Financial advisors generally recommend
+                        keeping your total EMI obligations below 40% of your net monthly income to maintain a healthy
+                        budget and good credit score.</p>
+                </div>
             </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">Whether you're planning a home loan, car loan, or personal loan, our free EMI
+                Calculator gives you instant, accurate results right in your browser. Use it to compare different loan
+                scenarios and make smarter financial decisions — no sign-up required, completely free and private.</p>
         </section>
 
         <!-- Related Tools -->
@@ -161,7 +181,7 @@
                     <div class="tool-title">GST Calculator</div>
                     <div class="tool-desc">Quickly add or remove GST tax from any amount.</div>
                 </a>
-                <a href="percentage-calculator.html" class="tool-card">
+                <a href="percentage-calculator" class="tool-card">
                     <div class="tool-icon">%</div>
                     <div class="tool-title">Percentage Calc</div>
                     <div class="tool-desc">Calculate discounts, increases, and portions.</div>
@@ -225,6 +245,27 @@
         faqScript.type = "application/ld+json";
         faqScript.text = JSON.stringify(faqSchemaData);
         document.head.appendChild(faqScript);
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "EMI Calculator",
+                "item": "https://worldoftools.in/emi-calculator"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
 
         document.getElementById('emiForm').addEventListener('submit', function (e) {
             e.preventDefault();

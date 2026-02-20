@@ -156,7 +156,7 @@
 
         <!-- SEO Content Section -->
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h3>How to Use the GST Calculator Online</h3>
+            <h2>How to Use the GST Calculator Online</h2>
             <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
                 <li><strong>Enter Base Amount:</strong> Type the initial price or amount in the input field.</li>
                 <li><strong>Select Calculation Mode:</strong> Choose "GST Exclusive" (to add tax) or "GST Inclusive" (to
@@ -166,24 +166,49 @@
                     in real-time.</li>
             </ol>
 
-            <h3>Frequently Asked Questions (FAQ)</h3>
+            <h2 style="margin-top: 3rem;">Key Features</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>GST Exclusive & Inclusive:</strong> Calculate both forward (add tax) and reverse (remove
+                    tax) with one tool.</li>
+                <li><strong>Standard Indian Slabs:</strong> Pre-set buttons for 3%, 5%, 12%, 18%, and 28% GST rates.
+                </li>
+                <li><strong>Custom Rate Support:</strong> Enter any GST percentage not covered by standard slabs.</li>
+                <li><strong>Instant 3-Part Breakdown:</strong> Displays Net Amount, GST Portion, and Total Amount
+                    simultaneously.</li>
+                <li><strong>100% Private:</strong> All calculations happen in your browser — no data sent to any server.
+                </li>
+            </ul>
+
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
             <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">What is GST Inclusive and Exclusive?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is GST Inclusive and Exclusive?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">GST Exclusive means the price does not
                         include tax yet. GST Inclusive means the price already includes the tax amount.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Is this the best GST calculator for India?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is this the best GST calculator for India?
+                    </h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! It supports all Indian standard GST
                         slabs (3%, 5%, 12%, 18%, 28%) and provides a clean breakdown for businesses and consumers.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">How do I calculate GST?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How do I calculate GST?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">To add GST, multiply the amount by (GST
                         rate/100). To remove GST, divide the amount by (1 + GST rate/100).</p>
                 </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I use a custom GST rate?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! Our calculator supports any custom GST
+                        percentage. Just enter your rate in the custom field and the breakdown updates immediately.</p>
+                </div>
             </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">Our free GST Calculator is the simplest and most accurate tool for computing
+                GST in India. Whether you're a business owner handling invoices, an accountant, or a shopper checking
+                prices — get an instant, complete breakdown of Net Amount, GST Portion, and Total with zero sign-up
+                required.</p>
         </section>
 
         <!-- Related Tools -->
@@ -259,6 +284,27 @@
         faqScript.type = "application/ld+json";
         faqScript.text = JSON.stringify(faqSchemaData);
         document.head.appendChild(faqScript);
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "GST Calculator",
+                "item": "https://worldoftools.in/gst-calculator"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
 
         let currentRate = 18;
 

@@ -164,7 +164,7 @@
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h3>How to Use the Online Word Counter</h3>
+            <h2>How to Use the Online Word Counter</h2>
             <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
                 <li><strong>Paste your Text:</strong> Simply type or paste your content into the large text area.</li>
                 <li><strong>Real-time Stats:</strong> Watch the word, character, sentence, and paragraph counts update
@@ -175,33 +175,57 @@
                     new analysis.</li>
             </ol>
 
-            <h3>Frequently Asked Questions (FAQ)</h3>
+            <h2 style="margin-top: 3rem;">Key Features</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Real-time Word & Character Count:</strong> Instant live stats as you type — no button press
+                    needed.</li>
+                <li><strong>Reading Time Estimator:</strong> Automatically calculates estimated reading time based on
+                    average reading speed.</li>
+                <li><strong>Text Case Converter:</strong> Switch your text to UPPERCASE, lowercase or Title Case with
+                    one click.</li>
+                <li><strong>Paragraph & Sentence Count:</strong> Get a full structural breakdown of your document.</li>
+                <li><strong>100% Private:</strong> Your text never leaves your browser — no uploads, no logs.</li>
+            </ul>
+
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
             <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Is there a word limit for this counter?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is there a word limit for this counter?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">No, WorldOfTools allows you to analyze text
                         of any length. Whether it's a short social media post or a long essay, our tool handles it
                         instantly.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Does it count spaces as characters?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Does it count spaces as characters?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">We provide both! You can see the total
                         character count (including spaces) and a specific count excluding spaces for more detailed
                         analysis.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Is my text saved on your servers?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is my text saved on your servers?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Never. All text processing happens locally
                         in your browser. Your content is 100% private and is never uploaded anywhere.</p>
                 </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How is reading time calculated?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Reading time is estimated at 200 words per
+                        minute, the average adult reading speed. This is a reliable approximation for planning blog
+                        posts, articles, and presentations.</p>
+                </div>
             </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">Our free Word Counter is the fastest way to analyze your text online. Whether
+                you're a student checking an essay word limit, a blogger estimating reading time, or a marketer crafting
+                ad copy — this tool helps you stay within limits and write better content. Completely private, instantly
+                accurate.</p>
         </section>
 
         <!-- Related Tools -->
         <section style="margin-top: 0;">
             <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Related Tools</h2>
             <div class="tools-grid">
-                <a href="password-generator.html" class="tool-card">
+                <a href="password-generator" class="tool-card">
                     <div class="tool-icon">🔑</div>
                     <div class="tool-title">Password Gen</div>
                     <div class="tool-desc">Create secure, random passwords instantly.</div>
@@ -269,6 +293,27 @@
         faqScript.type = "application/ld+json";
         faqScript.text = JSON.stringify(faqSchemaData);
         document.head.appendChild(faqScript);
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Word Counter",
+                "item": "https://worldoftools.in/word-counter"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
 
         const textarea = document.getElementById('textInput');
         textarea.addEventListener('input', countStats);

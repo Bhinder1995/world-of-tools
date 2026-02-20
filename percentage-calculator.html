@@ -152,10 +152,10 @@
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">
-            <h3>How to Use the Online Percentage Calculator</h3>
+            <h2>How to Use the Online Percentage Calculator</h2>
             <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
-                <li><strong>Choose your Problem:</strong> Select whether you want to find a percentage of a number,
-                    finding what percentage one number is of another, or calculating the percentage change.</li>
+                <li><strong>Choose your Problem:</strong> Select whether you want to find a percentage of a number, find
+                    what percentage one number is of another, or calculate the percentage change.</li>
                 <li><strong>Enter Values:</strong> Type your numbers into the respective input fields for the chosen
                     calculation.</li>
                 <li><strong>Instant Calculation:</strong> The result will appear automatically as soon as you finish
@@ -164,25 +164,52 @@
                     percentage calculations in seconds.</li>
             </ol>
 
-            <h3>Frequently Asked Questions (FAQ)</h3>
+            <h2 style="margin-top: 3rem;">Key Features</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>3-in-1 Calculator:</strong> Find a percentage, find what % a number is of another, and
+                    calculate % change — all in one page.</li>
+                <li><strong>Instant Results:</strong> No submit button needed — results appear as you type for maximum
+                    speed.</li>
+                <li><strong>Discount Calculator:</strong> Perfect for calculating sale prices and product discounts
+                    instantly.</li>
+                <li><strong>Growth Rate Calculator:</strong> Calculate revenue growth, salary increases, and investment
+                    returns easily.</li>
+                <li><strong>100% Private:</strong> All calculations happen in your browser with no data sent to any
+                    server.</li>
+            </ul>
+
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
             <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">How do I calculate a 20% discount?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">How do I calculate a 20% discount?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Use the "Find Percentage" tool. Enter 20 in
                         the percentage box and your total price in the number box. The result is your discount amount.
                     </p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">What is the percentage increase formula?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is the percentage increase formula?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Percentage Increase = [(New Value - Old
                         Value) / Old Value] x 100. Our "Percentage Change" tool handles this automatically for you.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 0.5rem;">Is this calculator free for students?</h4>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is this calculator free for students?</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! WorldOfTools is designed to be a free
                         educational and professional resource for everyone.</p>
                 </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I calculate profit margin with this tool?
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! Use the "Find Part (%)" section: enter
+                        your profit in the first box and revenue in the second to get your profit margin percentage
+                        instantly.</p>
+                </div>
             </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">Our Percentage Calculator is a versatile, instant tool that handles the most
+                common percentage problems — from student homework to business analytics. No formulas to memorize, no
+                app to download. Just open the page and get accurate results in seconds, completely free and private.
+            </p>
         </section>
 
         <!-- Related Tools -->
@@ -257,6 +284,27 @@
         faqScript.type = "application/ld+json";
         faqScript.text = JSON.stringify(faqSchemaData);
         document.head.appendChild(faqScript);
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Percentage Calculator",
+                "item": "https://worldoftools.in/percentage-calculator"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
 
         function calcP1() {
             const per = parseFloat(document.getElementById('p1_per').value);
