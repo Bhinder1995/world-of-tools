@@ -43,9 +43,20 @@
                 </p>
 
                 <div class="search-wrapper">
-                    <input type="text" id="searchTools"
-                        placeholder="Search 15+ tools (e.g. 'json', 'image', 'diff')...">
+                    <input type="text" id="searchTools" placeholder="Search 15+ professional tools...">
                     <span class="search-icon">🔍</span>
+                </div>
+
+                <div class="popular-tools">
+                    <span class="popular-label">Popular:</span>
+                    <div class="tool-chip" onclick="quickSearch('json')"><span class="ico">✨</span> JSON Formatter</div>
+                    <div class="tool-chip" onclick="quickSearch('image')"><span class="ico">🖼️</span> Image Compressor
+                    </div>
+                    <div class="tool-chip" onclick="quickSearch('age')"><span class="ico">🎂</span> Age Calculator</div>
+                    <div class="tool-chip" onclick="quickSearch('link')"><span class="ico">🔗</span> Link Shortener
+                    </div>
+                    <div class="tool-chip" onclick="quickSearch('password')"><span class="ico">🔐</span> Password Gen
+                    </div>
                 </div>
             </div>
         </section>
@@ -287,6 +298,17 @@
                 section.style.display = hasVisible ? 'block' : 'none';
             });
         });
+
+        // Quick Search Chips
+        function quickSearch(term) {
+            const input = document.getElementById('searchTools');
+            input.value = term;
+            input.dispatchEvent(new Event('input'));
+            input.focus();
+
+            // Smooth scroll to results
+            document.getElementById('calculators').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     </script>
 </body>
 
