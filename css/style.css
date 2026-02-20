@@ -179,8 +179,10 @@ header {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 1.5rem;
+    position: relative;
 }
 
+/* Old logo (fallback) */
 .logo {
     font-family: var(--font-heading);
     font-weight: 800;
@@ -190,6 +192,60 @@ header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+/* Centered logo */
+.logo-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: inherit;
+    z-index: 1;
+}
+
+.logo-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    line-height: 1.1;
+}
+
+.logo-brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: #1e293b;
+    letter-spacing: -0.02em;
+}
+
+.logo-tagline {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #1A56DB;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.4rem 0.7rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.2s;
+    z-index: 2;
+}
+
+.menu-toggle:hover {
+    background: #f1f5f9;
 }
 
 nav ul {
@@ -209,6 +265,7 @@ nav a {
 nav a:hover {
     color: var(--primary-color);
 }
+
 
 /* Tools Grid */
 .tools-grid {
@@ -357,15 +414,58 @@ textarea:focus {
         grid-template-columns: 1fr;
     }
 
-    nav ul {
-        display: none;
-        /* Add JS toggle for mobile */
-    }
-
     h2 {
         margin-top: 3rem;
     }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* On mobile, logo stays centered via absolute position */
+    .logo-center {
+        gap: 0.5rem;
+    }
+
+    .logo-brand {
+        font-size: 1rem;
+    }
+
+    /* Hide desktop nav by default, show from right as a dropdown */
+    #main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem 1.5rem;
+        z-index: 999;
+    }
+
+    #main-nav.active {
+        display: block;
+    }
+
+    #main-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    #main-nav ul li a {
+        display: block;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 1rem;
+    }
+
+    #main-nav ul li:last-child a {
+        border-bottom: none;
+    }
 }
+
 
 /* Footer Premium */
 footer {

@@ -11,12 +11,6 @@ function injectHeader() {
     const headerHTML = `
         <div class="container">
             <div class="header-content">
-                <a href="index" class="logo">
-                    <span>⚡</span> HUB
-                </a>
-                <button class="menu-toggle" aria-label="Toggle navigation">
-                    ☰
-                </button>
                 <nav id="main-nav">
                     <ul>
                         <li><a href="index#calculators">Calculators</a></li>
@@ -25,11 +19,36 @@ function injectHeader() {
                         <li><a href="index#generators">Generators</a></li>
                     </ul>
                 </nav>
+
+                <a href="index" class="logo logo-center" aria-label="WorldOfTools Home">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40" style="flex-shrink:0;">
+                        <defs>
+                            <linearGradient id="hBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4F9EF8"/>
+                                <stop offset="100%" style="stop-color:#1A56DB"/>
+                            </linearGradient>
+                            <linearGradient id="hW" x1="0%" y1="0%" x2="60%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff"/>
+                                <stop offset="100%" style="stop-color:#c8dfff"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="0" y="0" width="48" height="48" rx="11" ry="11" fill="url(#hBg)"/>
+                        <rect x="0" y="0" width="48" height="22" rx="11" ry="11" fill="rgba(255,255,255,0.12)"/>
+                        <text x="6" y="37" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="31" fill="url(#hW)" letter-spacing="-1">W</text>
+                    </svg>
+                    <div class="logo-text-block">
+                        <span class="logo-brand">WorldOfTools</span>
+                        <span class="logo-tagline">Fast. Free. Private.</span>
+                    </div>
+                </a>
+
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    ☰
+                </button>
             </div>
         </div>
     `;
 
-    // Only inject if header exists and is empty, or replace it if it's default
     const header = document.querySelector('header');
     if (header) {
         header.innerHTML = headerHTML;
