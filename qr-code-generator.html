@@ -296,7 +296,8 @@
             if (downloadUrl) {
                 const link = document.createElement('a');
                 link.href = downloadUrl;
-                link.download = `qrcode-worldoftools-${currentType}.png`;
+                link.download = `worldoftools.in-qrcode-${currentType}-${Date.now()}.png`;
+
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);

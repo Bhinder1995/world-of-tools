@@ -385,13 +385,28 @@
             results.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        function downloadImage(type) {
+        async function downloadImage(type) {
             const url = imgUrls[type];
             if (!url) return;
-            // Best client side way is to open in new tab and let them save, 
-            // because of CORS restrictions on img.youtube.com
-            window.open(url, '_blank');
+
+            try {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                const videoId = extractVideoId(document.getElementById('ytUrl').value.trim());
+                link.download = `worldoftools.in-youtube-thumbnail-${videoId || 'image'}.jpg`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(blobUrl);
+            } catch (error) {
+                // If fetch fails (CORS), fallback to opening in new tab
+                window.open(url, '_blank');
+            }
         }
+
 
         function copyUrl(type) {
             const url = imgUrls[type];
