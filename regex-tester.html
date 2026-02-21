@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Online Regex Tester & Debugger | WorldOfTools</title>
+    <meta name="description"
+        content="Test and debug your regular expressions in real-time with our free online regex tester. Supports JavaScript regex with live highlighting and match details. Fast and private.">
+    <meta name="keywords"
+        content="regex tester, online regex tester, regex debugger online, regular expression checker, javascript regex tool, regex101 alternative, best regex tester, regex pattern checker">
+    <link rel="canonical" href="https://worldoftools.in/regex-tester" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .regex-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 1024px) {
+            .regex-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .regex-input-container {
+            display: flex;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .regex-slash {
+            padding: 1rem;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        #regexPattern {
+            border: none;
+            flex: 1;
+            padding: 1rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        #regexFlags {
+            width: 80px;
+            border: none;
+            border-left: 1px solid var(--border-color);
+            padding: 1rem;
+            background: #f8fafc;
+            color: var(--primary-color);
+            font-weight: 700;
+            outline: none;
+        }
+
+        .highlight-area {
+            position: relative;
+            min-height: 200px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.6;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            overflow-y: auto;
+        }
+
+        .backdrop,
+        #testString {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 1.5rem;
+            border: none;
+            background: transparent;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #testString {
+            resize: none;
+            color: #475569;
+            z-index: 2;
+            pointer-events: auto;
+            white-space: pre-wrap;
+            outline: none;
+        }
+
+        .backdrop {
+            z-index: 1;
+            color: transparent;
+        }
+
+        .match-highlight {
+            background-color: rgba(79, 70, 229, 0.2);
+            border-bottom: 2px solid var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .match-list {
+            margin-top: 2rem;
+        }
+
+        .match-item {
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .match-val {
+            font-family: 'Fira Code', monospace;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .match-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>🔍 Regex Tester</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Fast, private, and real-time
+                JavaScript regular expression debugger.</p>
+        </section>
+
+        <div class="regex-layout">
+            <div class="card">
+                <h3 style="margin-bottom: 1.5rem;">Regular Expression</h3>
+                <div class="regex-input-container">
+                    <div class="regex-slash">/</div>
+                    <input type="text" id="regexPattern" placeholder="([a-z]+)" oninput="runRegex()">
+                    <div class="regex-slash">/</div>
+                    <input type="text" id="regexFlags" value="g" placeholder="gim" oninput="runRegex()">
+                </div>
+                <div id="errorDisplay" class="error-msg"></div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1.5rem;">Test String</h3>
+                <div style="position: relative; height: 300px;">
+                    <div class="highlight-area">
+                        <div id="backdrop" class="backdrop"></div>
+                        <textarea id="testString" placeholder="Paste your text here to test the regex..."
+                            oninput="handleScroll(); runRegex();" onscroll="handleScroll()"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem;">Match Results</h3>
+                    <div id="resultSummary" style="margin-bottom: 1rem; font-weight: 700; color: var(--text-muted);">
+                        0 matches found
+                    </div>
+                    <div id="matchList" class="match-list" style="max-height: 480px; overflow-y: auto;">
+                        <!-- Matches injected by JS -->
+                        <div style="text-align: center; color: var(--text-muted); padding: 2rem;">No matches yet.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>How to Use the Regex Tester</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Enter Your Pattern:</strong> Type your regular expression in the slash-surrounded input
+                    field. Do not include the slashes themselves.</li>
+                <li><strong>Set Flags:</strong> Add flags like <code>g</code> (global), <code>i</code>
+                    (case-insensitive), or <code>m</code> (multiline) in the small box to the right.</li>
+                <li><strong>Provide Test Text:</strong> Paste or type the text you want to test against in the large
+                    text area.</li>
+                <li><strong>Debug Matches:</strong> Look at the highlighted text to see exactly what parts of your
+                    string match the pattern. Check the "Match Results" sidebar for detailed indices.</li>
+            </ol>
+
+            <h2 style="margin-top: 3rem;">Key Features</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>JavaScript Regex Engine:</strong> Accurate testing using the native browser Regex engine.
+                </li>
+                <li><strong>Real-time Highlighting:</strong> Visual feedback as you type your pattern or test string.
+                </li>
+                <li><strong>Error Handling:</strong> Instant validation of your regex syntax with detailed error
+                    messages.</li>
+                <li><strong>Match Details:</strong> See the exact start and end indices for every match found.</li>
+                <li><strong>Private & Secure:</strong> All regex testing happens in memory on your machine. Your data
+                    never leaves your browser.</li>
+            </ul>
+
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is a Regular Expression?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">A regular expression (regex) is a sequence
+                        of characters that forms a search pattern. It's used for string matching, search-and-replace,
+                        and data validation.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Which regex flags should I use?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Common flags include <code>g</code> for all
+                        matches, <code>i</code> for ignoring case, and <code>m</code> for multi-line matching where ^
+                        and $ match start/end of lines.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is this regex tool free?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes, WorldOfTools provides this regex
+                        debugger 100% free of charge with no limits on usage.</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">The WorldOfTools Regex Tester is an essential utility for developers writing
+                and debugging complex patterns. With its clean interface, live highlighting, and privacy-first approach,
+                it's the perfect alternative to cluttered online regex tools.</p>
+        </section>
+
+        <!-- Related Tools -->
+        <section style="margin-top: 0;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Developer Tools</h2>
+            <div class="tools-grid">
+                <a href="json-formatter" class="tool-card">
+                    <div class="tool-icon">✨</div>
+                    <div class="tool-title">JSON Formatter</div>
+                    <div class="tool-desc">Clean and beautify your JSON data.</div>
+                </a>
+                <a href="base64-encoder-decoder" class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <div class="tool-title">Base64 Tool</div>
+                    <div class="tool-desc">Encode or decode strings instantly.</div>
+                </a>
+                <a href="css-minifier" class="tool-card">
+                    <div class="tool-icon">🎨</div>
+                    <div class="tool-title">CSS Minifier</div>
+                    <div class="tool-desc">Compress CSS for faster loading.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        // FAQ Schema Data
+        const faqSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How to test JavaScript regex online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use our free regex tester to enter your pattern and test string. It uses the native JS engine for accurate results."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Are my regex tests private?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, everything runs locally in your browser. We never store or transmit your patterns or test data."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqSchemaData);
+        document.head.appendChild(faqScript);
+
+        const patternInput = document.getElementById('regexPattern');
+        const flagsInput = document.getElementById('regexFlags');
+        const testArea = document.getElementById('testString');
+        const backdrop = document.getElementById('backdrop');
+        const matchList = document.getElementById('matchList');
+        const summary = document.getElementById('resultSummary');
+        const errorDisplay = document.getElementById('errorDisplay');
+
+        function handleScroll() {
+            backdrop.scrollTop = testArea.scrollTop;
+            backdrop.scrollLeft = testArea.scrollLeft;
+        }
+
+        function runRegex() {
+            const pattern = patternInput.value;
+            const flags = flagsInput.value;
+            const text = testArea.value;
+
+            errorDisplay.textContent = '';
+            backdrop.innerHTML = '';
+            matchList.innerHTML = '';
+            summary.textContent = '0 matches found';
+
+            if (!pattern) {
+                backdrop.textContent = text;
+                return;
+            }
+
+            try {
+                const re = new RegExp(pattern, flags);
+                let highlightedText = '';
+                let lastIndex = 0;
+                let matches = [];
+
+                if (flags.includes('g')) {
+                    let match;
+                    while ((match = re.exec(text)) !== null) {
+                        if (match.index === re.lastIndex) re.lastIndex++; // Prevent infinite loops
+                        matches.push(match);
+                    }
+                } else {
+                    const match = re.exec(text);
+                    if (match) matches.push(match);
+                }
+
+                summary.textContent = `${matches.length} match${matches.length !== 1 ? 'es' : ''} found`;
+
+                matches.forEach((match, i) => {
+                    const start = match.index;
+                    const val = match[0];
+                    highlightedText += escapeHTML(text.substring(lastIndex, start));
+                    highlightedText += `<span class="match-highlight">${escapeHTML(val)}</span>`;
+                    lastIndex = start + val.length;
+
+                    const item = document.createElement('div');
+                    item.className = 'match-item';
+                    item.innerHTML = `
+                        <div>
+                            <span class="match-val">${escapeHTML(val)}</span>
+                            <div class="match-meta">Match ${i + 1}</div>
+                        </div>
+                        <div class="match-meta">Pos: ${start}-${start + val.length}</div>
+                    `;
+                    matchList.appendChild(item);
+                });
+
+                highlightedText += escapeHTML(text.substring(lastIndex));
+                backdrop.innerHTML = highlightedText + '\n'; // Add newline for scroll sync
+
+                if (matches.length === 0) {
+                    matchList.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 2rem;">No matches found.</div>';
+                }
+
+            } catch (e) {
+                errorDisplay.textContent = e.message;
+                backdrop.textContent = text;
+            }
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Initialize
+        patternInput.value = "([a-z]+)";
+        testArea.value = "Hello world! This is a test string.";
+        runRegex();
+    </script>
+</body>
+
+</html>

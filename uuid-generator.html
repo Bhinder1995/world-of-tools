@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Online UUID Generator - Bulk UUID v4 Creator | WorldOfTools</title>
+    <meta name="description"
+        content="Generate unique v4 UUIDs instantly with our free online generator. Supports bulk generation up to 500 UUIDs, easy copy-all, and download as TXT. Fast, private, and secure.">
+    <meta name="keywords"
+        content="uuid generator, online guid generator, generate uuid v4, unique identifier generator, bulk uuid generator, random uuid generator, best uuid tool, free guid maker">
+    <link rel="canonical" href="https://worldoftools.in/uuid-generator" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .uuid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 1024px) {
+            .uuid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .controls-card {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .uuid-list {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            max-height: 600px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .uuid-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .uuid-item:last-child {
+            border-bottom: none;
+        }
+
+        .count-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .count-btn {
+            background: #f1f5f9;
+            border: 2px solid transparent;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-weight: 700;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .count-btn.active {
+            background: rgba(79, 70, 229, 0.1);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .action-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .copy-each-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .copy-each-btn:hover {
+            opacity: 1;
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>🆔 UUID Generator</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Fast and secure v4 UUID
+                generation. Bulk support for developers.</p>
+        </section>
+
+        <div class="uuid-layout">
+            <div class="card controls-card">
+                <h3 style="margin-bottom: 1.5rem;">How many UUIDs?</h3>
+                <div class="count-selector" id="countSelector">
+                    <button class="count-btn" onclick="setCount(1)">1</button>
+                    <button class="count-btn" onclick="setCount(5)">5</button>
+                    <button class="count-btn" onclick="setCount(10)">10</button>
+                    <button class="count-btn" onclick="setCount(50)">50</button>
+                    <button class="count-btn active" onclick="setCount(100)">100</button>
+                    <button class="count-btn" onclick="setCount(500)">500</button>
+                </div>
+
+                <button class="btn btn-primary" style="width: 100%; padding: 1.25rem; font-size: 1.1rem;"
+                    onclick="generateUUIDs()">⚡ Generate Now</button>
+
+                <div class="action-btns">
+                    <button class="btn btn-secondary" onclick="copyAll()">📋 Copy All</button>
+                    <button class="btn btn-secondary" onclick="downloadTxt()">📥 Download (.txt)</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 id="resultTitle">Generated UUIDs (100)</h3>
+                    <span id="copyFeedback"
+                        style="color: #10b981; font-weight: 700; font-size: 0.8rem; display: none;">Copied!</span>
+                </div>
+                <div id="uuidList" class="uuid-list">
+                    <!-- UUIDs injected here -->
+                </div>
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>How to Use the UUID Generator</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Select Quantity:</strong> Choose how many UUIDs you need, from a single identifier up to a
+                    bulk set of 500.</li>
+                <li><strong>Generate:</strong> Click "Generate Now" to create a fresh set of Version 4 UUIDs instantly.
+                </li>
+                <li><strong>Copy or Download:</strong> Use "Copy All" to put everything on your clipboard, or "Download
+                    (.txt)" to save them as a file for local use.</li>
+            </ol>
+
+            <h2 style="margin-top: 3rem;">Key Features</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Version 4 Support:</strong> Generates standards-compliant random UUIDs (RFC 4122).</li>
+                <li><strong>Bulk Generation:</strong> Need hundreds of IDs for testing? Generate up to 500 in a single
+                    click.</li>
+                <li><strong>One-Click Download:</strong> Save your bulk UUIDs directly to a .txt file for easy importing
+                    into databases or code.</li>
+                <li><strong>Instant Copy:</strong> Optimized for developer workflows with copy-all and copy-each
+                    functionality.</li>
+                <li><strong>No Server Latency:</strong> All IDs are generated locally in your browser using secure
+                    random number generators.</li>
+            </ul>
+
+            <h2 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h2>
+            <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What is a UUID v4?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">A UUID (Universally Unique Identifier)
+                        Version 4 is a 128-bit number used to identify information in computer systems. V4 is generated
+                        randomly, offering 5.3 x 10<sup>36</sup> unique combinations.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Is it possible to generate duplicate UUIDs?
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">The probability of a collision in UUID v4
+                        is so low that it is effectively zero for almost all practical purposes, making them perfect for
+                        database primary keys.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Can I use these for production databases?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes, our generator follows the standard RFC
+                        4122 specification, making these UUIDs safe for use in any professional software environment.
+                    </p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3rem;">Conclusion</h2>
+            <p style="line-height: 1.8;">The WorldOfTools UUID Generator is a premium developer utility designed for
+                speed and reliability. Whether you're setting up a new database, writing unit tests, or managing
+                microservices, get the unique identifiers you need without leaving your browser.</p>
+        </section>
+
+        <!-- Related Tools -->
+        <section style="margin-top: 0;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Developer Tools</h2>
+            <div class="tools-grid">
+                <a href="regex-tester" class="tool-card">
+                    <div class="tool-icon">🔍</div>
+                    <div class="tool-title">Regex Tester</div>
+                    <div class="tool-desc">Test and debug regular expressions.</div>
+                </a>
+                <a href="json-formatter" class="tool-card">
+                    <div class="tool-icon">✨</div>
+                    <div class="tool-title">JSON Formatter</div>
+                    <div class="tool-desc">Clean and beautify your JSON data.</div>
+                </a>
+                <a href="base64-encoder-decoder" class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <div class="tool-title">Base64 Tool</div>
+                    <div class="tool-desc">Encode or decode strings instantly.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        // FAQ Schema Data
+        const faqSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "How to generate UUID v4 online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simply select the number of UUIDs you need and click generate. Our tool uses crypto-secure random numbers for every ID."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Can I download UUIDs as a text file?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our generator allows you to download up to 500 UUIDs at once into a clean TXT file."
+                }
+            }]
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = "application/ld+json";
+        faqScript.text = JSON.stringify(faqSchemaData);
+        document.head.appendChild(faqScript);
+
+        let currentCount = 100;
+
+        function setCount(num) {
+            currentCount = num;
+            document.querySelectorAll('.count-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.textContent) === num);
+            });
+            generateUUIDs();
+        }
+
+        function uuidv4() {
+            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
+        }
+
+        function generateUUIDs() {
+            const list = document.getElementById('uuidList');
+            document.getElementById('resultTitle').textContent = `Generated UUIDs (${currentCount})`;
+            list.innerHTML = '';
+
+            for (let i = 0; i < currentCount; i++) {
+                const uuid = uuidv4();
+                const item = document.createElement('div');
+                item.className = 'uuid-item';
+                item.innerHTML = `
+                    <span>${uuid}</span>
+                    <button class="copy-each-btn" onclick="copySingle('${uuid}', this)">Copy</button>
+                `;
+                list.appendChild(item);
+            }
+        }
+
+        function copySingle(val, btn) {
+            navigator.clipboard.writeText(val).then(() => {
+                const old = btn.textContent;
+                btn.textContent = '✓';
+                btn.style.color = '#10b981';
+                setTimeout(() => {
+                    btn.textContent = old;
+                    btn.style.color = 'var(--primary-color)';
+                }, 1000);
+            });
+        }
+
+        function copyAll() {
+            const uuids = Array.from(document.querySelectorAll('.uuid-item span')).map(s => s.textContent).join('\n');
+            navigator.clipboard.writeText(uuids).then(() => {
+                const feedback = document.getElementById('copyFeedback');
+                feedback.style.display = 'inline';
+                setTimeout(() => feedback.style.display = 'none', 1500);
+            });
+        }
+
+        function downloadTxt() {
+            const uuids = Array.from(document.querySelectorAll('.uuid-item span')).map(s => s.textContent).join('\n');
+            const blob = new Blob([uuids], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `worldoftools-uuids-${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Initialize
+        generateUUIDs();
+    </script>
+</body>
+
+</html>
