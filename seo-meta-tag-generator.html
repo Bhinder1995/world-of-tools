@@ -78,11 +78,44 @@
             padding: 1.5rem;
             border-radius: 12px;
             font-family: 'Fira Code', 'Courier New', monospace;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            line-height: 1.6;
             position: relative;
             margin-top: 1.5rem;
             overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        @media (max-width: 768px) {
+            .code-output {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        .input-group-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .copy-text-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .copy-text-btn:hover {
+            background: rgba(79, 70, 229, 0.1);
+        }
+
 
         .copy-code-btn {
             position: absolute;
@@ -152,29 +185,42 @@
                 </h3>
 
                 <div class="input-group">
-                    <label>Page Title</label>
+                    <div class="input-group-header">
+                        <label style="margin-bottom: 0;">Page Title</label>
+                        <button class="copy-text-btn" onclick="copyField('title')">Copy Text</button>
+                    </div>
                     <input type="text" id="title" placeholder="Enter descriptive page title" maxlength="70"
                         oninput="updatePreview()">
                     <div id="titleCount" class="char-counter">0 / 60 characters (Recommended)</div>
                 </div>
 
                 <div class="input-group">
-                    <label>Meta Description</label>
+                    <div class="input-group-header">
+                        <label style="margin-bottom: 0;">Meta Description</label>
+                        <button class="copy-text-btn" onclick="copyField('description')">Copy Text</button>
+                    </div>
                     <textarea id="description" placeholder="Enter a compelling summary of your page"
                         style="min-height: 120px;" oninput="updatePreview()"></textarea>
                     <div id="descCount" class="char-counter">0 / 155 characters (Recommended)</div>
                 </div>
 
                 <div class="input-group">
-                    <label>Canonical URL</label>
+                    <div class="input-group-header">
+                        <label style="margin-bottom: 0;">Canonical URL</label>
+                        <button class="copy-text-btn" onclick="copyField('url')">Copy Text</button>
+                    </div>
                     <input type="text" id="url" placeholder="https://yourwebsite.com/page" oninput="updatePreview()">
                 </div>
 
                 <div class="input-group">
-                    <label>Keywords (Optional)</label>
+                    <div class="input-group-header">
+                        <label style="margin-bottom: 0;">Keywords (Optional)</label>
+                        <button class="copy-text-btn" onclick="copyField('keywords')">Copy Text</button>
+                    </div>
                     <input type="text" id="keywords" placeholder="keyword1, keyword2, keyword3"
                         oninput="updatePreview()">
                 </div>
+
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear Form</button>
@@ -399,6 +445,17 @@
                 setTimeout(() => btn.textContent = old, 1500);
             });
         }
+
+        function copyField(id) {
+            const val = document.getElementById(id).value;
+            if (!val) return;
+            navigator.clipboard.writeText(val).then(() => {
+                const btn = event.target;
+                const old = btn.textContent; btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        }
+
 
         function clearAll() {
             if (confirm('Clear all fields?')) {

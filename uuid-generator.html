@@ -136,8 +136,16 @@
                     <button class="count-btn" onclick="setCount(500)">500</button>
                 </div>
 
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label>Or Enter Custom Number (Max 500)</label>
+                    <input type="number" id="customCount" placeholder="e.g. 25" min="1" max="500"
+                        oninput="handleCustomInput(this.value)"
+                        style="padding: 1.25rem; font-size: 1.1rem; border-radius: 12px; border: 1px solid var(--border-color); width: 100%;">
+                </div>
+
                 <button class="btn btn-primary" style="width: 100%; padding: 1.25rem; font-size: 1.1rem;"
                     onclick="generateUUIDs()">⚡ Generate Now</button>
+
 
                 <div class="action-btns">
                     <button class="btn btn-secondary" onclick="copyAll()">📋 Copy All</button>
@@ -266,10 +274,21 @@
 
         function setCount(num) {
             currentCount = num;
+            document.getElementById('customCount').value = ''; // Clear custom input
             document.querySelectorAll('.count-btn').forEach(btn => {
                 btn.classList.toggle('active', parseInt(btn.textContent) === num);
             });
             generateUUIDs();
+        }
+
+        function handleCustomInput(val) {
+            const num = parseInt(val);
+            if (num > 0 && num <= 500) {
+                currentCount = num;
+                // Remove active class from buttons
+                document.querySelectorAll('.count-btn').forEach(btn => btn.classList.remove('active'));
+                generateUUIDs();
+            }
         }
 
         function uuidv4() {
