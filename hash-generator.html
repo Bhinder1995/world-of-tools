@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Hash Generator – MD5, SHA-256, SHA-512, SHA-1 | WorldOfTools</title>
+    <meta name="description"
+        content="Free online hash generator. Generate SHA-256, MD5, SHA-512, and SHA-1 hashes instantly. Secure, 100% private, and browser-side processing for developers.">
+    <meta name="keywords"
+        content="sha256 generator, md5 hash online, sha1 hash, sha512 generator, online hash tool, string to hash, hash calculator, developer tools">
+    <link rel="canonical" href="https://worldoftools.in/hash-generator" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .hash-ui {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .input-area textarea {
+            width: 100%;
+            height: 150px;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            font-family: inherit;
+            font-size: 1.1rem;
+            resize: vertical;
+            margin-bottom: 1.5rem;
+            background: #f8fafc;
+        }
+
+        .input-area textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .hash-results {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .hash-card {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .hash-card:hover {
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .hash-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .hash-label {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hash-value {
+            font-family: 'Courier New', Courier, monospace;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            word-break: break-all;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(79, 70, 229, 0.1);
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 3rem;">
+            <h1>🔐 Hash Generator</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Generate secure cryptographic
+                hashes
+                locally in your browser.</p>
+        </section>
+
+        <div class="card hash-ui" style="padding: 2.5rem;">
+            <div class="input-area">
+                <label style="display: block; margin-bottom: 0.75rem; font-weight: 700;">Input String</label>
+                <textarea id="hashInput" placeholder="Type or paste your text here..."
+                    oninput="updateHashes()"></textarea>
+            </div>
+
+            <div class="hash-results">
+                <!-- SHA-256 -->
+                <div class="hash-card">
+                    <div class="hash-card-header">
+                        <span class="hash-label">SHA-256</span>
+                        <button class="copy-btn" onclick="copyHash('sha256')">📋 Copy</button>
+                    </div>
+                    <div id="sha256" class="hash-value">Generating...</div>
+                </div>
+
+                <!-- MD5 -->
+                <div class="hash-card">
+                    <div class="hash-card-header">
+                        <span class="hash-label">MD5</span>
+                        <button class="copy-btn" onclick="copyHash('md5')">📋 Copy</button>
+                    </div>
+                    <div id="md5" class="hash-value">Generating...</div>
+                </div>
+
+                <!-- SHA-1 -->
+                <div class="hash-card">
+                    <div class="hash-card-header">
+                        <span class="hash-label">SHA-1</span>
+                        <button class="copy-btn" onclick="copyHash('sha1')">📋 Copy</button>
+                    </div>
+                    <div id="sha1" class="hash-value">Generating...</div>
+                </div>
+
+                <!-- SHA-512 -->
+                <div class="hash-card">
+                    <div class="hash-card-header">
+                        <span class="hash-label">SHA-512</span>
+                        <button class="copy-btn" onclick="copyHash('sha512')">📋 Copy</button>
+                    </div>
+                    <div id="sha512" class="hash-value">Generating...</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 850px; padding: 6rem 0;">
+            <h3>How to Use the Hash Generator</h3>
+            <p>Cryptographic hashes are like digital fingerprints for data. Our tool computes these fingerprints
+                instantly in your browser.</p>
+            <ol style="margin-left: 1.5rem; margin-top: 1.5rem; line-height: 1.8;">
+                <li><strong>Enter Text:</strong> Type or paste any string into the input box.</li>
+                <li><strong>Automatic Generation:</strong> Hashes for SHA-256, MD5, SHA-1, and SHA-512 update as you
+                    type.</li>
+                <li><strong>Copy:</strong> Click the copy button next to any hash to use it in your project.</li>
+            </ol>
+
+            <h3 style="margin-top: 3rem;">Why Choose WorldOfTools?</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>100% Client-Side:</strong> Your data is never uploaded. We use the browser's built-in
+                    <code>SubtleCrypto</code> API for maximum security.</li>
+                <li><strong>Comprehensive Support:</strong> Generate all common hash types in one place.</li>
+                <li><strong>Instant & Free:</strong> No accounts, no waiting, just fast hash generation.</li>
+            </ul>
+
+            <h3 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 2rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Which hash is most secure?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">SHA-256 and SHA-512 are currently
+                        considered secure for general use. MD5 and SHA-1 are considered cryptographically broken and
+                        should only be used for checksums or legacy compatibility.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Can I reverse a hash?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Cryptographic hashes are one-way functions.
+                        You cannot "decrypt" a hash back into text. However, short hashes can sometimes be found in
+                        "rainbow tables" containing pre-computed hashes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Links -->
+        <section style="margin-top: 0; padding-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Related Developer Tools</h2>
+            <div id="dev-tools-links" class="tools-grid">
+                <!-- Links will be added via script or manually -->
+                <a href="jwt-decoder" class="tool-card">
+                    <div class="tool-icon">🔑</div>
+                    <div class="tool-title">JWT Decoder</div>
+                    <div class="tool-desc">Decode and debug JSON Web Tokens.</div>
+                </a>
+                <a href="base64-encoder-decoder" class="tool-card">
+                    <div class="tool-icon">📦</div>
+                    <div class="tool-title">Base64 Tool</div>
+                    <div class="tool-desc">Encode or decode Base64 data.</div>
+                </a>
+                <a href="json-formatter" class="tool-card">
+                    <div class="tool-icon">✨</div>
+                    <div class="tool-title">JSON Formatter</div>
+                    <div class="tool-desc">Clean and validate JSON code.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        async function updateHashes() {
+            const str = document.getElementById('hashInput').value;
+            if (!str) {
+                document.querySelectorAll('.hash-value').forEach(el => el.textContent = 'Waiting for input...');
+                return;
+            }
+
+            const encoder = new TextEncoder();
+            const data = encoder.encode(str);
+
+            // SHA Family
+            document.getElementById('sha256').textContent = await hash('SHA-256', data);
+            document.getElementById('sha1').textContent = await hash('SHA-1', data);
+            document.getElementById('sha512').textContent = await hash('SHA-512', data);
+
+            // MD5 (Manual implementation since SubtleCrypto doesn't support it)
+            document.getElementById('md5').textContent = calcMD5(str);
+        }
+
+        async function hash(algo, data) {
+            const hashBuffer = await crypto.subtle.digest(algo, data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function copyHash(id) {
+            const text = document.getElementById(id).textContent;
+            if (text.includes('Waiting')) return;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector(`button[onclick="copyHash('${id}')"]`);
+                const oldText = btn.innerHTML;
+                btn.innerHTML = '✅ Copied!';
+                setTimeout(() => btn.innerHTML = oldText, 2000);
+            });
+        }
+
+        // MD5 light implementation
+        function calcMD5(string) {
+            function k(s, t) {
+                return ((s << t) | (s >>> (32 - t)))
+            }
+            function l(s, t) {
+                var u, v, w, x, y;
+                w = (s & 0x7FFFFFFF) + (t & 0x7FFFFFFF);
+                u = (s >>> 31) ^ (t >>> 31) ^ (w >>> 31);
+                return (u << 31) | (w & 0x7FFFFFFF)
+            }
+            function m(s, t, u, v, w, x, y) {
+                return l(k(l(l(t, s), l(w, y)), x), u)
+            }
+            function n(s, t, u, v, w, x, y) {
+                return m((t & u) | (~t & v), s, t, w, x, y)
+            }
+            function o(s, t, u, v, w, x, y) {
+                return m((t & v) | (u & ~v), s, t, w, x, y)
+            }
+            function p(s, t, u, v, w, x, y) {
+                return m(t ^ u ^ v, s, t, w, x, y)
+            }
+            function q(s, t, u, v, w, x, y) {
+                return m(u ^ (t | ~v), s, t, w, x, y)
+            }
+            var r = [],
+                s, t, u, v, w, x, y, z;
+            for (s = 0; s < 64; s++) {
+                r[s] = Math.floor(Math.abs(Math.sin(s + 1)) * 4294967296)
+            }
+            var A = [1732584193, -271733879, -1732584194, 271733878],
+                B = [],
+                C, D, E, F, G, H, I, J, K, L;
+            B = (function (s) {
+                var t, u = s.length,
+                    v = [128],
+                    w, x;
+                for (t = 0; t < 64; t++) {
+                    v[t] = 0
+                }
+                v[0] = 128;
+                w = ((u + 8) >> 6) + 1;
+                x = [];
+                for (t = 0; t < w * 16; t++) {
+                    x[t] = 0
+                }
+                for (t = 0; t < u; t++) {
+                    x[t >> 2] |= (s.charCodeAt(t) << ((t % 4) << 3))
+                }
+                x[t >> 2] |= (v[t % 64] << ((t % 4) << 3));
+                x[w * 16 - 2] = u << 3;
+                return x
+            })(string);
+            for (C = 0; C < B.length; C += 16) {
+                D = A[0];
+                E = A[1];
+                F = A[2];
+                G = A[3];
+                D = n(D, E, F, G, B[C + 0], 7, r[0]);
+                G = n(G, D, E, F, B[C + 1], 12, r[1]);
+                F = n(F, G, D, E, B[C + 2], 17, r[2]);
+                E = n(E, F, G, D, B[C + 3], 22, r[3]);
+                D = n(D, E, F, G, B[C + 4], 7, r[4]);
+                G = n(G, D, E, F, B[C + 5], 12, r[5]);
+                F = n(F, G, D, E, B[C + 6], 17, r[6]);
+                E = n(E, F, G, D, B[C + 7], 22, r[7]);
+                D = n(D, E, F, G, B[C + 8], 7, r[8]);
+                G = n(G, D, E, F, B[C + 9], 12, r[9]);
+                F = n(F, G, D, E, B[C + 10], 17, r[10]);
+                E = n(E, F, G, D, B[C + 11], 22, r[11]);
+                D = n(D, E, F, G, B[C + 12], 7, r[12]);
+                G = n(G, D, E, F, B[C + 13], 12, r[13]);
+                F = n(F, G, D, E, B[C + 14], 17, r[14]);
+                E = n(E, F, G, D, B[C + 15], 22, r[15]);
+                D = o(D, E, F, G, B[C + 1], 5, r[16]);
+                G = o(G, D, E, F, B[C + 6], 9, r[17]);
+                F = o(F, G, D, E, B[C + 11], 14, r[18]);
+                E = o(E, F, G, D, B[C + 0], 20, r[19]);
+                D = o(D, E, F, G, B[C + 5], 5, r[20]);
+                G = o(G, D, E, F, B[C + 10], 9, r[21]);
+                F = o(F, G, D, E, B[C + 15], 14, r[22]);
+                E = o(E, F, G, D, B[C + 4], 20, r[23]);
+                D = o(D, E, F, G, B[C + 9], 5, r[24]);
+                G = o(G, D, E, F, B[C + 14], 9, r[25]);
+                F = o(F, G, D, E, B[C + 3], 14, r[26]);
+                E = o(E, F, G, D, B[C + 8], 20, r[27]);
+                D = o(D, E, F, G, B[C + 13], 5, r[28]);
+                G = o(G, D, E, F, B[C + 2], 9, r[29]);
+                F = o(F, G, D, E, B[C + 7], 14, r[30]);
+                E = o(E, F, G, D, B[C + 12], 20, r[31]);
+                D = p(D, E, F, G, B[C + 5], 4, r[32]);
+                G = p(G, D, E, F, B[C + 8], 11, r[33]);
+                F = p(F, G, D, E, B[C + 11], 16, r[34]);
+                E = p(E, F, G, D, B[C + 14], 23, r[35]);
+                D = p(D, E, F, G, B[C + 1], 4, r[36]);
+                G = p(G, D, E, F, B[C + 4], 11, r[37]);
+                F = p(F, G, D, E, B[C + 7], 16, r[38]);
+                E = p(E, F, G, D, B[C + 10], 23, r[39]);
+                D = p(D, E, F, G, B[C + 13], 4, r[40]);
+                G = p(G, D, E, F, B[C + 0], 11, r[41]);
+                F = p(F, G, D, E, B[C + 3], 16, r[42]);
+                E = p(E, F, G, D, B[C + 6], 23, r[43]);
+                D = p(D, E, F, G, B[C + 9], 4, r[44]);
+                G = p(G, D, E, F, B[C + 12], 11, r[45]);
+                F = p(F, G, D, E, B[C + 15], 16, r[46]);
+                E = p(E, F, G, D, B[C + 2], 23, r[47]);
+                D = q(D, E, F, G, B[C + 0], 6, r[48]);
+                G = q(G, D, E, F, B[C + 7], 10, r[49]);
+                F = q(F, G, D, E, B[C + 14], 15, r[50]);
+                E = q(E, F, G, D, B[C + 5], 21, r[51]);
+                D = q(D, E, F, G, B[C + 12], 6, r[52]);
+                G = q(G, D, E, F, B[C + 3], 10, r[53]);
+                F = q(F, G, D, E, B[C + 10], 15, r[54]);
+                E = q(E, F, G, D, B[C + 1], 21, r[55]);
+                D = q(D, E, F, G, B[C + 8], 6, r[56]);
+                G = q(G, D, E, F, B[C + 15], 10, r[57]);
+                F = q(F, G, D, E, B[C + 6], 15, r[58]);
+                E = q(E, F, G, D, B[C + 13], 21, r[59]);
+                D = q(D, E, F, G, B[C + 4], 6, r[60]);
+                G = q(G, D, E, F, B[C + 11], 10, r[61]);
+                F = q(F, G, D, E, B[C + 2], 15, r[62]);
+                E = q(E, F, G, D, B[C + 9], 21, r[63]);
+                A[0] = l(A[0], D);
+                A[1] = l(A[1], E);
+                A[2] = l(A[2], F);
+                A[3] = l(A[3], G)
+            }
+            var s = "";
+            for (C = 0; C < 4; C++) {
+                for (D = 0; D < 4; D++) {
+                    s += ((A[C] >> (D * 8)) & 255).toString(16).padStart(2, "0")
+                }
+            }
+            return s
+        }
+
+        // Initialize empty
+        updateHashes();
+
+        // Schema Path
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Hash Generator - WorldOfTools",
+            "url": "https://worldoftools.in/hash-generator",
+            "description": "Generate MD5, SHA-256, SHA-512, and SHA-1 hashes online.",
+            "applicationCategory": "DeveloperTool"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schema);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

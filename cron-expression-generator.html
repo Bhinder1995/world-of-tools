@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron Expression Generator – Visual Cron Builder Online | WorldOfTools</title>
+    <meta name="description"
+        content="Free online cron expression generator. Build cron schedules visually and get human-readable descriptions instantly. Supports standard 5-part cron syntax.">
+    <meta name="keywords"
+        content="cron expression generator, cron builder online, crontab generator, cron job builder, schedule cron, linux cron tool, developer tools">
+    <link rel="canonical" href="https://worldoftools.in/cron-expression-generator" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .cron-ui {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cron-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cron-field {
+            background: #f1f5f9;
+            padding: 1.25rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cron-field label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .cron-field select,
+        .cron-field input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: white;
+            font-size: 1rem;
+        }
+
+        .result-panel {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.2);
+        }
+
+        .cron-string {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 1rem 0;
+            letter-spacing: 0.1em;
+        }
+
+        .cron-desc {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .copy-pill {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 99px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .copy-pill:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>⏰ Cron Expression Generator</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Build cron schedules visually and
+                understand exactly when your jobs will run.</p>
+        </section>
+
+        <div class="cron-ui">
+            <div class="result-panel">
+                <div class="cron-desc" id="humanDesc">Every minute</div>
+                <div class="cron-string" id="cronOutput">* * * * *</div>
+                <div class="copy-pill" onclick="copyCron()">📋 Copy Cron Expression</div>
+            </div>
+
+            <div class="card cron-grid" style="padding: 2rem;">
+                <div class="cron-field">
+                    <label>Minutes</label>
+                    <select id="minute" onchange="generateCron()">
+                        <option value="*">Every minute (*)</option>
+                        <option value="*/5">Every 5 minutes</option>
+                        <option value="*/15">Every 15 minutes</option>
+                        <option value="*/30">Every 30 minutes</option>
+                        <option value="0">At minute 0</option>
+                    </select>
+                </div>
+                <div class="cron-field">
+                    <label>Hours</label>
+                    <select id="hour" onchange="generateCron()">
+                        <option value="*">Every hour (*)</option>
+                        <option value="*/2">Every 2 hours</option>
+                        <option value="*/6">Every 6 hours</option>
+                        <option value="*/12">Every 12 hours</option>
+                        <option value="0">At midnight (0)</option>
+                        <option value="12">At noon (12)</option>
+                    </select>
+                </div>
+                <div class="cron-field">
+                    <label>Day of Month</label>
+                    <select id="dayMonth" onchange="generateCron()">
+                        <option value="*">Every day (*)</option>
+                        <option value="1">1st of month</option>
+                        <option value="15">15th of month</option>
+                        <option value="L">Last day of month</option>
+                    </select>
+                </div>
+                <div class="cron-field">
+                    <label>Month</label>
+                    <select id="month" onchange="generateCron()">
+                        <option value="*">Every month (*)</option>
+                        <option value="1">January</option>
+                        <option value="6">June</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+                <div class="cron-field">
+                    <label>Day of Week</label>
+                    <select id="dayWeek" onchange="generateCron()">
+                        <option value="*">Every day (*)</option>
+                        <option value="1-5">Mon-Fri (Weekdays)</option>
+                        <option value="0,6">Sat-Sun (Weekends)</option>
+                        <option value="1">Monday</option>
+                        <option value="5">Friday</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 850px; padding: 6rem 0;">
+            <h3>Understanding Cron Jobs</h3>
+            <p>Cron is a time-based job scheduler in Unix-like operating systems. Cron expressions define the schedule
+                at which a task should repeat.</p>
+
+            <h3 style="margin-top: 3rem;">How this builder works</h3>
+            <ol style="margin-left: 1.5rem; margin-top: 1.5rem; line-height: 1.8;">
+                <li><strong>Select Frequencies:</strong> Use the dropdowns to pick how often each part of the cron
+                    schedule should trigger.</li>
+                <li><strong>See Results:</strong> The tool automatically recalculates the cron string and provides a
+                    human-readable explanation.</li>
+                <li><strong>Apply:</strong> Copy the generated string and paste it into your <code>crontab</code> or
+                    scheduler configuration.</li>
+            </ol>
+
+            <h3 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 2rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">What do the fields represent?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Standard cron uses 5 fields: minute, hour,
+                        day of month, month, and day of week. Some systems use 6 or 7 fields (including seconds or
+                        years), but our tool generates the widely compatible 5-field format.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">What is crontab?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Crontab (cron table) is the file used to
+                        store the list of cron jobs. You can usually edit it by typing <code>crontab -e</code> in your
+                        terminal.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Links -->
+        <section style="margin-top: 0; padding-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Dev Tools Suite</h2>
+            <div class="tools-grid">
+                <a href="hash-generator" class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <div class="tool-title">Hash Generator</div>
+                    <div class="tool-desc">Create secure MD5 and SHA hashes.</div>
+                </a>
+                <a href="sql-formatter" class="tool-card">
+                    <div class="tool-icon">🛠️</div>
+                    <div class="tool-title">SQL Formatter</div>
+                    <div class="tool-desc">Beautify and minify SQL queries.</div>
+                </a>
+                <a href="json-formatter" class="tool-card">
+                    <div class="tool-icon">✨</div>
+                    <div class="tool-title">JSON Formatter</div>
+                    <div class="tool-desc">Clean and validate JSON code.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        function generateCron() {
+            const m = document.getElementById('minute').value;
+            const h = document.getElementById('hour').value;
+            const dm = document.getElementById('dayMonth').value;
+            const mon = document.getElementById('month').value;
+            const dw = document.getElementById('dayWeek').value;
+
+            const cron = `${m} ${h} ${dm} ${mon} ${dw}`;
+            document.getElementById('cronOutput').textContent = cron;
+
+            // Simple human readable logic
+            let desc = "At ";
+
+            if (m === '*' && h === '*' && dm === '*' && mon === '*' && dw === '*') {
+                desc = "Every minute";
+            } else {
+                const parts = [];
+                if (m === '*') parts.push("every minute"); else if (m.includes('/')) parts.push(`every ${m.split('/')[1]} minutes`); else parts.push(`at minute ${m}`);
+                if (h === '*') parts.push("every hour"); else if (h.includes('/')) parts.push(`every ${h.split('/')[2] || h.split('/')[1]} hours`); else parts.push(`at hour ${h}`);
+                if (dm !== '*') parts.push(`on day ${dm} of the month`);
+                if (mon !== '*') parts.push(`in month ${mon}`);
+                if (dw !== '*') parts.push(`on day ${dw} of the week`);
+
+                desc = parts.join(", ");
+                desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+            }
+
+            document.getElementById('humanDesc').textContent = desc;
+        }
+
+        function copyCron() {
+            const text = document.getElementById('cronOutput').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const pill = document.querySelector('.copy-pill');
+                const old = pill.textContent;
+                pill.textContent = '✅ Copied!';
+                setTimeout(() => pill.textContent = old, 1500);
+            });
+        }
+
+        // Init
+        generateCron();
+
+        // Schema
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Cron Expression Generator - WorldOfTools",
+            "url": "https://worldoftools.in/cron-expression-generator",
+            "description": "Build and understand cron schedules visually online.",
+            "applicationCategory": "DeveloperTool"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schema);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

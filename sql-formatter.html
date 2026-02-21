@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Formatter – Beautify and Minify SQL Online | WorldOfTools</title>
+    <meta name="description"
+        content="Free online SQL formatter. Beautify messy SQL queries with custom indentation or minify them for production. Supports standard SQL, MySQL, and PostgreSQL.">
+    <meta name="keywords"
+        content="sql formatter online, beautify sql, minify sql, clear sql, format sql query, sql beautifier free, developer tools">
+    <link rel="canonical" href="https://worldoftools.in/sql-formatter" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .sql-ui {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 12px;
+            align-items: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 450px;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
+            background: #f8fafc;
+            margin-bottom: 1.5rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.75rem;
+        }
+    </style>
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>🛠️ SQL Formatter</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Format your SQL queries for
+                better
+                readability or minify them instantly.</p>
+        </section>
+
+        <div class="card sql-ui" style="padding: 2.5rem;">
+            <div class="controls">
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="formatSQL()">✨ Beautify SQL</button>
+                    <button class="btn btn-secondary" onclick="minifySQL()">🗜️ Minify SQL</button>
+                </div>
+                <div style="flex-grow: 1;"></div>
+                <button class="btn btn-secondary" onclick="copySQL()">📋 Copy</button>
+                <button class="btn btn-secondary" style="color: #ef4444;" onclick="clearSQL()">🗑️ Clear</button>
+            </div>
+
+            <textarea id="sqlInput" placeholder="-- Paste your SQL query here
+SELECT * FROM users WHERE id = 1;"></textarea>
+        </div>
+
+        <section class="container" style="max-width: 850px; padding: 6rem 0;">
+            <h3>Make Your SQL Readable</h3>
+            <p>Dirty or minified SQL is hard to debug. Our SQL Formatter adds proper indentation, line breaks, and
+                capitalization to make your code clean and professional.</p>
+
+            <h3 style="margin-top: 3rem;">How to use</h3>
+            <ol style="margin-left: 1.5rem; margin-top: 1.5rem; line-height: 1.8;">
+                <li><strong>Paste Code:</strong> Put your SQL query into the editor.</li>
+                <li><strong>Beautify:</strong> Click "Beautify SQL" to apply standard formatting with 2-space
+                    indentation.</li>
+                <li><strong>Minify:</strong> Use "Minify SQL" to remove all comments and unnecessary whitespace for
+                    production usage.</li>
+            </ol>
+
+            <h3 style="margin-top: 3rem;">Why formatting matters</h3>
+            <p style="line-height: 1.8;">Well-formatted SQL improves collaboration and helps catch syntax errors faster.
+                Our tool is optimized for <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>,
+                <code>DELETE</code>, and <code>JOIN</code> operations across MySQL, PostgreSQL, and SQL Server.</p>
+
+            <h3 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h3>
+            <div style="display: grid; gap: 2rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Is this tool free?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes! Like all tools on WorldOfTools, the
+                        SQL Formatter is 100% free and runs entirely in your browser.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Which SQL dialects are supported?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">It works best with standard ANSI SQL,
+                        MySQL, MariaDB, and PostgreSQL syntax.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Links -->
+        <section style="margin-top: 0; padding-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Other Developer Tools</h2>
+            <div class="tools-grid">
+                <a href="json-formatter" class="tool-card">
+                    <div class="tool-icon">✨</div>
+                    <div class="tool-title">JSON Formatter</div>
+                    <div class="tool-desc">Clean and validate JSON code.</div>
+                </a>
+                <a href="hash-generator" class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <div class="tool-title">Hash Generator</div>
+                    <div class="tool-desc">Create secure MD5 and SHA hashes.</div>
+                </a>
+                <a href="jwt-decoder" class="tool-card">
+                    <div class="tool-icon">🔑</div>
+                    <div class="tool-title">JWT Decoder</div>
+                    <div class="tool-desc">Decode and debug JSON Web Tokens.</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        function formatSQL() {
+            let sql = document.getElementById('sqlInput').value.trim();
+            if (!sql) return;
+
+            // Simplified SQL formatter logic
+            sql = sql.replace(/\s+/g, ' '); // Normalize space
+
+            const keywords = ['SELECT', 'FROM', 'WHERE', 'AND', 'OR', 'JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'INNER JOIN', 'GROUP BY', 'ORDER BY', 'HAVING', 'LIMIT', 'INSERT INTO', 'VALUES', 'UPDATE', 'SET', 'DELETE FROM'];
+
+            // Capitalize keywords
+            keywords.forEach(kw => {
+                const regex = new RegExp(`\\b${kw}\\b`, 'gi');
+                sql = sql.replace(regex, kw);
+            });
+
+            // Add line breaks and indentation
+            sql = sql.replace(/\b(SELECT|FROM|WHERE|AND|OR|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|GROUP BY|ORDER BY|HAVING|LIMIT|SET|VALUES)\b/g, '\n$1');
+            sql = sql.replace(/\nSELECT/g, 'SELECT'); // Fix first select
+
+            // Indent internal lines
+            const lines = sql.split('\n');
+            const formattedLines = lines.map((line, index) => {
+                line = line.trim();
+                if (index === 0) return line;
+                return '  ' + line;
+            });
+
+            document.getElementById('sqlInput').value = formattedLines.join('\n');
+        }
+
+        function minifySQL() {
+            let sql = document.getElementById('sqlInput').value;
+            if (!sql) return;
+
+            // Remove comments
+            sql = sql.replace(/\/\*[\s\S]*?\*\/|--.*?\n/g, '');
+            // Normalize space
+            sql = sql.replace(/\s+/g, ' ').trim();
+
+            document.getElementById('sqlInput').value = sql;
+        }
+
+        function copySQL() {
+            const el = document.getElementById('sqlInput');
+            if (!el.value) return;
+            navigator.clipboard.writeText(el.value).then(() => {
+                const btn = document.querySelector('button[onclick="copySQL()"]');
+                const old = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        }
+
+        function clearSQL() {
+            if (confirm('Clear SQL editor?')) {
+                document.getElementById('sqlInput').value = '';
+            }
+        }
+
+        // Schema
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "SQL Formatter - WorldOfTools",
+            "url": "https://worldoftools.in/sql-formatter",
+            "description": "Beautify and minify SQL queries online instantly.",
+            "applicationCategory": "DeveloperTool"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schema);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

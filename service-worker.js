@@ -1,14 +1,21 @@
-const CACHE_NAME = 'world-of-tools-v26';
-
-
+const CACHE_NAME = 'world-of-tools-v27';
 
 const ASSETS_TO_CACHE = [
     '/',
+    '/index.html',
     '/css/style.css?v=1.2',
     '/js/common.js?v=1.2',
+    '/logo.svg',
     '/manifest.json',
+    '/app-icon.png',
     '/favicon.png',
     '/favicon.ico',
+    '/apple-touch-icon.png',
+    '/hash-generator',
+    '/jwt-decoder',
+    '/sql-formatter',
+    '/cron-expression-generator',
+    '/url-encoder-decoder',
     '/age-calculator',
     '/percentage-calculator',
     '/word-counter',
@@ -30,11 +37,9 @@ const ASSETS_TO_CACHE = [
     '/youtube-thumbnail-downloader',
     '/color-converter',
     '/regex-tester',
-    '/uuid-generator',
-    '/logo.svg',
-    '/app-icon.png'
-
+    '/uuid-generator'
 ];
+
 
 self.addEventListener('install', (event) => {
     self.skipWaiting();
