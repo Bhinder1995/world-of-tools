@@ -149,6 +149,8 @@
                 <div style="flex-grow: 1;"></div>
                 <button class="btn btn-secondary" onclick="copyText()"
                     style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
+                <button class="btn btn-secondary" onclick="downloadReport()"
+                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download Report</button>
                 <button class="btn btn-secondary" onclick="clearText()"
                     style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
                     Clear</button>
@@ -344,6 +346,37 @@
                 const old = btn.textContent; btn.textContent = 'Copied!';
                 setTimeout(() => btn.textContent = old, 1500);
             });
+        }
+
+        function downloadReport() {
+            if (!textarea.value) return;
+
+            const words = document.getElementById('wordCount').textContent;
+            const chars = document.getElementById('charCount').textContent;
+            const charsNoSpace = document.getElementById('charNoSpaceCount').textContent;
+            const sentences = document.getElementById('sentenceCount').textContent;
+            const paragraphs = document.getElementById('paragraphCount').textContent;
+            const readTime = document.getElementById('readTime').textContent;
+
+            const content = `Text Analysis Report - worldoftools.in\n` +
+                `Generated on: ${new Date().toLocaleString()}\n\n` +
+                `--- STATISTICS ---\n` +
+                `Words:                ${words}\n` +
+                `Characters:           ${chars}\n` +
+                `Characters (no space): ${charsNoSpace}\n` +
+                `Sentences:            ${sentences}\n` +
+                `Paragraphs:           ${paragraphs}\n` +
+                `Reading Time:         ~${readTime} min\n\n` +
+                `--- CONTENT ---\n` +
+                `${textarea.value}\n`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `worldoftools.in-text-analysis-${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
 
         function clearText() {

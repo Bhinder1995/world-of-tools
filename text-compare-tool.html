@@ -151,6 +151,8 @@
                 <div style="flex-grow: 1;"></div>
                 <button class="btn btn-secondary" onclick="compareTexts()"
                     style="background: var(--primary-color); color: white; border: none;">🚀 Compare Now</button>
+                <button class="btn btn-secondary" onclick="copyDiff()">📋 Copy Diff</button>
+                <button class="btn btn-secondary" onclick="downloadDiff()">📥 Download</button>
                 <button class="btn btn-secondary" onclick="clearAll()" style="color: #ef4444;">🗑️ Clear</button>
             </div>
 
@@ -308,6 +310,41 @@
                 textB.value = '';
                 result.textContent = 'Results will appear here...';
             }
+        }
+
+        function getDiffText() {
+            const one = textA.value;
+            const other = textB.value;
+            if (!one && !other) return '';
+            const diff = Diff.diffWords(one, other);
+            let diffText = '';
+            diff.forEach(part => {
+                const prefix = part.added ? '+ ' : part.removed ? '- ' : '  ';
+                diffText += part.value.split('\n').map(line => prefix + line).join('\n') + '\n';
+            });
+            return diffText;
+        }
+
+        function copyDiff() {
+            const diffText = getDiffText();
+            if (!diffText) return;
+            navigator.clipboard.writeText(diffText).then(() => {
+                const btn = event.target;
+                const old = btn.textContent; btn.textContent = '✅ Copied!';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        }
+
+        function downloadDiff() {
+            const diffText = getDiffText();
+            if (!diffText) return;
+            const blob = new Blob([diffText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `worldoftools.in-diff-${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
 
         // Schema Data

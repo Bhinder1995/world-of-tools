@@ -131,6 +131,8 @@
                     <div style="flex-grow: 1;"></div>
                     <button class="btn btn-secondary" onclick="copyText('textInput')"
                         style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
+                    <button class="btn btn-secondary" onclick="downloadResult('textInput')"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download</button>
                     <button class="btn btn-secondary" onclick="clearInput('textInput')"
                         style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
                         Clear</button>
@@ -149,6 +151,8 @@
                     <div style="flex-grow: 1;"></div>
                     <button class="btn btn-secondary" onclick="copyText('imageOutput')"
                         style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy Base64</button>
+                    <button class="btn btn-secondary" onclick="downloadResult('imageOutput')"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download</button>
                     <button class="btn btn-secondary" onclick="clearImage()"
                         style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
                         Clear</button>
@@ -320,6 +324,19 @@
                 document.getElementById('fileInput').value = '';
                 previewBase64();
             }
+        }
+
+        function downloadResult(id) {
+            const el = document.getElementById(id);
+            if (!el.value) return;
+
+            const blob = new Blob([el.value], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `worldoftools.in-base64-result-${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
 
         // Schema Data

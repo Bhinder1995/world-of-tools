@@ -137,7 +137,12 @@
         <div class="card" style="padding: 2.5rem;">
             <div class="jwt-ui">
                 <div class="input-side">
-                    <label style="display: block; margin-bottom: 0.75rem; font-weight: 700;">Encoded Token</label>
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                        <label style="font-weight: 700;">Encoded Token</label>
+                        <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;"
+                            onclick="downloadDecoded()">📥 Download Decoded</button>
+                    </div>
                     <textarea id="jwtInput" placeholder="Paste your JWT here (header.payload.signature)..."
                         oninput="decodeJWT()"></textarea>
                 </div>
@@ -145,13 +150,21 @@
                 <div class="output-side">
                     <!-- HEADER -->
                     <div class="jwt-section">
-                        <div class="section-label">Header (Algorithm & Token Type)</div>
+                        <div class="section-label">
+                            <span>Header (Algorithm & Token Type)</span>
+                            <button class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;"
+                                onclick="copyResult('jwtHeader')">📋 Copy</button>
+                        </div>
                         <div id="jwtHeader" class="json-display">---</div>
                     </div>
 
                     <!-- PAYLOAD -->
                     <div class="jwt-section">
-                        <div class="section-label">Payload (Data)</div>
+                        <div class="section-label">
+                            <span>Payload (Data)</span>
+                            <button class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;"
+                                onclick="copyResult('jwtPayload')">📋 Copy</button>
+                        </div>
                         <div id="jwtPayload" class="json-display">---</div>
                         <div id="expirationDetails" class="time-box" style="display: none;">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -237,6 +250,35 @@
             return decodeURIComponent(atob(str).split('').map(function (c) {
                 return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
             }).join(''));
+        }
+
+        function copyResult(id) {
+            const text = document.getElementById(id).textContent;
+            if (text === '---') return;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const old = btn.textContent; btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        }
+
+        function downloadDecoded() {
+            const header = document.getElementById('jwtHeader').textContent;
+            const payload = document.getElementById('jwtPayload').textContent;
+            if (header === '---') return;
+
+            const content = `JWT Decoded Report - worldoftools.in\n` +
+                `Generated on: ${new Date().toLocaleString()}\n\n` +
+                `--- HEADER ---\n${header}\n\n` +
+                `--- PAYLOAD ---\n${payload}\n`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `worldoftools.in-jwt-decoded-${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
 
         function decodeJWT() {

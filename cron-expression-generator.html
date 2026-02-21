@@ -119,7 +119,11 @@
             <div class="result-panel">
                 <div class="cron-desc" id="humanDesc">Every minute</div>
                 <div class="cron-string" id="cronOutput">* * * * *</div>
-                <div class="copy-pill" onclick="copyCron()">📋 Copy Cron Expression</div>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <div class="copy-pill" onclick="copyCron()">📋 Copy Cron</div>
+                    <div class="copy-pill" style="background: rgba(255,255,255,0.1);" onclick="downloadCron()">📥
+                        Download</div>
+                </div>
             </div>
 
             <div class="card cron-grid" style="padding: 2rem;">
@@ -264,10 +268,29 @@
             document.getElementById('humanDesc').textContent = desc;
         }
 
+        function downloadCron() {
+            const cron = document.getElementById('cronOutput').textContent;
+            const desc = document.getElementById('humanDesc').textContent;
+
+            const content = `Cron Schedule Report - worldoftools.in\n` +
+                `Generated on: ${new Date().toLocaleString()}\n\n` +
+                `Cron Expression: ${cron}\n` +
+                `Description:     ${desc}\n`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `worldoftools.in-cron-${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
         function copyCron() {
             const text = document.getElementById('cronOutput').textContent;
             navigator.clipboard.writeText(text).then(() => {
-                const pill = document.querySelector('.copy-pill');
+                const pills = document.querySelectorAll('.copy-pill');
+                const pill = pills[0]; // First one is copy
                 const old = pill.textContent;
                 pill.textContent = '✅ Copied!';
                 setTimeout(() => pill.textContent = old, 1500);

@@ -87,6 +87,7 @@
                 </div>
                 <div style="flex-grow: 1;"></div>
                 <button class="btn btn-secondary" onclick="copySQL()">📋 Copy</button>
+                <button class="btn btn-secondary" onclick="downloadSQL()">📥 Download</button>
                 <button class="btn btn-secondary" style="color: #ef4444;" onclick="clearSQL()">🗑️ Clear</button>
             </div>
 
@@ -111,7 +112,8 @@ SELECT * FROM users WHERE id = 1;"></textarea>
             <h3 style="margin-top: 3rem;">Why formatting matters</h3>
             <p style="line-height: 1.8;">Well-formatted SQL improves collaboration and helps catch syntax errors faster.
                 Our tool is optimized for <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>,
-                <code>DELETE</code>, and <code>JOIN</code> operations across MySQL, PostgreSQL, and SQL Server.</p>
+                <code>DELETE</code>, and <code>JOIN</code> operations across MySQL, PostgreSQL, and SQL Server.
+            </p>
 
             <h3 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h3>
             <div style="display: grid; gap: 2rem; margin-top: 1.5rem;">
@@ -206,6 +208,19 @@ SELECT * FROM users WHERE id = 1;"></textarea>
                 btn.textContent = '✅ Copied!';
                 setTimeout(() => btn.textContent = old, 1500);
             });
+        }
+
+        function downloadSQL() {
+            const sql = document.getElementById('sqlInput').value;
+            if (!sql) return;
+
+            const blob = new Blob([sql], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `worldoftools.in-sql-${Date.now()}.sql`;
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
 
         function clearSQL() {

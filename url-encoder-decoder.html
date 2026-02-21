@@ -81,6 +81,7 @@
                 <button class="btn btn-primary" onclick="process(true)">🚀 Encode URL</button>
                 <button class="btn btn-secondary" onclick="process(false)">🔓 Decode URL</button>
                 <button class="btn btn-secondary" onclick="copyResult()">📋 Copy</button>
+                <button class="btn btn-secondary" onclick="downloadResult()">📥 Download</button>
             </div>
         </div>
 
@@ -104,7 +105,8 @@
                     <h4 style="margin-bottom: 0.5rem;">What characters are encoded?</h4>
                     <p style="color: var(--text-muted); font-size: 0.95rem;">Characters like <code>{ space }</code>,
                         <code>&</code>, <code>=</code>, <code>?</code>, <code>#</code>, and non-ASCII characters are
-                        converted into their hex equivalents preceded by a percent sign.</p>
+                        converted into their hex equivalents preceded by a percent sign.
+                    </p>
                 </div>
                 <div>
                     <h4 style="margin-bottom: 0.5rem;">Does it support UTF-8?</h4>
@@ -160,6 +162,19 @@
                 btn.textContent = '✅ Copied!';
                 setTimeout(() => btn.textContent = old, 1500);
             });
+        }
+
+        function downloadResult() {
+            const el = document.getElementById('urlInput');
+            if (!el.value) return;
+
+            const blob = new Blob([el.value], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `worldoftools.in-url-result-${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
 
         // Schema
