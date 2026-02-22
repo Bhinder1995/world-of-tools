@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Barcode Generator Online - All Formats | WorldOfTools</title>
+    <meta name="description"
+        content="Generate professional barcodes online for free. Support for CODE128, EAN, UPC, and more. Complements our QR generator for complete labeling solutions.">
+    <meta name="keywords"
+        content="free bar code generator online, barcode generator, generate barcode, code128 generator, ean generator, upc generator, free barcode tool">
+    <link rel="canonical" href="https://worldoftools.in/barcode-generator" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <!-- JsBarcode CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>🏷️ Barcode Generator</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Create professional barcodes for
+                products, inventory, and tracking.</p>
+        </section>
+
+        <div class="card" style="max-width: 800px; margin: 0 auto; padding: 2.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <div class="input-group" style="flex: 2;">
+                    <label for="barcodeData">Barcode Data (Numbers/Text)</label>
+                    <input type="text" id="barcodeData" value="12345678" style="padding: 1rem; font-size: 1.1rem;">
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label for="barcodeFormat">Format</label>
+                    <select id="barcodeFormat" style="padding: 1rem; font-size: 1.1rem;">
+                        <option value="CODE128">CODE128 (Universal)</option>
+                        <option value="EAN13">EAN-13 (Product)</option>
+                        <option value="UPC">UPC (Retail)</option>
+                        <option value="CODE39">CODE39</option>
+                        <option value="ITF14">ITF-14</option>
+                        <option value="MSI">MSI</option>
+                    </select>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 3rem; text-align: center; background: white; padding: 3rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                <svg id="barcodeCanvas"></svg>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                <button class="btn" onclick="generateBarcode()">Update Barcode</button>
+                <button class="btn btn-secondary" onclick="downloadBarcode()">Download SVG</button>
+            </div>
+
+            <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                🛡️ 100% Private: Barcode generation happens entirely in your browser.
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>Free Bar Code Generator Online & SEO Tool</h2>
+            <p>Our <strong>free bar code generator online</strong> is a versatile utility for businesses and developers.
+                Whether you need to label inventory or create product codes for retail, our tool provides high-quality,
+                scannable barcodes instantly.</p>
+
+            <h3>Supported Barcode Formats</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>CODE128:</strong> The most versatile and widely used format for alpha-numeric data.</li>
+                <li><strong>EAN-13 & UPC:</strong> The standard format for retail products worldwide.</li>
+                <li><strong>CODE39:</strong> Common in industrial and automotive applications.</li>
+                <li><strong>ITF-14:</strong> used for shipping containers and packaging.</li>
+            </ul>
+
+            <h2>How to Generate a Barcode</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li>Enter the data you want to encode into the "Barcode Data" field.</li>
+                <li>Select the appropriate format for your needs (e.g., CODE128).</li>
+                <li>The barcode will update automatically in the preview area.</li>
+                <li>Click <strong>"Download SVG"</strong> to get a high-resolution version for printing.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        function generateBarcode() {
+            const data = document.getElementById('barcodeData').value;
+            const format = document.getElementById('barcodeFormat').value;
+            if (!data) return;
+
+            try {
+                JsBarcode("#barcodeCanvas", data, {
+                    format: format,
+                    lineColor: "#000",
+                    width: 2,
+                    height: 100,
+                    displayValue: true
+                });
+            } catch (e) {
+                console.error("Barcode generation failed", e);
+            }
+        }
+
+        function downloadBarcode() {
+            const svg = document.getElementById('barcodeCanvas');
+            const serializer = new XMLSerializer();
+            const source = serializer.serializeToString(svg);
+            const blob = new Blob([source], { type: "image/svg+xml;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "barcode-" + document.getElementById('barcodeData').value + ".svg";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Initialize default
+        window.onload = generateBarcode;
+
+        // Structured Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Barcode Generator Online",
+            "description": "Generate professional barcodes (CODE128, EAN, UPC) online for free. Secure and fast.",
+            "url": "https://worldoftools.in/barcode-generator",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free CSV to JSON Converter Online - Secure & Fast | WorldOfTools</title>
+    <meta name="description"
+        content="Convert CSV data to JSON objects instantly. A secure, 100% browser-side CSV to JSON converter tool for developers and data analysts.">
+    <meta name="keywords"
+        content="csv to json, convert csv to json, csv to json converter online, json converter, data conversion tools, developer tools online">
+    <link rel="canonical" href="https://worldoftools.in/csv-to-json" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>📊 CSV to JSON Converter</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Easily convert your CSV data into structured JSON objects.</p>
+        </section>
+
+        <div class="card" style="max-width: 1000px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div class="input-group">
+                    <label for="csvInput">CSV Input</label>
+                    <textarea id="csvInput" placeholder="Paste CSV (comma-separated values) here..." style="min-height: 350px; font-family: monospace; font-size: 0.9rem;"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="jsonOutput">JSON Output</label>
+                    <textarea id="jsonOutput" readonly placeholder="Resulting JSON will appear here..." style="min-height: 350px; font-family: monospace; font-size: 0.9rem; background: rgba(0,0,0,0.02);"></textarea>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn" style="flex: 2;" onclick="convertCsvToJson()">Convert to JSON</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="copyJson()">Copy JSON</button>
+                <button class="btn btn-secondary" style="flex: 1; background: #64748b;" onclick="clearAll()">Clear</button>
+            </div>
+            
+            <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                🛡️ 100% Private: All processing is done locally in your browser.
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>Best CSV to JSON Converter Online</h2>
+            <p>Our <strong>CSV to JSON converter</strong> is designed for speed and security. It allows developers to quickly transform spreadsheet data into JSON format for use in APIs, web applications, and configuration files.</p>
+            
+            <h3>Why Use Our Converter?</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Browser-Side Processing:</strong> We don't upload your data. Calculations happen instantly in your browser.</li>
+                <li><strong>Handles Headers:</strong> Automatically detects the first row as property names for the JSON objects.</li>
+                <li><strong>Clean Output:</strong> Generates formatted JSON for easy readability.</li>
+            </ul>
+
+            <h2>How to Convert CSV to JSON</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li>Paste your CSV data into the left input field. Ensure the first row contains headers.</li>
+                <li>Click <strong>"Convert to JSON"</strong>.</li>
+                <li>The converted JSON will appear in the right field.</li>
+                <li>Copy the result to your clipboard.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        function convertCsvToJson() {
+            const csv = document.getElementById('csvInput').value.trim();
+            if (!csv) return;
+
+            const lines = csv.split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(h => h.trim().replace(/^"(.*)"$/, '$1'));
+
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                const obj = {};
+                const currentline = lines[i].split(',').map(v => v.trim().replace(/^"(.*)"$/, '$1'));
+
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentline[j];
+                }
+                result.push(obj);
+            }
+
+            document.getElementById('jsonOutput').value = JSON.stringify(result, null, 2);
+        }
+
+        function copyJson() {
+            const json = document.getElementById('jsonOutput');
+            json.select();
+            document.execCommand('copy');
+        }
+
+        function clearAll() {
+            document.getElementById('csvInput').value = '';
+            document.getElementById('jsonOutput').value = '';
+        }
+
+        // Structured Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "CSV to JSON Converter",
+            "description": "Convert CSV data to JSON format online instantly and securely.",
+            "url": "https://worldoftools.in/csv-to-json",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Scientific Calculator Online - Free & Private | WorldOfTools</title>
+    <meta name="description"
+        content="Use our free online scientific calculator for advanced math, trigonometry, logarithms, and more. Fast, accurate, and works offline. 100% private.">
+    <meta name="keywords"
+        content="scientific calculator online, advanced calculator, free math tools, online trig calculator, log calculator, math utility online">
+    <link rel="canonical" href="https://worldoftools.in/scientific-calculator" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <style>
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .calc-btn {
+            padding: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calc-btn:hover {
+            background: rgba(79, 70, 229, 0.05);
+            border-color: var(--primary-color);
+        }
+
+        .calc-btn.primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .calc-btn.primary:hover {
+            background: #4338ca;
+        }
+
+        .calc-btn.scientific {
+            background: #f8fafc;
+            color: #64748b;
+        }
+
+        .calc-display {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 2rem;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: right;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            background: #f1f5f9;
+        }
+
+        .calc-history {
+            text-align: right;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            min-height: 1.5rem;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>🧮 Scientific Calculator</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Perform complex calculations with
+                precision and ease.</p>
+        </section>
+
+        <div class="card" style="max-width: 500px; margin: 0 auto; padding: 2rem;">
+            <div id="history" class="calc-history"></div>
+            <input type="text" id="display" class="calc-display" readonly value="0">
+
+            <div class="calc-grid">
+                <button class="calc-btn scientific" onclick="appendToDisplay('sin(')">sin</button>
+                <button class="calc-btn scientific" onclick="appendToDisplay('cos(')">cos</button>
+                <button class="calc-btn scientific" onclick="appendToDisplay('tan(')">tan</button>
+                <button class="calc-btn primary" onclick="clearDisplay()">C</button>
+
+                <button class="calc-btn scientific" onclick="appendToDisplay('log(')">log</button>
+                <button class="calc-btn scientific" onclick="appendToDisplay('ln(')">ln</button>
+                <button class="calc-btn scientific" onclick="appendToDisplay('sqrt(')">√</button>
+                <button class="calc-btn" onclick="appendToDisplay('/')">/</button>
+
+                <button class="calc-btn" onclick="appendToDisplay('7')">7</button>
+                <button class="calc-btn" onclick="appendToDisplay('8')">8</button>
+                <button class="calc-btn" onclick="appendToDisplay('9')">9</button>
+                <button class="calc-btn" onclick="appendToDisplay('*')">×</button>
+
+                <button class="calc-btn" onclick="appendToDisplay('4')">4</button>
+                <button class="calc-btn" onclick="appendToDisplay('5')">5</button>
+                <button class="calc-btn" onclick="appendToDisplay('6')">6</button>
+                <button class="calc-btn" onclick="appendToDisplay('-')">-</button>
+
+                <button class="calc-btn" onclick="appendToDisplay('1')">1</button>
+                <button class="calc-btn" onclick="appendToDisplay('2')">2</button>
+                <button class="calc-btn" onclick="appendToDisplay('3')">3</button>
+                <button class="calc-btn" onclick="appendToDisplay('+')">+</button>
+
+                <button class="calc-btn" onclick="appendToDisplay('0')">0</button>
+                <button class="calc-btn" onclick="appendToDisplay('.')">.</button>
+                <button class="calc-btn" onclick="appendToDisplay('(')">(</button>
+                <button class="calc-btn" onclick="appendToDisplay(')')">)</button>
+
+                <button class="calc-btn scientific" onclick="appendToDisplay('Math.PI')">π</button>
+                <button class="calc-btn scientific" onclick="appendToDisplay('Math.E')">e</button>
+                <button class="calc-btn scientific" onclick="appendToDisplay('**')">^</button>
+                <button class="calc-btn primary" onclick="calculate()">=</button>
+            </div>
+
+            <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                🛡️ 100% Secure: Calculations happen in your browser.
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>Free Scientific Calculator Online</h2>
+            <p>Our <strong>scientific calculator</strong> is a powerful tool designed for students, engineers, and
+                researchers. It supports a wide range of functions from basic arithmetic to complex trigonometric and
+                logarithmic calculations.</p>
+
+            <h3>Advanced Features</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Trigonometry:</strong> Calculate sine, cosine, and tangent instantly.</li>
+                <li><strong>Logarithms:</strong> Support for natural log (ln) and common log (log10).</li>
+                <li><strong>Constants:</strong> Built-in values for Pi (π) and Euler's number (e).</li>
+                <li><strong>Powers & Roots:</strong> Easily compute exponents and square roots.</li>
+            </ul>
+
+            <h2>How to Use</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li>Click the buttons or use your keyboard to enter numbers and functions.</li>
+                <li>Use <strong>sin()</strong>, <strong>cos()</strong>, etc., for scientific operations.</li>
+                <li>Ensure you close parentheses <strong>")"</strong> for functions.</li>
+                <li>Press <strong>"="</strong> to get the final result.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        const display = document.getElementById('display');
+        const history = document.getElementById('history');
+
+        function appendToDisplay(value) {
+            if (display.value === '0' && value !== '.') {
+                display.value = value;
+            } else {
+                display.value += value;
+            }
+        }
+
+        function clearDisplay() {
+            display.value = '0';
+            history.textContent = '';
+        }
+
+        function calculate() {
+            try {
+                let expr = display.value;
+                history.textContent = expr + ' =';
+
+                // Replace math functions
+                expr = expr.replace(/sin\(/g, 'Math.sin(');
+                expr = expr.replace(/cos\(/g, 'Math.cos(');
+                expr = expr.replace(/tan\(/g, 'Math.tan(');
+                expr = expr.replace(/log\(/g, 'Math.log10(');
+                expr = expr.replace(/ln\(/g, 'Math.log(');
+                expr = expr.replace(/sqrt\(/g, 'Math.sqrt(');
+
+                const result = eval(expr);
+                display.value = Number.isInteger(result) ? result : parseFloat(result.toFixed(8));
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') appendToDisplay(e.key);
+            if (e.key === '.') appendToDisplay('.');
+            if (e.key === '+') appendToDisplay('+');
+            if (e.key === '-') appendToDisplay('-');
+            if (e.key === '*') appendToDisplay('*');
+            if (e.key === '/') appendToDisplay('/');
+            if (e.key === '(') appendToDisplay('(');
+            if (e.key === ')') appendToDisplay(')');
+            if (e.key === 'Enter') calculate();
+            if (e.key === 'Escape') clearDisplay();
+        });
+
+        // Structured Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Scientific Calculator Online",
+            "description": "Perform advanced mathematical calculations with our free online scientific calculator.",
+            "url": "https://worldoftools.in/scientific-calculator",
+            "applicationCategory": "MathApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

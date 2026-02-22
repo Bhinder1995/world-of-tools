@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Markdown to HTML Converter - Online Editor | WorldOfTools</title>
+    <meta name="description"
+        content="Convert Markdown text to clean HTML code instantly. A free online markdown editor with live preview for bloggers and developers.">
+    <meta name="keywords"
+        content="markdown to html, markdown converter, online markdown editor, md to html, convert md to html, free markdown tools">
+    <link rel="canonical" href="https://worldoftools.in/markdown-to-html" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <!-- Marked JS for high-quality Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>📝 Markdown to HTML</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Write in Markdown, get clean HTML
+                instantly.</p>
+        </section>
+
+        <div class="card" style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div class="input-group">
+                    <label for="mdInput">Markdown Editor</label>
+                    <textarea id="mdInput" placeholder="# Hello World&#10;&#10;Type your markdown here..."
+                        style="min-height: 500px; font-family: monospace; font-size: 0.9rem;"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Live Preview / HTML Output</label>
+                    <div id="htmlPreview"
+                        style="min-height: 500px; padding: 1rem; border: 1px solid var(--border-color); border-radius: 12px; overflow-y: auto; background: white;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn" style="flex: 2;" onclick="copyHtml()">Copy HTML Code</button>
+                <button class="btn btn-secondary" style="flex: 1; background: #64748b;"
+                    onclick="clearAll()">Clear</button>
+            </div>
+
+            <textarea id="htmlOutput" style="display: none;"></textarea>
+
+            <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                🛡️ Private & Secure: Your content is processed locally in your browser.
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>Free Markdown to HTML Converter Online</h2>
+            <p>Our <strong>Markdown to HTML converter</strong> is the perfect companion for bloggers, developers, and
+                students. Markdown allows you to write formatted text using easy-to-read syntax, which this tool then
+                converts into the HTML code used by websites.</p>
+
+            <h3>Why Use Our Markdown Tool?</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Real-time Preview:</strong> See your formatted content as you type.</li>
+                <li><strong>Clean HTML Output:</strong> Generates semantic HTML tags that are SEO-friendly.</li>
+                <li><strong>High Compatibility:</strong> Uses the industry-standard Marked.js library for reliable
+                    parsing.</li>
+            </ul>
+
+            <h2>How to Use</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li>Type or paste your Markdown text into the editor.</li>
+                <li>Check the live preview to ensure formatting is correct.</li>
+                <li>Click <strong>"Copy HTML Code"</strong> to get the raw HTML markup.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        const mdInput = document.getElementById('mdInput');
+        const htmlPreview = document.getElementById('htmlPreview');
+        const htmlOutput = document.getElementById('htmlOutput');
+
+        mdInput.addEventListener('input', updatePreview);
+
+        function updatePreview() {
+            const rawValue = mdInput.value;
+            const html = marked.parse(rawValue);
+            htmlPreview.innerHTML = html;
+            htmlOutput.value = html;
+        }
+
+        function copyHtml() {
+            htmlOutput.select();
+            document.execCommand('copy');
+            // Optional: Show toast
+        }
+
+        function clearAll() {
+            mdInput.value = '';
+            updatePreview();
+        }
+
+        // Initialize preview
+        updatePreview();
+
+        // Structured Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Markdown to HTML Converter",
+            "description": "Convert Markdown to HTML online with live preview. Fast, free, and secure.",
+            "url": "https://worldoftools.in/markdown-to-html",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

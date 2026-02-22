@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Time Zone Converter & World Clock Online | WorldOfTools</title>
+    <meta name="description"
+        content="Convert time between different time zones instantly. A free online world clock and time zone converter for travelers and remote teams.">
+    <meta name="keywords"
+        content="time zone converter, world clock, convert time zones, est to ist, utc converter, gmt time converter, international time tool">
+    <link rel="canonical" href="https://worldoftools.in/time-zone-converter" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>🌍 Time Zone Converter</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Quickly check world times and
+                convert between different regions.</p>
+        </section>
+
+        <div class="card" style="max-width: 800px; margin: 0 auto; padding: 2.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <div class="input-group">
+                    <label for="sourceTime">Select Local Time</label>
+                    <input type="datetime-local" id="sourceTime" style="font-size: 1rem; padding: 0.8rem;">
+                </div>
+                <div class="input-group">
+                    <label for="targetZone">Target Time Zone</label>
+                    <select id="targetZone" style="font-size: 1rem; padding: 0.8rem;">
+                        <option value="UTC">UTC (Universal Time)</option>
+                        <option value="America/New_York">New York (EST/EDT)</option>
+                        <option value="Europe/London">London (GMT/BST)</option>
+                        <option value="Asia/Kolkata">India (IST)</option>
+                        <option value="Asia/Dubai">Dubai (GST)</option>
+                        <option value="Asia/Tokyo">Tokyo (JST)</option>
+                        <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+                        <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
+                        <option value="Europe/Paris">Paris (CET/CEST)</option>
+                        <option value="Asia/Singapore">Singapore (SGT)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="results" style="margin-top: 3rem; text-align: center; display: none;">
+                <div
+                    style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+                    Converted Time</div>
+                <div id="convertedTime"
+                    style="font-size: clamp(1.8rem, 5vw, 2.5rem); margin: 1rem 0; font-weight: 800; color: var(--primary-color);">
+                </div>
+                <div id="timeDiff" style="font-size: 1.1rem; color: var(--text-muted);"></div>
+            </div>
+
+            <button class="btn" style="width: 100%; margin-top: 2rem;" onclick="convertTime()">Convert Time</button>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>Free Time Zone Converter Online</h2>
+            <p>Our <strong>time zone converter</strong> is an essential tool for remote workers, travelers, and anyone
+                coordinating across regions. It handles daylight savings adjustments automatically to give you the most
+                accurate world clock results.</p>
+
+            <h3>Key Features</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Automatic Detection:</strong> Uses your browser's local time as the starting point.</li>
+                <li><strong>Popular Zones:</strong> Quick access to major global cities and offsets.</li>
+                <li><strong>Privacy Guaranteed:</strong> No personal data or location is stored on our servers.</li>
+                <li><strong>Precise Offsets:</strong> Shows the exact time difference between locations.</li>
+            </ul>
+
+            <h2>How to Convert Time Zones</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li>Choose your local date and time.</li>
+                <li>Select the destination city or time zone.</li>
+                <li>Click <strong>"Convert Time"</strong>.</li>
+                <li>The target time and relative difference will be displayed instantly.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        // Set default time to now
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('sourceTime').value = now.toISOString().slice(0, 16);
+
+        function convertTime() {
+            const timeVal = document.getElementById('sourceTime').value;
+            const targetZone = document.getElementById('targetZone').value;
+            if (!timeVal) return;
+
+            const date = new Date(timeVal);
+
+            const options = {
+                timeZone: targetZone,
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+
+            const converted = new Intl.DateTimeFormat('en-US', options).format(date);
+
+            // Calculate diff
+            const localOffset = date.getTimezoneOffset();
+            const targetDateStr = new Intl.DateTimeFormat('en-US', { timeZone: targetZone, timeZoneName: 'short' }).format(date);
+
+            document.getElementById('convertedTime').textContent = converted;
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Structured Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Time Zone Converter",
+            "description": "Convert time between different world time zones instantly and accurately.",
+            "url": "https://worldoftools.in/time-zone-converter",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

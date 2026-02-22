@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Keyword Density Checker Online - SEO Audit Tool | WorldOfTools</title>
+    <meta name="description"
+        content="Analyze the keyword density of your text or blog post instantly. Improve your SEO with our free online keyword frequency checker. 100% private.">
+    <meta name="keywords"
+        content="keyword density checker, keyword frequency tool, seo keyword analyzer, check keyword density, free seo tools online, content optimization">
+    <link rel="canonical" href="https://worldoftools.in/keyword-density-checker" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>📊 Keyword Density Checker</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Optimize your content for search
+                engines by analyzing word frequencies.</p>
+        </section>
+
+        <div class="card" style="max-width: 900px; margin: 0 auto;">
+            <div class="input-group">
+                <label for="textInput">Content to Analyze</label>
+                <textarea id="textInput" placeholder="Paste your article or text here..."
+                    style="min-height: 300px; font-family: inherit;"></textarea>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                <button class="btn" onclick="analyzeDensity()" style="flex: 1;">Analyze Content</button>
+                <button class="btn btn-secondary" onclick="clearAll()" style="background: #64748b;">Clear</button>
+            </div>
+
+            <div id="resultsArea" style="display: none; margin-top: 3rem;">
+                <h3>Analysis Results</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                                <th style="padding: 1rem;">Keyword</th>
+                                <th style="padding: 1rem;">Count</th>
+                                <th style="padding: 1rem;">Density (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="densityTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                🛡️ 100% Private: Analysis is performed locally in your browser.
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>Free Keyword Density Checker for SEO</h2>
+            <p>Our <strong>keyword density checker</strong> helps you ensure your content is perfectly optimized for
+                search engines like Google. By analyzing the frequency of specific terms, you can avoid keyword stuffing
+                while ensuring your primary topics are well-represented.</p>
+
+            <h3>Why Keyword Density Matters?</h3>
+            <p>Keyword density is the percentage of times a keyword or phrase appears on a web page compared to the
+                total number of words on the page. In the context of SEO, it helps search engines understand the topic
+                of your content.</p>
+
+            <h3>How to Use Our Analyzer</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li>Paste your text into the box above.</li>
+                <li>Click <strong>"Analyze Content"</strong>.</li>
+                <li>Review the table to see which words appear most frequently.</li>
+                <li>Adjust your content if any irrelevant words have high density or if your target keywords are too
+                    low.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        function analyzeDensity() {
+            const text = document.getElementById('textInput').value.toLowerCase();
+            if (!text.trim()) return;
+
+            // Remove stop words (simplified list)
+            const stopWords = ['a', 'an', 'the', 'and', 'or', 'but', 'is', 'if', 'then', 'else', 'when', 'at', 'from', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'of', 'in', 'on', 'it', 'was', 'were', 'had', 'has', 'have'];
+
+            const words = text.match(/\b(\w+)\b/g);
+            if (!words) return;
+
+            const totalWords = words.length;
+            const frequency = {};
+
+            words.forEach(word => {
+                if (word.length > 2 && !stopWords.includes(word)) {
+                    frequency[word] = (frequency[word] || 0) + 1;
+                }
+            });
+
+            const sorted = Object.entries(frequency)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 20);
+
+            const tableBody = document.getElementById('densityTableBody');
+            tableBody.innerHTML = '';
+
+            sorted.forEach(([word, count]) => {
+                const density = ((count / totalWords) * 100).toFixed(2);
+                const row = `
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 1rem;"><strong>${word}</strong></td>
+                        <td style="padding: 1rem;">${count}</td>
+                        <td style="padding: 1rem;">${density}%</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+
+            document.getElementById('resultsArea').style.display = 'block';
+            document.getElementById('resultsArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function clearAll() {
+            document.getElementById('textInput').value = '';
+            document.getElementById('resultsArea').style.display = 'none';
+        }
+
+        // Structured Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Keyword Density Checker",
+            "description": "Analyze text for keyword frequency and density to improve search engine optimization.",
+            "url": "https://worldoftools.in/keyword-density-checker",
+            "applicationCategory": "SEOApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Lorem Ipsum Generator Online - Dummy Text Tool | WorldOfTools</title>
+    <meta name="description"
+        content="Generate professional dummy text (placeholder text) for your designs and layouts. Customize by paragraphs, sentences, or words. Free and fast.">
+    <meta name="keywords"
+        content="lorem ipsum generator, dummy text generator, placeholder text tool, free lorem ipsum, designer tools, filler text generator">
+    <link rel="canonical" href="https://worldoftools.in/lorem-ipsum-generator" />
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1>🖋️ Lorem Ipsum Generator</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Quickly generate dummy text for
+                your web designs or print layouts.</p>
+        </section>
+
+        <div class="card" style="max-width: 850px; margin: 0 auto; padding: 2.5rem;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; align-items: end;">
+                <div class="input-group">
+                    <label for="count">Count</label>
+                    <input type="number" id="count" value="3" min="1" max="50" style="padding: 0.8rem;">
+                </div>
+                <div class="input-group">
+                    <label for="type">Type</label>
+                    <select id="type" style="padding: 0.8rem;">
+                        <option value="paragraphs">Paragraphs</option>
+                        <option value="sentences">Sentences</option>
+                        <option value="words">Words</option>
+                    </select>
+                </div>
+                <button class="btn" style="height: 3.5rem;" onclick="generateText()">Generate Text</button>
+            </div>
+
+            <div class="input-group" style="margin-top: 2.5rem;">
+                <label for="outputText">Resulting Placeholder Text</label>
+                <textarea id="outputText" readonly
+                    style="min-height: 400px; font-family: inherit; line-height: 1.6;"></textarea>
+            </div>
+
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="copyText()">Copy to
+                Clipboard</button>
+        </div>
+
+        <section class="container" style="max-width: 800px; padding: 6rem 0;">
+            <h2>Free Dummy Text Generator Online</h2>
+            <p>Our <strong>Lorem Ipsum generator</strong> is a simple yet powerful tool for designers, developers, and
+                publishers. Whether you need a few dummy words for a logo or several paragraphs for a website mockup,
+                we've got you covered.</p>
+
+            <h3>Why Use Lorem Ipsum?</h3>
+            <p>Using "filler" text helps you focus on the layout and design elements of a project without being
+                distracted by specific content. It's much better than repetitive "text goes here" phrases as it mimics
+                the natural distribution of letters and word lengths in English.</p>
+
+            <h3>How to Use</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li>Choose the number of items you need.</li>
+                <li>Select whether you want <strong>words</strong>, <strong>sentences</strong>, or
+                    <strong>paragraphs</strong>.</li>
+                <li>Click <strong>"Generate Text"</strong>.</li>
+                <li>Copy the result and paste it directly into your creative workspace.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/common.js?v=1.2"></script>
+    <script>
+        const textSource = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.", "Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.", "Integer in mauris eu nibh euismod gravida.", "Duis ac tellus et risus vulputate vehicula.", "Donec lobortis risus a elit.", "Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam.", "Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi.", "Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque.", "Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat.", "Cras mollis scelerisque nunc. Nullam arcu.", "Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci.", "In hac habitasse platea dictumst."];
+
+        function generateText() {
+            const count = parseInt(document.getElementById('count').value);
+            const type = document.getElementById('type').value;
+            let result = '';
+
+            if (type === 'paragraphs') {
+                for (let i = 0; i < count; i++) {
+                    let p = '';
+                    for (let j = 0; j < 5; j++) {
+                        p += textSource[Math.floor(Math.random() * textSource.length)] + ' ';
+                    }
+                    result += p.trim() + '\n\n';
+                }
+            } else if (type === 'sentences') {
+                for (let i = 0; i < count; i++) {
+                    result += textSource[Math.floor(Math.random() * textSource.length)] + ' ';
+                }
+            } else {
+                let allWords = textSource.join(' ').split(' ');
+                for (let i = 0; i < count; i++) {
+                    result += allWords[Math.floor(Math.random() * allWords.length)] + ' ';
+                }
+            }
+
+            document.getElementById('outputText').value = result.trim();
+        }
+
+        function copyText() {
+            const output = document.getElementById('outputText');
+            output.select();
+            document.execCommand('copy');
+        }
+
+        // Initialize with default
+        generateText();
+
+        // Structured Data
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Lorem Ipsum Generator",
+            "description": "Generate custom placeholder text for web design and printing layouts. Fast and free.",
+            "url": "https://worldoftools.in/lorem-ipsum-generator",
+            "applicationCategory": "DesignApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>
