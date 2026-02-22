@@ -26,6 +26,31 @@
     <script defer src="/_vercel/insights/script.js"></script>
     <!-- JsBarcode CDN -->
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <style>
+        #barcodeCanvas {
+            max-width: 100%;
+            height: auto !important;
+        }
+
+        .barcode-container {
+            margin-top: 3rem;
+            text-align: center;
+            background: white;
+            padding: 3rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @media (max-width: 600px) {
+            .barcode-container {
+                padding: 2rem 0.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -57,8 +82,7 @@
                 </div>
             </div>
 
-            <div
-                style="margin-top: 3rem; text-align: center; background: white; padding: 3rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div class="barcode-container">
                 <svg id="barcodeCanvas"></svg>
             </div>
 
