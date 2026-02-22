@@ -59,7 +59,11 @@
                     onclick="clearAll()">Clear</button>
             </div>
 
-            <textarea id="htmlOutput" style="display: none;"></textarea>
+            <div id="htmlCodeContainer" style="margin-top: 1.5rem; display: none;">
+                <label>Raw HTML Code</label>
+                <textarea id="htmlOutput" readonly
+                    style="min-height: 200px; font-family: monospace; font-size: 0.85rem; background: #f8fafc; margin-top: 0.5rem;"></textarea>
+            </div>
 
             <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
                 🛡️ Private & Secure: Your content is processed locally in your browser.
@@ -137,9 +141,15 @@
         }
 
         function copyHtml() {
+            const html = htmlOutput.value;
+            if (!html) return;
+
+            // Show the code container when copying, or keep it hidden if preferred
+            // document.getElementById('htmlCodeContainer').style.display = 'block';
+
             htmlOutput.select();
             document.execCommand('copy');
-            // Optional: Show toast
+            alert('HTML code copied to clipboard!');
         }
 
         function clearAll() {
