@@ -13,14 +13,14 @@ function injectHeader() {
             <div class="header-content">
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index#calculators">Calculators</a></li>
-                        <li><a href="index#tools">Text Tools</a></li>
-                        <li><a href="index#converters">Converters</a></li>
-                        <li><a href="index#generators">Generators</a></li>
+                        <li><a href="/#calculators">Calculators</a></li>
+                        <li><a href="/#tools">Text Tools</a></li>
+                        <li><a href="/#converters">Converters</a></li>
+                        <li><a href="/#generators">Generators</a></li>
                     </ul>
                 </nav>
 
-                <a href="index" class="logo logo-center" aria-label="WorldOfTools Home">
+                <a href="/" class="logo logo-center" aria-label="WorldOfTools Home">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40" style="flex-shrink:0;">
                         <defs>
                             <linearGradient id="hBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -96,7 +96,7 @@ function injectFooter() {
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="age-calculator">Age Calculator</a></li>
                         <li><a href="json-formatter">JSON Formatter</a></li>
                         <li><a href="image-compressor">Image Compressor</a></li>
