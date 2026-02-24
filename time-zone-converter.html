@@ -37,8 +37,25 @@
                     different regions.</p>
             </section>
 
-            <div class="tool-main-card" style="padding: 3rem;">
-                <div
+            <style>
+                @media (max-width: 768px) {
+                    .tool-main-card {
+                        padding: 1.5rem !important;
+                    }
+
+                    #results {
+                        padding: 1.5rem !important;
+                    }
+
+                    .time-zone-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 1.5rem !important;
+                    }
+                }
+            </style>
+
+            <div class="tool-main-card">
+                <div class="time-zone-grid"
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
                     <div class="input-group">
                         <label for="sourceTime"
@@ -73,7 +90,7 @@
                         style="font-size: 0.9rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; opacity: 0.8;">
                         Converted Time</div>
                     <div id="convertedTime"
-                        style="font-size: clamp(2rem, 6vw, 3.2rem); margin: 1rem 0; font-weight: 900; color: var(--primary-color); letter-spacing: -0.02em;">
+                        style="font-size: clamp(1.8rem, 6vw, 3.2rem); margin: 1rem 0; font-weight: 900; color: var(--primary-color); letter-spacing: -0.02em;">
                     </div>
                     <div id="timeDiff" style="font-size: 1.15rem; color: #64748b; font-weight: 500; margin-top: 1rem;">
                     </div>

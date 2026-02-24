@@ -19,11 +19,13 @@
             grid-template-columns: 1fr 300px;
             gap: 2rem;
             align-items: start;
+            margin-bottom: 0;
         }
 
         @media (max-width: 850px) {
             .qr-layout {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
 
@@ -64,13 +66,29 @@
         }
 
         .qr-preview-card {
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
+            background: white;
+            border: 1px solid var(--border-color);
             padding: 2rem;
             border-radius: 20px;
             text-align: center;
             position: sticky;
             top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-main-card {
+                padding: 1.5rem !important;
+            }
+
+            .qr-preview-card {
+                position: static;
+                padding: 1.5rem !important;
+                box-shadow: none !important;
+            }
+
+            .qr-inputs-section {
+                padding-right: 0 !important;
+            }
         }
 
         #qrcode {
@@ -123,8 +141,8 @@
             </section>
 
             <div class="tool-main-card">
-                <div class="qr-layout" style="margin-bottom: 0;">
-                    <div style="padding-right: 1rem;">
+                <div class="qr-layout">
+                    <div class="qr-inputs-section">
                         <div class="tabs">
                             <button class="tab-btn active" onclick="switchTab('text')">🔗 URL / Text</button>
                             <button class="tab-btn" onclick="switchTab('whatsapp')">💬 WhatsApp</button>
@@ -180,8 +198,7 @@
                         </div>
                     </div>
 
-                    <div class="qr-preview-card"
-                        style="background: white; border: 1px solid var(--border-color); box-shadow: none;">
+                    <div class="qr-preview-card">
                         <div id="qrcode"></div>
                         <div class="download-actions">
                             <button class="btn btn-primary" onclick="downloadPNG()" style="width: 100%;">📥 Download

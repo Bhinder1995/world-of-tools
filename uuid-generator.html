@@ -19,17 +19,37 @@
             grid-template-columns: 1fr 1fr;
             gap: 2.5rem;
             align-items: flex-start;
+            margin-bottom: 0;
         }
 
         @media (max-width: 1024px) {
             .uuid-layout {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
 
         .controls-card {
             position: sticky;
             top: 2rem;
+            box-shadow: none !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        @media (max-width: 768px) {
+            .controls-card {
+                position: static;
+                padding: 1.5rem !important;
+            }
+
+            .uuid-list {
+                padding: 1rem !important;
+            }
+
+            .uuid-layout .card {
+                box-shadow: none !important;
+                border: 1px solid var(--border-color) !important;
+            }
         }
 
         .uuid-list {
@@ -126,8 +146,8 @@
             </section>
 
             <div class="tool-main-card">
-                <div class="uuid-layout" style="margin-bottom: 0;">
-                    <div class="card controls-card" style="box-shadow: none; border: 1px solid var(--border-color);">
+                <div class="uuid-layout">
+                    <div class="card controls-card">
                         <h3 style="margin-bottom: 1.5rem;">How many UUIDs?</h3>
                         <div class="count-selector" id="countSelector">
                             <button class="count-btn" onclick="setCount(1)">1</button>
@@ -155,7 +175,7 @@
                         </div>
                     </div>
 
-                    <div class="card" style="box-shadow: none; border: 1px solid var(--border-color);">
+                    <div class="card">
                         <div
                             style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                             <h3 id="resultTitle">Generated UUIDs (100)</h3>
