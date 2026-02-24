@@ -32,41 +32,44 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>📝 Markdown to HTML</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Write in Markdown, get clean HTML
-                instantly.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>📝 Markdown to HTML</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Write in Markdown, get clean HTML instantly.</p>
+            </section>
 
-        <div class="card" style="max-width: 1200px; margin: 0 auto;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div class="input-group">
-                    <label for="mdInput">Markdown Editor</label>
-                    <textarea id="mdInput" placeholder="# Hello World&#10;&#10;Type your markdown here..."
-                        style="min-height: 500px; font-family: monospace; font-size: 0.9rem;"></textarea>
-                </div>
-                <div class="input-group">
-                    <label>Live Preview / HTML Output</label>
-                    <div id="htmlPreview"
-                        style="min-height: 500px; padding: 1rem; border: 1px solid var(--border-color); border-radius: 12px; overflow-y: auto; background: white;">
+            <div class="tool-main-card">
+                <div class="markdown-editor-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div class="input-group">
+                        <label for="mdInput">Markdown Editor</label>
+                        <textarea id="mdInput" placeholder="# Hello World&#10;&#10;Type your markdown here..."
+                            style="min-height: 500px; font-family: monospace; font-size: 0.9rem; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color);"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Live Preview / HTML Output</label>
+                        <div id="htmlPreview"
+                            style="min-height: 500px; padding: 1.5rem; border: 2px solid var(--border-color); border-radius: 12px; overflow-y: auto; background: white;">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                <button class="btn" style="flex: 2;" onclick="copyHtml()">Copy HTML Code</button>
-                <button class="btn btn-secondary" style="flex: 1; background: #64748b;"
-                    onclick="clearAll()">Clear</button>
-            </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn" style="flex: 2; border-radius: 12px; height: 3.5rem;" onclick="copyHtml()">Copy
+                        HTML Code</button>
+                    <button class="btn btn-secondary"
+                        style="flex: 1; background: #64748b; border-radius: 12px; height: 3.5rem;"
+                        onclick="clearAll()">Clear</button>
+                </div>
 
-            <div id="htmlCodeContainer" style="margin-top: 1.5rem; display: none;">
-                <label>Raw HTML Code</label>
-                <textarea id="htmlOutput" readonly
-                    style="min-height: 200px; font-family: monospace; font-size: 0.85rem; background: #f8fafc; margin-top: 0.5rem;"></textarea>
-            </div>
+                <div id="htmlCodeContainer" style="margin-top: 1.5rem; display: none;">
+                    <label>Raw HTML Code</label>
+                    <textarea id="htmlOutput" readonly
+                        style="min-height: 200px; font-family: monospace; font-size: 0.85rem; background: #f8fafc; margin-top: 0.5rem; border-radius: 12px; padding: 1rem; border: 1px solid var(--border-color);"></textarea>
+                </div>
 
-            <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
-                🛡️ Private & Secure: Your content is processed locally in your browser.
+                <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                    🛡️ Private & Secure: Your content is processed locally in your browser.
+                </div>
             </div>
         </div>
 

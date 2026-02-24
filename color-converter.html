@@ -116,61 +116,70 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🎨 Color Converter</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Professional color code
-                conversion between HEX, RGB, and HSL.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🎨 Color Converter</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Professional color code conversion between HEX,
+                    RGB, and HSL.</p>
+            </section>
 
-        <div class="color-layout">
-            <div class="card">
-                <div class="color-picker-container">
-                    <label style="display: block; margin-bottom: 1rem; color: var(--text-muted); font-weight: 600;">Pick
-                        a Color</label>
-                    <input type="color" id="colorPicker" value="#4f46e5" oninput="updateFromPicker(this.value)">
-                </div>
+            <div class="tool-main-card">
+                <div class="color-layout" style="margin-bottom: 0;">
+                    <div class="card" style="box-shadow: none; border: 1px solid var(--border-color);">
+                        <div class="color-picker-container">
+                            <label
+                                style="display: block; margin-bottom: 1rem; color: var(--text-muted); font-weight: 600;">Pick
+                                a Color</label>
+                            <input type="color" id="colorPicker" value="#4f46e5" oninput="updateFromPicker(this.value)">
+                        </div>
 
-                <div class="color-inputs">
-                    <div class="input-group">
-                        <label>HEX Code</label>
-                        <div class="input-with-btn">
-                            <input type="text" id="hexInput" placeholder="#000000" oninput="updateFromHex(this.value)">
-                            <button class="btn btn-primary" onclick="copyValue('hexInput')"
-                                style="padding: 0.5rem 1rem;">Copy</button>
+                        <div class="color-inputs">
+                            <div class="input-group">
+                                <label>HEX Code</label>
+                                <div class="input-with-btn">
+                                    <input type="text" id="hexInput" placeholder="#000000"
+                                        oninput="updateFromHex(this.value)" style="border-radius: 12px 0 0 12px;">
+                                    <button class="btn btn-primary" onclick="copyValue('hexInput')"
+                                        style="padding: 0.5rem 1.25rem; border-radius: 0 12px 12px 0; font-weight: 700;">Copy</button>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>RGB Code</label>
+                                <div class="input-with-btn">
+                                    <input type="text" id="rgbInput" placeholder="rgb(0, 0, 0)"
+                                        oninput="updateFromRgb(this.value)" style="border-radius: 12px 0 0 12px;">
+                                    <button class="btn btn-primary" onclick="copyValue('rgbInput')"
+                                        style="padding: 0.5rem 1.25rem; border-radius: 0 12px 12px 0; font-weight: 700;">Copy</button>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>HSL Code</label>
+                                <div class="input-with-btn">
+                                    <input type="text" id="hslInput" placeholder="hsl(0, 0%, 0%)"
+                                        oninput="updateFromHsl(this.value)" style="border-radius: 12px 0 0 12px;">
+                                    <button class="btn btn-primary" onclick="copyValue('hslInput')"
+                                        style="padding: 0.5rem 1.25rem; border-radius: 0 12px 12px 0; font-weight: 700;">Copy</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="input-group">
-                        <label>RGB Code</label>
-                        <div class="input-with-btn">
-                            <input type="text" id="rgbInput" placeholder="rgb(0, 0, 0)"
-                                oninput="updateFromRgb(this.value)">
-                            <button class="btn btn-primary" onclick="copyValue('rgbInput')"
-                                style="padding: 0.5rem 1rem;">Copy</button>
+                    <div>
+                        <div id="previewBox" class="preview-box"
+                            style="background-color: #4f46e5; border: 1px solid var(--border-color); box-shadow: var(--card-shadow);">
+                            <span id="previewText" class="preview-text"
+                                style="color: white; font-family: var(--font-heading);">#4f46e5</span>
                         </div>
-                    </div>
 
-                    <div class="input-group">
-                        <label>HSL Code</label>
-                        <div class="input-with-btn">
-                            <input type="text" id="hslInput" placeholder="hsl(0, 0%, 0%)"
-                                oninput="updateFromHsl(this.value)">
-                            <button class="btn btn-primary" onclick="copyValue('hslInput')"
-                                style="padding: 0.5rem 1rem;">Copy</button>
+                        <div class="card" style="box-shadow: none; border: 1px solid var(--border-color);">
+                            <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Quick Palette</h3>
+                            <div id="palette"
+                                style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem;">
+                                <!-- Palette injected by JS -->
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div id="previewBox" class="preview-box" style="background-color: #4f46e5;">
-                    <span id="previewText" class="preview-text" style="color: white;">#4f46e5</span>
-                </div>
-
-                <div class="card">
-                    <h3 style="margin-bottom: 1.5rem;">Quick Palette</h3>
-                    <div id="palette" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem;">
-                        <!-- Palette injected by JS -->
                     </div>
                 </div>
             </div>

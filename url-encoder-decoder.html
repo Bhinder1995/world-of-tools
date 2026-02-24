@@ -67,21 +67,26 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🔗 URL Encoder & Decoder</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Safely encode special characters
-                for URLs or decode them back to plain text.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🔗 URL Encoder & Decoder</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Safely encode special characters for URLs or
+                    decode them back to plain text.</p>
+            </section>
 
-        <div class="card tool-ui" style="padding: 2.5rem;">
-            <label style="display: block; margin-bottom: 0.75rem; font-weight: 700;">Input Text / URL</label>
-            <textarea id="urlInput" placeholder="Enter your text or encoded URL here..."></textarea>
+            <div class="tool-main-card">
+                <div class="input-group">
+                    <label for="urlInput">Input Text / URL</label>
+                    <textarea id="urlInput" placeholder="Enter your text or encoded URL here..."
+                        style="min-height: 200px;"></textarea>
+                </div>
 
-            <div class="actions">
-                <button class="btn btn-primary" onclick="process(true)">🚀 Encode URL</button>
-                <button class="btn btn-secondary" onclick="process(false)">🔓 Decode URL</button>
-                <button class="btn btn-secondary" onclick="copyResult()">📋 Copy</button>
-                <button class="btn btn-secondary" onclick="downloadResult()">📥 Download</button>
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="process(true)">🚀 Encode URL</button>
+                    <button class="btn btn-secondary" onclick="process(false)">🔓 Decode URL</button>
+                    <button class="btn btn-secondary" onclick="copyResult()">📋 Copy</button>
+                    <button class="btn btn-secondary" onclick="downloadResult()">📥 Download</button>
+                </div>
             </div>
         </div>
 

@@ -72,27 +72,30 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🛠️ SQL Formatter</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Format your SQL queries for
-                better
-                readability or minify them instantly.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🛠️ SQL Formatter</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Format your SQL queries for better readability
+                    or minify them instantly.</p>
+            </section>
 
-        <div class="card sql-ui" style="padding: 2.5rem;">
-            <div class="controls">
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="formatSQL()">✨ Beautify SQL</button>
-                    <button class="btn btn-secondary" onclick="minifySQL()">🗜️ Minify SQL</button>
+            <div class="tool-main-card">
+                <div class="controls"
+                    style="background: #f8fafc; border: 1px solid var(--border-color); margin-bottom: 2rem;">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="formatSQL()">✨ Beautify SQL</button>
+                        <button class="btn btn-secondary" onclick="minifySQL()">🗜️ Minify SQL</button>
+                    </div>
+                    <div style="flex-grow: 1;"></div>
+                    <button class="btn btn-secondary" onclick="copySQL()">📋 Copy</button>
+                    <button class="btn btn-secondary" onclick="downloadSQL()">📥 Download</button>
+                    <button class="btn btn-secondary" style="color: #ef4444;" onclick="clearSQL()">🗑️ Clear</button>
                 </div>
-                <div style="flex-grow: 1;"></div>
-                <button class="btn btn-secondary" onclick="copySQL()">📋 Copy</button>
-                <button class="btn btn-secondary" onclick="downloadSQL()">📥 Download</button>
-                <button class="btn btn-secondary" style="color: #ef4444;" onclick="clearSQL()">🗑️ Clear</button>
-            </div>
 
-            <textarea id="sqlInput" placeholder="-- Paste your SQL query here
-SELECT * FROM users WHERE id = 1;"></textarea>
+                <textarea id="sqlInput" placeholder="-- Paste your SQL query here
+SELECT * FROM users WHERE id = 1;"
+                    style="border: 2px solid var(--border-color); border-radius: 12px; height: 500px; padding: 1.5rem;"></textarea>
+            </div>
         </div>
 
         <section class="container" style="max-width: 850px; padding: 6rem 0;">

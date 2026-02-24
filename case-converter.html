@@ -30,38 +30,40 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🔠 Case Converter</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Transform your text into
-                different letter cases instantly.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🔠 Case Converter</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Transform your text into different letter cases
+                    instantly.</p>
+            </section>
 
-        <div class="card" style="max-width: 900px; margin: 0 auto;">
-            <div class="input-group">
-                <label for="inputText">Input Text</label>
-                <textarea id="inputText" placeholder="Type or paste your text here..."
-                    style="min-height: 200px; font-family: inherit;"></textarea>
-            </div>
+            <div class="tool-main-card">
+                <div class="input-group">
+                    <label for="inputText">Input Text</label>
+                    <textarea id="inputText" placeholder="Type or paste your text here..."
+                        style="min-height: 200px; font-family: inherit;"></textarea>
+                </div>
 
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
-                <button class="btn btn-secondary" onclick="convertCase('upper')">UPPERCASE</button>
-                <button class="btn btn-secondary" onclick="convertCase('lower')">lowercase</button>
-                <button class="btn btn-secondary" onclick="convertCase('title')">Title Case</button>
-                <button class="btn btn-secondary" onclick="convertCase('camel')">camelCase</button>
-                <button class="btn btn-secondary" onclick="convertCase('snake')">snake_case</button>
-            </div>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <button class="btn btn-secondary" onclick="convertCase('upper')">UPPERCASE</button>
+                    <button class="btn btn-secondary" onclick="convertCase('lower')">lowercase</button>
+                    <button class="btn btn-secondary" onclick="convertCase('title')">Title Case</button>
+                    <button class="btn btn-secondary" onclick="convertCase('camel')">camelCase</button>
+                    <button class="btn btn-secondary" onclick="convertCase('snake')">snake_case</button>
+                </div>
 
-            <div class="input-group" style="margin-top: 2rem;">
-                <label for="outputText">Converted Text</label>
-                <textarea id="outputText" readonly placeholder="Result will appear here..."
-                    style="min-height: 200px; font-family: inherit; background: rgba(0,0,0,0.02);"></textarea>
-            </div>
+                <div class="input-group" style="margin-top: 2rem;">
+                    <label for="outputText">Converted Text</label>
+                    <textarea id="outputText" readonly placeholder="Result will appear here..."
+                        style="min-height: 200px; font-family: inherit; background: rgba(0,0,0,0.02);"></textarea>
+                </div>
 
-            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                <button class="btn" onclick="copyToClipboard()" style="flex: 1;">Copy to Clipboard</button>
-                <button class="btn btn-secondary" onclick="clearAll()"
-                    style="flex: 1; background: #64748b;">Clear</button>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button class="btn" onclick="copyToClipboard()" style="flex: 1;">Copy to Clipboard</button>
+                    <button class="btn btn-secondary" onclick="clearAll()"
+                        style="flex: 1; background: #64748b;">Clear</button>
+                </div>
             </div>
         </div>
 

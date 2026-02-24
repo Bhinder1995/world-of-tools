@@ -14,13 +14,13 @@ function injectHeader() {
                 <nav id="main-nav">
                     <ul>
                         <li><a href="/#calculators">Calculators</a></li>
-                        <li><a href="/#tools">Text Tools</a></li>
-                        <li><a href="/#converters">Converters</a></li>
-                        <li><a href="/#generators">Generators</a></li>
+                        <li><a href="/#tools">Tools</a></li>
+                        <li><a href="/#dev-tools">Developers</a></li>
+                        <li><a href="/#utilities">Utilities</a></li>
                     </ul>
                 </nav>
 
-                <a href="/" class="logo logo-center" aria-label="WorldOfTools Home">
+                <a href="/" class="logo-center" aria-label="WorldOfTools Home">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40" style="flex-shrink:0;">
                         <defs>
                             <linearGradient id="hBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -87,35 +87,52 @@ function setupMobileMenu() {
 
 function injectFooter() {
     const footerHTML = `
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>WorldOfTools</h4>
-                    <p>Free. Fast. Private. No server-side processing for your data.</p>
+    <footer style="background: #0f172a; color: white; padding: 10rem 1.5rem 4rem; position: relative; overflow: hidden; margin-top: 8rem;">
+        <!-- Background Glow -->
+        <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%); pointer-events: none;"></div>
+        
+        <div class="footer-content" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; position: relative; z-index: 1;">
+            <div class="footer-section">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;">
+                    <img src="/logo.svg" alt="WorldOfTools" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+                    <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem;">WorldOfTools</span>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="age-calculator">Age Calculator</a></li>
-                        <li><a href="json-formatter">JSON Formatter</a></li>
-                        <li><a href="image-compressor">Image Compressor</a></li>
-                        <li><a href="password-generator">Password Gen</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy">Privacy Policy</a></li>
-                        <li><a href="terms">Terms of Service</a></li>
-                        <li><a href="contact">Contact</a></li>
-                    </ul>
-                </div>
+                <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 2rem; max-width: 300px; font-size: 0.95rem;">
+                    The ultimate privacy-focused utility hub. Every tool runs 100% in your browser for maximum speed and security.
+                </p>
+                <div style="color: white; font-weight: 700; font-size: 0.9rem;">Fast. Free. Private.</div>
             </div>
-            <div class="text-center" style="margin-top: 2rem; opacity: 0.6; font-size: 0.8rem;">
-                &copy; ${new Date().getFullYear()} WorldOfTools. All rights reserved.
+            <div class="footer-section">
+                <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">Utilities</h4>
+                <ul>
+                    <li><a href="/hash-generator">Hash Generator</a></li>
+                    <li><a href="/password-generator">Password Generator</a></li>
+                    <li><a href="/json-formatter">JSON Formatter</a></li>
+                    <li><a href="/unit-converter">Unit Converter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">Calculators</h4>
+                <ul>
+                    <li><a href="/age-calculator">Age Calculator</a></li>
+                    <li><a href="/emi-calculator">EMI Calculator</a></li>
+                    <li><a href="/gst-calculator">GST Calculator</a></li>
+                    <li><a href="/scientific-calculator">Scientific Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">Company</h4>
+                <ul>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
             </div>
         </div>
+        <div class="footer-bottom" style="max-width: 1200px; margin: 6rem auto 0; padding-top: 3rem; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; color: #64748b; font-size: 0.9rem;">
+            <p>&copy; ${new Date().getFullYear()} WorldOfTools. Professional utilities for developers and creators. All rights reserved.</p>
+        </div>
+    </footer>
     `;
 
     const footer = document.querySelector('footer');

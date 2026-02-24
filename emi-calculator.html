@@ -30,83 +30,92 @@
     <header></header> <!-- Injected by js/common.js -->
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🏦 EMI Calculator</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Plan your loans with accurate
-                monthly installment calculations and full schedules.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🏦 EMI Calculator</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Plan your loans with accurate monthly
+                    installment calculations and full schedules.</p>
+            </section>
 
-        <div class="card" style="max-width: 800px; margin: 0 auto;">
-            <form id="emiForm" style="margin-bottom: 0;">
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div class="input-group">
-                        <label>Loan Amount (₹)</label>
-                        <input type="number" id="principal" value="500000" min="0">
-                    </div>
-                    <div class="input-group">
-                        <label>Interest Rate (% P.A.)</label>
-                        <input type="number" id="interest" value="10.5" step="0.1" min="0">
-                    </div>
-                    <div class="input-group">
-                        <label>Loan Tenure</label>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <input type="number" id="tenure" value="5" min="0" style="flex: 1;">
-                            <select id="tenureType" style="width: 120px;">
-                                <option value="years">Years</option>
-                                <option value="months">Months</option>
-                            </select>
+            <div class="tool-main-card">
+                <form id="emiForm" style="margin-bottom: 2rem;">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="input-group">
+                            <label>Loan Amount (₹)</label>
+                            <input type="number" id="principal" value="500000" min="0"
+                                style="padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); font-size: 1.1rem;">
+                        </div>
+                        <div class="input-group">
+                            <label>Interest Rate (% P.A.)</label>
+                            <input type="number" id="interest" value="10.5" step="0.1" min="0"
+                                style="padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); font-size: 1.1rem;">
+                        </div>
+                        <div class="input-group">
+                            <label>Loan Tenure</label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <input type="number" id="tenure" value="5" min="0"
+                                    style="flex: 1; padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); font-size: 1.1rem;">
+                                <select id="tenureType"
+                                    style="width: 120px; border-radius: 12px; border: 1px solid var(--border-color); padding: 0.5rem;">
+                                    <option value="years">Years</option>
+                                    <option value="months">Months</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <button type="submit" class="btn" style="width: 100%; border-radius: 12px; height: 3.5rem;">Calculate My
-                    EMI</button>
-            </form>
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; border-radius: 12px; height: 3.5rem; font-weight: 700; font-size: 1.1rem;">Calculate
+                        My EMI</button>
+                </form>
 
-            <div id="resultSummary" style="display: none; margin-top: 4rem; animation: subtitleFade 0.5s ease-out;">
-                <div style="text-align: center; margin-bottom: 3rem;">
+                <div id="resultSummary" style="display: none; margin-top: 3rem; animation: subtitleFade 0.5s ease-out;">
                     <div
-                        style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
-                        Your Monthly EMI</div>
-                    <div id="emiValue" class="result-value"
-                        style="margin: 0.5rem 0; font-size: clamp(2.5rem, 8vw, 4rem);"></div>
-                    <div
-                        style="display: inline-flex; align-items: center; gap: 0.5rem; background: #eff6ff; color: #1e40af; padding: 0.5rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600;">
-                        🔒 Secure & Browser-Based</div>
-                </div>
-
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
-                    <div class="card"
-                        style="padding: 1.5rem; text-align: center; background: white; border-color: #fbd38d;">
-                        <span id="totalInterest"
-                            style="display: block; font-weight: 800; font-size: 1.75rem; color: #dd6b20;"></span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Total
-                            Interest</span>
+                        style="text-align: center; margin-bottom: 3rem; padding: 2rem; background: var(--primary-gradient); border-radius: 20px; color: white;">
+                        <div
+                            style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.9; margin-bottom: 0.5rem;">
+                            Your Monthly EMI</div>
+                        <div id="emiValue"
+                            style="margin: 0.5rem 0; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800;"></div>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">🔒 Secure & Browser-Based Calculation</div>
                     </div>
-                    <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
-                        <span id="totalAmount"
-                            style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--text-color);"></span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Total
-                            Repayment</span>
-                    </div>
-                </div>
 
-                <div id="amortization" style="display: none;">
-                    <h3 style="margin-bottom: 1.5rem;">Repayment Schedule (First Year)</h3>
                     <div
-                        style="overflow-x: auto; background: white; border-radius: 16px; border: 1px solid var(--border-color);">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
-                            <thead style="background: #f8fafc; border-bottom: 2px solid var(--border-color);">
-                                <tr>
-                                    <th style="padding: 1.25rem; text-align: left;">Month</th>
-                                    <th style="padding: 1.25rem; text-align: left;">Principal</th>
-                                    <th style="padding: 1.25rem; text-align: left;">Interest</th>
-                                    <th style="padding: 1.25rem; text-align: left;">Balance</th>
-                                </tr>
-                            </thead>
-                            <tbody id="amortBody"></tbody>
-                        </table>
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                        <div class="card"
+                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid #fbd38d; box-shadow: none;">
+                            <span id="totalInterest"
+                                style="display: block; font-weight: 800; font-size: 1.75rem; color: #dd6b20;"></span>
+                            <span
+                                style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Total
+                                Interest</span>
+                        </div>
+                        <div class="card"
+                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color); box-shadow: none;">
+                            <span id="totalAmount"
+                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--text-color);"></span>
+                            <span
+                                style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Total
+                                Repayment</span>
+                        </div>
+                    </div>
+
+                    <div id="amortization" style="display: none;">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Repayment Schedule (First Year)</h3>
+                        <div
+                            style="overflow-x: auto; background: white; border-radius: 16px; border: 1px solid var(--border-color);">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                                <thead style="background: #f8fafc; border-bottom: 2px solid var(--border-color);">
+                                    <tr>
+                                        <th style="padding: 1.25rem; text-align: left;">Month</th>
+                                        <th style="padding: 1.25rem; text-align: left;">Principal</th>
+                                        <th style="padding: 1.25rem; text-align: left;">Interest</th>
+                                        <th style="padding: 1.25rem; text-align: left;">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="amortBody"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -30,29 +30,35 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🛠️ XML Formatter</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Clean, beautify, or minify your
-                XML code with ease.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🛠️ XML Formatter</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Clean, beautify, or minify your XML code with
+                    ease.</p>
+            </section>
 
-        <div class="card" style="max-width: 1000px; margin: 0 auto;">
-            <div class="input-group">
-                <label for="xmlInput">XML Code</label>
-                <textarea id="xmlInput" placeholder="Paste your XML here..."
-                    style="min-height: 400px; font-family: monospace; font-size: 0.9rem;"></textarea>
-            </div>
+            <div class="tool-main-card">
+                <div class="input-group">
+                    <label for="xmlInput">XML Code</label>
+                    <textarea id="xmlInput" placeholder="Paste your XML here..."
+                        style="min-height: 450px; font-family: monospace; font-size: 0.9rem; border: 2px solid var(--border-color); border-radius: 12px; padding: 1.5rem;"></textarea>
+                </div>
 
-            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                <button class="btn" style="flex: 2;" onclick="formatXml()">Beautify XML</button>
-                <button class="btn btn-secondary" style="flex: 1;" onclick="minifyXml()">Minify</button>
-                <button class="btn btn-secondary" style="flex: 1;" onclick="copyXml()">Copy</button>
-                <button class="btn btn-secondary" style="flex: 1; background: #64748b;"
-                    onclick="clearAll()">Clear</button>
-            </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary" style="flex: 2; height: 3.5rem; border-radius: 12px;"
+                        onclick="formatXml()">Beautify XML</button>
+                    <button class="btn btn-secondary" style="flex: 1; height: 3.5rem; border-radius: 12px;"
+                        onclick="minifyXml()">Minify</button>
+                    <button class="btn btn-secondary" style="flex: 1; height: 3.5rem; border-radius: 12px;"
+                        onclick="copyXml()">Copy</button>
+                    <button class="btn btn-secondary"
+                        style="flex: 1; background: #64748b; height: 3.5rem; border-radius: 12px;"
+                        onclick="clearAll()">Clear</button>
+                </div>
 
-            <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
-                🛡️ 100% Client-Side: Your XML data never leaves your computer.
+                <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                    🛡️ 100% Client-Side: Your XML data never leaves your computer.
+                </div>
             </div>
         </div>
 

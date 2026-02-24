@@ -30,63 +30,69 @@
     <header></header> <!-- Injected by js/common.js -->
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🎂 Age Calculator</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Find your exact age in years,
-                months, days and track your next birthday milestones.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🎂 Age Calculator</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Find your exact age in years, months, days and
+                    track your next birthday milestones.</p>
+            </section>
 
-        <div class="card" style="max-width: 800px; margin: 0 auto;">
-            <form id="ageForm" style="margin-bottom: 0;">
-                <div class="input-group">
-                    <label for="dob">Enter Your Date of Birth</label>
-                    <input type="date" id="dob" required style="font-size: 1.1rem; padding: 1rem;">
-                </div>
-                <button type="submit" class="btn" style="width: 100%; border-radius: 12px; height: 3.5rem;">Calculate My
-                    Age</button>
-            </form>
+            <div class="tool-main-card">
+                <form id="ageForm" style="margin-bottom: 0;">
+                    <div class="input-group">
+                        <label for="dob">Enter Your Date of Birth</label>
+                        <input type="date" id="dob" required style="font-size: 1.1rem; padding: 1rem;">
+                    </div>
+                    <button type="submit" class="btn"
+                        style="width: 100%; border-radius: 12px; height: 3.5rem;">Calculate My Age</button>
+                </form>
 
-            <div id="results" style="display: none; margin-top: 3rem; animation: subtitleFade 0.5s ease-out;">
-                <div style="text-align: center; margin-bottom: 3rem;">
+                <div id="results" style="display: none; margin-top: 3rem; animation: subtitleFade 0.5s ease-out;">
+                    <div style="text-align: center; margin-bottom: 3rem;">
+                        <div
+                            style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                            Your Precise Age</div>
+                        <div id="mainAge" class="result-value"
+                            style="margin: 0.5rem 0; font-size: clamp(2.5rem, 8vw, 4rem);"></div>
+                        <div
+                            style="display: inline-flex; align-items: center; gap: 0.5rem; background: #f0fdf4; color: #166534; padding: 0.5rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600;">
+                            🛡️ 100% Private & Local</div>
+                    </div>
+
                     <div
-                        style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
-                        Your Precise Age</div>
-                    <div id="mainAge" class="result-value"
-                        style="margin: 0.5rem 0; font-size: clamp(2.5rem, 8vw, 4rem);"></div>
-                    <div
-                        style="display: inline-flex; align-items: center; gap: 0.5rem; background: #f0fdf4; color: #166534; padding: 0.5rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600;">
-                        🛡️ 100% Private & Local</div>
-                </div>
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 3rem;">
+                        <div class="card"
+                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color);">
+                            <span id="totalMonths"
+                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Months</span>
+                        </div>
+                        <div class="card"
+                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color);">
+                            <span id="totalWeeks"
+                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Weeks</span>
+                        </div>
+                        <div class="card"
+                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color);">
+                            <span id="totalDays"
+                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Days</span>
+                        </div>
+                        <div class="card"
+                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color);">
+                            <span id="totalHours"
+                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Hours</span>
+                        </div>
+                    </div>
 
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 3rem;">
-                    <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
-                        <span id="totalMonths"
-                            style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Months</span>
-                    </div>
-                    <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
-                        <span id="totalWeeks"
-                            style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Weeks</span>
-                    </div>
-                    <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
-                        <span id="totalDays"
-                            style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Days</span>
-                    </div>
-                    <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
-                        <span id="totalHours"
-                            style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Hours</span>
-                    </div>
-                </div>
-
-                <div class="card"
-                    style="background: rgba(79, 70, 229, 0.05); border: 2px dashed rgba(79, 70, 229, 0.2); text-align: center; padding: 2.5rem;">
-                    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Next Birthday Countdown</h3>
-                    <div id="birthdayCountdown"
-                        style="font-size: 2rem; font-weight: 900; color: var(--primary-color); font-family: var(--font-heading);">
+                    <div class="card"
+                        style="background: rgba(79, 70, 229, 0.05); border: 2px dashed rgba(79, 70, 229, 0.2); text-align: center; padding: 2.5rem;">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Next Birthday Countdown</h3>
+                        <div id="birthdayCountdown"
+                            style="font-size: 2rem; font-weight: 900; color: var(--primary-color); font-family: var(--font-heading);">
+                        </div>
                     </div>
                 </div>
             </div>

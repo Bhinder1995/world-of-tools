@@ -30,35 +30,40 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>📊 CSV to JSON Converter</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Easily convert your CSV data into
-                structured JSON objects.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>📊 CSV to JSON Converter</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Easily convert your CSV data into structured
+                    JSON objects.</p>
+            </section>
 
-        <div class="card" style="max-width: 1000px; margin: 0 auto;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div class="input-group">
-                    <label for="csvInput">CSV Input</label>
-                    <textarea id="csvInput" placeholder="Paste CSV (comma-separated values) here..."
-                        style="min-height: 350px; font-family: monospace; font-size: 0.9rem;"></textarea>
+            <div class="tool-main-card">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div class="input-group">
+                        <label for="csvInput">CSV Input</label>
+                        <textarea id="csvInput" placeholder="Paste CSV (comma-separated values) here..."
+                            style="min-height: 400px; font-family: monospace; font-size: 0.9rem; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color);"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="jsonOutput">JSON Output</label>
+                        <textarea id="jsonOutput" readonly placeholder="Resulting JSON will appear here..."
+                            style="min-height: 400px; font-family: monospace; font-size: 0.9rem; background: #f8fafc; padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color);"></textarea>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="jsonOutput">JSON Output</label>
-                    <textarea id="jsonOutput" readonly placeholder="Resulting JSON will appear here..."
-                        style="min-height: 350px; font-family: monospace; font-size: 0.9rem; background: rgba(0,0,0,0.02);"></textarea>
+
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary" style="flex: 2; height: 3.5rem; border-radius: 12px;"
+                        onclick="convertCsvToJson()">Convert to JSON</button>
+                    <button class="btn btn-secondary" style="flex: 1; height: 3.5rem; border-radius: 12px;"
+                        onclick="copyJson()">Copy JSON</button>
+                    <button class="btn btn-secondary"
+                        style="flex: 1; background: #64748b; height: 3.5rem; border-radius: 12px;"
+                        onclick="clearAll()">Clear</button>
                 </div>
-            </div>
 
-            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                <button class="btn" style="flex: 2;" onclick="convertCsvToJson()">Convert to JSON</button>
-                <button class="btn btn-secondary" style="flex: 1;" onclick="copyJson()">Copy JSON</button>
-                <button class="btn btn-secondary" style="flex: 1; background: #64748b;"
-                    onclick="clearAll()">Clear</button>
-            </div>
-
-            <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
-                🛡️ 100% Private: All processing is done locally in your browser.
+                <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                    🛡️ 100% Private: All processing is done locally in your browser.
+                </div>
             </div>
         </div>
 

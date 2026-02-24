@@ -171,87 +171,96 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🏷️ SEO Meta Tag Generator</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Enhance your website's visibility
-                with perfect meta tags and live Google preview.</p>
-        </section>
+        <div class="tool-container" style="max-width: 1200px;">
+            <section class="tool-header">
+                <h1>🏷️ SEO Meta Tag Generator</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Enhance your website's visibility with perfect
+                    meta tags and live Google preview.</p>
+            </section>
 
-        <div class="generator-layout">
-            <!-- Left Config -->
-            <div class="card">
-                <h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="color: var(--primary-color);">⚙️</span> Meta Configuration
-                </h3>
+            <div class="generator-layout">
+                <!-- Left Config -->
+                <div class="tool-main-card">
+                    <h3
+                        style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-size: 1.25rem;">
+                        <span style="color: var(--primary-color);">⚙️</span> Meta Configuration
+                    </h3>
 
-                <div class="input-group">
-                    <div class="input-group-header">
-                        <label style="margin-bottom: 0;">Page Title</label>
-                        <button class="copy-text-btn" onclick="copyField('title')">Copy Text</button>
+                    <div class="input-group" style="margin-bottom: 1.5rem;">
+                        <div class="input-group-header">
+                            <label style="margin-bottom: 0; font-weight: 600;">Page Title</label>
+                            <button class="copy-text-btn" onclick="copyField('title')">Copy Text</button>
+                        </div>
+                        <input type="text" id="title" placeholder="Enter descriptive page title" maxlength="70"
+                            oninput="updatePreview()"
+                            style="padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); width: 100%;">
+                        <div id="titleCount" class="char-counter">0 / 60 characters (Recommended)</div>
                     </div>
-                    <input type="text" id="title" placeholder="Enter descriptive page title" maxlength="70"
-                        oninput="updatePreview()">
-                    <div id="titleCount" class="char-counter">0 / 60 characters (Recommended)</div>
-                </div>
 
-                <div class="input-group">
-                    <div class="input-group-header">
-                        <label style="margin-bottom: 0;">Meta Description</label>
-                        <button class="copy-text-btn" onclick="copyField('description')">Copy Text</button>
+                    <div class="input-group" style="margin-bottom: 1.5rem;">
+                        <div class="input-group-header">
+                            <label style="margin-bottom: 0; font-weight: 600;">Meta Description</label>
+                            <button class="copy-text-btn" onclick="copyField('description')">Copy Text</button>
+                        </div>
+                        <textarea id="description" placeholder="Enter a compelling summary of your page"
+                            style="min-height: 120px; padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); width: 100%; font-family: inherit;"
+                            oninput="updatePreview()"></textarea>
+                        <div id="descCount" class="char-counter">0 / 155 characters (Recommended)</div>
                     </div>
-                    <textarea id="description" placeholder="Enter a compelling summary of your page"
-                        style="min-height: 120px;" oninput="updatePreview()"></textarea>
-                    <div id="descCount" class="char-counter">0 / 155 characters (Recommended)</div>
-                </div>
 
-                <div class="input-group">
-                    <div class="input-group-header">
-                        <label style="margin-bottom: 0;">Canonical URL</label>
-                        <button class="copy-text-btn" onclick="copyField('url')">Copy Text</button>
+                    <div class="input-group" style="margin-bottom: 1.5rem;">
+                        <div class="input-group-header">
+                            <label style="margin-bottom: 0; font-weight: 600;">Canonical URL</label>
+                            <button class="copy-text-btn" onclick="copyField('url')">Copy Text</button>
+                        </div>
+                        <input type="text" id="url" placeholder="https://yourwebsite.com/page" oninput="updatePreview()"
+                            style="padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); width: 100%;">
                     </div>
-                    <input type="text" id="url" placeholder="https://yourwebsite.com/page" oninput="updatePreview()">
-                </div>
 
-                <div class="input-group">
-                    <div class="input-group-header">
-                        <label style="margin-bottom: 0;">Keywords (Optional)</label>
-                        <button class="copy-text-btn" onclick="copyField('keywords')">Copy Text</button>
+                    <div class="input-group" style="margin-bottom: 2rem;">
+                        <div class="input-group-header">
+                            <label style="margin-bottom: 0; font-weight: 600;">Keywords (Optional)</label>
+                            <button class="copy-text-btn" onclick="copyField('keywords')">Copy Text</button>
+                        </div>
+                        <input type="text" id="keywords" placeholder="keyword1, keyword2, keyword3"
+                            oninput="updatePreview()"
+                            style="padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); width: 100%;">
                     </div>
-                    <input type="text" id="keywords" placeholder="keyword1, keyword2, keyword3"
-                        oninput="updatePreview()">
-                </div>
 
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear Form</button>
-                    <button class="btn btn-primary" onclick="copyCode()">📋 Copy All Code</button>
-
-                </div>
-            </div>
-
-            <!-- Right Preview & Output -->
-            <div class="preview-area">
-                <div class="serp-preview">
-                    <div
-                        style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></span>
-                        Live Google Search Preview
-                    </div>
-                    <div class="google-result">
-                        <div class="google-url" id="serpUrl">https://yourwebsite.com › page</div>
-                        <div class="google-title" id="serpTitle">Enter Title Above</div>
-                        <div class="google-desc" id="serpDesc">Enter a description to see how your website will appear
-                            in Google search results. This text serves as a preview...</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <button class="btn btn-secondary" onclick="clearAll()"
+                            style="height: 3.5rem; border-radius: 12px;">🗑️ Clear Form</button>
+                        <button class="btn btn-primary" onclick="copyCode()"
+                            style="height: 3.5rem; border-radius: 12px; font-weight: 700;">📋 Copy All Code</button>
                     </div>
                 </div>
 
-                <div class="card" style="margin-top: 2rem;">
-                    <div
-                        style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;">
-                        Generated HTML Code</div>
-                    <div class="code-output">
-                        <button class="copy-code-btn" onclick="copyCode()">Copy</button>
-                        <pre id="codeOutput"></pre>
+                <!-- Right Preview & Output -->
+                <div class="preview-area">
+                    <div class="serp-preview">
+                        <div
+                            style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></span>
+                            Live Google Search Preview
+                        </div>
+                        <div class="google-result">
+                            <div class="google-url" id="serpUrl">yourwebsite.com › page</div>
+                            <div class="google-title" id="serpTitle">Enter Title Above</div>
+                            <div class="google-desc" id="serpDesc">Enter a description to see how your website will
+                                appear
+                                in Google search results. This text serves as a preview...</div>
+                        </div>
+                    </div>
+
+                    <div class="card"
+                        style="margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border-color); box-shadow: none;">
+                        <div
+                            style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;">
+                            Generated HTML Code</div>
+                        <div class="code-output" style="margin-top: 0;">
+                            <button class="copy-code-btn" onclick="copyCode()">Copy</button>
+                            <pre id="codeOutput" style="margin: 0;"></pre>
+                        </div>
                     </div>
                 </div>
             </div>

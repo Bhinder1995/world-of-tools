@@ -85,70 +85,88 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>✖️ Percentage Calculator</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Solve math problems, find part
-                ratios, and calculate growth instantly.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>✖️ Percentage Calculator</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Solve math problems, find part ratios, and
+                    calculate growth instantly.</p>
+            </section>
 
-        <div class="card" style="max-width: 900px; margin: 0 auto; padding: 2.5rem;">
-
-            <!-- Find Percentage -->
-            <div class="calc-group">
-                <h3 style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">
-                    <span
-                        style="background: var(--primary-color); color: white; width: 28px; height: 28px; border-radius: 6px; display: grid; place-items: center; font-size: 0.9rem;">1</span>
-                    Find Percentage
-                </h3>
-                <div class="input-inline">
-                    <span>What is</span>
-                    <input type="number" id="p1_per" placeholder="%" oninput="calcP1()" style="width: 100px;">
-                    <span>% of</span>
-                    <input type="number" id="p1_num" placeholder="Number" oninput="calcP1()" style="width: 180px;">
+            <div class="tool-main-card">
+                <!-- Find Percentage -->
+                <div class="calc-group"
+                    style="margin-bottom: 2.5rem; padding: 2.5rem; border-radius: 20px; background: white; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; font-size: 1.25rem;">
+                        <span
+                            style="background: var(--primary-color); color: white; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; font-size: 1rem; font-weight: 700;">1</span>
+                        Find Percentage Value
+                    </h3>
+                    <div class="input-inline"
+                        style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                        <span style="font-weight: 600;">What is</span>
+                        <input type="number" id="p1_per" placeholder="%" oninput="calcP1()"
+                            style="width: 120px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem; text-align: center;">
+                        <span style="font-weight: 600;">% of</span>
+                        <input type="number" id="p1_num" placeholder="Number" oninput="calcP1()"
+                            style="width: 220px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;">
+                    </div>
+                    <div id="res1_card" class="result-box"
+                        style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.5rem; border-radius: 16px;">
+                        <span class="res-label" style="color: #166534;">Final Result</span>
+                        <span id="res1" class="res-val"
+                            style="color: #15803d; font-size: 2rem; font-weight: 800;"></span>
+                    </div>
                 </div>
-                <div id="res1_card" class="result-box" style="display: none;">
-                    <span class="res-label">Result</span>
-                    <span id="res1" class="res-val"></span>
+
+                <!-- Find Part -->
+                <div class="calc-group"
+                    style="margin-bottom: 2.5rem; padding: 2.5rem; border-radius: 20px; background: white; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; font-size: 1.25rem;">
+                        <span
+                            style="background: var(--primary-color); color: white; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; font-size: 1rem; font-weight: 700;">2</span>
+                        Find Part Percentage
+                    </h3>
+                    <div class="input-inline"
+                        style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                        <input type="number" id="p2_num1" placeholder="Number" oninput="calcP2()"
+                            style="width: 220px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;">
+                        <span style="font-weight: 600;">is what % of</span>
+                        <input type="number" id="p2_num2" placeholder="Total" oninput="calcP2()"
+                            style="width: 220px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;">
+                    </div>
+                    <div id="res2_card" class="result-box"
+                        style="display: none; background: #fefce8; border: 1px solid #fef08a; padding: 1.5rem; border-radius: 16px;">
+                        <span class="res-label" style="color: #854d0e;">Calculated Percentage</span>
+                        <span id="res2" class="res-val"
+                            style="color: #a16207; font-size: 2rem; font-weight: 800;"></span>
+                    </div>
+                </div>
+
+                <!-- Percentage Change -->
+                <div class="calc-group"
+                    style="padding: 2.5rem; border-radius: 20px; background: white; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; font-size: 1.25rem;">
+                        <span
+                            style="background: var(--primary-color); color: white; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; font-size: 1rem; font-weight: 700;">3</span>
+                        Percentage Growth / Change
+                    </h3>
+                    <div class="input-inline"
+                        style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                        <span style="font-weight: 600;">Value from</span>
+                        <input type="number" id="p3_from" placeholder="Old" oninput="calcP3()"
+                            style="width: 180px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;">
+                        <span style="font-weight: 600;">to</span>
+                        <input type="number" id="p3_to" placeholder="New" oninput="calcP3()"
+                            style="width: 180px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;">
+                    </div>
+                    <div id="res3_card" class="result-box"
+                        style="display: none; background: #eff6ff; border: 1px solid #bfdbfe; padding: 1.5rem; border-radius: 16px;">
+                        <span class="res-label" style="color: #1e40af;">Percentage Change</span>
+                        <span id="res3" class="res-val"
+                            style="color: #1d4ed8; font-size: 2rem; font-weight: 800;"></span>
+                    </div>
                 </div>
             </div>
-
-            <!-- Find Part -->
-            <div class="calc-group">
-                <h3 style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">
-                    <span
-                        style="background: var(--primary-color); color: white; width: 28px; height: 28px; border-radius: 6px; display: grid; place-items: center; font-size: 0.9rem;">2</span>
-                    Find Part (%)
-                </h3>
-                <div class="input-inline">
-                    <input type="number" id="p2_num1" placeholder="Number" oninput="calcP2()" style="width: 180px;">
-                    <span>is what % of</span>
-                    <input type="number" id="p2_num2" placeholder="Total" oninput="calcP2()" style="width: 180px;">
-                </div>
-                <div id="res2_card" class="result-box" style="display: none;">
-                    <span class="res-label">Result</span>
-                    <span id="res2" class="res-val"></span>
-                </div>
-            </div>
-
-            <!-- Percentage Change -->
-            <div class="calc-group">
-                <h3 style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">
-                    <span
-                        style="background: var(--primary-color); color: white; width: 28px; height: 28px; border-radius: 6px; display: grid; place-items: center; font-size: 0.9rem;">3</span>
-                    Percentage Change
-                </h3>
-                <div class="input-inline">
-                    <span>Price/Value from</span>
-                    <input type="number" id="p3_from" placeholder="Old" oninput="calcP3()" style="width: 150px;">
-                    <span>to</span>
-                    <input type="number" id="p3_to" placeholder="New" oninput="calcP3()" style="width: 150px;">
-                </div>
-                <div id="res3_card" class="result-box" style="display: none;">
-                    <span class="res-label">Result</span>
-                    <span id="res3" class="res-val"></span>
-                </div>
-            </div>
-
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">

@@ -57,42 +57,44 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🏷️ Barcode Generator</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Create professional barcodes for
-                products, inventory, and tracking.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🏷️ Barcode Generator</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Create professional barcodes for products,
+                    inventory, and tracking.</p>
+            </section>
 
-        <div class="card" style="max-width: 800px; margin: 0 auto; padding: 2.5rem;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-                <div class="input-group" style="flex: 2;">
-                    <label for="barcodeData">Barcode Data (Numbers/Text)</label>
-                    <input type="text" id="barcodeData" value="12345678" style="padding: 1rem; font-size: 1.1rem;">
+            <div class="tool-main-card">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    <div class="input-group" style="flex: 2;">
+                        <label for="barcodeData">Barcode Data (Numbers/Text)</label>
+                        <input type="text" id="barcodeData" value="12345678" style="padding: 1rem; font-size: 1.1rem;">
+                    </div>
+                    <div class="input-group" style="flex: 1;">
+                        <label for="barcodeFormat">Format</label>
+                        <select id="barcodeFormat" style="padding: 1rem; font-size: 1.1rem;">
+                            <option value="CODE128">CODE128 (Universal)</option>
+                            <option value="EAN13">EAN-13 (Product)</option>
+                            <option value="UPC">UPC (Retail)</option>
+                            <option value="CODE39">CODE39</option>
+                            <option value="ITF14">ITF-14</option>
+                            <option value="MSI">MSI</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="input-group" style="flex: 1;">
-                    <label for="barcodeFormat">Format</label>
-                    <select id="barcodeFormat" style="padding: 1rem; font-size: 1.1rem;">
-                        <option value="CODE128">CODE128 (Universal)</option>
-                        <option value="EAN13">EAN-13 (Product)</option>
-                        <option value="UPC">UPC (Retail)</option>
-                        <option value="CODE39">CODE39</option>
-                        <option value="ITF14">ITF-14</option>
-                        <option value="MSI">MSI</option>
-                    </select>
+
+                <div class="barcode-container">
+                    <svg id="barcodeCanvas"></svg>
                 </div>
-            </div>
 
-            <div class="barcode-container">
-                <svg id="barcodeCanvas"></svg>
-            </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                    <button class="btn" onclick="generateBarcode()">Update Barcode</button>
+                    <button class="btn btn-secondary" onclick="downloadBarcode()">Download SVG</button>
+                </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
-                <button class="btn" onclick="generateBarcode()">Update Barcode</button>
-                <button class="btn btn-secondary" onclick="downloadBarcode()">Download SVG</button>
-            </div>
-
-            <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
-                🛡️ 100% Private: Barcode generation happens entirely in your browser.
+                <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                    🛡️ 100% Private: Barcode generation happens entirely in your browser.
+                </div>
             </div>
         </div>
 

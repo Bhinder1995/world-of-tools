@@ -2,20 +2,24 @@
 
 /* Modern & Premium Design System 2026 */
 :root {
-    /* Colors */
+    /* Colors - Deep & Vibrant 2026 Palette */
     --bg-color: #f8fafc;
     --text-color: #0f172a;
     --text-muted: #64748b;
     --primary-color: #4f46e5;
+    --primary-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
     --primary-hover: #4338ca;
     --secondary-color: #10b981;
     --accent-color: #f59e0b;
     --border-color: rgba(226, 232, 240, 0.8);
+    --success-color: #22c55e;
+    --error-color: #ef4444;
 
     /* Layout */
     --container-width: 1200px;
     --radius-md: 16px;
     --radius-lg: 24px;
+    --radius-xl: 32px;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
@@ -24,11 +28,12 @@
     --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 
-    /* Effects */
-    --glass-bg: rgba(255, 255, 255, 0.7);
+    /* Effects - Ultra Premium */
+    --glass-bg: rgba(255, 255, 255, 0.8);
     --glass-border: rgba(255, 255, 255, 0.5);
-    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --card-shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --premium-glow: 0 0 20px rgba(79, 70, 229, 0.15);
 }
 
 * {
@@ -338,7 +343,42 @@ nav a:hover {
 .tool-desc {
     color: var(--text-muted);
     font-size: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.tool-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: fit-content;
+    margin-top: auto;
+}
+
+.tag-primary {
+    background: rgba(79, 70, 229, 0.08);
+    color: #4f46e5;
+}
+
+.tag-success {
+    background: rgba(16, 185, 129, 0.08);
+    color: #10b981;
+}
+
+.tag-warning {
+    background: rgba(245, 158, 11, 0.08);
+    color: #d97706;
+}
+
+.tag-error {
+    background: rgba(239, 68, 68, 0.08);
+    color: #dc2626;
 }
 
 /* Inputs & Forms */
@@ -647,17 +687,70 @@ footer {
 /* Result Styles */
 .result-box {
     margin-top: 2rem;
-    padding: 2rem;
-    background: #f0fdf4;
-    border: 2px dashed #22c55e;
+    padding: 2.5rem;
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
     border-radius: var(--radius-lg);
     text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: var(--card-shadow);
+}
+
+.result-box.success {
+    border-color: var(--success-color);
+    background: #f0fdf4;
 }
 
 .result-value {
     font-family: var(--font-heading);
     font-size: 2.5rem;
-    font-weight: 900;
-    color: #15803d;
+    font-weight: 800;
+    color: var(--text-color);
     margin: 1rem 0;
+    word-break: break-all;
+}
+
+.copy-btn {
+    margin-top: 1rem;
+    background: var(--text-color);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copy-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Tool Page Specifics */
+.tool-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: titleFade 0.6s ease-out;
+}
+
+.tool-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 0.5rem;
+}
+
+.tool-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tool-main-card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow-hover);
+    margin-bottom: 4rem;
 }

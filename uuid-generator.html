@@ -118,49 +118,54 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🆔 UUID Generator</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Fast and secure v4 UUID
-                generation. Bulk support for developers.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🆔 UUID Generator</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Fast and secure v4 UUID generation. Bulk support
+                    for developers.</p>
+            </section>
 
-        <div class="uuid-layout">
-            <div class="card controls-card">
-                <h3 style="margin-bottom: 1.5rem;">How many UUIDs?</h3>
-                <div class="count-selector" id="countSelector">
-                    <button class="count-btn" onclick="setCount(1)">1</button>
-                    <button class="count-btn" onclick="setCount(5)">5</button>
-                    <button class="count-btn" onclick="setCount(10)">10</button>
-                    <button class="count-btn" onclick="setCount(50)">50</button>
-                    <button class="count-btn active" onclick="setCount(100)">100</button>
-                    <button class="count-btn" onclick="setCount(500)">500</button>
-                </div>
+            <div class="tool-main-card">
+                <div class="uuid-layout" style="margin-bottom: 0;">
+                    <div class="card controls-card" style="box-shadow: none; border: 1px solid var(--border-color);">
+                        <h3 style="margin-bottom: 1.5rem;">How many UUIDs?</h3>
+                        <div class="count-selector" id="countSelector">
+                            <button class="count-btn" onclick="setCount(1)">1</button>
+                            <button class="count-btn" onclick="setCount(5)">5</button>
+                            <button class="count-btn" onclick="setCount(10)">10</button>
+                            <button class="count-btn" onclick="setCount(50)">50</button>
+                            <button class="count-btn active" onclick="setCount(100)">100</button>
+                            <button class="count-btn" onclick="setCount(500)">500</button>
+                        </div>
 
-                <div class="input-group" style="margin-bottom: 2rem;">
-                    <label>Or Enter Custom Number (Max 500)</label>
-                    <input type="number" id="customCount" placeholder="e.g. 25" min="1" max="500"
-                        oninput="handleCustomInput(this.value)"
-                        style="padding: 1.25rem; font-size: 1.1rem; border-radius: 12px; border: 1px solid var(--border-color); width: 100%;">
-                </div>
+                        <div class="input-group" style="margin-bottom: 2rem;">
+                            <label>Or Enter Custom Number (Max 500)</label>
+                            <input type="number" id="customCount" placeholder="e.g. 25" min="1" max="500"
+                                oninput="handleCustomInput(this.value)"
+                                style="padding: 1.25rem; font-size: 1.1rem; border-radius: 12px; border: 1px solid var(--border-color); width: 100%;">
+                        </div>
 
-                <button class="btn btn-primary" style="width: 100%; padding: 1.25rem; font-size: 1.1rem;"
-                    onclick="generateUUIDs()">⚡ Generate Now</button>
+                        <button class="btn btn-primary" style="width: 100%; padding: 1.25rem; font-size: 1.1rem;"
+                            onclick="generateUUIDs()">⚡ Generate Now</button>
 
 
-                <div class="action-btns">
-                    <button class="btn btn-secondary" onclick="copyAll()">📋 Copy All</button>
-                    <button class="btn btn-secondary" onclick="downloadTxt()">📥 Download (.txt)</button>
-                </div>
-            </div>
+                        <div class="action-btns">
+                            <button class="btn btn-secondary" onclick="copyAll()">📋 Copy All</button>
+                            <button class="btn btn-secondary" onclick="downloadTxt()">📥 Download (.txt)</button>
+                        </div>
+                    </div>
 
-            <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h3 id="resultTitle">Generated UUIDs (100)</h3>
-                    <span id="copyFeedback"
-                        style="color: #10b981; font-weight: 700; font-size: 0.8rem; display: none;">Copied!</span>
-                </div>
-                <div id="uuidList" class="uuid-list">
-                    <!-- UUIDs injected here -->
+                    <div class="card" style="box-shadow: none; border: 1px solid var(--border-color);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3 id="resultTitle">Generated UUIDs (100)</h3>
+                            <span id="copyFeedback"
+                                style="color: #10b981; font-weight: 700; font-size: 0.8rem; display: none;">Copied!</span>
+                        </div>
+                        <div id="uuidList" class="uuid-list">
+                            <!-- UUIDs injected here -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

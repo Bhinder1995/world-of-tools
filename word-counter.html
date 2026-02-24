@@ -113,55 +113,58 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>📝 Word Counter</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Analyze your text length,
-                structure, and reading time in real-time.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>📝 Word Counter</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Analyze your text length, structure, and reading
+                    time in real-time.</p>
+            </section>
 
-        <div class="card" style="max-width: 1000px; margin: 0 auto; padding: 2.5rem;">
-            <div class="stats-stripe">
-                <div class="stat-card">
-                    <div id="wordCount" class="stat-val">0</div>
-                    <div class="stat-lbl">Words</div>
+            <div class="tool-main-card">
+                <div class="stats-stripe">
+                    <div class="stat-card">
+                        <div id="wordCount" class="stat-val">0</div>
+                        <div class="stat-lbl">Words</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="charCount" class="stat-val">0</div>
+                        <div class="stat-lbl">Characters</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="sentenceCount" class="stat-val">0</div>
+                        <div class="stat-lbl">Sentences</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="paragraphCount" class="stat-val">0</div>
+                        <div class="stat-lbl">Paragraphs</div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div id="charCount" class="stat-val">0</div>
-                    <div class="stat-lbl">Characters</div>
-                </div>
-                <div class="stat-card">
-                    <div id="sentenceCount" class="stat-val">0</div>
-                    <div class="stat-lbl">Sentences</div>
-                </div>
-                <div class="stat-card">
-                    <div id="paragraphCount" class="stat-val">0</div>
-                    <div class="stat-lbl">Paragraphs</div>
-                </div>
-            </div>
 
-            <div class="text-actions">
-                <button class="btn btn-secondary" onclick="transformText('upper')"
-                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">UPPERCASE</button>
-                <button class="btn btn-secondary" onclick="transformText('lower')"
-                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">lowercase</button>
-                <button class="btn btn-secondary" onclick="transformText('capitalize')"
-                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">Title Case</button>
-                <div style="flex-grow: 1;"></div>
-                <button class="btn btn-secondary" onclick="copyText()"
-                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
-                <button class="btn btn-secondary" onclick="downloadReport()"
-                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download Report</button>
-                <button class="btn btn-secondary" onclick="clearText()"
-                    style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
-                    Clear</button>
-            </div>
+                <div class="text-actions">
+                    <button class="btn btn-secondary" onclick="transformText('upper')"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">UPPERCASE</button>
+                    <button class="btn btn-secondary" onclick="transformText('lower')"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">lowercase</button>
+                    <button class="btn btn-secondary" onclick="transformText('capitalize')"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">Title Case</button>
+                    <div style="flex-grow: 1;"></div>
+                    <button class="btn btn-secondary" onclick="copyText()"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
+                    <button class="btn btn-secondary" onclick="downloadReport()"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download
+                        Report</button>
+                    <button class="btn btn-secondary" onclick="clearText()"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
+                        Clear</button>
+                </div>
 
-            <textarea id="textInput" placeholder="Type or paste your content here..."></textarea>
+                <textarea id="textInput" placeholder="Type or paste your content here..."></textarea>
 
-            <div class="reading-info">
-                <span>Estimated Reading Time: <span id="readTime" style="color: var(--primary-color);">0</span>
-                    min</span>
-                <span>Characters (excl. spaces): <span id="charNoSpaceCount">0</span></span>
+                <div class="reading-info">
+                    <span>Estimated Reading Time: <span id="readTime" style="color: var(--primary-color);">0</span>
+                        min</span>
+                    <span>Characters (excl. spaces): <span id="charNoSpaceCount">0</span></span>
+                </div>
             </div>
         </div>
 

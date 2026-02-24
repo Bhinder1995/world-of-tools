@@ -30,46 +30,63 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🌍 Time Zone Converter</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Quickly check world times and
-                convert between different regions.</p>
-        </section>
+        <div class="tool-container" style="max-width: 900px;">
+            <section class="tool-header">
+                <h1>🌍 Time Zone Converter</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Quickly check world times and convert between
+                    different regions.</p>
+            </section>
 
-        <div class="card" style="max-width: 800px; margin: 0 auto; padding: 2.5rem;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-                <div class="input-group">
-                    <label for="sourceTime">Select Local Time</label>
-                    <input type="datetime-local" id="sourceTime" style="font-size: 1rem; padding: 0.8rem;">
-                </div>
-                <div class="input-group">
-                    <label for="targetZone">Target Time Zone</label>
-                    <select id="targetZone" style="font-size: 1rem; padding: 0.8rem;">
-                        <option value="UTC">UTC (Universal Time)</option>
-                        <option value="America/New_York">New York (EST/EDT)</option>
-                        <option value="Europe/London">London (GMT/BST)</option>
-                        <option value="Asia/Kolkata">India (IST)</option>
-                        <option value="Asia/Dubai">Dubai (GST)</option>
-                        <option value="Asia/Tokyo">Tokyo (JST)</option>
-                        <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
-                        <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
-                        <option value="Europe/Paris">Paris (CET/CEST)</option>
-                        <option value="Asia/Singapore">Singapore (SGT)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div id="results" style="margin-top: 3rem; text-align: center; display: none;">
+            <div class="tool-main-card" style="padding: 3rem;">
                 <div
-                    style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
-                    Converted Time</div>
-                <div id="convertedTime"
-                    style="font-size: clamp(1.8rem, 5vw, 2.5rem); margin: 1rem 0; font-weight: 800; color: var(--primary-color);">
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
+                    <div class="input-group">
+                        <label for="sourceTime"
+                            style="display: block; font-weight: 800; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;">📅
+                            Select Local Time</label>
+                        <input type="datetime-local" id="sourceTime"
+                            style="width: 100%; height: 3.8rem; padding: 0 1.25rem; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1.1rem; font-family: inherit; outline: none; transition: border-color 0.2s;">
+                    </div>
+                    <div class="input-group">
+                        <label for="targetZone"
+                            style="display: block; font-weight: 800; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;">🌐
+                            Target Time Zone</label>
+                        <select id="targetZone"
+                            style="width: 100%; height: 3.8rem; padding: 0 1.25rem; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1.1rem; font-family: inherit; outline: none; background: #fff; cursor: pointer;">
+                            <option value="UTC">UTC (Universal Time)</option>
+                            <option value="America/New_York">New York (EST/EDT)</option>
+                            <option value="Europe/London">London (GMT/BST)</option>
+                            <option value="Asia/Kolkata">India (IST)</option>
+                            <option value="Asia/Dubai">Dubai (GST)</option>
+                            <option value="Asia/Tokyo">Tokyo (JST)</option>
+                            <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+                            <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
+                            <option value="Europe/Paris">Paris (CET/CEST)</option>
+                            <option value="Asia/Singapore">Singapore (SGT)</option>
+                        </select>
+                    </div>
                 </div>
-                <div id="timeDiff" style="font-size: 1.1rem; color: var(--text-muted);"></div>
-            </div>
 
-            <button class="btn" style="width: 100%; margin-top: 2rem;" onclick="convertTime()">Convert Time</button>
+                <div id="results"
+                    style="margin-top: 1rem; display: none; background: #f8fafc; border-radius: 20px; border: 1px solid var(--border-color); padding: 3rem; text-align: center; animation: subtitleFade 0.5s ease-out;">
+                    <div
+                        style="font-size: 0.9rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; opacity: 0.8;">
+                        Converted Time</div>
+                    <div id="convertedTime"
+                        style="font-size: clamp(2rem, 6vw, 3.2rem); margin: 1rem 0; font-weight: 900; color: var(--primary-color); letter-spacing: -0.02em;">
+                    </div>
+                    <div id="timeDiff" style="font-size: 1.15rem; color: #64748b; font-weight: 500; margin-top: 1rem;">
+                    </div>
+                    <div
+                        style="margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.5rem; background: #eff6ff; color: #1e40af; padding: 0.5rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 700;">
+                        <span>⏱️</span> daylight savings handled automatically
+                    </div>
+                </div>
+
+                <button class="btn btn-primary"
+                    style="width: 100%; height: 4rem; border-radius: 14px; margin-top: 2rem; font-weight: 800; font-size: 1.2rem; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);"
+                    onclick="convertTime()">Convert Time Now</button>
+            </div>
         </div>
 
         <section class="container" style="max-width: 800px; padding: 6rem 0;">

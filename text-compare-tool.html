@@ -126,37 +126,67 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>Text Compare Tool</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Find differences between two
-                texts instantly with visual highlighting.</p>
-        </section>
+        <div class="tool-container" style="max-width: 1400px;">
+            <section class="tool-header">
+                <h1>📑 Text Compare Tool</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Find differences between two texts instantly
+                    with visual highlighting.</p>
+            </section>
 
-        <div class="card" style="max-width: 1200px; margin: 0 auto; padding: 2.5rem;">
-            <div class="compare-grid">
-                <div class="input-group">
-                    <label>Original Text</label>
-                    <textarea id="textA" placeholder="Enter original text here..."></textarea>
+            <div class="tool-main-card" style="padding: 2.5rem;">
+                <div class="compare-grid">
+                    <div class="input-group">
+                        <label
+                            style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; font-weight: 800; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">
+                            <span>📄</span> Original Text
+                        </label>
+                        <textarea id="textA" placeholder="Enter original text here..."
+                            style="min-height: 350px; padding: 1.5rem; border: 2px solid var(--border-color); border-radius: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.6; resize: vertical; background: #fafafa;"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label
+                            style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; font-weight: 800; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">
+                            <span>📝</span> Changed Text
+                        </label>
+                        <textarea id="textB" placeholder="Enter new version of text here..."
+                            style="min-height: 350px; padding: 1.5rem; border: 2px solid var(--border-color); border-radius: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.6; resize: vertical; background: #fdfdfd;"></textarea>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label>Changed Text</label>
-                    <textarea id="textB" placeholder="Enter new version of text here..."></textarea>
+
+                <div class="view-controls"
+                    style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin: 2rem 0; padding: 1.25rem; background: #f1f5f9; border-radius: 16px; border: 1px solid var(--border-color);">
+                    <div
+                        style="display: flex; gap: 0.5rem; background: white; padding: 0.4rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <button id="btnInline" class="btn btn-secondary active-view" onclick="setViewMode('inline')"
+                            style="padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.9rem; font-weight: 700;">Inline</button>
+                        <button id="btnSide" class="btn btn-secondary" onclick="setViewMode('side')"
+                            style="padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.9rem; font-weight: 700;">Side-by-Side</button>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="compareTexts()"
+                        style="padding: 0.75rem 1.5rem; font-weight: 700; border-radius: 12px; height: 3rem; display: flex; align-items: center; gap: 0.5rem;">🚀
+                        Compare Now</button>
+
+                    <div style="flex-grow: 1;"></div>
+
+                    <div style="display: flex; gap: 0.75rem;">
+                        <button class="btn btn-secondary" onclick="copyDiff()"
+                            style="padding: 0.6rem 1.25rem; font-size: 0.9rem; border-radius: 10px;">📋 Copy</button>
+                        <button class="btn btn-secondary" onclick="downloadDiff()"
+                            style="padding: 0.6rem 1.25rem; font-size: 0.9rem; border-radius: 10px;">📥
+                            Download</button>
+                        <button class="btn btn-secondary" onclick="clearAll()"
+                            style="color: #ef4444; padding: 0.6rem 1.25rem; font-size: 0.9rem; border-radius: 10px;">🗑️
+                            Clear</button>
+                    </div>
+                </div>
+
+                <div id="diffResult" class="diff-output"
+                    style="margin-top: 1rem; padding: 2.5rem; background: white; border-radius: 20px; border: 2px solid var(--border-color); font-family: 'JetBrains Mono', monospace; white-space: pre-wrap; word-wrap: break-word; font-size: 1rem; line-height: 1.8; min-height: 250px; color: #334155; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+                    <div style="text-align: center; color: var(--text-muted); padding-top: 4rem;">Results will appear
+                        here...</div>
                 </div>
             </div>
-
-            <div class="view-controls">
-                <button id="btnInline" class="btn btn-secondary active-view" onclick="setViewMode('inline')">Inline
-                    View</button>
-                <button id="btnSide" class="btn btn-secondary" onclick="setViewMode('side')">Side-by-Side</button>
-                <div style="flex-grow: 1;"></div>
-                <button class="btn btn-secondary" onclick="compareTexts()"
-                    style="background: var(--primary-color); color: white; border: none;">🚀 Compare Now</button>
-                <button class="btn btn-secondary" onclick="copyDiff()">📋 Copy Diff</button>
-                <button class="btn btn-secondary" onclick="downloadDiff()">📥 Download</button>
-                <button class="btn btn-secondary" onclick="clearAll()" style="color: #ef4444;">🗑️ Clear</button>
-            </div>
-
-            <div id="diffResult" class="diff-output">Results will appear here...</div>
         </div>
 
         <section class="container" style="max-width: 850px; padding: 6rem 0;">

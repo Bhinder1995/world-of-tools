@@ -32,31 +32,65 @@
     <main>
         <!-- Dynamic Hero Section -->
         <section class="hero-section"
-            style="padding: 8rem 1rem 6rem; background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.08) 0%, transparent 50%); text-align: center;">
-            <div class="container" style="padding: 0;">
-                <h1 class="hero-title">One Hub. No Limits.<br><span
-                        style="background: linear-gradient(135deg, #4f46e5, #06b6d4); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Privacy
-                        Focused.</span></h1>
-                <p class="hero-subtitle">
-                    Unlock a suite of professional utility tools designed for privacy and extreme speed. Every
-                    calculation happens 100% in your browser.
+            style="padding: 10rem 1rem 8rem; background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.12) 0%, transparent 60%); text-align: center; position: relative; overflow: hidden;">
+            <!-- Subtle Background Pattern -->
+            <div
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.03; pointer-events: none; background-image: radial-gradient(var(--primary-color) 0.5px, transparent 0.5px); background-size: 30px 30px;">
+            </div>
+
+            <div class="container" style="padding: 0; position: relative; z-index: 1;">
+                <div
+                    style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(79, 70, 229, 0.08); color: var(--primary-color); padding: 0.5rem 1rem; border-radius: 99px; font-weight: 700; font-size: 0.85rem; margin-bottom: 2rem; border: 1px solid rgba(79, 70, 229, 0.1); animation: subtitleFade 0.8s ease-out;">
+                    <span style="font-size: 1.1rem;">✨</span> Over 25+ Professional Tools
+                </div>
+                <h1 class="hero-title"
+                    style="font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 1.5rem; font-weight: 900;">
+                    One Hub. No Limits.<br>
+                    <span
+                        style="background: linear-gradient(135deg, #4f46e5, #0ea5e9); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; position: relative;">
+                        Privacy Focused.
+                        <svg style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 12px; opacity: 0.4;"
+                            viewBox="0 0 100 12" preserveAspectRatio="none">
+                            <path d="M0,10 Q50,0 100,10" stroke="#4f46e5" stroke-width="4" fill="none" />
+                        </svg>
+                    </span>
+                </h1>
+                <p class="hero-subtitle"
+                    style="max-width: 700px; margin: 0 auto 3rem; font-size: clamp(1.1rem, 3vw, 1.4rem); color: var(--text-muted); line-height: 1.6; font-weight: 500;">
+                    Unlock a suite of professional utility tools designed for privacy and extreme speed.
+                    Every calculation happens <span style="color: var(--text-color); font-weight: 700;">100% in your
+                        browser</span>.
                 </p>
 
-                <div class="search-wrapper">
-                    <input type="text" id="searchTools" placeholder="Search 15+ professional tools...">
-                    <span class="search-icon">🔍</span>
+                <div class="search-wrapper"
+                    style="max-width: 700px; margin: 0 auto 3rem; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);">
+                    <input type="text" id="searchTools" placeholder="Search 25+ professional tools..."
+                        style="width: 100%; height: 4.5rem; padding: 0 4rem 0 2rem; border-radius: 20px; border: 2px solid var(--border-color); font-size: 1.25rem; font-family: inherit; outline: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: white;">
+                    <span class="search-icon"
+                        style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--text-muted); pointer-events: none;">🔍</span>
                 </div>
 
-                <div class="popular-tools">
-                    <span class="popular-label">🔥 Popular Tools:</span>
-                    <div class="tool-chip" onclick="quickSearch('case')"><span class="ico">🔠</span> Case Converter
+                <div class="popular-tools"
+                    style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; align-items: center;">
+                    <span class="popular-label"
+                        style="font-weight: 800; color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-right: 0.5rem;">🚀
+                        Top Rated:</span>
+                    <div class="tool-chip" onclick="quickSearch('case')"
+                        style="cursor: pointer; padding: 0.6rem 1.2rem; background: white; border: 1px solid var(--border-color); border-radius: 12px; font-weight: 700; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                        <span class="ico">🔠</span> Case Converter
                     </div>
-                    <div class="tool-chip" onclick="quickSearch('json')"><span class="ico">✨</span> JSON Formatter</div>
-                    <div class="tool-chip" onclick="quickSearch('age')"><span class="ico">🎂</span> Age Calculator</div>
-                    <div class="tool-chip" onclick="quickSearch('barcode')"><span class="ico">🏷️</span> Barcode Gen
+                    <div class="tool-chip" onclick="quickSearch('json')"
+                        style="cursor: pointer; padding: 0.6rem 1.2rem; background: white; border: 1px solid var(--border-color); border-radius: 12px; font-weight: 700; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                        <span class="ico">✨</span> JSON Formatter
                     </div>
-                    <div class="tool-chip" onclick="quickSearch('scientific')"><span class="ico">🧮</span> Scientific
-                        Calc</div>
+                    <div class="tool-chip" onclick="quickSearch('age')"
+                        style="cursor: pointer; padding: 0.6rem 1.2rem; background: white; border: 1px solid var(--border-color); border-radius: 12px; font-weight: 700; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                        <span class="ico">🎂</span> Age Calculator
+                    </div>
+                    <div class="tool-chip" onclick="quickSearch('barcode')"
+                        style="cursor: pointer; padding: 0.6rem 1.2rem; background: white; border: 1px solid var(--border-color); border-radius: 12px; font-weight: 700; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                        <span class="ico">🏷️</span> Barcode
+                    </div>
                 </div>
             </div>
         </section>
@@ -65,36 +99,35 @@
         <!-- Main Tools Directory -->
         <div class="container">
             <!-- Calculators -->
-            <section id="calculators" style="margin-bottom: 6rem;">
-                <div style="margin-bottom: 3rem;">
-                    <h2>Financial & Life Calculators</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1.5rem;">Professional tools for
-                        financial planning and life milestones.</p>
+            <section id="calculators" style="margin-bottom: 8rem;">
+                <div style="margin-bottom: 4rem; position: relative;">
+                    <h2
+                        style="font-size: 2.25rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <span
+                            style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(79, 70, 229, 0.1); border-radius: 12px; font-size: 1.25rem;">📊</span>
+                        Financial & Life Calculators
+                    </h2>
+                    <p style="color: var(--text-muted); font-size: 1.15rem; font-weight: 500; max-width: 600px;">
+                        Professional tools for financial planning, taxation, and life milestones.</p>
                 </div>
                 <div class="tools-grid">
                     <a href="age-calculator" class="tool-card">
                         <div class="tool-icon">🎂</div>
                         <div class="tool-title">Age Calculator</div>
                         <div class="tool-desc">Calculate exact age, next birthday, and life milestones.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #4f46e5; text-transform: uppercase; letter-spacing: 0.05em;">
-                            🛡️ Private</div>
+                        <div class="tool-tag tag-primary">🛡️ Private</div>
                     </a>
                     <a href="gst-calculator" class="tool-card">
                         <div class="tool-icon">🧾</div>
                         <div class="tool-title">GST Calculator</div>
                         <div class="tool-desc">Quickly add or remove GST tax from any amount.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 0.05em;">
-                            ✅ Accurate</div>
+                        <div class="tool-tag tag-success">✅ Accurate</div>
                     </a>
                     <a href="emi-calculator" class="tool-card">
                         <div class="tool-icon">💰</div>
                         <div class="tool-title">EMI Calculator</div>
                         <div class="tool-desc">Loan amortization schedules and monthly payment estimator.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #4f46e5; text-transform: uppercase; letter-spacing: 0.05em;">
-                            🔒 100% Secure</div>
+                        <div class="tool-tag tag-primary">🔒 100% Secure</div>
                     </a>
                     <a href="percentage-calculator" class="tool-card">
                         <div class="tool-icon">%</div>
@@ -105,19 +138,22 @@
                         <div class="tool-icon">🧮</div>
                         <div class="tool-title">Scientific Calc</div>
                         <div class="tool-desc">Advanced mathematical functions including trig and logs.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #4f46e5; text-transform: uppercase; letter-spacing: 0.05em;">
-                            🧪 Advanced</div>
+                        <div class="tool-tag tag-primary">🧪 Advanced</div>
                     </a>
                 </div>
             </section>
 
             <!-- Marketing & Dev -->
-            <section id="tools" style="margin-bottom: 6rem;">
-                <div style="margin-bottom: 3rem;">
-                    <h2>Content & SEO Tools</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1.5rem;">Essential productivity
-                        utilities for creators and marketers.</p>
+            <section id="tools" style="margin-bottom: 8rem;">
+                <div style="margin-bottom: 4rem; position: relative;">
+                    <h2
+                        style="font-size: 2.25rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <span
+                            style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; font-size: 1.25rem;">📝</span>
+                        Content & SEO Utilities
+                    </h2>
+                    <p style="color: var(--text-muted); font-size: 1.15rem; font-weight: 500; max-width: 600px;">
+                        Essential productivity tools for content creators, marketers, and writers.</p>
                 </div>
                 <div class="tools-grid">
                     <a href="word-counter" class="tool-card">
@@ -134,68 +170,70 @@
                         <div class="tool-icon">🔗</div>
                         <div class="tool-title">Link Shortener</div>
                         <div class="tool-desc">Direct redirects without landing pages or ads.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #ef4444; text-transform: uppercase; letter-spacing: 0.05em;">
-                            🔥 Direct Link</div>
+                        <div class="tool-tag tag-error">🔥 Direct Link</div>
                     </a>
                     <a href="text-compare-tool" class="tool-card">
                         <div class="tool-icon">⚖️</div>
                         <div class="tool-title">Text Compare</div>
                         <div class="tool-desc">Compare two texts and highlight differences.</div>
+                        <div class="tool-tag tag-primary">🔍 Visual Diff</div>
                     </a>
                     <a href="qr-code-generator" class="tool-card">
                         <div class="tool-icon">🔳</div>
                         <div class="tool-title">QR Generator</div>
                         <div class="tool-desc">Create QR codes for WhatsApp, Email, and Text.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 0.05em;">
-                            🛡️ Private</div>
+                        <div class="tool-tag tag-success">🛡️ Private</div>
                     </a>
                     <a href="youtube-thumbnail-downloader" class="tool-card">
                         <div class="tool-icon">🎥</div>
                         <div class="tool-title">YT Thumbnail</div>
                         <div class="tool-desc">Download HD YouTube thumbnails instantly.</div>
+                        <div class="tool-tag tag-success">🎥 HD Quality</div>
                     </a>
                     <a href="case-converter" class="tool-card">
                         <div class="tool-icon">🔠</div>
                         <div class="tool-title">Case Converter</div>
                         <div class="tool-desc">Convert text to UPPERCASE, lowercase, Title Case, and more.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #4f46e5; text-transform: uppercase; letter-spacing: 0.05em;">
-                            🔥 High Traffic</div>
+                        <div class="tool-tag tag-primary">🔥 High Traffic</div>
                     </a>
                     <a href="keyword-density-checker" class="tool-card">
                         <div class="tool-icon">📊</div>
                         <div class="tool-title">Keyword Density</div>
                         <div class="tool-desc">Analyze content for SEO keyword frequency and density.</div>
+                        <div class="tool-tag tag-primary">📈 SEO Audit</div>
                     </a>
                     <a href="markdown-to-html" class="tool-card">
                         <div class="tool-icon">📝</div>
                         <div class="tool-title">Markdown Converter</div>
                         <div class="tool-desc">Transform Markdown text into clean HTML code instantly.</div>
+                        <div class="tool-tag tag-primary">🛠️ Dev Tool</div>
                     </a>
                     <a href="barcode-generator" class="tool-card">
                         <div class="tool-icon">🏷️</div>
                         <div class="tool-title">Barcode Generator</div>
                         <div class="tool-desc">Create professional barcodes (CODE128, EAN, UPC) online.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 0.05em;">
-                            ✨ New</div>
+                        <div class="tool-tag tag-success">✨ New</div>
                     </a>
                     <a href="lorem-ipsum-generator" class="tool-card">
                         <div class="tool-icon">🖋️</div>
                         <div class="tool-title">Lorem Ipsum</div>
                         <div class="tool-desc">Generate custom dummy text for your designs and layouts.</div>
+                        <div class="tool-tag tag-success">🖋️ Design</div>
                     </a>
                 </div>
             </section>
 
             <!-- Developer Tools -->
-            <section id="dev-tools">
-                <div style="margin-bottom: 3rem;">
-                    <h2>Developer Tools</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1.5rem;">Powerful utilities for
-                        debugging, formatting, and secure data handling.</p>
+            <section id="dev-tools" style="margin-bottom: 8rem;">
+                <div style="margin-bottom: 4rem; position: relative;">
+                    <h2
+                        style="font-size: 2.25rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <span
+                            style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(14, 165, 233, 0.1); border-radius: 12px; font-size: 1.25rem;">🛠️</span>
+                        Advanced Developer Tools
+                    </h2>
+                    <p style="color: var(--text-muted); font-size: 1.15rem; font-weight: 500; max-width: 600px;">
+                        Powerful utilities for debugging, secure data handling, and code formatting.</p>
                     <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 800px; line-height: 1.6;">
                         WorldOfTools offers free online developer utilities like <strong>JSON formatter</strong>,
                         <strong>JWT decoder</strong>,
@@ -211,36 +249,28 @@
                         <div class="tool-title">Hash Generator</div>
                         <div class="tool-desc">Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly with your
                             browser's crypto API.</div>
-                        <div
-                            style="font-size: 0.7rem; font-weight: 700; color: #4f46e5; margin-top: 0.5rem; opacity: 0.8;">
-                            🛡️ 100% client-side</div>
+                        <div class="tool-tag tag-primary">🛡️ 100% client-side</div>
                     </a>
                     <a href="jwt-decoder" class="tool-card">
                         <div class="tool-icon">🔑</div>
                         <div class="tool-title">JWT Decoder</div>
                         <div class="tool-desc">Decode, verify, and debug JSON Web Tokens (JWT) locally to inspect
                             header, payload, and signature.</div>
-                        <div
-                            style="font-size: 0.7rem; font-weight: 700; color: #4f46e5; margin-top: 0.5rem; opacity: 0.8;">
-                            🛡️ 100% client-side</div>
+                        <div class="tool-tag tag-primary">🛡️ 100% client-side</div>
                     </a>
                     <a href="sql-formatter" class="tool-card">
                         <div class="tool-icon">🛠️</div>
                         <div class="tool-title">SQL Formatter</div>
                         <div class="tool-desc">Beautify, minify, and format SQL queries online for better readability
                             and cleaner code.</div>
-                        <div
-                            style="font-size: 0.7rem; font-weight: 700; color: #4f46e5; margin-top: 0.5rem; opacity: 0.8;">
-                            🛡️ 100% client-side</div>
+                        <div class="tool-tag tag-primary">🛡️ 100% client-side</div>
                     </a>
                     <a href="cron-expression-generator" class="tool-card">
                         <div class="tool-icon">⏰</div>
                         <div class="tool-title">Cron Builder</div>
                         <div class="tool-desc">Easily generate, edit, and explain cron expressions with human-readable
                             descriptions.</div>
-                        <div
-                            style="font-size: 0.7rem; font-weight: 700; color: #4f46e5; margin-top: 0.5rem; opacity: 0.8;">
-                            🛡️ 100% client-side</div>
+                        <div class="tool-tag tag-primary">🛡️ 100% client-side</div>
                     </a>
                     <a href="url-encoder-decoder" class="tool-card">
                         <div class="tool-icon">🔗</div>
@@ -299,51 +329,53 @@
             </section>
 
             <!-- Security & General -->
-            <section id="utilities">
-                <div style="margin-bottom: 3rem;">
-                    <h2>Web Utilities</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1.5rem;">Reliable tools for
-                        security and international conversions.</p>
+            <section id="utilities" style="margin-bottom: 8rem;">
+                <div style="margin-bottom: 4rem; position: relative;">
+                    <h2
+                        style="font-size: 2.25rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <span
+                            style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(245, 158, 11, 0.1); border-radius: 12px; font-size: 1.25rem;">📦</span>
+                        General Web Utilities
+                    </h2>
+                    <p style="color: var(--text-muted); font-size: 1.15rem; font-weight: 500; max-width: 600px;">
+                        Reliable tools for security generation, unit conversion, and international time.</p>
                 </div>
                 <div class="tools-grid">
                     <a href="password-generator" class="tool-card">
                         <div class="tool-icon">🔐</div>
                         <div class="tool-title">Password Gen</div>
                         <div class="tool-desc">Generate strong, high-entropy secure passwords.</div>
+                        <div class="tool-tag tag-primary">🔐 Security</div>
                     </a>
                     <a href="uuid-generator" class="tool-card">
                         <div class="tool-icon">🆔</div>
                         <div class="tool-title">UUID Generator</div>
                         <div class="tool-desc">Bulk generate secure v4 UUIDs (up to 500).</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 0.05em;">
-                            ⚡ Bulk</div>
+                        <div class="tool-tag tag-success">⚡ Bulk</div>
                     </a>
                     <a href="unit-converter" class="tool-card">
                         <div class="tool-icon">⚖️</div>
                         <div class="tool-title">Unit Converter</div>
                         <div class="tool-desc">Convert Length, Weight, Temperature, and Volume.</div>
+                        <div class="tool-tag tag-primary">⚖️ Universal</div>
                     </a>
                     <a href="image-compressor" class="tool-card">
                         <div class="tool-icon">🖼️</div>
                         <div class="tool-title">Image Compressor</div>
                         <div class="tool-desc">Reduce image file size without losing quality.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 0.05em;">
-                            🛡️ Browser-side</div>
+                        <div class="tool-tag tag-success">🛡️ Browser-side</div>
                     </a>
                     <a href="color-converter" class="tool-card">
                         <div class="tool-icon">🎨</div>
                         <div class="tool-title">Color Converter</div>
                         <div class="tool-desc">Convert between HEX, RGB, and HSL colors.</div>
+                        <div class="tool-tag tag-success">🎨 UI/UX</div>
                     </a>
                     <a href="time-zone-converter" class="tool-card">
                         <div class="tool-icon">🌍</div>
                         <div class="tool-title">Time Zone Tool</div>
                         <div class="tool-desc">Convert time between global regions and check world clocks.</div>
-                        <div
-                            style="font-size: 0.8rem; font-weight: 700; color: #4f46e5; text-transform: uppercase; letter-spacing: 0.05em;">
-                            🌎 World-Ready</div>
+                        <div class="tool-tag tag-primary">🌎 World-Ready</div>
                     </a>
                 </div>
             </section>
@@ -374,28 +406,45 @@
         </section>
 
         <!-- Expanded SEO Context -->
-        <section class="container" style="margin-top: 4rem;">
-            <div class="card" style="padding: 4rem; max-width: 900px; margin: 0 auto;">
-                <h2 style="margin-top: 0; margin-bottom: 2rem; font-size: 2.5rem;">Why Choose WorldOfTools?</h2>
-                <div style="display: grid; gap: 2rem;">
-                    <div>
-                        <h3>Privacy as a Feature</h3>
-                        <p>Unlike other utility sites that upload your data to servers, we process everything locally.
-                            Your calculations, passwords, and text stay strictly in your browser. This makes us the
-                            safest choice for professionals handling sensitive data.</p>
-                    </div>
-                    <div>
-                        <h3>No Ads, No Bloat</h3>
-                        <p>We believe tools should be fast. Our pages are optimized to load in milliseconds, and we
-                            avoid the intrusive ads and annoying landing pages that plague other "free" tools. Just
-                            clean, functional utilities when you need them.</p>
-                    </div>
-                    <div>
-                        <h3>Mobile Perfect</h3>
-                        <p>Whether you're on a 4K monitor or a smartphone, our tools scale perfectly. Every button,
-                            input, and font has been meticulously adjusted for accurate display and easy interaction
-                            across all devices.</p>
-                    </div>
+        <section class="container" style="padding: 10rem 1.5rem;">
+            <div style="text-align: center; margin-bottom: 5rem;">
+                <h2
+                    style="font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 900; letter-spacing: -0.04em; margin-bottom: 1.5rem; margin-top: 0;">
+                    Why Choose WorldOfTools?</h2>
+                <p
+                    style="color: var(--text-muted); font-size: 1.25rem; max-width: 700px; margin: 0 auto; font-weight: 500;">
+                    We're building the fastest, most secure utility hub on the web. No friction, just tools.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem;">
+                <div class="tool-main-card" style="padding: 3.5rem; margin-bottom: 0;">
+                    <div
+                        style="width: 60px; height: 60px; background: rgba(79, 70, 229, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 2rem;">
+                        🔒</div>
+                    <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.25rem;">Privacy as a Feature</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">Unlike other utility
+                        sites that upload your data to servers, we process everything locally. Your calculations,
+                        passwords, and text stay strictly in your browser. This makes us the safest choice for
+                        professionals handling sensitive data.</p>
+                </div>
+                <div class="tool-main-card" style="padding: 3.5rem; margin-bottom: 0;">
+                    <div
+                        style="width: 60px; height: 60px; background: rgba(16, 185, 129, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 2rem;">
+                        ⚡</div>
+                    <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.25rem;">No Ads, No Bloat</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">We believe tools should
+                        be fast. Our pages are optimized to load in milliseconds, and we avoid the intrusive ads and
+                        annoying landing pages that plague other "free" tools. Just clean, functional utilities when you
+                        need them.</p>
+                </div>
+                <div class="tool-main-card" style="padding: 3.5rem; margin-bottom: 0;">
+                    <div
+                        style="width: 60px; height: 60px; background: rgba(14, 165, 233, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 2rem;">
+                        📱</div>
+                    <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.25rem;">Mobile-First Design</h3>
+                    <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">Whether you're on a 4K
+                        monitor or a smartphone, our tools scale perfectly. Every button, input, and font has been
+                        meticulously adjusted for accurate display and easy interaction across all devices.</p>
                 </div>
             </div>
         </section>

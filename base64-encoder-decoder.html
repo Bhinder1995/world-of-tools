@@ -108,62 +108,65 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>Base64 Encoder / Decoder</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Securely convert text and images
-                to and from Base64 format.</p>
-        </section>
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>Base64 Encoder / Decoder</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Securely convert text and images to and from
+                    Base64 format.</p>
+            </section>
 
-        <div class="card" style="max-width: 1000px; margin: 0 auto; padding: 2.5rem;">
-            <div class="tabs">
-                <button class="tab-btn active" onclick="switchTab('text')">Text Mode</button>
-                <button class="tab-btn" onclick="switchTab('image')">Image Mode</button>
-            </div>
-
-            <!-- Text Tab -->
-            <div id="textMode">
-                <div class="base64-controls">
-                    <button class="btn btn-secondary" onclick="processText('encode')"
-                        style="background: var(--primary-color); color: white; border: none; padding: 0.5rem 1.5rem; font-weight: 700;">🔒
-                        Encode</button>
-                    <button class="btn btn-secondary" onclick="processText('decode')"
-                        style="padding: 0.5rem 1.5rem; font-weight: 700;">🔓 Decode</button>
-                    <div style="flex-grow: 1;"></div>
-                    <button class="btn btn-secondary" onclick="copyText('textInput')"
-                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
-                    <button class="btn btn-secondary" onclick="downloadResult('textInput')"
-                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download</button>
-                    <button class="btn btn-secondary" onclick="clearInput('textInput')"
-                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
-                        Clear</button>
-                </div>
-                <textarea id="textInput" placeholder="Enter text to encode or Base64 to decode..."></textarea>
-            </div>
-
-            <!-- Image Tab -->
-            <div id="imageMode" class="hidden">
-                <div class="base64-controls">
-                    <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()"
-                        style="background: var(--primary-color); color: white; border: none; padding: 0.5rem 1.5rem; font-weight: 700;">🖼️
-                        Upload Image</button>
-                    <input type="file" id="fileInput" accept="image/*" style="display: none;"
-                        onchange="handleImage(this)">
-                    <div style="flex-grow: 1;"></div>
-                    <button class="btn btn-secondary" onclick="copyText('imageOutput')"
-                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy Base64</button>
-                    <button class="btn btn-secondary" onclick="downloadResult('imageOutput')"
-                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download</button>
-                    <button class="btn btn-secondary" onclick="clearImage()"
-                        style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
-                        Clear</button>
+            <div class="tool-main-card">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('text')">Text Mode</button>
+                    <button class="tab-btn" onclick="switchTab('image')">Image Mode</button>
                 </div>
 
-                <textarea id="imageOutput" placeholder="Base64 string will appear here, or paste one to preview..."
-                    oninput="previewBase64()"></textarea>
+                <!-- Text Tab -->
+                <div id="textMode">
+                    <div class="base64-controls">
+                        <button class="btn btn-secondary" onclick="processText('encode')"
+                            style="background: var(--primary-color); color: white; border: none; padding: 0.5rem 1.5rem; font-weight: 700;">🔒
+                            Encode</button>
+                        <button class="btn btn-secondary" onclick="processText('decode')"
+                            style="padding: 0.5rem 1.5rem; font-weight: 700;">🔓 Decode</button>
+                        <div style="flex-grow: 1;"></div>
+                        <button class="btn btn-secondary" onclick="copyText('textInput')"
+                            style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
+                        <button class="btn btn-secondary" onclick="downloadResult('textInput')"
+                            style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download</button>
+                        <button class="btn btn-secondary" onclick="clearInput('textInput')"
+                            style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
+                            Clear</button>
+                    </div>
+                    <textarea id="textInput" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+                </div>
 
-                <div class="image-preview-area">
-                    <div id="noImgText" style="color: var(--text-muted);">Image preview will appear here</div>
-                    <img id="previewImg" alt="Base64 Content">
+                <!-- Image Tab -->
+                <div id="imageMode" class="hidden">
+                    <div class="base64-controls">
+                        <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()"
+                            style="background: var(--primary-color); color: white; border: none; padding: 0.5rem 1.5rem; font-weight: 700;">🖼️
+                            Upload Image</button>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;"
+                            onchange="handleImage(this)">
+                        <div style="flex-grow: 1;"></div>
+                        <button class="btn btn-secondary" onclick="copyText('imageOutput')"
+                            style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy
+                            Base64</button>
+                        <button class="btn btn-secondary" onclick="downloadResult('imageOutput')"
+                            style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📥 Download</button>
+                        <button class="btn btn-secondary" onclick="clearImage()"
+                            style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
+                            Clear</button>
+                    </div>
+
+                    <textarea id="imageOutput" placeholder="Base64 string will appear here, or paste one to preview..."
+                        oninput="previewBase64()"></textarea>
+
+                    <div class="image-preview-area">
+                        <div id="noImgText" style="color: var(--text-muted);">Image preview will appear here</div>
+                        <img id="previewImg" alt="Base64 Content">
+                    </div>
                 </div>
             </div>
         </div>

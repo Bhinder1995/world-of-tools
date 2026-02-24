@@ -165,51 +165,76 @@
     <header></header>
 
     <main class="container">
-        <section style="text-align: center; margin-bottom: 4rem;">
-            <h1>🔍 Regex Tester</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Fast, private, and real-time
-                JavaScript regular expression debugger.</p>
-        </section>
+        <div class="tool-container" style="max-width: 1300px;">
+            <section class="tool-header">
+                <h1>🔍 Regex Tester</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Fast, private, and real-time JavaScript regular
+                    expression debugger.</p>
+            </section>
 
-        <div class="regex-layout">
-            <div class="card">
-                <h3 style="margin-bottom: 1.5rem;">Regular Expression</h3>
-                <div class="regex-input-container">
-                    <div class="regex-slash">/</div>
-                    <input type="text" id="regexPattern" placeholder="([a-z]+)" oninput="runRegex()">
-                    <div class="regex-slash">/</div>
-                    <input type="text" id="regexFlags" value="g" placeholder="gim" oninput="runRegex()">
-                </div>
-                <div id="errorDisplay" class="error-msg"></div>
+            <div class="regex-layout">
+                <div class="tool-main-card" style="padding: 2rem;">
+                    <h3
+                        style="margin-bottom: 1.25rem; font-size: 1.1rem; font-weight: 800; color: var(--text-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📋</span> Regular Expression
+                    </h3>
+                    <div class="regex-input-container"
+                        style="display: flex; background: #f8fafc; border: 2px solid var(--border-color); border-radius: 12px; overflow: hidden; margin-bottom: 1rem; transition: border-color 0.2s;">
+                        <div class="regex-slash"
+                            style="padding: 1rem 1.25rem; background: #f1f5f9; color: var(--text-muted); font-weight: 800; font-size: 1.1rem;">
+                            /</div>
+                        <input type="text" id="regexPattern" placeholder="([a-z]+)" oninput="runRegex()"
+                            style="border: none; flex: 1; padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; outline: none; background: transparent;">
+                        <div class="regex-slash"
+                            style="padding: 1rem 1.25rem; background: #f1f5f9; color: var(--text-muted); font-weight: 800; font-size: 1.1rem;">
+                            /</div>
+                        <input type="text" id="regexFlags" value="g" placeholder="gim" oninput="runRegex()"
+                            style="width: 100px; border: none; border-left: 2px solid var(--border-color); padding: 1rem; background: #f8fafc; color: var(--primary-color); font-weight: 800; font-size: 1.1rem; outline: none;">
+                    </div>
+                    <div id="errorDisplay" class="error-msg"
+                        style="color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem; font-weight: 600; min-height: 1.2rem;">
+                    </div>
 
-                <h3 style="margin-top: 2rem; margin-bottom: 1.5rem;">Test String</h3>
-                <div style="position: relative; height: 300px;">
-                    <div class="highlight-area">
-                        <div id="backdrop" class="backdrop"></div>
-                        <textarea id="testString" placeholder="Paste your text here to test the regex..."
-                            oninput="handleScroll(); runRegex();" onscroll="handleScroll()"></textarea>
+                    <h3
+                        style="margin-top: 2.5rem; margin-bottom: 1.25rem; font-size: 1.1rem; font-weight: 800; color: var(--text-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📝</span> Test String
+                    </h3>
+                    <div
+                        style="position: relative; height: 350px; border-radius: 12px; overflow: hidden; border: 2px solid var(--border-color);">
+                        <div class="highlight-area"
+                            style="position: relative; width: 100%; height: 100%; background: white;">
+                            <div id="backdrop" class="backdrop"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; color: transparent; z-index: 1; pointer-events: none;">
+                            </div>
+                            <textarea id="testString" placeholder="Paste your text here to test the regex..."
+                                oninput="handleScroll(); runRegex();" onscroll="handleScroll()"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 1.5rem; border: none; background: transparent; font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.6; resize: none; color: #475569; z-index: 2; white-space: pre-wrap; outline: none;"></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <div class="card">
+                <div class="tool-main-card" style="padding: 2rem; display: flex; flex-direction: column;">
                     <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <h3 style="margin: 0;">Match Results</h3>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <button class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.3rem 0.6rem;"
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800;">✨ Match Results</h3>
+                        <div style="display: flex; gap: 0.75rem;">
+                            <button class="btn btn-secondary"
+                                style="font-size: 0.8rem; padding: 0.5rem 1rem; border-radius: 8px;"
                                 onclick="copyResults()">📋 Copy</button>
-                            <button class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.3rem 0.6rem;"
+                            <button class="btn btn-secondary"
+                                style="font-size: 0.8rem; padding: 0.5rem 1rem; border-radius: 8px;"
                                 onclick="downloadResults()">📥 Download</button>
                         </div>
                     </div>
-                    <div id="resultSummary" style="margin-bottom: 1rem; font-weight: 700; color: var(--text-muted);">
+                    <div id="resultSummary"
+                        style="margin-bottom: 1.5rem; font-weight: 700; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">
                         0 matches found
                     </div>
-                    <div id="matchList" class="match-list" style="max-height: 480px; overflow-y: auto;">
-                        <!-- Matches injected by JS -->
-                        <div style="text-align: center; color: var(--text-muted); padding: 2rem;">No matches yet.</div>
+                    <div id="matchList" class="match-list"
+                        style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div
+                            style="text-align: center; color: var(--text-muted); padding: 3rem; background: #f8fafc; border-radius: 12px; border: 1px dashed var(--border-color);">
+                            No matches yet.</div>
                     </div>
                 </div>
             </div>
