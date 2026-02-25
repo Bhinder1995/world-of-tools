@@ -8,7 +8,7 @@
     <meta name="description"
         content="Convert text and images to Base64 strings or decode them back to original formats. Free online Base64 tool for developers with 100% private browser-side processing.">
     <meta name="keywords"
-        content="Base64 encoder, Base64 decoder online, encode image to Base64, Base64 to text, online Base64 tool, decode Base64 string, developer utilities, encode text to Base64, decode Base64 string online, Base64 to image converter, image to Base64 encoder online, Base64 encoding decoding tool free, online Base64 text to binary, Base64 decoder for developers, secure Base64 converter online, Base64 string to text decode, बेस64 एनकोडर, बेस64 डिकोडर, बेस64 टूल">
+        content="Base64 encoder, Base64 decoder online, encode image to Base64, Base64 to text, online Base64 tool, decode Base64 string, developer utilities, encode text to Base64, decode Base64 string online, Base64 to image converter, image to Base64 encoder online, Base64 encoding decoding tool free, online Base64 text to binary, Base64 decoder for developers, secure Base64 converter online, Base64 string to text decode, online base64 decoder with strict validation, secure base64 encoder for large text strings, base64 to image converter with size limit check, how to validate base64 string before decoding, developer tool for clean base64 encoding and decoding, बेस64 एनकोडर, बेस64 डिकोडर, बेस64 टूल">
     <link rel="canonical" href="https://www.worldoftools.in/base64-encoder-decoder" />
     <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/svg+xml" href="/logo.svg">
@@ -90,6 +90,53 @@
         .hidden {
             display: none;
         }
+
+        .error-msg {
+            background: #fef2f2;
+            color: #b91c1c;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: none;
+            border: 1px solid #fee2e2;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .mode-toggle input {
+            cursor: pointer;
+        }
+
+        .size-info {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #ecfdf5;
+            color: #047857;
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
     </style>
     <meta name="google-site-verification" content="8lQ4Qtp5Q_Y4GzdmUcpc-sjXeL9jZeqCRvVLnxa2MUs" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
@@ -111,9 +158,14 @@
         <div class="tool-container">
             <section class="tool-header">
                 <h1>Base64 Encoder / Decoder</h1>
+                <div class="privacy-badge">🛡️ 100% Client-Side – Runs in your browser</div>
                 <p style="color: var(--text-muted); font-size: 1.1rem;">Securely convert text and images to and from
-                    Base64 format.</p>
+                    Base64 format with strict validation.</p>
             </section>
+
+            <div id="errorMessage" class="error-msg">
+                <span>⚠️</span> <span id="errorText"></span>
+            </div>
 
             <div class="tool-main-card">
                 <div class="tabs">
@@ -130,6 +182,9 @@
                         <button class="btn btn-secondary" onclick="processText('decode')"
                             style="padding: 0.5rem 1.5rem; font-weight: 700;">🔓 Decode</button>
                         <div style="flex-grow: 1;"></div>
+                        <label class="mode-toggle">
+                            <input type="checkbox" id="strictMode" checked> Strict Mode
+                        </label>
                         <button class="btn btn-secondary" onclick="copyText('textInput')"
                             style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">📋 Copy</button>
                         <button class="btn btn-secondary" onclick="downloadResult('textInput')"
@@ -138,7 +193,9 @@
                             style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700; color: #ef4444;">🗑️
                             Clear</button>
                     </div>
-                    <textarea id="textInput" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+                    <textarea id="textInput" placeholder="Enter text to encode or Base64 to decode..."
+                        oninput="updateSize('textInput')"></textarea>
+                    <div id="textInputSize" class="size-info">Size: 0 KB / 1 MB Max</div>
                 </div>
 
                 <!-- Image Tab -->
@@ -161,7 +218,8 @@
                     </div>
 
                     <textarea id="imageOutput" placeholder="Base64 string will appear here, or paste one to preview..."
-                        oninput="previewBase64()"></textarea>
+                        oninput="previewBase64(); updateSize('imageOutput')"></textarea>
+                    <div id="imageOutputSize" class="size-info">Size: 0 KB / 1 MB Max</div>
 
                     <div class="image-preview-area">
                         <div id="noImgText" style="color: var(--text-muted);">Image preview will appear here</div>
@@ -218,6 +276,18 @@
                         client-side, your images are processed within your browser and are never uploaded to any server.
                     </p>
                 </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">What is Strict vs Lenient mode?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Strict mode ensures your Base64 string is
+                        perfectly formatted (valid length, correct padding) and performs a re-encode verification.
+                        Lenient mode attempts to decode even if the format has minor issues.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">Why is there an input size limit?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">We limit input to 512KB to ensure the tool
+                        remains fast and doesn't freeze your browser. This is sufficient for most code snippets and
+                        optimized web assets.</p>
+                </div>
             </div>
         </section>
 
@@ -258,37 +328,152 @@
             document.getElementById('imageMode').classList.toggle('hidden', mode !== 'image');
         }
 
+        const MAX_SIZE = 1024 * 512; // 512KB limit
+
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            const errText = document.getElementById('errorText');
+            if (msg) {
+                errText.textContent = msg;
+                errDiv.style.display = 'flex';
+                setTimeout(() => {
+                    errDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 50);
+            } else {
+                errDiv.style.display = 'none';
+            }
+        }
+
+        function updateSize(id) {
+            const val = document.getElementById(id).value;
+            const size = new Blob([val]).size;
+            const sizeDiv = document.getElementById(id + 'Size');
+            sizeDiv.textContent = `Size: ${(size / 1024).toFixed(2)} KB / ${(MAX_SIZE / 1024)} KB Max`;
+            if (size > MAX_SIZE) {
+                sizeDiv.style.color = '#ef4444';
+                sizeDiv.style.fontWeight = '700';
+            } else {
+                sizeDiv.style.color = 'var(--text-muted)';
+                sizeDiv.style.fontWeight = '400';
+            }
+        }
+
+        function validateBase64(str, strict) {
+            if (!str) return null;
+            const trimmed = str.trim();
+
+            if (strict) {
+                // Length check
+                if (trimmed.length % 4 !== 0) return "Invalid Base64 length (must be multiple of 4)";
+
+                // Illegal characters check
+                if (/[^A-Za-z0-9+/=]/.test(trimmed)) return "Invalid characters detected in Base64 string";
+
+                // Padding check
+                const paddingIndex = trimmed.indexOf('=');
+                if (paddingIndex !== -1) {
+                    if (paddingIndex < trimmed.length - 2) return "Incorrect padding placement";
+                    if (trimmed.slice(paddingIndex).split('').some(c => c !== '=')) return "Illegal characters after padding";
+                    if (trimmed.length - paddingIndex > 2) return "Too much padding (max 2 '=' allowed)";
+                }
+            } else {
+                // Lenient check: just check for obvious corruption
+                if (trimmed.length > 0 && trimmed.length < 4 && trimmed.indexOf('=') === -1) return "String too short";
+            }
+            return null;
+        }
+
+        function verifyReencode(original, decoded) {
+            try {
+                // Encode back and compare (ignoring whitespace and normalization differences if any)
+                const reencoded = btoa(unescape(encodeURIComponent(decoded)));
+                return original.replace(/\s/g, '') === reencoded;
+            } catch (e) {
+                return false;
+            }
+        }
+
         function processText(type) {
+            showError('');
             const input = document.getElementById('textInput');
+            const val = input.value;
+            const isStrict = document.getElementById('strictMode').checked;
+
+            if (val.length > MAX_SIZE && type === 'encode') {
+                showError(`Input size exceeds limit of ${MAX_SIZE / 1024}KB. Please reduce input size.`);
+                return;
+            }
+
             try {
                 if (type === 'encode') {
-                    input.value = btoa(unescape(encodeURIComponent(input.value)));
+                    input.value = btoa(unescape(encodeURIComponent(val)));
+                    updateSize('textInput');
                 } else {
-                    input.value = decodeURIComponent(escape(atob(input.value)));
+                    const validationError = validateBase64(val, isStrict);
+                    if (validationError) {
+                        showError(validationError);
+                        return;
+                    }
+
+                    const decoded = decodeURIComponent(escape(atob(val.trim())));
+
+                    if (isStrict) {
+                        if (!verifyReencode(val, decoded)) {
+                            showError("Re-encode verification failed: The input might be corrupted or contains hidden formatting.");
+                            return;
+                        }
+                    }
+
+                    input.value = decoded;
+                    updateSize('textInput');
                 }
             } catch (e) {
-                alert('Error: ' + e.message + '. Make sure the input is valid for this operation.');
+                if (e.message.includes('atob')) {
+                    showError("Invalid Base64 format: Decoding failed.");
+                } else {
+                    showError('Error: ' + e.message);
+                }
             }
         }
 
         function handleImage(input) {
+            showError('');
             const file = input.files[0];
             if (!file) return;
+
+            if (file.size > MAX_SIZE) {
+                showError(`Image size (${(file.size / 1024).toFixed(2)}KB) exceeds limit of ${MAX_SIZE / 1024}KB.`);
+                input.value = '';
+                return;
+            }
 
             const reader = new FileReader();
             reader.onload = (e) => {
                 document.getElementById('imageOutput').value = e.target.result;
+                updateSize('imageOutput');
                 previewBase64();
             };
             reader.readAsDataURL(file);
         }
 
         function previewBase64() {
+            showError('');
             const val = document.getElementById('imageOutput').value.trim();
             const preview = document.getElementById('previewImg');
             const noImgText = document.getElementById('noImgText');
 
-            if (val && (val.startsWith('data:image/') || /^[a-zA-Z0-9+/=]+$/.test(val))) {
+            if (!val) {
+                preview.style.display = 'none';
+                noImgText.style.display = 'block';
+                noImgText.textContent = 'Image preview will appear here';
+                return;
+            }
+
+            if (val.length > MAX_SIZE * 1.5) { // Base64 is ~33% larger than binary
+                showError("Base64 string is too large for preview.");
+            }
+
+            if (val.startsWith('data:image/') || /^[a-zA-Z0-9+/=]+$/.test(val)) {
                 preview.src = val.startsWith('data:image/') ? val : `data:image/png;base64,${val}`;
                 preview.style.display = 'block';
                 noImgText.style.display = 'none';
@@ -297,11 +482,13 @@
                     preview.style.display = 'none';
                     noImgText.style.display = 'block';
                     noImgText.textContent = 'Invalid Base64 Image string';
+                    showError("The provided Base64 string does not represent a valid image.");
                 }
             } else {
                 preview.style.display = 'none';
                 noImgText.style.display = 'block';
-                noImgText.textContent = val ? 'Invalid input format' : 'Image preview will appear here';
+                noImgText.textContent = 'Invalid input format';
+                showError("Invalid Base64 format for image.");
             }
         }
 
