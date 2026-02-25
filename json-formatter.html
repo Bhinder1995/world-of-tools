@@ -121,8 +121,15 @@
                         Clear</button>
                 </div>
 
+                <div id="errorMessage" class="error-msg"></div>
+
+                <div
+                    style="margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    <span style="font-size: 1.1rem;">🛡️</span>
+                    <span style="font-weight: 600; color: var(--text-dark);">100% Client-Side Processing</span>
+                </div>
+
                 <textarea id="jsonInput" placeholder="Paste your JSON here..."></textarea>
-                <div id="errorMessage" class="error-message"></div>
             </div>
         </div>
 
@@ -222,14 +229,32 @@
         const badge = document.getElementById('validationBadge');
         const errorDiv = document.getElementById('errorMessage');
 
-        textarea.addEventListener('input', validateJSON);
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+                errDiv.className = 'error-msg'; // Standardize class
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
 
         function validateJSON() {
+            showError('');
             const val = textarea.value.trim();
             if (!val) {
                 badge.className = 'badge badge-none';
                 badge.textContent = 'No Input';
-                errorDiv.style.display = 'none';
+                return;
+            }
+
+            // 2MB input limit check
+            if (new Blob([val]).size > 2 * 1024 * 1024) {
+                showError('Input size exceeds 2MB. Large JSON files may cause browser performance issues.');
+                badge.className = 'badge badge-error';
+                badge.textContent = 'Too Large';
                 return;
             }
 
@@ -237,12 +262,10 @@
                 JSON.parse(val);
                 badge.className = 'badge badge-success';
                 badge.textContent = 'Valid JSON';
-                errorDiv.style.display = 'none';
             } catch (e) {
                 badge.className = 'badge badge-error';
                 badge.textContent = 'Invalid JSON';
-                errorDiv.style.display = 'block';
-                errorDiv.textContent = 'Error: ' + e.message;
+                showError('Invalid JSON structure: ' + e.message);
             }
         }
 

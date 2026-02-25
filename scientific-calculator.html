@@ -96,6 +96,14 @@
                     ease.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
+            <div
+                style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
+                <span style="font-size: 1.2rem;">🛡️</span>
+                <span style="font-weight: 700;">100% Client-Side Processing</span>
+            </div>
+
             <div class="tool-main-card">
                 <div id="history" class="calc-history"></div>
                 <input type="text" id="display" class="calc-display" readonly value="0">
@@ -204,7 +212,19 @@
         const display = document.getElementById('display');
         const history = document.getElementById('history');
 
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function appendToDisplay(value) {
+            showError('');
             if (display.value === '0' && value !== '.') {
                 display.value = value;
             } else {
@@ -213,13 +233,17 @@
         }
 
         function clearDisplay() {
+            showError('');
             display.value = '0';
             history.textContent = '';
         }
 
         function calculate() {
+            showError('');
             try {
                 let expr = display.value;
+                if (!expr || expr === '0') return;
+
                 history.textContent = expr + ' =';
 
                 // Replace math functions
@@ -231,8 +255,14 @@
                 expr = expr.replace(/sqrt\(/g, 'Math.sqrt(');
 
                 const result = eval(expr);
+                if (result === Infinity || result === -Infinity) {
+                    showError('Result is infinity.');
+                    display.value = 'Error';
+                    return;
+                }
                 display.value = Number.isInteger(result) ? result : parseFloat(result.toFixed(8));
             } catch (e) {
+                showError('Invalid mathematical expression.');
                 display.value = 'Error';
             }
         }

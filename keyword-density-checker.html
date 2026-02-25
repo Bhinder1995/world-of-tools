@@ -45,6 +45,10 @@
                         style="min-height: 350px; font-family: inherit; padding: 1.5rem; border-radius: 16px; border: 2px solid var(--border-color); width: 100%; font-size: 1rem; line-height: 1.6;"></textarea>
                 </div>
 
+                <div id="errorMessage"
+                    style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-top: 1.5rem; font-size: 0.95rem;">
+                </div>
+
                 <div style="margin-top: 2rem; display: flex; gap: 1rem;">
                     <button class="btn btn-primary" onclick="analyzeDensity()"
                         style="flex: 2; height: 3.5rem; border-radius: 12px; font-weight: 700; font-size: 1.1rem;">Analyze
@@ -83,9 +87,8 @@
                 </div>
 
                 <div
-                    style="margin-top: 2.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-                    🛡️ <strong>100% Private</strong>: Analysis is performed locally in your browser. No data is sent to
-                    our servers.
+                    style="margin-top: 2.5rem; font-size: 0.9rem; color: var(--text-muted); text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    🛡️ 100% Client-Side Processing: Your text never leaves your browser.
                 </div>
             </div>
         </div>
@@ -146,9 +149,34 @@
 
     <script src="js/common.js?v=1.2"></script>
     <script>
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function analyzeDensity() {
-            const text = document.getElementById('textInput').value.toLowerCase();
-            if (!text.trim()) return;
+            showError('');
+            const textInput = document.getElementById('textInput');
+            const text = textInput.value.toLowerCase();
+            if (!text.trim()) {
+                showError("Please enter some text to analyze.");
+                return;
+            }
+
+            // 1MB limit
+            if (new TextEncoder().encode(text).length > 1024 * 1024) {
+                showError("Input too large. Please limit text to 1MB for performance.");
+                return;
+            }
 
             // Remove stop words (simplified list)
             const stopWords = ['a', 'an', 'the', 'and', 'or', 'but', 'is', 'if', 'then', 'else', 'when', 'at', 'from', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'of', 'in', 'on', 'it', 'was', 'were', 'had', 'has', 'have'];
@@ -191,6 +219,7 @@
         function clearAll() {
             document.getElementById('textInput').value = '';
             document.getElementById('resultsArea').style.display = 'none';
+            showError('');
         }
 
         // Structured Data

@@ -75,6 +75,10 @@
             </section>
 
             <div class="tool-main-card">
+                <div id="errorMessage"
+                    style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem;">
+                </div>
+
                 <div class="input-group">
                     <label for="urlInput">Input Text / URL</label>
                     <textarea id="urlInput" placeholder="Enter your text or encoded URL here..."
@@ -86,6 +90,11 @@
                     <button class="btn btn-secondary" onclick="process(false)">🔓 Decode URL</button>
                     <button class="btn btn-secondary" onclick="copyResult()">📋 Copy</button>
                     <button class="btn btn-secondary" onclick="downloadResult()">📥 Download</button>
+                </div>
+
+                <div
+                    style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    🛡️ 100% Client-Side Processing: Your data never leaves your browser.
                 </div>
             </div>
         </div>
@@ -148,13 +157,35 @@
 
     <script src="js/common.js?v=1.2"></script>
     <script>
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function process(encode) {
+            showError('');
             const input = document.getElementById('urlInput');
             if (!input.value) return;
+
+            // 1MB limit
+            if (new TextEncoder().encode(input.value).length > 1024 * 1024) {
+                showError("Input too large. Please limit text to 1MB for performance.");
+                return;
+            }
+
             try {
                 input.value = encode ? encodeURIComponent(input.value) : decodeURIComponent(input.value);
             } catch (e) {
-                alert('Error processing URL: ' + e.message);
+                showError('Error processing URL: ' + e.message);
             }
         }
 

@@ -37,6 +37,8 @@
                     installment calculations and full schedules.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
             <div class="tool-main-card">
                 <form id="emiForm" style="margin-bottom: 2rem;">
                     <div
@@ -276,31 +278,73 @@
         bcScript.text = JSON.stringify(breadcrumbData);
         document.head.appendChild(bcScript);
 
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+                errDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         document.getElementById('emiForm').addEventListener('submit', function (e) {
             e.preventDefault();
             calculateEMI();
         });
 
+        function displayResults(emi, totalInterest, totalAmount) {
+            document.getElementById('emiValue').textContent = '₹' + emi.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+            document.getElementById('totalInterest').textContent = '₹' + totalInterest.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+            document.getElementById('totalAmount').textContent = '₹' + totalAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+            document.getElementById('resultSummary').style.display = 'block';
+            document.getElementById('resultSummary').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         function calculateEMI() {
+            showError('');
             const principal = parseFloat(document.getElementById('principal').value);
             let tenure = parseFloat(document.getElementById('tenure').value);
             const annualRate = parseFloat(document.getElementById('interest').value);
             const tenureType = document.getElementById('tenureType').value;
 
-            if (tenureType === 'years') tenure *= 12;
+            if (isNaN(principal) || principal <= 0) {
+                showError('Please enter a valid loan amount greater than 0.');
+                return;
+            }
+            if (isNaN(annualRate) || annualRate < 0) {
+                showError('Please enter a valid interest rate.');
+                return;
+            }
+            if (isNaN(tenure) || tenure <= 0) {
+                showError('Please enter a valid tenure greater than 0.');
+                return;
+            }
+
+            const totalMonths = tenureType === 'years' ? tenure * 12 : tenure;
+
+            if (annualRate === 0) {
+                const emi = principal / totalMonths;
+                displayResults(emi, 0, principal);
+                generateAmortization(principal, emi, 0);
+                return;
+            }
 
             const monthlyRate = annualRate / 12 / 100;
-            const emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, tenure)) / (Math.pow(1 + monthlyRate, tenure) - 1);
-            const totalAmount = emi * tenure;
+            const emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+
+            if (isNaN(emi) || !isFinite(emi)) {
+                showError('System error in calculation. Please check your inputs.');
+                return;
+            }
+
+            const totalAmount = emi * totalMonths;
             const totalInterest = totalAmount - principal;
 
-            document.getElementById('emiValue').textContent = '₹' + emi.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-            document.getElementById('totalInterest').textContent = '₹' + totalInterest.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-            document.getElementById('totalAmount').textContent = '₹' + totalAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-
-            document.getElementById('resultSummary').style.display = 'block';
+            displayResults(emi, totalInterest, totalAmount);
             generateAmortization(principal, emi, monthlyRate);
-            document.getElementById('resultSummary').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function generateAmortization(principal, emi, rate) {

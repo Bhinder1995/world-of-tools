@@ -146,6 +146,14 @@
                     for developers.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
+            <div
+                style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
+                <span style="font-size: 1.2rem;">🛡️</span>
+                <span style="font-weight: 700;">100% Client-Side Processing</span>
+            </div>
+
             <div class="tool-main-card">
                 <div class="uuid-layout">
                     <div class="card controls-card">
@@ -300,7 +308,22 @@
 
         let currentCount = 100;
 
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function setCount(num) {
+            showError('');
             currentCount = num;
             document.getElementById('customCount').value = ''; // Clear custom input
             document.querySelectorAll('.count-btn').forEach(btn => {
@@ -310,12 +333,15 @@
         }
 
         function handleCustomInput(val) {
+            showError('');
             const num = parseInt(val);
             if (num > 0 && num <= 500) {
                 currentCount = num;
                 // Remove active class from buttons
                 document.querySelectorAll('.count-btn').forEach(btn => btn.classList.remove('active'));
                 generateUUIDs();
+            } else if (val !== '') {
+                showError('Please enter a number between 1 and 500.');
             }
         }
 
@@ -338,41 +364,65 @@
                     <span>${uuid}</span>
                     <button class="copy-each-btn" onclick="copySingle('${uuid}', this)">Copy</button>
                 `;
-                list.appendChild(item);
             }
+            showError(`Successfully generated ${currentCount} UUIDs.`, 'success');
+            setTimeout(() => showError(''), 2000);
         }
 
         function copySingle(val, btn) {
+            showError('');
             navigator.clipboard.writeText(val).then(() => {
+                showError('UUID copied to clipboard!', 'success');
                 const old = btn.textContent;
                 btn.textContent = '✓';
                 btn.style.color = '#10b981';
                 setTimeout(() => {
                     btn.textContent = old;
                     btn.style.color = 'var(--primary-color)';
+                    showError('');
                 }, 1000);
             });
         }
 
         function copyAll() {
+            showError('');
             const uuids = Array.from(document.querySelectorAll('.uuid-item span')).map(s => s.textContent).join('\n');
+            if (!uuids) {
+                showError('No UUIDs to copy.');
+                return;
+            }
             navigator.clipboard.writeText(uuids).then(() => {
+                showError('All UUIDs copied to clipboard!', 'success');
                 const feedback = document.getElementById('copyFeedback');
                 feedback.style.display = 'inline';
-                setTimeout(() => feedback.style.display = 'none', 1500);
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                    showError('');
+                }, 1500);
             });
         }
 
         function downloadTxt() {
+            showError('');
             const uuids = Array.from(document.querySelectorAll('.uuid-item span')).map(s => s.textContent).join('\n');
-            const blob = new Blob([uuids], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `worldoftools.in-uuids-${Date.now()}.txt`;
+            if (!uuids) {
+                showError('No UUIDs to download.');
+                return;
+            }
+            try {
+                const blob = new Blob([uuids], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `worldoftools.in-uuids-${Date.now()}.txt`;
 
-            a.click();
-            window.URL.revokeObjectURL(url);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                showError('UUIDs downloaded successfully.', 'success');
+                setTimeout(() => showError(''), 2000);
+            } catch (e) {
+                showError('Failed to download UUIDs.');
+            }
         }
 
         // Initialize

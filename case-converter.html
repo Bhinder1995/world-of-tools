@@ -38,6 +38,7 @@
             </section>
 
             <div class="tool-main-card">
+                <div id="errorMessage" class="error-msg"></div>
                 <div class="input-group">
                     <label for="inputText">Input Text</label>
                     <textarea id="inputText" placeholder="Type or paste your text here..."
@@ -151,31 +152,50 @@
 
     <script src="js/common.js?v=1.2"></script>
     <script>
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function convertCase(type) {
-            const input = document.getElementById('inputText').value;
+            showError('');
+            const input = document.getElementById('inputText').value.trim();
+            if (!input) {
+                showError('Please enter some text to convert.');
+                return;
+            }
             let output = '';
 
-            switch (type) {
-                case 'upper':
-                    output = input.toUpperCase();
-                    break;
-                case 'lower':
-                    output = input.toLowerCase();
-                    break;
-                case 'title':
-                    output = input.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-                    break;
-                case 'camel':
-                    output = input.toLowerCase()
-                        .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
-                    break;
-                case 'snake':
-                    output = input.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-                        .map(x => x.toLowerCase())
-                        .join('_');
-                    break;
+            try {
+                switch (type) {
+                    case 'upper':
+                        output = input.toUpperCase();
+                        break;
+                    case 'lower':
+                        output = input.toLowerCase();
+                        break;
+                    case 'title':
+                        output = input.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                        break;
+                    case 'camel':
+                        output = input.toLowerCase()
+                            .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+                        break;
+                    case 'snake':
+                        const matches = input.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g);
+                        output = matches ? matches.map(x => x.toLowerCase()).join('_') : input.toLowerCase().replace(/\s+/g, '_');
+                        break;
+                }
+                document.getElementById('outputText').value = output;
+            } catch (e) {
+                showError('An error occurred during conversion: ' + e.message);
             }
-            document.getElementById('outputText').value = output;
         }
 
         function copyToClipboard() {

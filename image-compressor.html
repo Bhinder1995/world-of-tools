@@ -128,9 +128,17 @@
         <div class="tool-container" style="max-width: 1200px;">
             <section class="tool-header">
                 <h1>🖼️ Image Compressor</h1>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">Client-side image optimization. Fast, secure,
-                    and no data leaves your browser.</p>
+                <div
+                    style="display: inline-flex; align-items: center; gap: 0.5rem; background: #ecfdf5; color: #047857; padding: 0.35rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
+                    🛡️ 100% Client-Side Processing
+                </div>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Compress images securely in your browser. Fast,
+                    private, and no data leaves your device.</p>
             </section>
+
+            <div id="errorMessage"
+                style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+            </div>
 
             <div class="tool-main-card" style="padding: 2.5rem;">
                 <div class="compressor-ui">
@@ -306,18 +314,43 @@
         });
 
         downloadBtn.addEventListener('click', () => {
+            if (!imagePreview.src) return;
             const link = document.createElement('a');
             link.download = `worldoftools.in-compressed-image-${Date.now()}.jpg`;
-
             link.href = imagePreview.src;
             link.click();
+            showError('Image downloaded successfully!', 'success');
+            setTimeout(() => showError(''), 2000);
         });
 
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function handleUpload(e) {
-            const file = e.target.files[0];
+            showError('');
+            const file = e.target.files[0] || (e.dataTransfer ? e.dataTransfer.files[0] : null);
             if (!file) return;
 
-            mimeType = file.type;
+            if (file.size > 10 * 1024 * 1024) { // 10MB limit
+                showError("File too large. Please upload an image smaller than 10MB.");
+                return;
+            }
+
+            if (!file.type.startsWith('image/')) {
+                showError("Please upload a valid image file.");
+                return;
+            }
             const reader = new FileReader();
             reader.onload = (event) => {
                 const img = new Image();

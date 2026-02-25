@@ -129,7 +129,7 @@
             margin-top: 1rem;
         }
 
-        #error-msg {
+        #errorMessage {
             background: #fee2e2;
             color: #b91c1c;
             padding: 1rem;
@@ -174,8 +174,13 @@
                         <button class="btn btn-primary" onclick="getThumbnails()"
                             style="font-weight: 700; font-size: 1rem; letter-spacing: 0.02em;">Get Thumbnails</button>
                     </div>
-                    <div id="error-msg"></div>
+                    <div id="errorMessage"></div>
                 </section>
+
+                <div
+                    style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding: 1.5rem; border-top: 1px solid var(--border-color); background: white; border-radius: 0 0 24px 24px;">
+                    🛡️ 100% Client-Side Processing: Your URL data never leaves your browser.
+                </div>
 
                 <div id="results-area" style="display: none; margin-top: 4rem; animation: subtitleFade 0.5s ease-out;">
                     <div class="thumbnail-grid">
@@ -343,20 +348,31 @@
             max: '', hq720: '', sd: '', hq: '', mq: ''
         };
 
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'block';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function getThumbnails() {
+            showError('');
             const url = document.getElementById('ytUrl').value.trim();
-            const error = document.getElementById('error-msg');
             const results = document.getElementById('results-area');
             const videoId = extractVideoId(url);
 
             if (!videoId) {
-                error.textContent = "Please enter a valid YouTube URL.";
-                error.style.display = "block";
+                showError("Please enter a valid YouTube URL.");
                 results.style.display = "none";
                 return;
             }
-
-            error.style.display = "none";
             results.style.display = "block";
 
             // YouTube Thumbnail Quality URLs
@@ -437,7 +453,8 @@
         function copyUrl(type) {
             const url = imgUrls[type];
             navigator.clipboard.writeText(url).then(() => {
-                alert('Image link copied to clipboard!');
+                showError('Image link copied to clipboard!', 'success');
+                setTimeout(() => showError(''), 2000);
             });
         }
 

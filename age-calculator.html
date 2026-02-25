@@ -39,6 +39,7 @@
 
             <div class="tool-main-card">
                 <form id="ageForm" style="margin-bottom: 0;">
+                    <div id="errorMessage" class="error-msg"></div>
                     <div class="input-group">
                         <label for="dob">Enter Your Date of Birth</label>
                         <input type="date" id="dob" required style="font-size: 1.1rem; padding: 1rem;">
@@ -258,17 +259,39 @@
         bcScript.text = JSON.stringify(breadcrumbData);
         document.head.appendChild(bcScript);
 
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+                errDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         document.getElementById('ageForm').addEventListener('submit', function (e) {
             e.preventDefault();
             calculateAge();
         });
 
         function calculateAge() {
+            showError('');
             const dobInput = document.getElementById('dob').value;
-            if (!dobInput) return;
+            if (!dobInput) {
+                showError('Please select your date of birth.');
+                return;
+            }
 
             const dob = new Date(dobInput);
             const now = new Date();
+
+            if (dob > now) {
+                showError('Date of birth cannot be in the future.');
+                document.getElementById('results').style.display = 'none';
+                return;
+            }
 
             let years = now.getFullYear() - dob.getFullYear();
             let months = now.getMonth() - dob.getMonth();

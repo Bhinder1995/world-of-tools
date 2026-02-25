@@ -93,6 +93,8 @@
                     accurately for all standard tax slabs.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
             <div class="tool-main-card">
                 <div class="mode-card"
                     style="margin-bottom: 2.5rem; background: #f8fafc; border: 1px solid var(--border-color);">
@@ -338,10 +340,29 @@
             }
         }
 
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function calculateGST() {
-            const amount = parseFloat(document.getElementById('amount').value);
+            showError('');
+            const amountStr = document.getElementById('amount').value;
+            if (!amountStr) {
+                document.getElementById('result').style.display = 'none';
+                return;
+            }
+
+            const amount = parseFloat(amountStr);
             const resultDiv = document.getElementById('result');
-            if (isNaN(amount)) {
+            if (isNaN(amount) || amount < 0) {
+                showError('Please enter a valid numeric amount.');
                 resultDiv.style.display = 'none';
                 return;
             }

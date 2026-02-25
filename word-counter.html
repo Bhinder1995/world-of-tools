@@ -140,6 +140,10 @@
                     </div>
                 </div>
 
+                <div id="errorMessage"
+                    style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem;">
+                </div>
+
                 <div class="text-actions">
                     <button class="btn btn-secondary" onclick="transformText('upper')"
                         style="padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 700;">UPPERCASE</button>
@@ -164,6 +168,11 @@
                     <span>Estimated Reading Time: <span id="readTime" style="color: var(--primary-color);">0</span>
                         min</span>
                     <span>Characters (excl. spaces): <span id="charNoSpaceCount">0</span></span>
+                </div>
+
+                <div
+                    style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    🛡️ 100% Client-Side Processing: Your text never leaves your browser.
                 </div>
             </div>
         </div>
@@ -323,8 +332,30 @@
         const textarea = document.getElementById('textInput');
         textarea.addEventListener('input', countStats);
 
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function countStats() {
+            showError('');
             const text = textarea.value;
+
+            // 1MB limit
+            if (new TextEncoder().encode(text).length > 1024 * 1024) {
+                showError("Input too large. Please limit text to 1MB for performance.");
+                return;
+            }
+
             const words = text.trim().split(/\s+/).filter(word => word.length > 0);
             document.getElementById('wordCount').textContent = words.length.toLocaleString();
             document.getElementById('charCount').textContent = text.length.toLocaleString();
@@ -386,6 +417,7 @@
             if (confirm('Clear all text?')) {
                 textarea.value = '';
                 countStats();
+                showError('');
             }
         }
     </script>

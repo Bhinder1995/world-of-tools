@@ -37,6 +37,14 @@
                     JSON objects.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
+            <div
+                style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
+                <span style="font-size: 1.2rem;">🛡️</span>
+                <span style="font-weight: 700;">100% Client-Side Processing</span>
+            </div>
+
             <div class="tool-main-card">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                     <div class="input-group">
@@ -126,35 +134,87 @@
 
     <script src="js/common.js?v=1.2"></script>
     <script>
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function convertCsvToJson() {
+            showError('');
             const csv = document.getElementById('csvInput').value.trim();
-            if (!csv) return;
-
-            const lines = csv.split('\n');
-            const result = [];
-            const headers = lines[0].split(',').map(h => h.trim().replace(/^"(.*)"$/, '$1'));
-
-            for (let i = 1; i < lines.length; i++) {
-                if (!lines[i].trim()) continue;
-                const obj = {};
-                const currentline = lines[i].split(',').map(v => v.trim().replace(/^"(.*)"$/, '$1'));
-
-                for (let j = 0; j < headers.length; j++) {
-                    obj[headers[j]] = currentline[j];
-                }
-                result.push(obj);
+            if (!csv) {
+                showError('Please enter some CSV data.');
+                return;
             }
 
-            document.getElementById('jsonOutput').value = JSON.stringify(result, null, 2);
+            // 1MB limit check
+            if (new Blob([csv]).size > 1024 * 1024) {
+                showError('Input size exceeds 1MB. Please process smaller CSV sets to prevent browser lag.');
+                return;
+            }
+
+            try {
+                const lines = csv.split('\n');
+                if (lines.length < 2) {
+                    showError('CSV must include at least a header row and one data row.');
+                    return;
+                }
+
+                const result = [];
+                const headers = lines[0].split(',').map(h => h.trim().replace(/^"(.*)"$/, '$1'));
+                const columnCount = headers.length;
+
+                for (let i = 1; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+
+                    const currentline = line.split(',').map(v => v.trim().replace(/^"(.*)"$/, '$1'));
+
+                    if (currentline.length !== columnCount) {
+                        showError(`Column mismatch at line ${i + 1}. Expected ${columnCount} columns, found ${currentline.length}.`);
+                        return;
+                    }
+
+                    const obj = {};
+                    for (let j = 0; j < headers.length; j++) {
+                        obj[headers[j]] = currentline[j];
+                    }
+                    result.push(obj);
+                }
+
+                document.getElementById('jsonOutput').value = JSON.stringify(result, null, 2);
+            } catch (e) {
+                showError('Error converting CSV: ' + e.message);
+            }
         }
 
         function copyJson() {
             const json = document.getElementById('jsonOutput');
+            if (!json.value) {
+                showError('No JSON to copy.');
+                return;
+            }
             json.select();
-            document.execCommand('copy');
+            try {
+                document.execCommand('copy');
+                showError('JSON copied to clipboard!', 'success');
+                setTimeout(() => showError(''), 2000);
+            } catch (err) {
+                showError('Failed to copy JSON.');
+            }
         }
 
         function clearAll() {
+            showError('');
             document.getElementById('csvInput').value = '';
             document.getElementById('jsonOutput').value = '';
         }

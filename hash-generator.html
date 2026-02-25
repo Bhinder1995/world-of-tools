@@ -128,6 +128,8 @@
                     your browser.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
             <div class="tool-main-card">
                 <div class="input-area">
                     <div
@@ -209,10 +211,17 @@
                 </div>
 
                 <div
-                    style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; color: var(--text-muted); font-size: 0.9rem;">
-                    <span
-                        style="background: #f0fdf4; color: #166534; padding: 0.25rem 0.75rem; border-radius: 99px; font-weight: 700; font-size: 0.75rem;">SECURE</span>
-                    Processed locally using SubtleCrypto API. No data leaves your device.
+                    style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span
+                            style="background: #f0fdf4; color: #166534; padding: 0.25rem 0.75rem; border-radius: 99px; font-weight: 700; font-size: 0.75rem;">SECURE</span>
+                        Processed locally using SubtleCrypto API. No data leaves your device.
+                    </div>
+                    <div
+                        style="display: flex; align-items: center; gap: 0.5rem; background: #f8fafc; padding: 0.5rem 1rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <span style="font-size: 1.2rem;">🛡️</span>
+                        <span style="font-weight: 600; color: var(--text-dark);">100% Client-Side</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -282,23 +291,46 @@
 
     <script src="js/common.js?v=1.2"></script>
     <script>
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         async function updateHashes() {
+            showError('');
             const str = document.getElementById('hashInput').value;
             if (!str) {
                 document.querySelectorAll('.hash-value').forEach(el => el.textContent = 'Waiting for input...');
                 return;
             }
 
-            const encoder = new TextEncoder();
-            const data = encoder.encode(str);
+            // 1MB limit check
+            if (new Blob([str]).size > 1024 * 1024) {
+                showError('Input size exceeds 1MB. Please use smaller text blocks to prevent browser lag.');
+                document.querySelectorAll('.hash-value').forEach(el => el.textContent = 'Input too large');
+                return;
+            }
 
-            // SHA Family
-            document.getElementById('sha256').textContent = await hash('SHA-256', data);
-            document.getElementById('sha1').textContent = await hash('SHA-1', data);
-            document.getElementById('sha512').textContent = await hash('SHA-512', data);
+            try {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(str);
 
-            // MD5 (Manual implementation since SubtleCrypto doesn't support it)
-            document.getElementById('md5').textContent = calcMD5(str);
+                // SHA Family
+                document.getElementById('sha256').textContent = await hash('SHA-256', data);
+                document.getElementById('sha1').textContent = await hash('SHA-1', data);
+                document.getElementById('sha512').textContent = await hash('SHA-512', data);
+
+                // MD5 (Manual implementation since SubtleCrypto doesn't support it)
+                document.getElementById('md5').textContent = calcMD5(str);
+            } catch (e) {
+                showError('An error occurred while generating hashes: ' + e.message);
+            }
         }
 
         async function hash(algo, data) {

@@ -90,6 +90,14 @@
                     loading speeds.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
+            <div
+                style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
+                <span style="font-size: 1.2rem;">🛡️</span>
+                <span style="font-weight: 700;">100% Client-Side Processing</span>
+            </div>
+
             <div class="tool-main-card">
                 <div class="minifier-controls"
                     style="background: #f8fafc; border: 1px solid var(--border-color); margin-bottom: 2rem;">
@@ -212,29 +220,54 @@
         const minifiedSizeSpan = document.getElementById('minifiedSize');
         const savingsPercentSpan = document.getElementById('savingsPercent');
 
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function minifyCSS() {
+            showError('');
             const original = textarea.value;
-            if (!original.trim()) return;
+            if (!original.trim()) {
+                showError('Please enter some CSS code to minify.');
+                return;
+            }
 
             const originalSize = new Blob([original]).size;
 
-            // Simple but effective regex-based minification
-            let minified = original
-                .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
-                .replace(/\s+/g, ' ')             // Collapse all whitespace to single space
-                .replace(/\s*([{};:>+])\s*/g, '$1') // Remove spaces around delimiters
-                .replace(/;}/g, '}')              // Remove trailing semicolon in blocks
-                .trim();
+            // 1MB limit check
+            if (originalSize > 1024 * 1024) {
+                showError('Input size exceeds 1MB. Please compress smaller files to prevent browser lag.');
+                return;
+            }
 
-            const minifiedSize = new Blob([minified]).size;
-            const savings = originalSize > 0 ? Math.round(((originalSize - minifiedSize) / originalSize) * 100) : 0;
+            try {
+                // Simple but effective regex-based minification
+                let minified = original
+                    .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
+                    .replace(/\s+/g, ' ')             // Collapse all whitespace to single space
+                    .replace(/\s*([{};:>+])\s*/g, '$1') // Remove spaces around delimiters
+                    .replace(/;}/g, '}')              // Remove trailing semicolon in blocks
+                    .trim();
 
-            textarea.value = minified;
+                const minifiedSize = new Blob([minified]).size;
+                const savings = originalSize > 0 ? Math.round(((originalSize - minifiedSize) / originalSize) * 100) : 0;
 
-            originalSizeSpan.textContent = originalSize;
-            minifiedSizeSpan.textContent = minifiedSize;
-            savingsPercentSpan.textContent = savings + '%';
-            statsInfo.style.display = 'flex';
+                textarea.value = minified;
+
+                originalSizeSpan.textContent = originalSize;
+                minifiedSizeSpan.textContent = minifiedSize;
+                savingsPercentSpan.textContent = savings + '%';
+                statsInfo.style.display = 'flex';
+            } catch (e) {
+                showError('An error occurred during minification: ' + e.message);
+            }
         }
 
         function copyText() {

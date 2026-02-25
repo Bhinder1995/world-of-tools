@@ -38,6 +38,10 @@
             </section>
 
             <div class="tool-main-card">
+                <div id="errorMessage"
+                    style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem;">
+                </div>
+
                 <div class="input-group">
                     <label for="xmlInput">XML Code</label>
                     <textarea id="xmlInput" placeholder="Paste your XML here..."
@@ -56,8 +60,9 @@
                         onclick="clearAll()">Clear</button>
                 </div>
 
-                <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
-                    🛡️ 100% Client-Side: Your XML data never leaves your computer.
+                <div
+                    style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    🛡️ 100% Client-Side Processing: Your XML never leaves your browser.
                 </div>
             </div>
         </div>
@@ -122,9 +127,30 @@
 
     <script src="js/common.js?v=1.2"></script>
     <script>
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function formatXml() {
+            showError('');
             const xml = document.getElementById('xmlInput').value.trim();
             if (!xml) return;
+
+            // 1MB limit
+            if (new TextEncoder().encode(xml).length > 1024 * 1024) {
+                showError("Input too large. Please limit XML to 1MB for performance.");
+                return;
+            }
 
             try {
                 let formatted = '';
@@ -157,13 +183,20 @@
 
                 document.getElementById('xmlInput').value = formatted.trim();
             } catch (e) {
-                alert('Invalid XML');
+                showError('Invalid XML format.');
             }
         }
 
         function minifyXml() {
+            showError('');
             const xml = document.getElementById('xmlInput').value.trim();
             if (!xml) return;
+
+            // 1MB limit
+            if (new TextEncoder().encode(xml).length > 1024 * 1024) {
+                showError("Input too large. Please limit XML to 1MB for performance.");
+                return;
+            }
             const minified = xml.replace(/>\s+</g, '><').replace(/\n\s*/g, '');
             document.getElementById('xmlInput').value = minified;
         }
@@ -176,6 +209,7 @@
 
         function clearAll() {
             document.getElementById('xmlInput').value = '';
+            showError('');
         }
 
         // Structured Data

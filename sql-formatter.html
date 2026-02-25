@@ -79,6 +79,14 @@
                     or minify them instantly.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
+            <div
+                style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
+                <span style="font-size: 1.2rem;">🛡️</span>
+                <span style="font-weight: 700;">100% Client-Side Processing</span>
+            </div>
+
             <div class="tool-main-card">
                 <div class="controls"
                     style="background: #f8fafc; border: 1px solid var(--border-color); margin-bottom: 2rem;">
@@ -160,9 +168,33 @@ SELECT * FROM users WHERE id = 1;"
 
     <script src="js/common.js?v=1.2"></script>
     <script>
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function formatSQL() {
+            showError('');
             let sql = document.getElementById('sqlInput').value.trim();
-            if (!sql) return;
+            if (!sql) {
+                showError('Please enter some SQL to format.');
+                return;
+            }
+
+            // 1MB limit check
+            if (new Blob([sql]).size > 1024 * 1024) {
+                showError('SQL length exceeds 1MB. Please process smaller queries to prevent browser lag.');
+                return;
+            }
 
             // Simplified SQL formatter logic
             sql = sql.replace(/\s+/g, ' '); // Normalize space
@@ -188,11 +220,23 @@ SELECT * FROM users WHERE id = 1;"
             });
 
             document.getElementById('sqlInput').value = formattedLines.join('\n');
+            showError('SQL beautified successfully.', 'success');
+            setTimeout(() => showError(''), 2000);
         }
 
         function minifySQL() {
+            showError('');
             let sql = document.getElementById('sqlInput').value;
-            if (!sql) return;
+            if (!sql) {
+                showError('Please enter some SQL to minify.');
+                return;
+            }
+
+            // 1MB limit check
+            if (new Blob([sql]).size > 1024 * 1024) {
+                showError('SQL length exceeds 1MB. Please process smaller queries to prevent browser lag.');
+                return;
+            }
 
             // Remove comments
             sql = sql.replace(/\/\*[\s\S]*?\*\/|--.*?\n/g, '');
@@ -200,35 +244,58 @@ SELECT * FROM users WHERE id = 1;"
             sql = sql.replace(/\s+/g, ' ').trim();
 
             document.getElementById('sqlInput').value = sql;
+            showError('SQL minified successfully.', 'success');
+            setTimeout(() => showError(''), 2000);
         }
 
         function copySQL() {
+            showError('');
             const el = document.getElementById('sqlInput');
-            if (!el.value) return;
+            if (!el.value) {
+                showError('Nothing to copy.');
+                return;
+            }
             navigator.clipboard.writeText(el.value).then(() => {
+                showError('SQL copied to clipboard!', 'success');
                 const btn = document.querySelector('button[onclick="copySQL()"]');
                 const old = btn.textContent;
                 btn.textContent = '✅ Copied!';
-                setTimeout(() => btn.textContent = old, 1500);
+                setTimeout(() => {
+                    btn.textContent = old;
+                    showError('');
+                }, 1500);
             });
         }
 
         function downloadSQL() {
+            showError('');
             const sql = document.getElementById('sqlInput').value;
-            if (!sql) return;
+            if (!sql) {
+                showError('Nothing to download.');
+                return;
+            }
 
-            const blob = new Blob([sql], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `worldoftools.in-sql-${Date.now()}.sql`;
-            a.click();
-            window.URL.revokeObjectURL(url);
+            try {
+                const blob = new Blob([sql], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `worldoftools.in-sql-${Date.now()}.sql`;
+                a.click();
+                window.URL.revokeObjectURL(url);
+                showError('SQL file downloaded.', 'success');
+                setTimeout(() => showError(''), 2000);
+            } catch (e) {
+                showError('Failed to download SQL file.');
+            }
         }
 
         function clearSQL() {
+            showError('');
             if (confirm('Clear SQL editor?')) {
                 document.getElementById('sqlInput').value = '';
+                showError('SQL editor cleared.', 'success');
+                setTimeout(() => showError(''), 2000);
             }
         }
 

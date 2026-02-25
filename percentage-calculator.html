@@ -92,6 +92,14 @@
                     calculate growth instantly.</p>
             </section>
 
+            <div id="errorMessage" class="error-msg"></div>
+
+            <div
+                style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
+                <span style="font-size: 1.2rem;">🛡️</span>
+                <span style="font-weight: 700;">100% Client-Side Processing</span>
+            </div>
+
             <div class="tool-main-card">
                 <!-- Find Percentage -->
                 <div class="calc-group"
@@ -324,36 +332,87 @@
         bcScript.text = JSON.stringify(breadcrumbData);
         document.head.appendChild(bcScript);
 
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
         function calcP1() {
+            showError('');
             const per = parseFloat(document.getElementById('p1_per').value);
             const num = parseFloat(document.getElementById('p1_num').value);
             const card = document.getElementById('res1_card');
+
+            if (document.getElementById('p1_per').value === '' || document.getElementById('p1_num').value === '') {
+                card.style.display = 'none';
+                return;
+            }
+
             if (!isNaN(per) && !isNaN(num)) {
                 document.getElementById('res1').textContent = (per / 100 * num).toLocaleString('en-IN', { maximumFractionDigits: 2 });
                 card.style.display = 'block';
-            } else { card.style.display = 'none'; }
+            } else {
+                card.style.display = 'none';
+                showError('Please enter valid numbers for the calculation.');
+            }
         }
 
         function calcP2() {
+            showError('');
             const num1 = parseFloat(document.getElementById('p2_num1').value);
             const num2 = parseFloat(document.getElementById('p2_num2').value);
             const card = document.getElementById('res2_card');
-            if (!isNaN(num1) && !isNaN(num2) && num2 !== 0) {
+
+            if (document.getElementById('p2_num1').value === '' || document.getElementById('p2_num2').value === '') {
+                card.style.display = 'none';
+                return;
+            }
+
+            if (!isNaN(num1) && !isNaN(num2)) {
+                if (num2 === 0) {
+                    showError('Total cannot be zero.');
+                    card.style.display = 'none';
+                    return;
+                }
                 document.getElementById('res2').textContent = (num1 / num2 * 100).toFixed(2) + '%';
                 card.style.display = 'block';
-            } else { card.style.display = 'none'; }
+            } else {
+                card.style.display = 'none';
+                showError('Please enter valid numbers for the calculation.');
+            }
         }
 
         function calcP3() {
+            showError('');
             const from = parseFloat(document.getElementById('p3_from').value);
             const to = parseFloat(document.getElementById('p3_to').value);
             const card = document.getElementById('res3_card');
-            if (!isNaN(from) && !isNaN(to) && from !== 0) {
+
+            if (document.getElementById('p3_from').value === '' || document.getElementById('p3_to').value === '') {
+                card.style.display = 'none';
+                return;
+            }
+
+            if (!isNaN(from) && !isNaN(to)) {
+                if (from === 0) {
+                    showError('Starting value cannot be zero.');
+                    card.style.display = 'none';
+                    return;
+                }
                 const per = ((to - from) / from) * 100;
                 const type = per >= 0 ? 'Increase' : 'Decrease';
                 document.getElementById('res3').textContent = `${Math.abs(per).toFixed(2)}% ${type}`;
                 card.style.display = 'block';
-            } else { card.style.display = 'none'; }
+            } else {
+                card.style.display = 'none';
+                showError('Please enter valid numbers for the calculation.');
+            }
         }
     </script>
 </body>
