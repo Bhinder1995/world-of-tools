@@ -122,7 +122,7 @@
 
                 <div
                     style="margin-top: 3rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-                    🛡️ 100% Client-Side Processing: Your URL data is processed securely.
+                    🛡️ Secure Processing: Your URL data is handled safely through our redirect service.
                 </div>
             </div>
         </div>
@@ -258,16 +258,16 @@
                 return;
             }
 
-            error.style.display = 'none';
+            errorMessage.style.display = 'none';
             result.style.display = 'none';
             loader.style.display = 'block';
 
             // Custom API
             try {
-                const res = await fetch("/go", {
+                const res = await fetch("https://go.worldoftools.in/create", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ url: longUrl })
+                    body: JSON.stringify({ longUrl: longUrl })
                 });
                 const data = await res.json();
                 if (data.shortUrl) {
@@ -276,7 +276,7 @@
                     handleFailure(data.error || 'Service unavailable');
                 }
             } catch (e) {
-                handleFailure('Failed to connect to shortening service.');
+                handleFailure('Failed to connect to shortening service. Check your connection.');
             }
 
             function displayResult(shortUrl) {
