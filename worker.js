@@ -14,19 +14,20 @@ export default {
 
         // Health check
         if (url.pathname === "/") {
-            return new Response("URL Shortener API (TinyURL Masking Mode) Running", { headers: corsHeaders });
+            return new Response("URL Shortener API Running", { headers: corsHeaders });
         }
 
         // CREATE SHORT LINK
-        if (request.method === "POST" && url.pathname === "/create") {
-            const { longUrl } = await request.json();
+        if (request.method === "POST" && url.pathname === "/go") {
+            const { url: longUrl } = await request.json();
 
             if (!longUrl || !longUrl.startsWith("http")) {
-                return new Response("Invalid URL", { status: 400, headers: corsHeaders });
+                return new Response(JSON.stringify({ error: "Invalid URL" }), {
+                    status: 400,
+                    headers: { "Content-Type": "application/json", ...corsHeaders }
+                });
             }
 
-            // 1. Get TinyURL code (optional, we can just use our own random code for masking)
-            // For maximum reliability, we'll use our own random code and store the redirect.
             const key = Math.random().toString(36).substring(2, 8);
 
             try {
@@ -34,27 +35,32 @@ export default {
                 await env.LINKS_DB.put(key, longUrl);
 
                 return new Response(JSON.stringify({
-                    shortUrl: `https://go.worldoftools.in/${key}`
+                    shortUrl: `${url.origin}/go/${key}`
                 }), {
                     headers: { "Content-Type": "application/json", ...corsHeaders }
                 });
             } catch (e) {
-                return new Response(JSON.stringify({ error: "KV Storage failed. Ensure LINKS_DB is bound." }), {
+                return new Response(JSON.stringify({ error: "Database error" }), {
                     status: 500,
-                    headers: corsHeaders
+                    headers: { "Content-Type": "application/json", ...corsHeaders }
                 });
             }
         }
 
         // REDIRECT
-        const key = url.pathname.substring(1);
-        const longUrl = await env.LINKS_DB.get(key);
-
-        if (longUrl) {
-            return Response.redirect(longUrl, 301);
+        // Handle /go/key or /key
+        let key = url.pathname.substring(1);
+        if (key.startsWith("go/")) {
+            key = key.substring(3);
         }
 
-        // FALLBACK: If not found, it might be a direct TinyURL redirect if we implemented that flow
-        return new Response("Link not found on WorldOfTools Hub", { status: 404 });
+        if (key) {
+            const longUrl = await env.LINKS_DB.get(key);
+            if (longUrl) {
+                return Response.redirect(longUrl, 301);
+            }
+        }
+
+        return new Response("Link not found", { status: 404, headers: corsHeaders });
     }
 };

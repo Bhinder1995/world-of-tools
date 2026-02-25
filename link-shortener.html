@@ -87,9 +87,9 @@
 
             <div class="tool-main-card">
                 <div class="shorten-box">
-                    <input type="url" id="longUrl" placeholder="https://example.com/your-long-link" required
+                    <input type="url" id="urlInput" placeholder="https://example.com/your-long-link" required
                         style="flex: 1; min-width: 0; font-size: 1.15rem; padding: 1.25rem; border-radius: 12px; border: 2px solid var(--border-color); outline: none; transition: border-color 0.2s;">
-                    <button class="btn btn-primary" onclick="shortenLink()"
+                    <button class="btn btn-primary" onclick="shortenUrl()"
                         style="padding: 1.25rem 2.5rem; border-radius: 12px; font-weight: 700; height: 3.8rem; display: flex; align-items: center;">Shorten
                         Link</button>
                 </div>
@@ -245,14 +245,19 @@
             }
         }
 
-        async function shortenLink() {
+        async function shortenUrl() {
             showError('');
-            const longUrlInput = document.getElementById('longUrl');
-            const longUrl = longUrlInput.value.trim();
+            const inputValue = document.getElementById('urlInput').value.trim();
             const result = document.getElementById('result');
             const loader = document.getElementById('loader');
+            const shortUrlDiv = document.getElementById('shortUrl');
 
-            if (!longUrl || (!longUrl.startsWith('http://') && !longUrl.startsWith('https://'))) {
+            if (!inputValue) {
+                showError("Please enter a URL");
+                return;
+            }
+
+            if (!inputValue.startsWith('http://') && !inputValue.startsWith('https://')) {
                 showError('Please enter a valid URL (including https://).');
                 result.style.display = 'none';
                 return;
@@ -262,32 +267,31 @@
             result.style.display = 'none';
             loader.style.display = 'block';
 
-            // Custom API
             try {
-                const res = await fetch("https://go.worldoftools.in/create", {
+                const response = await fetch("/go", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ longUrl: longUrl })
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ url: inputValue })
                 });
-                const data = await res.json();
-                if (data.shortUrl) {
-                    displayResult(data.shortUrl);
-                } else {
-                    handleFailure(data.error || 'Service unavailable');
-                }
-            } catch (e) {
-                handleFailure('Failed to connect to shortening service. Check your connection.');
-            }
 
-            function displayResult(shortUrl) {
-                document.getElementById('shortUrl').textContent = shortUrl;
-                result.style.display = 'block';
-                loader.style.display = 'none';
+                const data = await response.json();
+
+                if (response.ok) {
+                    shortUrlDiv.textContent = data.shortUrl;
+                    result.style.display = 'block';
+                    loader.style.display = 'none';
+                } else {
+                    handleFailure(data.error || "Something went wrong");
+                }
+            } catch (error) {
+                handleFailure("Connection failed");
             }
 
             function handleFailure(msg) {
                 loader.style.display = 'none';
-                showError('Error: ' + msg);
+                showError(msg);
             }
         }
 
