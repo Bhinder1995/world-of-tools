@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWT Decoder – Online JSON Web Token Debugger & Signature Verifier</title>
-    <meta name="description"
-        content="Secure online JWT decoder. Inspect, decode, and verify JWT header and payload claims browser-side. 100% private jwt.io alternative for developers.">
-    <meta name="keywords"
-        content="decode JWT header and payload online, verify JWT signature browser side, inspect OAuth token claims, jwt.io alternative for privacy, secure JWT decoder online, decode JWT without login, verify JWT signature online free, JWT debugger tool, जेडब्ल्यूटी डिकोडर, जेडब्ल्यूटी डीबगर">
+    <title>JWT Decoder – Decode JSON Web Tokens Online Safely & Free</title>
+    <meta name="description" content="Free JWT decoder. Paste any JWT and instantly view decoded header, payload claims, and expiry time. 100% browser-based — tokens never leave your device.">
+    <meta name="keywords" content="how to decode JWT token online, view JWT claims browser, JWT decode header payload, what is inside a JWT token, JWT expiry checker online, JWT debugger free, decode JWT without secret">
     <link rel="canonical" href="https://www.worldoftools.in/jwt-decoder" />
     <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/svg+xml" href="/logo.svg">
@@ -207,47 +205,54 @@
             </div>
         </div>
 
-        <section class="container" style="max-width: 850px; padding: 6rem 0;">
-            <h3>What is a JWT?</h3>
-            <p>JSON Web Token (JWT) is an open standard used to share security information between two parties — a
-                client and a server. Each JWT contains encoded JSON objects, including a set of claims.</p>
+        
 
-            <h3 style="margin-top: 3rem;">How to use this tool</h3>
-            <ol style="margin-left: 1.5rem; margin-top: 1.5rem; line-height: 1.8;">
-                <li><strong>Paste Token:</strong> Paste your encoded JWT (the long string with two dots) into the input
-                    box.</li>
-                <li><strong>Immediate Decoding:</strong> The tool split the token into its three parts (Header, Payload,
-                    Signature) and decodes the Base64Url strings instantly.</li>
-                <li><strong>Check Expiration:</strong> The "Payload" section will automatically show the human-readable
-                    expiration date if an <code>exp</code> claim is present.</li>
+        
+        <!-- How It Works Section -->
+        <section class="container" style="max-width: 850px; padding: 4rem 1.5rem 2rem;">
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">How It Works</h2>
+            <p style="line-height: 1.8; color: var(--text-muted); margin-bottom: 2rem;">A JWT consists of three Base64URL-encoded parts separated by dots: <code>header.payload.signature</code>. The tool:<br><br>1. Splits the token on <code>.</code> characters.<br>2. Base64URL-decodes the header and payload sections.<br>3. Parses each as JSON and displays them formatted.<br>4. Reads <code>exp</code> (expiry), <code>iat</code> (issued at), and <code>nbf</code> (not before) Unix timestamps and converts them to human-readable dates.<br><br>The signature is not verified (that requires the secret key) — this tool is for inspection only.</p>
+            
+            <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Step-by-Step Guide:</h3>
+            <ol style="margin-left: 1.5rem; line-height: 1.8; color: var(--text-muted); display: grid; gap: 0.75rem;">
             </ol>
+        </section>
 
-            <h3 style="margin-top: 3rem;">Features & Privacy</h3>
-            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
-                <li><strong>Privacy First:</strong> Your tokens never leave your browser. Unlike other online decoders,
-                    we don't send your sensitive tokens to any server.</li>
-                <li><strong>Automatic Validation:</strong> Instantly see if a token is expired or still valid based on
-                    its timestamp.</li>
-                <li><strong>Formatted JSON:</strong> Output is beautified for easy reading.</li>
-            </ul>
-
-            <h3 style="margin-top: 3rem;">Frequently Asked Questions (FAQ)</h3>
-            <div style="display: grid; gap: 2rem; margin-top: 1.5rem;">
-                <div>
-                    <h4 style="margin-bottom: 0.5rem;">Is my JWT data safe?</h4>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">Yes. Decryption and decoding happen
-                        entirely on your device. We do not log or store any tokens.</p>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 0.5rem;">Can I edit the JWT here?</h4>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">This tool is focused on decoding and
-                        debugging. To create or modify a JWT, you would typically use a library in your backend code.
-                    </p>
-                </div>
+        <!-- Conclusion Section -->
+        <section class="container" style="max-width: 850px; padding: 2rem 1.5rem;">
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">Conclusion</h2>
+            <div style="line-height: 1.8; color: var(--text-muted); background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color);">
+                This <strong>free JWT decoder</strong> is an essential tool for API developers, security engineers, and anyone working with OAuth or authentication tokens — inspect any JWT's payload and claims instantly with complete browser-side privacy.
             </div>
         </section>
 
-        <!-- Tool Links -->
+        <!-- FAQ Section -->
+        <section class="container" style="max-width: 850px; padding: 2rem 1.5rem 4rem;">
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">Frequently Asked Questions (FAQ)</h2>
+            <div style="display: grid; gap: 2.5rem;">
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Can this verify a JWT signature?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">No — signature verification requires the secret key or public certificate and must be done server-side. This tool is for payload inspection only.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Is it safe to paste a production JWT here?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">Since decoding is fully client-side, the risk is low compared to using an online service that sends data to a server. As a best practice, always rotate tokens after sharing them outside secure environments.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">What is a JWT used for?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">JWTs are used for stateless authentication — a server issues a signed token containing user claims, which the client sends with each request. The server verifies the signature to authenticate without storing session state.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">What does 'exp' mean in a JWT?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">`exp` is the expiry timestamp (Unix time). The server should reject tokens with an expired `exp` value.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Can I use this to debug OAuth tokens?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">Yes — OAuth access tokens are often JWTs. Paste the token here to inspect scopes, user ID, and expiry without needing the signing secret.</p>
+                </div>
+            </div>
+        </section>
+<!-- Tool Links -->
         <section style="margin-top: 0; padding-bottom: 4rem;">
             <h2 style="text-align: center; margin-bottom: 3rem;">Explore Developer Utilities</h2>
             <div class="tools-grid">
