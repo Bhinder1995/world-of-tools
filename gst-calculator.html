@@ -712,7 +712,6 @@
 
         function initGstChart(net, gst) {
             const ctx = document.getElementById('gstChart').getContext('2d');
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
             if (gstChart) gstChart.destroy();
 
@@ -728,7 +727,7 @@
                 },
                 options: {
                     plugins: {
-                        legend: { position: 'bottom', labels: { color: isDark ? '#f8fafc' : '#0f172a' } }
+                        legend: { position: 'bottom', labels: { color: '#0f172a' } }
                     },
                     responsive: true,
                     maintainAspectRatio: false

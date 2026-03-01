@@ -1,33 +1,13 @@
 // Common JS for Mega Utility Hub
 
 document.addEventListener('DOMContentLoaded', () => {
-    setupTheme();
     injectHeader();
     injectFooter();
     registerServiceWorker();
     highlightActiveLink();
 });
 
-function setupTheme() {
-    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', savedTheme);
-}
-
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-
-    // Update toggle icon if exists
-    const icon = document.querySelector('.theme-toggle span');
-    if (icon) icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-}
-
 function injectHeader() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const themeIcon = currentTheme === 'dark' ? '☀️' : '🌙';
-
     const headerHTML = `
         <div class="container">
             <div class="header-content">
@@ -62,10 +42,6 @@ function injectHeader() {
                             <span class="logo-tagline">Fast. Free. Private.</span>
                         </div>
                     </a>
-
-                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background: none; border: none; cursor: pointer; font-size: 1.5rem; padding: 0.5rem; line-height: 1;">
-                        <span>${themeIcon}</span>
-                    </button>
                 </div>
 
                 <button class="menu-toggle" aria-label="Toggle navigation">
