@@ -5,13 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Age Calculator – How Old Am I? Find Exact Age in Years, Months & Days</title>
-    <meta name="description" content="Free age calculator. Find your exact age in years, months, days, hours, and minutes from your date of birth. Calculate age between two dates, next birthday countdown & more.">
-    <meta name="keywords" content="how old am I, age calculator, calculate my age, age from date of birth, exact age calculator, how many days old am I, age calculator online free, how old am I today, how old will I be in 2030, how many days have I been alive, age calculator between two dates, what day was I born on, how old am I in months, age calculator years months days, calculate age from DOB online">
+    <meta name="description"
+        content="Free age calculator. Find your exact age in years, months, days, hours, and minutes from your date of birth. Calculate age between two dates, next birthday countdown & more.">
+    <meta name="keywords"
+        content="how old am I, age calculator, calculate my age, age from date of birth, exact age calculator, how many days old am I, age calculator online free, how old am I today, how old will I be in 2030, how many days have I been alive, age calculator between two dates, what day was I born on, how old am I in months, age calculator years months days, calculate age from DOB online">
+    <style>
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        input {
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+
+        .card {
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
     <link rel="canonical" href="https://www.worldoftools.in/age-calculator" />
     <link rel="stylesheet" href="css/style.css?v=1.2">
     <link rel="icon" type="image/svg+xml" href="/logo.svg">
     <link rel="manifest" href="manifest.json">
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -35,134 +77,299 @@
             </section>
 
             <div class="tool-main-card">
-                <form id="ageForm" style="margin-bottom: 0;">
-                    <div id="errorMessage" class="error-msg"></div>
-                    <div class="input-group">
-                        <label for="dob">Enter Your Date of Birth</label>
-                        <input type="date" id="dob" required style="font-size: 1.1rem; padding: 1rem;">
-                    </div>
-                    <button type="submit" class="btn"
-                        style="width: 100%; border-radius: 12px; height: 3.5rem;">Calculate My Age</button>
-                </form>
+                <div class="tabs" style="margin-bottom: 2rem;">
+                    <button class="tab-btn active" onclick="switchTab('age-today')">🗓️ Age Today</button>
+                    <button class="tab-btn" onclick="switchTab('specific-date')">🎯 Specific Date</button>
+                    <button class="tab-btn" onclick="switchTab('find-dob')">🔍 Find DOB</button>
+                </div>
 
+                <div id="errorMessage" class="error-msg"></div>
+
+                <!-- Age Today Tab -->
+                <div id="age-today-tab" class="tab-content">
+                    <form id="ageTodayForm" onsubmit="handleAgeToday(event)">
+                        <div class="input-group">
+                            <label for="dobToday">Your Date of Birth</label>
+                            <input type="date" id="dobToday" required>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Calculate My Age</button>
+                    </form>
+                </div>
+
+                <!-- Specific Date Tab -->
+                <div id="specific-date-tab" class="tab-content" style="display: none;">
+                    <form id="specificDateForm" onsubmit="handleSpecificDate(event)">
+                        <div class="input-group">
+                            <label for="dobSpec">Your Date of Birth</label>
+                            <input type="date" id="dobSpec" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="refDate">Calculate Age on (Specific Date)</label>
+                            <input type="date" id="refDate" required>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Calculate Age At That Time</button>
+                    </form>
+                </div>
+
+                <!-- Find DOB Tab -->
+                <div id="find-dob-tab" class="tab-content" style="display: none;">
+                    <form id="findDobForm" onsubmit="handleFindDob(event)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="input-group">
+                                <label for="ageYears">Current Age (Years)</label>
+                                <input type="number" id="ageYears" placeholder="25" min="0" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="ageMonths">Additional Months</label>
+                                <input type="number" id="ageMonths" placeholder="6" min="0" max="11" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="findDobRefDate">Reference Date</label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <input type="date" id="findDobRefDate" required style="flex: 1;">
+                                <button type="button" class="btn btn-secondary" onclick="setToToday('findDobRefDate')"
+                                    title="Set to Today" style="padding: 0 1rem; height: auto;">🔄</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Find My Date of Birth</button>
+                    </form>
+                </div>
+
+                <!-- Privacy Badge -->
+                <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    ⚡ All calculations run in your browser. No data is stored.
+                </div>
+
+                <!-- Results Section -->
                 <div id="results" style="display: none; margin-top: 3rem; animation: subtitleFade 0.5s ease-out;">
-                    <div style="text-align: center; margin-bottom: 3rem;">
-                        <div
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin-bottom: 3rem;">
+
+                    <div style="text-align: center; margin-bottom: 3rem; position: relative;">
+                        <div id="resultLabel"
                             style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
-                            Your Precise Age</div>
+                            Your Exact Age</div>
                         <div id="mainAge" class="result-value"
                             style="margin: 0.5rem 0; font-size: clamp(2.5rem, 8vw, 4rem);"></div>
+                        <div id="summaryText"
+                            style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-bottom: 1.5rem;">
+                        </div>
+                        <div style="display: flex; justify-content: center; gap: 1rem;">
+                            <button class="btn btn-secondary" onclick="copyResult()"
+                                style="padding: 0.5rem 1rem; font-size: 0.85rem;">📋 Copy Result</button>
+                            <button class="btn btn-secondary" onclick="shareResult()"
+                                style="padding: 0.5rem 1rem; font-size: 0.85rem;">🔗 Share Result</button>
+                        </div>
+                    </div>
+
+                    <!-- Visual Timeline -->
+                    <div class="card"
+                        style="margin-bottom: 3rem; background: #f8fafc; border: 1px solid var(--border-color);">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; text-align: center;">Life Timeline (Based
+                            on 80-year average)</h3>
                         <div
-                            style="display: inline-flex; align-items: center; gap: 0.5rem; background: #f0fdf4; color: #166534; padding: 0.5rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600;">
-                            🛡️ 100% Private & Local</div>
+                            style="background: #e2e8f0; height: 1.5rem; border-radius: 99px; overflow: hidden; margin-bottom: 0.75rem;">
+                            <div id="lifespanBar"
+                                style="height: 100%; background: var(--primary-gradient); width: 0%; transition: width 1s ease-out;">
+                            </div>
+                        </div>
+                        <div id="lifespanText"
+                            style="text-align: center; font-weight: 700; color: var(--primary-color);"></div>
                     </div>
 
                     <div
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 3rem;">
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                        <!-- Birthday Intelligence -->
                         <div class="card"
-                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color);">
-                            <span id="totalMonths"
-                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
-                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Months</span>
+                            style="padding: 1.5rem; background: white; border: 1px solid var(--border-color);">
+                            <h3
+                                style="font-size: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem;">
+                                🌟 Birthday Intelligence</h3>
+                            <div style="display: grid; gap: 1rem; font-size: 0.95rem;">
+                                <div style="display: flex; justify-content: space-between;"><span
+                                        style="color: var(--text-muted);">Zodiac Sign:</span> <span id="zodiacSign"
+                                        style="font-weight: 700;">-</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span
+                                        style="color: var(--text-muted);">Born on a:</span> <span id="bornDay"
+                                        style="font-weight: 700;">-</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span
+                                        style="color: var(--text-muted);">Next Birthday:</span> <span
+                                        id="nextBirthdayDay" style="font-weight: 700;">-</span></div>
+                                <div style="text-align: center; margin-top: 0.5rem; padding: 0.75rem; background: #eef2ff; border-radius: 8px; color: var(--primary-color); font-weight: 800;"
+                                    id="birthdayCountdown"></div>
+                            </div>
                         </div>
+
+                        <!-- Milestone Tracker -->
                         <div class="card"
-                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color);">
-                            <span id="totalWeeks"
-                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
-                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Weeks</span>
-                        </div>
-                        <div class="card"
-                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color);">
-                            <span id="totalDays"
-                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
-                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Days</span>
-                        </div>
-                        <div class="card"
-                            style="padding: 1.5rem; text-align: center; background: white; border: 1px solid var(--border-color);">
-                            <span id="totalHours"
-                                style="display: block; font-weight: 800; font-size: 1.75rem; color: var(--primary-color);"></span>
-                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Hours</span>
+                            style="padding: 1.5rem; background: white; border: 1px solid var(--border-color);">
+                            <h3
+                                style="font-size: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem;">
+                                📅 Milestone Tracker</h3>
+                            <div style="display: grid; gap: 1rem; font-size: 0.95rem;">
+                                <div style="display: flex; flex-direction: column;"><span
+                                        style="color: var(--text-muted); font-size: 0.85rem;">10,000 Days
+                                        Milestone:</span> <span id="milestone10k" style="font-weight: 700;">-</span>
+                                </div>
+                                <div style="display: flex; flex-direction: column;"><span
+                                        style="color: var(--text-muted); font-size: 0.85rem;">Next Major Decade:</span>
+                                    <span id="nextDecade" style="font-weight: 700;">-</span>
+                                </div>
+                                <div style="display: flex; flex-direction: column;"><span
+                                        style="color: var(--text-muted); font-size: 0.85rem;">25,000 Days
+                                        Milestone:</span> <span id="milestone25k" style="font-weight: 700;">-</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="card"
-                        style="background: rgba(79, 70, 229, 0.05); border: 2px dashed rgba(79, 70, 229, 0.2); text-align: center; padding: 2.5rem;">
-                        <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Next Birthday Countdown</h3>
-                        <div id="birthdayCountdown"
-                            style="font-size: 2rem; font-weight: 900; color: var(--primary-color); font-family: var(--font-heading);">
+                    <!-- Life Stats section -->
+                    <h3 style="text-align: center; margin-bottom: 1.5rem; font-size: 1.5rem;">📊 Life Statistics</h3>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 3rem;">
+                        <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
+                            <span id="totalDays"
+                                style="display: block; font-weight: 800; font-size: 1.5rem; color: var(--primary-color);"></span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Days
+                                Lived</span>
                         </div>
+                        <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
+                            <span id="totalWeekends"
+                                style="display: block; font-weight: 800; font-size: 1.5rem; color: var(--primary-color);"></span>
+                            <span
+                                style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Weekends</span>
+                        </div>
+                        <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
+                            <span id="totalHours"
+                                style="display: block; font-weight: 800; font-size: 1.5rem; color: var(--primary-color);"></span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Hours</span>
+                        </div>
+                        <div class="card" style="padding: 1.5rem; text-align: center; background: white;">
+                            <span id="totalMinutes"
+                                style="display: block; font-weight: 800; font-size: 1.5rem; color: var(--primary-color);"></span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">Minutes</span>
+                        </div>
+                    </div>
+
+                    <!-- Smart Insight Box -->
+                    <div id="insightBox"
+                        style="padding: 2rem; border-radius: 16px; background: #fffbeb; border: 1px solid #fef3c7; text-align: center; margin-bottom: 3rem;">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">🧠</span>
+                        <div id="insightText" style="font-weight: 600; color: #92400e; font-style: italic;"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        
 
-        
 
-        
 
-        
-        <!-- How It Works Section -->
+
+
+
+
+        <!-- How It Works & Educational Section -->
         <section class="container" style="max-width: 850px; padding: 4rem 1.5rem 2rem;">
-            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">How It Works</h2>
-            <p style="line-height: 1.8; color: var(--text-muted); margin-bottom: 2rem;">The age calculator uses your <strong>date of birth (DOB)</strong> and a target date (today by default) to compute the exact time elapsed. It:<br><br>1. <strong>Calculates full years</strong> completed since your birth date.<br>2. <strong>Counts remaining months</strong> after the last full year.<br>3. <strong>Counts remaining days</strong> after the last full month.<br>4. <strong>Handles leap years automatically</strong> — February 29 birthdays and all edge cases are accounted for.<br>5. <strong>Converts to other units</strong> — total weeks, total days, hours, minutes, and seconds since birth.<br><br>The formula follows the standard Gregorian calendar used internationally across Europe, the Americas, and India.</p>
-            
-            <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Step-by-Step Guide:</h3>
-            <ol style="margin-left: 1.5rem; line-height: 1.8; color: var(--text-muted); display: grid; gap: 0.75rem;">
-                <li>Enter Your Date of Birth – Use the date picker or type in DD/MM/YYYY format.</li>
-                <li>Set Target Date (Optional) – Leave it as today, or choose a past or future date.</li>
-                <li>Click Calculate – See your full age breakdown immediately.</li>
-            </ol>
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 2rem; text-align: center;">How Age is
+                Calculated</h2>
+
+            <div style="display: grid; gap: 2rem; line-height: 1.8; color: var(--text-muted);">
+                <div>
+                    <h3 style="color: var(--text-color); font-size: 1.25rem; margin-bottom: 0.5rem;">📅 Calculation
+                        Methodology</h3>
+                    <p>Age is calculated by comparing your <strong>Date of Birth (DOB)</strong> with a reference date
+                        (today's date or a specific future/past date). The system first calculates full years, then
+                        remaining months, and finally the precise number of days.</p>
+                </div>
+
+                <div
+                    style="background: #f8fafc; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                    <h3 style="color: var(--text-color); font-size: 1.25rem; margin-bottom: 0.5rem;">🌎 Leap Year
+                        Explanation</h3>
+                    <p>Leap years occur every 4 years to keep our calendar in alignment with the Earth's orbit. Our tool
+                        automatically accounts for February 29th. If you were born on a leap day, your "birthday" in
+                        non-leap years is typically celebrated on February 28th or March 1st—our calculator handles
+                        these transitions with mathematical precision.</p>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--text-color); font-size: 1.25rem; margin-bottom: 0.5rem;">🧠 Chronological
+                        vs. Biological Age</h3>
+                    <p><strong>Chronological Age</strong> is the amount of time that has passed from your birth to the
+                        given date (what this tool calculates). <strong>Biological Age</strong> refers to how old your
+                        cells and tissues seem based on physiological biomarkers, lifestyle, and genetics. While you
+                        can't change your chronological age, healthy habits can "lower" your biological age!</p>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--text-color); font-size: 1.25rem; margin-bottom: 0.5rem;">🌗 Why Months and
+                        Days Differ?</h3>
+                    <p>Because months have varying lengths (28, 29, 30, or 31 days), calculating the "exact" age in
+                        months is a convention. Our tool uses the <em>Calendar Month</em> method, which is the standard
+                        used for legal and official purposes worldwide.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Quick Guide:</h3>
+                <ul
+                    style="margin-left: 1.5rem; line-height: 1.8; color: var(--text-muted); display: grid; gap: 0.5rem;">
+                    <li><strong>Age Today:</strong> Just enter your DOB to see how old you are right now.</li>
+                    <li><strong>Specific Date:</strong> Find out how old you will be on a wedding, retirement, or future
+                        event.</li>
+                    <li><strong>Find DOB:</strong> Know your age but forgot the exact date? This tab reveals your birth
+                        date.</li>
+                </ul>
+            </div>
         </section>
 
         <!-- Conclusion Section -->
         <section class="container" style="max-width: 850px; padding: 2rem 1.5rem;">
             <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">Conclusion</h2>
-            <div style="line-height: 1.8; color: var(--text-muted); background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color);">
-                This <strong>free age calculator</strong> is the fastest and most accurate way to answer "how old am I today?" — giving you a complete breakdown in years, months, days, hours, minutes, and seconds. Use it for official forms, birthday planning, contract timelines, or just satisfying your curiosity about how many days you've been alive. Fully private, instantly accurate, works on any device.
+            <div
+                style="line-height: 1.8; color: var(--text-muted); background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color);">
+                This <strong>Advanced Age Calculator</strong> is more than just a tool—it's your personal life tracker.
+                Beyond simple years and months, it provides deep "Life Stats", zodiac insights, and milestone tracking.
+                Whether you're checking for a form or celebrating 10,000 days of life, we provide 100% private and
+                accurate results directly in your browser.
             </div>
         </section>
 
         <!-- FAQ Section -->
         <section class="container" style="max-width: 850px; padding: 2rem 1.5rem 4rem;">
-            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">Frequently Asked Questions (FAQ)</h2>
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">Frequently Asked Questions (FAQ)
+            </h2>
             <div style="display: grid; gap: 2.5rem;">
                 <div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">How old am I if I was born in 1990?</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">If born in 1990, you are 35 years old in 2025 (or 34 if your birthday hasn't occurred yet this year). Use the calculator for your exact age with months and days.</p>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">How many days have I lived
+                        so far?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">Our tool calculates your total days lived by
+                        accounting for every single day since your birth, including leap year additions. Check the "Life
+                        Statistics" section after entering your DOB.</p>
                 </div>
                 <div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">How do I calculate age from date of birth?</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">Subtract your birth year from the current year, then adjust by -1 if your birthday hasn't passed yet this year. For exact months and days, use this age calculator.</p>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">What is a 10,000-day
+                        milestone?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">Living 10,000 days is a major life milestone
+                        (occurring around age 27.4). Our "Milestone Tracker" tells you the exact date you will reach—or
+                        reached—this unique event.</p>
                 </div>
                 <div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">How many days old am I?</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">Multiply your completed years by 365, add days for each leap year, then add remaining months and days. Or just use this tool — it computes it instantly.</p>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">How is my zodiac sign
+                        determined?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">We use the Tropical Zodiac system based on
+                        your birth month and day to assign one of the 12 signs (Aries to Pisces).</p>
                 </div>
                 <div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Can I calculate age between two specific dates?</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">Yes. Enter any start date (as DOB) and any end date (as target date) to find the exact duration between two dates.</p>
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Does the calculator handle leap year birthdays (Feb 29)?</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">Yes. If you were born on February 29, the calculator accurately handles your birthday in non-leap years.</p>
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">What if I only know my birth year, not the exact date?</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">You can enter January 1 of your birth year for an approximate calculation.</p>
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Is my date of birth stored or shared?</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">No. All calculations run in your browser. Your DOB is never uploaded or stored anywhere.</p>
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Can I use this for age verification purposes?</h3>
-                    <p style="color: var(--text-muted); line-height: 1.8;">Yes, it gives a precise age for filling forms, age verification, legal documents, and school admissions.</p>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Is this age calculator safe
+                        to use?</h3>
+                    <p style="color: var(--text-muted); line-height: 1.8;">Yes. Unlike other tools, we use
+                        <strong>Client-Side Processing</strong>. Your date of birth never leaves your computer or phone;
+                        all math happens locally in your browser.</p>
                 </div>
             </div>
         </section>
-<!-- Related Tools -->
+        <!-- Related Tools -->
         <section style="margin-top: 6rem;">
             <h2 style="text-align: center; margin-bottom: 3rem;">Try Other Related Tools</h2>
             <div class="tools-grid">
@@ -257,6 +464,21 @@
         bcScript.text = JSON.stringify(breadcrumbData);
         document.head.appendChild(bcScript);
 
+        // Tab switching logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId + '-tab').style.display = 'block';
+            event.currentTarget.classList.add('active');
+            showError('');
+        }
+
+        function setToToday(id) {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById(id).value = today;
+        }
+
         function showError(msg) {
             const errDiv = document.getElementById('errorMessage');
             if (msg) {
@@ -269,28 +491,44 @@
             }
         }
 
-        document.getElementById('ageForm').addEventListener('submit', function (e) {
+        // Logic functions
+        function handleAgeToday(e) {
             e.preventDefault();
-            calculateAge();
-        });
+            const dob = document.getElementById('dobToday').value;
+            if (!dob) return showError('Please select your date of birth.');
+            processAge(new Date(dob), new Date(), "Your Precise Age");
+        }
 
-        function calculateAge() {
+        function handleSpecificDate(e) {
+            e.preventDefault();
+            const dob = document.getElementById('dobSpec').value;
+            const ref = document.getElementById('refDate').value;
+            if (!dob || !ref) return showError('Please fill both dates.');
+            processAge(new Date(dob), new Date(ref), "Age on " + formatDate(new Date(ref)));
+        }
+
+        function handleFindDob(e) {
+            e.preventDefault();
+            const years = parseInt(document.getElementById('ageYears').value);
+            const months = parseInt(document.getElementById('ageMonths').value);
+            const refDate = new Date(document.getElementById('findDobRefDate').value);
+
+            if (isNaN(years) || isNaN(months)) return showError('Please enter valid age.');
+
+            let dob = new Date(refDate);
+            dob.setFullYear(dob.getFullYear() - years);
+            dob.setMonth(dob.getMonth() - months);
+
+            processAge(dob, refDate, "Calculated Date of Birth");
+            document.getElementById('resultLabel').textContent = "Calculated Birth Date";
+            document.getElementById('mainAge').textContent = formatDate(dob);
+        }
+
+        function processAge(dob, now, label) {
             showError('');
-            const dobInput = document.getElementById('dob').value;
-            if (!dobInput) {
-                showError('Please select your date of birth.');
-                return;
-            }
+            if (dob > now && label !== "Calculated Date of Birth") return showError('Birth date cannot be in the future.');
 
-            const dob = new Date(dobInput);
-            const now = new Date();
-
-            if (dob > now) {
-                showError('Date of birth cannot be in the future.');
-                document.getElementById('results').style.display = 'none';
-                return;
-            }
-
+            // Exact Age Calculation
             let years = now.getFullYear() - dob.getFullYear();
             let months = now.getMonth() - dob.getMonth();
             let days = now.getDate() - dob.getDate();
@@ -299,50 +537,116 @@
                 months--;
                 days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
             }
-
             if (months < 0) {
                 years--;
                 months += 12;
             }
 
-            document.getElementById('mainAge').textContent = `${years}y ${months}m ${days}d`;
+            if (label !== "Calculated Date of Birth") {
+                document.getElementById('resultLabel').textContent = label;
+                document.getElementById('mainAge').textContent = `${years}y ${months}m ${days}d`;
+            }
 
+            // Life Stats
             const diffTime = Math.abs(now - dob);
             const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const totalWeeks = Math.floor(totalDays / 7);
-            const totalMonths = (years * 12) + months;
             const totalHours = Math.floor(diffTime / (1000 * 60 * 60));
+            const totalMinutes = Math.floor(diffTime / (1000 * 60));
+            const weekends = Math.floor(totalDays / 7) * 2;
 
-            document.getElementById('totalMonths').textContent = totalMonths.toLocaleString();
-            document.getElementById('totalWeeks').textContent = totalWeeks.toLocaleString();
             document.getElementById('totalDays').textContent = totalDays.toLocaleString();
+            document.getElementById('totalWeekends').textContent = weekends.toLocaleString();
             document.getElementById('totalHours').textContent = totalHours.toLocaleString();
+            document.getElementById('totalMinutes').textContent = totalMinutes.toLocaleString();
 
-            calculateNextBirthday(dob, now);
+            // Timeline (80 years)
+            const lifespanDays = 80 * 365.25;
+            const percent = Math.min(100, (totalDays / lifespanDays * 100)).toFixed(1);
+            document.getElementById('lifespanBar').style.width = percent + '%';
+            document.getElementById('lifespanText').textContent = `You have completed ${percent}% of an average 80-year lifespan.`;
+
+            // Birthday Intel
+            document.getElementById('zodiacSign').textContent = getZodiac(dob.getDate(), dob.getMonth() + 1);
+            document.getElementById('bornDay').textContent = dob.toLocaleDateString(undefined, { weekday: 'long' });
+
+            let nextBday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
+            if (nextBday < now) nextBday.setFullYear(now.getFullYear() + 1);
+            document.getElementById('nextBirthdayDay').textContent = nextBday.toLocaleDateString(undefined, { weekday: 'long' });
+            startCountdown(nextBday);
+
+            // Milestones
+            const m10k = new Date(dob); m10k.setDate(dob.getDate() + 10000);
+            const m25k = new Date(dob); m25k.setDate(dob.getDate() + 25000);
+            const nextDecadeYear = (Math.floor(years / 10) + 1) * 10;
+            const nextDecadeDate = new Date(dob); nextDecadeDate.setFullYear(dob.getFullYear() + nextDecadeYear);
+
+            document.getElementById('milestone10k').textContent = formatDate(m10k);
+            document.getElementById('milestone25k').textContent = formatDate(m25k);
+            document.getElementById('nextDecade').textContent = `${nextDecadeYear}th Birthday on ${formatDate(nextDecadeDate)}`;
+
+            // Smart Insights
+            let insight = "";
+            if (years < 18) insight = "You are in your amazing early growth phase. Keep learning and exploring!";
+            else if (years >= 18 && years < 25) insight = "You are entering adulthood. This is a great time to build your foundation.";
+            else if (years >= 25 && years < 40) insight = "This is a key decade for career, relationships, and long-term planning.";
+            else if (years >= 40 && years < 60) insight = "You are in your prime experience phase. Balance and wisdom are your strengths.";
+            else insight = "You have entered a golden experience phase. A time to share wisdom and enjoy results.";
+            document.getElementById('insightText').textContent = insight;
+
             document.getElementById('results').style.display = 'block';
             document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        function calculateNextBirthday(dob, now) {
-            let nextBirthday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
-            if (nextBirthday < now) nextBirthday.setFullYear(now.getFullYear() + 1);
-            if (window.birthdayInterval) clearInterval(window.birthdayInterval);
-            updateCountdown(nextBirthday);
-            window.birthdayInterval = setInterval(() => updateCountdown(nextBirthday), 1000);
+        function formatDate(date) {
+            return date.toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
         }
 
-        function updateCountdown(nextBirthday) {
-            const now = new Date();
-            const diff = nextBirthday - now;
-            if (diff < 0) {
-                document.getElementById('birthdayCountdown').textContent = "Happy Birthday! 🎂";
-                return;
+        function getZodiac(day, month) {
+            const signs = [
+                { name: "Capricorn ♑", mon: 1, day: 20 }, { name: "Aquarius ♒", mon: 2, day: 19 },
+                { name: "Pisces ♓", mon: 3, day: 20 }, { name: "Aries ♈", mon: 4, day: 20 },
+                { name: "Taurus ♉", mon: 5, day: 21 }, { name: "Gemini ♊", mon: 6, day: 21 },
+                { name: "Cancer ♋", mon: 7, day: 23 }, { name: "Leo ♌", mon: 8, day: 23 },
+                { name: "Virgo ♍", mon: 9, day: 23 }, { name: "Libra ♎", mon: 10, day: 23 },
+                { name: "Scorpio ♏", mon: 11, day: 22 }, { name: "Sagittarius ♐", mon: 12, day: 22 }
+            ];
+            const sign = signs.find(s => (month === s.mon && day <= s.day) || (month === (s.mon % 12 + 1)));
+            return sign ? sign.name : signs[signs.length - 1].name;
+        }
+
+        function startCountdown(target) {
+            if (window.bdayInterval) clearInterval(window.bdayInterval);
+            const update = () => {
+                const now = new Date();
+                const diff = target - now;
+                if (diff < 0) return document.getElementById('birthdayCountdown').textContent = "Happy Birthday! 🎂";
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById('birthdayCountdown').textContent = `In: ${d}d ${h}h ${m}m ${s}s`;
             }
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById('birthdayCountdown').textContent = `${d}d ${h}h ${m}m ${s}s`;
+            update();
+            window.bdayInterval = setInterval(update, 1000);
+        }
+
+        function copyResult() {
+            const text = `${document.getElementById('resultLabel').textContent}: ${document.getElementById('mainAge').textContent}\nZodiac: ${document.getElementById('zodiacSign').textContent}\nDays Lived: ${document.getElementById('totalDays').textContent}\nCalculated via WorldOfTools.in`;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget;
+                const original = btn.textContent;
+                btn.textContent = "✅ Copied!";
+                setTimeout(() => btn.textContent = original, 2000);
+            });
+        }
+
+        function shareResult() {
+            const text = `Hey! I just calculated my age stats on WorldOfTools. My age is ${document.getElementById('mainAge').textContent}. Check yours: https://worldoftools.in/age-calculator`;
+            if (navigator.share) {
+                navigator.share({ title: 'My Age Stats', text: text, url: 'https://worldoftools.in/age-calculator' });
+            } else {
+                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
+            }
         }
     </script>
 </body>

@@ -1,13 +1,33 @@
 // Common JS for Mega Utility Hub
 
 document.addEventListener('DOMContentLoaded', () => {
+    setupTheme();
     injectHeader();
     injectFooter();
     registerServiceWorker();
     highlightActiveLink();
 });
 
+function setupTheme() {
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    // Update toggle icon if exists
+    const icon = document.querySelector('.theme-toggle span');
+    if (icon) icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+}
+
 function injectHeader() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const themeIcon = currentTheme === 'dark' ? '☀️' : '🌙';
+
     const headerHTML = `
         <div class="container">
             <div class="header-content">
@@ -20,27 +40,33 @@ function injectHeader() {
                     </ul>
                 </nav>
 
-                <a href="/" class="logo-center" aria-label="WorldOfTools Home">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40" style="flex-shrink:0;">
-                        <defs>
-                            <linearGradient id="hBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#4F9EF8"/>
-                                <stop offset="100%" style="stop-color:#1A56DB"/>
-                            </linearGradient>
-                            <linearGradient id="hW" x1="0%" y1="0%" x2="60%" y2="100%">
-                                <stop offset="0%" style="stop-color:#ffffff"/>
-                                <stop offset="100%" style="stop-color:#c8dfff"/>
-                            </linearGradient>
-                        </defs>
-                        <rect x="0" y="0" width="48" height="48" rx="11" ry="11" fill="url(#hBg)"/>
-                        <rect x="0" y="0" width="48" height="22" rx="11" ry="11" fill="rgba(255,255,255,0.12)"/>
-                        <text x="6" y="37" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="31" fill="url(#hW)" letter-spacing="-1">W</text>
-                    </svg>
-                    <div class="logo-text-block">
-                        <span class="logo-brand">WorldOfTools</span>
-                        <span class="logo-tagline">Fast. Free. Private.</span>
-                    </div>
-                </a>
+                <div style="display: flex; align-items: center; gap: 1.5rem;">
+                    <a href="/" class="logo-center" aria-label="WorldOfTools Home">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40" style="flex-shrink:0;">
+                            <defs>
+                                <linearGradient id="hBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#4F9EF8"/>
+                                    <stop offset="100%" style="stop-color:#1A56DB"/>
+                                </linearGradient>
+                                <linearGradient id="hW" x1="0%" y1="0%" x2="60%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ffffff"/>
+                                    <stop offset="100%" style="stop-color:#c8dfff"/>
+                                </linearGradient>
+                            </defs>
+                            <rect x="0" y="0" width="48" height="48" rx="11" ry="11" fill="url(#hBg)"/>
+                            <rect x="0" y="0" width="48" height="22" rx="11" ry="11" fill="rgba(255,255,255,0.12)"/>
+                            <text x="6" y="37" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="31" fill="url(#hW)" letter-spacing="-1">W</text>
+                        </svg>
+                        <div class="logo-text-block">
+                            <span class="logo-brand">WorldOfTools</span>
+                            <span class="logo-tagline">Fast. Free. Private.</span>
+                        </div>
+                    </a>
+
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="background: none; border: none; cursor: pointer; font-size: 1.5rem; padding: 0.5rem; line-height: 1;">
+                        <span>${themeIcon}</span>
+                    </button>
+                </div>
 
                 <button class="menu-toggle" aria-label="Toggle navigation">
                     ☰
