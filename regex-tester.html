@@ -462,7 +462,7 @@
             }
             const pattern = patternInput.value;
             const text = window.currentMatches.map((m, i) => `Match ${i + 1} (Pos ${m.index}): ${m[0]}`).join('\n');
-            const content = `Regex Match Results - worldoftools.in\n` +
+            const content = `Regex Match Results - www.worldoftools.in\n` +
                 `Generated on: ${new Date().toLocaleString()}\n` +
                 `Pattern: /${pattern}/${flagsInput.value}\n\n` +
                 `${text}\n`;
@@ -471,7 +471,7 @@
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `worldoftools.in-regex-results-${Date.now()}.txt`;
+            a.download = `www.worldoftools.in-regex-results-${Date.now()}.txt`;
             a.click();
             window.URL.revokeObjectURL(url);
             showError('Results downloaded.', 'success');
