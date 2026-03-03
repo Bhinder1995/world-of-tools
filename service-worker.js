@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v58';
+const CACHE_NAME = 'world-of-tools-v59';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -46,7 +46,8 @@ const ASSETS_TO_CACHE = [
     '/scientific-calculator',
     '/time-zone-converter',
     '/lorem-ipsum-generator',
-    '/barcode-generator'
+    '/barcode-generator',
+    '/linkedin-creator-suite'
 ];
 
 
