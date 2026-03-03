@@ -12,21 +12,7 @@ function injectHeader() {
         <div class="container">
             <div class="header-content">
                 <a href="/" class="logo-center" aria-label="WorldOfTools Home">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40" style="flex-shrink:0;">
-                        <defs>
-                            <linearGradient id="hBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#4F9EF8"/>
-                                <stop offset="100%" style="stop-color:#1A56DB"/>
-                            </linearGradient>
-                            <linearGradient id="hW" x1="0%" y1="0%" x2="60%" y2="100%">
-                                <stop offset="0%" style="stop-color:#ffffff"/>
-                                <stop offset="100%" style="stop-color:#c8dfff"/>
-                            </linearGradient>
-                        </defs>
-                        <rect x="0" y="0" width="48" height="48" rx="11" ry="11" fill="url(#hBg)"/>
-                        <rect x="0" y="0" width="48" height="22" rx="11" ry="11" fill="rgba(255,255,255,0.12)"/>
-                        <text x="6" y="37" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="31" fill="url(#hW)" letter-spacing="-1">W</text>
-                    </svg>
+                    <img src="/logo.svg" alt="WorldOfTools Logo" width="40" height="40" style="flex-shrink:0; border-radius: 8px;">
                     <div class="logo-text-block">
                         <span class="logo-brand">WorldOfTools</span>
                         <span class="logo-tagline">Fast. Free. Private.</span>
@@ -93,7 +79,7 @@ function injectFooter() {
             <div class="footer-content" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; position: relative; z-index: 1;">
                 <div class="footer-section">
                     <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;">
-                        <img src="/logo.svg" alt="WorldOfTools" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+                        <img src="/logo.svg" alt="WorldOfTools" style="width: 36px; height: 36px;">
                         <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem;">WorldOfTools</span>
                     </div>
                     <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 2rem; max-width: 300px; font-size: 0.95rem;">
