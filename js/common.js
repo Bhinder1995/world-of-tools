@@ -106,6 +106,16 @@ function injectFooter() {
                     </ul>
                 </div>
                 <div class="footer-section">
+                    <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">Categories</h4>
+                    <ul>
+                        <li><a href="/calculators-online">Calculators</a></li>
+                        <li><a href="/developer-tools-online">Dev Tools</a></li>
+                        <li><a href="/seo-tools-free">SEO Tools</a></li>
+                        <li><a href="/text-tools-online">Text Tools</a></li>
+                        <li><a href="/web-utilities-free">Web Utilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
                     <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">Company</h4>
                     <ul>
                         <li><a href="/contact">Contact Us</a></li>

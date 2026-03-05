@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roman Numerals Converter — Convert Free Online | WorldOfTools</title>
+    <meta name="description"
+        content="Convert numbers to Roman numerals or Roman numerals to numbers instantly. Free online Roman numeral converter — no login, 100% browser-based, instant results.">
+    <link rel="canonical" href="https://www.worldoftools.in/roman-numerals-converter">
+    <meta property="og:title" content="Roman Numerals Converter — Convert Free Online | WorldOfTools">
+    <meta property="og:description" content="Convert numbers to Roman numerals and back. Free, no login.">
+    <meta property="og:url" content="https://www.worldoftools.in/roman-numerals-converter">
+    <meta property="og:image" content="https://www.worldoftools.in/app-icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/css/style.css?v=1.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-CCYN1G2F05');</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Roman Numerals Converter — WorldOfTools","url":"https://www.worldoftools.in/roman-numerals-converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Convert numbers to Roman numerals or Roman numerals to numbers instantly."}</script>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="container">
+            <div class="tool-main-card">
+                <h1 style="font-size:2rem;font-weight:900;margin-bottom:0.5rem;">Roman Numerals Converter</h1>
+                <p style="color:var(--text-muted);margin-bottom:1.5rem;">Convert numbers to Roman numerals or Roman
+                    numerals back to numbers — instantly, in your browser.</p>
+                <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        No Login</span>
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        100% Private</span>
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        Free</span>
+                </div>
+
+                <div style="display:flex;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+                    <label
+                        style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:700;padding:0.6rem 1.2rem;border:2px solid var(--border-color);border-radius:10px;"><input
+                            type="radio" name="mode" value="toRoman" checked onchange="switchMode()"> Number →
+                        Roman</label>
+                    <label
+                        style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:700;padding:0.6rem 1.2rem;border:2px solid var(--border-color);border-radius:10px;"><input
+                            type="radio" name="mode" value="toNumber" onchange="switchMode()"> Roman → Number</label>
+                </div>
+
+                <input type="text" id="mainInput" placeholder="Enter a number (1–3999)"
+                    style="width:100%;padding:1rem 1.25rem;border-radius:12px;border:2px solid var(--border-color);font-size:1.2rem;font-family:inherit;outline:none;margin-bottom:1rem;"
+                    oninput="convert()">
+
+                <div id="result"
+                    style="background:#f8f9ff;border:2px solid #e5e7eb;border-radius:12px;padding:1.25rem;font-size:2rem;font-weight:900;text-align:center;color:#4f46e5;letter-spacing:0.05em;display:none;">
+                </div>
+                <button id="copyBtn" onclick="copyResult()"
+                    style="display:none;margin-top:1rem;background:var(--primary-color);color:white;border:none;padding:0.75rem 2rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;">Copy</button>
+
+                <!-- Reference Table -->
+                <details style="margin-top:2rem;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+                    <summary style="padding:1rem 1.25rem;font-weight:700;cursor:pointer;background:#f8f9ff;">Roman
+                        Numeral Reference Table</summary>
+                    <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+                        <thead>
+                            <tr style="background:#4f46e5;color:white;">
+                                <th style="padding:0.6rem 1rem;text-align:left;">Roman</th>
+                                <th style="padding:0.6rem 1rem;text-align:left;">Value</th>
+                                <th style="padding:0.6rem 1rem;text-align:left;">Roman</th>
+                                <th style="padding:0.6rem 1rem;text-align:left;">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="refTable"></tbody>
+                    </table>
+                </details>
+            </div>
+        </div>
+
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">What are Roman numerals?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Roman numerals are a numeral system
+                        from ancient Rome using letters: I(1), V(5), X(10), L(50), C(100), D(500), M(1000).</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">What is 2024 in Roman numerals?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">2024 = MMXXIV. Enter 2024 above to
+                        verify.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">What is the largest number supported?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Standard Roman numerals support 1 to
+                        3999. Numbers beyond 3999 use bar notation which is not widely standardized.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">What is IX in numbers?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">IX = 9. When a smaller numeral precedes
+                        a larger one it is subtracted: I before X = 10 - 1 = 9.</p>
+                </details>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Other Free Tools You Might Need
+                </h2>
+                <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+                    <a href="/number-to-words-converter"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Number
+                        to Words</a>
+                    <a href="/scientific-calculator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Scientific
+                        Calculator</a>
+                    <a href="/text-to-binary-converter"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Text
+                        to Binary</a>
+                    <a href="/random-number-generator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Random
+                        Number Generator</a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="/js/common.js?v=1.5"></script>
+    <script>
+        const vals = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+        const syms = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+
+        function toRoman(n) {
+            if (n < 1 || n > 3999) return 'Out of range (1–3999)';
+            let r = '';
+            for (let i = 0; i < vals.length; i++) { while (n >= vals[i]) { r += syms[i]; n -= vals[i]; } }
+            return r;
+        }
+
+        function toNumber(r) {
+            const map = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+            r = r.toUpperCase().trim();
+            if (!/^[IVXLCDM]+$/.test(r)) return 'Invalid Roman numeral';
+            let total = 0;
+            for (let i = 0; i < r.length; i++) {
+                const cur = map[r[i]], nxt = map[r[i + 1]] || 0;
+                total += cur < nxt ? -cur : cur;
+            }
+            return total;
+        }
+
+        function switchMode() {
+            const m = document.querySelector('input[name="mode"]:checked').value;
+            document.getElementById('mainInput').placeholder = m === 'toRoman' ? 'Enter a number (1–3999)' : 'Enter Roman numerals (e.g. XIV)';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('copyBtn').style.display = 'none';
+            document.getElementById('mainInput').value = '';
+        }
+
+        function convert() {
+            const m = document.querySelector('input[name="mode"]:checked').value;
+            const input = document.getElementById('mainInput').value.trim();
+            const res = document.getElementById('result');
+            const btn = document.getElementById('copyBtn');
+            if (!input) { res.style.display = 'none'; btn.style.display = 'none'; return; }
+            const out = m === 'toRoman' ? toRoman(parseInt(input)) : toNumber(input);
+            res.textContent = out;
+            res.style.display = 'block';
+            btn.style.display = 'inline-block';
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(document.getElementById('result').textContent);
+            const b = document.getElementById('copyBtn');
+            b.textContent = 'Copied!'; setTimeout(() => b.textContent = 'Copy', 2000);
+        }
+
+        // Build reference table
+        const refData = [['I', 1], ['IV', 4], ['V', 5], ['IX', 9], ['X', 10], ['XL', 40], ['L', 50], ['XC', 90], ['C', 100], ['CD', 400], ['D', 500], ['CM', 900], ['M', 1000], ['MMMCMXCIX', 3999]];
+        const tb = document.getElementById('refTable');
+        for (let i = 0; i < refData.length; i += 2) {
+            const r = tb.insertRow();
+            const a = refData[i], b = refData[i + 1] || ['', ''];
+            r.innerHTML = `<td style="padding:0.5rem 1rem;border-top:1px solid #e5e7eb;font-weight:700;">${a[0]}</td><td style="padding:0.5rem 1rem;border-top:1px solid #e5e7eb;">${a[1]}</td><td style="padding:0.5rem 1rem;border-top:1px solid #e5e7eb;font-weight:700;">${b[0]}</td><td style="padding:0.5rem 1rem;border-top:1px solid #e5e7eb;">${b[1]}</td>`;
+        }
+    </script>
+</body>
+
+</html>

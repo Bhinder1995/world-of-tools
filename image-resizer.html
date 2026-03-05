@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer — Resize Images Online Free | WorldOfTools</title>
+    <meta name="description"
+        content="Resize images to any dimension (width & height) or percentage. Free online image resizer. 100% private, no file uploads, instant download.">
+    <link rel="canonical" href="https://www.worldoftools.in/image-resizer" />
+    <link rel="stylesheet" href="/css/style.css?v=1.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .resizer-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            margin-bottom: 2rem;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background: #f8faff;
+        }
+
+        .preview-container {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-group label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        input[type="number"],
+        select {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            border-color: var(--primary-color);
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        canvas {
+            display: none;
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+</head>
+
+<body>
+    <header></header>
+    <main class="container">
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>🖼️ Image Resizer</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Resize your images to custom dimensions or
+                    percentages instantly.</p>
+            </section>
+
+            <div class="tool-main-card">
+                <div class="upload-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📁</div>
+                    <div style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">Click or Drop Image Here
+                    </div>
+                    <p style="color: var(--text-muted);">Supports PNG, JPG, WEBP. Max 10MB.</p>
+                    <input type="file" id="fileInput" hidden accept="image/*">
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>Width (px)</label>
+                            <input type="number" id="widthInput">
+                        </div>
+                        <div class="control-group">
+                            <label>Height (px)</label>
+                            <input type="number" id="heightInput">
+                        </div>
+                        <div class="control-group">
+                            <label>Maintain Aspect Ratio</label>
+                            <input type="checkbox" id="aspectRatio" checked style="width: 20px; height: 20px;">
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn" onclick="resizeAndDownload()">Download Resized Image</button>
+                        <button class="btn btn-secondary" onclick="reset()">Reset</button>
+                    </div>
+                    <img id="imagePreview">
+                </div>
+
+                <div
+                    style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    🛡️ 100% Client-Side: Your images never leave your browser.
+                </div>
+            </div>
+        </div>
+
+        <section class="container" style="max-width: 850px; padding: 4rem 1.5rem 2rem;">
+            <h2>How to Resize Images</h2>
+            <ol>
+                <li>Upload your image by clicking the upload area or dragging a file.</li>
+                <li>Enter the desired width or height. Enable "Maintain Aspect Ratio" to prevent stretching.</li>
+                <li>Click "Download" to save your resized image instantly.</li>
+            </ol>
+        </section>
+    </main>
+    <footer></footer>
+    <canvas id="canvas"></canvas>
+    <script src="/js/common.js?v=1.5"></script>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const dropZone = document.getElementById('dropZone');
+        const previewContainer = document.getElementById('previewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+        const widthInput = document.getElementById('widthInput');
+        const heightInput = document.getElementById('heightInput');
+        const aspectRatio = document.getElementById('aspectRatio');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let originalImage = new Image();
+        let ratio = 1;
+
+        fileInput.onchange = e => handleFile(e.target.files[0]);
+        dropZone.ondragover = e => { e.preventDefault(); dropZone.style.borderColor = 'var(--primary-color)'; };
+        dropZone.ondragleave = () => { dropZone.style.borderColor = 'var(--border-color)'; };
+        dropZone.ondrop = e => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); };
+
+        function handleFile(file) {
+            if (!file || !file.type.startsWith('image/')) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                originalImage.onload = () => {
+                    ratio = originalImage.width / originalImage.height;
+                    widthInput.value = originalImage.width;
+                    heightInput.value = originalImage.height;
+                    imagePreview.src = e.target.result;
+                    dropZone.style.display = 'none';
+                    previewContainer.style.display = 'block';
+                };
+                originalImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        widthInput.oninput = () => {
+            if (aspectRatio.checked) heightInput.value = Math.round(widthInput.value / ratio);
+        };
+        heightInput.oninput = () => {
+            if (aspectRatio.checked) widthInput.value = Math.round(heightInput.value * ratio);
+        };
+
+        function resizeAndDownload() {
+            canvas.width = widthInput.value;
+            canvas.height = heightInput.value;
+            ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
+            const link = document.createElement('a');
+            link.download = 'resized-image.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function reset() {
+            dropZone.style.display = 'block';
+            previewContainer.style.display = 'none';
+            fileInput.value = '';
+        }
+    </script>
+</body>
+
+</html>

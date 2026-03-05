@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v61';
+const CACHE_NAME = 'world-of-tools-v64';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -47,7 +47,17 @@ const ASSETS_TO_CACHE = [
     '/time-zone-converter',
     '/lorem-ipsum-generator',
     '/barcode-generator',
-    '/linkedin-creator-suite'
+    '/linkedin-creator-suite',
+    '/number-to-words-converter',
+    '/random-number-generator',
+    '/roman-numerals-converter',
+    '/text-to-binary-converter',
+    '/image-resizer',
+    '/calculators-online',
+    '/developer-tools-online',
+    '/seo-tools-free',
+    '/text-tools-online',
+    '/web-utilities-free'
 ];
 
 

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number to Words Converter — Convert Numbers Free | WorldOfTools</title>
+    <meta name="description"
+        content="Convert any number to words in English or Indian Rupees format instantly. Free number to words converter — perfect for cheques, invoices, and legal documents. No login.">
+    <link rel="canonical" href="https://www.worldoftools.in/number-to-words-converter">
+    <meta property="og:title" content="Number to Words Converter — Convert Numbers Free | WorldOfTools">
+    <meta property="og:description"
+        content="Convert any number to words in English or Indian Rupees format instantly. Free, no login.">
+    <meta property="og:url" content="https://www.worldoftools.in/number-to-words-converter">
+    <meta property="og:image" content="https://www.worldoftools.in/app-icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Number to Words Converter — Convert Numbers Free | WorldOfTools">
+    <meta name="twitter:description"
+        content="Convert any number to words instantly. Free, no login, 100% browser-based.">
+    <link rel="stylesheet" href="/css/style.css?v=1.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-CCYN1G2F05');</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Number to Words Converter — WorldOfTools","url":"https://www.worldoftools.in/number-to-words-converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Convert numbers to words in English or Indian Rupee format. Free, browser-based."}</script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is number to words conversion?","acceptedAnswer":{"@type":"Answer","text":"It converts a numeric value like 1500 into its word form: One Thousand Five Hundred. Used for cheques, invoices, and legal documents."}},{"@type":"Question","name":"How to write Indian Rupees in words?","acceptedAnswer":{"@type":"Answer","text":"Enter the amount and select Indian Rupees format. E.g. 150000 becomes One Lakh Fifty Thousand Rupees Only."}},{"@type":"Question","name":"Is my data stored?","acceptedAnswer":{"@type":"Answer","text":"No. Conversion happens entirely in your browser. Nothing is uploaded."}}]}</script>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="container">
+            <div class="tool-main-card">
+                <h1 style="font-size:2rem;font-weight:900;margin-bottom:0.5rem;">Number to Words Converter</h1>
+                <p style="color:var(--text-muted);margin-bottom:1.5rem;">Convert any number to its word form — perfect
+                    for cheques, invoices &amp; legal documents. Indian Rupees format supported.</p>
+                <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        No Login</span>
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        100% Private</span>
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        Free</span>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
+                    <input type="number" id="numberInput" placeholder="Enter a number (e.g. 150000)"
+                        style="width:100%;padding:1rem 1.25rem;border-radius:12px;border:2px solid var(--border-color);font-size:1.1rem;font-family:inherit;outline:none;"
+                        oninput="convert()">
+                    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                        <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:600;"><input
+                                type="radio" name="fmt" value="english" checked onchange="convert()"> English</label>
+                        <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:600;"><input
+                                type="radio" name="fmt" value="rupees" onchange="convert()"> Indian Rupees
+                            (Only)</label>
+                    </div>
+                </div>
+
+                <div id="result"
+                    style="background:#f8f9ff;border:2px solid #e5e7eb;border-radius:12px;padding:1.25rem;min-height:4rem;font-size:1.1rem;font-weight:600;color:#1e293b;line-height:1.6;display:none;">
+                </div>
+                <button id="copyBtn" onclick="copyResult()"
+                    style="display:none;margin-top:1rem;background:var(--primary-color);color:white;border:none;padding:0.75rem 2rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;">Copy
+                    Result</button>
+            </div>
+        </div>
+
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Use the Number to Words
+                    Converter</h2>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <div
+                        style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;">
+                        <span
+                            style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;">1</span>
+                        <p style="margin:0;line-height:1.6;">Enter any number in the input field — whole numbers and
+                            decimals are supported.</p>
+                    </div>
+                    <div
+                        style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;">
+                        <span
+                            style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;">2</span>
+                        <p style="margin:0;line-height:1.6;">Select format: <strong>English</strong> for standard word
+                            form, or <strong>Indian Rupees</strong> for cheque/invoice format with Lakhs and Crores.</p>
+                    </div>
+                    <div
+                        style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;">
+                        <span
+                            style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;">3</span>
+                        <p style="margin:0;line-height:1.6;">The word form appears instantly. Click <strong>Copy
+                                Result</strong> to paste it into your document.</p>
+                    </div>
+                </div>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">What is number to words used for?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Writing cheques, filling legal
+                        documents, invoices, bank forms, and government applications where numeric values must be
+                        written in words.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">How to write 1 lakh in words?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">1,00,000 = One Lakh. In Indian Rupees
+                        format: One Lakh Rupees Only.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">How to write 10 crore in words?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">10,00,00,000 = Ten Crore. In Rupees:
+                        Ten Crore Rupees Only.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is my data uploaded?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">No. All conversion runs in your
+                        browser. Nothing is sent to any server.</p>
+                </details>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Other Free Tools You Might Need
+                </h2>
+                <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+                    <a href="/gst-calculator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">GST
+                        Calculator</a>
+                    <a href="/percentage-calculator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Percentage
+                        Calculator</a>
+                    <a href="/emi-calculator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">EMI
+                        Calculator</a>
+                    <a href="/scientific-calculator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Scientific
+                        Calculator</a>
+                </div>
+            </section>
+        </div>
+        <!-- End SEO Content Block -->
+    </main>
+    <footer></footer>
+    <script src="/js/common.js?v=1.5"></script>
+    <script>
+        const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+        const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+        function numToWordsEn(n) {
+            if (n === 0) return 'Zero';
+            if (n < 0) return 'Negative ' + numToWordsEn(-n);
+            let w = '';
+            if (n >= 1000000000) { w += numToWordsEn(Math.floor(n / 1000000000)) + ' Billion '; n %= 1000000000; }
+            if (n >= 1000000) { w += numToWordsEn(Math.floor(n / 1000000)) + ' Million '; n %= 1000000; }
+            if (n >= 1000) { w += numToWordsEn(Math.floor(n / 1000)) + ' Thousand '; n %= 1000; }
+            if (n >= 100) { w += ones[Math.floor(n / 100)] + ' Hundred '; n %= 100; }
+            if (n >= 20) { w += tens[Math.floor(n / 10)] + ' '; n %= 10; }
+            if (n > 0) w += ones[n] + ' ';
+            return w.trim();
+        }
+
+        function numToWordsIN(n) {
+            if (n === 0) return 'Zero';
+            let w = '';
+            if (n >= 10000000) { w += numToWordsIN(Math.floor(n / 10000000)) + ' Crore '; n %= 10000000; }
+            if (n >= 100000) { w += numToWordsIN(Math.floor(n / 100000)) + ' Lakh '; n %= 100000; }
+            if (n >= 1000) { w += numToWordsIN(Math.floor(n / 1000)) + ' Thousand '; n %= 1000; }
+            if (n >= 100) { w += ones[Math.floor(n / 100)] + ' Hundred '; n %= 100; }
+            if (n >= 20) { w += tens[Math.floor(n / 10)] + ' '; n %= 10; }
+            if (n > 0) w += ones[n] + ' ';
+            return w.trim();
+        }
+
+        function convert() {
+            const input = document.getElementById('numberInput').value.trim();
+            const fmt = document.querySelector('input[name="fmt"]:checked').value;
+            const result = document.getElementById('result');
+            const btn = document.getElementById('copyBtn');
+            if (!input) { result.style.display = 'none'; btn.style.display = 'none'; return; }
+            const num = parseFloat(input);
+            if (isNaN(num)) { result.textContent = 'Please enter a valid number.'; result.style.display = 'block'; btn.style.display = 'none'; return; }
+            const intPart = Math.floor(Math.abs(num));
+            const decPart = Math.round((Math.abs(num) - intPart) * 100);
+            let words = '';
+            if (fmt === 'english') {
+                words = (num < 0 ? 'Negative ' : '') + numToWordsEn(intPart);
+                if (decPart > 0) words += ' Point ' + numToWordsEn(decPart);
+            } else {
+                words = (num < 0 ? 'Negative ' : '') + numToWordsIN(intPart) + ' Rupees';
+                if (decPart > 0) words += ' and ' + numToWordsIN(decPart) + ' Paise';
+                words += ' Only';
+            }
+            result.textContent = words;
+            result.style.display = 'block';
+            btn.style.display = 'inline-block';
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(document.getElementById('result').textContent);
+            const btn = document.getElementById('copyBtn');
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy Result', 2000);
+        }
+    </script>
+</body>
+
+</html>

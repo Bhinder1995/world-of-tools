@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator — Free Online | WorldOfTools</title>
+    <meta name="description"
+        content="Generate random numbers instantly. Set min/max range, quantity, and choose integers or decimals. Free random number generator — no login, 100% browser-based.">
+    <link rel="canonical" href="https://www.worldoftools.in/random-number-generator">
+    <meta property="og:title" content="Random Number Generator — Free Online | WorldOfTools">
+    <meta property="og:description" content="Generate random numbers in any range. Free, no login, 100% browser-based.">
+    <meta property="og:url" content="https://www.worldoftools.in/random-number-generator">
+    <meta property="og:image" content="https://www.worldoftools.in/app-icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/css/style.css?v=1.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-CCYN1G2F05');</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Random Number Generator — WorldOfTools","url":"https://www.worldoftools.in/random-number-generator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Generate random numbers in any range, in bulk, instantly. Free browser-based tool."}</script>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="container">
+            <div class="tool-main-card">
+                <h1 style="font-size:2rem;font-weight:900;margin-bottom:0.5rem;">Random Number Generator</h1>
+                <p style="color:var(--text-muted);margin-bottom:1.5rem;">Generate random numbers in any range. Set
+                    quantity, choose integers or decimals, generate in bulk.</p>
+                <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        No Login</span>
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        100% Private</span>
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        Free</span>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+                    <div>
+                        <label style="display:block;font-weight:700;margin-bottom:0.4rem;">Minimum</label>
+                        <input type="number" id="minVal" value="1"
+                            style="width:100%;padding:0.75rem 1rem;border-radius:10px;border:2px solid var(--border-color);font-size:1rem;font-family:inherit;outline:none;">
+                    </div>
+                    <div>
+                        <label style="display:block;font-weight:700;margin-bottom:0.4rem;">Maximum</label>
+                        <input type="number" id="maxVal" value="100"
+                            style="width:100%;padding:0.75rem 1rem;border-radius:10px;border:2px solid var(--border-color);font-size:1rem;font-family:inherit;outline:none;">
+                    </div>
+                    <div>
+                        <label style="display:block;font-weight:700;margin-bottom:0.4rem;">How Many</label>
+                        <input type="number" id="qty" value="1" min="1" max="1000"
+                            style="width:100%;padding:0.75rem 1rem;border-radius:10px;border:2px solid var(--border-color);font-size:1rem;font-family:inherit;outline:none;">
+                    </div>
+                    <div>
+                        <label style="display:block;font-weight:700;margin-bottom:0.4rem;">Type</label>
+                        <select id="numType"
+                            style="width:100%;padding:0.75rem 1rem;border-radius:10px;border:2px solid var(--border-color);font-size:1rem;font-family:inherit;outline:none;background:white;">
+                            <option value="int">Integers only</option>
+                            <option value="float">Decimals (2 places)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+                    <button onclick="generate()"
+                        style="background:var(--primary-color);color:white;border:none;padding:0.75rem 2rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;">Generate</button>
+                    <button onclick="copyAll()" id="copyBtn"
+                        style="display:none;background:#10b981;color:white;border:none;padding:0.75rem 1.5rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;">Copy
+                        All</button>
+                    <button onclick="clearResult()" id="clearBtn"
+                        style="display:none;background:#e5e7eb;color:#374151;border:none;padding:0.75rem 1.5rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;">Clear</button>
+                </div>
+
+                <div id="result"
+                    style="background:#f8f9ff;border:2px solid #e5e7eb;border-radius:12px;padding:1.25rem;min-height:5rem;font-size:1.05rem;font-family:monospace;line-height:1.8;display:none;word-break:break-all;">
+                </div>
+            </div>
+        </div>
+
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">What is a random number generator?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">It produces numbers with no predictable
+                        pattern within a specified range. Used in gaming, statistics, security, and simulations.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Can I generate numbers without repetition?
+                    </summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Currently this tool generates with
+                        repetition possible. For unique numbers, generate more than needed and remove duplicates
+                        manually.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is the generation truly random?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">It uses JavaScript's Math.random()
+                        which is pseudo-random — sufficient for most use cases but not cryptographic security.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is my data sent to a server?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">No. All generation runs in your
+                        browser. Nothing is uploaded.</p>
+                </details>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Other Free Tools You Might Need
+                </h2>
+                <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+                    <a href="/password-generator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Password
+                        Generator</a>
+                    <a href="/uuid-generator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">UUID
+                        Generator</a>
+                    <a href="/hash-generator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Hash
+                        Generator</a>
+                    <a href="/scientific-calculator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Scientific
+                        Calculator</a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="/js/common.js?v=1.5"></script>
+    <script>
+        function generate() {
+            const min = parseFloat(document.getElementById('minVal').value);
+            const max = parseFloat(document.getElementById('maxVal').value);
+            const qty = parseInt(document.getElementById('qty').value) || 1;
+            const type = document.getElementById('numType').value;
+            if (isNaN(min) || isNaN(max) || min > max) { alert('Please enter a valid range.'); return; }
+            const results = [];
+            for (let i = 0; i < Math.min(qty, 1000); i++) {
+                const r = Math.random() * (max - min) + min;
+                results.push(type === 'int' ? Math.floor(r) : r.toFixed(2));
+            }
+            const el = document.getElementById('result');
+            el.textContent = results.join(', ');
+            el.style.display = 'block';
+            document.getElementById('copyBtn').style.display = 'inline-block';
+            document.getElementById('clearBtn').style.display = 'inline-block';
+        }
+        function copyAll() {
+            navigator.clipboard.writeText(document.getElementById('result').textContent);
+            const b = document.getElementById('copyBtn');
+            b.textContent = 'Copied!'; setTimeout(() => b.textContent = 'Copy All', 2000);
+        }
+        function clearResult() {
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('copyBtn').style.display = 'none';
+            document.getElementById('clearBtn').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

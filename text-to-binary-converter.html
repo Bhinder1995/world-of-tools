@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Binary Converter — Convert Text Free Online | WorldOfTools</title>
+    <meta name="description"
+        content="Convert text to binary code or binary back to text instantly. Free online text to binary converter — supports ASCII and Unicode. No login, 100% browser-based.">
+    <link rel="canonical" href="https://www.worldoftools.in/text-to-binary-converter">
+    <meta property="og:title" content="Text to Binary Converter — Convert Text Free Online | WorldOfTools">
+    <meta property="og:description"
+        content="Convert text to binary or binary to text instantly. Free, no login, 100% browser-based.">
+    <meta property="og:url" content="https://www.worldoftools.in/text-to-binary-converter">
+    <meta property="og:image" content="https://www.worldoftools.in/app-icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/css/style.css?v=1.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-CCYN1G2F05');</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Text to Binary Converter — WorldOfTools","url":"https://www.worldoftools.in/text-to-binary-converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Convert text to binary or binary to text instantly. Free, browser-based."}</script>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="container">
+            <div class="tool-main-card">
+                <h1 style="font-size:2rem;font-weight:900;margin-bottom:0.5rem;">Text to Binary Converter</h1>
+                <p style="color:var(--text-muted);margin-bottom:1.5rem;">Convert any text to binary (0s and 1s) or
+                    decode binary back to readable text — instantly in your browser.</p>
+                <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        No Login</span>
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        100% Private</span>
+                    <span
+                        style="background:rgba(16,185,129,0.08);color:#059669;border:1px solid rgba(16,185,129,0.2);border-radius:99px;padding:0.3rem 0.9rem;font-size:0.82rem;font-weight:700;">✓
+                        Free</span>
+                </div>
+
+                <div style="display:flex;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+                    <label
+                        style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:700;padding:0.6rem 1.2rem;border:2px solid var(--border-color);border-radius:10px;"><input
+                            type="radio" name="bmode" value="toBinary" checked onchange="switchMode()"> Text →
+                        Binary</label>
+                    <label
+                        style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-weight:700;padding:0.6rem 1.2rem;border:2px solid var(--border-color);border-radius:10px;"><input
+                            type="radio" name="bmode" value="toText" onchange="switchMode()"> Binary → Text</label>
+                </div>
+
+                <textarea id="inputArea" placeholder="Enter text here..." rows="5"
+                    style="width:100%;padding:1rem 1.25rem;border-radius:12px;border:2px solid var(--border-color);font-size:1rem;font-family:inherit;outline:none;resize:vertical;margin-bottom:1rem;"
+                    oninput="convert()"></textarea>
+
+                <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+                    <button onclick="convert()"
+                        style="background:var(--primary-color);color:white;border:none;padding:0.75rem 2rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;">Convert</button>
+                    <button onclick="copyResult()" id="copyBtn"
+                        style="display:none;background:#10b981;color:white;border:none;padding:0.75rem 1.5rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;">Copy
+                        Result</button>
+                    <button onclick="swapIO()" id="swapBtn"
+                        style="display:none;background:#e5e7eb;color:#374151;border:none;padding:0.75rem 1.5rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;">⇄
+                        Swap</button>
+                </div>
+
+                <textarea id="outputArea" readonly rows="5" placeholder="Output will appear here..."
+                    style="width:100%;padding:1rem 1.25rem;border-radius:12px;border:2px solid #e5e7eb;font-size:0.95rem;font-family:monospace;outline:none;resize:vertical;background:#f8f9ff;"></textarea>
+            </div>
+        </div>
+
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">What is binary code?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Binary is a base-2 number system using
+                        only 0s and 1s. Computers store all data — text, images, programs — as binary.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">How is text converted to binary?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Each character is converted to its
+                        ASCII code (a number), and that number is written in binary (base-2). E.g. 'A' = 65 = 01000001.
+                    </p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">What is 'Hello' in binary?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">01001000 01100101 01101100 01101100
+                        01101111 — each group of 8 bits (1 byte) represents one character.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is my text sent to a server?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">No. All conversion happens entirely in
+                        your browser. Your text never leaves your device.</p>
+                </details>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Other Free Tools You Might Need
+                </h2>
+                <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+                    <a href="/base64-encoder-decoder"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Base64
+                        Encoder</a>
+                    <a href="/hash-generator"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Hash
+                        Generator</a>
+                    <a href="/roman-numerals-converter"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">Roman
+                        Numerals</a>
+                    <a href="/url-encoder-decoder"
+                        style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;">URL
+                        Encoder</a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="/js/common.js?v=1.5"></script>
+    <script>
+        function switchMode() {
+            document.getElementById('inputArea').value = '';
+            document.getElementById('outputArea').value = '';
+            document.getElementById('copyBtn').style.display = 'none';
+            document.getElementById('swapBtn').style.display = 'none';
+            const m = document.querySelector('input[name="bmode"]:checked').value;
+            document.getElementById('inputArea').placeholder = m === 'toBinary' ? 'Enter text here...' : 'Enter binary code (e.g. 01001000 01101001)';
+        }
+
+        function convert() {
+            const m = document.querySelector('input[name="bmode"]:checked').value;
+            const input = document.getElementById('inputArea').value;
+            let output = '';
+            if (m === 'toBinary') {
+                output = input.split('').map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
+            } else {
+                const groups = input.trim().split(/\s+/);
+                output = groups.map(g => {
+                    if (!/^[01]{1,8}$/.test(g)) return '?';
+                    return String.fromCharCode(parseInt(g, 2));
+                }).join('');
+            }
+            document.getElementById('outputArea').value = output;
+            document.getElementById('copyBtn').style.display = output ? 'inline-block' : 'none';
+            document.getElementById('swapBtn').style.display = output ? 'inline-block' : 'none';
+        }
+
+        function copyResult() {
+            navigator.clipboard.writeText(document.getElementById('outputArea').value);
+            const b = document.getElementById('copyBtn');
+            b.textContent = 'Copied!'; setTimeout(() => b.textContent = 'Copy Result', 2000);
+        }
+
+        function swapIO() {
+            const i = document.getElementById('inputArea'), o = document.getElementById('outputArea');
+            const t = i.value; i.value = o.value; o.value = t;
+            // switch mode
+            const radios = document.querySelectorAll('input[name="bmode"]');
+            radios.forEach(r => r.checked = !r.checked);
+        }
+    </script>
+</body>
+
+</html>
