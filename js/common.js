@@ -90,10 +90,11 @@ function injectFooter() {
                 <div class="footer-section">
                     <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">Utilities</h4>
                     <ul>
-                        <li><a href="/hash-generator">Hash Generator</a></li>
-                        <li><a href="/password-generator">Password Generator</a></li>
-                        <li><a href="/json-formatter">JSON Formatter</a></li>
-                        <li><a href="/unit-converter">Unit Converter</a></li>
+                        <li><a href="/image-compressor">Image Compressor</a></li>
+                        <li><a href="/image-resizer">Image Resizer</a></li>
+                        <li><a href="/background-remover">Background Remover</a></li>
+                        <li><a href="/image-upscaler">Image Upscaler</a></li>
+                        <li><a href="/image-converter">Image Converter</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v64';
+const CACHE_NAME = 'world-of-tools-v65';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -57,7 +57,16 @@ const ASSETS_TO_CACHE = [
     '/developer-tools-online',
     '/seo-tools-free',
     '/text-tools-online',
-    '/web-utilities-free'
+    '/web-utilities-free',
+    '/background-remover',
+    '/image-upscaler',
+    '/image-converter',
+    '/css-minifier',
+    '/remove-watermark-from-pdf',
+    '/compress-pdf',
+    '/compress-pdf-to-100kb',
+    '/compress-pdf-to-200kb',
+    '/compress-pdf-to-500kb'
 ];
 
 
