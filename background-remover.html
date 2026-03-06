@@ -320,10 +320,10 @@
 
     <footer></footer>
 
-    <!-- Library for Background Removal -->
-    <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.0/dist/bundle.js"></script>
     <script src="/js/common.js?v=1.5"></script>
-    <script>
+    <script type="module">
+        import { removeBackground } from 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/dist/index.js';
+
         const fileInput = document.getElementById('fileInput');
         const downloadBtn = document.getElementById('downloadBtn');
         const imagePreview = document.getElementById('imagePreview');
@@ -350,23 +350,21 @@
             downloadBtn.style.display = 'none';
 
             try {
-                loadingText.innerText = "Loading AI Model...";
+                loadingText.innerText = "Initializing AI Model...";
 
-                // Using imgly-background-removal
-                // Note: The bundle is loaded via script tag, it exposes 'imglyConfig' or 'removeBackground'
                 const config = {
                     progress: (key, current, total) => {
                         const percent = Math.round((current / total) * 100);
                         if (key.includes('model')) {
-                            loadingText.innerText = `Downloading Model: ${percent}%`;
+                            loadingText.innerText = `Downloading AI Model: ${percent}%`;
                         } else {
                             loadingText.innerText = `Processing: ${percent}%`;
                         }
                     },
-                    publicPath: 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.0/dist/'
+                    publicPath: 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/dist/'
                 };
 
-                const blob = await imglyRemoveBackground(file, config);
+                const blob = await removeBackground(file, config);
                 resultBlob = blob;
 
                 const url = URL.createObjectURL(blob);
@@ -380,7 +378,7 @@
 
             } catch (error) {
                 console.error(error);
-                showError('Failed to remove background. Please try a different photo.');
+                showError('Failed to remove background. The photo might be too complex or your device RAM might be low.');
                 loading.style.display = 'none';
                 noImage.style.display = 'block';
             }
