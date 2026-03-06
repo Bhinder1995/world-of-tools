@@ -181,8 +181,7 @@
                     style="display: inline-flex; align-items: center; gap: 0.5rem; background: #ecfdf5; color: #047857; padding: 0.35rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
                     🛡️ Browser-Based AI Enhancement
                 </div>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">Upscale your images to 2x or 4x resolution using
-                    AI. Fast, free, and completely private.</p>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Upscale your images to 2x or 4x resolution instantly. High-quality, fast, and completely private.</p>
             </section>
 
             <div id="errorMessage"
@@ -351,10 +350,6 @@
 
     <footer></footer>
 
-    <!-- AI Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@upscalerjs/default-model@1.0.0-beta.17/dist/bundle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/upscaler@1.0.0-beta.17/dist/browser/umd/upscaler.min.js"></script>
     <script src="/js/common.js?v=1.5"></script>
     <script>
         const fileInput = document.getElementById('fileInput');
@@ -368,7 +363,6 @@
         const dropZone = document.getElementById('dropZone');
 
         let originalImg = new Image();
-        let upscaledUrl = null;
 
         fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
 
@@ -377,6 +371,7 @@
             showError('');
             const reader = new FileReader();
             reader.onload = (e) => {
+                originalImg = new Image();
                 originalImg.onload = () => {
                     imagePreview.src = e.target.result;
                     imagePreview.style.display = 'block';
@@ -389,44 +384,76 @@
             reader.readAsDataURL(file);
         }
 
-        upscaleBtn.addEventListener('click', async () => {
+        upscaleBtn.addEventListener('click', () => {
             const factor = parseInt(upscaleFactor.value);
             loading.style.display = 'flex';
-            loadingText.innerText = "Initializing AI Model...";
-            progressBar.style.width = "0%";
+            loadingText.innerText = 'Upscaling Image...';
+            progressBar.style.width = '10%';
 
-            try {
-                // Initialize upscaler
-                const upscaler = new Upscaler();
+            // Use setTimeout to allow UI to update before heavy canvas work
+            setTimeout(() => {
+                try {
+                    const srcW = originalImg.naturalWidth;
+                    const srcH = originalImg.naturalHeight;
+                    const dstW = srcW * factor;
+                    const dstH = srcH * factor;
 
-                const result = await upscaler.upscale(originalImg, {
-                    patchSize: 64,
-                    padding: 4,
-                    progress: (percent) => {
-                        const p = Math.round(percent * 100);
-                        progressBar.style.width = `${p}%`;
-                        loadingText.innerText = `Enhancing Image: ${p}%`;
+                    progressBar.style.width = '30%';
+                    loadingText.innerText = `Rendering at ${dstW}×${dstH}...`;
+
+                    // Step 1: draw original to source canvas
+                    const srcCanvas = document.createElement('canvas');
+                    srcCanvas.width = srcW;
+                    srcCanvas.height = srcH;
+                    const srcCtx = srcCanvas.getContext('2d');
+                    srcCtx.drawImage(originalImg, 0, 0);
+
+                    progressBar.style.width = '50%';
+
+                    // Step 2: use multi-step upscaling for better quality
+                    // Each step doubles the size — better than single large jump
+                    let currentCanvas = srcCanvas;
+                    let steps = factor === 4 ? 2 : 1; // 2x twice for 4x, 1 step for 2x
+
+                    for (let s = 0; s < steps; s++) {
+                        const stepW = currentCanvas.width * 2;
+                        const stepH = currentCanvas.height * 2;
+                        const stepCanvas = document.createElement('canvas');
+                        stepCanvas.width = stepW;
+                        stepCanvas.height = stepH;
+                        const stepCtx = stepCanvas.getContext('2d');
+                        stepCtx.imageSmoothingEnabled = true;
+                        stepCtx.imageSmoothingQuality = 'high';
+                        stepCtx.drawImage(currentCanvas, 0, 0, stepW, stepH);
+                        currentCanvas = stepCanvas;
+
+                        progressBar.style.width = s === 0 ? '70%' : '85%';
                     }
-                });
 
-                upscaledUrl = result;
-                imagePreview.src = result;
-                loading.style.display = 'none';
+                    progressBar.style.width = '95%';
+                    loadingText.innerText = 'Preparing download...';
 
-                // Trigger download automatically
-                const link = document.createElement('a');
-                link.download = `worldoftools.in-imageupscaler-${Date.now()}.png`;
-                link.href = result;
-                link.click();
+                    // Show the upscaled preview
+                    const resultUrl = currentCanvas.toDataURL('image/png');
+                    imagePreview.src = resultUrl;
+                    loading.style.display = 'none';
+                    progressBar.style.width = '100%';
 
-                showError('Image upscaled and downloaded!', 'success');
-                setTimeout(() => showError(''), 4000);
+                    // Trigger download
+                    const link = document.createElement('a');
+                    link.download = `worldoftools.in-imageupscaler-${factor}x-${Date.now()}.png`;
+                    link.href = resultUrl;
+                    link.click();
 
-            } catch (err) {
-                console.error(err);
-                showError('Upscaling failed. The image might be too large for your browser RAM.');
-                loading.style.display = 'none';
-            }
+                    showError(`Image upscaled ${factor}x and downloaded!`, 'success');
+                    setTimeout(() => showError(''), 4000);
+
+                } catch (err) {
+                    console.error(err);
+                    showError('Upscaling failed. Please try a smaller image or refresh and try again.');
+                    loading.style.display = 'none';
+                }
+            }, 100);
         });
 
         function showError(msg, type = 'error') {

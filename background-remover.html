@@ -320,10 +320,11 @@
 
     <footer></footer>
 
+    <!-- TensorFlow.js + BodyPix for reliable background removal -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.0/dist/body-pix.min.js"></script>
     <script src="/js/common.js?v=1.5"></script>
-    <script type="module">
-        import { removeBackground } from 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/dist/index.js';
-
+    <script>
         const fileInput = document.getElementById('fileInput');
         const downloadBtn = document.getElementById('downloadBtn');
         const imagePreview = document.getElementById('imagePreview');
@@ -332,7 +333,8 @@
         const loadingText = document.getElementById('loadingText');
         const dropZone = document.getElementById('dropZone');
 
-        let resultBlob = null;
+        let resultDataUrl = null;
+        let net = null; // cached model
 
         fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
 
@@ -348,47 +350,108 @@
             noImage.style.display = 'none';
             imagePreview.style.display = 'none';
             downloadBtn.style.display = 'none';
+            resultDataUrl = null;
 
             try {
-                loadingText.innerText = "Initializing AI Model...";
+                // Load model once, cache it
+                if (!net) {
+                    loadingText.innerText = 'Loading AI Model (first time ~5s)...';
+                    net = await bodyPix.load({
+                        architecture: 'MobileNetV1',
+                        outputStride: 16,
+                        multiplier: 0.75,
+                        quantBytes: 2
+                    });
+                }
 
-                const config = {
-                    progress: (key, current, total) => {
-                        const percent = Math.round((current / total) * 100);
-                        if (key.includes('model')) {
-                            loadingText.innerText = `Downloading AI Model: ${percent}%`;
-                        } else {
-                            loadingText.innerText = `Processing: ${percent}%`;
+                loadingText.innerText = 'Analyzing image...';
+
+                // Draw uploaded image to canvas for BodyPix
+                const img = new Image();
+                const reader = new FileReader();
+
+                reader.onload = async (e) => {
+                    img.onload = async () => {
+                        try {
+                            // Cap resolution for mobile performance
+                            const MAX = 1024;
+                            let w = img.naturalWidth;
+                            let h = img.naturalHeight;
+                            if (w > MAX || h > MAX) {
+                                const ratio = Math.min(MAX / w, MAX / h);
+                                w = Math.round(w * ratio);
+                                h = Math.round(h * ratio);
+                            }
+
+                            const srcCanvas = document.createElement('canvas');
+                            srcCanvas.width = w;
+                            srcCanvas.height = h;
+                            const srcCtx = srcCanvas.getContext('2d');
+                            srcCtx.drawImage(img, 0, 0, w, h);
+
+                            loadingText.innerText = 'Detecting subject...';
+
+                            const segmentation = await net.segmentPerson(srcCanvas, {
+                                internalResolution: 'medium',
+                                segmentationThreshold: 0.7,
+                                maxDetections: 5
+                            });
+
+                            loadingText.innerText = 'Removing background...';
+
+                            // Build output canvas with transparent background
+                            const outCanvas = document.createElement('canvas');
+                            outCanvas.width = w;
+                            outCanvas.height = h;
+                            const outCtx = outCanvas.getContext('2d');
+                            outCtx.drawImage(srcCanvas, 0, 0);
+
+                            const imageData = outCtx.getImageData(0, 0, w, h);
+                            const pixels = imageData.data;
+                            const mask = segmentation.data; // 0 = bg, 1 = person
+
+                            for (let i = 0; i < mask.length; i++) {
+                                if (mask[i] === 0) {
+                                    // transparent
+                                    pixels[i * 4 + 3] = 0;
+                                }
+                            }
+
+                            outCtx.putImageData(imageData, 0, 0);
+                            resultDataUrl = outCanvas.toDataURL('image/png');
+
+                            imagePreview.src = resultDataUrl;
+                            imagePreview.style.display = 'block';
+                            downloadBtn.style.display = 'flex';
+                            loading.style.display = 'none';
+
+                            showError('Background removed successfully!', 'success');
+                            setTimeout(() => showError(''), 3000);
+
+                        } catch (err) {
+                            console.error(err);
+                            showError('Failed to remove background. Please try a different photo.');
+                            loading.style.display = 'none';
+                            noImage.style.display = 'block';
                         }
-                    },
-                    publicPath: 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/dist/'
+                    };
+                    img.src = e.target.result;
                 };
-
-                const blob = await removeBackground(file, config);
-                resultBlob = blob;
-
-                const url = URL.createObjectURL(blob);
-                imagePreview.src = url;
-                imagePreview.style.display = 'block';
-                downloadBtn.style.display = 'flex';
-                loading.style.display = 'none';
-
-                showError('Background removed successfully!', 'success');
-                setTimeout(() => showError(''), 3000);
+                reader.readAsDataURL(file);
 
             } catch (error) {
                 console.error(error);
-                showError('Failed to remove background. The photo might be too complex or your device RAM might be low.');
+                showError('Failed to load AI model. Please check your connection and try again.');
                 loading.style.display = 'none';
                 noImage.style.display = 'block';
             }
         }
 
         downloadBtn.addEventListener('click', () => {
-            if (!resultBlob) return;
+            if (!resultDataUrl) return;
             const link = document.createElement('a');
             link.download = `worldoftools.in-backgroundremover-${Date.now()}.png`;
-            link.href = URL.createObjectURL(resultBlob);
+            link.href = resultDataUrl;
             link.click();
         });
 
@@ -405,7 +468,7 @@
             }
         }
 
-        // Drag and drop handling
+        // Drag and drop
         dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--primary-color)'; });
         dropZone.addEventListener('dragleave', () => dropZone.style.borderColor = 'var(--border-color)');
         dropZone.addEventListener('drop', e => {
