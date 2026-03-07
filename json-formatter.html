@@ -93,7 +93,7 @@
     <script
         type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"JSON Formatter — WorldOfTools","url":"https://www.worldoftools.in/json-formatter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Free online json formatter — 100% browser-based, no login required."}</script>
     <script
-        type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to format JSON online?","acceptedAnswer":{"@type":"Answer","text":"Paste JSON, click Beautify, get prettified JSON with proper indentation."}},{"@type":"Question","name":"How to validate JSON?","acceptedAnswer":{"@type":"Answer","text":"The tool highlights syntax errors in red as you type so you can fix them instantly."}},{"@type":"Question","name":"How to minify JSON?","acceptedAnswer":{"@type":"Answer","text":"Click Minify to strip all whitespace for compact production-ready JSON."}},{"@type":"Question","name":"JSON vs XML?","acceptedAnswer":{"@type":"Answer","text":"JSON is lighter and native to JavaScript. XML is more verbose but supports attributes."}},{"@type":"Question","name":"Is it safe?","acceptedAnswer":{"@type":"Answer","text":"100% client-side. Your JSON never leaves your browser or reaches any server."}}]}</script>
+        type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to format JSON online?","acceptedAnswer":{"@type":"Answer","text":"Paste JSON, click Beautify, get prettified JSON with proper indentation."}},{"@type":"Question","name":"How to validate JSON?","acceptedAnswer":{"@type":"Answer","text":"The tool highlights syntax errors in red as you type so you can fix them instantly."}},{"@type":"Question","name":"How to minify JSON?","acceptedAnswer":{"@type":"Answer","text":"Click Minify to strip all whitespace for compact production-ready JSON."}},{"@type":"Question","name":"JSON vs XML?","acceptedAnswer":{"@type":"Answer","text":"JSON is lighter and native to JavaScript. XML is more verbose but supports attributes."}},{"@type":"Question","name":"Is it safe?","acceptedAnswer":{"@type":"Answer","text":"100% client-side. Your JSON never leaves your browser or reaches any server."}},{"@type":"Question","name":"How do I format JSON online?","acceptedAnswer":{"@type":"Answer","text":"Simply paste your minified or messy JSON into the text area and click 'Beautify'. The tool will instantly indent the code for better readability."}},{"@type":"Question","name":"Can this tool validate my JSON structure?","acceptedAnswer":{"@type":"Answer","text":"Yes, it provides real-time validation. If your JSON has syntax errors, a red 'Invalid JSON' badge will appear with a detailed error message."}},{"@type":"Question","name":"Is my data stored when using this tool?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens on the client-side within your browser. Your data is never uploaded to any server."}}]}</script>
 </head>
 
 <body>
@@ -348,37 +348,6 @@
         script.text = JSON.stringify(schemaData);
         document.head.appendChild(script);
 
-        // FAQ Schema
-        const faqData = {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [{
-                "@type": "Question",
-                "name": "How do I format JSON online?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Simply paste your minified or messy JSON into the text area and click 'Beautify'. The tool will instantly indent the code for better readability."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Can this tool validate my JSON structure?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, it provides real-time validation. If your JSON has syntax errors, a red 'Invalid JSON' badge will appear with a detailed error message."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Is my data stored when using this tool?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. All processing happens on the client-side within your browser. Your data is never uploaded to any server."
-                }
-            }]
-        };
-        const faqScript = document.createElement('script');
-        faqScript.type = "application/ld+json";
-        faqScript.text = JSON.stringify(faqData);
-        document.head.appendChild(faqScript);
 
         // Breadcrumb Schema
         const breadcrumbData = {

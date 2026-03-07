@@ -121,7 +121,7 @@
     <script
         type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Image Compressor — WorldOfTools","url":"https://www.worldoftools.in/image-compressor","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Free online image compressor — 100% browser-based, no login required."}</script>
     <script
-        type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much can images be compressed?","acceptedAnswer":{"@type":"Answer","text":"Typically 50-80% size reduction for JPG. PNG compression varies by image content."}},{"@type":"Question","name":"Is image quality affected?","acceptedAnswer":{"@type":"Answer","text":"At quality 80+, differences are barely visible to the human eye."}},{"@type":"Question","name":"Are images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Compression happens in your browser using the Canvas API. Images never leave your device."}},{"@type":"Question","name":"What formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, and WebP are all supported."}},{"@type":"Question","name":"Can I compress multiple images?","acceptedAnswer":{"@type":"Answer","text":"Upload one at a time. Process each image separately for best results."}}]}</script>
+        type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much can images be compressed?","acceptedAnswer":{"@type":"Answer","text":"Typically 50-80% size reduction for JPG. PNG compression varies by image content."}},{"@type":"Question","name":"Is image quality affected?","acceptedAnswer":{"@type":"Answer","text":"At quality 80+, differences are barely visible to the human eye."}},{"@type":"Question","name":"Are images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Compression happens in your browser using the Canvas API. Images never leave your device and it is 100% safe to compress private photos here."}},{"@type":"Question","name":"What formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, and WebP are all supported. Note that PNGs will be converted to JPEG for maximum compression efficiency."}},{"@type":"Question","name":"Can I compress multiple images?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can compress as many images as you like since everything happens on your own computer. Upload one at a time for best results."}}]}</script>
 </head>
 
 <body>
@@ -536,37 +536,6 @@
         script.text = JSON.stringify(schemaData);
         document.head.appendChild(script);
 
-        // FAQ Schema
-        const faqData = {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [{
-                "@type": "Question",
-                "name": "Is it safe to compress private photos here?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Our tool is 100% client-side. This means your images are never uploaded to any server and stay entirely within your browser."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Which image formats are supported?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "We support all common web formats including JPEG, PNG, and WebP. Note that PNGs will be converted to JPEG for maximum compression efficiency."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Is there a limit to how many images I can compress?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. You can compress as many images as you like since everything happens on your own computer."
-                }
-            }]
-        };
-        const faqScript = document.createElement('script');
-        faqScript.type = "application/ld+json";
-        faqScript.text = JSON.stringify(faqData);
-        document.head.appendChild(faqScript);
 
         // Breadcrumb Schema
         const breadcrumbData = {
