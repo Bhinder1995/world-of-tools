@@ -212,7 +212,8 @@
                 cryptographic randomness (from <code>crypto.getRandomValues()</code>) formatted as
                 <code>8-4-4-4-12</code> hexadecimal groups separated by hyphens, with version bits (<code>4</code>) and
                 variant bits (<code>8</code>, <code>9</code>, <code>a</code>, or <code>b</code>) set according to RFC
-                4122.</p>
+                4122.
+            </p>
 
             <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Step-by-Step Guide:</h3>
             <ol style="margin-left: 1.5rem; line-height: 1.8; color: var(--text-muted); display: grid; gap: 0.75rem;">
@@ -442,6 +443,7 @@
                     <span>${uuid}</span>
                     <button class="copy-each-btn" onclick="copySingle('${uuid}', this)">Copy</button>
                 `;
+                list.appendChild(item);
             }
             showError(`Successfully generated ${currentCount} UUIDs.`, 'success');
             setTimeout(() => showError(''), 2000);
