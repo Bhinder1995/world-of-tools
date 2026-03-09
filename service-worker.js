@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v70';
+const CACHE_NAME = 'world-of-tools-v71';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -52,7 +52,6 @@ const ASSETS_TO_CACHE = [
     '/random-number-generator',
     '/roman-numerals-converter',
     '/text-to-binary-converter',
-    '/image-resizer',
     '/calculators-online',
     '/developer-tools-online',
     '/seo-tools-free',

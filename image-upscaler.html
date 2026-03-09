@@ -181,7 +181,8 @@
                     style="display: inline-flex; align-items: center; gap: 0.5rem; background: #ecfdf5; color: #047857; padding: 0.35rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
                     🛡️ Browser-Based AI Enhancement
                 </div>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">Upscale your images to 2x or 4x resolution instantly. High-quality, fast, and completely private.</p>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Upscale your images to 2x or 4x resolution
+                    instantly. High-quality, fast, and completely private.</p>
             </section>
 
             <div id="errorMessage"
@@ -234,6 +235,10 @@
                             </div>
                             <img id="imagePreview" class="preview-img" alt="Upscaled AI Result">
                         </div>
+                        <button id="downloadBtn" class="btn btn-primary"
+                            style="display: none; margin-top: 1.5rem; width: 100%; height: 3.5rem; font-weight: 700; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 12px;">
+                            📥 Download HD Image
+                        </button>
                     </div>
                 </div>
 
@@ -337,11 +342,7 @@
                                 style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;box-shadow:0 1px 3px rgba(0,0,0,0.05);">Image
                                 Converter</a>
                             <a href="/image-compressor"
-                                style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;box-shadow:0 1px 3px rgba(0,0,0,0.05);">Image
-                                Compressor</a>
-                            <a href="/image-resizer"
-                                style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;box-shadow:0 1px 3px rgba(0,0,0,0.05);">Image
-                                Resizer</a>
+                                style="display:inline-flex;align-items:center;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:0.5rem 1rem;font-weight:700;font-size:0.9rem;text-decoration:none;color:inherit;box-shadow:0 1px 3px rgba(0,0,0,0.05);">Image Resizer & Compressor</a>
                         </div>
                     </section>
                 </div>
@@ -361,6 +362,7 @@
         const loadingText = document.getElementById('loadingText');
         const progressBar = document.getElementById('progressBar');
         const dropZone = document.getElementById('dropZone');
+        const downloadBtn = document.getElementById('downloadBtn');
 
         let originalImg = new Image();
 
@@ -378,6 +380,7 @@
                     noImage.style.display = 'none';
                     document.getElementById('settings').style.display = 'block';
                     upscaleBtn.style.display = 'flex';
+                    downloadBtn.style.display = 'none';
                 };
                 originalImg.src = e.target.result;
             };
@@ -439,11 +442,21 @@
                     loading.style.display = 'none';
                     progressBar.style.width = '100%';
 
-                    // Trigger download
+                    // Trigger download initially
                     const link = document.createElement('a');
-                    link.download = `worldoftools.in-imageupscaler-${factor}x-${Date.now()}.png`;
+                    const dlName = `worldoftools.in-imageupscaler-${factor}x-${Date.now()}.png`;
+                    link.download = dlName;
                     link.href = resultUrl;
                     link.click();
+
+                    // Show manual download button
+                    downloadBtn.style.display = 'flex';
+                    downloadBtn.onclick = () => {
+                        const dlLink = document.createElement('a');
+                        dlLink.download = dlName;
+                        dlLink.href = resultUrl;
+                        dlLink.click();
+                    };
 
                     showError(`Image upscaled ${factor}x and downloaded!`, 'success');
                     setTimeout(() => showError(''), 4000);
