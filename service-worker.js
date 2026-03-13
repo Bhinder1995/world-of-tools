@@ -1,12 +1,14 @@
-const CACHE_NAME = 'world-of-tools-v79';
+const CACHE_NAME = 'world-of-tools-v80';
 
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
-    '/css/style.css?v=1.7',
-    '/js/common.js?v=1.7',
+    '/css/style.css',
+    '/js/common.js',
     '/logo.svg',
     '/manifest.json',
+    '/guides/',
+    '/guides/index.html',
     '/app-icon.png',
     '/favicon.png',
     '/favicon.ico',
