@@ -115,9 +115,9 @@ function injectFooter() {
                         <li><a href="/web-utilities-free">Web Utilities</a></li>
                     </ul>
                 </div>
-                <div class="footer-section" style="grid-column: span 2;">
+                <div class="footer-section how-to-use-section" style="grid-column: span 2;">
                     <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">How to Use Our Tools</h4>
-                    <ul style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; font-size: 0.85rem;">
+                    <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; font-size: 0.85rem;">
                         <li><a href="/guides/age-calculator-guide">Age Calculator Guide</a></li>
                         <li><a href="/guides/background-remover-guide">Background Remover Guide</a></li>
                         <li><a href="/guides/barcode-generator-guide">Barcode Generator Guide</a></li>
