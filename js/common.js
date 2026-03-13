@@ -115,6 +115,52 @@ function injectFooter() {
                         <li><a href="/web-utilities-free">Web Utilities</a></li>
                     </ul>
                 </div>
+                <div class="footer-section" style="grid-column: span 2;">
+                    <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">How to Use Our Tools</h4>
+                    <ul style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; font-size: 0.85rem;">
+                        <li><a href="/guides/age-calculator-guide">Age Calculator Guide</a></li>
+                        <li><a href="/guides/background-remover-guide">Background Remover Guide</a></li>
+                        <li><a href="/guides/barcode-generator-guide">Barcode Generator Guide</a></li>
+                        <li><a href="/guides/base64-encoder-decoder-guide">Base64 Conv. Guide</a></li>
+                        <li><a href="/guides/case-converter-guide">Case Converter Guide</a></li>
+                        <li><a href="/guides/color-converter-guide">Color Converter Guide</a></li>
+                        <li><a href="/guides/cron-expression-generator-guide">Cron Generator Guide</a></li>
+                        <li><a href="/guides/css-minifier-guide">CSS Minifier Guide</a></li>
+                        <li><a href="/guides/csv-to-json-guide">CSV to JSON Guide</a></li>
+                        <li><a href="/guides/emi-calculator-guide">EMI Calculator Guide</a></li>
+                        <li><a href="/guides/gst-calculator-guide">GST Calculator Guide</a></li>
+                        <li><a href="/guides/hash-generator-guide">Hash Generator Guide</a></li>
+                        <li><a href="/guides/image-compressor-guide">Image Compressor Guide</a></li>
+                        <li><a href="/guides/image-converter-guide">Image Converter Guide</a></li>
+                        <li><a href="/guides/image-upscaler-guide">Image Upscaler Guide</a></li>
+                        <li><a href="/guides/json-formatter-guide">JSON Formatter Guide</a></li>
+                        <li><a href="/guides/jwt-decoder-guide">JWT Decoder Guide</a></li>
+                        <li><a href="/guides/keyword-density-checker-guide">Keyword Density Guide</a></li>
+                        <li><a href="/guides/link-shortener-guide">Link Shortener Guide</a></li>
+                        <li><a href="/guides/linkedin-creator-suite-guide">LinkedIn Suite Guide</a></li>
+                        <li><a href="/guides/lorem-ipsum-generator-guide">Lorem Ipsum Guide</a></li>
+                        <li><a href="/guides/markdown-to-html-guide">Markdown to HTML Guide</a></li>
+                        <li><a href="/guides/number-to-words-converter-guide">Number to Words Guide</a></li>
+                        <li><a href="/guides/password-generator-guide">Password Generator Guide</a></li>
+                        <li><a href="/guides/percentage-calculator-guide">Percentage Calc Guide</a></li>
+                        <li><a href="/guides/qr-code-generator-guide">QR Code Gen Guide</a></li>
+                        <li><a href="/guides/random-number-generator-guide">Random Number Guide</a></li>
+                        <li><a href="/guides/regex-tester-guide">Regex Tester Guide</a></li>
+                        <li><a href="/guides/roman-numerals-converter-guide">Roman Numerals Guide</a></li>
+                        <li><a href="/guides/scientific-calculator-guide">Scientific Calc Guide</a></li>
+                        <li><a href="/guides/seo-meta-tag-generator-guide">SEO Meta Tag Guide</a></li>
+                        <li><a href="/guides/sql-formatter-guide">SQL Formatter Guide</a></li>
+                        <li><a href="/guides/text-compare-tool-guide">Text Compare Guide</a></li>
+                        <li><a href="/guides/text-to-binary-converter-guide">Text to Binary Guide</a></li>
+                        <li><a href="/guides/time-zone-converter-guide">Time Zone Guide</a></li>
+                        <li><a href="/guides/unit-converter-guide">Unit Converter Guide</a></li>
+                        <li><a href="/guides/url-encoder-decoder-guide">URL Enc/Dec Guide</a></li>
+                        <li><a href="/guides/uuid-generator-guide">UUID Generator Guide</a></li>
+                        <li><a href="/guides/xml-formatter-guide">XML Formatter Guide</a></li>
+                        <li><a href="/guides/youtube-thumbnail-downloader-guide">YT Thumbnail Guide</a></li>
+                        <li><a href="/guides/word-counter-guide">Word Counter Guide</a></li>
+                    </ul>
+                </div>
                 <div class="footer-section">
                     <h4 style="color: white; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem;">Company</h4>
                     <ul>

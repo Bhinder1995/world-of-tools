@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Decoder Guide — Understanding JSON Web Tokens for Modern Web Apps | WorldOfTools</title>
+    <meta name="description" content="A detailed 1000+ word guide on JSON Web Tokens (JWT). Learn how to decode, inspect, and understand JWT payloads, headers, and signatures for secure web development.">
+    <meta name="keywords" content="jwt decoder guide, json web token tutorial, how to decode jwt online, oauth2 authentication guide, jwt payload inspection manual, web developer security tool guide">
+    <link rel="canonical" href="https://www.worldoftools.in/guides/jwt-decoder-guide" />
+    <link rel="stylesheet" href="/css/style.css?v=1.7">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <style>
+        .guide-container { max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; line-height: 1.8; color: #374151; }
+        .guide-header { text-align: center; margin-bottom: 4rem; }
+        .guide-header h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -0.04em; margin-bottom: 1.5rem; color: #111827; }
+        .guide-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(79, 70, 229, 0.08); color: var(--primary-color); padding: 0.5rem 1rem; border-radius: 99px; font-weight: 700; font-size: 0.85rem; margin-bottom: 1.5rem; border: 1px solid rgba(79, 70, 229, 0.1); }
+        .back-to-tool { display: flex; justify-content: center; margin-bottom: 3rem; }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--primary-gradient); color: white; padding: 1rem 2rem; border-radius: 14px; text-decoration: none; font-weight: 700; transition: transform 0.2s; box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3); }
+        .back-btn:hover { transform: translateY(-2px); }
+        .guide-content h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1.5rem; color: #111827; letter-spacing: -0.02em; }
+        .guide-content p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .guide-content ul, .guide-content ol { margin-bottom: 2rem; padding-left: 1.5rem; }
+        .guide-content li { margin-bottom: 0.75rem; }
+        .info-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem; margin: 2.5rem 0; }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <main class="container">
+        <article class="guide-container">
+            <header class="guide-header">
+                <div class="guide-badge">📖 Official User Guide</div>
+                <h1>JWT Decoder Guide — Understanding JSON Web Tokens for Modern Web Apps</h1>
+                <p style="font-size: 1.25rem; color: #6b7280; max-width: 700px; margin: 0 auto;">Authentication is the gatekeeper of the modern web. Learn how to peek behind the curtain of secure sessions.</p>
+            </header>
+
+            <div class="back-to-tool">
+                <a href="/jwt-decoder" class="back-btn"><span>⚡ Use JWT Decoder Now</span></a>
+            </div>
+
+            <div class="guide-content">
+                <h2>Introduction: The Language of Web Authentication</h2>
+                <p>If you've ever logged into a modern web application, chances are you've used a <strong>JSON Web Token (JWT)</strong> without even knowing it. JWTs are the standard for securely transmitting information between parties as a JSON object. Because they are compact and self-contained, they are ideal for stateless authentication—allowing servers to know who you are without having to store your session in a database. However, to the naked eye, a JWT looks like a meaningless string of gibberish. The <strong>JWT Decoder</strong> on WorldOfTools is a developer-centric utility that breaks this string down into its readable components.</p>
+                <p>This guide will explain the structure of a JWT, how to debug authentication issues, and why security professionals use decoders to audit their implementation.</p>
+
+                <h2>The Anatomy of a JWT</h2>
+                <p>A JWT is composed of three parts, separated by dots (`.`):</p>
+                <ul>
+                    <li><strong>The Header:</strong> Typically consists of two parts: the type of the token (JWT) and the signing algorithm being used (such as HMAC SHA256 or RSA).</li>
+                    <li><strong>The Payload:</strong> The heart of the token. It contains "claims," which are statements about an entity (typically, the user) and additional metadata (like expiration time).</li>
+                    <li><strong>The Signature:</strong> Created by taking the encoded header, the encoded payload, and a secret, and signing them using the algorithm specified in the header. The signature is used to verify that the sender is who they say they are and that the message wasn't changed along the way.</li>
+                </ul>
+
+                <h2>Decoding vs. Verifying: A Critical Distinction</h2>
+                <p>One of the most common misconceptions about JWTs is that they are "secret" or "encrypted." They are NOT. A JWT is typically <strong>Base64Url encoded</strong>, not encrypted. Anyone who has access to your token can decode it and see your email, user ID, or permissions. This is why you should never store sensitive personal information like passwords or credit card numbers inside a JWT payload.</p>
+                <p>Our tool <strong>decodes</strong> the token so you can see the information inside. However, you can only <strong>verify</strong> the token if you have the secret key from the server. Decoding is for debugging; verifying is for security.</p>
+
+                <div class="info-card">
+                    <h3>⚠️ Security Warning: Local Storage Dangers</h3>
+                    <p>Storing JWTs in `localStorage` makes them susceptible to Cross-Site Scripting (XSS) attacks. For maximum security, tokens should ideally be stored in `HttpOnly` cookies, which cannot be accessed via JavaScript. Use our decoder to check your token's expiration (`exp`) and ensure your session window is appropriately tight.</p>
+                </div>
+
+                <h2>How to Use the JWT Decoder</h2>
+                <ol>
+                    <li><strong>Paste Your Token:</strong> Enter the full JWT string (the long block of text starting with `ey...`).</li>
+                    <li><strong>Review the Header:</strong> See which algorithm your server is using (e.g., RS256).</li>
+                    <li><strong>Inspect the Payload:</strong> Look for common claims like `sub` (subject), `iat` (issued at), and `exp` (expiration). Our tool converts Unix timestamps into human-readable dates for you.</li>
+                    <li><strong>Check for Errors:</strong> If the token is malformed or has invalid characters, the decoder will alert you, helping you troubleshoot issues in your authentication flow.</li>
+                </ol>
+
+                <h2>Use Cases for Developers</h2>
+                <ul>
+                    <li><strong>Debugging Auth Flows:</strong> Checking if your backend is correctly setting the user's roles (`permissions`) or if the token is expiring too soon.</li>
+                    <li><strong>Security Auditing:</strong> Ensuring that no sensitive internal data is being leaked through the payload claims.</li>
+                    <li><strong>Learning & Training:</strong> Helping junior developers understand how modern "Stateless Auth" works by visualizing the tokens they are sending in their API requests.</li>
+                </ul>
+
+                <h2>Conclusion: Knowledge is Security</h2>
+                <p>Understanding the tools of your trade is what separates a coder from an engineer. By using the <strong>JWT Decoder guide</strong> and our online utility, you gain a clear window into the authentication mechanisms powering your apps. Explore our other developer tools like the SQL Formatter and Hash Generator to further professionalize your backend workflow. Debug with clarity today.</p>
+            </div>
+
+            <div class="back-to-tool" style="margin-top: 5rem;">
+                <a href="/jwt-decoder" class="back-btn"><span>🚀 Launch JWT Decoder</span></a>
+            </div>
+        </article>
+    </main>
+    <footer></footer>
+    <script src="/js/common.js?v=1.7"></script>
+</body>
+</html>
