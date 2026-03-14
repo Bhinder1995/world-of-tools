@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v80';
+const CACHE_NAME = 'world-of-tools-v81';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -24,7 +24,8 @@ const ASSETS_TO_CACHE = [
     '/emi-calculator',
     '/password-generator',
     '/unit-converter',
-    '/contact',
+    '/about-us',
+    '/contact-us',
     '/privacy',
     '/terms',
     '/seo-meta-tag-generator',
