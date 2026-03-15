@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v81';
+const CACHE_NAME = 'world-of-tools-v82';
 
 const ASSETS_TO_CACHE = [
     '/',
