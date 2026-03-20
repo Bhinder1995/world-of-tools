@@ -797,3 +797,44 @@ footer {
     box-shadow: var(--card-shadow-hover);
     margin-bottom: 4rem;
 }
+
+/* Privacy Badge Enhancements 2026 */
+.privacy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1rem;
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #059669;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: default;
+    user-select: none;
+}
+
+.privacy-badge:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.4);
+    transform: translateY(-1px);
+}
+
+.privacy-badge i {
+    font-size: 1rem;
+}
+
+.privacy-badge.pulse {
+    animation: badgePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}

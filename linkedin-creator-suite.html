@@ -15,7 +15,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkedIn Creator Suite — Hooks Formatting Tools Free | WorldOfTools</title>
+    <title>LinkedIn Creator Suite — Free Tools for Hooks, Formatting & Privacy | WorldOfTools</title>
     <meta name="description"
         content="Free LinkedIn tools for creators — post hook generator, text formatter, and engagement analytics. Grow your LinkedIn audience faster. 100% free, no login.">
     <meta name="keywords"
@@ -30,7 +30,7 @@
         content="Free LinkedIn tools for creators — post hook generator, text formatter, and engagement analytics. Grow your LinkedIn audience faster. 100% free, no login.">
     <meta property="og:image" content="https://worldoftools.in/app-icon.png">
 
-    <link rel="stylesheet" href="/css/style.css?v=1.7">
+    <link rel="stylesheet" href="/css/style.css?v=1.8">
     <link rel="icon" type="image/svg+xml" href="/logo.svg">
 
     <style>
@@ -315,9 +315,11 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "LinkedIn Suite",
+      "name": "LinkedIn Creator Suite",
+      "description": "Professional toolkit for LinkedIn creators featuring post formatting, hook generation, and engagement analytics. 100% private and client-side.",
       "operatingSystem": "Any",
       "applicationCategory": "UtilitiesApplication",
+      "url": "https://worldoftools.in/linkedin-creator-suite",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -333,8 +335,11 @@
     <main>
         <div class="suite-container">
             <div class="tool-header">
+                <div class="privacy-badge pulse">
+                    <span>🛡️</span> 100% Client-Side • Secure • No Uploads
+                </div>
                 <h1 id="page-h1">LinkedIn Creator Suite</h1>
-                <p id="page-desc">The ultimate toolkit for LinkedIn creators. 100% client-side, privacy-first tools.</p>
+                <p id="page-desc">The professional toolkit for LinkedIn creators, founders, and marketers. Grow your presence with privacy-first tools.</p>
             </div>
 
             <div class="tabs-header" id="tool-tabs">
@@ -343,6 +348,9 @@
                 </button>
                 <button class="tab-btn" data-tab="hooks">
                     <span>🪝</span> Hook Generator
+                </button>
+                <button class="tab-btn" data-tab="templates">
+                    <span>✉️</span> Message Templates
                 </button>
                 <button class="tab-btn" data-tab="headline">
                     <span>🏆</span> Headline Optimizer
@@ -368,6 +376,7 @@
                                 <button class="control-btn" onclick="toggleUnicode('bold')"><b>B</b></button>
                                 <button class="control-btn" onclick="toggleUnicode('italic')"><i>I</i></button>
                                 <button class="control-btn" onclick="addPatternBreaks()">--- Breaks</button>
+                                <button class="control-btn" id="scheduler-toggle" onclick="toggleSchedulerPreview()" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe;">📅 Scheduler Preview</button>
                             </div>
 
                             <textarea id="formatter-input" class="main-textarea"
@@ -531,7 +540,51 @@
             </div>
         </div>
 
-        <div id="headline" class="tab-content">
+            <div id="templates" class="tab-content">
+                <div class="tool-card-main">
+                    <div class="tool-header" style="margin-bottom: 2rem;">
+                        <h2>✉️ LinkedIn Connection Templates</h2>
+                        <p>High-converting templates for your connection requests.</p>
+                    </div>
+
+                    <div class="template-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div class="template-card" style="border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; background: white;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">🤝 Networking</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Connect with peers in your industry.</p>
+                            <div class="template-text" style="background: #f8fafc; padding: 1rem; border-radius: 12px; font-size: 0.9rem; font-family: var(--font-body); margin-bottom: 1rem; border: 1px dashed var(--border-color);">
+                                Hi [Name], I've been following your posts about [Topic] and really enjoyed your recent take on [Specific Post]. Would love to connect and keep up with your work!
+                            </div>
+                            <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem;" onclick="copyTemplate(this)">📋 Copy Template</button>
+                        </div>
+
+                        <div class="template-card" style="border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; background: white;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">💼 Job Referral</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Ask for info or a referral at a company.</p>
+                            <div class="template-text" style="background: #f8fafc; padding: 1rem; border-radius: 12px; font-size: 0.9rem; font-family: var(--font-body); margin-bottom: 1rem; border: 1px dashed var(--border-color);">
+                                Hi [Name], noticed you're at [Company]. I'm applying for the [Role] and was wondering if you'd be open to a quick chat about the culture? Happy to connect either way!
+                            </div>
+                            <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem;" onclick="copyTemplate(this)">📋 Copy Template</button>
+                        </div>
+
+                        <div class="template-card" style="border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; background: white;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">🚀 Client Outreach</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Value-first outreach for clients.</p>
+                            <div class="template-text" style="background: #f8fafc; padding: 1rem; border-radius: 12px; font-size: 0.9rem; font-family: var(--font-body); margin-bottom: 1rem; border: 1px dashed var(--border-color);">
+                                Hi [Name], saw your profile while looking for experts in [Industry]. I recently helped a company in [Industry] achieve [Result]. Thought I'd reach out to connect!
+                            </div>
+                            <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem;" onclick="copyTemplate(this)">📋 Copy Template</button>
+                        </div>
+                    </div>
+
+                    <div class="seo-section" style="margin-top: 4rem;">
+                        <h2>High-Converting LinkedIn Connection Request Templates</h2>
+                        <p>Our <b>LinkedIn connection message generator</b> provides tested templates for networking, job hunting, and sales outreach. Using a <b>personalized LinkedIn invite</b> increases your acceptance rate by over 40% compared to empty requests.</p>
+                        <p>Whether you need a <b>LinkedIn message for recruiters</b> or a <b>cold outreach script</b>, these templates follow 2026's best practices for professional social selling and networking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="headline" class="tab-content">
             <div class="tool-card-main">
                 <div class="tool-header" style="margin-bottom: 2rem;">
                     <h2>🏆 LinkedIn Headline Optimizer</h2>
@@ -836,150 +889,85 @@
         <!-- SEO Content Block -->
         <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
             <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">What is the LinkedIn Suite?</h2>
-                <p style="line-height:1.8;color:#4b5563;">The LinkedIn Suite is a powerful and easy-to-use online utility designed to help you with your daily tasks. Whether you are a professional or a student, this tool provides a seamless experience for your needs. Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.</p>
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Privacy-First LinkedIn Creator Suite</h2>
+                <p style="line-height:1.8;color:#4b5563;">Our <b>LinkedIn Creator Suite</b> is built with a <b>privacy-first</b> architecture. Unlike other <b>LinkedIn post generators</b> that upload your drafts to their servers, our tool processes everything locally in your browser. This means your professional ideas, personal stories, and contact messages never leave your device. Whether you're a <b>top voice in India</b> or a student starting your journey, your data is 100% secure.</p>
             </section>
 
             <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use LinkedIn Suite — Step-by-Step</h2>
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Optimize Your LinkedIn Posts — 2026 Guide</h2>
                 
-        <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
-            <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Input your post draft into the creative workspace.</p>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
-            <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Apply bold, italic, or strike-through styles to your text.</p>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
-            <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Check the 'Hook Analyzer' to improve your opening lines.</p>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">4</span>
-            <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Copy the formatted post and paste directly to LinkedIn.</p>
-        </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><b>Craft a Viral Hook:</b> Use our <b>LinkedIn hook generator</b> to find the perfect opening line that stops the scroll.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><b>Format for Readability:</b> Use <b>bullet points and line breaks</b> in our post formatter to make your content easy to skim.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><b>Add Viral Styling:</b> Convert key phrases to <b>bold or italic unicode</b> to draw attention to your main points.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">4</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><b>Analyze Engagement:</b> Run your post through our <b>engagement estimator</b> to see your predicted reach.</p>
+                </div>
             </section>
 
             <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features — Why Use Our Tool?</h2>
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Features for Professional LinkedIn Growth</h2>
                 <ul style="list-style:none;padding:0;margin:0;">
-                    
-        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-            <span style="line-height:1.6;"><strong>100% Free to use:</strong>  LinkedIn-safe Unicode font styles for better visibility.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-            <span style="line-height:1.6;"><strong>Privacy focused - no data sent to server:</strong>  Character limit counter specific to LinkedIn posts.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-            <span style="line-height:1.6;"><strong>Instant results in real-time:</strong>  Hook preview to see what users will see before the 'See More'.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-            <span style="line-height:1.6;"><strong>No registration required:</strong>  Hashtag suggestions based on your post's content.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-            <span style="line-height:1.6;"><strong>Works on all devices and browsers:</strong>  Privacy focused: drafts are never uploaded or shared.</span>
-        </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>100% Free & Unlimited:</strong> Generate as many hooks and headlines as you need.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Browser-Side Security:</strong> Your professional secrets never leave your laptop.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>No Signup Required:</strong> Start optimizing your LinkedIn presence in 1 second.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>India-Specific Templates:</strong> Connection request scripts for the Indian job market (TCS, Infosys, Wipro, Startups).</span>
+                    </li>
                 </ul>
             </section>
 
             <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📊 Use Cases — Who Uses the LinkedIn Suite?</h2>
-                
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-            <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Thought Leaders</h3>
-                <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Stand out in the feed with professional, formatted posts.</p>
-            </div>
-            <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Job Seekers</h3>
-                <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Write compelling update posts to attract recruiter attention.</p>
-            </div>
-            <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For B2B Marketers</h3>
-                <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Draft and optimize corporate updates for maximum engagement.</p>
-            </div>
-        </div>
-            </section>
-
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">🆚 LinkedIn Suite vs. Other Online Tools</h2>
-                
-        <div style="overflow-x:auto;margin-top:1rem;">
-            <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-                <thead>
-                    <tr style="background:#f9fafb;">
-                        <th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">Feature</th>
-                        <th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">WorldOfTools</th>
-                        <th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">Other Tools</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Privacy</td>
-                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">Local Browser</td>
-                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Server Upload</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Speed</td>
-                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">Instant</td>
-                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Delayed</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Ads & Popups</td>
-                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">None</td>
-                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Intrusive</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:0.75rem 1rem;">Registration</td>
-                        <td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">Not Required</td>
-                        <td style="padding:0.75rem 1rem;text-align:center;">Often Required</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">LinkedIn Connection Requests for Job Seekers</h2>
+                <p style="line-height:1.8;color:#4b5563;">Struggling to get your connection requests accepted? Our <b>connection message generator</b> provides pre-built scripts for networking with recruiters and industry experts. From <b>referral ask templates</b> to <b>cold outreach messages</b>, we help you break the ice professionally.</p>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:1.5rem;margin-top:1.5rem;">
+                    <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+                        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Founders</h3>
+                        <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Build authority and attract investors with data-backed post structures.</p>
+                    </div>
+                    <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+                        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Freelancers</h3>
+                        <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Generate inbound leads by sharing value-driven storytelling posts.</p>
+                    </div>
+                </div>
             </section>
 
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2>
-                
-        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <summary style="font-weight:700;cursor:pointer;">Is this LinkedIn Suite free?</summary>
-            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, the LinkedIn Suite is 100% free with no hidden charges or premium subscriptions.</p>
-        </details>
-        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <summary style="font-weight:700;cursor:pointer;">Is my data safe?</summary>
-            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. All processing happens locally in your browser. We never see, store, or share your data.</p>
-        </details>
-        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <summary style="font-weight:700;cursor:pointer;">Do I need to sign up?</summary>
-            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">No registration or account creation is required to use any of our tools.</p>
-        </details>
-        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <summary style="font-weight:700;cursor:pointer;">Does it work on mobile?</summary>
-            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.</p>
-        </details>
-        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-            <summary style="font-weight:700;cursor:pointer;">Can I use it offline?</summary>
-            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Once the page is loaded, most functions work offline since they run in your browser's local environment.</p>
-        </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is the LinkedIn Hook Generator free?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, our <b>LinkedIn opening line generator</b> is 100% free with no limits on how many hooks you can create.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Can I use bold text on LinkedIn?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">LinkedIn doesn't natively support bolding, but our tool uses <b>safe Unicode characters</b> that appear bold on all devices, making your posts stand out in the feed.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is my data private if I use an online LinkedIn tool?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Most tools aren't, but ours is. Everything runs in your <b>local browser environment</b>, meaning your drafts and sensitive professional data are never stored on any server.</p>
+                </details>
             </section>
-
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📚 Educational Content — Deep Dive</h2>
-                
-        <div style="line-height:1.8;color:#4b5563;">
-            <p>The <strong>Linkedin Creator Suite</strong> is designed to streamline your daily tasks by providing a high-precision, reliable solution for linkedin creator suite needs. Whether you are a professional, a student, or a casual user, this tool offers an intuitive interface that delivers instant results without the complexity of traditional software. By leveraging modern web technologies, we've ensured that the tool is both lightweight and powerful, accessible from any device without installation.</p>
-            <p style="margin-top:1rem;">Privacy is at the heart of our design philosophy. Unlike many online utilities that require server-side processing, WorldOfTools executes all operations directly in your browser. This means your data—whether it's sensitive financial figures, personal dates, or confidential code—never leaves your local environment. This 'Zero-Trust' architecture provides the highest level of security, protecting you from data breaches and unauthorized tracking.</p>
-            <p style="margin-top:1rem;">We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.</p>
         </div>
-            
-            </section>
+
 
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Other Free Tools You Might Need</h2>
@@ -1022,7 +1010,7 @@
 
     <footer></footer>
 
-    <script src="/js/common.js?v=1.7"></script>
+    <script src="/js/common.js?v=1.8"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const tabs = document.querySelectorAll('.tab-btn');
@@ -1040,6 +1028,11 @@
                     h1: "LinkedIn Hook Generator",
                     desc: "Generate scroll-stopping opening lines for LinkedIn posts for free. Proven hooks to increase engagement.",
                     title: "LinkedIn Hook Generator – Create Scroll-Stopping Post Openings for Free"
+                },
+                templates: {
+                    h1: "LinkedIn Connection Request Templates",
+                    desc: "High-converting templates for LinkedIn networking, job referrals, and client outreach. 100% free and ready to copy.",
+                    title: "LinkedIn Connection Message Templates – Networking & Job Outreach Scripts"
                 },
                 headline: {
                     h1: "LinkedIn Headline Generator & Optimizer",
@@ -1132,6 +1125,26 @@
                 updateFormatter();
             };
 
+            window.toggleSchedulerPreview = () => {
+                const preview = document.getElementById('formatter-preview');
+                const btn = document.getElementById('scheduler-toggle');
+                const isScheduled = preview.getAttribute('data-view') === 'scheduled';
+                
+                if (isScheduled) {
+                    preview.setAttribute('data-view', 'standard');
+                    preview.style.border = "none";
+                    preview.style.background = "white";
+                    btn.textContent = "📅 Scheduler Preview";
+                    btn.style.background = "#eff6ff";
+                } else {
+                    preview.setAttribute('data-view', 'scheduled');
+                    preview.style.border = "2px solid #3b82f6";
+                    preview.style.background = "#f0f7ff";
+                    btn.textContent = "📱 Standard Preview";
+                    btn.style.background = "#dbeafe";
+                }
+            };
+
             window.toggleUnicode = (type) => {
                 // For simplicity, we convert the entire current text or selected text
                 const start = formatterInput.selectionStart;
@@ -1181,14 +1194,19 @@
             const hooks = [
                 { cat: 'curiosity', text: "I found a secret that most 9-to-5ers will never know." },
                 { cat: 'curiosity', text: "Stop scrolling. You're losing money every second you ignore this." },
+                { cat: 'curiosity', text: "The #1 reason you aren't growing on LinkedIn (it's not the algorithm)." },
                 { cat: 'authority', text: "I've spent 10,000 hours mastering [Skill]. Here's what I learned." },
                 { cat: 'authority', text: "After scaling to $100k/month, I realized one thing." },
+                { cat: 'authority', text: "I analyzed 1,000 viral posts so you don't have to." },
                 { cat: 'data', text: "87% of creators fail because of this one mistake." },
                 { cat: 'data', text: "The data is in: LinkedIn engagement is up 40% for this post type." },
+                { cat: 'data', text: "9 out of 10 founders are making this critical hiring error." },
                 { cat: 'story', text: "3 years ago, I was broke and sleeping on a couch." },
                 { cat: 'story', text: "I almost quit my dream job yesterday. Here's why." },
+                { cat: 'story', text: "The biggest lesson I learned from a failed multi-million dollar exit." },
                 { cat: 'contrarian', text: "Unpopular opinion: Monday mornings are actually the best." },
-                { cat: 'contrarian', text: "Stop networking. It's a waste of time unless you do this." }
+                { cat: 'contrarian', text: "Stop networking. It's a waste of time unless you do this." },
+                { cat: 'contrarian', text: "Consistency is overrated. Here's what actually builds an audience." }
             ];
 
             window.generateHook = () => {
@@ -1203,6 +1221,21 @@
             window.copyHook = () => {
                 const text = document.getElementById('hook-result').textContent;
                 navigator.clipboard.writeText(text).then(() => alert("Hook copied!"));
+            };
+
+            window.copyTemplate = (btn) => {
+                const text = btn.parentElement.querySelector('.template-text').textContent.trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    const original = btn.textContent;
+                    btn.textContent = "✅ Copied!";
+                    btn.style.background = "var(--success-color)";
+                    btn.style.color = "white";
+                    setTimeout(() => {
+                        btn.textContent = original;
+                        btn.style.background = "";
+                        btn.style.color = "";
+                    }, 2000);
+                });
             };
 
             window.sendToFormatter = () => {
