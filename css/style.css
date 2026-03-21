@@ -272,90 +272,215 @@ nav a:hover {
     color: var(--primary-color);
 }
 
-/* Dropdown Styles */
+/* ── Mega Menu Dropdown ─────────────────────────────────── */
 .nav-dropdown {
-    position: relative;
-    display: inline-block;
+    position: static;
 }
 
 .dropdown-trigger {
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.3rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+    user-select: none;
 }
 
-.dropdown-trigger::after {
-    content: '▾';
-    font-size: 0.75rem;
+.dropdown-trigger:hover {
+    color: var(--primary-color);
 }
 
+/* Full-width panel that sits below the header */
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 57px; /* header height */
     left: 0;
-    width: 650px;
-    background: white;
-    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 1.5rem;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 16px 40px -8px rgba(0,0,0,0.12);
     display: none;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    z-index: 1001;
-    margin-top: 0.5rem;
+    z-index: 9999;
+    padding: 1.5rem 0;
+    max-height: calc(100vh - 57px);
+    overflow-y: auto;
 }
 
 .nav-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Inner wrapper centres content and creates 4-col grid */
+.mega-dropdown-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
 }
 
-.dropdown-col h5 {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    color: var(--primary-color);
-    font-size: 0.78rem;
+/* Column separator lines */
+.mega-col {
+    padding: 0 1.25rem;
+    border-right: 1px solid #f1f5f9;
+}
+.mega-col:first-child { padding-left: 0; }
+.mega-col:last-child  { border-right: none; padding-right: 0; }
+
+/* Section header — uppercase gray, like ilovepdf */
+.mega-col-header {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #94a3b8;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.35rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
 }
 
-.dropdown-col ul {
+/* Each tool row */
+.mega-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.15rem 0.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #374151;
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: background 0.12s, color 0.12s;
+    margin-bottom: 0.08rem;
+    white-space: nowrap;
+}
+
+.mega-item:hover {
+    background: #f8fafc;
+    color: var(--primary-color);
+}
+
+/* Popular Tools Cards */
+.pop-card:hover {
+    box-shadow: 0 8px 25px -5px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    border-color: rgba(79,70,229,0.25) !important;
+}
+
+/* Tiny nav icon badge for dropdown — ilovepdf exact */
+.nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    font-size: 0.42rem;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+    line-height: 1;
+    overflow: hidden;
+}
+
+@media (max-width: 960px) {
+    .dropdown-menu {
+        display: none !important;
+    }
+}
+
+/* ── Footer Layout ───────────────────────────────────────── */
+.footer-link-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+}
+
+
+.footer-col-heading {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+    margin-top: 0;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-    list-style: none;
+    gap: 0.6rem;
 }
 
-.dropdown-col a {
-    color: var(--text-color);
-    font-size: 0.82rem;
+.footer-links a {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.855rem;
     font-weight: 500;
     transition: color 0.15s;
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.dropdown-col a:hover {
-    color: var(--primary-color);
-    transform: translateX(2px);
+.footer-links a:hover {
+    color: #cbd5e1;
 }
 
+/* "→ All ..." links stand out slightly */
+.footer-links li:last-child a {
+    color: #6366f1;
+    font-weight: 600;
+}
+
+.footer-links li:last-child a:hover {
+    color: #a5b4fc;
+}
+
+/* Pill badges for Recently Added */
+.footer-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #94a3b8;
+    padding: 0.28rem 0.8rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.footer-badge:hover {
+    background: rgba(99,102,241,0.15);
+    border-color: rgba(99,102,241,0.3);
+    color: #a5b4fc;
+}
+
+/* Responsive stacking */
 @media (max-width: 900px) {
-    .dropdown-menu {
-        position: static;
-        width: 100%;
-        display: none !important; /* Hide dropdown on mobile, nav is handled differently */
+    .footer-link-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    .footer-two-col {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 520px) {
+    .footer-link-grid {
+        grid-template-columns: 1fr;
     }
 }
 
 
-/* Tools Grid */
 .tools-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
