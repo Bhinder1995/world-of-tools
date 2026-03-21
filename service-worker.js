@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v84';
+const CACHE_NAME = 'world-of-tools-v85';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -63,6 +63,18 @@ const ASSETS_TO_CACHE = [
     '/background-remover',
     '/image-upscaler',
     '/image-converter',
+    '/bmi-calculator',
+    '/sip-calculator',
+    '/loan-eligibility-calculator',
+    '/ppf-calculator',
+    '/aspect-ratio-calculator',
+    '/serp-preview',
+    '/invoice-generator',
+    '/typing-speed-test',
+    '/css-gradient-generator',
+    '/email-signature-generator',
+    '/favicon-generator',
+    '/ip-address-lookup',
     '/guides/age-calculator-guide',
     '/guides/background-remover-guide',
     '/guides/barcode-generator-guide',
@@ -103,7 +115,19 @@ const ASSETS_TO_CACHE = [
     '/guides/uuid-generator-guide',
     '/guides/xml-formatter-guide',
     '/guides/youtube-thumbnail-downloader-guide',
-    '/guides/word-counter-guide'
+    '/guides/word-counter-guide',
+    '/guides/bmi-calculator-guide',
+    '/guides/sip-calculator-guide',
+    '/guides/loan-eligibility-calculator-guide',
+    '/guides/ppf-calculator-guide',
+    '/guides/aspect-ratio-calculator-guide',
+    '/guides/serp-preview-guide',
+    '/guides/invoice-generator-guide',
+    '/guides/typing-speed-test-guide',
+    '/guides/css-gradient-generator-guide',
+    '/guides/email-signature-generator-guide',
+    '/guides/favicon-generator-guide',
+    '/guides/ip-address-lookup-guide'
 ];
 
 

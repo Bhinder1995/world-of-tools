@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Ezoic CMP and Header Scripts -->
+    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+    <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <script>
+        window.ezstandalone = window.ezstandalone || {};
+        ezstandalone.cmd = ezstandalone.cmd || [];
+    </script>
+    <script src="//ezoicanalytics.com/analytics.js"></script>
+    <!-- End Ezoic Scripts -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator — Calculate SIP Returns & Mutual Fund Investment Online Free | WorldOfTools</title>
+    <meta name="description" content="Plan your wealth with our free SIP Calculator. Estimate returns on mutual fund SIPs, lumpsum investments, and FD maturity amounts with a detailed year-by-year breakdown.">
+    <link rel="canonical" href="https://worldoftools.in/sip-calculator" />
+    <meta name="keywords" content="SIP calculator, SIP return calculator, mutual fund SIP calculator online, SIP calculator india, SIP calculator monthly, FD calculator, fixed deposit calculator, lumpsum calculator, SIP maturity amount calculator, how much to invest in SIP, SIP interest calculator">
+    <link rel="stylesheet" href="/css/style.css?v=1.8">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        /* Tab switcher */
+        .calc-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.75rem;
+            background: #f1f5f9;
+            padding: 0.35rem;
+            border-radius: 14px;
+            width: fit-content;
+        }
+
+        .calc-tab {
+            padding: 0.6rem 1.4rem;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .calc-tab.active {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        .calc-panel { display: none; }
+        .calc-panel.active { display: block; }
+
+        /* Slider groups */
+        .slider-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .slider-label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+
+        .slider-value {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            background: #f8faff;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.2rem 0.75rem;
+            min-width: 90px;
+            text-align: right;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, var(--primary-color) 0%, var(--primary-color) var(--pct, 0%), #e5e7eb var(--pct, 0%), #e5e7eb 100%);
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(79,70,229,0.3);
+            cursor: pointer;
+        }
+
+        /* Results */
+        .result-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+            text-align: center;
+        }
+
+        .result-card.highlight {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            border: none;
+            color: white;
+        }
+
+        .result-card-val {
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+
+        .result-card.highlight .result-card-val { color: white; }
+
+        .result-card-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .result-card.highlight .result-card-label { color: rgba(255,255,255,0.8); }
+
+        /* Donut chart */
+        .chart-area {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .donut-wrap {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+        }
+
+        .donut-label {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .donut-label strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .legend { flex: 1; min-width: 160px; }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Yearly breakdown */
+        .breakdown-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        .breakdown-table th {
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            background: #f8faff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .breakdown-table td {
+            padding: 0.55rem 0.75rem;
+            border-bottom: 1px solid #f3f4f6;
+            color: #374151;
+        }
+
+        .breakdown-table tr:hover td { background: #f8f9ff; }
+        .breakdown-table .text-right { text-align: right; }
+        .breakdown-table .gain { color: #10b981; font-weight: 700; }
+
+        @media (max-width: 600px) {
+            .result-cards { grid-template-columns: 1fr; }
+            .calc-tabs { flex-wrap: wrap; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is SIP?", "acceptedAnswer": {"@type": "Answer", "text": "SIP (Systematic Investment Plan) is a method of investing a fixed amount regularly (monthly/quarterly) in mutual funds. It helps build wealth through compounding over time."}},
+        {"@type": "Question", "name": "How is SIP return calculated?", "acceptedAnswer": {"@type": "Answer", "text": "SIP returns use the compound interest formula applied to each monthly installment separately. The total maturity value = sum of FV of each installment, where FV = P × (1 + r/n)^(nt)."}},
+        {"@type": "Question", "name": "What is a good SIP return rate?", "acceptedAnswer": {"@type": "Answer", "text": "Historically, equity mutual funds in India have given 10–15% CAGR over long periods. Debt funds typically return 6–8%. The calculator default of 12% is a reasonable estimate for equity funds."}},
+        {"@type": "Question", "name": "How much should I invest in SIP per month?", "acceptedAnswer": {"@type": "Answer", "text": "A general rule is to invest 20–30% of your monthly income. Use the 'Goal SIP' calculation: if you want ₹1 crore in 20 years at 12%, you need to invest approximately ₹10,000/month."}},
+        {"@type": "Question", "name": "What is FD (Fixed Deposit)?", "acceptedAnswer": {"@type": "Answer", "text": "A Fixed Deposit is a secure bank investment where you deposit a lump sum for a fixed period at a guaranteed interest rate. It's safer than equity but gives lower returns."}},
+        {"@type": "Question", "name": "SIP vs FD — which is better?", "acceptedAnswer": {"@type": "Answer", "text": "SIPs in equity mutual funds typically generate higher long-term returns (10–14%) vs FDs (6–7.5%), but carry market risk. FDs are safer with guaranteed returns. The right choice depends on your risk appetite and goals."}}
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SIP & FD Calculator",
+      "operatingSystem": "Any",
+      "applicationCategory": "FinanceApplication",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    }
+    </script>
+</head>
+
+<body>
+    <header></header>
+    <main class="container">
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>SIP Calculator — Calculate SIP Returns & Mutual Fund Investment Online Free</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Calculate SIP maturity amount, FD returns, and lumpsum growth with year-by-year breakdown. 100% free, instant results.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="/guides/sip-calculator-guide" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+                        📖 Read SIP Calculator Guide
+                    </a>
+                </div>
+            </section>
+
+            <div class="tool-main-card">
+
+                <!-- Tabs -->
+                <div class="calc-tabs">
+                    <button class="calc-tab active" onclick="switchTab('sip', this)">📈 SIP</button>
+                    <button class="calc-tab" onclick="switchTab('lumpsum', this)">💰 Lumpsum</button>
+                    <button class="calc-tab" onclick="switchTab('fd', this)">🏦 FD</button>
+                </div>
+
+                <!-- ── SIP Panel ── -->
+                <div class="calc-panel active" id="panel-sip">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Monthly Investment</span>
+                            <span class="slider-value" id="sip-amt-val">₹5,000</span>
+                        </div>
+                        <input type="range" id="sip-amt" min="500" max="200000" step="500" value="5000" oninput="calcSIP()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>₹500</span><span>₹2L</span></div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Expected Annual Return</span>
+                            <span class="slider-value" id="sip-rate-val">12%</span>
+                        </div>
+                        <input type="range" id="sip-rate" min="1" max="30" step="0.5" value="12" oninput="calcSIP()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>1%</span><span>30%</span></div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Investment Duration</span>
+                            <span class="slider-value" id="sip-yrs-val">10 yrs</span>
+                        </div>
+                        <input type="range" id="sip-yrs" min="1" max="40" step="1" value="10" oninput="calcSIP()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>1 yr</span><span>40 yrs</span></div>
+                    </div>
+                    <div id="sip-results"></div>
+                </div>
+
+                <!-- ── Lumpsum Panel ── -->
+                <div class="calc-panel" id="panel-lumpsum">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">One-Time Investment</span>
+                            <span class="slider-value" id="ls-amt-val">₹1,00,000</span>
+                        </div>
+                        <input type="range" id="ls-amt" min="1000" max="10000000" step="1000" value="100000" oninput="calcLumpsum()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>₹1K</span><span>₹1 Cr</span></div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Expected Annual Return</span>
+                            <span class="slider-value" id="ls-rate-val">12%</span>
+                        </div>
+                        <input type="range" id="ls-rate" min="1" max="30" step="0.5" value="12" oninput="calcLumpsum()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>1%</span><span>30%</span></div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Investment Duration</span>
+                            <span class="slider-value" id="ls-yrs-val">10 yrs</span>
+                        </div>
+                        <input type="range" id="ls-yrs" min="1" max="40" step="1" value="10" oninput="calcLumpsum()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>1 yr</span><span>40 yrs</span></div>
+                    </div>
+                    <div id="ls-results"></div>
+                </div>
+
+                <!-- ── FD Panel ── -->
+                <div class="calc-panel" id="panel-fd">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Principal Amount</span>
+                            <span class="slider-value" id="fd-amt-val">₹1,00,000</span>
+                        </div>
+                        <input type="range" id="fd-amt" min="1000" max="10000000" step="1000" value="100000" oninput="calcFD()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>₹1K</span><span>₹1 Cr</span></div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Annual Interest Rate</span>
+                            <span class="slider-value" id="fd-rate-val">7%</span>
+                        </div>
+                        <input type="range" id="fd-rate" min="1" max="15" step="0.1" value="7" oninput="calcFD()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>1%</span><span>15%</span></div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Tenure</span>
+                            <span class="slider-value" id="fd-yrs-val">5 yrs</span>
+                        </div>
+                        <input type="range" id="fd-yrs" min="1" max="30" step="1" value="5" oninput="calcFD()">
+                        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;"><span>1 yr</span><span>30 yrs</span></div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span class="slider-label">Compounding Frequency</span>
+                            <span class="slider-value" id="fd-comp-val" style="font-size:0.82rem;">Quarterly</span>
+                        </div>
+                        <select id="fd-comp" onchange="calcFD()" style="padding:0.6rem 1rem;border:2px solid var(--border-color);border-radius:12px;font-family:inherit;font-size:0.9rem;outline:none;width:100%;">
+                            <option value="1">Annually</option>
+                            <option value="2">Half-Yearly</option>
+                            <option value="4" selected>Quarterly</option>
+                            <option value="12">Monthly</option>
+                        </select>
+                    </div>
+                    <div id="fd-results"></div>
+                </div>
+
+                <div style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    ℹ️ Returns are estimated based on the entered rate. Actual mutual fund returns may vary. This is for educational purposes only.
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">What Is a SIP Calculator?</h2>
+                <p style="line-height:1.8;color:#4b5563;">A SIP (Systematic Investment Plan) calculator helps you estimate the future value of your monthly mutual fund investments. By entering your monthly SIP amount, expected return rate, and investment duration, you can instantly see your total invested amount, estimated returns, and the final maturity value.</p>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use This Calculator — Step-by-Step</h2>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Choose the calculator type — <strong>SIP</strong> (monthly), <strong>Lumpsum</strong> (one-time), or <strong>FD</strong> (fixed deposit).</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Adjust the sliders — investment amount, expected return rate, and duration.</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">See your maturity amount, total gains, and year-by-year growth table instantly.</p></div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📊 SIP vs FD vs Lumpsum — Quick Comparison</h2>
+                <div style="overflow-x:auto;margin-top:1rem;">
+                    <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+                        <thead><tr style="background:#f9fafb;"><th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">Feature</th><th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">SIP</th><th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">Lumpsum</th><th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">FD</th></tr></thead>
+                        <tbody>
+                            <tr><td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Investment Type</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Monthly</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">One-time</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">One-time</td></tr>
+                            <tr><td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Typical Returns (India)</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">10–14% p.a.</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">10–14% p.a.</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">6–8% p.a.</td></tr>
+                            <tr><td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Risk</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Moderate</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Moderate-High</td><td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">Very Low</td></tr>
+                            <tr><td style="padding:0.75rem 1rem;">Returns Guaranteed?</td><td style="padding:0.75rem 1rem;text-align:center;">No</td><td style="padding:0.75rem 1rem;text-align:center;">No</td><td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">Yes</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">What is SIP?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">SIP (Systematic Investment Plan) is a method of investing a fixed amount regularly in mutual funds. It helps build wealth through rupee-cost averaging and compounding.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">What is a good SIP return rate?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Equity mutual funds in India have historically returned 10–15% CAGR over 10+ years. Debt funds return 6–8%. 12% is a reasonable estimate for equity funds.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">How much should I invest in SIP per month?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">A general rule is 20–30% of your monthly income. Use our calculator to set a goal — for example, to reach ₹1 crore in 20 years at 12%, you need ~₹10,000/month.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">SIP vs FD — which is better?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">SIP in equity funds typically gives higher returns (10–14%) but carries market risk. FDs give guaranteed 6–7.5% returns. Choose based on your risk appetite and investment goal.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this calculator 100% free?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, completely free with no signup required. Use it as many times as you want.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Does it work on mobile?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, fully responsive — works perfectly on smartphones, tablets, and desktops.</p></details>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📚 About SIP Investing in India</h2>
+                <div style="line-height:1.8;color:#4b5563;">
+                    <p>SIP investing has grown enormously in India, with AMFI reporting over ₹19,000 crore in monthly SIP inflows as of 2024. The power of SIP lies in <strong>rupee cost averaging</strong> — buying more units when markets are low and fewer when high — and <strong>compounding</strong>, which Einstein called the eighth wonder of the world.</p>
+                    <p style="margin-top:1rem;">Popular SIP mutual fund categories include Large Cap, Mid Cap, Small Cap, Flexi Cap, and ELSS (tax-saving) funds. You can start a SIP with as little as ₹100/month through platforms like Zerodha, Groww, or directly through AMC websites.</p>
+                </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Other Free Tools You Might Need</h2>
+                <div class="tools-grid">
+                    <a href="emi-calculator" class="tool-card"><div class="tool-icon">🏠</div><div class="tool-title">EMI Calculator</div><div class="tool-desc">Calculate home, car, or personal loan EMI.</div></a>
+                    <a href="gst-calculator" class="tool-card"><div class="tool-icon">🧾</div><div class="tool-title">GST Calculator</div><div class="tool-desc">Add or remove GST from any amount.</div></a>
+                    <a href="percentage-calculator" class="tool-card"><div class="tool-icon">%</div><div class="tool-title">Percentage Calculator</div><div class="tool-desc">Calculate percentages and markups.</div></a>
+                    <a href="invoice-generator" class="tool-card"><div class="tool-icon">📋</div><div class="tool-title">Invoice Generator</div><div class="tool-desc">Create free professional PDF invoices.</div></a>
+                    <a href="scientific-calculator" class="tool-card"><div class="tool-icon">🔢</div><div class="tool-title">Scientific Calculator</div><div class="tool-desc">Advanced math and scientific calculations.</div></a>
+                    <a href="age-calculator" class="tool-card"><div class="tool-icon">🎂</div><div class="tool-title">Age Calculator</div><div class="tool-desc">Calculate exact age from date of birth.</div></a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer></footer>
+    <script src="/js/common.js?v=1.8"></script>
+    <script>
+        // ── Helpers ────────────────────────────────────────────────────────────
+        function fmt(n) {
+            if (n >= 1e7) return '₹' + (n / 1e7).toFixed(2) + ' Cr';
+            if (n >= 1e5) return '₹' + (n / 1e5).toFixed(2) + ' L';
+            return '₹' + Math.round(n).toLocaleString('en-IN');
+        }
+
+        function pct(slider) {
+            const min = parseFloat(slider.min), max = parseFloat(slider.max), val = parseFloat(slider.value);
+            const p = ((val - min) / (max - min)) * 100;
+            slider.style.setProperty('--pct', p + '%');
+        }
+
+        document.querySelectorAll('input[type=range]').forEach(s => {
+            s.addEventListener('input', () => pct(s));
+            pct(s);
+        });
+
+        function donut(invested, gains, containerId) {
+            const total = invested + gains;
+            const iPct = (invested / total * 100).toFixed(1);
+            const gPct = (gains / total * 100).toFixed(1);
+            const r = 52, cx = 70, cy = 70, circ = 2 * Math.PI * r;
+            const iDash = (invested / total) * circ;
+            const gDash = (gains / total) * circ;
+            return `
+            <div class="chart-area">
+              <div class="donut-wrap">
+                <svg viewBox="0 0 140 140" width="140" height="140">
+                  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e5e7eb" stroke-width="16"/>
+                  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#4f46e5" stroke-width="16"
+                    stroke-dasharray="${iDash} ${circ}" stroke-dashoffset="${circ * 0.25}" transform="rotate(-90 ${cx} ${cy})" style="transition:stroke-dasharray 0.5s"/>
+                  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#10b981" stroke-width="16"
+                    stroke-dasharray="${gDash} ${circ}" stroke-dashoffset="${circ * 0.25 - iDash}" transform="rotate(-90 ${cx} ${cy})" style="transition:stroke-dasharray 0.5s"/>
+                </svg>
+                <div class="donut-label"><strong>${gPct}%</strong>Gains</div>
+              </div>
+              <div class="legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#4f46e5"></div><div><div style="font-weight:700;font-size:0.88rem;">${fmt(invested)}</div><div style="font-size:0.78rem;color:var(--text-muted);">Total Invested (${iPct}%)</div></div></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div><div><div style="font-weight:700;font-size:0.88rem;">${fmt(gains)}</div><div style="font-size:0.78rem;color:var(--text-muted);">Est. Returns (${gPct}%)</div></div></div>
+                <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(90deg,#4f46e5,#10b981);border-radius:3px;"></div><div><div style="font-weight:700;font-size:0.88rem;">${fmt(total)}</div><div style="font-size:0.78rem;color:var(--text-muted);">Maturity Amount</div></div></div>
+              </div>
+            </div>`;
+        }
+
+        // ── SIP ────────────────────────────────────────────────────────────────
+        function calcSIP() {
+            const P = parseFloat(document.getElementById('sip-amt').value);
+            const r = parseFloat(document.getElementById('sip-rate').value) / 100 / 12;
+            const n = parseInt(document.getElementById('sip-yrs').value) * 12;
+            const yrs = parseInt(document.getElementById('sip-yrs').value);
+
+            document.getElementById('sip-amt-val').textContent  = fmt(P);
+            document.getElementById('sip-rate-val').textContent = document.getElementById('sip-rate').value + '%';
+            document.getElementById('sip-yrs-val').textContent  = yrs + ' yr' + (yrs > 1 ? 's' : '');
+
+            pct(document.getElementById('sip-amt'));
+            pct(document.getElementById('sip-rate'));
+            pct(document.getElementById('sip-yrs'));
+
+            const maturity = P * (((Math.pow(1 + r, n) - 1) / r) * (1 + r));
+            const invested = P * n;
+            const gains = maturity - invested;
+
+            let rows = '';
+            for (let y = 1; y <= yrs; y++) {
+                const mn = y * 12;
+                const mv = P * (((Math.pow(1 + r, mn) - 1) / r) * (1 + r));
+                const iv = P * mn;
+                rows += `<tr><td>${y}</td><td class="text-right">${fmt(iv)}</td><td class="text-right gain">+${fmt(mv - iv)}</td><td class="text-right" style="font-weight:700;">${fmt(mv)}</td></tr>`;
+            }
+
+            document.getElementById('sip-results').innerHTML = `
+                <div class="result-cards">
+                    <div class="result-card"><div class="result-card-val">${fmt(invested)}</div><div class="result-card-label">Total Invested</div></div>
+                    <div class="result-card"><div class="result-card-val" style="color:#10b981;">${fmt(gains)}</div><div class="result-card-label">Est. Returns</div></div>
+                    <div class="result-card highlight"><div class="result-card-val">${fmt(maturity)}</div><div class="result-card-label">Maturity Amount</div></div>
+                </div>
+                ${donut(invested, gains, 'sip-donut')}
+                <div style="overflow-x:auto;max-height:320px;overflow-y:auto;border:1px solid var(--border-color);border-radius:12px;">
+                    <table class="breakdown-table">
+                        <thead><tr><th>Year</th><th class="text-right">Invested</th><th class="text-right">Gains</th><th class="text-right">Value</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>`;
+        }
+
+        // ── Lumpsum ────────────────────────────────────────────────────────────
+        function calcLumpsum() {
+            const P = parseFloat(document.getElementById('ls-amt').value);
+            const r = parseFloat(document.getElementById('ls-rate').value) / 100;
+            const n = parseInt(document.getElementById('ls-yrs').value);
+
+            document.getElementById('ls-amt-val').textContent  = fmt(P);
+            document.getElementById('ls-rate-val').textContent = document.getElementById('ls-rate').value + '%';
+            document.getElementById('ls-yrs-val').textContent  = n + ' yr' + (n > 1 ? 's' : '');
+
+            pct(document.getElementById('ls-amt'));
+            pct(document.getElementById('ls-rate'));
+            pct(document.getElementById('ls-yrs'));
+
+            let rows = '';
+            for (let y = 1; y <= n; y++) {
+                const mv = P * Math.pow(1 + r, y);
+                rows += `<tr><td>${y}</td><td class="text-right">${fmt(P)}</td><td class="text-right gain">+${fmt(mv - P)}</td><td class="text-right" style="font-weight:700;">${fmt(mv)}</td></tr>`;
+            }
+
+            const maturity = P * Math.pow(1 + r, n);
+            const gains = maturity - P;
+
+            document.getElementById('ls-results').innerHTML = `
+                <div class="result-cards">
+                    <div class="result-card"><div class="result-card-val">${fmt(P)}</div><div class="result-card-label">Invested</div></div>
+                    <div class="result-card"><div class="result-card-val" style="color:#10b981;">${fmt(gains)}</div><div class="result-card-label">Est. Returns</div></div>
+                    <div class="result-card highlight"><div class="result-card-val">${fmt(maturity)}</div><div class="result-card-label">Maturity Amount</div></div>
+                </div>
+                ${donut(P, gains, 'ls-donut')}
+                <div style="overflow-x:auto;max-height:320px;overflow-y:auto;border:1px solid var(--border-color);border-radius:12px;">
+                    <table class="breakdown-table">
+                        <thead><tr><th>Year</th><th class="text-right">Invested</th><th class="text-right">Gains</th><th class="text-right">Value</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>`;
+        }
+
+        // ── FD ─────────────────────────────────────────────────────────────────
+        function calcFD() {
+            const P = parseFloat(document.getElementById('fd-amt').value);
+            const r = parseFloat(document.getElementById('fd-rate').value) / 100;
+            const n = parseInt(document.getElementById('fd-yrs').value);
+            const freq = parseInt(document.getElementById('fd-comp').value);
+            const compLabels = {'1':'Annually','2':'Half-Yearly','4':'Quarterly','12':'Monthly'};
+
+            document.getElementById('fd-amt-val').textContent  = fmt(P);
+            document.getElementById('fd-rate-val').textContent = document.getElementById('fd-rate').value + '%';
+            document.getElementById('fd-yrs-val').textContent  = n + ' yr' + (n > 1 ? 's' : '');
+            document.getElementById('fd-comp-val').textContent = compLabels[freq];
+
+            pct(document.getElementById('fd-amt'));
+            pct(document.getElementById('fd-rate'));
+            pct(document.getElementById('fd-yrs'));
+
+            let rows = '';
+            for (let y = 1; y <= n; y++) {
+                const mv = P * Math.pow(1 + r / freq, freq * y);
+                rows += `<tr><td>${y}</td><td class="text-right">${fmt(P)}</td><td class="text-right gain">+${fmt(mv - P)}</td><td class="text-right" style="font-weight:700;">${fmt(mv)}</td></tr>`;
+            }
+
+            const maturity = P * Math.pow(1 + r / freq, freq * n);
+            const gains = maturity - P;
+            const simpleInterest = P * r * n;
+
+            document.getElementById('fd-results').innerHTML = `
+                <div class="result-cards">
+                    <div class="result-card"><div class="result-card-val">${fmt(P)}</div><div class="result-card-label">Principal</div></div>
+                    <div class="result-card"><div class="result-card-val" style="color:#10b981;">${fmt(gains)}</div><div class="result-card-label">Interest Earned</div></div>
+                    <div class="result-card highlight"><div class="result-card-val">${fmt(maturity)}</div><div class="result-card-label">Maturity Amount</div></div>
+                </div>
+                ${donut(P, gains, 'fd-donut')}
+                <div style="overflow-x:auto;max-height:320px;overflow-y:auto;border:1px solid var(--border-color);border-radius:12px;">
+                    <table class="breakdown-table">
+                        <thead><tr><th>Year</th><th class="text-right">Principal</th><th class="text-right">Interest</th><th class="text-right">Value</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>`;
+        }
+
+        // ── Tabs ───────────────────────────────────────────────────────────────
+        function switchTab(name, btn) {
+            document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.calc-tab').forEach(b => b.classList.remove('active'));
+            document.getElementById('panel-' + name).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // ── Boot ───────────────────────────────────────────────────────────────
+        calcSIP();
+        calcLumpsum();
+        calcFD();
+    </script>
+</body>
+
+</html>

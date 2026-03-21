@@ -21,10 +21,58 @@ function injectHeader() {
 
                 <nav id="main-nav">
                     <ul>
+                        <li class="nav-dropdown">
+                            <span class="dropdown-trigger">All Tools</span>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-col">
+                                    <h5>Calculators</h5>
+                                    <ul>
+                                        <li><a href="/age-calculator">Age Calculator</a></li>
+                                        <li><a href="/bmi-calculator">BMI Calculator</a></li>
+                                        <li><a href="/sip-calculator">SIP Calculator</a></li>
+                                        <li><a href="/loan-eligibility-calculator">Loan Eligibility</a></li>
+                                        <li><a href="/ppf-calculator">PPF Calculator</a></li>
+                                        <li><a href="/emi-calculator">EMI Calculator</a></li>
+                                        <li><a href="/gst-calculator">GST Calculator</a></li>
+                                        <li><a href="/scientific-calculator">Scientific Calc</a></li>
+                                        <li><a href="/percentage-calculator">Percentage Calc</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-col">
+                                    <h5>Developers</h5>
+                                    <ul>
+                                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                                        <li><a href="/css-gradient-generator">CSS Gradient</a></li>
+                                        <li><a href="/hash-generator">Hash Generator</a></li>
+                                        <li><a href="/jwt-decoder">JWT Decoder</a></li>
+                                        <li><a href="/sql-formatter">SQL Formatter</a></li>
+                                        <li><a href="/cron-expression-generator">Cron Generator</a></li>
+                                        <li><a href="/url-encoder-decoder">URL Encode/Decode</a></li>
+                                        <li><a href="/base64-encoder-decoder">Base64 Encode/Decode</a></li>
+                                        <li><a href="/regex-tester">Regex Tester</a></li>
+                                        <li><a href="/csv-to-json">CSV to JSON</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-col">
+                                    <h5>SEO & Web</h5>
+                                    <ul>
+                                        <li><a href="/word-counter">Word Counter</a></li>
+                                        <li><a href="/seo-meta-tag-generator">Meta Tag Gen</a></li>
+                                        <li><a href="/serp-preview">SERP Preview</a></li>
+                                        <li><a href="/image-compressor">Image Compressor</a></li>
+                                        <li><a href="/background-remover">Bg Remover</a></li>
+                                        <li><a href="/qr-code-generator">QR Generator</a></li>
+                                        <li><a href="/favicon-generator">Favicon Gen</a></li>
+                                        <li><a href="/ip-address-lookup">IP Lookup</a></li>
+                                        <li><a href="/aspect-ratio-calculator">Aspect Ratio</a></li>
+                                        <li><a href="/invoice-generator">Invoice Gen</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                         <li><a href="/#calculators">Calculators</a></li>
-                        <li><a href="/#tools">Tools</a></li>
-                        <li><a href="/#dev-tools">Developers</a></li>
-                        <li><a href="/#utilities">Utilities</a></li>
+                        <li><a href="/#tools">Gallery</a></li>
+                        <li><a href="/guides/">Guides</a></li>
                     </ul>
                 </nav>
 

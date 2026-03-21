@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+    <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <script>window.ezstandalone=window.ezstandalone||{};ezstandalone.cmd=ezstandalone.cmd||[];</script>
+    <script src="//ezoicanalytics.com/analytics.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERP Preview Tool — Google Search Result Preview Online Free | WorldOfTools</title>
+    <meta name="description" content="Preview how your webpage looks in Google search results. Enter your title, description and URL to see a live SERP preview with character count warnings. Free SEO tool, no signup needed.">
+    <link rel="canonical" href="https://worldoftools.in/serp-preview" />
+    <meta name="keywords" content="SERP preview tool, Google search preview, meta title preview, meta description preview, SEO title checker, search result preview, how will my page look in Google, SERP snippet preview, SEO preview tool free, Google snippet preview tool">
+    <link rel="stylesheet" href="/css/style.css?v=1.8">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .serp-layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;}
+        .serp-panel{background:white;border:1px solid var(--border-color);border-radius:20px;padding:1.75rem;}
+        .fg{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem;}
+        .fg label{font-size:.8rem;font-weight:700;color:var(--text-muted);}
+        .fg input,.fg textarea{padding:.75rem 1rem;border:2px solid var(--border-color);border-radius:12px;font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s;width:100%;box-sizing:border-box;}
+        .fg input:focus,.fg textarea:focus{border-color:var(--primary-color);}
+        .fg textarea{resize:vertical;min-height:80px;}
+        .char-bar-wrap{height:6px;background:#e5e7eb;border-radius:3px;margin-top:.4rem;overflow:hidden;}
+        .char-bar{height:100%;border-radius:3px;transition:width .2s,background .2s;}
+        .char-count{font-size:.75rem;font-weight:700;margin-top:.3rem;}
+        .char-count.ok{color:#10b981;}
+        .char-count.warn{color:#f59e0b;}
+        .char-count.over{color:#ef4444;}
+        /* Google SERP Preview */
+        .google-mock{background:white;border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem;margin-bottom:1rem;font-family:'Arial',sans-serif;}
+        .google-search-bar{display:flex;align-items:center;gap:.75rem;padding:.65rem 1rem;border:1px solid #dfe1e5;border-radius:24px;box-shadow:0 1px 6px rgba(32,33,36,.1);margin-bottom:1.25rem;}
+        .google-logo{font-size:1.2rem;font-weight:900;letter-spacing:-.5px;flex-shrink:0;}
+        .google-logo span:nth-child(1){color:#4285F4;}
+        .google-logo span:nth-child(2){color:#EA4335;}
+        .google-logo span:nth-child(3){color:#FBBC05;}
+        .google-logo span:nth-child(4){color:#4285F4;}
+        .google-logo span:nth-child(5){color:#34A853;}
+        .google-logo span:nth-child(6){color:#EA4335;}
+        .google-search-input{flex:1;font-size:.9rem;color:#202124;border:none;outline:none;background:none;}
+        .serp-result{padding:.5rem 0;}
+        .serp-url{font-size:.8rem;color:#202124;margin-bottom:.15rem;display:flex;align-items:center;gap:.4rem;}
+        .serp-favicon{width:18px;height:18px;background:#e5e7eb;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;flex-shrink:0;overflow:hidden;}
+        .serp-breadcrumb{color:#4d5156;font-size:.8rem;}
+        .serp-title{font-size:1.2rem;color:#1a0dab;line-height:1.3;margin-bottom:.2rem;cursor:pointer;transition:text-decoration .15s;}
+        .serp-title:hover{text-decoration:underline;}
+        .serp-title.truncated::after{content:'...';}
+        .serp-description{font-size:.875rem;color:#4d5156;line-height:1.57;margin:0;}
+        /* Mobile preview */
+        .mobile-mock{background:white;border:1px solid #e5e7eb;border-radius:20px;padding:1.25rem;max-width:360px;margin:0 auto;}
+        .mobile-badge{font-size:.68rem;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:4px;padding:1px 5px;color:#4d5156;display:inline-block;margin-bottom:.75rem;}
+        /* Score cards */
+        .score-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1rem;}
+        .score-card{border-radius:12px;padding:1rem;text-align:center;border:1px solid var(--border-color);}
+        .score-val{font-size:1.4rem;font-weight:900;margin-bottom:.2rem;}
+        .score-lbl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);}
+        @media(max-width:700px){.serp-layout{grid-template-columns:1fr;}}
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a SERP preview tool?","acceptedAnswer":{"@type":"Answer","text":"A SERP preview tool shows how your webpage's title and meta description will appear in Google search results before you publish, so you can optimise them for clicks."}},{"@type":"Question","name":"What is the ideal meta title length?","acceptedAnswer":{"@type":"Answer","text":"Google typically displays 50–60 characters for title tags. Titles beyond 60 characters may be truncated in search results. Aim for 55–60 characters for best results."}},{"@type":"Question","name":"What is the ideal meta description length?","acceptedAnswer":{"@type":"Answer","text":"Google shows around 155–160 characters for meta descriptions on desktop. Keep descriptions between 140–160 characters to avoid truncation."}},{"@type":"Question","name":"Does meta description affect SEO ranking?","acceptedAnswer":{"@type":"Answer","text":"Meta descriptions are not a direct Google ranking factor, but they affect click-through rate (CTR). A compelling description drives more clicks, which indirectly benefits SEO."}},{"@type":"Question","name":"Is this SERP preview tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free. No signup, no watermark, no limits."}},{"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes, fully responsive — works on all devices."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SERP Preview Tool","operatingSystem":"Any","applicationCategory":"WebApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+    <header></header>
+    <main class="container">
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>SERP Preview Tool — See How Your Page Looks in Google Search Results</h1>
+                <p style="color:var(--text-muted);font-size:1.1rem;">Enter your page title, meta description and URL to preview how it will appear in Google. Live character count, truncation warnings, and mobile preview included. Free, no signup.</p>
+                <div style="margin-top:1.5rem;"><a href="/guides/serp-preview-guide" class="btn btn-secondary" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:700;border-radius:12px;padding:.6rem 1.2rem;font-size:.95rem;">📖 Read SERP Preview Guide</a></div>
+            </section>
+
+            <div class="tool-main-card">
+                <div class="serp-layout">
+                    <!-- LEFT: Inputs -->
+                    <div class="serp-panel">
+                        <div class="fg">
+                            <label>Page Title (SEO Title Tag)</label>
+                            <input type="text" id="seoTitle" placeholder="Free Invoice Generator — Create PDF Invoice Online | WorldOfTools" oninput="update()" maxlength="120">
+                            <div class="char-bar-wrap"><div class="char-bar" id="titleBar"></div></div>
+                            <div class="char-count" id="titleCount">0 / 60 characters</div>
+                        </div>
+                        <div class="fg">
+                            <label>Meta Description</label>
+                            <textarea id="seoDesc" placeholder="Create professional invoices online for free. Add items, tax, discount — download as PDF instantly. No signup, no watermark, 100% free invoice maker." oninput="update()" maxlength="320"></textarea>
+                            <div class="char-bar-wrap"><div class="char-bar" id="descBar"></div></div>
+                            <div class="char-count" id="descCount">0 / 160 characters</div>
+                        </div>
+                        <div class="fg">
+                            <label>Page URL</label>
+                            <input type="text" id="seoUrl" placeholder="https://worldoftools.in/invoice-generator" oninput="update()">
+                        </div>
+                        <div class="fg" style="margin-bottom:0;">
+                            <label>Favicon URL (optional)</label>
+                            <input type="text" id="seoFavicon" placeholder="https://worldoftools.in/logo.svg" oninput="update()">
+                        </div>
+
+                        <!-- Score cards -->
+                        <div class="score-grid">
+                            <div class="score-card"><div class="score-val" id="titleScore">—</div><div class="score-lbl">Title Score</div></div>
+                            <div class="score-card"><div class="score-val" id="descScore">—</div><div class="score-lbl">Desc Score</div></div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Preview -->
+                    <div class="serp-panel" style="padding:1.25rem;">
+                        <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">Desktop Preview</div>
+                        <div class="google-mock">
+                            <div class="google-search-bar">
+                                <div class="google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>
+                                <input class="google-search-input" readonly placeholder="Search query...">
+                            </div>
+                            <div class="serp-result">
+                                <div class="serp-url">
+                                    <div class="serp-favicon" id="faviconBox">🌐</div>
+                                    <span class="serp-breadcrumb" id="urlDisplay">worldoftools.in</span>
+                                </div>
+                                <div class="serp-title" id="titleDisplay">Your Page Title</div>
+                                <p class="serp-description" id="descDisplay">Your meta description will appear here. Write a compelling description that encourages users to click on your result.</p>
+                            </div>
+                        </div>
+
+                        <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">Mobile Preview</div>
+                        <div class="mobile-mock">
+                            <div class="mobile-badge">worldoftools.in</div>
+                            <div style="font-size:1rem;color:#1a0dab;line-height:1.3;margin-bottom:.3rem;" id="mobileTitleDisplay">Your Page Title</div>
+                            <div style="font-size:.8rem;color:#4d5156;line-height:1.5;" id="mobileDescDisplay">Your meta description will appear here.</div>
+                        </div>
+
+                        <!-- Tips panel -->
+                        <div id="tipsPanel" style="margin-top:1rem;"></div>
+                    </div>
+                </div>
+                <div style="margin-top:2rem;text-align:center;font-size:.9rem;color:var(--text-muted);padding-top:1.5rem;border-top:1px solid var(--border-color);">🛡️ All processing happens in your browser. No data is sent to any server.</div>
+            </div>
+        </div>
+
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">What is the SERP Preview Tool?</h2>
+                <p style="line-height:1.8;color:#4b5563;">The SERP (Search Engine Results Page) Preview Tool lets you see exactly how your webpage will look in Google search results before you publish. Enter your SEO title, meta description and URL to get a pixel-accurate Google snippet preview — including character count warnings, truncation indicators, and a separate mobile preview.</p>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">How to Use — Step-by-Step</h2>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:.3rem;">Enter your <strong>page title</strong> — keep it under 60 characters to avoid truncation in Google.</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:.3rem;">Write your <strong>meta description</strong> — aim for 140–160 characters with a clear call to action.</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:.3rem;">Add your <strong>URL</strong> — see the breadcrumb exactly as Google will display it.</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">4</span><p style="margin:0;line-height:1.6;padding-top:.3rem;">Check the <strong>tips panel</strong> for actionable improvements and fix any truncation issues.</p></div>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">📋 SEO Title & Description Best Practices</h2>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+                        <thead><tr style="background:#f9fafb;"><th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">Element</th><th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">Ideal Length</th><th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">Notes</th></tr></thead>
+                        <tbody>
+                            <tr><td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">Title Tag</td><td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">50–60 chars</td><td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">Include primary keyword near the start</td></tr>
+                            <tr><td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">Meta Description</td><td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">140–160 chars</td><td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">Include a clear CTA and target keyword</td></tr>
+                            <tr><td style="padding:.75rem 1rem;font-weight:700;">URL Slug</td><td style="padding:.75rem 1rem;color:#10b981;font-weight:700;">&lt; 75 chars</td><td style="padding:.75rem 1rem;">Use hyphens, include main keyword</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">What is a SERP preview tool?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">A SERP preview tool shows how your title and meta description will appear in Google search results before you publish, so you can optimise them for higher click-through rates.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">What is the ideal meta title length?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Google typically displays 50–60 characters. Titles beyond 60 characters may be cut off. Aim for 55–60 for best results.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">Does meta description affect SEO ranking?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Not directly, but it affects click-through rate (CTR). A compelling description drives more clicks, which indirectly benefits SEO.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this SERP preview tool free?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, 100% free. No signup, no watermark, no limits.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">Does it work on mobile?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, fully responsive — works on all devices.</p></details>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">📚 Educational Content — Deep Dive</h2>
+                <div style="line-height:1.8;color:#4b5563;"><p>The title tag and meta description are the first things users see in Google — they are your organic ad. Google measures pixel width not character count when truncating titles (roughly 580px = ~60 chars). For descriptions, Google shows ~920px on desktop (~160 chars). Our tool uses pixel-accurate character limits to flag potential truncation before it happens.</p><p style="margin-top:1rem;">A well-written meta description with a clear benefit and call-to-action can increase click-through rate by 5–30%. Even though descriptions don't directly impact ranking, higher CTR signals relevance to Google's algorithm and can indirectly boost your position over time.</p></div>
+            </section>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">Other Free Tools You Might Need</h2>
+                <div class="tools-grid">
+                    <a href="seo-meta-tag-generator" class="tool-card"><div class="tool-icon">🏷️</div><div class="tool-title">Meta Tag Generator</div><div class="tool-desc">Generate full SEO meta tags with Open Graph.</div></a>
+                    <a href="keyword-density-checker" class="tool-card"><div class="tool-icon">🔍</div><div class="tool-title">Keyword Density</div><div class="tool-desc">Check keyword density in your content.</div></a>
+                    <a href="word-counter" class="tool-card"><div class="tool-icon">📝</div><div class="tool-title">Word Counter</div><div class="tool-desc">Count words, characters and reading time.</div></a>
+                    <a href="url-encoder-decoder" class="tool-card"><div class="tool-icon">🔗</div><div class="tool-title">URL Encoder</div><div class="tool-desc">Encode or decode URLs safely.</div></a>
+                    <a href="lorem-ipsum-generator" class="tool-card"><div class="tool-icon">📄</div><div class="tool-title">Lorem Ipsum</div><div class="tool-desc">Generate placeholder text for designs.</div></a>
+                    <a href="markdown-to-html" class="tool-card"><div class="tool-icon">💻</div><div class="tool-title">Markdown to HTML</div><div class="tool-desc">Convert Markdown content to HTML.</div></a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="/js/common.js?v=1.8"></script>
+    <script>
+    const TITLE_MAX=60,DESC_MAX=160;
+    function update(){
+        const title=document.getElementById('seoTitle').value;
+        const desc=document.getElementById('seoDesc').value;
+        const url=document.getElementById('seoUrl').value||'https://yourwebsite.com/page';
+        const favicon=document.getElementById('seoFavicon').value;
+
+        // Title bar
+        const tl=title.length;
+        const tpct=Math.min(100,(tl/TITLE_MAX)*100);
+        const tbar=document.getElementById('titleBar');
+        tbar.style.width=tpct+'%';
+        tbar.style.background=tl<=50?'#10b981':tl<=60?'#f59e0b':'#ef4444';
+        const tcEl=document.getElementById('titleCount');
+        tcEl.textContent=tl+' / '+TITLE_MAX+' characters'+(tl>TITLE_MAX?' — may be truncated!':'');
+        tcEl.className='char-count '+(tl<=50?'ok':tl<=60?'warn':'over');
+
+        // Desc bar
+        const dl=desc.length;
+        const dpct=Math.min(100,(dl/DESC_MAX)*100);
+        const dbar=document.getElementById('descBar');
+        dbar.style.width=dpct+'%';
+        dbar.style.background=dl>=120&&dl<=160?'#10b981':dl<120?'#f59e0b':'#ef4444';
+        const dcEl=document.getElementById('descCount');
+        dcEl.textContent=dl+' / '+DESC_MAX+' characters'+(dl>DESC_MAX?' — will be truncated!':dl<50?' — too short':'');
+        dcEl.className='char-count '+(dl>=120&&dl<=160?'ok':dl>0&&dl<120?'warn':'over');
+
+        // Scores
+        const ts=tl>=40&&tl<=60?'Good ✓':tl>0&&tl<40?'Short':'tl>60?'Too Long':'—';
+        const ds=dl>=120&&dl<=160?'Good ✓':dl>0&&dl<120?'Short':dl>160?'Too Long':'—';
+        document.getElementById('titleScore').textContent=ts;
+        document.getElementById('descScore').textContent=ds;
+        document.getElementById('titleScore').style.color=tl>=40&&tl<=60?'#10b981':tl>0?'#f59e0b':'#9ca3af';
+        document.getElementById('descScore').style.color=dl>=120&&dl<=160?'#10b981':dl>0?'#f59e0b':'#9ca3af';
+
+        // URL display
+        let displayUrl=url;
+        try{const u=new URL(url.startsWith('http')?url:'https://'+url);displayUrl=u.hostname+u.pathname;}catch(e){}
+        document.getElementById('urlDisplay').textContent=displayUrl;
+
+        // Favicon
+        const fbox=document.getElementById('faviconBox');
+        if(favicon){fbox.innerHTML=`<img src="${favicon}" width="14" height="14" style="border-radius:50%;" onerror="this.parentElement.textContent='🌐'">`;}
+        else{fbox.textContent='🌐';}
+
+        // Title display (truncate at 60 chars)
+        const titleTrunc=title||'Your Page Title';
+        document.getElementById('titleDisplay').textContent=titleTrunc.length>60?titleTrunc.slice(0,57)+'...':titleTrunc;
+
+        // Description display (truncate at 160)
+        const descTrunc=desc||'Your meta description will appear here. Write a compelling description that encourages users to click on your result.';
+        document.getElementById('descDisplay').textContent=descTrunc.length>160?descTrunc.slice(0,157)+'...':descTrunc;
+
+        // Mobile
+        document.getElementById('mobileTitleDisplay').textContent=titleTrunc.length>55?titleTrunc.slice(0,52)+'...':titleTrunc;
+        document.getElementById('mobileDescDisplay').textContent=descTrunc.length>120?descTrunc.slice(0,117)+'...':descTrunc;
+
+        // Tips
+        const tips=[];
+        if(tl===0) tips.push({t:'Add a title tag',d:'Every page needs a unique, descriptive title for Google.',c:'warn'});
+        else if(tl<40) tips.push({t:'Title is too short',d:'Add more context. Aim for 50–60 characters.',c:'warn'});
+        else if(tl>60) tips.push({t:'Title will be truncated',d:`Shorten by ${tl-60} characters to avoid cut-off in Google.`,c:'error'});
+        else tips.push({t:'Title length is perfect ✓',d:'Your title is within the ideal 50–60 character range.',c:'ok'});
+
+        if(dl===0) tips.push({t:'Add a meta description',d:'Descriptions improve click-through rate from search results.',c:'warn'});
+        else if(dl<120) tips.push({t:'Description is too short',d:'Add more detail. Aim for 140–160 characters.',c:'warn'});
+        else if(dl>160) tips.push({t:'Description will be truncated',d:`Shorten by ${dl-160} characters.`,c:'error'});
+        else tips.push({t:'Description length is perfect ✓',d:'Your description is within the ideal 140–160 character range.',c:'ok'});
+
+        const colors={ok:'#10b981',warn:'#f59e0b',error:'#ef4444'};
+        document.getElementById('tipsPanel').innerHTML=tips.map(t=>`<div style="display:flex;gap:.6rem;align-items:flex-start;padding:.75rem 1rem;border-radius:10px;border:1px solid ${colors[t.c]}22;background:${colors[t.c]}11;margin-bottom:.5rem;"><span style="color:${colors[t.c]};font-size:1rem;flex-shrink:0;">${t.c==='ok'?'✓':t.c==='warn'?'⚠':'✗'}</span><div><div style="font-size:.82rem;font-weight:700;color:${colors[t.c]};">${t.t}</div><div style="font-size:.78rem;color:#6b7280;margin-top:2px;">${t.d}</div></div></div>`).join('');
+    }
+    update();
+    </script>
+</body>
+</html>
