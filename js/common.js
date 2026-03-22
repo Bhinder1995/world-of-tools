@@ -51,10 +51,10 @@ function injectHeader() {
                                             <span class="nav-icon" style="background:#2ecc71;">🧾</span> GST Calculator
                                         </a>
                                         <a href="/scientific-calculator" class="mega-item">
-                                            <span class="nav-icon" style="background:#34495e;">🔬</span> Scientific Calc
+                                            <span class="nav-icon" style="background:#34495e;">🔬</span> Scientific Calculator
                                         </a>
                                         <a href="/percentage-calculator" class="mega-item">
-                                            <span class="nav-icon" style="background:#e74c3c;">%</span> Percentage Calc
+                                            <span class="nav-icon" style="background:#e74c3c;">%</span> Percentage Calculator
                                         </a>
                                     </div>
 
@@ -98,7 +98,7 @@ function injectHeader() {
                                             <span class="nav-icon" style="background:#9b59b6;">Cc</span> Case Converter
                                         </a>
                                         <a href="/seo-meta-tag-generator" class="mega-item">
-                                            <span class="nav-icon" style="background:#e74c3c;">🔍</span> Meta Tag Gen
+                                            <span class="nav-icon" style="background:#e74c3c;">🔍</span> Meta Tag Generator
                                         </a>
                                         <a href="/serp-preview" class="mega-item">
                                             <span class="nav-icon" style="background:#4285f4;">G</span> SERP Preview
@@ -113,7 +113,7 @@ function injectHeader() {
                                             <span class="nav-icon" style="background:#e67e22;">≠</span> Text Compare
                                         </a>
                                         <a href="/lorem-ipsum-generator" class="mega-item">
-                                            <span class="nav-icon" style="background:#7f8c8d;">¶</span> Lorem Ipsum Gen
+                                            <span class="nav-icon" style="background:#7f8c8d;">¶</span> Lorem Ipsum Generator
                                         </a>
                                         <a href="/typing-speed-test" class="mega-item">
                                             <span class="nav-icon" style="background:#2c3e50;">⌨️</span> Typing Speed Test
@@ -264,10 +264,10 @@ function injectFooter() {
                         <h4 class="footer-col-heading">Popular Tools</h4>
                         <ul class="footer-links">
                             <li><a href="/ip-address-lookup" class="featured-link">📍 IP Lookup</a></li>
-                            <li><a href="/image-compressor" class="featured-link">🖼️ Image Tool</a></li>
-                            <li><a href="/sip-calculator" class="featured-link">📈 SIP Calc</a></li>
-                            <li><a href="/invoice-generator" class="featured-link">📄 Invoice Gen</a></li>
-                            <li><a href="/typing-speed-test" class="featured-link">⌨️ Typing Test</a></li>
+                            <li><a href="/image-compressor" class="featured-link">🖼️ Image Compressor</a></li>
+                            <li><a href="/sip-calculator" class="featured-link">📈 SIP Calculator</a></li>
+                            <li><a href="/invoice-generator" class="featured-link">📄 Invoice Generator</a></li>
+                            <li><a href="/typing-speed-test" class="featured-link">⌨️ Typing Speed Test</a></li>
                         </ul>
                     </div>
 
@@ -289,9 +289,9 @@ function injectFooter() {
                         <h4 class="footer-col-heading">SEO &amp; Web</h4>
                         <ul class="footer-links">
                             <li><a href="/ip-address-lookup">IP Address</a></li>
-                            <li><a href="/seo-meta-tag-generator">Meta Tag Gen</a></li>
+                            <li><a href="/seo-meta-tag-generator">Meta Tag Generator</a></li>
                             <li><a href="/serp-preview">SERP Preview</a></li>
-                            <li><a href="/qr-code-generator">QR Code Gen</a></li>
+                            <li><a href="/qr-code-generator">QR Code Generator</a></li>
                             <li><a href="/seo-tools-free">→ View All</a></li>
                         </ul>
                     </div>
@@ -301,7 +301,7 @@ function injectFooter() {
                         <h4 class="footer-col-heading">Developer</h4>
                         <ul class="footer-links">
                             <li><a href="/json-formatter">JSON Formatter</a></li>
-                            <li><a href="/base64-encoder-decoder">Base64 Tool</a></li>
+                            <li><a href="/base64-encoder-decoder">Base64 Encoder/Decoder</a></li>
                             <li><a href="/regex-tester">Regex Tester</a></li>
                             <li><a href="/developer-tools-online">→ View All</a></li>
                         </ul>
