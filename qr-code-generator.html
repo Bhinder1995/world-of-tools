@@ -147,21 +147,28 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{"@type": "Question", "name": "How do I create a QR code for a website?", "acceptedAnswer": {"@type": "Answer", "text": "Select \"URL\" type, paste your website link, click Generate, and download your QR code as PNG."}}, {"@type": "Question", "name": "Do QR codes expire?", "acceptedAnswer": {"@type": "Answer", "text": "Static QR codes (like those generated here) never expire — they simply encode data in a pattern that any QR scanner can read."}}, {"@type": "Question", "name": "What error correction level should I use?", "acceptedAnswer": {"@type": "Answer", "text": "Level H (30% recovery) for printed materials that might get worn or dirty. Level L for digital-only use where maximum data density is needed."}}, {"@type": "Question", "name": "Can I create a QR code for Wi-Fi?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — select Wi-Fi type, enter your SSID and password, and generate a QR code guests can scan to connect automatically."}}, {"@type": "Question", "name": "Is there a limit to how much data a QR code can hold?", "acceptedAnswer": {"@type": "Answer", "text": "QR codes can hold up to ~4,296 alphanumeric characters. For long URLs, use the [Link Shortener](#) first to keep your QR code less dense and more scannable."}}, {"@type": "Question", "name": "Is this QR Generator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the QR Generator is 100% free with no hidden charges or premium subscriptions."}}, {"@type": "Question", "name": "Is my data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. All processing happens locally in your browser. We never see, store, or share your data."}}, {"@type": "Question", "name": "Do I need to sign up?", "acceptedAnswer": {"@type": "Answer", "text": "No registration or account creation is required to use any of our tools."}}, {"@type": "Question", "name": "Does it work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops."}}, {"@type": "Question", "name": "Can I use it offline?", "acceptedAnswer": {"@type": "Answer", "text": "Once the page is loaded, most functions work offline since they run in your browser's local environment."}}]
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in/" },
+        { "@type": "ListItem", "position": 2, "name": "Web Utilities Free", "item": "https://worldoftools.in/web-utilities-free" },
+        { "@type": "ListItem", "position": 3, "name": "QR Code Generator", "item": "https://worldoftools.in/qr-code-generator" }
+      ]
     }
     </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "QR Generator",
+      "@type": "WebApplication",
+      "name": "QR Code Generator",
+      "description": "Generate custom QR codes for WhatsApp, Email, URLs and more instantly. 100% private and runs in your browser.",
+      "url": "https://worldoftools.in/qr-code-generator",
+      "applicationCategory": "Utility",
       "operatingSystem": "Any",
-      "applicationCategory": "UtilitiesApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "isPartOf": {
+        "@type": "CollectionPage",
+        "name": "Web Utilities Free",
+        "url": "https://worldoftools.in/web-utilities-free"
       }
     }
     </script>
@@ -171,6 +178,21 @@
     <header></header>
 
     <main class="container">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 2rem;">
+            <ol style="list-style: none; padding: 0; margin: 0; display: flex; align-items: center; gap: 0.75rem; color: #6b7280; font-size: 0.95rem; font-weight: 500;">
+                <li><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a></li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                    <span>/</span>
+                    <a href="/web-utilities-free" style="color: var(--primary-color); text-decoration: none;">Web Utilities Free</a>
+                </li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                    <span>/</span>
+                    <span style="color: #111827; font-weight: 700;">QR Code Generator</span>
+                </li>
+            </ol>
+        </nav>
+
         <div class="tool-container">
             <section class="tool-header">
                 <h1>Free QR Code Generator — Create QR Codes for WhatsApp, URL & Email</h1>
@@ -596,19 +618,7 @@
             }
         }
 
-        // Schema Data
-        const schema = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "QR Code Generator - WorldOfTools",
-            "description": "Generate custom QR codes for WhatsApp, Email, URLs and more instantly.",
-            "url": "https://worldoftools.in/qr-code-generator.html",
-            "applicationCategory": "Utility"
-        };
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schema);
-        document.head.appendChild(script);
+updateQR();
     </script>
 </body>
 

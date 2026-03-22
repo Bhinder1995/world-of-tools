@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     injectFooter();
     registerServiceWorker();
     highlightActiveLink();
+    autoRenderBreadcrumbs();
 });
 
 function injectHeader() {
@@ -153,8 +154,11 @@ function injectHeader() {
                                 </div>
                             </div>
                         </li>
-                        <li><a href="/#calculators">Calculators</a></li>
-                        <li><a href="/#tools">Gallery</a></li>
+                        <li><a href="/calculators-online">Calculators Online</a></li>
+                        <li><a href="/developer-tools-online">Developer Tools</a></li>
+                        <li><a href="/seo-tools-free">SEO Tools Free</a></li>
+                        <li><a href="/text-tools-online">Text Tools Online</a></li>
+                        <li><a href="/web-utilities-free">Web Utilities Free</a></li>
                         <li><a href="/guides/">Guides</a></li>
                     </ul>
                 </nav>

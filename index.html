@@ -812,7 +812,12 @@
             "@type": "WebSite",
             "name": "WorldOfTools",
             "description": "Premium collection of free online utility tools for developers, creators, and professionals.",
-            "url": "https://worldoftools.in"
+            "url": "https://worldoftools.in",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://worldoftools.in/?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
         };
         const script = document.createElement('script');
         script.type = "application/ld+json";
@@ -862,6 +867,15 @@
             // Smooth scroll to results
             document.getElementById('calculators').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
+        // Handle Sitelinks Searchbox 'q' parameter
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            if (query) {
+                quickSearch(query);
+            }
+        });
     </script>
 </body>
 
