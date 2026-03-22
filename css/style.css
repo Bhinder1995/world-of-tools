@@ -448,26 +448,56 @@ nav a:hover {
 }
 
 .footer-links a {
-    color: #64748b;
+    color: #94a3b8;
     text-decoration: none;
-    font-size: 0.855rem;
+    font-size: 0.88rem;
     font-weight: 500;
-    transition: color 0.15s;
-    display: block;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 0.2rem;
 }
 
 .footer-links a:hover {
-    color: #cbd5e1;
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+/* Feature specific styling for Popular Tools */
+.footer-links .featured-link {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
+}
+
+.footer-links .featured-link:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.4);
+    color: white;
 }
 
 /* "→ All ..." links stand out slightly */
 .footer-links li:last-child a {
-    color: #6366f1;
-    font-weight: 600;
+    color: #cbd5e1;
+    font-weight: 700;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    background: transparent;
+    justify-content: center;
+    margin-top: 0.5rem;
 }
 
 .footer-links li:last-child a:hover {
-    color: #a5b4fc;
+    border-style: solid;
+    border-color: var(--primary-color);
+    background: rgba(79, 70, 229, 0.1);
+    transform: none;
 }
 
 /* Pill badges for Recently Added */
@@ -494,16 +524,25 @@ nav a:hover {
 @media (max-width: 900px) {
     .footer-link-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
     }
     .footer-two-col {
         grid-template-columns: 1fr !important;
     }
+    .footer-links a {
+        font-size: 0.82rem;
+        padding: 0.5rem 0.6rem;
+    }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 480px) {
     .footer-link-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr) !important; /* Force 2-column on mobile */
+        gap: 1rem;
+    }
+    .footer-col-heading {
+        font-size: 0.65rem;
+        margin-bottom: 1rem;
     }
 }
 

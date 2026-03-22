@@ -263,12 +263,11 @@ function injectFooter() {
                     <div class="footer-col">
                         <h4 class="footer-col-heading">Popular Tools</h4>
                         <ul class="footer-links">
-                            <li><a href="/ip-address-lookup">📍 IP Address Lookup</a></li>
-                            <li><a href="/image-compressor">🖼️ Image Compressor</a></li>
-                            <li><a href="/sip-calculator">📈 SIP Calculator</a></li>
-                            <li><a href="/loan-eligibility-calculator">🏦 Loan Eligibility</a></li>
-                            <li><a href="/typing-speed-test">⌨️ Typing Speed Test</a></li>
-                            <li><a href="/invoice-generator">📄 Invoice Generator</a></li>
+                            <li><a href="/ip-address-lookup" class="featured-link">📍 IP Lookup</a></li>
+                            <li><a href="/image-compressor" class="featured-link">🖼️ Image Tool</a></li>
+                            <li><a href="/sip-calculator" class="featured-link">📈 SIP Calc</a></li>
+                            <li><a href="/invoice-generator" class="featured-link">📄 Invoice Gen</a></li>
+                            <li><a href="/typing-speed-test" class="featured-link">⌨️ Typing Test</a></li>
                         </ul>
                     </div>
 
@@ -281,33 +280,30 @@ function injectFooter() {
                             <li><a href="/ppf-calculator">PPF Calculator</a></li>
                             <li><a href="/bmi-calculator">BMI Calculator</a></li>
                             <li><a href="/gst-calculator">GST Calculator</a></li>
-                            <li><a href="/calculators-online">→ All Calculators</a></li>
+                            <li><a href="/calculators-online">→ View All</a></li>
                         </ul>
                     </div>
 
                     <!-- Col 3: SEO & Web -->
                     <div class="footer-col">
-                        <h4 class="footer-col-heading">SEO &amp; Web Tools</h4>
+                        <h4 class="footer-col-heading">SEO &amp; Web</h4>
                         <ul class="footer-links">
-                            <li><a href="/ip-address-lookup">IP Lookup</a></li>
-                            <li><a href="/seo-meta-tag-generator">Meta Tag Generator</a></li>
-                            <li><a href="/word-counter">Word Counter</a></li>
+                            <li><a href="/ip-address-lookup">IP Address</a></li>
+                            <li><a href="/seo-meta-tag-generator">Meta Tag Gen</a></li>
                             <li><a href="/serp-preview">SERP Preview</a></li>
-                            <li><a href="/qr-code-generator">QR Code Generator</a></li>
-                            <li><a href="/seo-tools-free">→ All SEO Tools</a></li>
+                            <li><a href="/qr-code-generator">QR Code Gen</a></li>
+                            <li><a href="/seo-tools-free">→ View All</a></li>
                         </ul>
                     </div>
 
-                    <!-- Col 4: Developer Tools -->
+                    <!-- Col 4: Developer -->
                     <div class="footer-col">
-                        <h4 class="footer-col-heading">Developer Tools</h4>
+                        <h4 class="footer-col-heading">Developer</h4>
                         <ul class="footer-links">
                             <li><a href="/json-formatter">JSON Formatter</a></li>
-                            <li><a href="/base64-encoder-decoder">Base64 Encode/Decode</a></li>
+                            <li><a href="/base64-encoder-decoder">Base64 Tool</a></li>
                             <li><a href="/regex-tester">Regex Tester</a></li>
-                            <li><a href="/sql-formatter">SQL Formatter</a></li>
-                            <li><a href="/jwt-decoder">JWT Decoder</a></li>
-                            <li><a href="/developer-tools-online">→ All Dev Tools</a></li>
+                            <li><a href="/developer-tools-online">→ View All</a></li>
                         </ul>
                     </div>
 
