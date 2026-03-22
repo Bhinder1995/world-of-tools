@@ -213,7 +213,10 @@
                     <div class="ip-label">Your Public IP Address</div>
                     <div class="ip-display" id="myIP"><span class="pulse">Detecting...</span></div>
                     <div class="ip-location" id="myLocation">Fetching location...</div>
-                    <button class="copy-btn" onclick="copyIP()">📋 Copy IP Address</button>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center; align-items: center; margin-top: 1.25rem;">
+                        <button class="copy-btn" style="margin-top: 0;" onclick="copyIP()">📋 Copy IP Address</button>
+                        <button class="copy-btn outline-btn" style="margin-top: 0; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3);" onclick="detectMyIP()">🔄 Refresh</button>
+                    </div>
                 </div>
 
                 <!-- Info Grid -->
@@ -327,6 +330,8 @@
 
         // ── Auto-detect my IP ──────────────────────────────────────────────────
         async function detectMyIP() {
+            document.getElementById('myIP').innerHTML = '<span class="pulse">Detecting...</span>';
+            document.getElementById('myLocation').textContent = 'Fetching location...';
             try {
                 const res = await fetch('https://ipapi.co/json/');
                 const d = await res.json();

@@ -176,6 +176,7 @@ function injectHeader() {
 function setupMobileMenu() {
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('main-nav');
+    const dropdownTrigger = document.querySelector('.dropdown-trigger');
 
     if (toggle && nav) {
         toggle.addEventListener('click', (e) => {
@@ -183,6 +184,16 @@ function setupMobileMenu() {
             nav.classList.toggle('active');
             toggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
         });
+
+        if (dropdownTrigger) {
+            dropdownTrigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 960) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.querySelector('.nav-dropdown').classList.toggle('open');
+                }
+            });
+        }
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {

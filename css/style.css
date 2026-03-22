@@ -172,7 +172,7 @@ header {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
-    padding: 0.6rem 0;
+    padding: 0.4rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -265,7 +265,7 @@ nav a {
     color: var(--text-muted);
     font-weight: 600;
     transition: color 0.2s;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 nav a:hover {
@@ -284,7 +284,7 @@ nav a:hover {
     gap: 0.3rem;
     color: var(--text-muted);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: color 0.2s;
     user-select: none;
 }
@@ -310,7 +310,8 @@ nav a:hover {
     overflow-y: auto;
 }
 
-.nav-dropdown:hover .dropdown-menu {
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown.open .dropdown-menu {
     display: block;
 }
 
@@ -366,9 +367,10 @@ nav a:hover {
 
 /* Popular Tools Cards */
 .pop-card:hover {
-    box-shadow: 0 8px 25px -5px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
-    border-color: rgba(79,70,229,0.25) !important;
+    box-shadow: 0 12px 30px -5px rgba(79,70,229,0.15);
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--primary-color) !important;
+    background: linear-gradient(to bottom right, #ffffff, #f8fafc) !important;
 }
 
 /* Tiny nav icon badge for dropdown — ilovepdf exact */
@@ -389,7 +391,32 @@ nav a:hover {
 
 @media (max-width: 960px) {
     .dropdown-menu {
-        display: none !important;
+        display: none;
+        position: static;
+        box-shadow: none;
+        border-top: none;
+        padding: 0;
+        max-height: none;
+        background: transparent;
+    }
+    .nav-dropdown.open .dropdown-menu {
+        display: block;
+    }
+    .mega-dropdown-inner {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+    .mega-col {
+        padding: 0.5rem 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .mega-col:last-child {
+        border-bottom: none;
+    }
+    .mega-item {
+        padding: 0.5rem;
+        font-size: 0.9rem;
     }
 }
 
