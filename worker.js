@@ -6,6 +6,11 @@ export default {
             "Access-Control-Allow-Headers": "Content-Type"
         };
 
+        // Determine the public origin (prefer the one from the request if it's the custom domain)
+        const host = request.headers.get("host");
+        const protocol = request.headers.get("x-forwarded-proto") || "https";
+        const publicOrigin = host ? `${protocol}://${host}` : new URL(request.url).origin;
+
         if (request.method === "OPTIONS") {
             return new Response(null, { headers: corsHeaders });
         }
@@ -32,15 +37,18 @@ export default {
 
             try {
                 // Store in Cloudflare KV
+                if (!env.LINKS_DB) {
+                    throw new Error("KV Namespace LINKS_DB not bound");
+                }
                 await env.LINKS_DB.put(key, longUrl);
 
                 return new Response(JSON.stringify({
-                    shortUrl: `${url.origin}/go/${key}`
+                    shortUrl: `${publicOrigin}/go/${key}`
                 }), {
                     headers: { "Content-Type": "application/json", ...corsHeaders }
                 });
             } catch (e) {
-                return new Response(JSON.stringify({ error: "Database error" }), {
+                return new Response(JSON.stringify({ error: e.message || "Database error" }), {
                     status: 500,
                     headers: { "Content-Type": "application/json", ...corsHeaders }
                 });
