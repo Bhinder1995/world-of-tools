@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     autoRenderBreadcrumbs();
 });
 
+
 function injectHeader() {
     const headerHTML = `
         <div class="container">
@@ -154,18 +155,20 @@ function injectHeader() {
                                 </div>
                             </div>
                         </li>
-                        <li><a href="/calculators-online">Calculators Online</a></li>
-                        <li><a href="/developer-tools-online">Developer Tools</a></li>
-                        <li><a href="/seo-tools-free">SEO Tools Free</a></li>
-                        <li><a href="/text-tools-online">Text Tools Online</a></li>
-                        <li><a href="/web-utilities-free">Web Utilities Free</a></li>
+                        <li><a href="/calculators-online">Calculators</a></li>
                         <li><a href="/guides/">Guides</a></li>
                     </ul>
                 </nav>
 
-                <button class="menu-toggle" aria-label="Toggle navigation">
-                    ☰
-                </button>
+                <div class="header-actions" style="display: flex; align-items: center; gap: 1rem; position: relative; z-index: 2;">
+                    <div class="global-privacy-badge" style="display: flex; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.1); color: #059669; padding: 0.4rem 0.8rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.2);" class="hide-mobile">
+                        🛡️ <span class="badge-text" style="white-space: nowrap;">100% Private</span>
+                    </div>
+                    <button class="menu-toggle" aria-label="Toggle navigation">
+                        ☰
+                    </button>
+                </div>
+
             </div>
         </div>
     `;

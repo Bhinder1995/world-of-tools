@@ -6,8 +6,8 @@
     <title>Aspect Ratio Calculator | Resize Images & Video - WorldOfTools</title>
     <meta name="description" content="Calculate image and video aspect ratios instantly. Easily find width or height for 16:9, 4:3, and custom ratios with our free aspect ratio calculator.">
     <link rel="canonical" href="https://worldoftools.in/aspect-ratio-calculator" />
-    <meta name="keywords" content="aspect ratio calculator, image aspect ratio, video aspect ratio calculcator, calculate aspect ratio, 16:9 ratio calculator, resize image ratio, maintain aspect ratio">
-    <link rel="stylesheet" href="/css/style.css?v=1.8">
+    <meta name="keywords" content="aspect ratio calculator, image aspect ratio, video aspect ratio calculcator, Instagram Reels aspect ratio, YouTube Shorts ratio calculator, 16:9 ratio calculator online, calculate aspect ratio for LinkedIn, social media image resizer, maintain aspect ratio when resizing, aspect ratio calculator for photographers">
+    <link rel="stylesheet" href="/css/style.css?v=2.2">
     <link rel="icon" type="image/svg+xml" href="/logo.svg">
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/app-icon.png">
@@ -41,7 +41,55 @@
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is aspect ratio?","acceptedAnswer":{"@type":"Answer","text":"Aspect ratio is the proportional relationship between an image's width and height, expressed as W:H (e.g., 16:9). It determines how wide or tall an image or video appears."}},{"@type":"Question","name":"What is 16:9 aspect ratio in pixels?","acceptedAnswer":{"@type":"Answer","text":"Common 16:9 resolutions include 1280x720 (HD), 1920x1080 (Full HD), 2560x1440 (QHD), and 3840x2160 (4K UHD). Enter any width or height in the calculator to get the matching dimension."}},{"@type":"Question","name":"How do I maintain aspect ratio when resizing?","acceptedAnswer":{"@type":"Answer","text":"Divide the new width by the original width to get the scale factor, then multiply the original height by that factor. Or simply use this calculator — enter one dimension and get the other instantly."}},{"@type":"Question","name":"What aspect ratio is best for YouTube?","acceptedAnswer":{"@type":"Answer","text":"YouTube recommends 16:9 (1920x1080 for Full HD). Shorts use 9:16 (1080x1920). Thumbnails are 1280x720 (16:9)."}},{"@type":"Question","name":"What aspect ratio is best for Instagram?","acceptedAnswer":{"@type":"Answer","text":"Instagram supports 1:1 (square, 1080x1080), 4:5 portrait (1080x1350), and 16:9 landscape (1080x608). For Reels use 9:16 (1080x1920)."}},{"@type":"Question","name":"Is this aspect ratio calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free with no signup required."}}]}</script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best aspect ratio for Instagram Reels and YouTube Shorts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The recommended aspect ratio for Instagram Reels, YouTube Shorts, and TikTok is 9:16 (1080x1920 pixels). This vertical format ensures your content fills the entire mobile screen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate aspect ratio for a LinkedIn carousel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LinkedIn carousels perform best with a 1:1 square ratio (1080x1080) or a 4:5 vertical ratio. Use this calculator to match your image dimensions perfectly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will resizing an image change its aspect ratio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you resize an image proportionally (maintaining the same ratio), the aspect ratio stays the same. If you change only the width or only the height without a calculator, the image will look stretched or squashed."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://worldoftools.in/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Aspect Ratio Calculator",
+        "item": "https://worldoftools.in/aspect-ratio-calculator"
+      }]
+    }
+    </script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Aspect Ratio Calculator","operatingSystem":"Any","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body>
@@ -87,24 +135,33 @@
 
                 <!-- Presets -->
                 <div class="ar-card">
-                    <div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">Common Aspect Ratios — Click to Load</div>
+                    <div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">🎥 Social Media & Video Presets</div>
                     <div class="preset-grid">
-                        <button class="preset-btn" onclick="loadPreset(16,9)">16:9<div style="font-size:.68rem;color:#9ca3af;">Widescreen</div></button>
-                        <button class="preset-btn" onclick="loadPreset(9,16)">9:16<div style="font-size:.68rem;color:#9ca3af;">Shorts/Reels</div></button>
-                        <button class="preset-btn" onclick="loadPreset(4,3)">4:3<div style="font-size:.68rem;color:#9ca3af;">Standard TV</div></button>
-                        <button class="preset-btn" onclick="loadPreset(1,1)">1:1<div style="font-size:.68rem;color:#9ca3af;">Square</div></button>
-                        <button class="preset-btn" onclick="loadPreset(4,5)">4:5<div style="font-size:.68rem;color:#9ca3af;">Instagram</div></button>
-                        <button class="preset-btn" onclick="loadPreset(21,9)">21:9<div style="font-size:.68rem;color:#9ca3af;">Ultrawide</div></button>
-                        <button class="preset-btn" onclick="loadPreset(3,2)">3:2<div style="font-size:.68rem;color:#9ca3af;">DSLR Photo</div></button>
-                        <button class="preset-btn" onclick="loadPreset(2,3)">2:3<div style="font-size:.68rem;color:#9ca3af;">Portrait</div></button>
-                        <button class="preset-btn" onclick="loadPreset(1920,1080)">1920×1080<div style="font-size:.68rem;color:#9ca3af;">Full HD</div></button>
-                        <button class="preset-btn" onclick="loadPreset(3840,2160)">3840×2160<div style="font-size:.68rem;color:#9ca3af;">4K UHD</div></button>
-                        <button class="preset-btn" onclick="loadPreset(1280,720)">1280×720<div style="font-size:.68rem;color:#9ca3af;">HD 720p</div></button>
-                        <button class="preset-btn" onclick="loadPreset(1080,1080)">1080×1080<div style="font-size:.68rem;color:#9ca3af;">IG Square</div></button>
+                        <button class="preset-btn" onclick="loadPreset(16,9)">16:9<div style="font-size:.68rem;color:#9ca3af;">YouTube/TV</div></button>
+                        <button class="preset-btn" onclick="loadPreset(9,16)">9:16<div style="font-size:.68rem;color:#9ca3af;">Reels/Shorts</div></button>
+                        <button class="preset-btn" onclick="loadPreset(1,1)">1:1<div style="font-size:.68rem;color:#9ca3af;">Instagram</div></button>
+                        <button class="preset-btn" onclick="loadPreset(4,5)">4:5<div style="font-size:.68rem;color:#9ca3af;">IG Portrait</div></button>
+                        <button class="preset-btn" onclick="loadPreset(1.91,1)">1.91:1<div style="font-size:.68rem;color:#9ca3af;">LinkedIn/FB</div></button>
+                        <button class="preset-btn" onclick="loadPreset(1200,628)">1200×628<div style="font-size:.68rem;color:#9ca3af;">FB Feed</div></button>
                     </div>
                 </div>
 
-                <div style="margin-top:1rem;text-align:center;font-size:.9rem;color:var(--text-muted);padding-top:1.5rem;border-top:1px solid var(--border-color);">🛡️ All calculations happen instantly in your browser. No data is sent to any server.</div>
+                <div class="ar-card">
+                    <div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">📐 Common Ratios — Click to Load</div>
+                    <div class="preset-grid">
+                        <button class="preset-btn" onclick="loadPreset(4,3)">4:3<div style="font-size:.68rem;color:#9ca3af;">Classic TV</div></button>
+                        <button class="preset-btn" onclick="loadPreset(21,9)">21:9<div style="font-size:.68rem;color:#9ca3af;">Ultrawide</div></button>
+                        <button class="preset-btn" onclick="loadPreset(3,2)">3:2<div style="font-size:.68rem;color:#9ca3af;">DSLR</div></button>
+                        <button class="preset-btn" onclick="loadPreset(2,3)">2:3<div style="font-size:.68rem;color:#9ca3af;">Poster</div></button>
+                        <button class="preset-btn" onclick="loadPreset(1920,1080)">1080p<div style="font-size:.68rem;color:#9ca3af;">Full HD</div></button>
+                        <button class="preset-btn" onclick="loadPreset(3840,2160)">4K<div style="font-size:.68rem;color:#9ca3af;">Ultra HD</div></button>
+                    </div>
+                </div>
+
+                <div class="privacy-badge-banner">
+                    <span>🛡️</span>
+                    <span>100% Private — Client-Side Processing</span>
+                </div>
             </div>
         </div>
 
@@ -153,8 +210,16 @@
                 <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this calculator free?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, 100% free with no signup required.</p></details>
             </section>
             <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">📚 Educational Content — Deep Dive</h2>
-                <div style="line-height:1.8;color:#4b5563;"><p>Aspect ratio is one of the most fundamental concepts in visual media. The formula to maintain aspect ratio is simple: <strong>New Height = (Original Height / Original Width) × New Width</strong>. Getting this wrong results in stretched or squished images that look unprofessional. This calculator automates the math instantly, letting designers and video editors focus on creative work rather than arithmetic.</p></div>
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">📽️ Why Aspect Ratio Matters for Social Media</h2>
+                <div style="line-height:1.8;color:#4b5563;">
+                    <p>In 2026, social media algorithms prioritize high-quality, vertically-aligned content. Using the correct ratio isn't just about aesthetics; it's about <strong>engagement and SEO</strong>.</p>
+                    <ul style="padding-left:1.5rem;">
+                        <li><strong>Instagram Reels & YouTube Shorts:</strong> Require a 9:16 vertical ratio (1080x1920). Content that doesn't fill the screen sees lower reach.</li>
+                        <li><strong>LinkedIn Carousels:</strong> Work best with 1:1 or 4:5 ratios to ensure text remains legible on both mobile and desktop feeds.</li>
+                        <li><strong>Video Production:</strong> Cinematic 21:9 or standard 16:9 widescreen determines the "feel" of your project.</li>
+                    </ul>
+                    <p>This tool ensures you never have to guess. Just plug in your desired height or width and let our aspect ratio calculator do the rest.</p>
+                </div>
             </section>
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">Other Free Tools You Might Need</h2>
@@ -164,13 +229,13 @@
                     <a href="favicon-generator" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-title">Favicon Generator</div><div class="tool-desc">Create favicons in all sizes from any image.</div></a>
                     <a href="color-converter" class="tool-card"><div class="tool-icon">🎨</div><div class="tool-title">Color Converter</div><div class="tool-desc">Convert HEX, RGB, and HSL colors.</div></a>
                     <a href="unit-converter" class="tool-card"><div class="tool-icon">📐</div><div class="tool-title">Unit Converter</div><div class="tool-desc">Convert between length, weight, and more.</div></a>
-                    <a href="percentage-calculator" class="tool-card"><div class="tool-icon">%</div><div class="tool-title">Percentage Calculatorulator</div><div class="tool-desc">Calculate percentages and scale factors.</div></a>
+                    <a href="percentage-calculator" class="tool-card"><div class="tool-icon">%</div><div class="tool-title">Percentage Calculator</div><div class="tool-desc">Calculate percentages and scale factors.</div></a>
                 </div>
             </section>
         </div>
     </main>
     <footer></footer>
-    <script src="/js/common.js?v=1.8"></script>
+    <script src="/js/common.js?v=2.2"></script>
     <script>
     function gcd(a,b){return b===0?a:gcd(b,a%b);}
     function getRatio(w,h){if(!w||!h)return null;const g=gcd(Math.round(w),Math.round(h));return{w:Math.round(w)/g,h:Math.round(h)/g};}
