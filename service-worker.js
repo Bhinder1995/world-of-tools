@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v102';
+const CACHE_NAME = 'world-of-tools-v103';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -165,7 +165,7 @@ self.addEventListener('fetch', (event) => {
                     // Start caching a copy for offline use
                     const responseClone = response.clone();
                     caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, responseClone);
+                        cache.put(event.request, responseClone).catch(() => {});
                     });
                     return response;
                 })
@@ -194,7 +194,7 @@ self.addEventListener('fetch', (event) => {
 
                     const responseClone = response.clone();
                     caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, responseClone);
+                        cache.put(event.request, responseClone).catch(() => {});
                     });
 
                     return response;
