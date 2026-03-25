@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v104';
+const CACHE_NAME = 'world-of-tools-v105';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -140,7 +140,12 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                return cache.addAll(ASSETS_TO_CACHE);
+                // Add assets individually so a single local 404 doesn't crash the entire worker
+                return Promise.all(
+                    ASSETS_TO_CACHE.map(url => 
+                        cache.add(url).catch(err => console.warn('Failed to cache:', url, err))
+                    )
+                );
             })
     );
 });
