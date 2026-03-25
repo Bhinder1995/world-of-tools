@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v101';
+const CACHE_NAME = 'world-of-tools-v102';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -150,6 +150,11 @@ self.addEventListener('fetch', (event) => {
     if (event.request.method !== 'GET') return;
 
     const url = new URL(event.request.url);
+    
+    // Ignore non-HTTP(s) requests (like chrome-extension://)
+    if (!url.protocol.startsWith('http')) {
+        return;
+    }
 
     // Network-first strategy for HTML pages (navigations)
     // This ensures users always get the latest version of the site
