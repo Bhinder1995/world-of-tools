@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+</script>
+    <script>
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Creator Suite — Free Tools for Hooks, Formatting & Privacy | WorldOfTools</title>
+    <meta name="description"
+        content="Free LinkedIn tools for creators — post hook generator, text formatter, and engagement analytics. Grow your LinkedIn audience faster. 100% free, no login.">
+    <meta name="keywords"
+        content="linkedin tools, post formatter, hook generator, headline optimizer, hashtag finder, engagement estimator, linkedin growth">
+    <link rel="canonical" href="https://worldoftools.in/linkedin-creator-suite" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://worldoftools.in/linkedin-creator-suite">
+    <meta property="og:title" content="LinkedIn Creator Suite — Hooks Formatting Tools Free | WorldOfTools">
+    <meta property="og:description"
+        content="Free LinkedIn tools for creators — post hook generator, text formatter, and engagement analytics. Grow your LinkedIn audience faster. 100% free, no login.">
+    <meta property="og:image" content="https://worldoftools.in/app-icon.png">
+
+    <link rel="stylesheet" href="/css/style.css?v=2.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+
+    <style>
+        .suite-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tabs-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .tool-header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .tool-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Post Formatter Specific */
+        .formatter-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .format-controls {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .control-btn {
+            padding: 0.6rem 1rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .control-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .main-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .preview-pane {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .preview-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-mockup {
+            background: white;
+            border-radius: 15px;
+            padding: 1.25rem;
+            min-height: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #191919;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* Headline Optimizer Specific */
+        .optimizer-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .input-side {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .score-side {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .score-side:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.1);
+        }
+
+        /* Engagement Estimator Specific */
+        .estimator-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .results-side {
+            min-height: 200px;
+        }
+
+        #engagement-placeholder {
+            background: #f8fafc;
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        #engagement-placeholder:hover {
+            border-color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.02);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .formatter-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-pane {
+                position: static;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .tool-card-main {
+                padding: 1.5rem;
+            }
+
+            .tabs-header {
+                padding-left: 1rem;
+                margin-left: -1rem;
+                margin-right: -1rem;
+            }
+        }
+    </style>
+
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{"@type": "Question", "name": "Is this LinkedIn Suite free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the LinkedIn Suite is 100% free with no hidden charges or premium subscriptions."}}, {"@type": "Question", "name": "Is my data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. All processing happens locally in your browser. We never see, store, or share your data."}}, {"@type": "Question", "name": "Do I need to sign up?", "acceptedAnswer": {"@type": "Answer", "text": "No registration or account creation is required to use any of our tools."}}, {"@type": "Question", "name": "Does it work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops."}}, {"@type": "Question", "name": "Can I use it offline?", "acceptedAnswer": {"@type": "Answer", "text": "Once the page is loaded, most functions work offline since they run in your browser's local environment."}}]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "LinkedIn Creator Suite",
+      "description": "Professional toolkit for LinkedIn creators featuring post formatting, hook generation, and engagement analytics. 100% private and client-side.",
+      "operatingSystem": "Any",
+      "applicationCategory": "UtilitiesApplication",
+      "url": "https://worldoftools.in/linkedin-creator-suite",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <header></header>
+
+    <main>
+        <div class="suite-container">
+            <div class="tool-header">
+                <div class="privacy-badge pulse">
+                    <span>🛡️</span> 100% Client-Side • Secure • No Uploads
+                </div>
+                <h1 id="page-h1">LinkedIn Creator Suite</h1>
+                <p id="page-desc">The professional toolkit for LinkedIn creators, founders, and marketers. Grow your presence with privacy-first tools.</p>
+            </div>
+
+            <div class="tabs-header" id="tool-tabs">
+                <button class="tab-btn active" data-tab="formatter">
+                    <span>📝</span> Post Formatter
+                </button>
+                <button class="tab-btn" data-tab="hooks">
+                    <span>🪝</span> Hook Generator
+                </button>
+                <button class="tab-btn" data-tab="templates">
+                    <span>✉️</span> Message Templates
+                </button>
+                <button class="tab-btn" data-tab="headline">
+                    <span>🏆</span> Headline Optimizer
+                </button>
+                <button class="tab-btn" data-tab="hashtags">
+                    <span>#️⃣</span> Hashtag Finder
+                </button>
+                <button class="tab-btn" data-tab="engagement">
+                    <span>📊</span> Engagement Estimator
+                </button>
+            </div>
+
+            <div id="formatter" class="tab-content active">
+                <div class="tool-card-main">
+                    <div class="formatter-layout">
+                        <div class="input-section">
+                            <div class="format-controls">
+                                <button class="control-btn" onclick="formatStyle('standard')">Normal</button>
+                                <button class="control-btn" onclick="formatStyle('viral')">Viral Hook</button>
+                                <button class="control-btn" onclick="formatStyle('story')">Storytelling</button>
+                                <button class="control-btn" onclick="formatStyle('value')">Value Thread</button>
+                                <div style="width: 1px; background: var(--border-color); margin: 0 0.5rem;"></div>
+                                <button class="control-btn" onclick="toggleUnicode('bold')"><b>B</b></button>
+                                <button class="control-btn" onclick="toggleUnicode('italic')"><i>I</i></button>
+                                <button class="control-btn" onclick="addPatternBreaks()">--- Breaks</button>
+                                <button class="control-btn" id="scheduler-toggle" onclick="toggleSchedulerPreview()" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe;">📅 Scheduler Preview</button>
+                            </div>
+
+                            <textarea id="formatter-input" class="main-textarea"
+                                placeholder="Paste your raw text here to format it for LinkedIn..."></textarea>
+
+                            <div class="action-row" style="display: flex; gap: 1rem;">
+                                <button class="btn" style="flex: 1;" onclick="copyFormatted()">📋 Copy Formatted
+                                    Text</button>
+                                <button class="btn btn-secondary" onclick="clearFormatter()">🗑️ Clear</button>
+                            </div>
+                        </div>
+
+                        <div class="preview-pane">
+                            <div class="preview-title">📱 Mobile Preview</div>
+                            <div id="formatter-preview" class="mobile-mockup">Preview will appear here...</div>
+                            <div class="stats-row">
+                                <span>Characters: <span id="formatter-chars">0</span>/3000</span>
+                                <span>Reading: <span id="formatter-read">0</span>s</span>
+                            </div>
+                            <div
+                                style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-top: 1rem; background: rgba(79, 70, 229, 0.05); padding: 0.75rem; border-radius: 10px; border: 1px dashed var(--primary-color);">
+                                💡 <b>Pro Tip:</b> LinkedIn favors posts with clear white space and a strong first-line
+                                hook.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEO Content for Post Formatter -->
+                    <div class="seo-section">
+                        <h2>How to Format LinkedIn Posts Properly</h2>
+                        <p>Our <b>LinkedIn Post Formatter</b> is a free online tool designed to help you write clean,
+                            professional LinkedIn posts. One common problem creators face is why LinkedIn removes line
+                            breaks. This tool acts as a <b>LinkedIn post spacing generator</b>, ensuring your layout
+                            remains intact from draft to publish.</p>
+                        <p>Whether you need a <b>LinkedIn post bold text generator</b> or a viral post template, our
+                            tool handles it all locally in your browser. Using a <b>LinkedIn text formatter</b> helps
+                            stop the scroll and improves readability, making your content more accessible to your
+                            audience.</p>
+
+                        <h3 style="margin-top: 2rem;">Frequently Asked Questions (FAQ)</h3>
+                        <div class="faq-grid">
+                            <div class="faq-item">
+                                <h4>How do I add space in LinkedIn posts?</h4>
+                                <p>Simply paste your text into our <b>LinkedIn post editor</b>. It automatically detects
+                                    paragraphs and applies the correct spacing using a <b>LinkedIn post line break
+                                        tool</b> logic to prevent text clumping.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Can I preview my post before posting?</h4>
+                                <p>Yes! Our tool includes a <b>LinkedIn post preview</b> mode that simulates exactly how
+                                    your post will look on a mobile device, including the "see more" cutoff point.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Is this a LinkedIn viral post template?</h4>
+                                <p>Yes, we provide several formatting styles like "Viral Hook" and "Storytelling" that
+                                    act as a <b>LinkedIn post layout generator</b> to help you follow proven engagement
+                                    structures.</p>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 2rem;">Conclusion</h3>
+                        <div class="seo-card">
+                            Don't let poor formatting ruin your reach. Use our <b>LinkedIn post copy paste formatter</b>
+                            to ensure your <b>LinkedIn storytelling format</b> looks as good as it reads.
+                        </div>
+
+                        <h3 style="margin-top: 2rem; text-align: center;">Related Tools</h3>
+                        <div class="popular-tools" style="margin-top: 1.5rem; justify-content: center;">
+                            <a href="/word-counter" class="tool-chip"><span>📝</span> Word Counter</a>
+                            <a href="/case-converter" class="tool-chip"><span>🔠</span> Case Converter</a>
+                            <a href="/seo-meta-tag-generator" class="tool-chip"><span>🏷️</span> Meta Tag Generator</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="hooks" class="tab-content">
+                <div class="tool-card-main">
+                    <div class="tool-header" style="margin-bottom: 2rem;">
+                        <h2>🪝 LinkedIn Hook Generator</h2>
+                        <p>Generate scroll-stopping opening lines for your posts.</p>
+                    </div>
+
+                    <div class="hook-controls"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                        <div class="input-group">
+                            <label>Category</label>
+                            <select id="hook-category">
+                                <option value="all">All Categories</option>
+                                <option value="curiosity">Curiosity & Mystery</option>
+                                <option value="authority">Authority & Credibility</option>
+                                <option value="data">Data & Statistics</option>
+                                <option value="story">Personal Story</option>
+                                <option value="contrarian">Contrarian / Hot Take</option>
+                            </select>
+                        </div>
+                        <div class="input-group" style="display: flex; align-items: flex-end;">
+                            <button class="btn" style="width: 100%;" onclick="generateHook()">✨ Generate New
+                                Hook</button>
+                        </div>
+                    </div>
+
+                    <div id="hook-result-container" style="display: none; animation: fadeIn 0.3s ease;">
+                        <div class="mobile-mockup" id="hook-result"
+                            style="min-height: auto; font-size: 1.1rem; font-weight: 700; border-left: 4px solid var(--primary-color);">
+                            Hook will appear here...
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                            <button class="btn btn-secondary" onclick="copyHook()">📋 Copy Hook</button>
+                            <button class="btn btn-secondary"
+                                style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);"
+                                onclick="sendToFormatter()">✍️ Use in Formatter</button>
+                        </div>
+                    </div>
+
+                    <!-- SEO Content for Hook Generator -->
+                    <div class="seo-section">
+                        <h2>Best Hooks for LinkedIn Posts</h2>
+                        <p>If you're wondering <b>how to write a LinkedIn hook</b> that actually converts, you're in the
+                            right place. Our <b>LinkedIn Hook Generator</b> provides scroll-stopping post openings based
+                            on viral examples. Whether you need an <b>authority hook</b> or a <b>storytelling opening
+                                line</b>, our templates help you grab attention in the first sentence.</p>
+                        <p>This <b>LinkedIn post starter</b> is essential for entrepreneurs and B2B creators who want to
+                            increase their visibility. By using a <b>LinkedIn curiosity hook</b> or sharing data-driven
+                            insights, you can double your engagement rates.</p>
+
+                        <h3 style="margin-top: 2rem;">Frequently Asked Questions</h3>
+                        <div class="faq-grid">
+                            <div class="faq-item">
+                                <h4>What are some viral LinkedIn hook examples?</h4>
+                                <p>Viral hooks often use negative constraints ("Stop doing X"), transformation stories
+                                    ("3 years ago I was..."), or contrarian takes. Our <b>LinkedIn first line
+                                        generator</b> includes these proven styles.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>How does a scroll stopping hook generator help?</h4>
+                                <p>On mobile, users only see the first few lines of your post. A strong <b>LinkedIn
+                                        opening line generator</b> ensures they click "see more" instead of scrolling
+                                    past.</p>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 2rem;">Conclusion</h3>
+                        <div class="seo-card">
+                            A great post starts with a great hook. Use our free tool to find the perfect <b>LinkedIn
+                                content creator hook ideas</b> for your personal branding strategy.
+                        </div>
+
+                        <h3 style="margin-top: 3rem; text-align: center;">Related Tools</h3>
+                        <div class="popular-tools" style="margin-top: 1.5rem; justify-content: center;">
+                            <a href="#formatter" class="tool-chip"
+                                onclick="document.querySelector('[data-tab=\'formatter\']').click()"><span>📝</span>
+                                Post Formatter</a>
+                            <a href="#headline" class="tool-chip"
+                                onclick="document.querySelector('[data-tab=\'headline\']').click()"><span>🏆</span>
+                                Headline Optimizer</a>
+                            <a href="/word-counter" class="tool-chip"><span>📝</span> Word Counter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div id="templates" class="tab-content">
+                <div class="tool-card-main">
+                    <div class="tool-header" style="margin-bottom: 2rem;">
+                        <h2>✉️ LinkedIn Connection Templates</h2>
+                        <p>High-converting templates for your connection requests.</p>
+                    </div>
+
+                    <div class="template-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div class="template-card" style="border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; background: white;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">🤝 Networking</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Connect with peers in your industry.</p>
+                            <div class="template-text" style="background: #f8fafc; padding: 1rem; border-radius: 12px; font-size: 0.9rem; font-family: var(--font-body); margin-bottom: 1rem; border: 1px dashed var(--border-color);">
+                                Hi [Name], I've been following your posts about [Topic] and really enjoyed your recent take on [Specific Post]. Would love to connect and keep up with your work!
+                            </div>
+                            <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem;" onclick="copyTemplate(this)">📋 Copy Template</button>
+                        </div>
+
+                        <div class="template-card" style="border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; background: white;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">💼 Job Referral</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Ask for info or a referral at a company.</p>
+                            <div class="template-text" style="background: #f8fafc; padding: 1rem; border-radius: 12px; font-size: 0.9rem; font-family: var(--font-body); margin-bottom: 1rem; border: 1px dashed var(--border-color);">
+                                Hi [Name], noticed you're at [Company]. I'm applying for the [Role] and was wondering if you'd be open to a quick chat about the culture? Happy to connect either way!
+                            </div>
+                            <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem;" onclick="copyTemplate(this)">📋 Copy Template</button>
+                        </div>
+
+                        <div class="template-card" style="border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease; background: white;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">🚀 Client Outreach</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Value-first outreach for clients.</p>
+                            <div class="template-text" style="background: #f8fafc; padding: 1rem; border-radius: 12px; font-size: 0.9rem; font-family: var(--font-body); margin-bottom: 1rem; border: 1px dashed var(--border-color);">
+                                Hi [Name], saw your profile while looking for experts in [Industry]. I recently helped a company in [Industry] achieve [Result]. Thought I'd reach out to connect!
+                            </div>
+                            <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem;" onclick="copyTemplate(this)">📋 Copy Template</button>
+                        </div>
+                    </div>
+
+                    <div class="seo-section" style="margin-top: 4rem;">
+                        <h2>High-Converting LinkedIn Connection Request Templates</h2>
+                        <p>Our <b>LinkedIn connection message generator</b> provides tested templates for networking, job hunting, and sales outreach. Using a <b>personalized LinkedIn invite</b> increases your acceptance rate by over 40% compared to empty requests.</p>
+                        <p>Whether you need a <b>LinkedIn message for recruiters</b> or a <b>cold outreach script</b>, these templates follow 2026's best practices for professional social selling and networking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="headline" class="tab-content">
+            <div class="tool-card-main">
+                <div class="tool-header" style="margin-bottom: 2rem;">
+                    <h2>🏆 LinkedIn Headline Optimizer</h2>
+                    <p>Analyze and improve your LinkedIn headline or post title for maximum clicks.</p>
+                </div>
+
+                <div class="optimizer-layout">
+                    <div class="input-side">
+                        <div class="input-group">
+                            <label>your headline</label>
+                            <textarea id="headline-input" class="main-textarea" style="min-height: 120px;"
+                                placeholder="e.g., How to Scale Your SaaS to $10k MRR in 30 Days"></textarea>
+                        </div>
+                        <button class="btn" style="width: 100%;" onclick="optimizeHeadline()">📊 Analyze
+                            Headline</button>
+
+                        <div id="optimizer-results" style="display: none; margin-top: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Suggestions for Improvement:</h3>
+                            <ul id="headline-suggestions"
+                                style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+                                <!-- Suggestions will appear here -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="score-side">
+                        <div
+                            style="font-size: 0.95rem; font-weight: 800; color: var(--text-muted); margin-bottom: 1rem; text-transform: capitalize;">
+                            HeadlineScore</div>
+                        <div id="headline-score"
+                            style="font-size: 5rem; font-weight: 900; color: var(--primary-color); line-height: 1;">0
+                        </div>
+                        <div id="headline-grade"
+                            style="font-weight: 700; margin-top: 1rem; font-size: 1.2rem; color: var(--text-muted);">
+                            Enter a headline
+                        </div>
+
+                        <div
+                            style="width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; margin-top: 2rem; overflow: hidden;">
+                            <div id="score-bar"
+                                style="width: 0%; height: 100%; background: var(--primary-color); transition: width 0.5s ease;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEO Content for Headline Optimizer -->
+                <div class="seo-section">
+                    <h2>Professional LinkedIn Headline Ideas</h2>
+                    <p>Our <b>LinkedIn Headline Generator</b> is designed to help you stand out in search results.
+                        Whether you're looking for the <b>best LinkedIn headline for job seekers</b> or want to attract
+                        high-ticket clients, our <b>LinkedIn headline optimizer</b> provides data-driven suggestions to
+                        improve your visibility.</p>
+                    <p>From <b>LinkedIn headlines for developers</b> to SEO specialists and consultants, we cover 25+
+                        industries. Use this tool to stay within the <b>LinkedIn headline character limit</b> while
+                        maximizing your personal branding impact.</p>
+
+                    <h3 style="margin-top: 2rem;">Frequently Asked Questions</h3>
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <h4>How do I write a LinkedIn headline for career change?</h4>
+                            <p>Focus on transferable skills and the value you bring to your new industry. Use our
+                                <b>LinkedIn profile headline generator</b> to test different combinations of keywords.
+                            </p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Is there a specific headline for freshers?</h4>
+                            <p>Yes, freshers should focus on their field of study, key skills, and a "ready to
+                                contribute" mindset. Our tool provides specific <b>LinkedIn headline ideas for
+                                    freshers</b>.</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 2rem;">Conclusion</h3>
+                    <div class="seo-card">
+                        Your headline is your first impression. Use our <b>LinkedIn headline optimizer</b> to ensure
+                        you're attracting the right opportunities and clients.
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center;">Related Tools</h3>
+                    <div class="popular-tools" style="margin-top: 1.5rem; justify-content: center;">
+                        <a href="#hooks" class="tool-chip"
+                            onclick="document.querySelector('[data-tab=\'hooks\']').click()"><span>🪝</span> Hook
+                            Generator</a>
+                        <a href="#engagement" class="tool-chip"
+                            onclick="document.querySelector('[data-tab=\'engagement\']').click()"><span>📊</span>
+                            Engagement Estimator</a>
+                        <a href="/seo-meta-tag-generator" class="tool-chip"><span>🏷️</span> Meta Tag Generator</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="hashtags" class="tab-content">
+            <div class="tool-card-main">
+                <div class="tool-header" style="margin-bottom: 2rem;">
+                    <h2>#️⃣ LinkedIn Hashtag Finder</h2>
+                    <p>Find the most relevant and high-reach hashtags for your niche.</p>
+                </div>
+
+                <div class="input-group">
+                    <label>Enter Topic or Keyword</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="hashtag-keyword" placeholder="e.g., Marketing, Coding, Remote Work"
+                            style="flex: 1;">
+                        <button class="btn" onclick="generateHashtags()">🔍 Find Hashtags</button>
+                    </div>
+                </div>
+
+                <div id="hashtag-results" style="display: none; margin-top: 2rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="font-size: 1.1rem;">Recommended Hashtags:</h3>
+                        <button class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;"
+                            onclick="copyAllHashtags()">📋 Copy All</button>
+                    </div>
+                    <div id="hashtag-list" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <!-- Hashtags will appear here -->
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 3rem; background: #f8fafc; padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-color);">
+                    <h4 style="margin-bottom: 0.75rem;">💡 Best Practice</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">LinkedIn experts recommend using <b>3-5
+                            focused hashtags</b>. Avoid "hashtag stuffing" as it can decrease your reach.</p>
+                </div>
+
+                <!-- SEO Content for Hashtag Finder -->
+                <div class="seo-section">
+                    <h2>Best Hashtags for LinkedIn Posts</h2>
+                    <p>Maximize your reach with our <b>LinkedIn Hashtag Generator</b>. Finding the right hashtags is
+                        essential for <b>LinkedIn SEO</b> and growth. Our <b>LinkedIn hashtag finder</b> provides a mix
+                        of high-reach, trending, and niche hashtags to ensure your content reaches the right audience.
+                    </p>
+                    <p>Whether you're looking for <b>LinkedIn B2B hashtags</b> or marketing-specific tags, our tool
+                        provides a 2026-optimized <b>LinkedIn hashtag strategy</b> to prevent your posts from getting
+                        zero reach.</p>
+
+                    <h3 style="margin-top: 2rem;">Frequently Asked Questions</h3>
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <h4>How many hashtags should I use on LinkedIn?</h4>
+                            <p>LinkedIn experts recommend using 3-5 focused hashtags. Avoid "hashtag stuffing" as it can
+                                confuse the algorithm and decrease your reach.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Why are my hashtags not working?</h4>
+                            <p>You might be using tags that are too broad or completely irrelevant. Our <b>LinkedIn
+                                    hashtag tool free</b> helps you find the <b>best hashtag mix</b> for your specific
+                                topic.</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 2rem;">Conclusion</h3>
+                    <div class="seo-card">
+                        Strategic hashtagging is a key part of <b>LinkedIn growth hashtags</b> strategy. Use our
+                        generator to find <b>trending hashtags</b> and niche tags instantly.
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center;">Related Tools</h3>
+                    <div class="popular-tools" style="margin-top: 1.5rem; justify-content: center;">
+                        <a href="/keyword-density-checker" class="tool-chip"><span>🔍</span> Keyword Density</a>
+                        <a href="/qr-code-generator" class="tool-chip"><span>📱</span> QR Generator</a>
+                        <a href="#engagement" class="tool-chip"
+                            onclick="document.querySelector('[data-tab=\'engagement\']').click()"><span>📊</span>
+                            Engagement Estimator</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="engagement" class="tab-content">
+            <div class="tool-card-main">
+                <div class="tool-header" style="margin-bottom: 2rem;">
+                    <h2>📊 LinkedIn Engagement Estimator</h2>
+                    <p>Predict how well your post will perform before you hit publish.</p>
+                </div>
+
+                <div class="estimator-layout">
+                    <div class="input-side">
+                        <div class="input-group">
+                            <label>Paste your Draft Post</label>
+                            <textarea id="engagement-input" class="main-textarea" style="min-height: 250px;"
+                                placeholder="Paste your post content here to estimate its reach..."></textarea>
+                        </div>
+                        <button class="btn" style="width: 100%;" onclick="estimateEngagement()">✨ Predict
+                            Engagement</button>
+                    </div>
+
+                    <div class="results-side">
+                        <div id="engagement-results"
+                            style="display: none; background: white; border: 2px solid var(--border-color); border-radius: 24px; padding: 2rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);">
+                            <div style="text-align: center; margin-bottom: 2rem;">
+                                <div
+                                    style="font-size: 0.9rem; font-weight: 800; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                                    ESTIMATED PERFORMANCE</div>
+                                <div id="performance-label"
+                                    style="font-size: 2rem; font-weight: 900; color: var(--secondary-color);">
+                                    EXCELLENT</div>
+                            </div>
+
+                            <div class="metric-row" style="margin-bottom: 1.5rem;">
+                                <div
+                                    style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                    <span>Hook Strength</span>
+                                    <span id="metric-hook" style="font-weight: 700;">Weak</span>
+                                </div>
+                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden;">
+                                    <div id="metric-hook-bar"
+                                        style="width: 30%; height: 100%; background: var(--error-color);"></div>
+                                </div>
+                            </div>
+
+                            <div class="metric-row" style="margin-bottom: 1.5rem;">
+                                <div
+                                    style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                    <span>Readability</span>
+                                    <span id="metric-readability" style="font-weight: 700;">Moderate</span>
+                                </div>
+                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden;">
+                                    <div id="metric-readability-bar"
+                                        style="width: 60%; height: 100%; background: var(--accent-color);"></div>
+                                </div>
+                            </div>
+
+                            <div class="metric-row">
+                                <div
+                                    style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                    <span>CTA Score</span>
+                                    <span id="metric-cta" style="font-weight: 700;">Strong</span>
+                                </div>
+                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden;">
+                                    <div id="metric-cta-bar"
+                                        style="width: 90%; height: 100%; background: var(--secondary-color);"></div>
+                                </div>
+                            </div>
+
+                            <div
+                                style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                                📢 <b>Note:</b> This is an estimate based on best practices. Real performance
+                                depends on your network and timing.
+                            </div>
+                        </div>
+
+                        <div id="engagement-placeholder">
+                            <div style="font-size: 3rem; margin-bottom: 1.5rem;">📊</div>
+                            <p style="font-size: 1.1rem; line-height: 1.6; font-weight: 600;">Analysis will appear
+                                here<br>after you Click</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEO Content for Engagement Estimator -->
+                <div class="seo-section">
+                    <h2>LinkedIn Engagement Calculator</h2>
+                    <p>Our <b>LinkedIn Engagement Estimator</b> acts as a <b>LinkedIn post analyzer</b> that predicts
+                        your performance before you hit publish. This <b>LinkedIn content score tool</b> measures
+                        <b>LinkedIn post readability score</b>, hook strength, and CTA presence to give you <b>LinkedIn
+                            post improvement suggestions</b>.
+                    </p>
+                    <p>By using a <b>LinkedIn algorithm analyzer</b>, you can understand how to improve your engagement
+                        score and create high-quality content that resonates with your professional network.</p>
+
+                    <h3 style="margin-top: 2rem;">Frequently Asked Questions</h3>
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <h4>How can I improve LinkedIn engagement?</h4>
+                            <p>Use a strong hook, break up long paragraphs for better readability, and always include a
+                                clear call-to-action (CTA). Our <b>LinkedIn post structure analyzer</b> checks all these
+                                for you.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Is this a LinkedIn post quality checker?</h4>
+                            <p>Yes, it's a <b>LinkedIn content optimization tool</b> that provides a real-time
+                                <b>LinkedIn post engagement prediction</b> based on successful content patterns.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 2rem;">Conclusion</h3>
+                    <div class="seo-card">
+                        Successful creators use data. Use our <b>LinkedIn engagement score free</b> tool to optimize
+                        every post for maximum reach and impact.
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center;">Related Tools</h3>
+                    <div class="popular-tools" style="margin-top: 1.5rem; justify-content: center;">
+                        <a href="#formatter" class="tool-chip"
+                            onclick="document.querySelector('[data-tab=\'formatter\']').click()"><span>📝</span> Post
+                            Formatter</a>
+                        <a href="#headline" class="tool-chip"
+                            onclick="document.querySelector('[data-tab=\'headline\']').click()"><span>🏆</span> Headline
+                            Optimizer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Privacy-First LinkedIn Creator Suite</h2>
+                <p style="line-height:1.8;color:#4b5563;">Our <b>LinkedIn Creator Suite</b> is built with a <b>privacy-first</b> architecture. Unlike other <b>LinkedIn post generators</b> that upload your drafts to their servers, our tool processes everything locally in your browser. This means your professional ideas, personal stories, and contact messages never leave your device. Whether you're a <b>top voice in India</b> or a student starting your journey, your data is 100% secure.</p>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Optimize Your LinkedIn Posts — 2026 Guide</h2>
+                
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><b>Craft a Viral Hook:</b> Use our <b>LinkedIn hook generator</b> to find the perfect opening line that stops the scroll.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><b>Format for Readability:</b> Use <b>bullet points and line breaks</b> in our post formatter to make your content easy to skim.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><b>Add Viral Styling:</b> Convert key phrases to <b>bold or italic unicode</b> to draw attention to your main points.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">4</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><b>Analyze Engagement:</b> Run your post through our <b>engagement estimator</b> to see your predicted reach.</p>
+                </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Features for Professional LinkedIn Growth</h2>
+                <ul style="list-style:none;padding:0;margin:0;">
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>100% Free & Unlimited:</strong> Generate as many hooks and headlines as you need.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Browser-Side Security:</strong> Your professional secrets never leave your laptop.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>No Signup Required:</strong> Start optimizing your LinkedIn presence in 1 second.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>India-Specific Templates:</strong> Connection request scripts for the Indian job market (TCS, Infosys, Wipro, Startups).</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">LinkedIn Connection Requests for Job Seekers</h2>
+                <p style="line-height:1.8;color:#4b5563;">Struggling to get your connection requests accepted? Our <b>connection message generator</b> provides pre-built scripts for networking with recruiters and industry experts. From <b>referral ask templates</b> to <b>cold outreach messages</b>, we help you break the ice professionally.</p>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:1.5rem;margin-top:1.5rem;">
+                    <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+                        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Founders</h3>
+                        <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Build authority and attract investors with data-backed post structures.</p>
+                    </div>
+                    <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+                        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Freelancers</h3>
+                        <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Generate inbound leads by sharing value-driven storytelling posts.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is the LinkedIn Hook Generator free?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, our <b>LinkedIn opening line generator</b> is 100% free with no limits on how many hooks you can create.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Can I use bold text on LinkedIn?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">LinkedIn doesn't natively support bolding, but our tool uses <b>safe Unicode characters</b> that appear bold on all devices, making your posts stand out in the feed.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is my data private if I use an online LinkedIn tool?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Most tools aren't, but ours is. Everything runs in your <b>local browser environment</b>, meaning your drafts and sensitive professional data are never stored on any server.</p>
+                </details>
+            </section>
+        </div>
+
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Other Free Tools You Might Need</h2>
+                <div class="tools-grid">
+        <a href="age-calculator" class="tool-card">
+            <div class="tool-icon">🎂</div>
+            <div class="tool-title">Age Calculator</div>
+            <div class="tool-desc">Calculate exact age, next birthday, and life milestones.</div>
+        </a>
+        <a href="gst-calculator" class="tool-card">
+            <div class="tool-icon">🧾</div>
+            <div class="tool-title">GST Calculator</div>
+            <div class="tool-desc">Quickly add or remove GST tax from any amount.</div>
+        </a>
+        <a href="emi-calculator" class="tool-card">
+            <div class="tool-icon">💰</div>
+            <div class="tool-title">EMI Calculator</div>
+            <div class="tool-desc">Loan amortization schedules and monthly payment estimator.</div>
+        </a>
+        <a href="percentage-calculator" class="tool-card">
+            <div class="tool-icon">%</div>
+            <div class="tool-title">Percentage Calculator</div>
+            <div class="tool-desc">Calculate discounts, increases, and percentage portions.</div>
+        </a>
+        <a href="scientific-calculator" class="tool-card">
+            <div class="tool-icon">🧮</div>
+            <div class="tool-title">Scientific Calculator</div>
+            <div class="tool-desc">Advanced mathematical functions including trig and logs.</div>
+        </a>
+        <a href="number-to-words-converter" class="tool-card">
+            <div class="tool-icon">📝</div>
+            <div class="tool-title">Number to Words</div>
+            <div class="tool-desc">Convert figures to words for cheques and invoices (Indian format).</div>
+        </a></div>
+            </section>
+        </div>
+        <!-- End SEO Content Block -->
+    
+    </main>
+
+    <footer></footer>
+
+    <script src="/js/common.js?v=2.4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            const pageH1 = document.getElementById('page-h1');
+            const pageDesc = document.getElementById('page-desc');
+
+            const toolMetadata = {
+                formatter: {
+                    h1: "Free LinkedIn Post Formatter Online",
+                    desc: "Format your LinkedIn posts instantly with our free online tool. Support for emojis, line breaks, and viral templates.",
+                    title: "Free LinkedIn Post Formatter Online – Format & Clean Your Posts Instantly"
+                },
+                hooks: {
+                    h1: "LinkedIn Hook Generator",
+                    desc: "Generate scroll-stopping opening lines for LinkedIn posts for free. Proven hooks to increase engagement.",
+                    title: "LinkedIn Hook Generator – Create Scroll-Stopping Post Openings for Free"
+                },
+                templates: {
+                    h1: "LinkedIn Connection Request Templates",
+                    desc: "High-converting templates for LinkedIn networking, job referrals, and client outreach. 100% free and ready to copy.",
+                    title: "LinkedIn Connection Message Templates – Networking & Job Outreach Scripts"
+                },
+                headline: {
+                    h1: "LinkedIn Headline Generator & Optimizer",
+                    desc: "Create professional LinkedIn profile headlines that attract recruiters and clients. Free optimization tool.",
+                    title: "LinkedIn Headline Generator & Optimizer – Create Professional Profile Headlines"
+                },
+                hashtags: {
+                    h1: "LinkedIn Hashtag Generator",
+                    desc: "Find the best hashtags for your LinkedIn posts to maximize reach. Trending and niche hashtag finder.",
+                    title: "LinkedIn Hashtag Generator – Find the Best Hashtags for Your Posts"
+                },
+                engagement: {
+                    h1: "LinkedIn Engagement Calculator",
+                    desc: "Analyze and improve your LinkedIn post engagement before publishing. Predict performance instantly.",
+                    title: "LinkedIn Engagement Calculator – Analyze & Improve Your Post Before Publishing"
+                }
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+
+                    // Update buttons
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Update content
+                    contents.forEach(c => c.classList.remove('active'));
+                    document.getElementById(target).classList.add('active');
+
+                    // Update Dynamic Metadata
+                    const meta = toolMetadata[target];
+                    if (meta) {
+                        pageH1.textContent = meta.h1;
+                        pageDesc.textContent = meta.desc;
+                        document.title = meta.title;
+
+                        // Update URL hash without reload
+                        window.history.replaceState(null, null, `#${target}`);
+                    }
+                });
+            });
+
+            // Post Formatter Logic
+            const formatterInput = document.getElementById('formatter-input');
+            const formatterPreview = document.getElementById('formatter-preview');
+            const formatterChars = document.getElementById('formatter-chars');
+            const formatterRead = document.getElementById('formatter-read');
+
+            function updateFormatter() {
+                const text = formatterInput.value;
+                formatterPreview.textContent = text || "Preview will appear here...";
+                formatterChars.textContent = text.length;
+                const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+                formatterRead.textContent = Math.ceil(words / 3); // ~3 words per second for LinkedIn skimming
+            }
+
+            formatterInput.addEventListener('input', updateFormatter);
+
+            window.formatStyle = (style) => {
+                let text = formatterInput.value;
+                if (!text) return;
+
+                // Basic cleanup
+                text = text.replace(/\n{3,}/g, '\n\n');
+
+                if (style === 'viral') {
+                    // One sentence per paragraph
+                    text = text.split(/[.!?]+\s+/).join('\n\n');
+                } else if (style === 'story') {
+                    // Mix of short and slightly longer blocks
+                    const sentences = text.split(/[.!?]+\s+/);
+                    text = "";
+                    for (let i = 0; i < sentences.length; i++) {
+                        text += sentences[i] + (i % 2 === 0 ? '\n\n' : ' ');
+                    }
+                } else if (style === 'value') {
+                    // Bullet point style
+                    text = text.split(/[.!?]+\s+/).map(s => `• ${s}`).join('\n\n');
+                }
+
+                formatterInput.value = text.trim();
+                updateFormatter();
+            };
+
+            window.addPatternBreaks = () => {
+                const text = formatterInput.value;
+                if (!text) return;
+                formatterInput.value = text + "\n\n----------\n\n";
+                updateFormatter();
+            };
+
+            window.toggleSchedulerPreview = () => {
+                const preview = document.getElementById('formatter-preview');
+                const btn = document.getElementById('scheduler-toggle');
+                const isScheduled = preview.getAttribute('data-view') === 'scheduled';
+                
+                if (isScheduled) {
+                    preview.setAttribute('data-view', 'standard');
+                    preview.style.border = "none";
+                    preview.style.background = "white";
+                    btn.textContent = "📅 Scheduler Preview";
+                    btn.style.background = "#eff6ff";
+                } else {
+                    preview.setAttribute('data-view', 'scheduled');
+                    preview.style.border = "2px solid #3b82f6";
+                    preview.style.background = "#f0f7ff";
+                    btn.textContent = "📱 Standard Preview";
+                    btn.style.background = "#dbeafe";
+                }
+            };
+
+            window.toggleUnicode = (type) => {
+                // For simplicity, we convert the entire current text or selected text
+                const start = formatterInput.selectionStart;
+                const end = formatterInput.selectionEnd;
+                const selectedText = formatterInput.value.substring(start, end);
+
+                if (!selectedText) {
+                    alert("Please select some text to style first!");
+                    return;
+                }
+
+                const transformed = toUnicode(selectedText, type);
+                const fullText = formatterInput.value;
+                formatterInput.value = fullText.substring(0, start) + transformed + fullText.substring(end);
+                updateFormatter();
+            };
+
+            function toUnicode(text, type) {
+                const map = {
+                    bold: {
+                        'A': '𝗔', 'B': '𝗕', 'C': '𝗖', 'D': '𝗗', 'E': '𝗘', 'F': '𝗙', 'G': '𝗚', 'H': '𝗛', 'I': '𝗜', 'J': '𝗝', 'K': '𝗞', 'L': '𝗟', 'M': '𝗠', 'N': '𝗡', 'O': '𝗢', 'P': '𝗣', 'Q': '𝗤', 'R': '𝗥', 'S': '𝗦', 'T': '𝗧', 'U': '𝗨', 'V': '𝗩', 'W': '𝗪', 'X': '𝗫', 'Y': '𝗬', 'Z': '𝗭',
+                        'a': '𝗮', 'b': '𝗯', 'c': '𝗰', 'd': '𝗱', 'e': '𝗲', 'f': '𝗳', 'g': '𝗴', 'h': '𝗵', 'i': '𝗶', 'j': '𝗷', 'k': '𝗸', 'l': '𝗹', 'm': '𝗺', 'n': '𝗻', 'o': '𝗼', 'p': '𝗽', 'q': '𝗾', 'r': '𝗿', 's': '𝘀', 't': '𝘁', 'u': '𝘂', 'v': '𝘃', 'w': '𝘄', 'x': '𝘅', 'y': '𝘆', 'z': '𝘇',
+                        '0': '𝟬', '1': '𝟭', '2': '𝟮', '3': '𝟯', '4': '𝟰', '5': '𝟱', '6': '𝟲', '7': '𝟳', '8': '𝟴', '9': '𝟵'
+                    },
+                    italic: {
+                        'A': '𝘈', 'B': '𝘉', 'C': '𝘊', 'D': '𝘋', 'E': '𝘌', 'F': '𝘍', 'G': '𝘎', 'H': '𝘏', 'I': '𝘐', 'J': '𝘑', 'K': '𝘒', 'L': '𝘓', 'M': '𝘔', 'N': '𝘕', 'O': '𝘖', 'P': '𝘗', 'Q': '𝘘', 'R': '𝘙', 'S': '𝘚', 'T': '𝘛', 'U': '𝘜', 'V': '𝘝', 'W': '𝘞', 'X': '𝘟', 'Y': '𝘠', 'Z': '𝘡',
+                        'a': '𝘢', 'b': '𝘣', 'c': '𝘤', 'd': '𝘥', 'e': '𝘦', 'f': '𝘧', 'g': '𝘨', 'h': '𝘩', 'i': '𝘪', 'j': '𝘫', 'k': '𝘬', 'l': '𝘭', 'm': '𝘮', 'n': '𝘯', 'o': '𝘰', 'p': '𝘱', 'q': '𝘲', 'r': '𝘳', 's': '𝘴', 't': '𝘵', 'u': '𝘶', 'v': '𝘷', 'w': '𝘸', 'x': '𝘹', 'y': '𝘺', 'z': '𝘻'
+                    }
+                };
+                return text.split('').map(c => map[type][c] || c).join('');
+            }
+
+            window.copyFormatted = () => {
+                const text = formatterInput.value;
+                if (!text) return;
+                navigator.clipboard.writeText(text).then(() => alert("Copied to clipboard!"));
+            };
+
+            window.clearFormatter = () => {
+                if (confirm("Clear all text?")) {
+                    formatterInput.value = "";
+                    updateFormatter();
+                }
+            };
+
+            // Hook Generator Logic
+            const hooks = [
+                { cat: 'curiosity', text: "I found a secret that most 9-to-5ers will never know." },
+                { cat: 'curiosity', text: "Stop scrolling. You're losing money every second you ignore this." },
+                { cat: 'curiosity', text: "The #1 reason you aren't growing on LinkedIn (it's not the algorithm)." },
+                { cat: 'authority', text: "I've spent 10,000 hours mastering [Skill]. Here's what I learned." },
+                { cat: 'authority', text: "After scaling to $100k/month, I realized one thing." },
+                { cat: 'authority', text: "I analyzed 1,000 viral posts so you don't have to." },
+                { cat: 'data', text: "87% of creators fail because of this one mistake." },
+                { cat: 'data', text: "The data is in: LinkedIn engagement is up 40% for this post type." },
+                { cat: 'data', text: "9 out of 10 founders are making this critical hiring error." },
+                { cat: 'story', text: "3 years ago, I was broke and sleeping on a couch." },
+                { cat: 'story', text: "I almost quit my dream job yesterday. Here's why." },
+                { cat: 'story', text: "The biggest lesson I learned from a failed multi-million dollar exit." },
+                { cat: 'contrarian', text: "Unpopular opinion: Monday mornings are actually the best." },
+                { cat: 'contrarian', text: "Stop networking. It's a waste of time unless you do this." },
+                { cat: 'contrarian', text: "Consistency is overrated. Here's what actually builds an audience." }
+            ];
+
+            window.generateHook = () => {
+                const cat = document.getElementById('hook-category').value;
+                const filtered = cat === 'all' ? hooks : hooks.filter(h => h.cat === cat);
+                const random = filtered[Math.floor(Math.random() * filtered.length)];
+
+                document.getElementById('hook-result-container').style.display = 'block';
+                document.getElementById('hook-result').textContent = random.text;
+            };
+
+            window.copyHook = () => {
+                const text = document.getElementById('hook-result').textContent;
+                navigator.clipboard.writeText(text).then(() => alert("Hook copied!"));
+            };
+
+            window.copyTemplate = (btn) => {
+                const text = btn.parentElement.querySelector('.template-text').textContent.trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    const original = btn.textContent;
+                    btn.textContent = "✅ Copied!";
+                    btn.style.background = "var(--success-color)";
+                    btn.style.color = "white";
+                    setTimeout(() => {
+                        btn.textContent = original;
+                        btn.style.background = "";
+                        btn.style.color = "";
+                    }, 2000);
+                });
+            };
+
+            window.sendToFormatter = () => {
+                const text = document.getElementById('hook-result').textContent;
+                formatterInput.value = text + "\n\n" + formatterInput.value;
+                document.querySelector('[data-tab="formatter"]').click();
+                updateFormatter();
+            };
+
+            // Headline Optimizer Logic
+            const powerWords = ['secret', 'hack', 'proven', 'ultimate', 'guide', 'results', 'massive', 'growth', 'free', 'best', 'top', 'simple', 'fast', 'quick'];
+
+            window.optimizeHeadline = () => {
+                const input = document.getElementById('headline-input').value.trim();
+                if (!input) return;
+
+                let score = 0;
+                const suggestions = [];
+
+                // 1. Length Check
+                if (input.length >= 40 && input.length <= 70) {
+                    score += 30;
+                } else if (input.length < 40) {
+                    suggestions.push("🔹 <b>Headline too short:</b> Aim for 40-70 characters for better visibility.");
+                } else {
+                    suggestions.push("🔸 <b>Headline too long:</b> It might get cut off in mobile feeds.");
+                }
+
+                // 2. Power Words
+                const words = input.toLowerCase().split(/\W+/);
+                const foundPower = words.filter(w => powerWords.includes(w));
+                if (foundPower.length > 0) {
+                    score += Math.min(foundPower.length * 10, 30);
+                } else {
+                    suggestions.push("💡 <b>Add Power Words:</b> Use words like 'Proven', 'Fast', or 'Secret' to grab attention.");
+                }
+
+                // 3. Numbers
+                if (/\d+/.test(input)) {
+                    score += 15;
+                } else {
+                    suggestions.push("🔢 <b>Use Numbers:</b> Headlines with numbers (e.g., '5 Tips') tend to get 36% more clicks.");
+                }
+
+                // 4. Questions/Punctuation
+                if (/[?!]/.test(input)) {
+                    score += 10;
+                } else {
+                    suggestions.push("❓ <b>Try a Question:</b> Piquing curiosity with a question can increase engagement.");
+                }
+
+                // 5. Capitalization
+                if (/[A-Z]/.test(input)) score += 15;
+
+                // Final Score Update
+                const finalScore = Math.min(score, 100);
+                const scoreEl = document.getElementById('headline-score');
+                const gradeEl = document.getElementById('headline-grade');
+                const barEl = document.getElementById('score-bar');
+                const sugEl = document.getElementById('headline-suggestions');
+
+                scoreEl.textContent = finalScore;
+                barEl.style.width = finalScore + '%';
+
+                if (finalScore >= 80) { gradeEl.textContent = "Great Headline!"; gradeEl.style.color = "var(--secondary-color)"; }
+                else if (finalScore >= 50) { gradeEl.textContent = "Good, but could be better"; gradeEl.style.color = "var(--accent-color)"; }
+                else { gradeEl.textContent = "Needs Work"; gradeEl.style.color = "var(--error-color)"; }
+
+                sugEl.innerHTML = suggestions.length > 0 ? suggestions.map(s => `<li>${s}</li>`).join('') : "<li>✨ <b>Perfect!</b> Your headline is well-optimized.</li>";
+                document.getElementById('optimizer-results').style.display = 'block';
+            };
+
+            // Hashtag Finder Logic
+            window.generateHashtags = () => {
+                const keyword = document.getElementById('hashtag-keyword').value.trim();
+                if (!keyword) return;
+
+                const base = keyword.replace(/\s+/g, '');
+                const variations = [
+                    base, base + 'Tips', base + 'Strategy', base + 'Growth',
+                    'Digital' + base, base + 'Life', base + 'Community',
+                    'Learn' + base, base + 'Hacks', 'Best' + base
+                ];
+
+                const listEl = document.getElementById('hashtag-list');
+                listEl.innerHTML = variations.map(v => {
+                    const reach = ['High', 'Medium', 'Trending'][Math.floor(Math.random() * 3)];
+                    const color = reach === 'High' ? 'var(--secondary-color)' : (reach === 'Trending' ? 'var(--primary-color)' : 'var(--accent-color)');
+                    return `<div class="tool-chip" style="border: 1px solid ${color};">#${v} <small style="margin-left:5px; opacity:0.7; font-size:10px;">${reach}</small></div>`;
+                }).join('');
+
+                document.getElementById('hashtag-results').style.display = 'block';
+            };
+
+            window.copyAllHashtags = () => {
+                const tags = Array.from(document.querySelectorAll('#hashtag-list .tool-chip')).map(el => el.textContent.split(' ')[0]).join(' ');
+                navigator.clipboard.writeText(tags).then(() => alert("All hashtags copied!"));
+            };
+
+            // Engagement Estimator Logic
+            window.estimateEngagement = () => {
+                const text = document.getElementById('engagement-input').value.trim();
+                if (!text) return;
+
+                // 1. Hook Strength
+                const firstLine = text.split('\n')[0];
+                const hookScore = (firstLine.length > 10 && firstLine.length < 100 && /[?!.]$/.test(firstLine)) ? 90 : 40;
+
+                // 2. Readability (White space)
+                const lineBreaks = (text.match(/\n\n/g) || []).length;
+                const readabilityScore = Math.min(lineBreaks * 20, 100);
+
+                // 3. CTA Score
+                const ctaWords = ['comment', 'share', 'click', 'link', '👇', '?', 'what do you think'];
+                const hasCTA = ctaWords.some(word => text.toLowerCase().includes(word));
+                const ctaScore = hasCTA ? 95 : 30;
+
+                // Update UI
+                document.getElementById('engagement-placeholder').style.display = 'none';
+                document.getElementById('engagement-results').style.display = 'block';
+
+                updateMetric('hook', hookScore);
+                updateMetric('readability', readabilityScore);
+                updateMetric('cta', ctaScore);
+
+                const avg = (hookScore + readabilityScore + ctaScore) / 3;
+                const labelEl = document.getElementById('performance-label');
+                if (avg >= 80) { labelEl.textContent = "EXCELLENT"; labelEl.style.color = "var(--secondary-color)"; }
+                else if (avg >= 50) { labelEl.textContent = "AVERAGE"; labelEl.style.color = "var(--accent-color)"; }
+                else { labelEl.textContent = "WEAK"; labelEl.style.color = "var(--error-color)"; }
+            };
+
+            function updateMetric(id, score) {
+                const bar = document.getElementById(`metric-${id}-bar`);
+                const label = document.getElementById(`metric-${id}`);
+                bar.style.width = score + '%';
+
+                if (score >= 80) { label.textContent = "Strong"; bar.style.backgroundColor = "var(--secondary-color)"; }
+                else if (score >= 50) { label.textContent = "Moderate"; bar.style.backgroundColor = "var(--accent-color)"; }
+                else { label.textContent = "Weak"; bar.style.backgroundColor = "var(--error-color)"; }
+            }
+
+            // Handle initial hash
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.querySelector(`[data-tab="${hash}"]`)) {
+                document.querySelector(`[data-tab="${hash}"]`).click();
+            }
+        });
+    </script>
+</body>
+
+</html>

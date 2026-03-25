@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+</script>
+    <script>
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Address Lookup Tool | What Is My IP? - WorldOfTools</title>
+    <meta name="description" content="Instantly discover your public IPv4/IPv6 address, detailed geolocation, ISP, and network information with our free IP lookup tool. No signup required.">
+    <link rel="canonical" href="https://worldoftools.in/ip-address-lookup" />
+    <meta name="keywords" content="what is my ip address, show my ip, ip lookup tool, ip address checker, find my ip, ip geolocation, public ip address, ipv4, ipv6, isp lookup">
+    <link rel="stylesheet" href="/css/style.css?v=2.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <meta name="theme-color" content="#4f46e5">
+
+    <style>
+        .ip-hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ip-hero::before {
+            content: '';
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .ip-display {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin: 0.5rem 0 0.25rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .ip-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .ip-location {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        .copy-btn {
+            margin-top: 1.25rem;
+            background: rgba(255,255,255,0.2);
+            border: 1.5px solid rgba(255,255,255,0.5);
+            color: white;
+            padding: 0.55rem 1.4rem;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover { background: rgba(255,255,255,0.3); }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            width: 48px;
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        /* Lookup any IP */
+        .lookup-form {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lookup-form h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+
+        .lookup-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .lookup-row input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .lookup-row input:focus { border-color: var(--primary-color); }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        .pulse { animation: pulse 1.2s ease-in-out infinite; }
+
+        @media (max-width: 480px) {
+            .lookup-row { flex-direction: column; }
+            .ip-display { font-size: 1.75rem; }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is my IP address?", "acceptedAnswer": {"@type": "Answer", "text": "Your IP address is a unique number assigned to your internet connection by your ISP. This tool detects and displays it automatically when you visit the page."}},
+        {"@type": "Question", "name": "What is an IP address used for?", "acceptedAnswer": {"@type": "Answer", "text": "IP addresses identify devices on a network, allow routing of internet traffic, and are used for geolocation, security, and network troubleshooting."}},
+        {"@type": "Question", "name": "Can I find someone's location from their IP address?", "acceptedAnswer": {"@type": "Answer", "text": "IP geolocation gives an approximate city or region, not an exact address. It is accurate to the city level in most cases but not precise enough to pinpoint a house."}},
+        {"@type": "Question", "name": "What is IPv4 vs IPv6?", "acceptedAnswer": {"@type": "Answer", "text": "IPv4 uses 32-bit addresses (e.g. 192.168.1.1) with ~4 billion possible addresses. IPv6 uses 128-bit addresses and supports a virtually unlimited number of devices."}},
+        {"@type": "Question", "name": "How do I hide my IP address?", "acceptedAnswer": {"@type": "Answer", "text": "You can use a VPN (Virtual Private Network) or Tor browser to mask your real IP address with a different one."}},
+        {"@type": "Question", "name": "Is my IP address private?", "acceptedAnswer": {"@type": "Answer", "text": "Your public IP is visible to every website you visit. Your private IP (like 192.168.x.x) is only visible within your local network."}},
+        {"@type": "Question", "name": "Does my IP address change?", "acceptedAnswer": {"@type": "Answer", "text": "Most home connections have a dynamic IP that may change when you restart your router. A static IP is permanently assigned and doesn't change."}}
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "IP Address Lookup Tool",
+      "operatingSystem": "Any",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://worldoftools.in"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Web Utilities Free",
+        "item": "https://worldoftools.in/web-utilities-free"
+      }, {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "IP Address Lookup",
+        "item": "https://worldoftools.in/ip-address-lookup"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "IP Address Lookup",
+      "description": "Discover your public IP address and geotargeting information.",
+      "url": "https://worldoftools.in/ip-address-lookup",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "isPartOf": {
+        "@type": "CollectionPage",
+        "name": "Web Utilities Free",
+        "url": "https://worldoftools.in/web-utilities-free"
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <header></header>
+    <main class="container" data-category-name="Web Utilities Free" data-category-url="/web-utilities-free" data-tool-name="IP Address Lookup">
+        <div class="tool-container">
+            <section class="tool-header">
+                <h1>IP Address Lookup Tool — Find Your Public IPv4/IPv6 & Location</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Instantly find your public IP address, ISP, country, city and timezone. Also look up any IP address location.</p>
+            </section>
+
+            <div class="tool-main-card">
+
+                <!-- Hero: My IP -->
+                <div class="ip-hero" id="ipHero">
+                    <div class="ip-label">Your Public IP Address</div>
+                    <div class="ip-display" id="myIP"><span class="pulse">Detecting...</span></div>
+                    <div class="ip-location" id="myLocation">Fetching location...</div>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center; align-items: center; margin-top: 1.25rem;">
+                        <button class="copy-btn" style="margin-top: 0;" onclick="copyIP()">📋 Copy IP Address</button>
+                        <button class="copy-btn outline-btn" style="margin-top: 0; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3);" onclick="detectMyIP()">🔄 Refresh</button>
+                    </div>
+                </div>
+
+                <!-- Info Grid -->
+                <div class="info-grid" id="infoGrid">
+                    <div class="info-card"><div class="info-icon">🌍</div><div><div class="info-label">Country</div><div class="info-value" id="iCountry">—</div></div></div>
+                    <div class="info-card"><div class="info-icon">🏙️</div><div><div class="info-label">City / Region</div><div class="info-value" id="iCity">—</div></div></div>
+                    <div class="info-card"><div class="info-icon">📡</div><div><div class="info-label">ISP / Org</div><div class="info-value" id="iISP">—</div></div></div>
+                    <div class="info-card"><div class="info-icon">🕐</div><div><div class="info-label">Timezone</div><div class="info-value" id="iTimezone">—</div></div></div>
+                    <div class="info-card"><div class="info-icon">📮</div><div><div class="info-label">Postal Code</div><div class="info-value" id="iPostal">—</div></div></div>
+                    <div class="info-card"><div class="info-icon">🔗</div><div><div class="info-label">IP Type</div><div class="info-value" id="iType">—</div></div></div>
+                </div>
+
+                <!-- Lookup any IP -->
+                <div class="lookup-form">
+                    <h3>🔍 Look Up Any IP Address</h3>
+                    <div class="lookup-row">
+                        <input type="text" id="lookupInput" placeholder="Enter IP address e.g. 8.8.8.8" maxlength="45">
+                        <button class="btn" onclick="lookupIP()">Look Up</button>
+                    </div>
+                    <div class="loading-spinner" id="lookupSpinner">⏳ Looking up...</div>
+                    <div id="lookupResult" style="margin-top:1rem;display:none;">
+                        <div class="info-grid" style="margin-bottom:0;">
+                            <div class="info-card"><div class="info-icon">🌐</div><div><div class="info-label">IP</div><div class="info-value" id="lIP">—</div></div></div>
+                            <div class="info-card"><div class="info-icon">🌍</div><div><div class="info-label">Country</div><div class="info-value" id="lCountry">—</div></div></div>
+                            <div class="info-card"><div class="info-icon">🏙️</div><div><div class="info-label">City / Region</div><div class="info-value" id="lCity">—</div></div></div>
+                            <div class="info-card"><div class="info-icon">📡</div><div><div class="info-label">ISP / Org</div><div class="info-value" id="lISP">—</div></div></div>
+                            <div class="info-card"><div class="info-icon">🕐</div><div><div class="info-label">Timezone</div><div class="info-value" id="lTimezone">—</div></div></div>
+                            <div class="info-card"><div class="info-icon">📮</div><div><div class="info-label">Postal</div><div class="info-value" id="lPostal">—</div></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                    🛡️ We do not log or store any IP addresses. This tool is 100% private.
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">What Is an IP Address?</h2>
+                <p style="line-height:1.8;color:#4b5563;">An IP (Internet Protocol) address is a unique numerical label assigned to every device connected to a network. It serves two main purposes: identifying your device and providing its network location so data can be routed correctly across the internet. When you type a website address, your IP is used to send and receive information.</p>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use This Tool — Step-by-Step</h2>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Open the page — your IP address and location are detected automatically.</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Click <strong>Copy IP Address</strong> to copy your IP to the clipboard.</p></div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">To look up any other IP, enter it in the <strong>Look Up Any IP</strong> box and click Look Up.</p></div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features</h2>
+                <ul style="list-style:none;padding:0;margin:0;">
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Instant auto-detection:</strong> Your IP is shown immediately on page load, no button click needed.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Lookup any IP:</strong> Enter any IP address to see its country, city, ISP and timezone.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>ISP & Org detection:</strong> See which internet provider or organization owns the IP.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>No logs, fully private:</strong> We never store or log any IP address data.</span></li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📊 Use Cases — Who Uses IP Lookup?</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
+                    <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;"><h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Network Troubleshooting</h3><p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Identify your public IP to configure port forwarding, VPNs, and remote access.</p></div>
+                    <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;"><h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Security & Fraud Detection</h3><p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Identify suspicious IPs and check if your IP has been blocklisted.</p></div>
+                    <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;"><h3 style="font-size:1.1rem;margin-bottom:0.5rem;">VPN Verification</h3><p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Confirm your VPN is working by checking that your visible IP has changed.</p></div>
+                </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">What is my IP address?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Your IP address is a unique number assigned to your internet connection by your ISP. This tool detects and displays it automatically.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Can I find someone's location from their IP?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">IP geolocation gives an approximate city or region, not an exact address. Accuracy varies by ISP and country.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">What is IPv4 vs IPv6?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">IPv4 uses 32-bit addresses (e.g. 192.168.1.1). IPv6 uses 128-bit addresses to support many more devices globally.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">How do I hide my IP address?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Use a VPN or Tor browser to mask your real IP with a different one.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Does my IP address change?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Most home connections have a dynamic IP that may change when you restart your router. A static IP is permanently assigned.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is my IP address private?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Your public IP is visible to every website you visit. Your private IP (like 192.168.x.x) is only visible within your local network.</p></details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Does it work on mobile?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, fully responsive. Works on all devices and browsers.</p></details>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📚 About IP Geolocation</h2>
+                <div style="line-height:1.8;color:#4b5563;">
+                    <p>IP geolocation works by mapping IP address ranges to geographic locations using databases maintained by organizations like MaxMind and IP2Location. ISPs are assigned blocks of IP addresses by regional registries (ARIN, APNIC, RIPE, etc.), and this assignment information is used to determine country, city, and ISP.</p>
+                    <p style="margin-top:1rem;">Accuracy varies — country-level detection is ~99% accurate, city-level is ~60-80% accurate, and precise street-level location is not possible from an IP alone.</p>
+                </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Other Free Tools You Might Need</h2>
+                <div class="tools-grid">
+                    <a href="url-encoder-decoder" class="tool-card"><div class="tool-icon">🔗</div><div class="tool-title">URL Encoder</div><div class="tool-desc">Encode or decode URLs for safe web use.</div></a>
+                    <a href="password-generator" class="tool-card"><div class="tool-icon">🔐</div><div class="tool-title">Password Generator</div><div class="tool-desc">Generate strong, secure random passwords.</div></a>
+                    <a href="hash-generator" class="tool-card"><div class="tool-icon">#</div><div class="tool-title">Hash Generator</div><div class="tool-desc">Generate MD5, SHA256, SHA512 hashes.</div></a>
+                    <a href="base64-encoder-decoder" class="tool-card"><div class="tool-icon">🔄</div><div class="tool-title">Base64 Encoder</div><div class="tool-desc">Encode and decode Base64 strings.</div></a>
+                    <a href="jwt-decoder" class="tool-card"><div class="tool-icon">🔑</div><div class="tool-title">JWT Decoder</div><div class="tool-desc">Decode and inspect JWT tokens.</div></a>
+                    <a href="time-zone-converter" class="tool-card"><div class="tool-icon">🕐</div><div class="tool-title">Timezone Converter</div><div class="tool-desc">Convert times between world timezones.</div></a>
+                </div>
+            </section>
+        </div>
+        <!-- End SEO Content Block -->
+    </main>
+
+    <footer></footer>
+    <script src="/js/common.js?v=2.4"></script>
+    <script>
+        let myIPAddress = '';
+
+        // ── Auto-detect my IP ──────────────────────────────────────────────────
+        async function detectMyIP() {
+            document.getElementById('myIP').innerHTML = '<span class="pulse">Detecting...</span>';
+            document.getElementById('myLocation').textContent = 'Fetching location...';
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                const d = await res.json();
+                myIPAddress = d.ip || '—';
+
+                document.getElementById('myIP').textContent = myIPAddress;
+                document.getElementById('myLocation').textContent =
+                    [d.city, d.region, d.country_name].filter(Boolean).join(', ');
+
+                document.getElementById('iCountry').textContent  = (d.country_flag_emoji ? d.country_flag_emoji + ' ' : '') + (d.country_name || '—');
+                document.getElementById('iCity').textContent     = [d.city, d.region].filter(Boolean).join(', ') || '—';
+                document.getElementById('iISP').textContent      = d.org || '—';
+                document.getElementById('iTimezone').textContent = d.timezone || '—';
+                document.getElementById('iPostal').textContent   = d.postal || '—';
+                document.getElementById('iType').textContent     = d.ip && d.ip.includes(':') ? 'IPv6' : 'IPv4';
+            } catch (e) {
+                document.getElementById('myIP').textContent = 'Could not detect';
+                document.getElementById('myLocation').textContent = 'Check your connection';
+            }
+        }
+
+        // ── Copy IP ────────────────────────────────────────────────────────────
+        function copyIP() {
+            if (!myIPAddress) return;
+            navigator.clipboard.writeText(myIPAddress).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => btn.textContent = '📋 Copy IP Address', 2000);
+            });
+        }
+
+        // ── Lookup any IP ──────────────────────────────────────────────────────
+        async function lookupIP() {
+            const ip = document.getElementById('lookupInput').value.trim();
+            if (!ip) { alert('Please enter an IP address.'); return; }
+
+            const spinner = document.getElementById('lookupSpinner');
+            const result = document.getElementById('lookupResult');
+            spinner.style.display = 'block';
+            result.style.display = 'none';
+
+            try {
+                const res = await fetch(`https://ipapi.co/${encodeURIComponent(ip)}/json/`);
+                const d = await res.json();
+                if (d.error) throw new Error(d.reason || 'Invalid IP');
+
+                document.getElementById('lIP').textContent       = d.ip || ip;
+                document.getElementById('lCountry').textContent  = (d.country_flag_emoji ? d.country_flag_emoji + ' ' : '') + (d.country_name || '—');
+                document.getElementById('lCity').textContent     = [d.city, d.region].filter(Boolean).join(', ') || '—';
+                document.getElementById('lISP').textContent      = d.org || '—';
+                document.getElementById('lTimezone').textContent = d.timezone || '—';
+                document.getElementById('lPostal').textContent   = d.postal || '—';
+
+                result.style.display = 'block';
+            } catch (e) {
+                alert('Could not look up that IP. Please check and try again.');
+            } finally {
+                spinner.style.display = 'none';
+            }
+        }
+
+        document.getElementById('lookupInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') lookupIP();
+        });
+
+        detectMyIP();
+    </script>
+</body>
+
+</html>

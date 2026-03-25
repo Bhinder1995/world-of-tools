@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+</script>
+    <script>
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Image Converter — Convert PNG, JPG, WEBP, HEIC | WorldOfTools</title>
+    <meta name="description"
+        content="Convert PNG to JPG, JPG to WEBP, HEIC to JPG and more — free, instant, no account. Everything runs in your browser. Your images are never uploaded to any server. No watermark, no limits.">
+    <meta name="keywords"
+        content="image converter, convert png to jpg, convert jpg to webp, convert heic to jpg online, free image converter no upload, png to webp converter free, image format converter browser, batch image converter online, high quality image conversion">
+    <link rel="canonical" href="https://worldoftools.in/image-converter" />
+    <link rel="stylesheet" href="/css/style.css?v=2.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <meta name="theme-color" content="#4f46e5">
+    <style>
+        .converter-ui {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .converter-ui {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .settings-card {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .preview-container {
+            position: relative;
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 12px;
+            display: none;
+            box-shadow: var(--card-shadow);
+        }
+
+        .control-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .control-label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        select,
+        input[type="range"] {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            font-family: inherit;
+            outline: none;
+        }
+
+        select:focus {
+            border-color: var(--primary-color);
+        }
+
+        #convertBtn {
+            width: 100%;
+            height: 3.5rem;
+            font-weight: 700;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: 12px;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"
+        crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{"@type": "Question", "name": "Is this Image Converter free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the Image Converter is 100% free with no hidden charges or premium subscriptions."}}, {"@type": "Question", "name": "Is my data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. All processing happens locally in your browser. We never see, store, or share your data."}}, {"@type": "Question", "name": "Do I need to sign up?", "acceptedAnswer": {"@type": "Answer", "text": "No registration or account creation is required to use any of our tools."}}, {"@type": "Question", "name": "Does it work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops."}}, {"@type": "Question", "name": "Can I use it offline?", "acceptedAnswer": {"@type": "Answer", "text": "Once the page is loaded, most functions work offline since they run in your browser's local environment."}}]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Image Converter",
+      "operatingSystem": "Any",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <div class="tool-container" style="max-width: 1200px;">
+            <section class="tool-header">
+                <h1>🖼️ Free Image Converter</h1>
+                <div
+                    style="display: inline-flex; align-items: center; gap: 0.5rem; background: #ecfdf5; color: #047857; padding: 0.35rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
+                    🛡️ 100% Private - No Uploads
+                </div>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Convert images to PNG, JPG, WEBP, or HEIC
+                    locally in your browser.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="/guides/image-converter-guide" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+                        📖 Read Image Converter Guide
+                    </a>
+                </div>
+            </section>
+
+            <div id="errorMessage"
+                style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+            </div>
+
+            <div class="tool-main-card" style="padding: 2rem;">
+                <div class="converter-ui">
+                    <div class="controls-side">
+                        <div class="upload-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                            <span style="font-size: 3rem;">📁</span>
+                            <div style="margin-top: 1rem;">
+                                <h4 style="margin-bottom: 0.25rem;">Select Image</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">or drag & drop here</p>
+                            </div>
+                            <input type="file" id="fileInput" accept="image/*,.heic" style="display: none;">
+                        </div>
+
+                        <div id="settings" style="display: none; margin-top: 1.5rem;">
+                            <div class="settings-card">
+                                <div class="control-group">
+                                    <label class="control-label">Convert To</label>
+                                    <select id="formatSelect">
+                                        <option value="image/png">PNG (Transparent)</option>
+                                        <option value="image/jpeg">JPG (Small File Size)</option>
+                                        <option value="image/webp">WEBP (Modern Format)</option>
+                                    </select>
+                                </div>
+                                <div class="control-group" id="qualityGroup" style="display: none;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <label class="control-label">Quality</label>
+                                        <span id="qualityVal"
+                                            style="font-weight: 700; color: var(--primary-color);">85%</span>
+                                    </div>
+                                    <input type="range" id="qualityRange" min="1" max="100" value="85">
+                                </div>
+                            </div>
+                            <button id="convertBtn" class="btn btn-primary">
+                                🔄 Convert & Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="preview-side">
+                        <div class="preview-container">
+                            <div id="loadingOverlay" class="loading-overlay">
+                                <div class="spinner"></div>
+                                <p style="margin-top: 1rem; font-weight: 700;">Processing Image...</p>
+                            </div>
+                            <div id="noImage" style="text-align: center; color: var(--text-muted);">
+                                <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;">🖼️</div>
+                                <p style="font-weight: 500;">Upload an image to start.</p>
+                            </div>
+                            <img id="imagePreview" class="preview-img" alt="Conversion Preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content -->
+        <!-- How to Use Section -->
+
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">What is the Image Converter?</h2>
+                <p style="line-height:1.8;color:#4b5563;">The Image Converter is a powerful and easy-to-use online utility designed to help you with your daily tasks. Whether you are a professional or a student, this tool provides a seamless experience for your needs. Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.</p>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use Image Converter — Step-by-Step</h2>
+                
+        <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
+            <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Select the source image from your local storage.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
+            <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Choose your target format (PNG, JPG, WebP, or BMP).</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
+            <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Optionally adjust the output quality or dimensions.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">4</span>
+            <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Click convert to process and download your new file format.</p>
+        </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features — Why Use Our Tool?</h2>
+                <ul style="list-style:none;padding:0;margin:0;">
+                    
+        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+            <span style="line-height:1.6;"><strong>100% Free to use:</strong>  Lossless conversion between major image types.</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+            <span style="line-height:1.6;"><strong>Privacy focused - no data sent to server:</strong>  Fast local processing using browser-based canvas APIs.</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+            <span style="line-height:1.6;"><strong>Instant results in real-time:</strong>  No file size limits or wait times for cloud uploads.</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+            <span style="line-height:1.6;"><strong>No registration required:</strong>  Batch conversion support for entire image folders.</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+            <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+            <span style="line-height:1.6;"><strong>Works on all devices and browsers:</strong>  Clean, intuitive interface with no distracting ads.</span>
+        </li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📊 Use Cases — Who Uses the Image Converter?</h2>
+                
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
+            <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Designers</h3>
+                <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Quickly switch between formats for different project requirements.</p>
+            </div>
+            <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Bloggers</h3>
+                <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Convert high-res PNGs to WebP for better web performance.</p>
+            </div>
+            <div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">For Photographers</h3>
+                <p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">Adjust file types for compatibility across different editing software.</p>
+            </div>
+        </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">🆚 Image Converter vs. Other Online Tools</h2>
+                
+        <div style="overflow-x:auto;margin-top:1rem;">
+            <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+                <thead>
+                    <tr style="background:#f9fafb;">
+                        <th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">Feature</th>
+                        <th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">WorldOfTools</th>
+                        <th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">Other Tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Privacy</td>
+                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">Local Browser</td>
+                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Server Upload</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Speed</td>
+                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">Instant</td>
+                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Delayed</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">Ads & Popups</td>
+                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">None</td>
+                        <td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">Intrusive</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.75rem 1rem;">Registration</td>
+                        <td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">Not Required</td>
+                        <td style="padding:0.75rem 1rem;text-align:center;">Often Required</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2>
+                
+        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <summary style="font-weight:700;cursor:pointer;">Is this Image Converter free?</summary>
+            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, the Image Converter is 100% free with no hidden charges or premium subscriptions.</p>
+        </details>
+        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <summary style="font-weight:700;cursor:pointer;">Is my data safe?</summary>
+            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. All processing happens locally in your browser. We never see, store, or share your data.</p>
+        </details>
+        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <summary style="font-weight:700;cursor:pointer;">Do I need to sign up?</summary>
+            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">No registration or account creation is required to use any of our tools.</p>
+        </details>
+        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <summary style="font-weight:700;cursor:pointer;">Does it work on mobile?</summary>
+            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.</p>
+        </details>
+        <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+            <summary style="font-weight:700;cursor:pointer;">Can I use it offline?</summary>
+            <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Once the page is loaded, most functions work offline since they run in your browser's local environment.</p>
+        </details>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📚 Educational Content — Deep Dive</h2>
+                
+        <div style="line-height:1.8;color:#4b5563;">
+            <p>The <strong>Image Converter</strong> utilizes advanced browser-based processing to transform your visual content with professional quality. From removing backgrounds to optimizing image size for the web, this tool provides a high-speed alternative to heavy desktop software. It's designed for creators and businesses who need fast, consistent results without compromising on detail.</p>
+            <p style="margin-top:1rem;">Handling personal photos or proprietary graphics online can be risky. Our Background Remover and other image utilities operate entirely in your browser's memory. Your images are never 'uploaded' to a cloud for processing; instead, your hardware does the work locally, ensuring that your visual assets never touch our servers.</p>
+            <p style="margin-top:1rem;">We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.</p>
+        </div>
+            
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Other Free Tools You Might Need</h2>
+                <div class="tools-grid">
+        <a href="age-calculator" class="tool-card">
+            <div class="tool-icon">🎂</div>
+            <div class="tool-title">Age Calculator</div>
+            <div class="tool-desc">Calculate exact age, next birthday, and life milestones.</div>
+        </a>
+        <a href="gst-calculator" class="tool-card">
+            <div class="tool-icon">🧾</div>
+            <div class="tool-title">GST Calculator</div>
+            <div class="tool-desc">Quickly add or remove GST tax from any amount.</div>
+        </a>
+        <a href="emi-calculator" class="tool-card">
+            <div class="tool-icon">💰</div>
+            <div class="tool-title">EMI Calculator</div>
+            <div class="tool-desc">Loan amortization schedules and monthly payment estimator.</div>
+        </a>
+        <a href="percentage-calculator" class="tool-card">
+            <div class="tool-icon">%</div>
+            <div class="tool-title">Percentage Calculator</div>
+            <div class="tool-desc">Calculate discounts, increases, and percentage portions.</div>
+        </a>
+        <a href="scientific-calculator" class="tool-card">
+            <div class="tool-icon">🧮</div>
+            <div class="tool-title">Scientific Calculator</div>
+            <div class="tool-desc">Advanced mathematical functions including trig and logs.</div>
+        </a>
+        <a href="number-to-words-converter" class="tool-card">
+            <div class="tool-icon">📝</div>
+            <div class="tool-title">Number to Words</div>
+            <div class="tool-desc">Convert figures to words for cheques and invoices (Indian format).</div>
+        </a></div>
+            </section>
+        </div>
+        <!-- End SEO Content Block -->
+    
+    </main>
+
+    <footer></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <script src="/js/common.js?v=2.4"></script>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const formatSelect = document.getElementById('formatSelect');
+        const qualityRange = document.getElementById('qualityRange');
+        const qualityVal = document.getElementById('qualityVal');
+        const qualityGroup = document.getElementById('qualityGroup');
+        const convertBtn = document.getElementById('convertBtn');
+        const imagePreview = document.getElementById('imagePreview');
+        const noImage = document.getElementById('noImage');
+        const settings = document.getElementById('settings');
+        const loading = document.getElementById('loadingOverlay');
+        const dropZone = document.getElementById('dropZone');
+
+        let originalFile = null;
+        let originalImg = new Image();
+
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+
+        formatSelect.addEventListener('change', () => {
+            qualityGroup.style.display = (formatSelect.value === 'image/jpeg' || formatSelect.value === 'image/webp') ? 'block' : 'none';
+        });
+
+        qualityRange.addEventListener('input', () => {
+            qualityVal.textContent = qualityRange.value + '%';
+        });
+
+        function handleFile(file) {
+            if (!file) return;
+            showError('');
+
+            const isHeic = file.name.toLowerCase().endsWith('.heic');
+            if (!file.type.startsWith('image/') && !isHeic) {
+                showError('Please select a valid image file.');
+                return;
+            }
+
+            originalFile = file;
+            loading.style.display = 'flex';
+
+            if (isHeic) {
+                heic2any({ blob: file, toType: 'image/jpeg', quality: 0.8 })
+                    .then(result => {
+                        const url = URL.createObjectURL(result);
+                        loadImage(url);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        showError('Failed to process HEIC file.');
+                        loading.style.display = 'none';
+                    });
+            } else {
+                const url = URL.createObjectURL(file);
+                loadImage(url);
+            }
+        }
+
+        function loadImage(url) {
+            originalImg.onload = () => {
+                imagePreview.src = url;
+                imagePreview.style.display = 'block';
+                noImage.style.display = 'none';
+                settings.style.display = 'block';
+                convertBtn.style.display = 'flex';
+                loading.style.display = 'none';
+                URL.revokeObjectURL(url);
+            };
+            originalImg.src = url;
+        }
+
+        convertBtn.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = originalImg.width;
+            canvas.height = originalImg.height;
+
+            // Draw background for JPG if needed (transparency fix)
+            if (formatSelect.value === 'image/jpeg') {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+            ctx.drawImage(originalImg, 0, 0);
+
+            const quality = qualityRange.value / 100;
+            const dataUrl = canvas.toDataURL(formatSelect.value, quality);
+
+            const link = document.createElement('a');
+            const ext = formatSelect.value.split('/')[1].replace('jpeg', 'jpg');
+            link.download = `worldoftools.in-imageconverter-${Date.now()}.${ext}`;
+            link.href = dataUrl;
+            link.click();
+
+            showError('Image converted and download started!', 'success');
+            setTimeout(() => showError(''), 3000);
+        });
+
+        function showError(msg, type = 'error') {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+                errDiv.style.display = 'flex';
+                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
+                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
+                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
+            } else {
+                errDiv.style.display = 'none';
+            }
+        }
+
+        // Drag and drop
+        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--primary-color)'; });
+        dropZone.addEventListener('dragleave', () => dropZone.style.borderColor = 'var(--border-color)');
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.style.borderColor = 'var(--border-color)';
+            if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+        });
+    </script>
+</body>
+
+</html>
