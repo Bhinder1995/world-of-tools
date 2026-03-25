@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v99';
+const CACHE_NAME = 'world-of-tools-v100';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -127,7 +127,11 @@ const ASSETS_TO_CACHE = [
     '/guides/css-gradient-generator-guide',
     '/guides/email-signature-generator-guide',
     '/guides/favicon-generator-guide',
-    '/guides/ip-address-lookup-guide'
+    '/guides/ip-address-lookup-guide',
+    '/guides/emi-sip-gst-financial-planning',
+    '/guides/how-to-start-sip-investment',
+    '/guides/compress-convert-background-images',
+    '/guides/jwt-base64-hash-developer-guide'
 ];
 
 

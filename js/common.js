@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     injectFooter();
     registerServiceWorker();
     highlightActiveLink();
-    autoRenderBreadcrumbs();
+    if (typeof autoRenderBreadcrumbs === 'function') {
+        autoRenderBreadcrumbs();
+    }
+    injectPostRecommendations();
 });
 
 
@@ -369,6 +372,107 @@ function injectFooter() {
     const footer = document.querySelector('footer');
     if (footer) {
         footer.outerHTML = footerHTML;
+    }
+}
+
+function injectPostRecommendations() {
+    const toolCard = document.querySelector('.tool-main-card');
+    if (!toolCard) return;
+
+    // Get current path and normalize it (remove .html for local testing comparison)
+    const currentPath = window.location.pathname;
+    const normalizedCurrentPath = currentPath.replace(/\.html$/, '');
+
+    // Don't inject on home page or non-tool pages
+    if (normalizedCurrentPath === '/' || normalizedCurrentPath === '/index' || normalizedCurrentPath.startsWith('/guides/')) return;
+
+    // Extract tool data from the mega menu
+    const menuColumns = document.querySelectorAll('.mega-col');
+    if (!menuColumns.length) return;
+
+    let allTools = [];
+    let currentCategoryTools = [];
+
+    menuColumns.forEach(col => {
+        const toolLinks = Array.from(col.querySelectorAll('.mega-item'));
+        if (!toolLinks.length) return;
+
+        const toolsInCol = toolLinks.map(a => {
+            const iconObj = a.querySelector('.nav-icon');
+            // Clean text nodes from 'a' excluding the icon
+            let text = '';
+            a.childNodes.forEach(node => {
+                if (node.nodeType === 3) text += node.textContent; // Text node
+            });
+            text = text.trim();
+
+            return {
+                name: text,
+                url: a.getAttribute('href'),
+                iconHtml: iconObj ? iconObj.outerHTML : ''
+            };
+        });
+        
+        allTools.push(...toolsInCol);
+
+        if (toolsInCol.some(t => t.url.replace(/\.html$/, '') === normalizedCurrentPath)) {
+            currentCategoryTools = toolsInCol;
+        }
+    });
+
+    // Strategy to find related tools:
+    // 1. Get other tools in same category
+    // 2. If < 3, fill with random tools from all categories
+    let related = currentCategoryTools.filter(t => t.url.replace(/\.html$/, '') !== normalizedCurrentPath);
+    
+    if (related.length < 3) {
+        const others = allTools.filter(t => t.url.replace(/\.html$/, '') !== normalizedCurrentPath && !related.some(r => r.url === t.url));
+        others.sort(() => 0.5 - Math.random());
+        related = [...related, ...others].slice(0, 3);
+    } else {
+        // Pick 3 random from the related category
+        related.sort(() => 0.5 - Math.random());
+        related = related.slice(0, 3);
+    }
+
+    if (related.length === 0) return;
+
+    const recContainer = document.createElement('div');
+    recContainer.className = 'post-recommendation-container';
+    
+    let html = `
+        <div class="post-rec-title">💡 Might you need these next?</div>
+        <div class="post-rec-capsules">
+    `;
+    related.forEach(t => {
+        html += `
+            <a href="${t.url}" class="rec-capsule">
+                ${t.iconHtml} ${t.name}
+            </a>
+        `;
+    });
+    html += `</div>`;
+    recContainer.innerHTML = html;
+
+    toolCard.appendChild(recContainer);
+
+    // Bind events to primary actions
+    const triggers = toolCard.querySelectorAll('button, input[type="file"], input[type="submit"]');
+    
+    if (triggers.length > 0) {
+        let showed = false;
+        triggers.forEach(trigger => {
+            const eventName = trigger.tagName.toLowerCase() === 'input' && trigger.type === 'file' ? 'change' : 'click';
+            trigger.addEventListener(eventName, () => {
+                if (!showed) {
+                    showed = true;
+                    recContainer.style.display = 'block';
+                }
+            });
+        });
+    } else {
+        // If no buttons, just show it
+        recContainer.style.display = 'block';
     }
 }
 
