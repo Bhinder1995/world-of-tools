@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Report — Video Compressor | WorldOfTools.in</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #16161f;
+    --border: #1f1f2e;
+    --accent: #6c63ff;
+    --accent2: #ff6b6b;
+    --accent3: #00e5a0;
+    --accent4: #ffc94d;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --win: #00e5a0;
+    --warn: #ffc94d;
+    --danger: #ff6b6b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0d0d1a 0%, #12102a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .tag {
+    display: inline-block;
+    background: rgba(108,99,255,0.15);
+    border: 1px solid rgba(108,99,255,0.3);
+    color: #9b93ff;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: var(--accent); }
+  .header p {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+  }
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .meta-pill .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .dot-green { background: var(--win); }
+  .dot-yellow { background: var(--warn); }
+  .dot-red { background: var(--danger); }
+  .dot-purple { background: var(--accent); }
+  /* CONTAINER */
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px; }
+  /* SCORE CARDS */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .score-card.green::before { background: var(--win); }
+  .score-card.yellow::before { background: var(--warn); }
+  .score-card.red::before { background: var(--danger); }
+  .score-card.purple::before { background: var(--accent); }
+  .score-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .score-card.green .score-num { color: var(--win); }
+  .score-card.yellow .score-num { color: var(--warn); }
+  .score-card.red .score-num { color: var(--danger); }
+  .score-card.purple .score-num { color: var(--accent); }
+  .score-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'DM Mono', monospace; }
+  .score-sub { color: var(--text); font-size: 12px; margin-top: 6px; }
+  /* SECTIONS */
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .icon-purple { background: rgba(108,99,255,0.15); }
+  .icon-green { background: rgba(0,229,160,0.12); }
+  .icon-yellow { background: rgba(255,201,77,0.12); }
+  .icon-red { background: rgba(255,107,107,0.12); }
+  .section-desc { color: var(--muted); font-size: 12px; margin-bottom: 20px; margin-left: 42px; font-family: 'DM Mono', monospace; }
+  /* KEYWORD TABLE */
+  .kw-table { width: 100%; border-collapse: collapse; }
+  .kw-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .kw-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(31,31,46,0.6);
+    vertical-align: middle;
+    font-size: 13px;
+  }
+  .kw-table tr:hover td { background: rgba(108,99,255,0.04); }
+  .kw-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+  }
+  .badge-high { background: rgba(255,107,107,0.15); color: var(--danger); border: 1px solid rgba(255,107,107,0.25); }
+  .badge-med  { background: rgba(255,201,77,0.15); color: var(--warn); border: 1px solid rgba(255,201,77,0.25); }
+  .badge-low  { background: rgba(0,229,160,0.12); color: var(--win); border: 1px solid rgba(0,229,160,0.2); }
+  .badge-primary { background: rgba(108,99,255,0.15); color: #9b93ff; border: 1px solid rgba(108,99,255,0.25); }
+  .badge-longtail { background: rgba(0,229,160,0.08); color: var(--win); border: 1px solid rgba(0,229,160,0.15); font-size: 10px; }
+  .kw-keyword { font-family: 'DM Mono', monospace; font-size: 12px; color: #c8c8e0; }
+  .vol-bar-wrap { display: flex; align-items: center; gap: 10px; }
+  .vol-bar { height: 4px; border-radius: 2px; background: rgba(108,99,255,0.5); min-width: 4px; }
+  .vol-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .priority-star { color: var(--warn); font-size: 14px; }
+  /* COMPETITOR TABLE */
+  .comp-table { width: 100%; border-collapse: collapse; }
+  .comp-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(31,31,46,0.6);
+    font-size: 12px;
+    vertical-align: top;
+  }
+  .comp-table tr:hover td { background: rgba(108,99,255,0.03); }
+  .comp-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; color: #fff; }
+  .comp-url { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; }
+  .check { color: var(--win); font-size: 15px; }
+  .cross { color: var(--danger); font-size: 15px; }
+  .partial { color: var(--warn); font-size: 13px; }
+  /* GAP CARDS */
+  .gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .gap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    position: relative;
+  }
+  .gap-card.opportunity { border-color: rgba(0,229,160,0.2); background: rgba(0,229,160,0.04); }
+  .gap-card.weakness { border-color: rgba(255,107,107,0.2); background: rgba(255,107,107,0.04); }
+  .gap-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .gap-card p { color: #a0a0b8; font-size: 12.5px; line-height: 1.6; }
+  .gap-card .action {
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-family: 'DM Mono', monospace;
+    background: rgba(108,99,255,0.1);
+    border: 1px solid rgba(108,99,255,0.2);
+    color: #9b93ff;
+  }
+  /* PRIORITY TABLE */
+  .priority-table { width: 100%; border-collapse: collapse; }
+  .priority-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .priority-table td {
+    padding: 13px 14px;
+    border-bottom: 1px solid rgba(31,31,46,0.5);
+    font-size: 12.5px;
+    vertical-align: top;
+  }
+  .priority-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: rgba(108,99,255,0.4);
+  }
+  .pill-impact {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+  }
+  .impact-high { background: rgba(0,229,160,0.12); color: var(--win); border: 1px solid rgba(0,229,160,0.2); }
+  .impact-med  { background: rgba(255,201,77,0.12); color: var(--warn); border: 1px solid rgba(255,201,77,0.2); }
+  /* UNIQUE ANGLE */
+  .usp-box {
+    background: linear-gradient(135deg, rgba(108,99,255,0.1) 0%, rgba(0,229,160,0.06) 100%);
+    border: 1px solid rgba(108,99,255,0.25);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .usp-box::before {
+    content: '"';
+    position: absolute;
+    top: -20px; right: 20px;
+    font-size: 140px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    color: rgba(108,99,255,0.08);
+    line-height: 1;
+  }
+  .usp-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .usp-box p {
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.5;
+  }
+  .usp-box .usp-sub {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+  /* CONTENT GAPS */
+  .content-list { list-style: none; }
+  .content-list li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(31,31,46,0.6);
+    align-items: flex-start;
+  }
+  .content-list li:last-child { border-bottom: none; }
+  .cli-num {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: rgba(108,99,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .cli-body h4 { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .cli-body p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .cli-body .kws { margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .kw-chip {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: #9b93ff;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+  }
+  .footer span { color: var(--accent); }
+  /* SECTION WRAP */
+  .section-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .section-wrap .table-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .table-header h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .table-header span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 32px 0;
+  }
+  @media (max-width: 768px) {
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .gap-grid { grid-template-columns: 1fr; }
+    .container { padding: 20px; }
+    .header { padding: 32px 20px 24px; }
+    .header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="tag">SEO Intelligence Report</div>
+  <h1>Video Compressor — <span>WorldOfTools.in</span></h1>
+  <p>worldoftools.in/video-compressor · Generated March 2026 · Competitive Keyword & Gap Analysis</p>
+  <div class="meta-row">
+    <div class="meta-pill"><div class="dot dot-green"></div> Your USP: 2 GB · No Upload · No Watermark · Free</div>
+    <div class="meta-pill"><div class="dot dot-yellow"></div> Competitors Analysed: 9</div>
+    <div class="meta-pill"><div class="dot dot-purple"></div> Keywords Mapped: 52+</div>
+    <div class="meta-pill"><div class="dot dot-red"></div> Critical Gaps Found: 7</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SCORES -->
+  <div class="score-grid" style="margin-top:0; padding-top:0;">
+    <div class="score-card green">
+      <div class="score-num">A</div>
+      <div class="score-label">Unique Value Prop</div>
+      <div class="score-sub">2 GB, no upload, no watermark — nobody else offers all 3 free</div>
+    </div>
+    <div class="score-card yellow">
+      <div class="score-num">C+</div>
+      <div class="score-label">Keyword Coverage</div>
+      <div class="score-sub">Good primary terms, missing 30+ long-tail opportunities</div>
+    </div>
+    <div class="score-card red">
+      <div class="score-num">D</div>
+      <div class="score-label">Schema Markup</div>
+      <div class="score-sub">No FAQPage, HowTo, or SoftwareApplication schema detected</div>
+    </div>
+    <div class="score-card purple">
+      <div class="score-num">B-</div>
+      <div class="score-label">Content Depth</div>
+      <div class="score-sub">Good base, USP not in H1, missing social platform sub-pages</div>
+    </div>
+  </div>
+
+  <!-- YOUR USP -->
+  <div class="usp-box">
+    <h3>🏆 Your Winning Angle — Lead With This Everywhere</h3>
+    <p>"The only free browser-based video compressor that handles files up to 2 GB — including full movies — with zero upload, zero watermark, and zero signup."</p>
+    <div class="usp-sub">Why this wins → VEED caps free at 1 GB (watermark on free). FreeConvert caps at 1 GB (paid for more). Clideo adds watermark on free. EzGIF caps at 200 MB. You have NO cap at all. This is your #1 weapon.</div>
+  </div>
+
+  <!-- PRIMARY KEYWORDS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-purple">🎯</div>
+      Primary Keywords to Target (High Volume)
+    </div>
+    <div class="section-desc">Core head terms — already competitive but essential to own</div>
+    <div class="section-wrap">
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Est. Monthly Volume</th>
+            <th>Competition</th>
+            <th>Your Status</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="kw-keyword">compress video online free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:90px"></div><span class="vol-num">450K–600K</span></div></td>
+            <td><span class="kw-badge badge-high">High</span></td>
+            <td><span class="kw-badge badge-med">Partial</span></td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">video compressor online</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:80px"></div><span class="vol-num">300K–450K</span></div></td>
+            <td><span class="kw-badge badge-high">High</span></td>
+            <td><span class="kw-badge badge-med">Partial</span></td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress video without losing quality</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:70px"></div><span class="vol-num">150K–250K</span></div></td>
+            <td><span class="kw-badge badge-high">High</span></td>
+            <td><span class="kw-badge badge-low">Present</span></td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">online video compressor no watermark</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:65px"></div><span class="vol-num">100K–180K</span></div></td>
+            <td><span class="kw-badge badge-med">Medium</span></td>
+            <td><span class="kw-badge badge-low">Present</span></td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">reduce video file size online</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:60px"></div><span class="vol-num">80K–130K</span></div></td>
+            <td><span class="kw-badge badge-high">High</span></td>
+            <td><span class="kw-badge badge-med">Partial</span></td>
+            <td><span class="priority-star">★★☆</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">free video compressor</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:75px"></div><span class="vol-num">120K–200K</span></div></td>
+            <td><span class="kw-badge badge-high">High</span></td>
+            <td><span class="kw-badge badge-med">Partial</span></td>
+            <td><span class="priority-star">★★☆</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress mp4 online free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:55px"></div><span class="vol-num">70K–120K</span></div></td>
+            <td><span class="kw-badge badge-med">Medium</span></td>
+            <td><span class="kw-badge badge-med">Partial</span></td>
+            <td><span class="priority-star">★★☆</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LONG-TAIL KEYWORDS — YOUR GOLDMINE -->
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-green">💎</div>
+      Long-Tail Keywords — Easiest Ranking Wins
+    </div>
+    <div class="section-desc">Lower competition, high buyer intent — competitors are SLEEPING on these</div>
+    <div class="section-wrap">
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Est. Monthly Volume</th>
+            <th>Competition</th>
+            <th>Why You Win</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="kw-keyword">compress 2gb video online free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:30px"></div><span class="vol-num">8K–20K</span></div></td>
+            <td><span class="kw-badge badge-low">Very Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">You literally support 2 GB. Nobody targets this exact kw.</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress large video file online free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:35px"></div><span class="vol-num">12K–25K</span></div></td>
+            <td><span class="kw-badge badge-low">Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">Intent = large file → your 2GB USP is the perfect answer</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">browser based video compressor no upload</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:18px"></div><span class="vol-num">2K–6K</span></div></td>
+            <td><span class="kw-badge badge-low">Very Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">Exact description of your tech — zero competitors target this</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress video for whatsapp online free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:45px"></div><span class="vol-num">30K–60K</span></div></td>
+            <td><span class="kw-badge badge-med">Medium</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">You have a WhatsApp preset — build a dedicated sub-section/FAQ</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress video for instagram free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:40px"></div><span class="vol-num">25K–45K</span></div></td>
+            <td><span class="kw-badge badge-med">Medium</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">You have Instagram preset — not exploited in page copy at all</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">video compressor no signup</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:22px"></div><span class="vol-num">5K–12K</span></div></td>
+            <td><span class="kw-badge badge-low">Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">Your tool requires zero signup — competitors like Clideo require accounts for no-watermark</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress video for email free online</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:28px"></div><span class="vol-num">8K–18K</span></div></td>
+            <td><span class="kw-badge badge-low">Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">You have Email preset — dedicated FAQ would rank fast</td>
+            <td><span class="priority-star">★★☆</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress video for youtube upload free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:32px"></div><span class="vol-num">10K–20K</span></div></td>
+            <td><span class="kw-badge badge-low">Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">You have YouTube preset — underused in SEO copy</td>
+            <td><span class="priority-star">★★☆</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress video without uploading to server</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:16px"></div><span class="vol-num">1.5K–5K</span></div></td>
+            <td><span class="kw-badge badge-low">Very Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">Privacy-focused intent — your core tech advantage, almost no competition</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">trim and compress video online free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:20px"></div><span class="vol-num">4K–10K</span></div></td>
+            <td><span class="kw-badge badge-low">Very Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">You have a Trim+Compress tab — unique feature, barely any competitors</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress video online without losing quality</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:42px"></div><span class="vol-num">25K–50K</span></div></td>
+            <td><span class="kw-badge badge-med">Medium</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">Already in page — make it H2 heading, add detailed quality comparison section</td>
+            <td><span class="priority-star">★★☆</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">how to compress a movie file online</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:25px"></div><span class="vol-num">6K–15K</span></div></td>
+            <td><span class="kw-badge badge-low">Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">"Movie" signals large file (2 GB) — nobody targets movie-size compression specifically</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">compress video to 16mb for whatsapp</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:30px"></div><span class="vol-num">8K–18K</span></div></td>
+            <td><span class="kw-badge badge-low">Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">Very specific intent — add FAQ answer with exact step for 16 MB target</td>
+            <td><span class="priority-star">★★★</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">batch video compressor online free</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:18px"></div><span class="vol-num">3K–8K</span></div></td>
+            <td><span class="kw-badge badge-low">Very Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">You have batch compression tab — barely any page mentions this</td>
+            <td><span class="priority-star">★★☆</span></td>
+          </tr>
+          <tr>
+            <td><span class="kw-keyword">webcodecs video compressor browser</span></td>
+            <td><div class="vol-bar-wrap"><div class="vol-bar" style="width:10px"></div><span class="vol-num">500–2K</span></div></td>
+            <td><span class="kw-badge badge-low">Very Low</span></td>
+            <td style="color:#a0a0b8; font-size:11.5px;">Technical niche — dev/tech audience, zero competition, you use WebCodecs API</td>
+            <td><span class="priority-star">★☆☆</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPETITOR ANALYSIS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-yellow">⚔️</div>
+      Competitor Breakdown — Feature & SEO Matrix
+    </div>
+    <div class="section-desc">How the top 9 competitors compare against your tool</div>
+    <div class="section-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Competitor</th>
+            <th>Free Limit</th>
+            <th>No Watermark Free</th>
+            <th>No Upload (Browser)</th>
+            <th>No Signup</th>
+            <th>Platform Presets</th>
+            <th>Trim Feature</th>
+            <th>Batch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: rgba(108,99,255,0.06);">
+            <td>
+              <div class="comp-name" style="color: var(--accent);">🏆 WorldOfTools.in</div>
+              <div class="comp-url">YOUR SITE</div>
+            </td>
+            <td style="color:var(--win); font-weight:600;">2 GB ✓</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓ WA/IG/YT/Email</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">VEED.io</div>
+              <div class="comp-url">veed.io/tools/video-compressor</div>
+            </td>
+            <td style="color:var(--warn);">1 GB</td>
+            <td><span class="cross">✗ (paid)</span></td>
+            <td><span class="cross">✗ uploads</span></td>
+            <td><span class="cross">✗ login</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">FreeConvert</div>
+              <div class="comp-url">freeconvert.com/video-compressor</div>
+            </td>
+            <td style="color:var(--warn);">1 GB</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗ uploads</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="partial">~ limited</span></td>
+            <td><span class="partial">~</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">Clideo</div>
+              <div class="comp-url">clideo.com/compress-video</div>
+            </td>
+            <td style="color:var(--warn);">500 MB free</td>
+            <td><span class="cross">✗ (paid)</span></td>
+            <td><span class="cross">✗ uploads</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="partial">~ limited</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">EzGIF</div>
+              <div class="comp-url">ezgif.com/video-compressor</div>
+            </td>
+            <td style="color:var(--danger);">200 MB</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗ uploads</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">RedPanda Compress</div>
+              <div class="comp-url">redpandacompress.com</div>
+            </td>
+            <td style="color:var(--win);">2 GB</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓ browser</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">Rotato Compress</div>
+              <div class="comp-url">tools.rotato.app/compress</div>
+            </td>
+            <td style="color:var(--win);">Unlimited</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓ browser</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">YouCompress</div>
+              <div class="comp-url">youcompress.com</div>
+            </td>
+            <td style="color:var(--warn);">Unlimited but slow</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗ cloud</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">VideoCompress.ai</div>
+              <div class="comp-url">videocompress.ai</div>
+            </td>
+            <td style="color:var(--warn);">Cloud, size unclear</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗ cloud</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="comp-name">HDConvert</div>
+              <div class="comp-url">hdconvert.com</div>
+            </td>
+            <td style="color:var(--warn);">Claims no limit</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓ browser AI</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPETITOR KEYWORD GAPS -->
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-red">🔍</div>
+      Competitor SEO Gaps You Can Exploit
+    </div>
+    <div class="section-desc">Keywords competitors rank for but are weak on — steal their traffic</div>
+    <div class="gap-grid">
+      <div class="gap-card opportunity">
+        <div class="gap-card-title">🟢 RedPanda has 2 GB but ZERO presets</div>
+        <p>RedPanda Compress supports 2 GB browser-based compression but has NO platform-specific presets (WhatsApp, Instagram, YouTube). Their pages don't target "compress video for whatsapp" or "compress video for instagram" at all.</p>
+        <div class="action">→ Build dedicated sections + FAQ for each platform preset. You win this traffic easily.</div>
+      </div>
+      <div class="gap-card opportunity">
+        <div class="gap-card-title">🟢 VEED watermarks free users but ranks #1</div>
+        <p>VEED dominates "video compressor online" but adds a watermark on free tier. Users searching "video compressor no watermark free" are actively trying to escape VEED. You are the answer — but your page doesn't shout "no watermark" loudly enough in the opening content.</p>
+        <div class="action">→ Add "No Watermark, Ever — Even Free" to H1 or H2. Create comparison content vs VEED.</div>
+      </div>
+      <div class="gap-card opportunity">
+        <div class="gap-card-title">🟢 FreeConvert &amp; Clideo cap at 500MB–1GB free</div>
+        <p>FreeConvert (1 GB) and Clideo (500 MB) both gate large file compression behind paid plans. The keyword "compress large video file online free" has nobody ranking with a truly free 2 GB tool.</p>
+        <div class="action">→ Create a dedicated H2: "Compress Large Video Files Up to 2 GB — 100% Free" and target "compress large video file" explicitly.</div>
+      </div>
+      <div class="gap-card opportunity">
+        <div class="gap-card-title">🟢 No competitor targets "trim and compress" together</div>
+        <p>You uniquely offer Trim + Compress in one step. None of the pure compressor tools (EzGIF, YouCompress, VideoCompress) have this. "Trim video and compress online free" is completely uncontested.</p>
+        <div class="action">→ Add "Trim and Compress Video Online Free" as a standalone H2 and FAQ entry targeting this exact phrase.</div>
+      </div>
+      <div class="gap-card weakness">
+        <div class="gap-card-title">🔴 Rotato ranks for "browser video compressor" — you don't</div>
+        <p>Rotato.app (tools.rotato.app/compress) is ranking for browser-side compression terms because they lead with "nothing uploaded to our servers" in their H1. Your page has this message but it's in small print, not the headline.</p>
+        <div class="action">→ Move "no upload, 100% browser" into the first 50 words of page content. Make it the sub-headline.</div>
+      </div>
+      <div class="gap-card weakness">
+        <div class="gap-card-title">🔴 Competitors use "compress video to X MB" — you don't</div>
+        <p>High-intent searches like "compress video to 16mb", "compress video to 10mb for discord", "compress video to 8mb" are targeted by VideoCompress.ai and FreeConvert via dedicated FAQs. Your page has no target file-size content.</p>
+        <div class="action">→ Add FAQ items: "How to compress video to 16 MB for WhatsApp?" and "How to compress video to 10 MB for Discord?"</div>
+      </div>
+      <div class="gap-card weakness">
+        <div class="gap-card-title">🔴 No dedicated sub-pages for each platform</div>
+        <p>Clideo (clideo.com/compress-video-for-whatsapp), UniConverter, and Media.io all have dedicated landing pages per platform (WhatsApp, Instagram, Discord, Email). These rank for platform-specific keywords separately from their main page.</p>
+        <div class="action">→ Create: /compress-video-for-whatsapp, /compress-video-for-instagram, /compress-video-for-youtube as dedicated pages.</div>
+      </div>
+      <div class="gap-card opportunity">
+        <div class="gap-card-title">🟢 "Video compressor no login" — growing intent</div>
+        <p>VEED requires login for advanced features, creating user frustration. Searches for "video compressor no login no signup" are growing. Clideo also requires account for no-watermark downloads. You have zero friction — but this isn't mentioned prominently.</p>
+        <div class="action">→ Add "No Login. No Signup. No Watermark." as a visible trust line near the tool UI and in FAQ.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT GAP PLAN -->
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-green">📝</div>
+      Content Gaps — What to Add to Your Page &amp; Blog
+    </div>
+    <div class="section-desc">Topics competitors rank for that you have zero or weak content on</div>
+    <div class="section-wrap" style="padding: 8px 20px 20px;">
+      <ul class="content-list">
+        <li>
+          <div class="cli-num">1</div>
+          <div class="cli-body">
+            <h4>Platform-Specific Sections (H2 level on main page)</h4>
+            <p>Add dedicated H2 sections for each preset: WhatsApp (16 MB limit), Instagram Reels (50 MB), YouTube (128 GB allowed but recommend 8 GB), Email (25 MB), Discord (10 MB / 25 MB Nitro). Include exact target sizes and recommended settings per platform.</p>
+            <div class="kws">
+              <span class="kw-chip">compress video for whatsapp</span>
+              <span class="kw-chip">compress video for instagram</span>
+              <span class="kw-chip">compress video for discord</span>
+              <span class="kw-chip">compress video for email</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="cli-num">2</div>
+          <div class="cli-body">
+            <h4>Target File Size FAQs (completely uncontested)</h4>
+            <p>Add FAQ entries like "How do I compress a video to under 16 MB?", "How do I compress a video to 10 MB for Discord?", "How do I compress a 2 GB movie file online?". These are exact query matches with very low competition and high click intent.</p>
+            <div class="kws">
+              <span class="kw-chip">compress video to 16mb</span>
+              <span class="kw-chip">compress video to 10mb</span>
+              <span class="kw-chip">compress 2gb video</span>
+              <span class="kw-chip">compress 1gb video free</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="cli-num">3</div>
+          <div class="cli-body">
+            <h4>Blog: "How to Compress a Full Movie (2 GB) Online for Free"</h4>
+            <p>Zero competitors have a blog post specifically about compressing full movie-length files. Most cap at 500 MB–1 GB so they can't write this content honestly. You can — and it targets a completely uncontested keyword cluster around large video compression.</p>
+            <div class="kws">
+              <span class="kw-chip">compress full movie online</span>
+              <span class="kw-chip">compress 2gb video online</span>
+              <span class="kw-chip">compress large video file free</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="cli-num">4</div>
+          <div class="cli-body">
+            <h4>Blog: "Video Compressor That Doesn't Upload Your File — Privacy Guide"</h4>
+            <p>Privacy-focused users (medical videos, legal recordings, personal files) actively search for offline/no-upload tools. Competitors like FreeConvert, Clideo, VEED all upload to servers. Write the definitive guide to browser-based compression and why it matters for privacy.</p>
+            <div class="kws">
+              <span class="kw-chip">compress video without uploading</span>
+              <span class="kw-chip">private video compressor online</span>
+              <span class="kw-chip">video compressor no upload</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="cli-num">5</div>
+          <div class="cli-body">
+            <h4>Blog: "VEED vs Free Alternatives — Video Compressor Comparison 2026"</h4>
+            <p>Comparison posts that mention a known brand (VEED) get significant branded search traffic and rank for "[competitor] alternative" searches. VEED is the #1 paid tool in this space. Position WorldOfTools as the free alternative with better privacy and no limits.</p>
+            <div class="kws">
+              <span class="kw-chip">veed alternative free</span>
+              <span class="kw-chip">veed video compressor alternative</span>
+              <span class="kw-chip">free alternative to veed</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="cli-num">6</div>
+          <div class="cli-body">
+            <h4>Add "Compress Video for Discord" to Platform Presets + Page</h4>
+            <p>Discord has strict 10 MB (free) / 25 MB (Nitro) limits and a huge user base. VideoCompress.ai and FreeConvert both target this. You have no Discord mention on your page at all — add it to your presets and FAQ.</p>
+            <div class="kws">
+              <span class="kw-chip">compress video for discord free</span>
+              <span class="kw-chip">compress video to 10mb discord</span>
+              <span class="kw-chip">discord video size limit compress</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="cli-num">7</div>
+          <div class="cli-body">
+            <h4>Add Before/After Compression Examples with Real Numbers</h4>
+            <p>A section showing "Input: 2 GB MP4 movie → Output: 350 MB (720p Medium)" builds trust and targets informational searches about expected compression ratios. Competitors have generic promises. Real numbers win users and Featured Snippets.</p>
+            <div class="kws">
+              <span class="kw-chip">how much does video compression reduce size</span>
+              <span class="kw-chip">video compression ratio online</span>
+              <span class="kw-chip">compress mp4 by 80 percent</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ACTION PRIORITY -->
+  <div class="section">
+    <div class="section-title">
+      <div class="icon icon-purple">🚀</div>
+      Your 10-Step SEO Execution Plan (Ranked by Impact)
+    </div>
+    <div class="section-desc">Do these in order — biggest ranking gains first</div>
+    <div class="section-wrap">
+      <table class="priority-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Action</th>
+            <th>Where</th>
+            <th>Impact</th>
+            <th>Effort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="priority-num">01</div></td>
+            <td><strong>Add FAQPage + HowTo JSON-LD schema markup</strong> — Google will show your FAQ as rich results directly in SERP, doubling click area</td>
+            <td style="color:var(--muted); font-size:11px;">Page &lt;head&gt;</td>
+            <td><span class="pill-impact impact-high">🔥 Very High</span></td>
+            <td style="color:var(--win); font-size:11px;">30 min</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">02</div></td>
+            <td><strong>Rewrite H1 to lead with 2 GB + no upload</strong> — "The Only Free Video Compressor for Files Up to 2 GB — No Upload, No Watermark"</td>
+            <td style="color:var(--muted); font-size:11px;">Page H1</td>
+            <td><span class="pill-impact impact-high">🔥 Very High</span></td>
+            <td style="color:var(--win); font-size:11px;">10 min</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">03</div></td>
+            <td><strong>Add Discord preset + compress video for Discord FAQ</strong> — large underserved audience, no competition from browser-based tools</td>
+            <td style="color:var(--muted); font-size:11px;">Tool + Page FAQ</td>
+            <td><span class="pill-impact impact-high">🔥 High</span></td>
+            <td style="color:var(--warn); font-size:11px;">2–3 hrs</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">04</div></td>
+            <td><strong>Add H2 sections per platform</strong> with exact file size targets and recommended settings for WhatsApp/Instagram/Discord/Email/YouTube</td>
+            <td style="color:var(--muted); font-size:11px;">On-page content</td>
+            <td><span class="pill-impact impact-high">🔥 High</span></td>
+            <td style="color:var(--warn); font-size:11px;">2 hrs</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">05</div></td>
+            <td><strong>Create /compress-video-for-whatsapp dedicated page</strong> — clone structure of main page with WhatsApp-specific keywords throughout</td>
+            <td style="color:var(--muted); font-size:11px;">New landing page</td>
+            <td><span class="pill-impact impact-high">🔥 High</span></td>
+            <td style="color:var(--warn); font-size:11px;">3–4 hrs</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">06</div></td>
+            <td><strong>Write blog: "How to Compress a 2 GB Movie File Online Free"</strong> — zero competition, perfectly matches your unique capability</td>
+            <td style="color:var(--muted); font-size:11px;">Blog post</td>
+            <td><span class="pill-impact impact-high">🔥 High</span></td>
+            <td style="color:var(--warn); font-size:11px;">2–3 hrs</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">07</div></td>
+            <td><strong>Add "compress to target size" FAQs</strong> — "How to compress to 16 MB", "to 10 MB for Discord", "to 25 MB for Telegram"</td>
+            <td style="color:var(--muted); font-size:11px;">FAQ section</td>
+            <td><span class="pill-impact impact-med">⚡ Medium</span></td>
+            <td style="color:var(--win); font-size:11px;">1 hr</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">08</div></td>
+            <td><strong>Write blog: "VEED Alternative — Free Video Compressor With No Watermark"</strong> — ride VEED's brand authority, capture their dissatisfied free users</td>
+            <td style="color:var(--muted); font-size:11px;">Blog post</td>
+            <td><span class="pill-impact impact-med">⚡ Medium</span></td>
+            <td style="color:var(--warn); font-size:11px;">2–3 hrs</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">09</div></td>
+            <td><strong>Add SoftwareApplication schema</strong> with name, description, operatingSystem, applicationCategory, offers (free) — helps with Google's AI Overviews</td>
+            <td style="color:var(--muted); font-size:11px;">Page &lt;head&gt;</td>
+            <td><span class="pill-impact impact-med">⚡ Medium</span></td>
+            <td style="color:var(--win); font-size:11px;">20 min</td>
+          </tr>
+          <tr>
+            <td><div class="priority-num">10</div></td>
+            <td><strong>Add "Last updated March 2026" + real compression stats</strong> — freshness signal + trust. Show actual numbers: "1 GB MP4 → 160 MB at Medium quality"</td>
+            <td style="color:var(--muted); font-size:11px;">Page intro</td>
+            <td><span class="pill-impact impact-med">⚡ Medium</span></td>
+            <td style="color:var(--win); font-size:11px;">30 min</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SUMMARY -->
+  <div style="background: var(--surface); border: 1px solid rgba(108,99,255,0.25); border-radius: 14px; padding: 28px 32px; margin-bottom: 40px;">
+    <div style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#fff; margin-bottom:16px;">📌 TL;DR — Your #1 Competitive Advantage Nobody Has Fully Claimed</div>
+    <p style="color:#a0a0b8; line-height:1.8; font-size:13px;">
+      You are the only tool offering <strong style="color:#fff;">2 GB file support + browser-only processing (no upload) + no watermark + no signup</strong> — all free, simultaneously. 
+      <strong style="color:var(--win);">RedPanda</strong> matches you on 2 GB + no upload but has zero presets and zero platform content. 
+      <strong style="color:var(--warn);">VEED</strong> dominates rankings but gates watermark-free output behind a paywall. 
+      <strong style="color:var(--warn);">Clideo, FreeConvert, EzGIF</strong> all cap file sizes well below yours.
+      <br><br>
+      Your immediate win: <strong style="color:#fff;">rewrite your H1 to make the 2 GB + no upload angle unmistakable</strong>, add FAQPage schema (30 minutes of work that can get you rich result snippets), and create one dedicated page for /compress-video-for-whatsapp. 
+      These three moves alone can start shifting rankings within 4–6 weeks.
+    </p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span>WorldOfTools.in</span> — Video Compressor SEO Report &nbsp;|&nbsp; March 2026
+  <span style="color:var(--muted);">52+ keywords mapped · 9 competitors analysed</span>
+</div>
+
+</body>
+</html>
