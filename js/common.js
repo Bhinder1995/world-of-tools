@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
         autoRenderBreadcrumbs();
     }
     injectPostRecommendations();
+    trackRecentTool();
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname.endsWith('/')) {
+        renderRecentTools();
+    }
 });
 
 
@@ -60,6 +64,21 @@ function injectHeader() {
                                         <a href="/percentage-calculator" class="mega-item">
                                             <span class="nav-icon" style="background:#e74c3c;">%</span> Percentage Calculator
                                         </a>
+                                        <a href="/aspect-ratio-calculator" class="mega-item">
+                                            <span class="nav-icon" style="background:#f39c12;">📐</span> Aspect Ratio
+                                        </a>
+                                        <a href="/number-to-words-converter" class="mega-item">
+                                            <span class="nav-icon" style="background:#8e44ad;">🔢</span> Number to Words
+                                        </a>
+                                        <a href="/roman-numerals-converter" class="mega-item">
+                                            <span class="nav-icon" style="background:#c0392b;">🏛️</span> Roman Numerals
+                                        </a>
+                                        <a href="/random-number-generator" class="mega-item">
+                                            <span class="nav-icon" style="background:#16a085;">🎲</span> Random Number
+                                        </a>
+                                        <a href="/unit-converter" class="mega-item">
+                                            <span class="nav-icon" style="background:#27ae60;">📏</span> Unit Converter
+                                        </a>
                                     </div>
 
                                     <div class="mega-col">
@@ -90,6 +109,21 @@ function injectHeader() {
                                         </a>
                                         <a href="/csv-to-json" class="mega-item">
                                             <span class="nav-icon" style="background:#d35400;">⇌</span> CSV to JSON
+                                        </a>
+                                        <a href="/css-minifier" class="mega-item">
+                                            <span class="nav-icon" style="background:#2980b9;">🗜️</span> CSS Minifier
+                                        </a>
+                                        <a href="/xml-formatter" class="mega-item">
+                                            <span class="nav-icon" style="background:#1abc9c;">📜</span> XML Formatter
+                                        </a>
+                                        <a href="/uuid-generator" class="mega-item">
+                                            <span class="nav-icon" style="background:#8e44ad;">🆔</span> UUID Generator
+                                        </a>
+                                        <a href="/cron-expression-generator" class="mega-item">
+                                            <span class="nav-icon" style="background:#e67e22;">⏰</span> Cron Generator
+                                        </a>
+                                        <a href="/text-to-binary-converter" class="mega-item">
+                                            <span class="nav-icon" style="background:#34495e;">01</span> Text to Binary
                                         </a>
                                     </div>
 
@@ -122,6 +156,12 @@ function injectHeader() {
                                         <a href="/typing-speed-test" class="mega-item">
                                             <span class="nav-icon" style="background:#2c3e50;">⌨️</span> Typing Speed Test
                                         </a>
+                                        <a href="/link-shortener" class="mega-item">
+                                            <span class="nav-icon" style="background:#e74c3c;">🔗</span> Link Shortener
+                                        </a>
+                                        <a href="/linkedin-creator-suite" class="mega-item">
+                                            <span class="nav-icon" style="background:#0a66c2;">💼</span> LinkedIn Suite
+                                        </a>
                                     </div>
 
                                     <div class="mega-col">
@@ -143,6 +183,24 @@ function injectHeader() {
                                         </a>
                                         <a href="/barcode-generator" class="mega-item">
                                             <span class="nav-icon" style="background:#37474f;">|||</span> Barcode Generator
+                                        </a>
+                                        <a href="/video-compressor" class="mega-item">
+                                            <span class="nav-icon" style="background:#e91e63;">📹</span> Video Compressor
+                                        </a>
+                                        <a href="/image-converter" class="mega-item">
+                                            <span class="nav-icon" style="background:#673ab7;">🔄</span> Image Converter
+                                        </a>
+                                        <a href="/color-converter" class="mega-item">
+                                            <span class="nav-icon" style="background:#ffc107;">🎨</span> Color Converter
+                                        </a>
+                                        <a href="/time-zone-converter" class="mega-item">
+                                            <span class="nav-icon" style="background:#03a9f4;">🌍</span> Time Zone
+                                        </a>
+                                        <a href="/youtube-thumbnail-downloader" class="mega-item">
+                                            <span class="nav-icon" style="background:#ff0000;">📺</span> YT Thumbnail
+                                        </a>
+                                        <a href="/password-generator" class="mega-item">
+                                            <span class="nav-icon" style="background:#4caf50;">🔐</span> Password Generator
                                         </a>
                                         <a href="/ip-address-lookup" class="mega-item">
                                             <span class="nav-icon" style="background:#2196f3;">📍</span> IP Lookup
@@ -178,6 +236,11 @@ function injectHeader() {
 
     const header = document.querySelector('header');
     if (header) {
+        // Add compact-header class if not on homepage
+        const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname.endsWith('/');
+        if (!isHomePage) {
+            header.classList.add('compact-header');
+        }
         header.innerHTML = headerHTML;
         setupMobileMenu();
     }
@@ -517,5 +580,78 @@ function highlightActiveLink() {
         if (link.getAttribute('href') === currentPath.split('/').pop()) {
             link.style.textDecoration = 'underline';
         }
+    });
+}
+
+function trackRecentTool() {
+    const path = window.location.pathname;
+    const normalizedPath = path.replace(/\.html$/, '');
+    
+    // Don't track homepage or guides index
+    if (normalizedPath === '/' || normalizedPath === '/index' || normalizedPath === '/guides/' || normalizedPath === '/guides') return;
+    
+    // If it's a sub-guide, we don't necessarily want to track it as a "tool" unless it's a tool page
+    // For now, let's assume anything that's not home/guides index is a candidate if it's in the mega menu
+    
+    // We'll wait a bit for the header to be injected if it isn't already, 
+    // but DOMContentLoaded should have handled it.
+    const allTools = [];
+    const megaItems = document.querySelectorAll('.mega-item');
+    megaItems.forEach(item => {
+        const url = item.getAttribute('href').replace(/\.html$/, '');
+        if (url === normalizedPath || (url.startsWith('/') && url === normalizedPath) || ('/' + url === normalizedPath)) {
+            const name = item.innerText.replace(/[^\x00-\x7F]/g, '').trim(); // Remove emojis for the name part
+            const icon = item.querySelector('.nav-icon')?.innerText || '🛠️';
+            const fullUrl = item.getAttribute('href');
+            
+            allTools.push({ name, url: fullUrl, icon });
+        }
+    });
+
+    if (allTools.length > 0) {
+        const tool = allTools[0];
+        let recent = JSON.parse(localStorage.getItem('recentTools') || '[]');
+        
+        // Remove if already exists to move to front
+        recent = recent.filter(t => t.url !== tool.url);
+        
+        // Add to front
+        recent.unshift(tool);
+        
+        // Keep only 4
+        recent = recent.slice(0, 4);
+        
+        localStorage.setItem('recentTools', JSON.stringify(recent));
+    }
+}
+
+function renderRecentTools() {
+    const recentContainer = document.querySelector('.recent-tools');
+    if (!recentContainer) return;
+
+    const recent = JSON.parse(localStorage.getItem('recentTools') || '[]');
+    if (recent.length === 0) {
+        // If no recent tools, maybe hide the section or keep defaults?
+        // User said "if someone use another tools its not shows", implying it should show what was used.
+        // Let's keep the hardcoded ones as fallback if localStorage is empty, 
+        // OR just render what's in localStorage if it exists.
+        return; 
+    }
+
+    // Find the container that holds the capsules (it's the children after the label)
+    const label = recentContainer.querySelector('.popular-label');
+    if (!label) return;
+
+    // Clear existing links but keep the label
+    while (recentContainer.lastChild !== label) {
+        recentContainer.removeChild(recentContainer.lastChild);
+    }
+
+    recent.forEach(tool => {
+        const a = document.createElement('a');
+        a.href = tool.url;
+        a.className = 'rec-capsule';
+        a.innerHTML = `<span class="nav-icon" style="font-size: 1.1rem; filter: grayscale(1) opacity(0.8);">${tool.icon}</span> ${tool.name}`;
+        recentContainer.appendChild(a);
     });
 }

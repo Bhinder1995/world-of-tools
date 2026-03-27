@@ -176,6 +176,11 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+header.compact-header {
+    padding: 0.15rem 0;
 }
 
 .header-content {
@@ -237,6 +242,19 @@ header {
     text-transform: uppercase;
 }
 
+header.compact-header .logo-brand {
+    font-size: 1.05rem;
+}
+
+header.compact-header .logo-tagline {
+    font-size: 0.6rem;
+}
+
+header.compact-header img {
+    width: 32px;
+    height: 32px;
+}
+
 .menu-toggle {
     display: none;
     background: none;
@@ -266,6 +284,11 @@ nav a {
     font-weight: 600;
     transition: color 0.2s;
     font-size: 0.9rem;
+}
+
+header.compact-header nav a,
+header.compact-header .dropdown-trigger {
+    font-size: 0.85rem;
 }
 
 nav a:hover {
@@ -308,6 +331,11 @@ nav a:hover {
     padding: 1.5rem 0;
     max-height: calc(100vh - 57px);
     overflow-y: auto;
+}
+
+header.compact-header .dropdown-menu {
+    top: 48px;
+    max-height: calc(100vh - 48px);
 }
 
 .nav-dropdown:hover .dropdown-menu,
