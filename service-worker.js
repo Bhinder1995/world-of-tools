@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v115';
+const CACHE_NAME = 'world-of-tools-v116';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -75,6 +75,9 @@ const ASSETS_TO_CACHE = [
     '/email-signature-generator',
     '/favicon-generator',
     '/ip-address-lookup',
+    '/schema-markup-generator',
+    '/json-ld-generator',
+    '/schema-generator-online',
     '/guides/age-calculator-guide',
     '/guides/background-remover-guide',
     '/guides/barcode-generator-guide',
@@ -135,6 +138,7 @@ const ASSETS_TO_CACHE = [
     '/guides/jwt-base64-hash-developer-guide',
     '/guides/compress-2gb-video',
     '/guides/veed-clideo-alternatives',
+    '/guides/schema-markup-generator-guide',
     '/video-compressor',
     '/compress-video-online-free',
     '/compress-video-for-whatsapp',

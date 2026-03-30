@@ -171,6 +171,9 @@ function injectHeader() {
                                         <a href="/audio-to-text" class="mega-item">
                                             <span class="nav-icon" style="background:#3498db;">🎙️</span> Audio to Text
                                         </a>
+                                        <a href="/schema-markup-generator" class="mega-item">
+                                            <span class="nav-icon" style="background:#4f46e5;">🛠️</span> Schema Generator
+                                        </a>
                                     </div>
 
                                     <div class="mega-col">
@@ -373,6 +376,7 @@ function injectFooter() {
                             <li><a href="/seo-meta-tag-generator">Meta Tag Generator</a></li>
                             <li><a href="/serp-preview">SERP Preview</a></li>
                             <li><a href="/qr-code-generator">QR Code Generator</a></li>
+                            <li><a href="/schema-markup-generator">Schema Generator</a></li>
                             <li><a href="/seo-tools-free">→ View All</a></li>
                         </ul>
                     </div>
