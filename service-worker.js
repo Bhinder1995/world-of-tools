@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v113';
+const CACHE_NAME = 'world-of-tools-v115';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -149,7 +149,13 @@ const ASSETS_TO_CACHE = [
     '/compare-loan-offers',
     '/bank-loan-comparison',
     '/watermark-remover-online',
-    '/erase-logo-from-photo'
+    '/erase-logo-from-photo',
+    '/guides/remove-watermark-from-image-guide',
+    '/guides/age-calculator-hindi-guide',
+    '/guides/cgpa-calculator-bengali-guide',
+    '/guides/emi-calculator-marathi-guide',
+    '/guides/gst-calculator-telugu-guide',
+    '/guides/remove-watermark-tamil-guide'
 ];
 
 

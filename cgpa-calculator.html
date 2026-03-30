@@ -216,7 +216,8 @@
                         </div>
                         <div class="conversion-grid" id="semConversions"></div>
                         <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
-                            <button class="btn btn-secondary" onclick="copySemResult()" style="flex: 1;">📋 Copy Result</button>
+                            <button class="btn" onclick="downloadPDF('semester')" style="flex: 1.5; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">💾 Download PDF</button>
+                            <button class="btn btn-secondary" onclick="copySemResult()" style="flex: 1;">📋 Copy</button>
                             <button class="btn btn-secondary" onclick="shareSemResult()" style="flex: 1;">🔗 Share</button>
                             <button class="btn btn-secondary" onclick="resetSem()" style="flex: 1;">🔄 Reset</button>
                         </div>
@@ -246,6 +247,10 @@
                             </div>
                         </div>
                         <div class="conversion-grid" id="cgpaConversions"></div>
+                        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                            <button class="btn" onclick="downloadPDF('cumulative')" style="flex: 1.5; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">💾 Download PDF</button>
+                            <button class="btn btn-secondary" onclick="resetCGPA()" style="flex: 1;">🔄 Reset</button>
+                        </div>
                     </div>
                 </div>
 
@@ -540,6 +545,7 @@
     </main>
 
     <footer></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="/js/common.js?v=2.4"></script>
     <script>
         // ── INIT ──
@@ -814,6 +820,120 @@
             const el = document.getElementById('errorMessage');
             if (msg) { el.textContent = '⚠️ ' + msg; el.style.display = 'flex'; el.scrollIntoView({behavior:'smooth',block:'center'}); }
             else { el.style.display = 'none'; el.textContent = ''; }
+        }
+
+        // ── PDF DOWNLOAD ───────────────────────────────────────────────────
+        async function downloadPDF(type) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const primaryColor = '#4f46e5';
+            const secondaryColor = '#6366f1';
+            
+            // Header
+            doc.setFillColor( primaryColor );
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor('#ffffff');
+            doc.setFontSize(24);
+            doc.setFont('helvetica', 'bold');
+            doc.text('WorldOfTools.in', 20, 25);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Professional Academic Utilities', 20, 32);
+
+            doc.setTextColor('#ffffff');
+            doc.setFontSize(14);
+            doc.text(`${type === 'semester' ? 'Semester GPA' : 'Cumulative CGPA'} Report`, 190, 25, { align: 'right' });
+            
+            // Content
+            doc.setTextColor('#1f2937');
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Calculation Details:', 20, 55);
+            
+            let y = 65;
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            
+            if (type === 'semester') {
+                const rows = document.querySelectorAll('#subjectsContainer .subject-row');
+                doc.setFillColor('#f8fafc');
+                doc.rect(20, y-5, 170, 8, 'F');
+                doc.setFont('helvetica', 'bold');
+                doc.text('Subject', 25, y);
+                doc.text('Grade', 120, y);
+                doc.text('Credits', 160, y);
+                y += 10;
+                doc.setFont('helvetica', 'normal');
+                
+                rows.forEach(row => {
+                    const name = row.querySelector('.sub-name').value || 'Subject';
+                    const grade = row.querySelector('.sub-grade').options[row.querySelector('.sub-grade').selectedIndex].text;
+                    const credits = row.querySelector('.sub-credits').value;
+                    doc.text(name, 25, y);
+                    doc.text(grade, 120, y);
+                    doc.text(credits, 160, y);
+                    y += 8;
+                    if (y > 270) { doc.addPage(); y = 20; }
+                });
+            } else {
+                const rows = document.querySelectorAll('#semestersContainer .sem-row');
+                doc.setFillColor('#f8fafc');
+                doc.rect(20, y-5, 170, 8, 'F');
+                doc.setFont('helvetica', 'bold');
+                doc.text('Semester', 25, y);
+                doc.text('GPA', 120, y);
+                doc.text('Credits', 160, y);
+                y += 10;
+                doc.setFont('helvetica', 'normal');
+                
+                rows.forEach(row => {
+                    const label = row.querySelector('.sem-label').textContent;
+                    const gpa = row.querySelector('.sem-gpa').value || '—';
+                    const credits = row.querySelector('.sem-credits').value || '—';
+                    doc.text(label, 25, y);
+                    doc.text(gpa, 120, y);
+                    doc.text(credits, 160, y);
+                    y += 8;
+                });
+            }
+
+            // Final Result Card
+            y += 10;
+            doc.setDrawColor('#e2e8f0');
+            doc.setFillColor('#f1f5f9');
+            doc.roundedRect(20, y, 170, 40, 3, 3, 'FD');
+            
+            const resultVal = type === 'semester' ? document.getElementById('semGPAValue').textContent : document.getElementById('cgpaValue').textContent;
+            const badgeLabel = type === 'semester' ? document.getElementById('semGradeBadge').textContent : document.getElementById('cgpaGradeBadge').textContent;
+            
+            doc.setTextColor(primaryColor);
+            doc.setFontSize(32);
+            doc.setFont('helvetica', 'bold');
+            doc.text(resultVal, 105, y + 20, { align: 'center' });
+            
+            doc.setFontSize(14);
+            doc.text(badgeLabel, 105, y + 32, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.setTextColor('#64748b');
+            doc.text(`Final ${type === 'semester' ? 'GPA' : 'CGPA'} Scale: 10.0`, 105, y + 10, { align: 'center' });
+
+            // Footer
+            doc.setDrawColor(primaryColor);
+            doc.line(20, 275, 190, 275);
+            doc.setFontSize(8);
+            doc.setTextColor('#94a3b8');
+            doc.text('100% Private Tool — Calculated by WorldOfTools.in', 105, 282, { align: 'center' });
+            doc.text(`${new Date().toLocaleString()}`, 105, 287, { align: 'center' });
+
+            doc.save(`WorldOfTools_${type}_result.pdf`);
+        }
+
+        function resetCGPA() {
+            document.getElementById('semestersContainer').innerHTML = '';
+            semesterCount = 0;
+            for (let i = 0; i < 4; i++) addSemesterRow(i + 1);
+            document.getElementById('cgpaResult').style.display = 'none';
         }
     </script>
 </body>
