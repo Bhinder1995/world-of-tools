@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Watermark from Image (फोटो से वॉटरमार्क हटाएं) | WorldOfTools</title>
+    <meta name="description" content="Remove watermark from image online free (फोटो से लोगो हटाना). No signup, 100% private. Erase watermark, logo, or text instantly in your browser in India 2026.">
+    <meta name="keywords" content="photo se watermark kaise hataye, logo hatane wala tool, remove watermark from image free, watermark remover online, remove watermark from photo online free, image watermark eraser, erase watermark from picture, bina watermark wali image download, remove text from image online free, photo watermark remover without watermark, remove logo from image free, clean image online free">
+    <link rel="canonical" href="https://worldoftools.in/remove-watermark-from-image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem","position": 1,"name": "Home","item": "https://worldoftools.in/"
+      },{
+        "@type": "ListItem","position": 2,"name": "Remove Watermark from Image","item": "https://worldoftools.in/remove-watermark-from-image"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How to remove watermark from image for free?",
+          "acceptedAnswer": {"@type": "Answer","text": "Upload your image, use the brush tool to paint over the watermark area, then click 'Remove Watermark'. The tool uses canvas-based inpainting to intelligently fill the area with surrounding pixels. No upload to server — all processing happens in your browser."}
+        },
+        {
+          "@type": "Question",
+          "name": "Photo se watermark kaise hataye? (How to remove logo from photo?)",
+          "acceptedAnswer": {"@type": "Answer","text": "Image select karein, uske baad brush se watermark wale area ko paint karein. 'Remove Watermark' button par click karte hi logo gayab ho jayega. (Select image, paint over the watermark, and click remove. The logo will disappear instantly.)"}
+        },
+        {
+          "@type": "Question",
+          "name": "Is this image watermark remover really free?",
+          "acceptedAnswer": {"@type": "Answer","text": "Yes — completely free, no account, no subscription, no watermark added to your output. Unlike Apowersoft or HitPaw which charge for downloads, this tool is 100% free."}
+        },
+        {
+          "@type": "Question",
+          "name": "Does my image get uploaded to a server?",
+          "acceptedAnswer": {"@type": "Answer","text": "No. This tool uses the HTML5 Canvas API. Your image is processed entirely in your browser and never leaves your device. This makes it safe for confidential or private photos."}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Image Watermark Remover",
+      "operatingSystem": "Any",
+      "applicationCategory": "MultimediaApplication",
+      "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
+    }
+    </script>
+
+    <style>
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 0.5rem; }
+        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 12px; border: 2px solid var(--border-color); background: white; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.2s; font-family: inherit; }
+        .tab-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .card { transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+
+        /* Upload Zone */
+        .upload-zone {
+            border: 3px dashed var(--border-color); border-radius: 16px; padding: 3rem 2rem;
+            text-align: center; cursor: pointer; transition: all 0.3s; background: #f8fafc;
+        }
+        .upload-zone:hover, .upload-zone.drag-over {
+            border-color: var(--primary-color); background: #eef2ff;
+        }
+        .upload-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .upload-zone h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+        .upload-zone p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
+
+        /* Canvas Editor */
+        #canvasWrap {
+            position: relative; display: inline-block; max-width: 100%;
+            border: 2px solid var(--border-color); border-radius: 12px; overflow: hidden;
+            cursor: crosshair;
+        }
+        #mainCanvas { display: block; max-width: 100%; height: auto; }
+        #maskCanvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; opacity: 0.5;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;
+            padding: 1rem; background: #f8fafc; border: 1px solid var(--border-color);
+            border-radius: 12px; margin-bottom: 1rem;
+        }
+        .tool-btn {
+            padding: 0.5rem 1rem; border-radius: 8px; border: 2px solid var(--border-color);
+            background: white; cursor: pointer; font-weight: 700; font-size: 0.85rem;
+            transition: all 0.2s; font-family: inherit;
+        }
+        .tool-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .tool-btn:hover:not(.active) { border-color: var(--primary-color); color: var(--primary-color); }
+
+        .brush-size-wrap { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 700; }
+        input[type=range] { width: 80px; accent-color: var(--primary-color); }
+
+        .color-picker-wrap { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 700; }
+
+        /* Before/After */
+        .ba-wrap {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;
+        }
+        .ba-side { text-align: center; }
+        .ba-label { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        .ba-img { width: 100%; border-radius: 8px; border: 1px solid var(--border-color); }
+
+        .method-card {
+            padding: 1rem; border: 2px solid var(--border-color); border-radius: 12px;
+            cursor: pointer; transition: all 0.2s; background: white;
+        }
+        .method-card.selected { border-color: var(--primary-color); background: #eef2ff; }
+        .method-card h4 { margin: 0 0 0.25rem; font-size: 0.9rem; }
+        .method-card p { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
+
+        #progressBar {
+            height: 6px; background: #e2e8f0; border-radius: 99px; overflow: hidden; margin: 1rem 0;
+        }
+        #progressFill { height: 100%; background: var(--primary-gradient); width: 0%; transition: width 0.3s; }
+    </style>
+
+    <link rel="stylesheet" href="/css/style.css?v=2.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <meta name="theme-color" content="#4f46e5">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date()); gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975" crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container" data-category-name="Image Tools" data-category-url="/" data-tool-name="Remove Watermark from Image">
+        <div class="tool-container">
+            <section class="tool-header">
+                <div class="privacy-badge-banner">
+                    <span>🛡️</span>
+                    <span>100% Private — Image Never Leaves Your Browser</span>
+                </div>
+                <h1>Remove Watermark from Image Free — Online Watermark Eraser</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Paint over the watermark, logo or text you want to remove. The smart fill tool replaces it with surrounding pixels. No upload. No signup. No watermark added to output.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="/guides/remove-watermark-from-image-guide" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+                        📖 Read Guide
+                    </a>
+                </div>
+            </section>
+
+            <div class="tool-main-card">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('editor')">🖌️ Watermark Remover</button>
+                    <button class="tab-btn" onclick="switchTab('crop')">✂️ Crop & Erase</button>
+                    <button class="tab-btn" onclick="switchTab('tips')">💡 Tips</button>
+                </div>
+
+                <div id="errorMessage" class="error-msg"></div>
+
+                <!-- ── EDITOR TAB ── -->
+                <div id="editor-tab" class="tab-content">
+
+                    <!-- Upload Zone -->
+                    <div id="uploadZone" class="upload-zone" onclick="document.getElementById('fileInput').click()"
+                        ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                        <div class="upload-icon">🖼️</div>
+                        <h3>Drop image here or click to upload</h3>
+                        <p>Supports JPG, PNG, WEBP · Processed locally — never uploaded</p>
+                        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none;" onchange="loadImage(event)">
+                    </div>
+
+                    <!-- Editor (hidden until image loaded) -->
+                    <div id="editorPanel" style="display:none;">
+                        <!-- Removal Method -->
+                        <div style="margin-bottom:1.25rem;">
+                            <label style="font-weight:800;font-size:0.9rem;display:block;margin-bottom:0.75rem;">🔧 Removal Method</label>
+                            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.75rem;">
+                                <div class="method-card selected" id="method_inpaint" onclick="selectMethod('inpaint')">
+                                    <h4>🎨 Smart Fill</h4>
+                                    <p>Fill with surrounding pixels (best for complex backgrounds)</p>
+                                </div>
+                                <div class="method-card" id="method_blur" onclick="selectMethod('blur')">
+                                    <h4>🌫️ Blur</h4>
+                                    <p>Blur the marked area (good for privacy redaction)</p>
+                                </div>
+                                <div class="method-card" id="method_color" onclick="selectMethod('color')">
+                                    <h4>🎨 Solid Fill</h4>
+                                    <p>Fill area with a picked colour (flat backgrounds)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Colour picker for solid fill -->
+                        <div id="colorPickerRow" style="display:none;margin-bottom:1rem;">
+                            <label style="font-weight:700;font-size:0.9rem;">Fill Colour: </label>
+                            <input type="color" id="fillColor" value="#ffffff" style="width:48px;height:32px;border:none;border-radius:8px;cursor:pointer;vertical-align:middle;margin-left:0.5rem;">
+                            <button class="tool-btn" onclick="sampleColor()" style="margin-left:0.5rem;">🖱️ Sample from Image</button>
+                        </div>
+
+                        <!-- Toolbar -->
+                        <div class="toolbar">
+                            <button class="tool-btn active" id="brushBtn" onclick="setTool('brush')">🖌️ Brush</button>
+                            <button class="tool-btn" id="rectBtn" onclick="setTool('rect')">⬜ Rectangle</button>
+                            <button class="tool-btn" id="eraserBtn" onclick="setTool('eraser')">🧹 Undo Mask</button>
+                            <div class="brush-size-wrap">
+                                <span>Size:</span>
+                                <input type="range" id="brushSize" min="5" max="80" value="20" oninput="updateBrushSize(this.value)">
+                                <span id="brushSizeLabel">20px</span>
+                            </div>
+                            <button class="tool-btn" onclick="clearMask()" style="margin-left:auto;color:#ef4444;border-color:#fecaca;">🗑️ Clear Mask</button>
+                            <button class="tool-btn" onclick="undoStep()">↩️ Undo</button>
+                        </div>
+
+                        <!-- Canvas -->
+                        <div style="text-align:center;margin-bottom:1rem;overflow-x:auto;">
+                            <div id="canvasWrap">
+                                <canvas id="mainCanvas"></canvas>
+                                <canvas id="maskCanvas"></canvas>
+                            </div>
+                            <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;" id="canvasTip">🖌️ Paint over the watermark area you want to remove</p>
+                        </div>
+
+                        <!-- Progress -->
+                        <div id="progressBar" style="display:none;"><div id="progressFill"></div></div>
+
+                        <!-- Action Buttons -->
+                        <div style="display:flex;gap:0.75rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+                            <button class="btn" onclick="removeWatermark()" style="flex:2;">✨ Remove Watermark</button>
+                            <button class="btn btn-secondary" onclick="resetEditor()" style="flex:1;">🔄 Reset</button>
+                        </div>
+
+                        <!-- Before / After -->
+                        <div id="resultSection" style="display:none;">
+                            <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:1rem;">✅ Before & After</h3>
+                            <div class="ba-wrap">
+                                <div class="ba-side"><div class="ba-label">Before</div><img id="beforeImg" class="ba-img"></div>
+                                <div class="ba-side"><div class="ba-label">After</div><img id="afterImg" class="ba-img"></div>
+                            </div>
+                            <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+                                <button class="btn" onclick="downloadResult()" style="flex:2;">⬇️ Download Image</button>
+                                <button class="btn btn-secondary" onclick="applyAndContinue()" style="flex:1;">➕ Edit More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── CROP TAB ── -->
+                <div id="crop-tab" class="tab-content" style="display:none;">
+                    <p style="color:var(--text-muted);margin-bottom:1.5rem;font-size:0.95rem;">Use the crop tool to completely remove a watermark region by cropping it out of the image. Best when the watermark is at the edge (e.g. corner logos or bottom-bar watermarks).</p>
+                    <div id="cropUploadZone" class="upload-zone" onclick="document.getElementById('cropFileInput').click()"
+                        ondrop="handleCropDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                        <div class="upload-icon">✂️</div>
+                        <h3>Drop image or click to upload</h3>
+                        <p>Select the area to KEEP — everything outside the selection will be cropped</p>
+                        <input type="file" id="cropFileInput" accept="image/*" style="display:none;" onchange="loadCropImage(event)">
+                    </div>
+                    <div id="cropPanel" style="display:none;">
+                        <div style="text-align:center;margin:1rem 0;overflow-x:auto;">
+                            <canvas id="cropCanvas" style="border:2px solid var(--border-color);border-radius:12px;cursor:crosshair;max-width:100%;"></canvas>
+                        </div>
+                        <div id="cropInfo" style="font-size:0.85rem;color:var(--text-muted);text-align:center;margin-bottom:1rem;min-height:1.5rem;"></div>
+                        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                            <button class="btn" onclick="applyCrop()" style="flex:2;">✂️ Apply Crop</button>
+                            <button class="btn btn-secondary" onclick="resetCrop()" style="flex:1;">🔄 Reset</button>
+                        </div>
+                        <div id="cropResult" style="display:none;margin-top:1.5rem;">
+                            <h3 style="font-size:1rem;font-weight:800;margin-bottom:1rem;">✅ Cropped Image</h3>
+                            <img id="croppedImg" style="max-width:100%;border-radius:12px;border:1px solid var(--border-color);">
+                            <button class="btn" onclick="downloadCrop()" style="width:100%;margin-top:1rem;">⬇️ Download Cropped Image</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── TIPS TAB ── -->
+                <div id="tips-tab" class="tab-content" style="display:none;">
+                    <div style="display:grid;gap:1rem;">
+                        <div class="card" style="padding:1.25rem;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;">
+                            <h3 style="margin:0 0 0.75rem;font-size:1rem;color:#15803d;">🎯 Best Results</h3>
+                            <ul style="margin:0;padding-left:1.25rem;color:#166534;line-height:1.9;font-size:0.9rem;">
+                                <li>Use <strong>Rectangle tool</strong> for text watermarks — draw tight around the text</li>
+                                <li>Use <strong>Brush tool</strong> for logo/stamp watermarks with complex shapes</li>
+                                <li>For flat/white backgrounds, use <strong>Solid Fill</strong> with colour sampler</li>
+                                <li>For textured/photo backgrounds, <strong>Smart Fill</strong> works best</li>
+                                <li>Zoom in on the canvas to paint more precisely on small watermarks</li>
+                            </ul>
+                        </div>
+                        <div class="card" style="padding:1.25rem;background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;">
+                            <h3 style="margin:0 0 0.75rem;font-size:1rem;color:#4338ca;">🔧 When to Use Each Method</h3>
+                            <div style="display:grid;gap:0.5rem;font-size:0.9rem;color:#3730a3;">
+                                <div><strong>Smart Fill:</strong> Complex backgrounds, textures, gradients</div>
+                                <div><strong>Blur:</strong> Redacting personal info, NSFW blurring, privacy</div>
+                                <div><strong>Solid Fill:</strong> Pure white/black/single-colour backgrounds</div>
+                                <div><strong>Crop (Tab 2):</strong> Corner logos, edge watermarks, border text</div>
+                            </div>
+                        </div>
+                        <div class="card" style="padding:1.25rem;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;">
+                            <h3 style="margin:0 0 0.75rem;font-size:1rem;color:#c2410c;">⚠️ Limitations</h3>
+                            <p style="margin:0;color:#9a3412;line-height:1.7;font-size:0.9rem;">This tool uses canvas-based inpainting — it works best for watermarks on relatively uniform or textured backgrounds. For complex scene backgrounds (e.g. watermark over a face), the result may need manual touch-up. For perfect removal on complex images, dedicated desktop tools like GIMP or Photoshop may give better results.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center;margin-top:1.5rem;font-size:0.85rem;color:var(--text-muted);">
+                    ⚡ All processing happens in your browser. Your image is never uploaded or stored.
+                </div>
+            </div>
+
+            <!-- SEO Content -->
+            <div class="seo-content-block">
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Remove Watermark from Image Free Online</h2>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:2rem;">
+                        <div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
+                            <div style="font-size:2rem;margin-bottom:0.75rem;">🖼️</div>
+                            <h3 style="font-size:1rem;margin-bottom:0.5rem;">1. Upload Image</h3>
+                            <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">Drop or select a JPG, PNG, or WEBP image</p>
+                        </div>
+                        <div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
+                            <div style="font-size:2rem;margin-bottom:0.75rem;">🖌️</div>
+                            <h3 style="font-size:1rem;margin-bottom:0.5rem;">2. Paint the Watermark</h3>
+                            <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">Use the brush or rectangle to mark the watermark area</p>
+                        </div>
+                        <div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
+                            <div style="font-size:2rem;margin-bottom:0.75rem;">✨</div>
+                            <h3 style="font-size:1rem;margin-bottom:0.5rem;">3. Remove & Download</h3>
+                            <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">Click Remove Watermark and download the clean image</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">❓ Frequently Asked Questions</h2>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">Is this watermark remover really free with no limitations?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes — completely free, no file size limit (limited only by your browser's RAM), no account required, and no watermark added to your output image.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">Can I remove a watermark from a JPG or PNG image?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes. The tool supports JPG, PNG, WEBP, and most common image formats. Output is downloaded as PNG to preserve quality.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">How is this different from Apowersoft or HitPaw?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Apowersoft and HitPaw require installation or charge for download. This tool runs entirely in your browser — no software install, no payment, and your image never leaves your device.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">Can I remove text or logos from images too?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes. The tool works on any type of overlay — watermark text, copyright logos, stamps, date text, and more. Simply paint over the area you want removed.</p>
+                    </details>
+                </section>
+
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📚 About This Tool</h2>
+                    <div style="line-height:1.8;color:#4b5563;">
+                        <p>This free <strong>watermark remover</strong> uses the HTML5 Canvas API with a content-aware inpainting algorithm. When you paint over a watermark and click Remove, the tool samples pixel data from the surrounding regions and intelligently reconstructs the background — similar to how Photoshop's "Content-Aware Fill" works, but running entirely in your browser.</p>
+                        <p style="margin-top:1rem;">Unlike server-based tools that upload your images to cloud servers (raising privacy concerns), this tool processes everything locally. Your photos stay on your device. This makes it safe for sensitive documents, business images, or personal photos where privacy matters.</p>
+                    </div>
+                </section>
+
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Other Free Image Tools</h2>
+                    <div class="tools-grid">
+                        <a href="image-compressor" class="tool-card"><div class="tool-icon">🗜️</div><div class="tool-title">Image Compressor</div><div class="tool-desc">Compress JPG, PNG without quality loss.</div></a>
+                        <a href="background-remover" class="tool-card"><div class="tool-icon">✂️</div><div class="tool-title">Background Remover</div><div class="tool-desc">Remove background from any image free.</div></a>
+                        <a href="image-converter" class="tool-card"><div class="tool-icon">🔄</div><div class="tool-title">Image Converter</div><div class="tool-desc">Convert JPG to PNG, WEBP and more.</div></a>
+                        <a href="image-upscaler" class="tool-card"><div class="tool-icon">🔍</div><div class="tool-title">Image Upscaler</div><div class="tool-desc">Upscale and enhance image resolution.</div></a>
+                        <a href="remove-watermark-from-pdf" class="tool-card"><div class="tool-icon">📄</div><div class="tool-title">Remove Watermark from PDF</div><div class="tool-desc">Remove watermarks from PDF documents.</div></a>
+                        <a href="favicon-generator" class="tool-card"><div class="tool-icon">🌐</div><div class="tool-title">Favicon Generator</div><div class="tool-desc">Create favicons from any image.</div></a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+    <script src="/js/common.js?v=2.4"></script>
+    <script>
+        // ─── State ───
+        let mainCtx, maskCtx, origImageData, historyStack = [];
+        let currentTool = 'brush', brushSize = 20, isDrawing = false;
+        let currentMethod = 'inpaint';
+        let lastX, lastY, rectStartX, rectStartY;
+        // Crop state
+        let cropCtx, cropOrigImageData, cropStart = null, cropEnd = null, cropDrawing = false;
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId + '-tab').style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        // ─── Upload / Load ───
+        function handleDrop(e) { e.preventDefault(); handleDragLeave(); const f = e.dataTransfer.files[0]; if (f) loadFromFile(f); }
+        function handleCropDrop(e) { e.preventDefault(); handleDragLeave(); const f = e.dataTransfer.files[0]; if (f) loadCropFromFile(f); }
+        function handleDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+        function handleDragLeave(e) { document.querySelectorAll('.upload-zone').forEach(z => z.classList.remove('drag-over')); }
+        function loadImage(e) { const f = e.target.files[0]; if (f) loadFromFile(f); }
+        function loadCropImage(e) { const f = e.target.files[0]; if (f) loadCropFromFile(f); }
+
+        function loadFromFile(file) {
+            if (!file.type.startsWith('image/')) return showError('Please upload a valid image file.');
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => initEditor(img);
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function initEditor(img) {
+            const maxW = Math.min(img.width, 900);
+            const scale = maxW / img.width;
+            const w = Math.round(img.width * scale);
+            const h = Math.round(img.height * scale);
+
+            const mainCanvas = document.getElementById('mainCanvas');
+            const maskCanvas = document.getElementById('maskCanvas');
+            mainCanvas.width = w; mainCanvas.height = h;
+            maskCanvas.width = w; maskCanvas.height = h;
+
+            mainCtx = mainCanvas.getContext('2d');
+            maskCtx = maskCanvas.getContext('2d');
+            mainCtx.drawImage(img, 0, 0, w, h);
+            maskCtx.clearRect(0, 0, w, h);
+            origImageData = mainCtx.getImageData(0, 0, w, h);
+            historyStack = [];
+
+            setupCanvasEvents(mainCanvas);
+            document.getElementById('uploadZone').style.display = 'none';
+            document.getElementById('editorPanel').style.display = 'block';
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('beforeImg').src = mainCanvas.toDataURL();
+            showError('');
+        }
+
+        // ─── Canvas Drawing ───
+        function setupCanvasEvents(canvas) {
+            const getPos = (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                const src = e.touches ? e.touches[0] : e;
+                return { x: (src.clientX - rect.left) * scaleX, y: (src.clientY - rect.top) * scaleY };
+            };
+            const start = (e) => {
+                e.preventDefault(); isDrawing = true;
+                const pos = getPos(e); lastX = pos.x; lastY = pos.y;
+                if (currentTool === 'rect') { rectStartX = pos.x; rectStartY = pos.y; }
+                else paint(pos.x, pos.y, pos.x, pos.y);
+            };
+            const move = (e) => {
+                e.preventDefault(); if (!isDrawing) return;
+                const pos = getPos(e);
+                if (currentTool === 'rect') drawRectPreview(rectStartX, rectStartY, pos.x, pos.y);
+                else { paint(lastX, lastY, pos.x, pos.y); lastX = pos.x; lastY = pos.y; }
+            };
+            const end = (e) => {
+                if (!isDrawing) return; isDrawing = false;
+                if (currentTool === 'rect') {
+                    const pos = getPos(e);
+                    saveHistory();
+                    maskCtx.fillStyle = 'rgba(255,80,80,0.7)';
+                    maskCtx.fillRect(Math.min(rectStartX, pos.x), Math.min(rectStartY, pos.y),
+                        Math.abs(pos.x - rectStartX), Math.abs(pos.y - rectStartY));
+                }
+            };
+            canvas.addEventListener('mousedown', start); canvas.addEventListener('mousemove', move);
+            canvas.addEventListener('mouseup', end); canvas.addEventListener('mouseleave', end);
+            canvas.addEventListener('touchstart', start, {passive:false}); canvas.addEventListener('touchmove', move, {passive:false});
+            canvas.addEventListener('touchend', end);
+        }
+
+        function paint(x1, y1, x2, y2) {
+            if (currentTool === 'eraser') {
+                maskCtx.globalCompositeOperation = 'destination-out';
+                maskCtx.beginPath();
+                maskCtx.arc(x2, y2, brushSize / 2, 0, Math.PI * 2);
+                maskCtx.fill();
+                maskCtx.globalCompositeOperation = 'source-over';
+            } else {
+                saveHistory();
+                maskCtx.strokeStyle = 'rgba(255,80,80,0.6)';
+                maskCtx.lineWidth = brushSize; maskCtx.lineCap = 'round'; maskCtx.lineJoin = 'round';
+                maskCtx.beginPath(); maskCtx.moveTo(x1, y1); maskCtx.lineTo(x2, y2); maskCtx.stroke();
+            }
+        }
+
+        function drawRectPreview(x1, y1, x2, y2) {
+            // Redraw mask on top of main canvas preview
+            maskCtx.clearRect(0, 0, maskCtx.canvas.width, maskCtx.canvas.height);
+            // Redraw existing history on mask — simplified: just show rect preview
+            maskCtx.strokeStyle = 'rgba(255,80,80,0.8)';
+            maskCtx.lineWidth = 2; maskCtx.setLineDash([6, 3]);
+            maskCtx.strokeRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+            maskCtx.setLineDash([]);
+            maskCtx.fillStyle = 'rgba(255,80,80,0.25)';
+            maskCtx.fillRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+        }
+
+        function saveHistory() {
+            if (historyStack.length > 20) historyStack.shift();
+            historyStack.push(maskCtx.getImageData(0, 0, maskCtx.canvas.width, maskCtx.canvas.height));
+        }
+
+        function undoStep() {
+            if (historyStack.length > 0) maskCtx.putImageData(historyStack.pop(), 0, 0);
+        }
+
+        function clearMask() { maskCtx.clearRect(0, 0, maskCtx.canvas.width, maskCtx.canvas.height); historyStack = []; }
+
+        function setTool(t) {
+            currentTool = t;
+            ['brushBtn','rectBtn','eraserBtn'].forEach(id => document.getElementById(id).classList.remove('active'));
+            document.getElementById(t === 'eraser' ? 'eraserBtn' : t === 'rect' ? 'rectBtn' : 'brushBtn').classList.add('active');
+            document.getElementById('canvasWrap').style.cursor = t === 'eraser' ? 'cell' : 'crosshair';
+        }
+
+        function updateBrushSize(v) { brushSize = parseInt(v); document.getElementById('brushSizeLabel').textContent = v + 'px'; }
+
+        function selectMethod(m) {
+            currentMethod = m;
+            document.querySelectorAll('.method-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('method_' + m).classList.add('selected');
+            document.getElementById('colorPickerRow').style.display = m === 'color' ? 'block' : 'none';
+        }
+
+        function sampleColor() {
+            showError('Click a pixel on the image to sample its colour. Switch to Brush, click the background, then switch back to Solid Fill.');
+        }
+
+        // ─── Core Watermark Removal ───
+        function removeWatermark() {
+            const mainCanvas = document.getElementById('mainCanvas');
+            const maskCanvas = document.getElementById('maskCanvas');
+            const maskData = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height);
+            const hasMarks = maskData.data.some((v, i) => i % 4 === 3 && v > 10);
+            if (!hasMarks) return showError('Please paint over the watermark area first.');
+            showError('');
+
+            const pb = document.getElementById('progressBar');
+            const pf = document.getElementById('progressFill');
+            pb.style.display = 'block'; pf.style.width = '0%';
+
+            // Work on the original image data
+            const workData = new ImageData(new Uint8ClampedArray(origImageData.data), origImageData.width, origImageData.height);
+
+            setTimeout(() => {
+                pf.style.width = '30%';
+                if (currentMethod === 'blur') applyBlur(workData, maskData);
+                else if (currentMethod === 'color') applyColor(workData, maskData);
+                else applyInpaint(workData, maskData);
+                pf.style.width = '90%';
+                mainCtx.putImageData(workData, 0, 0);
+                clearMask();
+                origImageData = mainCtx.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
+                pf.style.width = '100%';
+                setTimeout(() => { pb.style.display = 'none'; }, 400);
+                const resultURL = mainCanvas.toDataURL('image/png');
+                document.getElementById('afterImg').src = resultURL;
+                document.getElementById('resultSection').style.display = 'block';
+                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+
+        function applyBlur(imgData, maskData) {
+            const w = imgData.width, h = imgData.height;
+            const radius = Math.max(brushSize, 8);
+            for (let y = 0; y < h; y++) {
+                for (let x = 0; x < w; x++) {
+                    const idx = (y * w + x) * 4;
+                    if (maskData.data[idx + 3] < 10) continue;
+                    let r = 0, g = 0, b = 0, count = 0;
+                    const kr = Math.min(radius, 12);
+                    for (let dy = -kr; dy <= kr; dy++) {
+                        for (let dx = -kr; dx <= kr; dx++) {
+                            const nx = x + dx, ny = y + dy;
+                            if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+                            const ni = (ny * w + nx) * 4;
+                            r += imgData.data[ni]; g += imgData.data[ni+1]; b += imgData.data[ni+2]; count++;
+                        }
+                    }
+                    imgData.data[idx] = r / count; imgData.data[idx+1] = g / count; imgData.data[idx+2] = b / count;
+                }
+            }
+        }
+
+        function applyColor(imgData, maskData) {
+            const hex = document.getElementById('fillColor').value;
+            const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+            for (let i = 0; i < maskData.data.length; i += 4) {
+                if (maskData.data[i+3] < 10) continue;
+                imgData.data[i] = r; imgData.data[i+1] = g; imgData.data[i+2] = b;
+            }
+        }
+
+        function applyInpaint(imgData, maskData) {
+            const w = imgData.width, h = imgData.height;
+            const data = imgData.data;
+            const mask = maskData.data;
+            // Multi-pass inpainting: sample surrounding non-masked pixels
+            const passes = 3;
+            for (let pass = 0; pass < passes; pass++) {
+                const searchRadius = 12 + pass * 6;
+                for (let y = 0; y < h; y++) {
+                    for (let x = 0; x < w; x++) {
+                        const idx = (y * w + x) * 4;
+                        if (mask[idx + 3] < 10) continue;
+                        let r = 0, g = 0, b = 0, count = 0, weight = 0;
+                        for (let dy = -searchRadius; dy <= searchRadius; dy++) {
+                            for (let dx = -searchRadius; dx <= searchRadius; dx++) {
+                                const nx = x + dx, ny = y + dy;
+                                if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+                                const ni = (ny * w + nx) * 4;
+                                if (mask[ni + 3] > 10) continue; // Skip masked pixels
+                                const dist = Math.sqrt(dx*dx + dy*dy);
+                                const w_val = 1 / (dist + 1);
+                                r += data[ni] * w_val; g += data[ni+1] * w_val; b += data[ni+2] * w_val;
+                                weight += w_val; count++;
+                            }
+                        }
+                        if (count > 0) {
+                            data[idx] = r / weight; data[idx+1] = g / weight; data[idx+2] = b / weight;
+                        }
+                    }
+                }
+            }
+        }
+
+        function downloadResult() {
+            const canvas = document.getElementById('mainCanvas');
+            const a = document.createElement('a'); a.href = canvas.toDataURL('image/png');
+            a.download = 'watermark-removed-worldoftools.png'; a.click();
+        }
+
+        function applyAndContinue() {
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('canvasWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetEditor() {
+            if (origImageData) mainCtx.putImageData(origImageData, 0, 0);
+            clearMask(); historyStack = [];
+            document.getElementById('resultSection').style.display = 'none';
+        }
+
+        // ─── CROP TAB ───
+        function loadCropFromFile(file) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => {
+                    const maxW = Math.min(img.width, 800);
+                    const scale = maxW / img.width;
+                    const w = Math.round(img.width * scale);
+                    const h = Math.round(img.height * scale);
+                    const canvas = document.getElementById('cropCanvas');
+                    canvas.width = w; canvas.height = h;
+                    cropCtx = canvas.getContext('2d');
+                    cropCtx.drawImage(img, 0, 0, w, h);
+                    cropOrigImageData = cropCtx.getImageData(0, 0, w, h);
+                    cropStart = null; cropEnd = null;
+                    setupCropEvents(canvas);
+                    document.getElementById('cropUploadZone').style.display = 'none';
+                    document.getElementById('cropPanel').style.display = 'block';
+                    document.getElementById('cropResult').style.display = 'none';
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function setupCropEvents(canvas) {
+            const getPos = (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const sx = canvas.width / rect.width, sy = canvas.height / rect.height;
+                const src = e.touches ? e.touches[0] : e;
+                return { x: (src.clientX - rect.left) * sx, y: (src.clientY - rect.top) * sy };
+            };
+            canvas.onmousedown = canvas.ontouchstart = (e) => { e.preventDefault(); cropDrawing = true; cropStart = getPos(e); };
+            canvas.onmousemove = canvas.ontouchmove = (e) => {
+                e.preventDefault(); if (!cropDrawing) return;
+                cropEnd = getPos(e); drawCropOverlay();
+            };
+            canvas.onmouseup = canvas.ontouchend = (e) => {
+                cropDrawing = false;
+                if (cropStart && cropEnd) {
+                    const x = Math.min(cropStart.x, cropEnd.x), y = Math.min(cropStart.y, cropEnd.y);
+                    const w = Math.abs(cropEnd.x - cropStart.x), h = Math.abs(cropEnd.y - cropStart.y);
+                    document.getElementById('cropInfo').textContent = `Selection: ${Math.round(w)} × ${Math.round(h)} px`;
+                }
+            };
+        }
+
+        function drawCropOverlay() {
+            if (!cropOrigImageData) return;
+            cropCtx.putImageData(cropOrigImageData, 0, 0);
+            if (!cropStart || !cropEnd) return;
+            const x = Math.min(cropStart.x, cropEnd.x), y = Math.min(cropStart.y, cropEnd.y);
+            const w = Math.abs(cropEnd.x - cropStart.x), h = Math.abs(cropEnd.y - cropStart.y);
+            cropCtx.fillStyle = 'rgba(0,0,0,0.5)';
+            cropCtx.fillRect(0, 0, cropCtx.canvas.width, cropCtx.canvas.height);
+            cropCtx.putImageData(cropOrigImageData, 0, 0, x, y, w, h);
+            cropCtx.strokeStyle = 'white'; cropCtx.lineWidth = 2; cropCtx.setLineDash([6,3]);
+            cropCtx.strokeRect(x, y, w, h); cropCtx.setLineDash([]);
+        }
+
+        function applyCrop() {
+            if (!cropStart || !cropEnd) return showError('Please draw a selection on the image first.');
+            const x = Math.min(cropStart.x, cropEnd.x), y = Math.min(cropStart.y, cropEnd.y);
+            const w = Math.abs(cropEnd.x - cropStart.x), h = Math.abs(cropEnd.y - cropStart.y);
+            if (w < 2 || h < 2) return showError('Selection too small.');
+            const out = document.createElement('canvas'); out.width = w; out.height = h;
+            const outCtx = out.getContext('2d');
+            outCtx.putImageData(cropOrigImageData, -x, -y);
+            const url = out.toDataURL('image/png');
+            document.getElementById('croppedImg').src = url;
+            document.getElementById('cropResult').style.display = 'block';
+            document.getElementById('cropResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function downloadCrop() {
+            const a = document.createElement('a'); a.href = document.getElementById('croppedImg').src;
+            a.download = 'cropped-worldoftools.png'; a.click();
+        }
+
+        function resetCrop() {
+            if (cropOrigImageData) cropCtx.putImageData(cropOrigImageData, 0, 0);
+            cropStart = null; cropEnd = null;
+            document.getElementById('cropResult').style.display = 'none';
+            document.getElementById('cropInfo').textContent = '';
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('errorMessage');
+            if (msg) { el.textContent = '⚠️ ' + msg; el.style.display = 'flex'; el.scrollIntoView({behavior:'smooth',block:'center'}); }
+            else { el.style.display = 'none'; el.textContent = ''; }
+        }
+    </script>
+</body>
+</html>

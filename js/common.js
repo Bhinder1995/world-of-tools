@@ -79,6 +79,12 @@ function injectHeader() {
                                         <a href="/unit-converter" class="mega-item">
                                             <span class="nav-icon" style="background:#27ae60;">📏</span> Unit Converter
                                         </a>
+                                        <a href="/cgpa-calculator" class="mega-item">
+                                            <span class="nav-icon" style="background:#f39c12;">🎓</span> CGPA Calculator
+                                        </a>
+                                        <a href="/loan-comparison-calculator" class="mega-item">
+                                            <span class="nav-icon" style="background:#2ecc71;">⚖️</span> Loan Comparison
+                                        </a>
                                     </div>
 
                                     <div class="mega-col">
@@ -162,6 +168,9 @@ function injectHeader() {
                                         <a href="/linkedin-creator-suite" class="mega-item">
                                             <span class="nav-icon" style="background:#0a66c2;">💼</span> LinkedIn Suite
                                         </a>
+                                        <a href="/audio-to-text" class="mega-item">
+                                            <span class="nav-icon" style="background:#3498db;">🎙️</span> Audio to Text
+                                        </a>
                                     </div>
 
                                     <div class="mega-col">
@@ -210,6 +219,9 @@ function injectHeader() {
                                         </a>
                                         <a href="/invoice-generator" class="mega-item">
                                             <span class="nav-icon" style="background:#ff9800;">📄</span> Invoice Generator
+                                        </a>
+                                        <a href="/remove-watermark-from-image" class="mega-item">
+                                            <span class="nav-icon" style="background:#673ab7;">✨</span> Remove Watermark
                                         </a>
                                     </div>
 
@@ -393,6 +405,10 @@ function injectFooter() {
                             <a href="/email-signature-generator" class="footer-badge">Email Signature</a>
                             <a href="/favicon-generator" class="footer-badge">Favicon Generator</a>
                             <a href="/invoice-generator" class="footer-badge">Invoice Generator</a>
+                            <a href="/audio-to-text" class="footer-badge">Audio to Text</a>
+                            <a href="/cgpa-calculator" class="footer-badge">CGPA Calculator</a>
+                            <a href="/loan-comparison-calculator" class="footer-badge">Loan Comparison</a>
+                            <a href="/remove-watermark-from-image" class="footer-badge">Remove Watermark</a>
                         </div>
                     </div>
 

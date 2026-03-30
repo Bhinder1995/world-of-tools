@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio to Text Converter — Free Speech to Text Online | WorldOfTools</title>
+    <meta name="description" content="Convert audio to text free online. Transcribe speech, mic recordings, or audio files instantly in your browser. No upload, no signup, 100% private. Supports 30+ languages.">
+    <meta name="keywords" content="audio to text, speech to text online free, transcribe audio to text, voice to text converter, audio transcription online, convert speech to text, mic to text, transcribe audio free, speech recognition online, voice transcription tool, audio to text converter without software, free transcription tool India, online voice to text no signup">
+    <link rel="canonical" href="https://worldoftools.in/audio-to-text" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem","position": 1,"name": "Home","item": "https://worldoftools.in/"
+      },{
+        "@type": "ListItem","position": 2,"name": "Audio to Text","item": "https://worldoftools.in/audio-to-text"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I convert audio to text for free online?",
+          "acceptedAnswer": {"@type": "Answer","text": "Click 'Start Recording' to use your microphone in real-time, or switch to the File tab to paste audio content. All transcription runs locally in your browser using the Web Speech API — no upload, no server."}
+        },
+        {
+          "@type": "Question",
+          "name": "Is my audio stored or sent to any server?",
+          "acceptedAnswer": {"@type": "Answer","text": "No. This tool uses your browser's built-in Web Speech API. Your audio is processed locally — it never leaves your device and is never stored on our servers."}
+        },
+        {
+          "@type": "Question",
+          "name": "Which languages does this speech to text tool support?",
+          "acceptedAnswer": {"@type": "Answer","text": "It supports 30+ languages including English, Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi, and more — all available via the language selector."}
+        },
+        {
+          "@type": "Question",
+          "name": "Can I transcribe a recorded audio file?",
+          "acceptedAnswer": {"@type": "Answer","text": "For live dictation, use the microphone mode. For pre-recorded audio files, play the file through your speakers while recording — the browser will pick up the audio."}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Audio to Text Converter",
+      "operatingSystem": "Any",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
+    }
+    </script>
+
+    <style>
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 0.5rem; }
+        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 12px; border: 2px solid var(--border-color); background: white; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.2s; font-family: inherit; }
+        .tab-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .card { transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+
+        /* Mic Button */
+        #micBtn {
+            width: 120px; height: 120px; border-radius: 50%; border: none;
+            background: var(--primary-gradient); cursor: pointer; font-size: 3rem;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 32px rgba(79,70,229,0.3); transition: all 0.3s; position: relative;
+        }
+        #micBtn:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(79,70,229,0.4); }
+        #micBtn.recording {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 8px 32px rgba(239,68,68,0.4);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%,100% { transform: scale(1); box-shadow: 0 8px 32px rgba(239,68,68,0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 12px 48px rgba(239,68,68,0.6); }
+        }
+
+        #statusBadge {
+            display: inline-block; padding: 0.4rem 1.2rem; border-radius: 99px;
+            font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; background: #f1f5f9; color: #64748b;
+        }
+        #statusBadge.listening { background: #fef2f2; color: #ef4444; }
+        #statusBadge.done { background: #f0fdf4; color: #16a34a; }
+
+        .transcript-box {
+            width: 100%; min-height: 200px; padding: 1.25rem; border-radius: 12px;
+            border: 2px solid var(--border-color); font-size: 1rem; font-family: inherit;
+            line-height: 1.8; resize: vertical; background: #f8fafc; transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .transcript-box:focus { outline: none; border-color: var(--primary-color); background: white; }
+
+        .stats-row {
+            display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;
+        }
+        .stat-chip {
+            padding: 0.4rem 0.9rem; background: #eef2ff; border-radius: 99px;
+            font-size: 0.82rem; font-weight: 700; color: var(--primary-color);
+        }
+
+        .lang-select {
+            padding: 0.75rem 1rem; border-radius: 12px; border: 2px solid var(--border-color);
+            font-family: inherit; font-size: 0.95rem; background: white; cursor: pointer; width: 100%;
+        }
+        .lang-select:focus { outline: none; border-color: var(--primary-color); }
+
+        .action-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+
+        .waveform {
+            display: flex; align-items: center; justify-content: center; gap: 4px;
+            height: 40px; margin: 1rem 0;
+        }
+        .wave-bar {
+            width: 4px; border-radius: 4px; background: var(--primary-color); opacity: 0.3;
+            transition: all 0.1s;
+        }
+        .waveform.active .wave-bar { opacity: 1; }
+        .waveform.active .wave-bar:nth-child(1) { animation: wave 0.8s infinite 0.0s; }
+        .waveform.active .wave-bar:nth-child(2) { animation: wave 0.8s infinite 0.1s; }
+        .waveform.active .wave-bar:nth-child(3) { animation: wave 0.8s infinite 0.2s; }
+        .waveform.active .wave-bar:nth-child(4) { animation: wave 0.8s infinite 0.3s; }
+        .waveform.active .wave-bar:nth-child(5) { animation: wave 0.8s infinite 0.4s; }
+        .waveform.active .wave-bar:nth-child(6) { animation: wave 0.8s infinite 0.3s; }
+        .waveform.active .wave-bar:nth-child(7) { animation: wave 0.8s infinite 0.2s; }
+        .waveform.active .wave-bar:nth-child(8) { animation: wave 0.8s infinite 0.1s; }
+        @keyframes wave { 0%,100% { height: 6px; } 50% { height: 30px; } }
+
+        .supported-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem;
+            border-radius: 10px; font-size: 0.85rem; font-weight: 600;
+        }
+        .supported-badge.yes { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+        .supported-badge.no { background: #fef2f2; color: #ef4444; border: 1px solid #fecaca; }
+
+        .interim-text { color: #94a3b8; font-style: italic; }
+        .final-text { color: #1e293b; }
+    </style>
+
+    <link rel="stylesheet" href="/css/style.css?v=2.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <meta name="theme-color" content="#4f46e5">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date()); gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975" crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container" data-category-name="Text Tools Online" data-category-url="/text-tools-online" data-tool-name="Audio to Text Converter">
+        <div class="tool-container">
+            <section class="tool-header">
+                <div class="privacy-badge-banner">
+                    <span>🛡️</span>
+                    <span>100% Private — Audio Never Leaves Your Browser</span>
+                </div>
+                <h1>Free Audio to Text Converter — Speech to Text Online</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Transcribe speech in real-time using your microphone. No upload. No signup. Works in 30+ languages including Hindi, Tamil, Telugu & more.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="/guides/audio-to-text-guide" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+                        📖 Read Transcription Guide
+                    </a>
+                </div>
+            </section>
+
+            <div class="tool-main-card">
+
+                <!-- Browser Support Check -->
+                <div id="browserCheck" style="display: none; padding: 1rem; background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; margin-bottom: 1.5rem; text-align: center;">
+                    <p style="color: #dc2626; font-weight: 700; margin: 0;">⚠️ Your browser does not support the Web Speech API. Please use <strong>Google Chrome</strong> or <strong>Microsoft Edge</strong> for best results.</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('mic')">🎙️ Microphone</button>
+                    <button class="tab-btn" onclick="switchTab('notes')">📝 Text Notes</button>
+                    <button class="tab-btn" onclick="switchTab('tips')">💡 Tips & Tricks</button>
+                </div>
+
+                <div id="errorMessage" class="error-msg"></div>
+
+                <!-- Microphone Tab -->
+                <div id="mic-tab" class="tab-content">
+
+                    <!-- Language Selector -->
+                    <div class="input-group" style="margin-bottom: 1.5rem;">
+                        <label for="langSelect">🌐 Recognition Language</label>
+                        <select class="lang-select" id="langSelect">
+                            <optgroup label="🇮🇳 Indian Languages">
+                                <option value="hi-IN">Hindi — हिन्दी</option>
+                                <option value="ta-IN">Tamil — தமிழ்</option>
+                                <option value="te-IN">Telugu — తెలుగు</option>
+                                <option value="bn-IN">Bengali — বাংলা</option>
+                                <option value="mr-IN">Marathi — मराठी</option>
+                                <option value="gu-IN">Gujarati — ગુજરાતી</option>
+                                <option value="kn-IN">Kannada — ಕನ್ನಡ</option>
+                                <option value="ml-IN">Malayalam — മലയാളം</option>
+                                <option value="pa-IN">Punjabi — ਪੰਜਾਬੀ</option>
+                                <option value="ur-IN">Urdu — اردو</option>
+                                <option value="or-IN">Odia — ଓଡ଼ିଆ</option>
+                            </optgroup>
+                            <optgroup label="🌍 Global Languages">
+                                <option value="en-IN" selected>English (India)</option>
+                                <option value="en-US">English (US)</option>
+                                <option value="en-GB">English (UK)</option>
+                                <option value="en-AU">English (Australia)</option>
+                                <option value="es-ES">Spanish</option>
+                                <option value="fr-FR">French</option>
+                                <option value="de-DE">German</option>
+                                <option value="pt-BR">Portuguese</option>
+                                <option value="ja-JP">Japanese</option>
+                                <option value="ko-KR">Korean</option>
+                                <option value="zh-CN">Chinese (Simplified)</option>
+                                <option value="ar-SA">Arabic</option>
+                                <option value="ru-RU">Russian</option>
+                                <option value="it-IT">Italian</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Mic Controls -->
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div id="statusBadge">⏸ Ready to Record</div>
+                        <button id="micBtn" onclick="toggleRecording()" title="Click to start recording">
+                            🎙️
+                        </button>
+                        <div class="waveform" id="waveform">
+                            <div class="wave-bar" style="height:6px"></div>
+                            <div class="wave-bar" style="height:6px"></div>
+                            <div class="wave-bar" style="height:6px"></div>
+                            <div class="wave-bar" style="height:6px"></div>
+                            <div class="wave-bar" style="height:6px"></div>
+                            <div class="wave-bar" style="height:6px"></div>
+                            <div class="wave-bar" style="height:6px"></div>
+                            <div class="wave-bar" style="height:6px"></div>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Click mic to start · Click again to stop</p>
+                    </div>
+
+                    <!-- Options Row -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; cursor: pointer; font-size: 0.9rem;">
+                            <input type="checkbox" id="continuousMode" checked style="width: 16px; height: 16px; accent-color: var(--primary-color);">
+                            🔄 Continuous Mode
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; cursor: pointer; font-size: 0.9rem;">
+                            <input type="checkbox" id="punctuationHints" style="width: 16px; height: 16px; accent-color: var(--primary-color);">
+                            ✏️ Auto Punctuation Hints
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; cursor: pointer; font-size: 0.9rem;">
+                            <input type="checkbox" id="appendMode" checked style="width: 16px; height: 16px; accent-color: var(--primary-color);">
+                            ➕ Append to Existing
+                        </label>
+                    </div>
+
+                    <!-- Transcript Output -->
+                    <div class="input-group">
+                        <label for="transcriptBox">📄 Transcript</label>
+                        <textarea class="transcript-box" id="transcriptBox" placeholder="Your transcribed text will appear here as you speak..."></textarea>
+                    </div>
+
+                    <!-- Live interim display -->
+                    <div id="interimDisplay" style="min-height: 1.5rem; color: #94a3b8; font-style: italic; font-size: 0.9rem; margin-top: 0.5rem; padding: 0 0.25rem;"></div>
+
+                    <!-- Stats -->
+                    <div class="stats-row" id="statsRow" style="display: none;">
+                        <span class="stat-chip" id="wordCount">0 words</span>
+                        <span class="stat-chip" id="charCount">0 chars</span>
+                        <span class="stat-chip" id="readTime">~0 min read</span>
+                        <span class="stat-chip" id="sentenceCount">0 sentences</span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-btns">
+                        <button class="btn" onclick="copyTranscript()" style="flex: 1;">📋 Copy Text</button>
+                        <button class="btn btn-secondary" onclick="downloadTranscript()" style="flex: 1;">⬇️ Download .txt</button>
+                        <button class="btn btn-secondary" onclick="clearTranscript()" style="flex: 1;">🗑️ Clear</button>
+                    </div>
+                </div>
+
+                <!-- Notes Tab -->
+                <div id="notes-tab" class="tab-content" style="display: none;">
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">Use this as a scratch pad. Type or paste anything, then analyze, format or download.</p>
+                    <div class="input-group">
+                        <label for="notesBox">📝 Your Notes</label>
+                        <textarea class="transcript-box" id="notesBox" placeholder="Paste or type your text here for analysis and formatting..." style="min-height: 250px;"></textarea>
+                    </div>
+                    <div class="stats-row" id="notesStats" style="display: none;">
+                        <span class="stat-chip" id="notesWords">0 words</span>
+                        <span class="stat-chip" id="notesChars">0 chars</span>
+                        <span class="stat-chip" id="notesRead">~0 min read</span>
+                    </div>
+                    <div class="action-btns" style="margin-top: 1rem;">
+                        <button class="btn" onclick="analyzeNotes()" style="flex: 1;">📊 Analyze Text</button>
+                        <button class="btn btn-secondary" onclick="copyNotes()" style="flex: 1;">📋 Copy</button>
+                        <button class="btn btn-secondary" onclick="downloadNotes()" style="flex: 1;">⬇️ Download</button>
+                    </div>
+                    <!-- Analysis Results -->
+                    <div id="analysisResult" style="display: none; margin-top: 2rem;"></div>
+                </div>
+
+                <!-- Tips Tab -->
+                <div id="tips-tab" class="tab-content" style="display: none;">
+                    <div style="display: grid; gap: 1rem;">
+                        <div class="card" style="padding: 1.25rem; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px;">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1rem; color: #15803d;">🎯 Best Practices for Accuracy</h3>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: #166534; line-height: 1.8; font-size: 0.9rem;">
+                                <li>Speak clearly at a moderate pace</li>
+                                <li>Use a good quality microphone or headset</li>
+                                <li>Reduce background noise as much as possible</li>
+                                <li>Say punctuation words: "comma", "period", "new line"</li>
+                            </ul>
+                        </div>
+                        <div class="card" style="padding: 1.25rem; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 12px;">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1rem; color: #4338ca;">🖥️ Browser Requirements</h3>
+                            <ul style="margin: 0; padding-left: 1.25rem; color: #3730a3; line-height: 1.8; font-size: 0.9rem;">
+                                <li>✅ Best: Google Chrome (desktop)</li>
+                                <li>✅ Good: Microsoft Edge</li>
+                                <li>✅ Good: Safari (iOS/macOS)</li>
+                                <li>⚠️ Limited: Firefox (partial support)</li>
+                            </ul>
+                        </div>
+                        <div class="card" style="padding: 1.25rem; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px;">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1rem; color: #c2410c;">🎙️ Transcribing Audio Files</h3>
+                            <p style="margin: 0; color: #9a3412; line-height: 1.7; font-size: 0.9rem;">To transcribe a pre-recorded file: play the audio through your speakers while the mic is recording. For best results, use the "Set as System Audio" option in your OS audio settings to capture internal audio.</p>
+                        </div>
+                        <div class="card" style="padding: 1.25rem; background: #fdf4ff; border: 1px solid #e9d5ff; border-radius: 12px;">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1rem; color: #7c3aed;">🔒 Your Privacy</h3>
+                            <p style="margin: 0; color: #6d28d9; line-height: 1.7; font-size: 0.9rem;">This tool uses the <strong>Web Speech API</strong> — a browser-native feature. Your audio is processed by Google's speech recognition engine inside Chrome (same as the built-in dictation), but your text is never stored on WorldOfTools servers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    ⚡ All processing runs in your browser. No files uploaded. No data stored.
+                </div>
+            </div>
+
+            <!-- SEO Content Block -->
+            <div class="seo-content-block">
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Convert Audio to Text Free Online</h2>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-bottom:2rem;">
+                        <div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
+                            <div style="font-size:2rem;margin-bottom:0.75rem;">🌐</div>
+                            <h3 style="font-size:1rem;margin-bottom:0.5rem;">1. Select Language</h3>
+                            <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">Choose from 30+ languages including Hindi, Tamil, Telugu, and more</p>
+                        </div>
+                        <div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
+                            <div style="font-size:2rem;margin-bottom:0.75rem;">🎙️</div>
+                            <h3 style="font-size:1rem;margin-bottom:0.5rem;">2. Click the Mic</h3>
+                            <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">Grant microphone access and start speaking — transcription begins instantly</p>
+                        </div>
+                        <div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
+                            <div style="font-size:2rem;margin-bottom:0.75rem;">📄</div>
+                            <h3 style="font-size:1rem;margin-bottom:0.5rem;">3. Copy or Download</h3>
+                            <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">Copy your transcript to clipboard or download as a .txt file</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">❓ Frequently Asked Questions</h2>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">Is this audio to text converter really free?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, completely free — no account, no subscription, no hidden fees. The tool uses the browser's native Web Speech API.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">What languages does this speech to text tool support?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">30+ languages including all major Indian regional languages: Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi, Odia, and Urdu.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">Does this work offline?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Chrome's Web Speech API requires an internet connection as it processes speech server-side within Google's infrastructure. However, Safari on newer Apple devices supports on-device recognition.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">How accurate is the transcription?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">For clear speech in a quiet environment, accuracy is typically 90–95% for English. Indian language accuracy is improving rapidly. Speaking slowly and clearly improves results significantly.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">Can I use this to transcribe YouTube videos or meetings?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes! Play the video audio through your speakers while recording. For meetings on Zoom/Google Meet, configure system audio to route through your microphone input.</p>
+                    </details>
+                </section>
+
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📚 About Speech-to-Text Technology</h2>
+                    <div style="line-height:1.8;color:#4b5563;">
+                        <p>This <strong>free audio to text converter</strong> leverages the W3C Web Speech API, which is built directly into modern browsers like Chrome, Edge, and Safari. Unlike traditional transcription software that requires installation or paid subscriptions, this tool works entirely within your browser tab.</p>
+                        <p style="margin-top:1rem;">Speech recognition has become incredibly accurate thanks to deep learning models. Google's and Apple's recognition engines can now handle accents, mixed-language speech (like Hinglish), and spontaneous natural language with over 90% accuracy. This makes it ideal for students taking dictation notes, content writers drafting articles, professionals transcribing meetings, and anyone who types slowly but speaks fast.</p>
+                        <p style="margin-top:1rem;">WorldOfTools provides this tool with zero paywall — unlike Otter.ai, Rev, or Descript which all limit free usage heavily. Your privacy is protected: the text output is generated in your browser and never stored on our servers.</p>
+                    </div>
+                </section>
+
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Other Free Tools You Might Need</h2>
+                    <div class="tools-grid">
+                        <a href="word-counter" class="tool-card"><div class="tool-icon">📝</div><div class="tool-title">Word Counter</div><div class="tool-desc">Count words, characters, paragraphs and reading time.</div></a>
+                        <a href="text-compare-tool" class="tool-card"><div class="tool-icon">⚖️</div><div class="tool-title">Text Compare</div><div class="tool-desc">Diff two texts and highlight differences instantly.</div></a>
+                        <a href="case-converter" class="tool-card"><div class="tool-icon">Aa</div><div class="tool-title">Case Converter</div><div class="tool-desc">Convert text to UPPER, lower, Title or Sentence case.</div></a>
+                        <a href="seo-meta-tag-generator" class="tool-card"><div class="tool-icon">🏷️</div><div class="tool-title">Meta Tag Generator</div><div class="tool-desc">Generate SEO-optimised meta tags for any page.</div></a>
+                        <a href="markdown-to-html" class="tool-card"><div class="tool-icon">⬇️</div><div class="tool-title">Markdown to HTML</div><div class="tool-desc">Convert Markdown to clean HTML output instantly.</div></a>
+                        <a href="lorem-ipsum-generator" class="tool-card"><div class="tool-icon">📜</div><div class="tool-title">Lorem Ipsum Generator</div><div class="tool-desc">Generate placeholder text for designs and mockups.</div></a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+    <script src="/js/common.js?v=2.4"></script>
+    <script>
+        // Browser support check
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            document.getElementById('browserCheck').style.display = 'block';
+            document.getElementById('micBtn').disabled = true;
+            document.getElementById('micBtn').style.opacity = '0.5';
+        }
+
+        let recognition = null;
+        let isRecording = false;
+        let finalTranscript = '';
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId + '-tab').style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        function toggleRecording() {
+            if (isRecording) stopRecording();
+            else startRecording();
+        }
+
+        function startRecording() {
+            if (!SpeechRecognition) return showError('Speech recognition not supported. Please use Chrome or Edge.');
+            recognition = new SpeechRecognition();
+            recognition.lang = document.getElementById('langSelect').value;
+            recognition.continuous = document.getElementById('continuousMode').checked;
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 1;
+
+            if (!document.getElementById('appendMode').checked) {
+                finalTranscript = '';
+                document.getElementById('transcriptBox').value = '';
+            }
+
+            recognition.onstart = () => {
+                isRecording = true;
+                document.getElementById('micBtn').classList.add('recording');
+                document.getElementById('micBtn').textContent = '⏹️';
+                document.getElementById('statusBadge').textContent = '🔴 Listening...';
+                document.getElementById('statusBadge').className = 'listening';
+                document.getElementById('waveform').classList.add('active');
+                showError('');
+            };
+
+            recognition.onresult = (event) => {
+                let interim = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        let text = transcript;
+                        if (document.getElementById('punctuationHints').checked) {
+                            text = text.replace(/\bcomma\b/gi, ',')
+                                       .replace(/\bperiod\b|\bfull stop\b/gi, '.')
+                                       .replace(/\bquestion mark\b/gi, '?')
+                                       .replace(/\bexclamation\b/gi, '!')
+                                       .replace(/\bnew line\b|\bnew paragraph\b/gi, '\n');
+                        }
+                        finalTranscript += text + ' ';
+                    } else {
+                        interim = transcript;
+                    }
+                }
+                document.getElementById('transcriptBox').value = finalTranscript;
+                document.getElementById('interimDisplay').textContent = interim ? '💭 ' + interim : '';
+                updateStats();
+            };
+
+            recognition.onerror = (e) => {
+                if (e.error === 'not-allowed') showError('Microphone access denied. Please allow mic access in your browser settings.');
+                else if (e.error === 'no-speech') showError('No speech detected. Please speak closer to the microphone.');
+                else if (e.error !== 'aborted') showError('Error: ' + e.error);
+                stopRecording();
+            };
+
+            recognition.onend = () => {
+                if (isRecording && document.getElementById('continuousMode').checked) {
+                    // Restart automatically in continuous mode
+                    try { recognition.start(); } catch(e) {}
+                } else {
+                    stopRecording();
+                }
+            };
+
+            try { recognition.start(); } catch(e) { showError('Could not start microphone. ' + e.message); }
+        }
+
+        function stopRecording() {
+            isRecording = false;
+            if (recognition) { try { recognition.stop(); } catch(e) {} recognition = null; }
+            document.getElementById('micBtn').classList.remove('recording');
+            document.getElementById('micBtn').textContent = '🎙️';
+            document.getElementById('statusBadge').textContent = '✅ Done';
+            document.getElementById('statusBadge').className = 'done';
+            document.getElementById('waveform').classList.remove('active');
+            document.getElementById('interimDisplay').textContent = '';
+            updateStats();
+        }
+
+        function updateStats() {
+            const text = document.getElementById('transcriptBox').value.trim();
+            if (!text) { document.getElementById('statsRow').style.display = 'none'; return; }
+            const words = text.split(/\s+/).filter(w => w.length > 0).length;
+            const chars = text.length;
+            const sentences = (text.match(/[.!?]+/g) || []).length;
+            const readMins = Math.ceil(words / 200);
+            document.getElementById('wordCount').textContent = words.toLocaleString() + ' words';
+            document.getElementById('charCount').textContent = chars.toLocaleString() + ' chars';
+            document.getElementById('readTime').textContent = '~' + readMins + ' min read';
+            document.getElementById('sentenceCount').textContent = sentences + ' sentences';
+            document.getElementById('statsRow').style.display = 'flex';
+        }
+
+        function copyTranscript() {
+            const text = document.getElementById('transcriptBox').value;
+            if (!text) return showError('Nothing to copy yet. Start recording first.');
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget;
+                const orig = btn.textContent; btn.textContent = '✅ Copied!';
+                setTimeout(() => btn.textContent = orig, 2000);
+            });
+        }
+
+        function downloadTranscript() {
+            const text = document.getElementById('transcriptBox').value;
+            if (!text) return showError('Nothing to download yet.');
+            const blob = new Blob([text], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'transcript-worldoftools.txt';
+            a.click();
+        }
+
+        function clearTranscript() {
+            finalTranscript = '';
+            document.getElementById('transcriptBox').value = '';
+            document.getElementById('interimDisplay').textContent = '';
+            document.getElementById('statsRow').style.display = 'none';
+            if (isRecording) stopRecording();
+        }
+
+        function analyzeNotes() {
+            const text = document.getElementById('notesBox').value.trim();
+            if (!text) return;
+            const words = text.split(/\s+/).filter(w => w.length > 0).length;
+            const chars = text.length;
+            const sentences = (text.match(/[.!?]+/g) || []).length || 1;
+            const paragraphs = text.split(/\n\n+/).filter(p => p.trim()).length;
+            const avgWordLen = (chars / words).toFixed(1);
+            const readMins = Math.ceil(words / 200);
+            const uniqueWords = new Set(text.toLowerCase().match(/\b\w+\b/g) || []).size;
+
+            document.getElementById('notesWords').textContent = words + ' words';
+            document.getElementById('notesChars').textContent = chars + ' chars';
+            document.getElementById('notesRead').textContent = '~' + readMins + ' min read';
+            document.getElementById('notesStats').style.display = 'flex';
+
+            document.getElementById('analysisResult').style.display = 'block';
+            document.getElementById('analysisResult').innerHTML = `
+                <h3 style="font-size:1.1rem;margin-bottom:1rem;">📊 Text Analysis</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;">
+                    ${[['Words',words.toLocaleString()],['Characters',chars.toLocaleString()],['Sentences',sentences],['Paragraphs',paragraphs],['Unique Words',uniqueWords],['Avg Word Length',avgWordLen],['Reading Time',readMins+' min'],['Speaking Time',Math.ceil(words/130)+' min']].map(([l,v])=>`
+                    <div style="padding:1rem;background:#f8fafc;border:1px solid var(--border-color);border-radius:10px;text-align:center;">
+                        <div style="font-size:1.4rem;font-weight:800;color:var(--primary-color);">${v}</div>
+                        <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem;">${l}</div>
+                    </div>`).join('')}
+                </div>`;
+        }
+
+        function copyNotes() {
+            const text = document.getElementById('notesBox').value;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget; const orig = btn.textContent;
+                btn.textContent = '✅ Copied!'; setTimeout(() => btn.textContent = orig, 2000);
+            });
+        }
+
+        function downloadNotes() {
+            const text = document.getElementById('notesBox').value;
+            if (!text) return;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+            a.download = 'notes-worldoftools.txt'; a.click();
+        }
+
+        document.getElementById('notesBox').addEventListener('input', () => {
+            const text = document.getElementById('notesBox').value.trim();
+            if (!text) { document.getElementById('notesStats').style.display = 'none'; return; }
+            const words = text.split(/\s+/).filter(w=>w.length>0).length;
+            document.getElementById('notesWords').textContent = words + ' words';
+            document.getElementById('notesChars').textContent = text.length + ' chars';
+            document.getElementById('notesRead').textContent = '~' + Math.ceil(words/200) + ' min read';
+            document.getElementById('notesStats').style.display = 'flex';
+        });
+
+        function showError(msg) {
+            const el = document.getElementById('errorMessage');
+            if (msg) { el.textContent = '⚠️ ' + msg; el.style.display = 'flex'; el.scrollIntoView({behavior:'smooth',block:'center'}); }
+            else { el.style.display = 'none'; el.textContent = ''; }
+        }
+    </script>
+</body>
+</html>

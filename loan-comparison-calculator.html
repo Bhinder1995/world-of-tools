@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Comparison Calculator — Compare Home, Car & Personal Loans | WorldOfTools</title>
+    <meta name="description" content="Compare multiple loans side by side — home loan, car loan, personal loan. See EMI, total interest, amortization schedule and best deal instantly. 100% free, no signup.">
+    <meta name="keywords" content="loan comparison calculator, compare home loan interest rates, best loan calculator India, compare EMI calculator, home loan vs personal loan calculator, bank loan comparison tool, lowest interest rate loan calculator, compare multiple loans, loan interest comparison India, SBI vs HDFC vs ICICI loan calculator, loan comparison tool free, EMI comparison calculator online">
+    <link rel="canonical" href="https://worldoftools.in/loan-comparison-calculator" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem","position": 1,"name": "Home","item": "https://worldoftools.in/"
+      },{
+        "@type": "ListItem","position": 2,"name": "Calculators Online","item": "https://worldoftools.in/calculators-online"
+      },{
+        "@type": "ListItem","position": 3,"name": "Loan Comparison Calculator","item": "https://worldoftools.in/loan-comparison-calculator"
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I compare home loan interest rates in India?",
+          "acceptedAnswer": {"@type": "Answer","text": "Enter your loan amount, tenure and the interest rate from each bank (SBI, HDFC, ICICI, Axis, etc.) into the loan slots. Our tool instantly calculates and compares EMI, total interest, and total payment for each, helping you choose the cheapest option."}
+        },
+        {
+          "@type": "Question",
+          "name": "What is the EMI formula used in this calculator?",
+          "acceptedAnswer": {"@type": "Answer","text": "EMI = P × r × (1+r)^n / ((1+r)^n − 1), where P is the principal loan amount, r is the monthly interest rate (annual rate ÷ 12 ÷ 100), and n is the number of monthly instalments."}
+        },
+        {
+          "@type": "Question",
+          "name": "Which bank has the lowest home loan interest rate in India?",
+          "acceptedAnswer": {"@type": "Answer","text": "Interest rates change frequently. As of early 2026, SBI, Bank of Baroda, and HDFC typically offer competitive rates between 8.5%–9.5% for home loans. Use this calculator with the latest rates from each bank's website to find the best deal."}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Loan Comparison Calculator",
+      "operatingSystem": "Any",
+      "applicationCategory": "FinanceApplication",
+      "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"}
+    }
+    </script>
+
+    <style>
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 0.5rem; }
+        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 12px; border: 2px solid var(--border-color); background: white; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.2s; font-family: inherit; font-size: 0.9rem; }
+        .tab-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .card { transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+
+        .loan-slot {
+            border: 2px solid var(--border-color); border-radius: 16px; padding: 1.5rem;
+            margin-bottom: 1.25rem; position: relative; transition: border-color 0.2s;
+        }
+        .loan-slot.winner { border-color: #22c55e; background: #f0fdf4; }
+        .loan-slot.worst { border-color: #f87171; background: #fef2f2; }
+
+        .loan-slot-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;
+        }
+        .slot-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 800;
+            font-size: 1rem; color: var(--primary-color);
+        }
+
+        .loan-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .loan-fields .input-group { margin: 0; }
+        .loan-fields input, .loan-fields select {
+            padding: 0.7rem 1rem; border: 2px solid var(--border-color); border-radius: 10px;
+            font-family: inherit; font-size: 0.9rem; width: 100%; box-sizing: border-box; transition: border-color 0.2s;
+        }
+        .loan-fields input:focus, .loan-fields select:focus { outline: none; border-color: var(--primary-color); }
+
+        .color-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+        /* Comparison Table */
+        .comp-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .comp-table th { padding: 0.75rem; background: #f1f5f9; border-bottom: 2px solid var(--border-color); text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .comp-table td { padding: 0.75rem; border-bottom: 1px solid #f1f5f9; }
+        .comp-table .highlight { font-weight: 800; color: var(--primary-color); }
+        .comp-table .winner-td { color: #16a34a; font-weight: 800; }
+        .comp-table .worst-td { color: #ef4444; font-weight: 800; }
+        .winner-badge { display: inline-block; padding: 0.2rem 0.6rem; background: #dcfce7; color: #16a34a; border-radius: 99px; font-size: 0.75rem; font-weight: 800; margin-left: 0.5rem; }
+        .worst-badge { display: inline-block; padding: 0.2rem 0.6rem; background: #fee2e2; color: #ef4444; border-radius: 99px; font-size: 0.75rem; font-weight: 800; margin-left: 0.5rem; }
+
+        /* Bar Chart */
+        .bar-wrap { display: flex; align-items: flex-end; gap: 0.5rem; height: 160px; margin: 1.5rem 0; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; flex: 1; }
+        .bar-stack { width: 100%; border-radius: 8px 8px 0 0; transition: height 0.8s ease; display: flex; flex-direction: column; overflow: hidden; }
+        .bar-interest { background: #f87171; }
+        .bar-principal { background: #60a5fa; }
+        .bar-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-align: center; }
+        .bar-amount { font-size: 0.8rem; font-weight: 800; color: #1e293b; text-align: center; }
+
+        /* Amortization */
+        .amort-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .amort-table th, .amort-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #f1f5f9; }
+        .amort-table th { background: #f8fafc; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
+
+        .savings-box {
+            background: linear-gradient(135deg, #059669, #10b981); color: white; border-radius: 16px;
+            padding: 1.5rem; text-align: center; margin: 1.5rem 0;
+        }
+        .savings-amount { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; }
+
+        input[type=range] { width: 100%; accent-color: var(--primary-color); }
+    </style>
+
+    <link rel="stylesheet" href="/css/style.css?v=2.4">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <meta name="theme-color" content="#4f46e5">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date()); gtag('config', 'G-CCYN1G2F05');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975" crossorigin="anonymous"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container" data-category-name="Calculators Online" data-category-url="/calculators-online" data-tool-name="Loan Comparison Calculator">
+        <div class="tool-container">
+            <section class="tool-header">
+                <div class="privacy-badge-banner">
+                    <span>🛡️</span>
+                    <span>100% Private — Client-Side Processing</span>
+                </div>
+                <h1>Free Loan Comparison Calculator — Compare EMI & Interest Side by Side</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Compare up to 3 loans simultaneously. See EMI, total interest, savings and amortization schedule. Perfect for comparing SBI, HDFC, ICICI, Axis and other Indian bank offers.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="/guides/loan-comparison-calculator-guide" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+                        📖 Read Loan Guide
+                    </a>
+                </div>
+            </section>
+
+            <div class="tool-main-card">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('compare')">⚖️ Compare Loans</button>
+                    <button class="tab-btn" onclick="switchTab('amortize')">📅 Amortization</button>
+                    <button class="tab-btn" onclick="switchTab('tips')">💡 Loan Tips</button>
+                </div>
+
+                <div id="errorMessage" class="error-msg"></div>
+
+                <!-- ── COMPARE TAB ── -->
+                <div id="compare-tab" class="tab-content">
+
+                    <!-- Loan Slots -->
+                    <div id="loanSlotsContainer">
+                        <!-- Slot 1 -->
+                        <div class="loan-slot" id="slot_1">
+                            <div class="loan-slot-header">
+                                <div class="slot-badge"><span class="color-dot" style="background:#3b82f6;"></span>Loan Option 1</div>
+                                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                                    <select id="loanType_1" style="padding:0.4rem 0.75rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:0.85rem;background:white;">
+                                        <option>🏠 Home Loan</option><option>🚗 Car Loan</option><option>👤 Personal Loan</option><option>📚 Education Loan</option><option>💼 Business Loan</option>
+                                    </select>
+                                    <input type="text" id="bankName_1" placeholder="Bank / Lender name" style="padding:0.4rem 0.75rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:0.85rem;width:140px;">
+                                </div>
+                            </div>
+                            <div class="loan-fields">
+                                <div class="input-group"><label>Loan Amount (₹)</label><input type="number" id="amount_1" placeholder="50,00,000" value="5000000" min="1"></div>
+                                <div class="input-group"><label>Interest Rate (% p.a.)</label><input type="number" id="rate_1" placeholder="8.5" value="8.5" step="0.05" min="0.1" max="50"></div>
+                                <div class="input-group"><label>Tenure (Years)</label><input type="number" id="tenure_1" placeholder="20" value="20" min="1" max="40"></div>
+                                <div class="input-group"><label>Processing Fee (₹)</label><input type="number" id="fee_1" placeholder="0" value="0" min="0"></div>
+                            </div>
+                        </div>
+
+                        <!-- Slot 2 -->
+                        <div class="loan-slot" id="slot_2">
+                            <div class="loan-slot-header">
+                                <div class="slot-badge"><span class="color-dot" style="background:#a855f7;"></span>Loan Option 2</div>
+                                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                                    <select id="loanType_2" style="padding:0.4rem 0.75rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:0.85rem;background:white;">
+                                        <option>🏠 Home Loan</option><option>🚗 Car Loan</option><option>👤 Personal Loan</option><option>📚 Education Loan</option><option>💼 Business Loan</option>
+                                    </select>
+                                    <input type="text" id="bankName_2" placeholder="Bank / Lender name" style="padding:0.4rem 0.75rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:0.85rem;width:140px;">
+                                </div>
+                            </div>
+                            <div class="loan-fields">
+                                <div class="input-group"><label>Loan Amount (₹)</label><input type="number" id="amount_2" placeholder="50,00,000" value="5000000" min="1"></div>
+                                <div class="input-group"><label>Interest Rate (% p.a.)</label><input type="number" id="rate_2" placeholder="9.0" value="9.0" step="0.05" min="0.1" max="50"></div>
+                                <div class="input-group"><label>Tenure (Years)</label><input type="number" id="tenure_2" placeholder="20" value="20" min="1" max="40"></div>
+                                <div class="input-group"><label>Processing Fee (₹)</label><input type="number" id="fee_2" placeholder="0" value="0" min="0"></div>
+                            </div>
+                        </div>
+
+                        <!-- Slot 3 -->
+                        <div class="loan-slot" id="slot_3" style="display:none;">
+                            <div class="loan-slot-header">
+                                <div class="slot-badge"><span class="color-dot" style="background:#f59e0b;"></span>Loan Option 3</div>
+                                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                                    <select id="loanType_3" style="padding:0.4rem 0.75rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:0.85rem;background:white;">
+                                        <option>🏠 Home Loan</option><option>🚗 Car Loan</option><option>👤 Personal Loan</option><option>📚 Education Loan</option><option>💼 Business Loan</option>
+                                    </select>
+                                    <input type="text" id="bankName_3" placeholder="Bank / Lender name" style="padding:0.4rem 0.75rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:0.85rem;width:140px;">
+                                    <button onclick="toggleSlot3()" style="padding:0.4rem 0.75rem;border:2px solid #fecaca;background:#fef2f2;color:#ef4444;border-radius:8px;cursor:pointer;font-size:0.85rem;font-weight:700;">✕ Remove</button>
+                                </div>
+                            </div>
+                            <div class="loan-fields">
+                                <div class="input-group"><label>Loan Amount (₹)</label><input type="number" id="amount_3" placeholder="50,00,000" value="5000000" min="1"></div>
+                                <div class="input-group"><label>Interest Rate (% p.a.)</label><input type="number" id="rate_3" placeholder="9.5" value="9.5" step="0.05" min="0.1" max="50"></div>
+                                <div class="input-group"><label>Tenure (Years)</label><input type="number" id="tenure_3" placeholder="20" value="20" min="1" max="40"></div>
+                                <div class="input-group"><label>Processing Fee (₹)</label><input type="number" id="fee_3" placeholder="0" value="0" min="0"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:0.75rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+                        <button id="addLoanBtn" class="btn btn-secondary" onclick="toggleSlot3()" style="flex:1;">+ Add 3rd Loan</button>
+                        <button class="btn" onclick="compareLoans()" style="flex:2;">⚖️ Compare Loans</button>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="compareResults" style="display:none;">
+                        <!-- Savings box -->
+                        <div class="savings-box" id="savingsBox"></div>
+
+                        <!-- Bar Chart -->
+                        <h3 style="font-size:1rem;font-weight:800;margin-bottom:0.5rem;">📊 Total Cost Breakdown</h3>
+                        <div style="display:flex;gap:1rem;margin-bottom:0.5rem;font-size:0.8rem;">
+                            <span><span style="display:inline-block;width:10px;height:10px;background:#60a5fa;border-radius:2px;margin-right:4px;"></span>Principal</span>
+                            <span><span style="display:inline-block;width:10px;height:10px;background:#f87171;border-radius:2px;margin-right:4px;"></span>Interest</span>
+                        </div>
+                        <div class="bar-wrap" id="compBarChart"></div>
+
+                        <!-- Comparison Table -->
+                        <div style="overflow-x:auto;margin-top:1rem;">
+                            <table class="comp-table" id="compTable">
+                                <thead>
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th id="th1">Loan 1</th>
+                                        <th id="th2">Loan 2</th>
+                                        <th id="th3" style="display:none;">Loan 3</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="compTableBody"></tbody>
+                            </table>
+                        </div>
+
+                        <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+                            <button class="btn btn-secondary" onclick="copyCompare()" style="flex:1;">📋 Copy Summary</button>
+                            <button class="btn btn-secondary" onclick="shareCompare()" style="flex:1;">🔗 Share</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── AMORTIZATION TAB ── -->
+                <div id="amortize-tab" class="tab-content" style="display:none;">
+                    <p style="color:var(--text-muted);font-size:0.95rem;margin-bottom:1.5rem;">View full year-by-year amortization schedule for a single loan.</p>
+                    <div class="loan-fields" style="margin-bottom:1.5rem;">
+                        <div class="input-group"><label>Loan Amount (₹)</label><input type="number" id="amortAmount" value="5000000" min="1"></div>
+                        <div class="input-group"><label>Interest Rate (% p.a.)</label><input type="number" id="amortRate" value="8.5" step="0.05" min="0.01"></div>
+                        <div class="input-group"><label>Tenure (Years)</label><input type="number" id="amortTenure" value="20" min="1" max="40"></div>
+                    </div>
+                    <button class="btn" onclick="buildAmortization()" style="width:100%;margin-bottom:1.5rem;">📅 Generate Schedule</button>
+
+                    <div id="amortResult" style="display:none;">
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem;" id="amortSummary"></div>
+                        <div style="overflow-x:auto;">
+                            <table class="amort-table">
+                                <thead><tr><th>Year</th><th>Principal Paid</th><th>Interest Paid</th><th>Total Paid</th><th>Balance</th></tr></thead>
+                                <tbody id="amortBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── TIPS TAB ── -->
+                <div id="tips-tab" class="tab-content" style="display:none;">
+                    <div style="display:grid;gap:1rem;">
+                        <div class="card" style="padding:1.25rem;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;">
+                            <h3 style="margin:0 0 0.75rem;font-size:1rem;color:#15803d;">💡 How to Get the Lowest Interest Rate</h3>
+                            <ul style="margin:0;padding-left:1.25rem;color:#166534;line-height:1.9;font-size:0.9rem;">
+                                <li>Maintain a CIBIL score above 750 for best rates</li>
+                                <li>Compare rates across at least 3–4 banks before deciding</li>
+                                <li>Negotiate with your existing bank — they often match competitors</li>
+                                <li>Consider home loan balance transfer if a better rate is available</li>
+                                <li>Opt for shorter tenure to save heavily on total interest</li>
+                            </ul>
+                        </div>
+                        <div class="card" style="padding:1.25rem;background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;">
+                            <h3 style="margin:0 0 0.75rem;font-size:1rem;color:#4338ca;">🏦 Current Rate Ranges (India 2026)</h3>
+                            <div style="display:grid;gap:0.5rem;">
+                                ${[['Home Loan','8.40% – 9.85%','SBI, HDFC, ICICI, Axis'],['Car Loan','7.90% – 12.00%','SBI, HDFC, Kotak, ICICI'],['Personal Loan','10.50% – 24.00%','Banks, NBFCs, Fintechs'],['Education Loan','8.50% – 15.00%','SBI, BOB, PNB, Private banks'],['Business Loan','10.00% – 22.00%','Banks, NBFCs, Neo-banks']].map(([type,range,lenders])=>`
+                                <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem;background:white;border-radius:8px;flex-wrap:wrap;gap:0.5rem;">
+                                    <span style="font-weight:700;font-size:0.9rem;">${type}</span>
+                                    <span style="color:var(--primary-color);font-weight:800;font-size:0.9rem;">${range}</span>
+                                </div>`).join('')}
+                            </div>
+                            <p style="font-size:0.78rem;color:#6b7280;margin:0.75rem 0 0;">* Indicative rates. Check official bank websites for latest rates.</p>
+                        </div>
+                        <div class="card" style="padding:1.25rem;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;">
+                            <h3 style="margin:0 0 0.75rem;font-size:1rem;color:#c2410c;">⚡ Impact of 0.5% Rate Difference</h3>
+                            <p style="margin:0;color:#9a3412;line-height:1.7;font-size:0.9rem;">On a ₹50 lakh home loan for 20 years: just a <strong>0.5% lower interest rate</strong> saves you approximately <strong>₹3.5 – 4 lakh</strong> in total interest payments. Always negotiate and compare!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center;margin-top:1.5rem;font-size:0.85rem;color:var(--text-muted);">
+                    ⚡ All calculations run in your browser. No data is stored.
+                </div>
+            </div>
+
+            <!-- SEO Content -->
+            <div class="seo-content-block">
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">❓ Frequently Asked Questions</h2>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">How do I compare home loan interest rates?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Enter the loan amount and tenure, then input the interest rate offered by each bank in separate loan slots. The calculator instantly shows EMI, total interest, and total payment so you can pick the best deal.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">Does lower EMI always mean a better loan?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Not necessarily. A longer tenure gives lower EMI but significantly higher total interest paid. Always compare Total Payment (EMI × months + fees) to find the true cost. This calculator shows both.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">What is the EMI formula?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">EMI = P × r × (1+r)^n / ((1+r)^n − 1). Where P = Principal, r = Monthly interest rate (Annual Rate ÷ 1200), n = Tenure in months.</p>
+                    </details>
+                    <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                        <summary style="font-weight:700;cursor:pointer;">Can I compare different loan amounts and tenures?</summary>
+                        <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes! Each loan slot has independent fields for amount, rate, tenure, and processing fees. You can compare entirely different loan scenarios side by side.</p>
+                    </details>
+                </section>
+
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">📚 About This Loan Comparison Tool</h2>
+                    <div style="line-height:1.8;color:#4b5563;">
+                        <p>This free <strong>loan comparison calculator</strong> lets you compare up to 3 loan offers simultaneously — whether from SBI, HDFC, ICICI, Axis Bank, or any other lender. Unlike most bank EMI calculators that only show a single loan, this tool gives you a complete side-by-side view including EMI, total interest, total cost, and potential savings.</p>
+                        <p style="margin-top:1rem;">The tool also includes a full <strong>year-by-year amortization schedule</strong>, showing exactly how much of each year's payments go toward principal vs interest. This is especially useful for home loans of 15–20+ years where most early payments are primarily interest.</p>
+                        <p style="margin-top:1rem;">Processing fees are factored into the total cost comparison, so you get the true total cost of each loan — not just the headline interest rate.</p>
+                    </div>
+                </section>
+
+                <section style="margin-bottom:3rem;">
+                    <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Other Free Financial Tools</h2>
+                    <div class="tools-grid">
+                        <a href="emi-calculator" class="tool-card"><div class="tool-icon">💰</div><div class="tool-title">EMI Calculator</div><div class="tool-desc">Calculate monthly EMI for any loan.</div></a>
+                        <a href="sip-calculator" class="tool-card"><div class="tool-icon">📈</div><div class="tool-title">SIP Calculator</div><div class="tool-desc">Estimate mutual fund investment returns.</div></a>
+                        <a href="gst-calculator" class="tool-card"><div class="tool-icon">🧾</div><div class="tool-title">GST Calculator</div><div class="tool-desc">Add or remove GST from any amount.</div></a>
+                        <a href="ppf-calculator" class="tool-card"><div class="tool-icon">🏦</div><div class="tool-title">PPF Calculator</div><div class="tool-desc">Calculate your PPF maturity value.</div></a>
+                        <a href="percentage-calculator" class="tool-card"><div class="tool-icon">%</div><div class="tool-title">Percentage Calculator</div><div class="tool-desc">Calculate discounts, taxes and ratios.</div></a>
+                        <a href="loan-eligibility-calculator" class="tool-card"><div class="tool-icon">✅</div><div class="tool-title">Loan Eligibility</div><div class="tool-desc">Check how much loan you can get.</div></a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+    <script src="/js/common.js?v=2.4"></script>
+    <script>
+        const COLORS = ['#3b82f6','#a855f7','#f59e0b'];
+        let slot3Visible = false;
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId + '-tab').style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        function toggleSlot3() {
+            slot3Visible = !slot3Visible;
+            document.getElementById('slot_3').style.display = slot3Visible ? 'block' : 'none';
+            document.getElementById('addLoanBtn').textContent = slot3Visible ? '− Remove 3rd Loan' : '+ Add 3rd Loan';
+        }
+
+        function calcEMI(P, annualRate, years) {
+            const r = annualRate / 12 / 100;
+            const n = years * 12;
+            if (r === 0) return P / n;
+            return P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+        }
+
+        function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+        function fmtNum(n) { return Math.round(n).toLocaleString('en-IN'); }
+
+        function getLoanData(i) {
+            const amount = parseFloat(document.getElementById('amount_' + i).value);
+            const rate = parseFloat(document.getElementById('rate_' + i).value);
+            const tenure = parseFloat(document.getElementById('tenure_' + i).value);
+            const fee = parseFloat(document.getElementById('fee_' + i).value) || 0;
+            const name = document.getElementById('bankName_' + i).value || ('Loan ' + i);
+            return { amount, rate, tenure, fee, name };
+        }
+
+        function compareLoans() {
+            const count = slot3Visible ? 3 : 2;
+            const loans = [];
+            for (let i = 1; i <= count; i++) {
+                const d = getLoanData(i);
+                if (isNaN(d.amount) || isNaN(d.rate) || isNaN(d.tenure)) return showError('Please fill all fields for Loan ' + i);
+                const emi = calcEMI(d.amount, d.rate, d.tenure);
+                const total = emi * d.tenure * 12;
+                const interest = total - d.amount;
+                loans.push({ ...d, emi, total: total + d.fee, interest, color: COLORS[i - 1] });
+            }
+            showError('');
+
+            // Find winner (lowest total) and worst (highest total)
+            const totals = loans.map(l => l.total);
+            const minTotal = Math.min(...totals);
+            const maxTotal = Math.max(...totals);
+            const winnerIdx = totals.indexOf(minTotal);
+            const worstIdx = totals.indexOf(maxTotal);
+            const savings = maxTotal - minTotal;
+
+            // Slot highlights
+            for (let i = 0; i < count; i++) {
+                const slot = document.getElementById('slot_' + (i + 1));
+                slot.className = 'loan-slot' + (i === winnerIdx ? ' winner' : i === worstIdx ? ' worst' : '');
+            }
+
+            // Savings box
+            document.getElementById('savingsBox').innerHTML = `
+                <div style="font-size:0.9rem;opacity:0.85;margin-bottom:0.25rem;">💰 Best Deal Saves You</div>
+                <div class="savings-amount">${fmt(savings)}</div>
+                <div style="font-size:0.85rem;opacity:0.85;margin-top:0.25rem;">compared to the most expensive option (${loans[worstIdx].name})</div>`;
+
+            // Bar chart
+            const maxTotalForScale = Math.max(...loans.map(l => l.total));
+            document.getElementById('compBarChart').innerHTML = loans.map((l, i) => {
+                const principalH = (l.amount / maxTotalForScale) * 140;
+                const interestH = (l.interest / maxTotalForScale) * 140;
+                return `<div class="bar-group">
+                    <div class="bar-amount">${fmt(l.total)}</div>
+                    <div class="bar-stack" style="height:${principalH + interestH}px;">
+                        <div class="bar-interest" style="height:${interestH}px;"></div>
+                        <div class="bar-principal" style="height:${principalH}px;"></div>
+                    </div>
+                    <div class="bar-label">${l.name}</div>
+                </div>`;
+            }).join('');
+
+            // Table headers
+            for (let i = 1; i <= 3; i++) {
+                const th = document.getElementById('th' + i);
+                if (i <= count) { th.style.display = ''; th.textContent = loans[i - 1].name; }
+                else th.style.display = 'none';
+            }
+
+            // Table body
+            const rows = [
+                ['Monthly EMI', l => fmt(l.emi)],
+                ['Total Interest', l => fmt(l.interest)],
+                ['Processing Fee', l => fmt(l.fee)],
+                ['Total Payment', l => fmt(l.total)],
+                ['Interest Rate', l => l.rate + '% p.a.'],
+                ['Tenure', l => l.tenure + ' years'],
+            ];
+            document.getElementById('compTableBody').innerHTML = rows.map(([label, fn]) => {
+                const vals = loans.map(fn);
+                const numVals = loans.map(l => {
+                    if (label === 'Monthly EMI' || label === 'Total Interest' || label === 'Total Payment') return l.total;
+                    return 0;
+                });
+                return `<tr>
+                    <td style="font-weight:700;">${label}</td>
+                    ${loans.map((l, i) => {
+                        const val = fn(l);
+                        const isWinner = (label === 'Monthly EMI' || label === 'Total Interest' || label === 'Total Payment') && i === winnerIdx;
+                        const isWorst = (label === 'Monthly EMI' || label === 'Total Interest' || label === 'Total Payment') && i === worstIdx;
+                        return `<td class="${isWinner ? 'winner-td' : isWorst ? 'worst-td' : ''}">${val}${isWinner ? '<span class="winner-badge">Best</span>' : isWorst && count > 1 ? '<span class="worst-badge">Most</span>' : ''}</td>`;
+                    }).join('')}
+                    ${count < 3 ? '<td style="display:none;"></td>' : ''}
+                </tr>`;
+            }).join('');
+
+            document.getElementById('compareResults').style.display = 'block';
+            document.getElementById('compareResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function buildAmortization() {
+            const P = parseFloat(document.getElementById('amortAmount').value);
+            const annualRate = parseFloat(document.getElementById('amortRate').value);
+            const years = parseFloat(document.getElementById('amortTenure').value);
+            if (isNaN(P) || isNaN(annualRate) || isNaN(years)) return showError('Please fill all fields.');
+            showError('');
+            const r = annualRate / 12 / 100;
+            const n = years * 12;
+            const emi = calcEMI(P, annualRate, years);
+            const totalPaid = emi * n;
+            const totalInterest = totalPaid - P;
+
+            document.getElementById('amortSummary').innerHTML = [
+                ['Monthly EMI', fmt(emi)], ['Total Interest', fmt(totalInterest)],
+                ['Total Payment', fmt(totalPaid)], ['Tenure', years + ' years']
+            ].map(([l, v]) => `
+                <div style="padding:1rem;background:#f8fafc;border:1px solid var(--border-color);border-radius:10px;text-align:center;">
+                    <div style="font-size:1.3rem;font-weight:900;color:var(--primary-color);">${v}</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem;">${l}</div>
+                </div>`).join('');
+
+            let balance = P;
+            let rows = '';
+            for (let yr = 1; yr <= years; yr++) {
+                let yearPrincipal = 0, yearInterest = 0;
+                for (let m = 0; m < 12; m++) {
+                    const interest = balance * r;
+                    const principal = Math.min(emi - interest, balance);
+                    yearInterest += interest; yearPrincipal += principal;
+                    balance -= principal;
+                    if (balance < 0.01) balance = 0;
+                }
+                rows += `<tr style="background:${yr%2===0?'#f8fafc':'white'}">
+                    <td style="font-weight:700;">Year ${yr}</td>
+                    <td>${fmt(yearPrincipal)}</td>
+                    <td style="color:#ef4444;">${fmt(yearInterest)}</td>
+                    <td style="font-weight:700;">${fmt(yearPrincipal + yearInterest)}</td>
+                    <td style="color:var(--primary-color);font-weight:700;">${fmt(Math.max(0, balance))}</td>
+                </tr>`;
+            }
+            document.getElementById('amortBody').innerHTML = rows;
+            document.getElementById('amortResult').style.display = 'block';
+            document.getElementById('amortResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function copyCompare() {
+            const rows = document.querySelectorAll('#compTableBody tr');
+            let text = 'Loan Comparison — WorldOfTools\n\n';
+            rows.forEach(r => {
+                const cells = r.querySelectorAll('td');
+                text += Array.from(cells).map(c => c.textContent.replace(/Best|Most/g, '').trim()).join(' | ') + '\n';
+            });
+            text += '\nCalculated via worldoftools.in/loan-comparison-calculator';
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget; const orig = btn.textContent;
+                btn.textContent = '✅ Copied!'; setTimeout(() => btn.textContent = orig, 2000);
+            });
+        }
+
+        function shareCompare() {
+            const text = `I compared loans using WorldOfTools! Check the best deal for your loan: https://worldoftools.in/loan-comparison-calculator`;
+            if (navigator.share) navigator.share({ title: 'Loan Comparison', text, url: 'https://worldoftools.in/loan-comparison-calculator' });
+            else window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('errorMessage');
+            if (msg) { el.textContent = '⚠️ ' + msg; el.style.display = 'flex'; el.scrollIntoView({behavior:'smooth',block:'center'}); }
+            else { el.style.display = 'none'; el.textContent = ''; }
+        }
+    </script>
+</body>
+</html>
