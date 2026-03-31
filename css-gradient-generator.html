@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Gradient Generator | Create Custom Linear & Radial Gradients</title>
-    <meta name="description" content="Design beautiful CSS gradients online for free. Use our interactive gradient maker with live preview to generate CSS code for linear, radial, and conic gradients.">
-    <link rel="canonical" href="https://worldoftools.in/css-gradient-generator" />
-    <meta name="keywords" content="css gradient generator, gradient maker, linear gradient css, radial gradient generator, css gradient code, background gradient maker, free online gradient tool">
-    <link rel="stylesheet" href="/css/style.css?v=2.4">
-    <link rel="icon" type="image/svg+xml" href="/logo.svg">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="/app-icon.png">
-    <meta name="theme-color" content="#4f46e5">
-    <style>
-        .gg-layout{display:grid;grid-template-columns:1fr 340px;gap:1.5rem;align-items:start;}
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   CSS Gradient Generator — Visual, Instant CSS Code Copy | WorldOfTools
+  </title>
+  <meta content="Design CSS gradients visually — linear, radial &amp; conic. Copy CSS code with one click. No login, no signup. Free CSS gradient generator for designers." name="description"/>
+  <link href="https://worldoftools.in/css-gradient-generator" rel="canonical"/>
+  <meta content="css gradient generator, gradient maker, linear gradient css, radial gradient generator, css gradient code, background gradient maker, free online gradient tool, css gradient generator visual, linear gradient css maker, css background gradient tool, gradient generator copy css code" name="keywords"/>
+  <link href="/css/style.css?v=2.4" rel="stylesheet"/>
+  <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="/manifest.json" rel="manifest"/>
+  <link href="/app-icon.png" rel="apple-touch-icon"/>
+  <meta content="#4f46e5" name="theme-color"/>
+  <style>
+   .gg-layout{display:grid;grid-template-columns:1fr 340px;gap:1.5rem;align-items:start;}
         .gg-panel{background:white;border:1px solid var(--border-color);border-radius:20px;padding:1.75rem;}
         /* Preview */
         .gradient-preview{width:100%;height:220px;border-radius:16px;border:1px solid var(--border-color);margin-bottom:1.25rem;transition:background .2s;}
@@ -45,134 +47,402 @@
         .preset-swatch{width:100%;height:48px;border-radius:8px;border:2px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s;}
         .preset-swatch:hover{transform:scale(1.08);border-color:var(--primary-color);}
         @media(max-width:700px){.gg-layout{grid-template-columns:1fr;}}
-    </style>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a CSS gradient?","acceptedAnswer":{"@type":"Answer","text":"A CSS gradient is a smooth transition between two or more colors created using CSS without images. Types include linear-gradient (directional), radial-gradient (circular/elliptical), and conic-gradient (angular sweep)."}},{"@type":"Question","name":"What is the difference between linear and radial gradient?","acceptedAnswer":{"@type":"Answer","text":"A linear gradient transitions along a straight line (e.g., top to bottom). A radial gradient radiates outward from a center point in a circular or elliptical shape."}},{"@type":"Question","name":"How do I use a CSS gradient as a background?","acceptedAnswer":{"@type":"Answer","text":"Add the generated CSS to your element's background property, e.g., background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"}},{"@type":"Question","name":"Is this gradient generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free. No signup, no watermark. Copy unlimited CSS gradients."}},{"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes, fully responsive — works on all devices."}}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSS Gradient Generator","operatingSystem":"Any","applicationCategory":"DeveloperApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-</head>
-<body>
-    <header></header>
-    <main class="container">
-        <div class="tool-container">
-            <section class="tool-header">
-                <h1>CSS Gradient Generator — Create Linear & Radial Gradient Code</h1>
-                <p style="color:var(--text-muted);font-size:1.1rem;">Build linear, radial, and conic CSS gradients with a live preview. Add multiple color stops, adjust angle and position, then copy the CSS code. No signup required.</p>
-            </section>
-
-            <div class="tool-main-card">
-                <div class="gg-layout">
-                    <!-- LEFT: Controls -->
-                    <div class="gg-panel">
-                        <!-- Type -->
-                        <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:.75rem;">Gradient Type</div>
-                        <div class="type-tabs">
-                            <button class="type-btn active" onclick="setType('linear',this)">Linear</button>
-                            <button class="type-btn" onclick="setType('radial',this)">Radial</button>
-                            <button class="type-btn" onclick="setType('conic',this)">Conic</button>
-                        </div>
-
-                        <!-- Angle (linear/conic) -->
-                        <div id="angleRow" class="ctrl-row">
-                            <span class="ctrl-label" id="angleLabel">Angle</span>
-                            <input type="range" id="angleSlider" min="0" max="360" value="135" oninput="syncAngle(this.value)">
-                            <input type="number" id="angleNum" value="135" min="0" max="360" oninput="syncAngle(this.value)" style="width:60px;padding:.4rem .5rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:.88rem;font-weight:700;outline:none;text-align:center;">
-                            <span class="ctrl-val">°</span>
-                        </div>
-
-                        <!-- Radial shape -->
-                        <div id="radialRow" class="ctrl-row" style="display:none;">
-                            <span class="ctrl-label">Shape</span>
-                            <select id="radialShape" onchange="buildCSS()" style="padding:.5rem .85rem;border:2px solid var(--border-color);border-radius:10px;font-family:inherit;font-size:.88rem;outline:none;">
-                                <option value="circle">Circle</option>
-                                <option value="ellipse">Ellipse</option>
-                            </select>
-                        </div>
-
-                        <!-- Color Stops -->
-                        <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin:.75rem 0 .6rem;">Color Stops</div>
-                        <div class="stop-list" id="stopList"></div>
-                        <button class="add-stop-btn" onclick="addStop()">+ Add Color Stop</button>
-
-                        <!-- Presets -->
-                        <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin:1.1rem 0 .6rem;">Presets</div>
-                        <div class="preset-grid" id="presetGrid"></div>
-                    </div>
-
-                    <!-- RIGHT: Preview + Output -->
-                    <div class="gg-panel" style="padding:1.25rem;">
-                        <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:.75rem;">Live Preview</div>
-                        <div class="gradient-preview" id="gradientPreview"></div>
-
-                        <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:.5rem;">CSS Code</div>
-                        <div class="css-output" id="cssOutput" style="position:relative;">
-                            <button class="copy-css-btn" onclick="copyCSS(this)">Copy</button>
-                            <span id="cssText">background: linear-gradient(...);</span>
-                        </div>
-
-                        <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin:1rem 0 .5rem;">Full CSS with vendor prefixes</div>
-                        <div class="css-output" id="cssFullOutput" style="position:relative;">
-                            <button class="copy-css-btn" onclick="copyFullCSS(this)">Copy</button>
-                            <span id="cssFullText"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top:2rem;text-align:center;font-size:.9rem;color:var(--text-muted);padding-top:1.5rem;border-top:1px solid var(--border-color);">🛡️ All processing happens in your browser. No data sent to any server.</div>
-            </div>
-        </div>
-
-        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">What is the CSS Gradient Generator?</h2>
-                <p style="line-height:1.8;color:#4b5563;">Build stunning CSS gradients visually — no CSS knowledge required. Choose linear, radial, or conic gradient type, pick your colors, adjust angle and stops, and get ready-to-use CSS code instantly. Perfect for web designers, developers, and UI/UX designers.</p>
-            </section>
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">How to Create a CSS Gradient — Step-by-Step</h2>
-                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:.3rem;">Choose a gradient <strong>type</strong> — Linear, Radial, or Conic.</p></div>
-                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:.3rem;">Pick your <strong>colors</strong> and adjust <strong>stop positions</strong>. Add more stops for complex gradients.</p></div>
-                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:.3rem;">Adjust the <strong>angle</strong> (for linear/conic) and see the live preview update.</p></div>
-                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">4</span><p style="margin:0;line-height:1.6;padding-top:.3rem;">Click <strong>Copy</strong> to get the CSS code with or without vendor prefixes.</p></div>
-            </section>
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">Key Features</h2>
-                <ul style="list-style:none;padding:0;margin:0;">
-                    <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>3 gradient types:</strong> Linear, radial, and conic gradients with full control.</span></li>
-                    <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Multiple color stops:</strong> Add unlimited color stops at custom positions.</span></li>
-                    <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>20+ presets:</strong> Beautiful ready-made gradients to start from.</span></li>
-                    <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Vendor prefix output:</strong> Get -webkit- prefixed CSS for older browser support.</span></li>
-                    <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>One-click copy:</strong> Copy clean CSS code instantly to your clipboard.</span></li>
-                </ul>
-            </section>
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">Frequently Asked Questions</h2>
-                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">What is a CSS gradient?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">A CSS gradient is a smooth transition between two or more colors created using CSS. Types include linear-gradient, radial-gradient, and conic-gradient.</p></details>
-                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">What is the difference between linear and radial gradient?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Linear gradients transition along a straight line. Radial gradients radiate outward from a center point in a circular or elliptical shape.</p></details>
-                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">How do I use a CSS gradient as background?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Copy the generated code and add it to your element's background property: background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);</p></details>
-                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this gradient generator free?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, 100% free. No signup, no watermark. Copy unlimited CSS gradients.</p></details>
-                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;"><summary style="font-weight:700;cursor:pointer;">Does it work on mobile?</summary><p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, fully responsive — works on all devices.</p></details>
-            </section>
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">📚 Educational Content — Deep Dive</h2>
-                <div style="line-height:1.8;color:#4b5563;"><p>CSS gradients were introduced in CSS3 and are now supported by all modern browsers without vendor prefixes. They replace gradient images, reducing HTTP requests and page load time. A linear-gradient takes a direction (angle or keyword like "to right") and a list of color stops. Each stop has a color and an optional position (%, px, or other length unit). Radial and conic gradients follow similar patterns with different geometry.</p></div>
-            </section>
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">Other Free Tools You Might Need</h2>
-                <div class="tools-grid">
-                    <a href="color-converter" class="tool-card"><div class="tool-icon">🎨</div><div class="tool-title">Color Converter</div><div class="tool-desc">Convert HEX, RGB, HSL colors.</div></a>
-                    <a href="css-minifier" class="tool-card"><div class="tool-icon">⚡</div><div class="tool-title">CSS Minifier</div><div class="tool-desc">Minify CSS code for faster loading.</div></a>
-                    <a href="favicon-generator" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-title">Favicon Generator</div><div class="tool-desc">Create favicons in all sizes from any image.</div></a>
-                    <a href="image-compressor" class="tool-card"><div class="tool-icon">🗜️</div><div class="tool-title">Image Compressor</div><div class="tool-desc">Compress images without quality loss.</div></a>
-                    <a href="base64-encoder-decoder" class="tool-card"><div class="tool-icon">🔄</div><div class="tool-title">Base64 Encoder</div><div class="tool-desc">Encode images to Base64 for CSS.</div></a>
-                    <a href="json-formatter" class="tool-card"><div class="tool-icon">{}</div><div class="tool-title">JSON Formatter</div><div class="tool-desc">Format and validate JSON data.</div></a>
-                </div>
-            </section>
-        </div>
-    </main>
-    <footer></footer>
-    <script src="/js/common.js?v=2.4"></script>
-    <script>
-    let gradType='linear';
+  </style>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
+  </script>
+  <script>
+   window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');
+  </script>
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a CSS gradient?","acceptedAnswer":{"@type":"Answer","text":"A CSS gradient is a smooth transition between two or more colors created using CSS without images. Types include linear-gradient (directional), radial-gradient (circular/elliptical), and conic-gradient (angular sweep)."}},{"@type":"Question","name":"What is the difference between linear and radial gradient?","acceptedAnswer":{"@type":"Answer","text":"A linear gradient transitions along a straight line (e.g., top to bottom). A radial gradient radiates outward from a center point in a circular or elliptical shape."}},{"@type":"Question","name":"How do I use a CSS gradient as a background?","acceptedAnswer":{"@type":"Answer","text":"Add the generated CSS to your element's background property, e.g., background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"}},{"@type":"Question","name":"Is this gradient generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free. No signup, no watermark. Copy unlimited CSS gradients."}},{"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes, fully responsive — works on all devices."}}]}
+  </script>
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSS Gradient Generator","operatingSystem":"Any","applicationCategory":"DeveloperApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <script type="application/ld+json">
+   {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CSS Gradient Generator \u2014 Visual, Instant CSS Code Copy",
+  "description": "Design CSS gradients visually \u2014 linear, radial & conic. Copy CSS code with one click. No login, no signup. Free CSS gradient generator for designers.",
+  "url": "https://worldoftools.in/css-gradient-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any"
+}
+  </script>
+ </head>
+ <body>
+  <header>
+  </header>
+  <main class="container">
+   <div class="tool-container">
+    <section class="tool-header">
+     <h1>
+      CSS Gradient Generator — Build Linear, Radial &amp; Conic Gradients Visually
+     </h1>
+     <p style="color:var(--text-muted);font-size:1.1rem;">
+      Build linear, radial, and conic CSS gradients with a live preview. Add multiple color stops, adjust angle and position, then copy the CSS code. No signup required.
+     </p>
+    </section>
+    <div class="tool-main-card">
+     <div class="gg-layout">
+      <!-- LEFT: Controls -->
+      <div class="gg-panel">
+       <!-- Type -->
+       <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:.75rem;">
+        Gradient Type
+       </div>
+       <div class="type-tabs">
+        <button class="type-btn active" onclick="setType('linear',this)">
+         Linear
+        </button>
+        <button class="type-btn" onclick="setType('radial',this)">
+         Radial
+        </button>
+        <button class="type-btn" onclick="setType('conic',this)">
+         Conic
+        </button>
+       </div>
+       <!-- Angle (linear/conic) -->
+       <div class="ctrl-row" id="angleRow">
+        <span class="ctrl-label" id="angleLabel">
+         Angle
+        </span>
+        <input id="angleSlider" max="360" min="0" oninput="syncAngle(this.value)" type="range" value="135"/>
+        <input id="angleNum" max="360" min="0" oninput="syncAngle(this.value)" style="width:60px;padding:.4rem .5rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:.88rem;font-weight:700;outline:none;text-align:center;" type="number" value="135"/>
+        <span class="ctrl-val">
+         °
+        </span>
+       </div>
+       <!-- Radial shape -->
+       <div class="ctrl-row" id="radialRow" style="display:none;">
+        <span class="ctrl-label">
+         Shape
+        </span>
+        <select id="radialShape" onchange="buildCSS()" style="padding:.5rem .85rem;border:2px solid var(--border-color);border-radius:10px;font-family:inherit;font-size:.88rem;outline:none;">
+         <option value="circle">
+          Circle
+         </option>
+         <option value="ellipse">
+          Ellipse
+         </option>
+        </select>
+       </div>
+       <!-- Color Stops -->
+       <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin:.75rem 0 .6rem;">
+        Color Stops
+       </div>
+       <div class="stop-list" id="stopList">
+       </div>
+       <button class="add-stop-btn" onclick="addStop()">
+        + Add Color Stop
+       </button>
+       <!-- Presets -->
+       <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin:1.1rem 0 .6rem;">
+        Presets
+       </div>
+       <div class="preset-grid" id="presetGrid">
+       </div>
+      </div>
+      <!-- RIGHT: Preview + Output -->
+      <div class="gg-panel" style="padding:1.25rem;">
+       <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:.75rem;">
+        Live Preview
+       </div>
+       <div class="gradient-preview" id="gradientPreview">
+       </div>
+       <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:.5rem;">
+        CSS Code
+       </div>
+       <div class="css-output" id="cssOutput" style="position:relative;">
+        <button class="copy-css-btn" onclick="copyCSS(this)">
+         Copy
+        </button>
+        <span id="cssText">
+         background: linear-gradient(...);
+        </span>
+       </div>
+       <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin:1rem 0 .5rem;">
+        Full CSS with vendor prefixes
+       </div>
+       <div class="css-output" id="cssFullOutput" style="position:relative;">
+        <button class="copy-css-btn" onclick="copyFullCSS(this)">
+         Copy
+        </button>
+        <span id="cssFullText">
+        </span>
+       </div>
+      </div>
+     </div>
+     <div style="margin-top:2rem;text-align:center;font-size:.9rem;color:var(--text-muted);padding-top:1.5rem;border-top:1px solid var(--border-color);">
+      🛡️ All processing happens in your browser. No data sent to any server.
+     </div>
+    </div>
+   </div>
+   <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
+      What is the CSS Gradient Generator?
+     </h2>
+     <p style="line-height:1.8;color:#4b5563;">
+      Build stunning CSS gradients visually — no CSS knowledge required. Choose linear, radial, or conic gradient type, pick your colors, adjust angle and stops, and get ready-to-use CSS code instantly. Perfect for web designers, developers, and UI/UX designers.
+     </p>
+    </section>
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
+      How to Create a CSS Gradient — Step-by-Step
+     </h2>
+     <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
+       1
+      </span>
+      <p style="margin:0;line-height:1.6;padding-top:.3rem;">
+       Choose a gradient
+       <strong>
+        type
+       </strong>
+       — Linear, Radial, or Conic.
+      </p>
+     </div>
+     <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
+       2
+      </span>
+      <p style="margin:0;line-height:1.6;padding-top:.3rem;">
+       Pick your
+       <strong>
+        colors
+       </strong>
+       and adjust
+       <strong>
+        stop positions
+       </strong>
+       . Add more stops for complex gradients.
+      </p>
+     </div>
+     <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
+       3
+      </span>
+      <p style="margin:0;line-height:1.6;padding-top:.3rem;">
+       Adjust the
+       <strong>
+        angle
+       </strong>
+       (for linear/conic) and see the live preview update.
+      </p>
+     </div>
+     <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
+       4
+      </span>
+      <p style="margin:0;line-height:1.6;padding-top:.3rem;">
+       Click
+       <strong>
+        Copy
+       </strong>
+       to get the CSS code with or without vendor prefixes.
+      </p>
+     </div>
+    </section>
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
+      Key Features
+     </h2>
+     <ul style="list-style:none;padding:0;margin:0;">
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
+       <span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+       <span style="line-height:1.6;">
+        <strong>
+         3 gradient types:
+        </strong>
+        Linear, radial, and conic gradients with full control.
+       </span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
+       <span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+       <span style="line-height:1.6;">
+        <strong>
+         Multiple color stops:
+        </strong>
+        Add unlimited color stops at custom positions.
+       </span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
+       <span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+       <span style="line-height:1.6;">
+        <strong>
+         20+ presets:
+        </strong>
+        Beautiful ready-made gradients to start from.
+       </span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
+       <span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+       <span style="line-height:1.6;">
+        <strong>
+         Vendor prefix output:
+        </strong>
+        Get -webkit- prefixed CSS for older browser support.
+       </span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
+       <span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+       <span style="line-height:1.6;">
+        <strong>
+         One-click copy:
+        </strong>
+        Copy clean CSS code instantly to your clipboard.
+       </span>
+      </li>
+     </ul>
+    </section>
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
+      Frequently Asked Questions
+     </h2>
+     <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <summary style="font-weight:700;cursor:pointer;">
+       What is a CSS gradient?
+      </summary>
+      <p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
+       A CSS gradient is a smooth transition between two or more colors created using CSS. Types include linear-gradient, radial-gradient, and conic-gradient.
+      </p>
+     </details>
+     <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <summary style="font-weight:700;cursor:pointer;">
+       What is the difference between linear and radial gradient?
+      </summary>
+      <p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Linear gradients transition along a straight line. Radial gradients radiate outward from a center point in a circular or elliptical shape.
+      </p>
+     </details>
+     <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <summary style="font-weight:700;cursor:pointer;">
+       How do I use a CSS gradient as background?
+      </summary>
+      <p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Copy the generated code and add it to your element's background property: background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      </p>
+     </details>
+     <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <summary style="font-weight:700;cursor:pointer;">
+       Is this gradient generator free?
+      </summary>
+      <p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Yes, 100% free. No signup, no watermark. Copy unlimited CSS gradients.
+      </p>
+     </details>
+     <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <summary style="font-weight:700;cursor:pointer;">
+       Does it work on mobile?
+      </summary>
+      <p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Yes, fully responsive — works on all devices.
+      </p>
+     </details>
+    </section>
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
+      📚 Educational Content — Deep Dive
+     </h2>
+     <div style="line-height:1.8;color:#4b5563;">
+      <p>
+       CSS gradients were introduced in CSS3 and are now supported by all modern browsers without vendor prefixes. They replace gradient images, reducing HTTP requests and page load time. A linear-gradient takes a direction (angle or keyword like "to right") and a list of color stops. Each stop has a color and an optional position (%, px, or other length unit). Radial and conic gradients follow similar patterns with different geometry.
+      </p>
+     </div>
+    </section>
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
+      Other Free Tools You Might Need
+     </h2>
+     <div class="tools-grid">
+      <a class="tool-card" href="color-converter">
+       <div class="tool-icon">
+        🎨
+       </div>
+       <div class="tool-title">
+        Color Converter
+       </div>
+       <div class="tool-desc">
+        Convert HEX, RGB, HSL colors.
+       </div>
+      </a>
+      <a class="tool-card" href="css-minifier">
+       <div class="tool-icon">
+        ⚡
+       </div>
+       <div class="tool-title">
+        CSS Minifier
+       </div>
+       <div class="tool-desc">
+        Minify CSS code for faster loading.
+       </div>
+      </a>
+      <a class="tool-card" href="favicon-generator">
+       <div class="tool-icon">
+        🖼️
+       </div>
+       <div class="tool-title">
+        Favicon Generator
+       </div>
+       <div class="tool-desc">
+        Create favicons in all sizes from any image.
+       </div>
+      </a>
+      <a class="tool-card" href="image-compressor">
+       <div class="tool-icon">
+        🗜️
+       </div>
+       <div class="tool-title">
+        Image Compressor
+       </div>
+       <div class="tool-desc">
+        Compress images without quality loss.
+       </div>
+      </a>
+      <a class="tool-card" href="base64-encoder-decoder">
+       <div class="tool-icon">
+        🔄
+       </div>
+       <div class="tool-title">
+        Base64 Encoder
+       </div>
+       <div class="tool-desc">
+        Encode images to Base64 for CSS.
+       </div>
+      </a>
+      <a class="tool-card" href="json-formatter">
+       <div class="tool-icon">
+        {}
+       </div>
+       <div class="tool-title">
+        JSON Formatter
+       </div>
+       <div class="tool-desc">
+        Format and validate JSON data.
+       </div>
+      </a>
+     </div>
+    </section>
+   </div>
+  </main>
+  <footer>
+  </footer>
+  <script src="/js/common.js?v=2.4">
+  </script>
+  <script>
+   let gradType='linear';
     let stops=[{color:'#4f46e5',pos:0},{color:'#7c3aed',pos:100}];
     let angle=135;
 
@@ -286,6 +556,6 @@
     function randomColor(){return'#'+Math.floor(Math.random()*0xFFFFFF).toString(16).padStart(6,'0');}
 
     init();
-    </script>
-</body>
+  </script>
+ </body>
 </html>
