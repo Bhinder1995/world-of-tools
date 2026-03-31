@@ -615,30 +615,101 @@
             const w = imgData.width, h = imgData.height;
             const data = imgData.data;
             const mask = maskData.data;
-            // Multi-pass inpainting: sample surrounding non-masked pixels
-            const passes = 3;
-            for (let pass = 0; pass < passes; pass++) {
-                const searchRadius = 12 + pass * 6;
+            
+            const workMask = new Uint8Array(w * h);
+            let maskedCount = 0;
+            
+            for (let i = 0; i < w * h; i++) {
+                if (mask[i * 4 + 3] > 10) {
+                    workMask[i] = 1;
+                    maskedCount++;
+                }
+            }
+            if (maskedCount === 0 || maskedCount === w * h) return;
+
+            let maxPasses = Math.max(w, h); 
+            let pass = 0;
+            const tempData = new Float32Array(w * h * 3);
+            
+            // Iterative edge propagation
+            while (maskedCount > 0 && pass < maxPasses) {
+                pass++;
+                const toUpdate = [];
+                
                 for (let y = 0; y < h; y++) {
                     for (let x = 0; x < w; x++) {
-                        const idx = (y * w + x) * 4;
-                        if (mask[idx + 3] < 10) continue;
-                        let r = 0, g = 0, b = 0, count = 0, weight = 0;
-                        for (let dy = -searchRadius; dy <= searchRadius; dy++) {
-                            for (let dx = -searchRadius; dx <= searchRadius; dx++) {
+                        const idx = y * w + x;
+                        if (workMask[idx] === 0) continue;
+                        
+                        let r = 0, g = 0, b = 0, weight = 0;
+                        let hasNeighbor = false;
+                        
+                        for (let dy = -2; dy <= 2; dy++) {
+                            for (let dx = -2; dx <= 2; dx++) {
+                                if (dx === 0 && dy === 0) continue;
                                 const nx = x + dx, ny = y + dy;
-                                if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
-                                const ni = (ny * w + nx) * 4;
-                                if (mask[ni + 3] > 10) continue; // Skip masked pixels
-                                const dist = Math.sqrt(dx*dx + dy*dy);
-                                const w_val = 1 / (dist + 1);
-                                r += data[ni] * w_val; g += data[ni+1] * w_val; b += data[ni+2] * w_val;
-                                weight += w_val; count++;
+                                if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+                                
+                                const nIdx = ny * w + nx;
+                                if (workMask[nIdx] === 0) {
+                                    hasNeighbor = true;
+                                    const dist = Math.sqrt(dx*dx + dy*dy);
+                                    const w_val = 1 / (dist * dist + 1e-6); 
+                                    const cIdx = nIdx * 4;
+                                    r += data[cIdx] * w_val;
+                                    g += data[cIdx+1] * w_val;
+                                    b += data[cIdx+2] * w_val;
+                                    weight += w_val;
+                                }
                             }
                         }
-                        if (count > 0) {
-                            data[idx] = r / weight; data[idx+1] = g / weight; data[idx+2] = b / weight;
+                        
+                        if (hasNeighbor && weight > 0) {
+                            tempData[idx*3] = r / weight;
+                            tempData[idx*3+1] = g / weight;
+                            tempData[idx*3+2] = b / weight;
+                            toUpdate.push(idx);
                         }
+                    }
+                }
+                
+                if (toUpdate.length === 0) break;
+                
+                for (let i = 0; i < toUpdate.length; i++) {
+                    const idx = toUpdate[i];
+                    data[idx*4] = tempData[idx*3];
+                    data[idx*4+1] = tempData[idx*3+1];
+                    data[idx*4+2] = tempData[idx*3+2];
+                    workMask[idx] = 0;
+                    maskedCount--;
+                }
+            }
+            
+            // Post-process blending: smooth only the original mask area slightly
+            const smoothPasses = 3;
+            for (let p = 0; p < smoothPasses; p++) {
+                const blurData = new Uint8ClampedArray(data);
+                for (let y = 0; y < h; y++) {
+                    for (let x = 0; x < w; x++) {
+                        const idx = y * w + x;
+                        if (mask[idx * 4 + 3] < 10) continue; 
+                        
+                        let r = 0, g = 0, b = 0, count = 0;
+                        for (let dy = -1; dy <= 1; dy++) {
+                            for (let dx = -1; dx <= 1; dx++) {
+                                const nx = x + dx, ny = y + dy;
+                                if (nx >= 0 && nx < w && ny >= 0 && ny < h) {
+                                    const nIdx = (ny * w + nx) * 4;
+                                    r += blurData[nIdx];
+                                    g += blurData[nIdx+1];
+                                    b += blurData[nIdx+2];
+                                    count++;
+                                }
+                            }
+                        }
+                        data[idx*4] = r / count;
+                        data[idx*4+1] = g / count;
+                        data[idx*4+2] = b / count;
                     }
                 }
             }
