@@ -6,335 +6,365 @@
     <title>Remove EXIF Data from Photos Free Online — Strip GPS &amp; Metadata | WorldOfTools</title>
     <meta name="description" content="Remove GPS location, camera info and hidden EXIF metadata from JPEG photos online free. Lossless, no re-encoding, no file upload. Protect your photo privacy instantly.">
     <meta name="keywords" content="remove exif data online free, strip photo metadata, remove gps from image, exif remover online, photo metadata cleaner, online exif viewer and remover, protect photo privacy, photo se location kaise hataye">
-    
+
     <link rel="canonical" href="https://worldoftools.in/exif-metadata-remover">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://worldoftools.in/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "EXIF Metadata Remover",
-        "item": "https://worldoftools.in/exif-metadata-remover"
-      }]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "EXIF Metadata Remover",
-      "operatingSystem": "Any",
-      "applicationCategory": "UtilitiesApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Image EXIF Scrubber",
-      "description": "Strip hidden GPS and camera metadata from your photos privately in your browser.",
-      "url": "https://worldoftools.in/exif-metadata-remover",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Any"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "Why should I remove EXIF data?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Removing EXIF data protects your privacy by stripping hidden GPS coordinates and device info that could be used to track your location or identify your hardware."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Photo se location kaise remove kare?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Bas apni photo upload karein, 'Scrub All' button dabayein, aur photo download karein. Humari privacy-first technology saara metadata saaf kar degi."
-        }
-      }]
-    }
-    </script>
-    
-    <link rel="stylesheet" href="css/style.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},{"@type":"ListItem","position":2,"name":"EXIF Metadata Remover","item":"https://worldoftools.in/exif-metadata-remover"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EXIF Metadata Remover","operatingSystem":"Any","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why should I remove EXIF data?","acceptedAnswer":{"@type":"Answer","text":"Removing EXIF data protects your privacy by stripping hidden GPS coordinates and device info that could be used to track your location or identify your hardware."}},{"@type":"Question","name":"Photo se location kaise remove kare?","acceptedAnswer":{"@type":"Answer","text":"Bas apni photo upload karein, 'Scrub All' button dabayein, aur photo download karein. Humari privacy-first technology saara metadata saaf kar degi."}}]}</script>
+
+    <link rel="stylesheet" href="/css/style.css?v=2.5">
+    <link rel="icon" href="/logo.svg" type="image/svg+xml">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+
     <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
+            --border-color: #e2e8f0;
+            --text-muted: #64748b;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
         .exif-container {
             max-width: clamp(300px, 95%, 1100px);
             margin: 0 auto;
         }
 
+        /* ── Upload area ───────────────────────────────────────── */
         .upload-area {
-            background: white;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
             border: 2px dashed var(--border-color);
             border-radius: var(--radius-xl);
             padding: 4rem 2rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             margin-bottom: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
         }
-
         .upload-area:hover, .upload-area.dragover {
             border-color: var(--primary-color);
             background: rgba(79, 70, 229, 0.02);
             transform: translateY(-2px);
         }
 
-        .metadata-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
+        /* ── Workspace grid ────────────────────────────────────── */
+        #workspace {
             display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
+        /* ── Preview pane (left) ───────────────────────────────── */
         .preview-pane {
             background: white;
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
             padding: 1.5rem;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
         }
 
         .preview-pane img {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 340px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            object-fit: contain;
         }
 
+        .file-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Action buttons in a neat column */
+        .action-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* ── Data pane (right) ─────────────────────────────────── */
         .data-pane {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
+            background: white;
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
-            padding: 1.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
+        /* Risk indicator */
         .risk-indicator {
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
+            padding: 0.875rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.25rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
             font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .risk-low  { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+        .risk-high { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+        .risk-neutral { background: #f8fafc; color: #475569; border: 1px solid var(--border-color); }
+
+        /* Section header inside data pane */
+        .data-pane-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .risk-low { background: rgba(240, 253, 244, 0.7); color: #166534; border: 1px solid #bbfcce; backdrop-filter: blur(4px); }
-        .risk-high { background: rgba(254, 242, 242, 0.7); color: #991b1b; border: 1px solid #fecaca; backdrop-filter: blur(4px); }
+        .data-pane-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0;
+        }
 
+        /* Copy + Export meta buttons row */
+        .meta-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Metadata table */
         .meta-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
-
         .meta-table th {
             text-align: left;
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 0.6rem 0.75rem;
+            border-bottom: 2px solid var(--border-color);
             color: var(--text-muted);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
-
         .meta-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid #f8fafc;
-            color: var(--text-color);
+            padding: 0.55rem 0.75rem;
+            border-bottom: 1px solid #f1f5f9;
+            color: #1e293b;
+            vertical-align: middle;
+        }
+        .meta-table tr:last-child td { border-bottom: none; }
+        .meta-table tr:hover td { background: #f8fafc; }
+
+        .table-scroll {
+            overflow-y: auto;
+            max-height: 380px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            flex: 1;
         }
 
-        .action-bar {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
+        /* ── GPS badge ─────────────────────────────────────────── */
         .badge-gps {
             background: #ef4444;
             color: white;
-            padding: 0.2rem 0.5rem;
+            padding: 0.15rem 0.45rem;
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
+            font-weight: 800;
             animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
+            0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.05); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
         }
 
+        /* ── Bulk bar ──────────────────────────────────────────── */
+        .bulk-bar {
+            background: #f8f9ff;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius-lg);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .bulk-bar-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        /* ── Buttons ───────────────────────────────────────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            background: var(--primary-gradient);
+            color: white;
+            width: 100%;
+        }
+        .btn:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 8px 20px -6px rgba(79, 70, 229, 0.4); }
+        .btn:active { transform: translateY(0); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-secondary { background: white; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.9rem;
+            font-size: 0.78rem;
+            width: auto;
+            border-radius: 8px;
+        }
+        .btn-ghost:hover { background: #f8fafc; transform: none; opacity: 1; }
+        .btn-sm { padding: 0.5rem 1rem; font-size: 0.82rem; }
+
+        .privacy-badge {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            border-radius: 99px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .hero-title { font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.05rem; color: var(--text-muted); max-width: 680px; margin: 0 auto; }
+        .text-center { text-align: center; }
+
+        /* ── Responsive ────────────────────────────────────────── */
         @media (max-width: 960px) {
-            .metadata-grid {
-                grid-template-columns: 1fr;
-            }
-            .preview-pane img {
-                max-height: 300px;
-            }
-            .action-bar {
-                flex-direction: column;
-            }
-            .btn {
-                width: 100%;
-            }
+            #workspace { grid-template-columns: 1fr; }
+            .preview-pane img { max-height: 260px; }
+            .table-scroll { max-height: 280px; }
         }
     </style>
 </head>
 <body>
 
-<header id="header">
-    <div class="container">
-        <div class="header-content">
-            <a href="index.html" class="logo-center">
-                <img src="/logo.svg" alt="WorldOfTools Logo" width="36" height="36">
-                <div class="logo-text-block">
-                    <span class="logo-brand">WorldOfTools</span>
-                    <span class="logo-tagline">100% Private & Free</span>
-                </div>
-            </a>
-            <nav id="nav-menu">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li class="nav-dropdown">
-                        <span class="dropdown-trigger">Tools ✨</span>
-                        <div class="dropdown-menu">
-                            <div class="mega-dropdown-inner">
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Privacy Tools</div>
-                                    <a href="exif-metadata-remover.html" class="mega-item" style="color: var(--primary-color); font-weight: 700;">EXIF Remover 🛡️</a>
-                                    <a href="password-generator.html" class="mega-item">Password Gen</a>
-                                    <a href="hash-generator.html" class="mega-item">Hash Generator</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Media Tools</div>
-                                    <a href="image-compressor.html" class="mega-item">Image Compressor</a>
-                                    <a href="background-remover.html" class="mega-item">Background Remover</a>
-                                    <a href="image-to-text-ocr.html" class="mega-item">Image to Text OCR</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Text Tools</div>
-                                    <a href="fancy-font-generator.html" class="mega-item">Fancy Font Gen ✨</a>
-                                    <a href="word-counter.html" class="mega-item">Word Counter</a>
-                                    <a href="case-converter.html" class="mega-item">Case Converter</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Finance Tools</div>
-                                    <a href="gst-calculator.html" class="mega-item">GST Calculator</a>
-                                    <a href="emi-calculator.html" class="mega-item">EMI Calculator</a>
-                                    <a href="sip-calculator.html" class="mega-item">SIP Calculator</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="about-us.html">About</a></li>
-                </ul>
-            </nav>
-            <button class="menu-toggle" id="menu-toggle">☰</button>
-        </div>
-    </div>
-</header>
+<header id="header"></header>
 
 <main class="container">
     <div class="exif-container">
+
         <section class="text-center" style="margin-bottom: 3rem;">
+            <p class="privacy-badge">🛡️ 100% Private — Client-Side Processing Only</p>
             <h1 class="hero-title">Remove EXIF Metadata from Photos Free — Strip GPS, Camera Info &amp; Hidden Data</h1>
-            <p class="hero-subtitle">View and strip hidden metadata (GPS, Device info, Date) from your photos losslessly before sharing. 100% Private — Processing happens entirely in your browser.</p>
-            <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.75rem;">
-                <a class="btn btn-secondary" href="/guides/remove-exif-metadata-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; background: white; border: 1px solid var(--border-color);">
+            <p class="hero-subtitle">View and strip hidden metadata (GPS coordinates, device info, timestamps) from your photos before sharing. Processing happens entirely in your browser — nothing is uploaded.</p>
+            <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+                <a class="btn btn-secondary" href="/guides/remove-exif-metadata-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">
                     📖 Tool Guide
                 </a>
-                <div id="pwa-update-msg" style="display:none; align-items:center; gap:0.5rem; background: #fef3c7; color: #92400e; padding: 0.6rem 1.2rem; border-radius: 12px; font-size: 0.85rem; font-weight: 700; border: 1px solid #fcd34d;">
-                    🚀 Update available! Reloading...
-                </div>
             </div>
         </section>
 
+        <!-- Upload Zone -->
         <div id="upload-zone" class="upload-area">
-            <span style="font-size: 3rem; display: block; margin-bottom: 1.5rem;">📸</span>
-            <h3>Click to Upload or Drag & Drop Photo(s)</h3>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">JPEG, PNG, WebP supported • Max 20MB per file • <strong>Bulk: up to 20 files</strong></p>
+            <span style="font-size: 3rem; display: block; margin-bottom: 1.25rem;">📸</span>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Click to Upload or Drag &amp; Drop Photo(s)</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">JPEG, PNG, WebP • Max 20MB per file</p>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;"><strong>Bulk mode:</strong> Upload up to 20 files at once</p>
             <input type="file" id="file-input" hidden accept="image/jpeg,image/png,image/webp" multiple>
         </div>
 
-        <!-- Bulk queue (shown when multiple files loaded) -->
-        <div id="bulk-bar" style="display:none; background:rgba(248, 249, 255, 0.8); backdrop-filter: blur(8px); border:1px solid #e5e7eb; border-radius:16px; padding:1.25rem 1.75rem; margin-bottom:1.5rem; box-shadow: 0 10px 25px rgba(79, 70, 229, 0.05);">
-            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
-                <span id="bulk-label" style="font-weight:800; font-size:0.95rem; color: var(--primary-color);">0 files loaded</span>
-                <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-                    <button id="bulk-scrub-btn" class="btn" style="font-size:0.85rem; padding:0.6rem 1.25rem; border-radius: 10px;">🛡️ Scrub All &amp; Download ZIP</button>
-                    <button id="bulk-export-btn" class="btn btn-secondary" style="font-size:0.85rem; padding:0.6rem 1.25rem; border-radius: 10px;">📋 Export Metadata CSV</button>
+        <!-- Bulk bar (multi-file) -->
+        <div id="bulk-bar" class="bulk-bar" style="display:none;">
+            <div class="bulk-bar-top">
+                <span id="bulk-label" style="font-weight: 800; font-size: 0.95rem; color: var(--primary-color);">0 files loaded</span>
+                <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                    <button id="bulk-scrub-btn" class="btn" style="width:auto; font-size:0.85rem; padding:0.6rem 1.1rem;">🛡️ Scrub All &amp; Download ZIP</button>
+                    <button id="bulk-export-btn" class="btn btn-secondary" style="width:auto; font-size:0.85rem; padding:0.6rem 1.1rem;">📋 Export All Metadata CSV</button>
                 </div>
             </div>
-            <div id="bulk-progress-bar" style="margin-top:1rem; display:none;">
-                <div style="background:#e2e8f0; border-radius:99px; height:6px; overflow:hidden;">
-                    <div id="bulk-progress-fill" style="background:linear-gradient(90deg, var(--primary-color), #7c3aed); height:100%; width:0%; transition:width 0.3s; border-radius: 99px;"></div>
+            <div id="bulk-progress-bar" style="margin-top: 1rem; display: none;">
+                <div style="background: #e2e8f0; border-radius: 99px; height: 6px; overflow: hidden;">
+                    <div id="bulk-progress-fill" style="background: var(--primary-gradient); height: 100%; width: 0%; transition: width 0.3s; border-radius: 99px;"></div>
                 </div>
-                <p id="bulk-progress-text" style="font-size:0.72rem; color:#64748b; margin-top:0.5rem; font-weight: 600;">Processing files...</p>
+                <p id="bulk-progress-text" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem; font-weight: 600;">Processing files…</p>
             </div>
         </div>
 
-        <section id="workspace" class="metadata-grid">
+        <!-- Workspace -->
+        <section id="workspace">
+
+            <!-- Left: Image preview + action buttons -->
             <div class="preview-pane">
                 <img id="image-preview" src="" alt="Photo Preview">
-                <p id="file-size-info" style="font-size:0.75rem; color:#94a3b8; margin-top:0.5rem;"></p>
+                <p id="file-size-info" class="file-meta"></p>
+
                 <div class="action-bar">
                     <button id="scrub-btn" class="btn">🛡️ Scrub All Metadata</button>
-                    <button id="scrub-gps-btn" class="btn btn-secondary" style="display:none;">📍 Remove GPS Only</button>
-                    <button id="export-meta-btn" class="btn btn-secondary" style="display:none;">📋 Export Metadata</button>
-                    <button id="download-btn" class="btn btn-secondary" style="display: none;">📥 Download Clean Image</button>
+                    <button id="scrub-gps-btn" class="btn btn-secondary btn-sm" style="display:none;">📍 Remove GPS Only</button>
+                    <button id="download-btn" class="btn btn-secondary" style="display:none;">📥 Download Clean Image</button>
                 </div>
             </div>
-            
+
+            <!-- Right: Risk + metadata table -->
             <div class="data-pane">
-                <div id="risk-box" class="risk-indicator">
-                    <span id="risk-text">No data analyzed yet</span>
+                <div id="risk-box" class="risk-indicator risk-neutral">
+                    <span>🔍</span>
+                    <span id="risk-text">Upload an image to scan for metadata</span>
                 </div>
-                <h3>Hidden Metadata Tags</h3>
-                <div style="overflow-x: auto; margin-top: 1rem;">
+
+                <div class="data-pane-header">
+                    <h3>🔖 Hidden Metadata Tags</h3>
+                    <div class="meta-actions" id="meta-action-btns" style="display:none;">
+                        <button class="btn-ghost" id="copy-meta-btn" title="Copy metadata to clipboard">📋 Copy</button>
+                        <button class="btn-ghost" id="export-meta-btn" title="Export as CSV file">⬇️ Export CSV</button>
+                    </div>
+                </div>
+
+                <div class="table-scroll">
                     <table class="meta-table">
                         <thead>
                             <tr>
-                                <th>Category</th>
-                                <th>Details</th>
+                                <th style="width:36%">Category</th>
+                                <th>Tag &amp; Value</th>
                             </tr>
                         </thead>
                         <tbody id="meta-body">
-                            <!-- Rows injected here -->
+                            <tr>
+                                <td colspan="2" style="color: var(--text-muted); padding: 1.5rem 0.75rem; text-align:center; font-style:italic;">
+                                    No image loaded yet
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- SEO Content Block -->
-        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+        <!-- SEO Content -->
+        <div style="max-width:900px; margin:3rem auto; padding:0 1.5rem;">
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Why You Need an EXIF Metadata Remover</h2>
-                <p style="line-height:1.8;color:#4b5563;">
-                    The <strong>EXIF Metadata Remover</strong> by WorldOfTools is a privacy-first utility that helps you protect your digital footprint. Every photo you take with a modern camera or smartphone contains hidden markers—GPS coordinates, device serial numbers, and exact timestamps. When you share these photos on social media or via email, you are inadvertently sharing your home address or daily routines. Our tool strips this "invisible" data, leaving only the beautiful pixels you intended to share.
-                </p>
+                <p style="line-height:1.8;color:#4b5563;">The <strong>EXIF Metadata Remover</strong> by WorldOfTools is a privacy-first utility that helps you protect your digital footprint. Every photo you take with a modern camera or smartphone contains hidden markers — GPS coordinates, device serial numbers, and exact timestamps. When you share these photos on social media or via email, you're inadvertently sharing your home address or daily routines. Our tool strips this "invisible" data, leaving only the pixels you intended to share.</p>
             </section>
-
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Remove Metadata — 3 Simple Steps</h2>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
@@ -343,75 +373,37 @@
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
-                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Analyze Data:</strong> Our tool instantly scans the file and highlights 'High Risk' markers like GPS and Device IDs.</p>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Review Metadata:</strong> The tool automatically detects and displays all hidden tags including GPS, device info, and timestamps.</p>
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
-                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Scrub & Download:</strong> Click 'Scrub All Metadata' to surgically remove the tags and download your private photo.</p>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Scrub &amp; Download:</strong> Click 'Scrub All Metadata' or 'Remove GPS Only', then download your clean, private image.</p>
                 </div>
             </section>
-
-            <section style="margin-bottom:3rem;">
-                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Premium Privacy Features</h2>
-                <ul style="list-style:none;padding:0;margin:0;">
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>Binary Surgery Technology:</strong> We don't re-compress your image. We surgically remove metadata segments from the original file buffer for zero quality loss.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>GPS Scrubbing:</strong> Specifically targets and destroys latitude/longitude markers that expose your home or work location.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>100% Client-Side:</strong> No data is ever sent to our servers. Your private photos stay on your device throughout the entire process.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>Cross-Platform Support:</strong> Works flawlessly on Android, iOS, Windows, and Mac browsers.</span>
-                    </li>
-                </ul>
-            </section>
-
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
                 <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-                    <summary style="font-weight:700;cursor:pointer;">Will removing EXIF data lower photo quality?</summary>
-                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">No! Unlike most online tools that "re-save" your image, WorldOfTools uses binary manipulation to strip metadata segments without touching the pixel data. Your image quality remains 100% identical.</p>
+                    <summary style="font-weight:700;cursor:pointer;">Does scrubbing reduce image quality?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">For JPEG files, we strip metadata segments without re-encoding the image, so visual quality is fully preserved. PNG and WebP images use canvas re-encoding at 97% quality, which is imperceptible to the human eye.</p>
                 </details>
                 <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-                    <summary style="font-weight:700;cursor:pointer;">Photo se location kaise hataye? (Hindi)</summary>
-                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Upni photo upload karein, 'Scrub All' button dabayein, aur GPS data ko hamesha ke liye remove karein. Yeh hamare secure browser engine mein privately hota hai.</p>
+                    <summary style="font-weight:700;cursor:pointer;">Photo se GPS location kaise hataye? (Hindi)</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Photo upload karein. Agar GPS data milega, toh "Remove GPS Only" button dikhega. Isse sirf location data hatega, baaki metadata safe rahega.</p>
                 </details>
                 <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-                    <summary style="font-weight:700;cursor:pointer;">Is there a file size limit?</summary>
-                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">We support photos up to 20MB, which covers most high-resolution DSLR and smartphone images.</p>
+                    <summary style="font-weight:700;cursor:pointer;">Can I process multiple photos at once?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes! Select up to 20 images at once. Use "Scrub All & Download ZIP" to get all cleaned photos in one ZIP file, or "Export All Metadata CSV" to audit metadata across your batch.</p>
                 </details>
             </section>
         </div>
+
         <section class="related-tools" style="margin-top: 5rem;">
-            <h2 style="text-align: center; margin-bottom: 2rem;">Protect Your Privacy Further 🔒</h2>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Related Privacy &amp; Media Tools 🚀</h2>
             <div class="tools-grid">
-                <a class="tool-card" href="image-compressor.html">
-                    <div class="tool-icon">🖼️</div>
-                    <div class="tool-title">Image Compressor</div>
-                    <div class="tool-desc">Reduce image file size while keeping visual quality after scrubbing EXIF.</div>
-                </a>
-                <a class="tool-card" href="password-generator.html">
-                    <div class="tool-icon">🔑</div>
-                    <div class="tool-title">Password Generator</div>
-                    <div class="tool-desc">Create military-grade passwords to protect your digital accounts and photos.</div>
-                </a>
-                <a class="tool-card" href="background-remover.html">
-                    <div class="tool-icon">👤</div>
-                    <div class="tool-title">Background Remover</div>
-                    <div class="tool-desc">Remove photo backgrounds to hide your surroundings before sharing online.</div>
-                </a>
-                <a class="tool-card" href="qr-code-generator.html">
-                    <div class="tool-icon">🔳</div>
-                    <div class="tool-title">QR Code Generator</div>
-                    <div class="tool-desc">Generate secure QR codes for sharing files without leaking metadata.</div>
-                </a>
+                <a class="tool-card" href="image-compressor.html"><div class="tool-icon">🖼️</div><div class="tool-title">Image Compressor</div><div class="tool-desc">Reduce image file sizes without losing visual quality.</div></a>
+                <a class="tool-card" href="background-remover.html"><div class="tool-icon">✂️</div><div class="tool-title">Background Remover</div><div class="tool-desc">Remove backgrounds from photos with AI precision.</div></a>
+                <a class="tool-card" href="password-generator.html"><div class="tool-icon">🔐</div><div class="tool-title">Password Generator</div><div class="tool-desc">Generate strong, uncrackable passwords instantly.</div></a>
+                <a class="tool-card" href="hash-generator.html"><div class="tool-icon">🔑</div><div class="tool-title">Hash Generator</div><div class="tool-desc">Generate MD5, SHA-1, SHA-256 hashes from any text.</div></a>
             </div>
         </section>
     </div>
@@ -419,28 +411,31 @@
 
 <footer></footer>
 
-<!-- EXIFR Library for advanced extraction -->
+<!-- exifr for metadata reading -->
 <script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
-<!-- JSZip for bulk ZIP download -->
+<!-- JSZip for bulk download -->
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 
 <script>
-    const uploadZone    = document.getElementById('upload-zone');
-    const fileInput     = document.getElementById('file-input');
-    const workspace     = document.getElementById('workspace');
-    const imagePreview  = document.getElementById('image-preview');
-    const metaBody      = document.getElementById('meta-body');
-    const riskBox       = document.getElementById('risk-box');
-    const riskText      = document.getElementById('risk-text');
-    const scrubBtn      = document.getElementById('scrub-btn');
-    const scrubGpsBtn   = document.getElementById('scrub-gps-btn');
-    const exportMetaBtn = document.getElementById('export-meta-btn');
-    const downloadBtn   = document.getElementById('download-btn');
-    const fileSizeInfo  = document.getElementById('file-size-info');
-    const bulkBar       = document.getElementById('bulk-bar');
-    const bulkLabel     = document.getElementById('bulk-label');
-    const bulkScrubBtn  = document.getElementById('bulk-scrub-btn');
-    const bulkExportBtn = document.getElementById('bulk-export-btn');
+    // ── DOM refs ──────────────────────────────────────────────────────────
+    const uploadZone      = document.getElementById('upload-zone');
+    const fileInput       = document.getElementById('file-input');
+    const workspace       = document.getElementById('workspace');
+    const imagePreview    = document.getElementById('image-preview');
+    const metaBody        = document.getElementById('meta-body');
+    const riskBox         = document.getElementById('risk-box');
+    const riskText        = document.getElementById('risk-text');
+    const scrubBtn        = document.getElementById('scrub-btn');
+    const scrubGpsBtn     = document.getElementById('scrub-gps-btn');
+    const exportMetaBtn   = document.getElementById('export-meta-btn');
+    const copyMetaBtn     = document.getElementById('copy-meta-btn');
+    const downloadBtn     = document.getElementById('download-btn');
+    const fileSizeInfo    = document.getElementById('file-size-info');
+    const metaActionBtns  = document.getElementById('meta-action-btns');
+    const bulkBar         = document.getElementById('bulk-bar');
+    const bulkLabel       = document.getElementById('bulk-label');
+    const bulkScrubBtn    = document.getElementById('bulk-scrub-btn');
+    const bulkExportBtn   = document.getElementById('bulk-export-btn');
     const bulkProgressBar  = document.getElementById('bulk-progress-bar');
     const bulkProgressFill = document.getElementById('bulk-progress-fill');
     const bulkProgressText = document.getElementById('bulk-progress-text');
@@ -448,40 +443,43 @@
     let currentFile = null;
     let cleanBlob   = null;
     let parsedMeta  = null;
-    let allFiles    = [];   // for bulk
+    let allFiles    = [];
 
-    // ─── File size formatter ───────────────────────────────────────────
+    // ── Utilities ─────────────────────────────────────────────────────────
     function fmtSize(bytes) {
-        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024)    return bytes + ' B';
         if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
         return (bytes / 1048576).toFixed(2) + ' MB';
     }
 
-    // ─── Handle single file ───────────────────────────────────────────
+    // ── File handling ─────────────────────────────────────────────────────
     async function handleFile(file) {
         if (!file) return;
         currentFile = file;
         cleanBlob   = null;
         parsedMeta  = null;
 
+        // Show preview
         const reader = new FileReader();
         reader.onload = e => {
             imagePreview.src = e.target.result;
-            workspace.style.display = "grid";
-            workspace.scrollIntoView({ behavior: 'smooth' });
+            workspace.style.display = 'grid';
+            workspace.scrollIntoView({ behavior: 'smooth', block: 'start' });
         };
         reader.readAsDataURL(file);
 
-        fileSizeInfo.innerText = `File: ${file.name} — ${fmtSize(file.size)}`;
-        metaBody.innerHTML = "<tr><td colspan='2'>Analyzing...</td></tr>";
-        riskBox.className  = "risk-indicator";
-        riskText.innerText = "Analyzing metadata...";
-        downloadBtn.style.display  = "none";
-        scrubGpsBtn.style.display  = "none";
-        exportMetaBtn.style.display = "none";
-        scrubBtn.style.display     = "block";
-        scrubBtn.innerText         = "🛡️ Scrub All Metadata";
-        scrubBtn.disabled          = false;
+        fileSizeInfo.innerText = `${file.name} — ${fmtSize(file.size)}`;
+
+        // Reset UI
+        metaBody.innerHTML = `<tr><td colspan="2" style="color:var(--text-muted);padding:1.25rem 0.75rem;text-align:center;font-style:italic;">Scanning metadata…</td></tr>`;
+        riskBox.className  = 'risk-indicator risk-neutral';
+        riskText.innerText = 'Scanning…';
+        metaActionBtns.style.display = 'none';
+        downloadBtn.style.display    = 'none';
+        scrubGpsBtn.style.display    = 'none';
+        scrubBtn.style.display       = 'block';
+        scrubBtn.innerText           = '🛡️ Scrub All Metadata';
+        scrubBtn.disabled            = false;
 
         try {
             const output = await exifr.parse(file, { tiff: true, xmp: true, icc: true, iptc: true, jfif: true, ihdr: true });
@@ -489,47 +487,45 @@
             renderMetadata(output);
         } catch (err) {
             console.error(err);
-            metaBody.innerHTML = "<tr><td colspan='2' style='color:#6b7280;'>No EXIF metadata found or format not supported.</td></tr>";
-            riskBox.className  = "risk-indicator risk-low";
-            riskText.innerText = "✓ No dangerous metadata detected.";
+            metaBody.innerHTML = `<tr><td colspan="2" style="color:var(--text-muted);padding:1.25rem 0.75rem;text-align:center;">No EXIF metadata found or format not supported.</td></tr>`;
+            riskBox.className  = 'risk-indicator risk-low';
+            riskText.innerHTML = '✓ No dangerous metadata detected.';
         }
     }
 
-    // ─── Handle multiple files ────────────────────────────────────────
     function handleMultipleFiles(files) {
         allFiles = Array.from(files);
         if (allFiles.length === 1) {
+            bulkBar.style.display = 'none';
             handleFile(allFiles[0]);
-            bulkBar.style.display = "none";
             return;
         }
-        // Show bulk bar + load first file for preview
-        bulkLabel.innerText = `${allFiles.length} files loaded`;
-        bulkBar.style.display = "block";
+        bulkLabel.innerText   = `${allFiles.length} files loaded`;
+        bulkBar.style.display = 'block';
         handleFile(allFiles[0]);
     }
 
-    // ─── Render metadata table ────────────────────────────────────────
+    // ── Render metadata table ─────────────────────────────────────────────
     function renderMetadata(data) {
-        metaBody.innerHTML = "";
+        metaBody.innerHTML = '';
         let hasGPS = false;
         let totalCount = 0;
 
         if (!data || Object.keys(data).length === 0) {
-            metaBody.innerHTML = "<tr><td colspan='2' style='color:#6b7280;'>No hidden tags detected.</td></tr>";
-            riskBox.className  = "risk-indicator risk-low";
-            riskText.innerText = "✓ This image is already clean.";
-            exportMetaBtn.style.display = "none";
+            metaBody.innerHTML = `<tr><td colspan="2" style="color:var(--text-muted);padding:1.25rem 0.75rem;text-align:center;">No hidden tags detected — this image is already clean.</td></tr>`;
+            riskBox.className  = 'risk-indicator risk-low';
+            riskText.innerHTML = '✓ This image is already clean.';
+            metaActionBtns.style.display = 'none';
             return;
         }
 
         const categories = {
-            "📍 Location":  ["latitude", "longitude", "GPSAltitude", "GPSLatitude", "GPSLongitude", "GPSSpeed", "GPSImgDirection", "GPSDestBearing"],
-            "📱 Device":    ["Make", "Model", "Software", "LensModel", "LensMake", "BodySerialNumber", "LensSerialNumber", "CameraOwnerName"],
-            "🕒 Timing":    ["DateTimeOriginal", "ModifyDate", "CreateDate", "DateCreated", "GPSDateStamp"],
-            "⚙️ Camera":    ["ExposureTime", "FNumber", "ISO", "FocalLength", "Flash", "MeteringMode", "WhiteBalance", "ShutterSpeedValue", "ApertureValue", "ExposureBiasValue", "ExposureProgram", "SceneCaptureType"],
-            "🖼️ Image":     ["ImageWidth", "ImageHeight", "Orientation", "ColorSpace", "BitsPerSample", "Compression", "ResolutionUnit", "XResolution", "YResolution"],
-            "📄 Copyright": ["Copyright", "Artist", "ImageDescription", "UserComment", "XPComment", "XPAuthor", "XPTitle"],
+            '📍 Location':  ['latitude','longitude','GPSAltitude','GPSLatitude','GPSLongitude','GPSSpeed','GPSImgDirection','GPSDestBearing'],
+            '📱 Device':    ['Make','Model','Software','LensModel','LensMake','BodySerialNumber','LensSerialNumber','CameraOwnerName'],
+            '🕒 Timing':    ['DateTimeOriginal','ModifyDate','CreateDate','DateCreated','GPSDateStamp'],
+            '⚙️ Camera':    ['ExposureTime','FNumber','ISO','FocalLength','Flash','MeteringMode','WhiteBalance','ShutterSpeedValue','ApertureValue','ExposureBiasValue','ExposureProgram','SceneCaptureType'],
+            '🖼️ Image':     ['ImageWidth','ImageHeight','Orientation','ColorSpace','BitsPerSample','Compression','ResolutionUnit','XResolution','YResolution'],
+            '📄 Copyright': ['Copyright','Artist','ImageDescription','UserComment','XPComment','XPAuthor','XPTitle'],
         };
 
         for (const [cat, tags] of Object.entries(categories)) {
@@ -538,20 +534,20 @@
                 let val = data[tag];
                 if ((tag === 'latitude' || tag === 'longitude') && typeof val === 'number') {
                     hasGPS = true;
-                    val = val.toFixed(7) + ' <span class="badge-gps">GPS</span>';
+                    val = `${val.toFixed(7)} <span class="badge-gps">GPS</span>`;
                 } else if (val instanceof Date) {
                     val = val.toLocaleString();
                 } else if (typeof val === 'object' && val !== null) {
                     val = JSON.stringify(val);
                 }
                 const row = document.createElement('tr');
-                row.innerHTML = `<td style="white-space:nowrap">${cat}</td><td><strong>${tag}:</strong> ${val}</td>`;
+                row.innerHTML = `<td style="white-space:nowrap; color:var(--text-muted); font-size:0.8rem;">${cat}</td><td><strong style="font-size:0.8rem;">${tag}:</strong> <span style="color:#334155;">${val}</span></td>`;
                 metaBody.appendChild(row);
                 totalCount++;
             });
         }
 
-        // Any remaining raw tags not in categories
+        // Remaining uncategorised tags
         Object.keys(data).forEach(key => {
             const inCat = Object.values(categories).flat().includes(key);
             if (!inCat) {
@@ -559,148 +555,108 @@
                 if (val instanceof Date) val = val.toLocaleString();
                 else if (typeof val === 'object') val = JSON.stringify(val);
                 const row = document.createElement('tr');
-                row.innerHTML = `<td style="white-space:nowrap;color:#94a3b8">🔖 Other</td><td><strong>${key}:</strong> ${val}</td>`;
+                row.innerHTML = `<td style="white-space:nowrap; color:#94a3b8; font-size:0.8rem;">🔖 Other</td><td><strong style="font-size:0.8rem;">${key}:</strong> <span style="color:#475569;">${val}</span></td>`;
                 metaBody.appendChild(row);
                 totalCount++;
             }
         });
 
         if (totalCount === 0) {
-            metaBody.innerHTML = "<tr><td colspan='2' style='color:#6b7280;'>No readable tags found.</td></tr>";
+            metaBody.innerHTML = `<tr><td colspan="2" style="color:var(--text-muted);padding:1.25rem 0.75rem;text-align:center;">No readable tags found.</td></tr>`;
         }
 
         if (hasGPS) {
-            riskBox.className  = "risk-indicator risk-high";
+            riskBox.className  = 'risk-indicator risk-high';
             riskText.innerHTML = `⚠️ <span class="badge-gps">HIGH RISK</span> GPS coordinates found — your exact location is embedded!`;
-            scrubGpsBtn.style.display = "inline-flex";
+            scrubGpsBtn.style.display = 'inline-flex';
         } else {
-            riskBox.className  = "risk-indicator risk-low";
-            riskText.innerText = `💡 ${totalCount} metadata tags found. No GPS detected.`;
+            riskBox.className  = 'risk-indicator risk-low';
+            riskText.innerHTML = `💡 ${totalCount} metadata tags found. No GPS detected.`;
         }
 
-        exportMetaBtn.style.display = "inline-flex";
+        metaActionBtns.style.display = 'flex';
     }
 
-    // ─── Binary EXIF scrubber (JPEG) ──────────────────────────────────
-    // Strips all APP1 (EXIF/XMP), APP2, APP13 (IPTC), APP14 segments
-    function stripJpegMetadata(arrayBuffer, gpsOnly = false) {
-        const dv = new DataView(arrayBuffer);
-        if (dv.getUint16(0) !== 0xFFD8) return null; // Not JPEG
-
-        const segments = [arrayBuffer.slice(0, 2)]; // SOI
-        let offset = 2;
-
-        while (offset < dv.byteLength - 1) {
-            const marker = dv.getUint16(offset);
-
-            if (marker === 0xFFDA) { // SOS — image data, copy rest
-                segments.push(arrayBuffer.slice(offset));
-                break;
-            }
-            if (marker === 0xFFD9) break; // EOI
-
-            // Markers without length
-            if ((marker & 0xFF00) !== 0xFF00 || marker === 0xFF00 || marker === 0xFFFF) {
-                offset++;
-                continue;
-            }
-
-            const segLen = dv.getUint16(offset + 2) + 2; // includes 2 length bytes
-
-            if (!gpsOnly) {
-                // Strip: APP1 (EXIF/XMP=0xFFE1), APP2 (0xFFE2), APP13 IPTC (0xFFED), APP14 (0xFFEE)
-                const stripMarkers = [0xFFE1, 0xFFE2, 0xFFED, 0xFFEE];
-                if (!stripMarkers.includes(marker)) {
-                    segments.push(arrayBuffer.slice(offset, offset + segLen));
-                }
-            } else {
-                // GPS-only mode: keep APP1 but patch out GPS IFD
-                // Simplest reliable approach: keep everything except GPS tags in EXIF
-                // We'll use canvas re-encode after stripping EXIF and re-injecting non-GPS tags
-                // For simplicity, strip full APP1 in GPS-only mode too (browser EXIF write not feasible without library)
-                if (marker !== 0xFFE1) {
-                    segments.push(arrayBuffer.slice(offset, offset + segLen));
-                }
-            }
-            offset += segLen;
-        }
-
-        return new Blob(segments, { type: 'image/jpeg' });
-    }
-
-    // ─── Canvas scrubber for PNG/WebP (strips metadata via re-encode) ──
-    async function stripViaCanvas(file) {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            const url = URL.createObjectURL(file);
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                canvas.width  = img.naturalWidth;
-                canvas.height = img.naturalHeight;
-                canvas.getContext('2d').drawImage(img, 0, 0);
-                URL.revokeObjectURL(url);
-                // Use same format for PNG, JPEG for WebP (WebP encode not widely supported)
-                const outType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-                canvas.toBlob(blob => {
-                    if (blob) resolve(blob);
-                    else reject(new Error('Canvas toBlob failed'));
-                }, outType, 0.97);
-            };
-            img.onerror = reject;
-            img.src = url;
-        });
-    }
-
-    // ─── Scrub all metadata ───────────────────────────────────────────
+    // ── Scrub metadata ────────────────────────────────────────────────────
     async function scrubMetadata(gpsOnly = false) {
         if (!currentFile) return;
 
         const btn = gpsOnly ? scrubGpsBtn : scrubBtn;
-        btn.innerText = "⚡ Scrubbing...";
+        const origText = btn.innerText;
+        btn.innerText = '⚡ Scrubbing…';
         btn.disabled  = true;
 
         try {
-            const isJpeg = currentFile.type === 'image/jpeg' || currentFile.name.toLowerCase().endsWith('.jpg') || currentFile.name.toLowerCase().endsWith('.jpeg');
+            const isJpeg = currentFile.type === 'image/jpeg' || /\.jpe?g$/i.test(currentFile.name);
 
             if (isJpeg) {
                 const buf    = await currentFile.arrayBuffer();
                 const result = stripJpegMetadata(buf, gpsOnly);
-                if (!result) { throw new Error('Not a valid JPEG.'); }
+                if (!result) throw new Error('Not a valid JPEG.');
                 cleanBlob = result;
             } else {
-                // PNG / WebP — canvas re-encode
                 cleanBlob = await stripViaCanvas(currentFile);
             }
 
             const savedBytes = currentFile.size - cleanBlob.size;
-            metaBody.innerHTML = `<tr><td colspan='2' style='color:#059669; font-weight:700;'>✓ Metadata stripped! Saved ${fmtSize(Math.max(0, savedBytes))} from file size.</td></tr>`;
-            riskBox.className  = "risk-indicator risk-low";
-            riskText.innerText = `✓ Clean image ready — safe to share.`;
+            metaBody.innerHTML = `<tr><td colspan="2" style="color:#059669; font-weight:700; padding:1.25rem 0.75rem; text-align:center;">✅ Metadata stripped! Saved ${fmtSize(Math.max(0, savedBytes))} from file size.</td></tr>`;
+            riskBox.className  = 'risk-indicator risk-low';
+            riskText.innerHTML = '✅ Clean image ready — safe to share.';
+            metaActionBtns.style.display = 'none';
 
-            scrubBtn.style.display     = "none";
-            scrubGpsBtn.style.display  = "none";
-            exportMetaBtn.style.display = "none";
-            downloadBtn.style.display  = "block";
+            scrubBtn.style.display    = 'none';
+            scrubGpsBtn.style.display = 'none';
+            downloadBtn.style.display = 'block';
 
         } catch (err) {
             console.error(err);
-            alert("Scrubbing failed: " + err.message);
-            btn.innerText = gpsOnly ? "📍 Remove GPS Only" : "🛡️ Scrub All Metadata";
+            alert('Scrubbing failed: ' + err.message);
+            btn.innerText = origText;
             btn.disabled  = false;
         }
     }
 
-    // ─── Export metadata as CSV ───────────────────────────────────────
+    // ── Copy metadata to clipboard ────────────────────────────────────────
+    function copyMetadata() {
+        if (!parsedMeta) return;
+        let text = 'EXIF Metadata — ' + (currentFile ? currentFile.name : '') + '\n';
+        text += '─'.repeat(40) + '\n';
+        Object.keys(parsedMeta).forEach(key => {
+            let v = parsedMeta[key];
+            if (v instanceof Date) v = v.toLocaleString();
+            else if (typeof v === 'object' && v !== null) v = JSON.stringify(v);
+            text += `${key}: ${v}\n`;
+        });
+        text += '─'.repeat(40) + '\nGenerated by worldoftools.in/exif-metadata-remover';
+
+        navigator.clipboard.writeText(text).then(() => {
+            const orig = copyMetaBtn.innerText;
+            copyMetaBtn.innerText = '✅ Copied!';
+            setTimeout(() => copyMetaBtn.innerText = orig, 2000);
+        }).catch(() => {
+            // Fallback
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            copyMetaBtn.innerText = '✅ Copied!';
+            setTimeout(() => copyMetaBtn.innerText = '📋 Copy', 2000);
+        });
+    }
+
+    // ── Export metadata as CSV ────────────────────────────────────────────
     function exportMetadata() {
         if (!parsedMeta) return;
-        let csv = "Category,Tag,Value\n";
+        let csv = 'Category,Tag,Value\n';
         const categories = {
-            "Location":  ["latitude","longitude","GPSAltitude","GPSLatitude","GPSLongitude","GPSSpeed"],
-            "Device":    ["Make","Model","Software","LensModel","BodySerialNumber"],
-            "Timing":    ["DateTimeOriginal","ModifyDate","CreateDate"],
-            "Camera":    ["ExposureTime","FNumber","ISO","FocalLength","Flash"],
-            "Image":     ["ImageWidth","ImageHeight","Orientation","ColorSpace"],
-            "Copyright": ["Copyright","Artist","ImageDescription"],
+            'Location':  ['latitude','longitude','GPSAltitude','GPSLatitude','GPSLongitude','GPSSpeed'],
+            'Device':    ['Make','Model','Software','LensModel','BodySerialNumber'],
+            'Timing':    ['DateTimeOriginal','ModifyDate','CreateDate'],
+            'Camera':    ['ExposureTime','FNumber','ISO','FocalLength','Flash'],
+            'Image':     ['ImageWidth','ImageHeight','Orientation','ColorSpace'],
+            'Copyright': ['Copyright','Artist','ImageDescription'],
         };
         const tagged = new Set();
         for (const [cat, tags] of Object.entries(categories)) {
@@ -709,7 +665,7 @@
                 let v = parsedMeta[tag];
                 if (v instanceof Date) v = v.toISOString();
                 else if (typeof v === 'object') v = JSON.stringify(v);
-                csv += `"${cat}","${tag}","${String(v).replace(/"/g,'""')}"\n`;
+                csv += `"${cat}","${tag}","${String(v).replace(/"/g, '""')}"\n`;
                 tagged.add(tag);
             });
         }
@@ -718,7 +674,7 @@
             let v = parsedMeta[key];
             if (v instanceof Date) v = v.toISOString();
             else if (typeof v === 'object') v = JSON.stringify(v);
-            csv += `"Other","${key}","${String(v).replace(/"/g,'""')}"\n`;
+            csv += `"Other","${key}","${String(v).replace(/"/g, '""')}"\n`;
         });
 
         const blob = new Blob([csv], { type: 'text/csv' });
@@ -730,11 +686,11 @@
         document.body.removeChild(a);
     }
 
-    // ─── Bulk scrub + ZIP ─────────────────────────────────────────────
+    // ── Bulk: scrub + ZIP ─────────────────────────────────────────────────
     async function bulkScrubAll() {
         if (!allFiles.length) return;
         bulkScrubBtn.disabled = true;
-        bulkProgressBar.style.display = "block";
+        bulkProgressBar.style.display = 'block';
 
         const zip = new JSZip();
         for (let i = 0; i < allFiles.length; i++) {
@@ -750,34 +706,33 @@
                 } else {
                     blob = await stripViaCanvas(f);
                 }
-                const ext = isJpeg ? f.name.split('.').pop() : (f.type === 'image/png' ? 'png' : 'jpg');
                 zip.file(`clean_${f.name}`, blob);
             } catch (e) {
                 console.warn(`Skipped ${f.name}:`, e);
             }
         }
 
-        bulkProgressFill.style.width = "100%";
-        bulkProgressText.innerText   = "Creating ZIP...";
+        bulkProgressFill.style.width = '100%';
+        bulkProgressText.innerText   = 'Creating ZIP…';
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         const a = document.createElement('a');
-        a.href     = URL.createObjectURL(zipBlob);
-        a.download = `WorldOfTools_CleanPhotos.zip`;
+        a.href = URL.createObjectURL(zipBlob);
+        a.download = 'WorldOfTools_CleanPhotos.zip';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
 
-        bulkProgressText.innerText = `✓ Done! ${allFiles.length} files scrubbed.`;
+        bulkProgressText.innerText = `✅ Done! ${allFiles.length} files scrubbed.`;
         bulkScrubBtn.disabled = false;
     }
 
-    // ─── Bulk export metadata CSV ─────────────────────────────────────
+    // ── Bulk: export metadata CSV ─────────────────────────────────────────
     async function bulkExportCSV() {
         if (!allFiles.length) return;
         bulkExportBtn.disabled = true;
-        bulkProgressBar.style.display = "block";
+        bulkProgressBar.style.display = 'block';
 
-        let csv = "Filename,Tag,Value\n";
+        let csv = 'Filename,Tag,Value\n';
         for (let i = 0; i < allFiles.length; i++) {
             const f = allFiles[i];
             bulkProgressFill.style.width = `${Math.round((i / allFiles.length) * 100)}%`;
@@ -794,7 +749,7 @@
                 }
             } catch (_) {}
         }
-        bulkProgressFill.style.width = "100%";
+        bulkProgressFill.style.width = '100%';
         const blob = new Blob([csv], { type: 'text/csv' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
@@ -802,18 +757,71 @@
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        bulkProgressText.innerText = "✓ CSV exported.";
+        bulkProgressText.innerText = '✅ CSV exported.';
         bulkExportBtn.disabled = false;
     }
 
-    // ─── Event Listeners ──────────────────────────────────────────────
-    uploadZone.onclick = () => fileInput.click();
-    fileInput.onchange = e => {
-        if (e.target.files.length) handleMultipleFiles(e.target.files);
-    };
+    // ── JPEG binary metadata stripper ─────────────────────────────────────
+    function stripJpegMetadata(arrayBuffer, gpsOnly = false) {
+        const dv = new DataView(arrayBuffer);
+        if (dv.getUint16(0) !== 0xFFD8) return null;
+
+        const segments = [arrayBuffer.slice(0, 2)];
+        let offset = 2;
+
+        while (offset < dv.byteLength - 1) {
+            const marker = dv.getUint16(offset);
+
+            if (marker === 0xFFDA) { segments.push(arrayBuffer.slice(offset)); break; }
+            if (marker === 0xFFD9) break;
+            if ((marker & 0xFF00) !== 0xFF00 || marker === 0xFF00 || marker === 0xFFFF) { offset++; continue; }
+
+            const segLen = dv.getUint16(offset + 2) + 2;
+
+            if (!gpsOnly) {
+                const stripMarkers = [0xFFE1, 0xFFE2, 0xFFED, 0xFFEE];
+                if (!stripMarkers.includes(marker)) {
+                    segments.push(arrayBuffer.slice(offset, offset + segLen));
+                }
+            } else {
+                if (marker !== 0xFFE1) {
+                    segments.push(arrayBuffer.slice(offset, offset + segLen));
+                }
+            }
+            offset += segLen;
+        }
+
+        return new Blob(segments, { type: 'image/jpeg' });
+    }
+
+    // ── Canvas scrubber for PNG/WebP ──────────────────────────────────────
+    async function stripViaCanvas(file) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            const url = URL.createObjectURL(file);
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width  = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                canvas.getContext('2d').drawImage(img, 0, 0);
+                URL.revokeObjectURL(url);
+                const outType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+                canvas.toBlob(blob => {
+                    if (blob) resolve(blob);
+                    else reject(new Error('Canvas toBlob failed'));
+                }, outType, 0.97);
+            };
+            img.onerror = reject;
+            img.src = url;
+        });
+    }
+
+    // ── Event listeners ───────────────────────────────────────────────────
+    uploadZone.onclick     = () => fileInput.click();
+    fileInput.onchange     = e => { if (e.target.files.length) handleMultipleFiles(e.target.files); };
     uploadZone.ondragover  = e => { e.preventDefault(); uploadZone.classList.add('dragover'); };
     uploadZone.ondragleave = () => uploadZone.classList.remove('dragover');
-    uploadZone.ondrop = e => {
+    uploadZone.ondrop      = e => {
         e.preventDefault();
         uploadZone.classList.remove('dragover');
         if (e.dataTransfer.files.length) handleMultipleFiles(e.dataTransfer.files);
@@ -821,6 +829,7 @@
 
     scrubBtn.onclick      = () => scrubMetadata(false);
     scrubGpsBtn.onclick   = () => scrubMetadata(true);
+    copyMetaBtn.onclick   = copyMetadata;
     exportMetaBtn.onclick = exportMetadata;
     bulkScrubBtn.onclick  = bulkScrubAll;
     bulkExportBtn.onclick = bulkExportCSV;
@@ -839,13 +848,12 @@
         URL.revokeObjectURL(url);
     };
 
-    document.getElementById('menu-toggle').onclick = function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) menuToggle.onclick = function() {
         document.getElementById('nav-menu').classList.toggle('active');
     };
 </script>
 
-<!-- Global Context & Footer Builder -->
-<script src="/js/common.js?v=2.4"></script>
-
+<script src="/js/common.js?v=2.5"></script>
 </body>
 </html>

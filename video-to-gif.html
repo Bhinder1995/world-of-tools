@@ -6,118 +6,99 @@
     <title>Video to GIF Converter Online Free — MP4 to GIF No Watermark | WorldOfTools</title>
     <meta name="description" content="Convert MP4, MOV or WEBM to animated GIF online free. Set FPS, trim, resize and download instantly. No upload, no watermark, no account — 100% browser-based.">
     <meta name="keywords" content="video to gif converter online free, mp4 to gif online, convert video to gif no watermark, gif maker free online, trim video to gif, video to gif no upload, high quality gif converter, video se gif banao free">
-    
+
     <link rel="canonical" href="https://worldoftools.in/video-to-gif">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://worldoftools.in/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Video to GIF",
-        "item": "https://worldoftools.in/video-to-gif"
-      }]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Advanced Video to GIF Generator",
-      "operatingSystem": "Any",
-      "applicationCategory": "MultimediaApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Video to GIF Generator",
-      "description": "Convert video to high quality animated GIFs without watermarks using browser-side FFmpeg.",
-      "url": "https://worldoftools.in/video-to-gif",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "Any"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "Can I convert video to GIF without a watermark?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, our tool is 100% free and does not add any watermarks to your generated GIFs."
-        }
-      }, {
-        "@type": "Question",
-        "name": "How to convert MP4 to GIF High Quality?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Upload your MP4, set FPS to 24 or 30, and choose 'Original Resolution' to get the highest quality GIF possible."
-        }
-      }]
-    }
-    </script>
-    
-    <link rel="stylesheet" href="css/style.css">
-    
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},{"@type":"ListItem","position":2,"name":"Video to GIF","item":"https://worldoftools.in/video-to-gif"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Advanced Video to GIF Generator","operatingSystem":"Any","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+
+    <link rel="stylesheet" href="/css/style.css?v=2.5">
+    <link rel="icon" href="/logo.svg" type="image/svg+xml">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+
     <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
+            --border-color: #e2e8f0;
+            --text-muted: #64748b;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
         .video-tool-container {
             max-width: clamp(300px, 95%, 1100px);
             margin: 0 auto;
         }
 
         .upload-area {
-            background: white;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
             border: 2px dashed var(--border-color);
             border-radius: var(--radius-xl);
             padding: 5rem 2rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             margin-bottom: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
         }
 
         .upload-area:hover, .upload-area.dragover {
             border-color: var(--primary-color);
             background: rgba(79, 70, 229, 0.02);
+            transform: translateY(-2px);
         }
 
-        .video-workspace {
-            grid-template-columns: 1fr 340px;
-            gap: 2rem;
-            margin-top: 3rem;
+        /* Workspace grid */
+        #workspace {
             display: none;
+            gap: 2rem;
+            margin-top: 2rem;
+            grid-template-columns: 1fr 340px;
         }
 
         .preview-box {
             background: #0f172a;
             border-radius: var(--radius-lg);
-            padding: 1rem;
+            padding: 1.5rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 400px;
+            min-height: 360px;
             position: relative;
         }
 
         video, img#output-gif {
             max-width: 100%;
-            max-height: 500px;
+            max-height: 480px;
             border-radius: 8px;
+        }
+
+        /* Status banner inside preview-box */
+        .status-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .status-text { color: #94a3b8; font-size: 0.9rem; font-weight: 600; }
+
+        .loader {
+            width: 52px;
+            height: 52px;
+            border: 5px solid rgba(255,255,255,0.15);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .controls-pane {
@@ -132,217 +113,194 @@
 
         .control-group label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--text-muted);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: white;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
         }
 
         .trim-controls {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
-        .progress-circle-container {
-            position: absolute;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.8);
-            display: flex;
-            flex-direction: column;
+        .trim-controls span {
+            display: block;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-bottom: 0.3rem;
+        }
+
+        .btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            z-index: 100;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            background: var(--primary-gradient);
             color: white;
-            border-radius: var(--radius-lg);
-            display: none;
+            width: 100%;
+        }
+        .btn:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 8px 20px -6px rgba(79, 70, 229, 0.4); }
+        .btn:active { transform: translateY(0); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-secondary { background: white; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .btn-slate { background: #475569; }
+
+        .privacy-badge {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            border-radius: 99px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .hero-title { font-size: clamp(1.6rem, 4vw, 2.25rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 640px; margin: 0 auto; }
+        .text-center { text-align: center; }
+
+        .gif-size-badge {
+            margin-top: 0.75rem;
+            display: inline-block;
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
         @media (max-width: 960px) {
-            .video-workspace {
-                grid-template-columns: 1fr;
-            }
-            .preview-box {
-                min-height: 250px;
-            }
-            .controls-pane {
-                padding: 1.25rem;
-            }
-            .trim-controls {
-                gap: 0.75rem;
-            }
-        }
-
-        .loader {
-            width: 48px;
-            height: 48px;
-            border: 5px solid #FFF;
-            border-bottom-color: var(--primary-color);
-            border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
-        }
-
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .quality-badge {
-            background: #f1f5f9;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 800;
+            #workspace { grid-template-columns: 1fr; }
+            .preview-box { min-height: 250px; }
         }
     </style>
 </head>
 <body>
 
-<header id="header">
-    <div class="container" style="padding-top: 0; padding-bottom: 0;">
-        <div class="header-content">
-            <a href="index.html" class="logo-center">
-                <img src="/logo.svg" alt="WorldOfTools Logo" width="36" height="36">
-                <div class="logo-text-block">
-                    <span class="logo-brand">WorldOfTools</span>
-                    <span class="logo-tagline">100% Private & Free</span>
-                </div>
-            </a>
-            <nav id="nav-menu">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li class="nav-dropdown">
-                        <span class="dropdown-trigger">Tools ✨</span>
-                        <div class="dropdown-menu">
-                            <div class="mega-dropdown-inner">
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Video Tools</div>
-                                    <a href="video-to-gif.html" class="mega-item" style="color: var(--primary-color); font-weight: 700;">Video to GIF ✨</a>
-                                    <a href="video-compressor.html" class="mega-item">Video Compressor</a>
-                                    <a href="youtube-thumbnail-downloader.html" class="mega-item">YouTube Downloader</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Image Tools</div>
-                                    <a href="image-to-text-ocr.html" class="mega-item">Image to Text OCR</a>
-                                    <a href="background-remover.html" class="mega-item">Background Remover</a>
-                                    <a href="image-compressor.html" class="mega-item">Image Compressor</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Text Tools</div>
-                                    <a href="fancy-font-generator.html" class="mega-item">Fancy Font Gen ✨</a>
-                                    <a href="word-counter.html" class="mega-item">Word Counter</a>
-                                    <a href="case-converter.html" class="mega-item">Case Converter</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Privacy Tools</div>
-                                    <a href="exif-metadata-remover.html" class="mega-item">EXIF Remover 🛡️</a>
-                                    <a href="password-generator.html" class="mega-item">Password Gen</a>
-                                    <a href="jwt-decoder.html" class="mega-item">JWT Decoder</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="about-us.html">About</a></li>
-                </ul>
-            </nav>
-            <button class="menu-toggle" id="menu-toggle">☰</button>
-        </div>
-    </div>
-</header>
+<header id="header"></header>
 
 <main class="container">
     <div class="video-tool-container">
         <section class="text-center" style="margin-bottom: 3rem;">
-            <p class="privacy-badge">🔒 100% Client-Side — Secure SharedArrayBuffer Enabled</p>
+            <p class="privacy-badge">🔒 100% Client-Side — Your files never leave your device</p>
             <h1 class="hero-title">Free Video to GIF Converter Online — No Watermark, No Upload</h1>
-            <p class="hero-subtitle">Convert your videos into high-quality animated GIFs with ultra-precise trimming and FPS control. No watermarks, no limits.</p>
+            <p class="hero-subtitle">Convert your videos into high-quality animated GIFs with precise trimming and FPS control. No watermarks, no limits, no registration.</p>
             <div style="margin-top: 1.5rem;">
-                <a class="btn btn-secondary" href="/guides/video-to-gif-converter-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+                <a class="btn btn-secondary" href="/guides/video-to-gif-converter-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">
                     📖 Read Video to GIF Guide
                 </a>
             </div>
         </section>
 
+        <!-- Upload Zone -->
         <div id="upload-zone" class="upload-area">
-            <span style="font-size: 3.5rem; display: block; margin-bottom: 2rem;">🎞️</span>
-            <h3>Select Video File or Drag here</h3>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">MP4, MOV, WEBM (Max 50MB recommended for speed)</p>
+            <span style="font-size: 3.5rem; display: block; margin-bottom: 1.5rem;">🎞️</span>
+            <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Select Video File or Drag Here</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">MP4, MOV, WEBM supported</p>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">Max 50MB recommended for best speed</p>
             <input type="file" id="file-input" hidden accept="video/*">
         </div>
 
-        <section id="workspace" class="video-workspace">
+        <!-- Workspace -->
+        <section id="workspace">
+            <!-- Preview / Status Box -->
             <div class="preview-box">
-                <video id="input-video" controls style="display: block;"></video>
-                <img id="output-gif" src="" alt="Output GIF" style="display: none;">
-                
-                <div id="progress-overlay" class="progress-circle-container">
-                    <span class="loader"></span>
-                    <p id="progress-text" style="margin-top: 1.5rem; font-weight: 700;">Loading FFmpeg Engine...</p>
-                    <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.5rem;">Please don't close the tab.</p>
+                <!-- States -->
+                <div id="state-video" style="width:100%; display:none;">
+                    <video id="input-video" controls style="width:100%; max-height:420px; border-radius:8px;"></video>
+                    <p id="video-filename" style="color:#475569; font-size:0.78rem; margin-top:0.6rem; text-align:center;"></p>
+                </div>
+
+                <div id="state-loading" class="status-banner" style="display:none;">
+                    <div class="loader"></div>
+                    <p id="progress-text" class="status-text">Loading media engine…</p>
+                    <p style="color:#334155; font-size:0.75rem;">Please don't close the tab.</p>
+                </div>
+
+                <div id="state-done" style="width:100%; display:none; text-align:center;">
+                    <img id="output-gif" src="" alt="Generated GIF" style="max-width:100%; max-height:420px; border-radius:8px;">
+                    <span id="gif-size-text" class="gif-size-badge"></span>
                 </div>
             </div>
 
+            <!-- Controls Pane -->
             <aside class="controls-pane">
                 <div class="control-group">
-                    <label>🎬 Trim Video (Seconds)</label>
+                    <label>🎬 Trim (seconds)</label>
                     <div class="trim-controls">
                         <div>
-                            <span style="font-size: 0.7rem; color: #94a3b8;">Start</span>
-                            <input type="number" id="start-time" value="0" min="0" step="0.1">
+                            <span>Start time</span>
+                            <input type="number" id="start-time" value="0" min="0" step="0.1" placeholder="0">
                         </div>
                         <div>
-                            <span style="font-size: 0.7rem; color: #94a3b8;">Duration</span>
-                            <input type="number" id="duration" value="5" min="0.5" step="0.5">
+                            <span>Duration</span>
+                            <input type="number" id="duration" value="5" min="0.5" max="20" step="0.5" placeholder="5">
                         </div>
                     </div>
+                    <p style="font-size:0.72rem; color:#94a3b8; margin-top:0.4rem;">Tip: keep duration ≤ 10s for best quality</p>
                 </div>
 
                 <div class="control-group">
-                    <label>⚡ Frame Rate (FPS)</label>
+                    <label>⚡ Frame Rate</label>
                     <select id="fps-select">
-                        <option value="10">10 FPS (Low size)</option>
-                        <option value="15" selected>15 FPS (Smooth)</option>
-                        <option value="24">24 FPS (Cinematic)</option>
-                        <option value="30">30 FPS (Ultra Smooth)</option>
+                        <option value="10">10 FPS — Smallest size</option>
+                        <option value="15" selected>15 FPS — Smooth</option>
+                        <option value="24">24 FPS — Cinematic</option>
+                        <option value="30">30 FPS — Ultra smooth</option>
                     </select>
                 </div>
 
                 <div class="control-group">
-                    <label>📐 Output Resolution</label>
+                    <label>📐 Output Width</label>
                     <select id="res-select">
                         <option value="-1">Original Resolution</option>
-                        <option value="720">720p (High Quality)</option>
-                        <option value="480">480p (Standard)</option>
-                        <option value="320">320p (Optimized for Mobile)</option>
+                        <option value="720">720px wide</option>
+                        <option value="480" selected>480px wide (Recommended)</option>
+                        <option value="320">320px — Optimized for mobile</option>
                     </select>
                 </div>
 
-                <div style="margin-top: auto; display: flex; flex-direction: column; gap: 1rem;">
-                    <button id="convert-btn" class="btn" style="width: 100%;">
-                        <span>✨ Generate GIF</span>
-                    </button>
-                    <button id="download-btn" class="btn btn-secondary" style="width: 100%; display: none;">
-                        <span>📥 Download GIF</span>
-                    </button>
-                    <button id="reset-btn" class="btn" style="width: 100%; background: #64748b; display: none;">
-                        <span>🔄 New Conversion</span>
-                    </button>
+                <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <button id="convert-btn" class="btn">✨ Generate GIF</button>
+                    <button id="download-btn" class="btn btn-secondary" style="display:none;">📥 Download GIF</button>
+                    <button id="reset-btn" class="btn btn-slate" style="display:none;">🔄 New Conversion</button>
                 </div>
             </aside>
         </section>
 
-        <!-- SEO Content Block -->
-        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+        <!-- SEO Content -->
+        <div style="max-width:900px; margin:3rem auto; padding:0 1.5rem;">
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Advanced Video to GIF Converter</h2>
-                <p style="line-height:1.8;color:#4b5563;">
-                    The <strong>Video to GIF Generator</strong> by WorldOfTools is a premium utilities tool that allows you to turn any video clip into a high-quality animated GIF. Whether you need a funny meme for Reddit, a product demonstration for your website, or a quick reaction for Discord, our converter provides the precision and quality you need without the bloat of traditional online tools.
-                </p>
+                <p style="line-height:1.8;color:#4b5563;">The <strong>Video to GIF Generator</strong> by WorldOfTools allows you to turn any video clip into a high-quality animated GIF. Whether you need a funny meme for Reddit, a product demo for your website, or a quick reaction GIF for Discord, our converter provides the precision and quality you need without bloat.</p>
             </section>
-
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Make a GIF from Video</h2>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
@@ -351,36 +309,22 @@
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
-                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Customize:</strong> Use the sliders to trim the start time and duration. Choose your preferred FPS (Frames Per Second).</p>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Customize:</strong> Trim start time, set duration, choose FPS and resolution.</p>
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
-                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Generate:</strong> Click 'Generate GIF' and wait a few seconds. Local processing means no data leaves your browser!</p>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Generate:</strong> Click 'Generate GIF'. Local processing means no data leaves your browser!</p>
                 </div>
             </section>
-
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Professional Features</h2>
                 <ul style="list-style:none;padding:0;margin:0;">
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>No Watermarks:</strong> We believe your content should stay yours. Zero logos added.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>Variable FPS Control:</strong> Choose from 10fps for low size to 30fps for ultra-smooth movement.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>Smart Compression:</strong> Optimized algorithms to ensure high quality at the lowest possible KB size.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>100% Secure:</strong> Powered by WebAssembly, your video never touches our servers. Your privacy is paramount.</span>
-                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>No Watermarks:</strong> We believe your content should stay yours. Zero logos added.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Variable FPS Control:</strong> Choose from 10fps for low size to 30fps for ultra-smooth movement.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>2-Pass Palette GIF:</strong> Advanced FFmpeg palettegen for dramatically better colour quality.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>100% Secure:</strong> Powered by WebAssembly — your video never touches our servers.</span></li>
                 </ul>
             </section>
-
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
                 <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
@@ -393,33 +337,18 @@
                 </details>
                 <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <summary style="font-weight:700;cursor:pointer;">Is there a time limit for GIFs?</summary>
-                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">We recommend keeping GIFs under 15 seconds for optimal file size and loading speed, though our tool can handle longer clips depending on your device's memory.</p>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">We recommend keeping GIFs under 15 seconds for optimal file size. The tool automatically caps at 20 seconds to protect your device's memory.</p>
                 </details>
             </section>
         </div>
+
         <section class="related-tools" style="margin-top: 5rem;">
             <h2 style="text-align: center; margin-bottom: 2rem;">Related Media Tools 🚀</h2>
             <div class="tools-grid">
-                <a class="tool-card" href="video-compressor.html">
-                    <div class="tool-icon">📹</div>
-                    <div class="tool-title">Video Compressor</div>
-                    <div class="tool-desc">Compress large videos up to 2GB for sharing on WhatsApp or Discord.</div>
-                </a>
-                <a class="tool-card" href="video-to-mp3-converter.html">
-                    <div class="tool-icon">🎵</div>
-                    <div class="tool-title">Video to MP3</div>
-                    <div class="tool-desc">Extract high-quality 320kbps audio from any video file instantly.</div>
-                </a>
-                <a class="tool-card" href="image-compressor.html">
-                    <div class="tool-icon">🖼️</div>
-                    <div class="tool-title">Image Compressor</div>
-                    <div class="tool-desc">Reduce the file size of your images without losing visual quality.</div>
-                </a>
-                <a class="tool-card" href="youtube-thumbnail-downloader.html">
-                    <div class="tool-icon">📺</div>
-                    <div class="tool-title">YouTube Thumbnail</div>
-                    <div class="tool-desc">Download HD thumbnails from any YouTube video URL.</div>
-                </a>
+                <a class="tool-card" href="video-compressor.html"><div class="tool-icon">📹</div><div class="tool-title">Video Compressor</div><div class="tool-desc">Compress large videos for sharing on WhatsApp or Discord.</div></a>
+                <a class="tool-card" href="video-to-mp3-converter.html"><div class="tool-icon">🎵</div><div class="tool-title">Video to MP3</div><div class="tool-desc">Extract high-quality 320kbps audio from any video file instantly.</div></a>
+                <a class="tool-card" href="image-compressor.html"><div class="tool-icon">🖼️</div><div class="tool-title">Image Compressor</div><div class="tool-desc">Reduce image file sizes without losing visual quality.</div></a>
+                <a class="tool-card" href="youtube-thumbnail-downloader.html"><div class="tool-icon">📺</div><div class="tool-title">YouTube Thumbnail</div><div class="tool-desc">Download HD thumbnails from any YouTube video URL.</div></a>
             </div>
         </section>
     </div>
@@ -427,43 +356,68 @@
 
 <footer></footer>
 
-<!-- FFmpeg.wasm v0.12 — Single-Thread Core (No SharedArrayBuffer required) -->
 <script type="module">
     import { FFmpeg } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/esm/index.js';
     import { toBlobURL, fetchFile } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.2/dist/esm/index.js';
 
-    const uploadZone = document.getElementById('upload-zone');
-    const fileInput = document.getElementById('file-input');
-    const workspace = document.getElementById('workspace');
-    const inputVideo = document.getElementById('input-video');
-    const outputGif = document.getElementById('output-gif');
-    const convertBtn = document.getElementById('convert-btn');
-    const downloadBtn = document.getElementById('download-btn');
-    const resetBtn = document.getElementById('reset-btn');
-    const progressOverlay = document.getElementById('progress-overlay');
-    const progressText = document.getElementById('progress-text');
+    // ── DOM refs ──────────────────────────────────────────────────────────
+    const uploadZone   = document.getElementById('upload-zone');
+    const fileInput    = document.getElementById('file-input');
+    const workspace    = document.getElementById('workspace');
+    const inputVideo   = document.getElementById('input-video');
+    const outputGif    = document.getElementById('output-gif');
+    const convertBtn   = document.getElementById('convert-btn');
+    const downloadBtn  = document.getElementById('download-btn');
+    const resetBtn     = document.getElementById('reset-btn');
     const startTimeInput = document.getElementById('start-time');
-    const durationInput = document.getElementById('duration');
-    const fpsSelect = document.getElementById('fps-select');
-    const resSelect = document.getElementById('res-select');
+    const durationInput  = document.getElementById('duration');
+    const fpsSelect    = document.getElementById('fps-select');
+    const resSelect    = document.getElementById('res-select');
+    const progressText = document.getElementById('progress-text');
+    const gifSizeText  = document.getElementById('gif-size-text');
+    const videoFilename = document.getElementById('video-filename');
+    // state panels
+    const stateVideo   = document.getElementById('state-video');
+    const stateLoading = document.getElementById('state-loading');
+    const stateDone    = document.getElementById('state-done');
 
     let ffmpeg = null;
+    let ffmpegLoading = false;
     let videoFile = null;
     let outputGifUrl = null;
 
+    // ── State helpers ─────────────────────────────────────────────────────
+    function showState(name) {
+        stateVideo.style.display   = name === 'video'   ? 'block'  : 'none';
+        stateLoading.style.display = name === 'loading' ? 'flex'   : 'none';
+        stateDone.style.display    = name === 'done'    ? 'block'  : 'none';
+    }
+
+    function fmtBytes(b) {
+        if (b < 1024)    return b + ' B';
+        if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
+        return (b/1048576).toFixed(2) + ' MB';
+    }
+
+    // ── FFmpeg loader ─────────────────────────────────────────────────────
     async function loadFFmpeg() {
         if (ffmpeg && ffmpeg.loaded) return;
+        if (ffmpegLoading) {
+            await new Promise(res => {
+                const poll = setInterval(() => { if (!ffmpegLoading) { clearInterval(poll); res(); } }, 200);
+            });
+            return;
+        }
 
-        progressOverlay.style.display = 'flex';
-        progressText.innerText = "Loading Media Engine (first load ~20s)...";
+        ffmpegLoading = true;
+        showState('loading');
+        progressText.innerText = 'Loading media engine (first load ~20s)…';
 
         ffmpeg = new FFmpeg();
-
-        // Use single-thread core — works WITHOUT SharedArrayBuffer / COOP headers
         const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core-st@0.12.9/dist/esm';
 
         ffmpeg.on('log', ({ message }) => console.log('[ffmpeg]', message));
-        ffmpeg.on('progress', ({ progress, time }) => {
+        ffmpeg.on('progress', ({ progress }) => {
             const pct = Math.min(Math.round(progress * 100), 99);
             progressText.innerText = `Processing: ${pct}%`;
         });
@@ -473,121 +427,116 @@
             wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
         });
 
-        progressOverlay.style.display = 'none';
+        ffmpegLoading = false;
     }
 
+    // ── Handle file selection ─────────────────────────────────────────────
     async function handleFile(file) {
         if (!file) return;
         videoFile = file;
 
-        workspace.style.display = "grid";
+        if (outputGifUrl) { URL.revokeObjectURL(outputGifUrl); outputGifUrl = null; }
+
+        workspace.style.display = 'grid';
         inputVideo.src = URL.createObjectURL(file);
-        inputVideo.style.display = "block";
-        outputGif.style.display = "none";
-        downloadBtn.style.display = "none";
-        resetBtn.style.display = "none";
-        convertBtn.style.display = "block";
+        videoFilename.innerText = file.name;
+        showState('video');
+
+        downloadBtn.style.display = 'none';
+        resetBtn.style.display    = 'none';
+        convertBtn.style.display  = 'block';
+        convertBtn.disabled       = false;
 
         // Pre-load FFmpeg in background
-        try { await loadFFmpeg(); } catch(e) { console.warn('Pre-load failed, will retry on convert:', e); }
+        loadFFmpeg()
+            .catch(e => console.warn('Pre-load failed, will retry on convert:', e))
+            .finally(() => {
+                if (stateLoading.style.display !== 'none') showState('video');
+            });
     }
 
+    // ── Generate GIF ──────────────────────────────────────────────────────
     async function generateGif() {
         if (!videoFile) return;
 
         convertBtn.disabled = true;
-        progressOverlay.style.display = 'flex';
-        progressText.innerText = "Preparing engine...";
+        showState('loading');
+        progressText.innerText = 'Preparing engine…';
 
         try {
             await loadFFmpeg();
         } catch (err) {
             console.error('FFmpeg load error:', err);
-            alert("Failed to load media engine. Please check your internet connection and try again.");
+            alert('Failed to load media engine. Please check your internet connection and try again.');
             convertBtn.disabled = false;
-            progressOverlay.style.display = 'none';
+            showState('video');
             return;
         }
 
-        const start = parseFloat(startTimeInput.value) || 0;
-        const dur   = parseFloat(durationInput.value)  || 5;
-        const fps   = fpsSelect.value  || "15";
-        const res   = resSelect.value  || "480";
-
-        // Cap duration for memory safety
-        const safeDur = Math.min(dur, 20);
+        const start   = parseFloat(startTimeInput.value) || 0;
+        const dur     = Math.min(parseFloat(durationInput.value) || 5, 20);
+        const fps     = fpsSelect.value  || '15';
+        const res     = resSelect.value  || '480';
 
         try {
-            progressText.innerText = "Writing video to memory...";
-            const ext = (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
+            progressText.innerText = 'Writing video to memory…';
+            const ext       = (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
             const inputName = `input.${ext}`;
 
             await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
 
-            // Two-pass palette GIF for much better colour quality
-            const scaleFilter = res !== "-1" ? `scale=${res}:-1:flags=lanczos` : "scale=trunc(iw/2)*2:trunc(ih/2)*2";
+            const scaleFilter = res !== '-1'
+                ? `scale=${res}:-1:flags=lanczos`
+                : 'scale=trunc(iw/2)*2:trunc(ih/2)*2';
+
             const paletteFilter = `fps=${fps},${scaleFilter},palettegen=max_colors=256:stats_mode=diff`;
-            const gifFilter = `fps=${fps},${scaleFilter} [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=3`;
+            const gifFilter     = `fps=${fps},${scaleFilter} [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=3`;
 
-            progressText.innerText = "Pass 1/2: Building colour palette...";
-            await ffmpeg.exec([
-                '-ss', String(start),
-                '-t',  String(safeDur),
-                '-i',  inputName,
-                '-vf', paletteFilter,
-                '-y',  'palette.png'
-            ]);
+            progressText.innerText = 'Pass 1/2: Building colour palette…';
+            await ffmpeg.exec(['-ss', String(start), '-t', String(dur), '-i', inputName, '-vf', paletteFilter, '-y', 'palette.png']);
 
-            progressText.innerText = "Pass 2/2: Rendering GIF...";
-            await ffmpeg.exec([
-                '-ss', String(start),
-                '-t',  String(safeDur),
-                '-i',  inputName,
-                '-i',  'palette.png',
-                '-lavfi', gifFilter,
-                '-y', 'output.gif'
-            ]);
+            progressText.innerText = 'Pass 2/2: Rendering GIF…';
+            await ffmpeg.exec(['-ss', String(start), '-t', String(dur), '-i', inputName, '-i', 'palette.png', '-lavfi', gifFilter, '-y', 'output.gif']);
 
-            progressText.innerText = "Finalizing...";
+            progressText.innerText = 'Finalizing…';
             const data = await ffmpeg.readFile('output.gif');
 
-            // Revoke previous blob URL
             if (outputGifUrl) URL.revokeObjectURL(outputGifUrl);
-            outputGifUrl = URL.createObjectURL(new Blob([data.buffer], { type: 'image/gif' }));
+            const blob = new Blob([data.buffer], { type: 'image/gif' });
+            outputGifUrl = URL.createObjectURL(blob);
 
             outputGif.src = outputGifUrl;
-            outputGif.style.display = "block";
-            inputVideo.style.display = "none";
+            gifSizeText.innerText = `GIF size: ${fmtBytes(blob.size)}`;
 
-            downloadBtn.style.display = "block";
-            resetBtn.style.display = "block";
-            convertBtn.style.display = "none";
+            showState('done');
+            downloadBtn.style.display = 'block';
+            resetBtn.style.display    = 'block';
+            convertBtn.style.display  = 'none';
 
-            // Cleanup virtual FS
             try { await ffmpeg.deleteFile(inputName); await ffmpeg.deleteFile('palette.png'); await ffmpeg.deleteFile('output.gif'); } catch(_) {}
 
         } catch (err) {
             console.error('Conversion error:', err);
-            alert("Conversion failed. Try a shorter duration (≤10s) or a smaller file. Check console for details.");
+            alert('Conversion failed. Try a shorter duration (≤ 10s) or a smaller resolution. Check console for details.');
+            showState('video');
         } finally {
-            progressOverlay.style.display = 'none';
             convertBtn.disabled = false;
         }
     }
 
-    // Event Listeners
-    uploadZone.onclick = () => fileInput.click();
-    fileInput.onchange = e => { if (e.target.files.length) handleFile(e.target.files[0]); };
-    uploadZone.ondragover = e => { e.preventDefault(); uploadZone.classList.add('dragover'); };
+    // ── Event listeners ───────────────────────────────────────────────────
+    uploadZone.onclick     = () => fileInput.click();
+    fileInput.onchange     = e => { if (e.target.files.length) handleFile(e.target.files[0]); };
+    uploadZone.ondragover  = e => { e.preventDefault(); uploadZone.classList.add('dragover'); };
     uploadZone.ondragleave = () => uploadZone.classList.remove('dragover');
-    uploadZone.ondrop = e => {
+    uploadZone.ondrop      = e => {
         e.preventDefault();
         uploadZone.classList.remove('dragover');
         if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
     };
 
     convertBtn.onclick = generateGif;
-    resetBtn.onclick = () => location.reload();
+    resetBtn.onclick   = () => location.reload();
 
     downloadBtn.onclick = () => {
         if (!outputGifUrl) return;
@@ -599,15 +548,12 @@
         document.body.removeChild(a);
     };
 
-    // Mobile Menu
-    document.getElementById('menu-toggle').onclick = function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) menuToggle.onclick = function() {
         document.getElementById('nav-menu').classList.toggle('active');
     };
 </script>
 
-<!-- Global Context & Footer Builder -->
-<script src="/js/common.js?v=2.4"></script>
-
+<script src="/js/common.js?v=2.5"></script>
 </body>
 </html>
-

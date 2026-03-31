@@ -6,89 +6,42 @@
     <title>Video to MP3 Converter Online Free — Extract 320kbps Audio from Video | WorldOfTools</title>
     <meta name="description" content="Extract MP3 audio from MP4, MOV or WEBM video online free. Choose 320kbps bitrate, trim start and end, download instantly. No upload, no watermark, 100% private.">
     <meta name="keywords" content="video to mp3 converter online free, extract audio from video, mp4 to mp3 online, convert video to audio free, 320kbps audio extractor, video se mp3 nikalo, best online audio converter, video to mp3 no upload">
-    
+
     <link rel="canonical" href="https://worldoftools.in/video-to-mp3-converter">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://worldoftools.in/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Video to MP3 Converter",
-        "item": "https://worldoftools.in/video-to-mp3-converter"
-      }]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Video to MP3 Converter",
-      "operatingSystem": "Any",
-      "applicationCategory": "MultimediaApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Video to MP3 Extractor",
-      "description": "Extract crystal-clear 320kbps audio from any video file privately in your browser.",
-      "url": "https://worldoftools.in/video-to-mp3-converter",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "Any"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "How to extract 320kbps audio from video?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Select 320kbps in the bitrate dropdown before extracting. Our tool uses FFmpeg to ensure high-fidelity audio extraction."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Is my video uploaded for conversion?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion happens 100% on your device using WebAssembly technology. Your files never leave your system."
-        }
-      }]
-    }
-    </script>
-    
-    <link rel="stylesheet" href="css/style.css">
-    
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},{"@type":"ListItem","position":2,"name":"Video to MP3 Converter","item":"https://worldoftools.in/video-to-mp3-converter"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Video to MP3 Converter","operatingSystem":"Any","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+
+    <link rel="stylesheet" href="/css/style.css?v=2.5">
+    <link rel="icon" href="/logo.svg" type="image/svg+xml">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+
     <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
+            --border-color: #e2e8f0;
+            --text-muted: #64748b;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
         .audio-tool-container {
             max-width: clamp(300px, 95%, 1100px);
             margin: 0 auto;
         }
 
         .upload-area {
-            background: white;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
             border: 2px dashed var(--border-color);
             border-radius: var(--radius-xl);
             padding: 5rem 2rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             margin-bottom: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
         }
 
         .upload-area:hover, .upload-area.dragover {
@@ -101,7 +54,6 @@
             grid-template-columns: 1fr;
             gap: 2rem;
             margin-top: 3rem;
-            display: none;
         }
 
         .player-card {
@@ -111,6 +63,7 @@
             text-align: center;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            min-height: 160px;
         }
 
         audio {
@@ -129,28 +82,22 @@
             gap: 1.5rem;
         }
 
-        .progress-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.85);
+        /* ── Status banner shown INSIDE the player card ── */
+        .status-banner {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 100;
-            color: white;
-            border-radius: var(--radius-lg);
-            display: none;
+            gap: 1rem;
+            padding: 1rem 0;
         }
 
         .loader {
             width: 48px;
             height: 48px;
-            border: 5px solid #FFF;
-            border-bottom-color: var(--primary-color);
+            border: 5px solid rgba(255,255,255,0.2);
+            border-top-color: var(--primary-color);
             border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
             animation: rotation 1s linear infinite;
         }
 
@@ -159,77 +106,107 @@
             100% { transform: rotate(360deg); }
         }
 
+        .status-text {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: white;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            background: var(--primary-gradient);
+            color: white;
+        }
+        .btn:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 8px 20px -6px rgba(79, 70, 229, 0.4); }
+        .btn:active { transform: translateY(0); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        .btn-slate {
+            background: #475569;
+        }
+
+        .privacy-badge {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            border-radius: 99px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .text-center { text-align: center; }
+
         @media (max-width: 640px) {
-            .settings-pane {
-                grid-template-columns: 1fr;
-            }
+            .settings-pane { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<header id="header">
-    <div class="container" style="padding-top: 0; padding-bottom: 0;">
-        <div class="header-content">
-            <a href="index.html" class="logo-center">
-                <img src="/logo.svg" alt="WorldOfTools Logo" width="36" height="36">
-                <div class="logo-text-block">
-                    <span class="logo-brand">WorldOfTools</span>
-                    <span class="logo-tagline">100% Private & Free</span>
-                </div>
-            </a>
-            <nav id="nav-menu">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li class="nav-dropdown">
-                        <span class="dropdown-trigger">Tools ✨</span>
-                        <div class="dropdown-menu">
-                            <div class="mega-dropdown-inner">
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Popular Tools</div>
-                                    <a href="audio-to-text.html" class="mega-item">Audio to Text</a>
-                                    <a href="video-to-mp3-converter.html" class="mega-item" style="color: var(--primary-color); font-weight: 700;">Video to MP3</a>
-                                    <a href="video-to-gif.html" class="mega-item">Video to GIF</a>
-                                    <a href="background-remover.html" class="mega-item">Background Remover</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Finance Tools</div>
-                                    <a href="gst-calculator.html" class="mega-item">GST Calculator</a>
-                                    <a href="emi-calculator.html" class="mega-item">EMI Calculator</a>
-                                    <a href="sip-calculator.html" class="mega-item">SIP Calculator</a>
-                                    <a href="ppf-calculator.html" class="mega-item">PPF Calculator</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">Text Tools</div>
-                                    <a href="fancy-font-generator.html" class="mega-item">Fancy Font Gen ✨</a>
-                                    <a href="word-counter.html" class="mega-item">Word Counter</a>
-                                    <a href="case-converter.html" class="mega-item">Case Converter</a>
-                                    <a href="markdown-to-html.html" class="mega-item">Markdown to HTML</a>
-                                </div>
-                                <div class="mega-col">
-                                    <div class="mega-col-header">SEO Tools</div>
-                                    <a href="image-to-text-ocr.html" class="mega-item">Image to Text OCR</a>
-                                    <a href="exif-metadata-remover.html" class="mega-item">EXIF Remover 🛡️</a>
-                                    <a href="seo-meta-tag-generator.html" class="mega-item">Meta Tag Gen</a>
-                                    <a href="keyword-density-checker.html" class="mega-item">Keyword Density</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="about-us.html">About</a></li>
-                </ul>
-            </nav>
-            <button class="menu-toggle" id="menu-toggle">☰</button>
-        </div>
-    </div>
-</header>
+<header id="header"></header>
 
 <main class="container">
     <div class="audio-tool-container">
         <section class="text-center" style="margin-bottom: 3rem;">
-            <p class="privacy-badge">🔒 Your video is never uploaded. All processing is local.</p>
+            <p class="privacy-badge">🔒 Your video is never uploaded. All processing is 100% local.</p>
             <h1 class="hero-title">Free Video to MP3 Converter Online — Extract Crystal-Clear Audio Instantly</h1>
-            <p class="hero-subtitle">Extract crystal-clear audio from any video format. Choose your bitrate, trim the audio, and download in seconds. Free &amp; Unlimited.</p>
+            <p class="hero-subtitle">Extract high-quality audio from any video format. Choose your bitrate and download in seconds. Free &amp; Unlimited.</p>
             <div style="margin-top: 1.5rem;">
                 <a class="btn btn-secondary" href="/guides/video-to-mp3-extractor-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
                     📖 Read Video to MP3 Guide
@@ -237,110 +214,110 @@
             </div>
         </section>
 
+        <!-- Upload Zone -->
         <div id="upload-zone" class="upload-area">
-            <span style="font-size: 3.5rem; display: block; margin-bottom: 2rem;">🎵</span>
-            <h3>Select Video to Extract Audio</h3>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">MP4, MKV, AVI, WEBM supported</p>
+            <span style="font-size: 3.5rem; display: block; margin-bottom: 1.5rem;">🎵</span>
+            <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Select Video to Extract Audio</h3>
+            <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.95rem;">MP4, MKV, AVI, MOV, WEBM supported</p>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">Click to browse or drag &amp; drop</p>
             <input type="file" id="file-input" hidden accept="video/*">
         </div>
 
-        <section id="workspace" class="audio-workspace">
+        <!-- Workspace (hidden until file selected) -->
+        <section id="workspace" style="display:none; grid-template-columns:1fr; gap:2rem; margin-top:2rem;">
+
+            <!-- Player Card -->
             <div class="player-card">
-                <div id="file-info" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;">Video Name Here</div>
-                <div id="audio-preview-container">
-                    <p style="color: #64748b; font-size: 0.8rem;">Preview will appear here after extraction</p>
+                <div id="file-info" style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.25rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+                    <span>🎬</span><span id="file-name-text">—</span>
                 </div>
-                
-                <div id="progress-overlay" class="progress-overlay">
-                    <span class="loader"></span>
-                    <p id="progress-text" style="margin-top: 1.5rem; font-weight: 700;">Loading Audio Engine...</p>
+
+                <!-- Status / preview area -->
+                <div id="player-content">
+                    <!-- Initially shows ready state -->
+                    <div id="state-ready" class="status-banner">
+                        <span style="font-size: 2.5rem;">✅</span>
+                        <p class="status-text">File loaded — choose settings below and click <strong style="color:white;">Extract Audio</strong></p>
+                    </div>
+                    <div id="state-loading" class="status-banner" style="display:none;">
+                        <div class="loader"></div>
+                        <p id="progress-text" class="status-text">Loading audio engine…</p>
+                        <p style="color:#475569; font-size:0.75rem;">First load may take ~20s. Please don't close the tab.</p>
+                    </div>
+                    <div id="state-done" style="display:none;">
+                        <div id="audio-preview-container"></div>
+                    </div>
                 </div>
             </div>
 
+            <!-- Settings Pane -->
             <div class="settings-pane">
                 <div class="control-group">
                     <label>🔈 Audio Bitrate</label>
                     <select id="bitrate-select">
                         <option value="128k">128 kbps (Standard)</option>
                         <option value="192k">192 kbps (High)</option>
-                        <option value="320k" selected>320 kbps (Supreme Quality)</option>
+                        <option value="320k" selected>320 kbps (Supreme)</option>
                     </select>
                 </div>
 
                 <div class="control-group">
                     <label>⚡ Output Format</label>
                     <select id="format-select">
-                        <option value="mp3">Audio (.mp3)</option>
-                        <option value="wav">Lossless (.wav)</option>
+                        <option value="mp3">MP3 (.mp3)</option>
+                        <option value="wav">Lossless WAV (.wav)</option>
                     </select>
                 </div>
 
-                <div style="grid-column: span 2; display: flex; gap: 1rem;">
-                    <button id="extract-btn" class="btn" style="flex: 2;">
-                        <span>🔊 Extract Audio</span>
+                <div style="grid-column: span 2; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button id="extract-btn" class="btn" style="flex: 2; min-width: 160px;">
+                        🔊 Extract Audio
                     </button>
-                    <button id="download-btn" class="btn btn-secondary" style="flex: 1; display: none;">
-                        <span>📥 Save MP3</span>
+                    <button id="download-btn" class="btn btn-secondary" style="flex: 1; min-width: 120px; display:none;">
+                        📥 Download
                     </button>
-                    <button id="reset-btn" class="btn" style="flex: 1; background: #64748b; display: none;">
-                        <span>🔄 New</span>
+                    <button id="reset-btn" class="btn btn-slate" style="flex: 1; min-width: 100px; display:none;">
+                        🔄 New File
                     </button>
                 </div>
             </div>
         </section>
 
         <!-- SEO Content Block -->
-        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+        <div style="max-width:900px; margin:3rem auto; padding:0 1.5rem;">
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Ultimate Video to MP3 Converter</h2>
-                <p style="line-height:1.8;color:#4b5563;">
-                    The <strong>Video to MP3 Extractor</strong> by WorldOfTools is a high-fidelity utility designed for users who need crystal-clear audio extraction without the hassle of software installation. Whether you are extracting a podcast, saving a music track from a video, or converting a lecture into an audio file for on-the-go listening, our tool provides professional-grade results instantly.
-                </p>
+                <p style="line-height:1.8;color:#4b5563;">The <strong>Video to MP3 Extractor</strong> by WorldOfTools is a high-fidelity utility designed for users who need crystal-clear audio extraction without the hassle of software installation. Whether you are extracting a podcast, saving a music track from a video, or converting a lecture into an audio file for on-the-go listening, our tool provides professional-grade results instantly.</p>
             </section>
-
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Extract MP3 from Video</h2>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
-                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Upload:</strong> Select any video file (MP4, MKV, AVI, WEBM) from your device.</p>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Upload:</strong> Select any video file (MP4, MKV, AVI, MOV, WEBM) from your device.</p>
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
-                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Set Bitrate:</strong> Choose from 128kbps, 192kbps, or the supreme 320kbps quality for the best audio experience.</p>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Set Bitrate:</strong> Choose from 128kbps, 192kbps, or the supreme 320kbps quality.</p>
                 </div>
                 <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
-                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Download:</strong> Click 'Extract Audio' and use the built-in player to preview before saving to your device.</p>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Download:</strong> Click 'Extract Audio', preview with the built-in player, then save to your device.</p>
                 </div>
             </section>
-
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Why WorldOfTools is the Best Choice?</h2>
                 <ul style="list-style:none;padding:0;margin:0;">
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>Supreme 320kbps Quality:</strong> Unlike most sites that cap quality, we offer full 320kbps high-fidelity extraction.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>WAV Lossless Support:</strong> Need audio for editing? Extract in lossless WAV format for zero-quality loss.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>Browser-Based Extraction:</strong> No wait times for server-side queues. Your hardware does the job instantly.</span>
-                    </li>
-                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-                        <span style="line-height:1.6;"><strong>Complete Privacy:</strong> Your video files are never seen by us or stored on any server. Privacy is built-in.</span>
-                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Supreme 320kbps Quality:</strong> Unlike most sites that cap quality, we offer full 320kbps high-fidelity extraction.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>WAV Lossless Support:</strong> Need audio for editing? Extract in lossless WAV format for zero-quality loss.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Browser-Based Extraction:</strong> No wait times for server-side queues. Your hardware does the job instantly.</span></li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Complete Privacy:</strong> Your video files are never seen by us or stored on any server.</span></li>
                 </ul>
             </section>
-
             <section style="margin-bottom:3rem;">
                 <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
                 <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <summary style="font-weight:700;cursor:pointer;">Can I extract audio from YouTube videos?</summary>
-                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Our tool works with any video file you have on your device. Simply upload the video file to begin extraction.</p>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Our tool works with any video file you have on your device. Simply download the video first, then upload it here to begin extraction.</p>
                 </details>
                 <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
                     <summary style="font-weight:700;cursor:pointer;">Video se audio kaise nikale? (Hindi)</summary>
@@ -352,29 +329,14 @@
                 </details>
             </section>
         </div>
+
         <section class="related-tools" style="margin-top: 5rem;">
             <h2 style="text-align: center; margin-bottom: 2rem;">Related Media Tools 🚀</h2>
             <div class="tools-grid">
-                <a class="tool-card" href="video-to-gif.html">
-                    <div class="tool-icon">🎞️</div>
-                    <div class="tool-title">Video to GIF</div>
-                    <div class="tool-desc">Convert video clips to high-quality animated GIFs without watermarks.</div>
-                </a>
-                <a class="tool-card" href="transcribe-audio-online.html">
-                    <div class="tool-icon">🎙️</div>
-                    <div class="tool-title">Audio to Text</div>
-                    <div class="tool-desc">Convert the extracted audio into editable text with AI-powered OCR.</div>
-                </a>
-                <a class="tool-card" href="video-compressor.html">
-                    <div class="tool-icon">📹</div>
-                    <div class="tool-title">Video Compressor</div>
-                    <div class="tool-desc">Compress videos for social media sharing while keeping the original audio.</div>
-                </a>
-                <a class="tool-card" href="qr-code-generator.html">
-                    <div class="tool-icon">🔳</div>
-                    <div class="tool-title">QR Code Generator</div>
-                    <div class="tool-desc">Create QR codes for your audio links or SoundCloud profiles instantly.</div>
-                </a>
+                <a class="tool-card" href="video-to-gif.html"><div class="tool-icon">🎞️</div><div class="tool-title">Video to GIF</div><div class="tool-desc">Convert video clips to high-quality animated GIFs without watermarks.</div></a>
+                <a class="tool-card" href="transcribe-audio-online.html"><div class="tool-icon">🎙️</div><div class="tool-title">Audio to Text</div><div class="tool-desc">Convert the extracted audio into editable text with AI-powered transcription.</div></a>
+                <a class="tool-card" href="video-compressor.html"><div class="tool-icon">📹</div><div class="tool-title">Video Compressor</div><div class="tool-desc">Compress videos for social media sharing while keeping original audio.</div></a>
+                <a class="tool-card" href="qr-code-generator.html"><div class="tool-icon">🔳</div><div class="tool-title">QR Code Generator</div><div class="tool-desc">Create QR codes for your audio links or SoundCloud profiles instantly.</div></a>
             </div>
         </section>
     </div>
@@ -382,43 +344,67 @@
 
 <footer></footer>
 
-<!-- FFmpeg.wasm v0.12 — Single-Thread Core (No SharedArrayBuffer required) -->
 <script type="module">
     import { FFmpeg } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/esm/index.js';
     import { toBlobURL, fetchFile } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.2/dist/esm/index.js';
 
-    const uploadZone = document.getElementById('upload-zone');
-    const fileInput = document.getElementById('file-input');
-    const workspace = document.getElementById('workspace');
-    const extractBtn = document.getElementById('extract-btn');
-    const downloadBtn = document.getElementById('download-btn');
-    const resetBtn = document.getElementById('reset-btn');
-    const progressOverlay = document.getElementById('progress-overlay');
-    const progressText = document.getElementById('progress-text');
-    const audioPreviewContainer = document.getElementById('audio-preview-container');
+    // ── DOM refs ──────────────────────────────────────────────────────────
+    const uploadZone    = document.getElementById('upload-zone');
+    const fileInput     = document.getElementById('file-input');
+    const workspace     = document.getElementById('workspace');
+    const extractBtn    = document.getElementById('extract-btn');
+    const downloadBtn   = document.getElementById('download-btn');
+    const resetBtn      = document.getElementById('reset-btn');
     const bitrateSelect = document.getElementById('bitrate-select');
-    const formatSelect = document.getElementById('format-select');
-    const fileInfo = document.getElementById('file-info');
+    const formatSelect  = document.getElementById('format-select');
+    const fileNameText  = document.getElementById('file-name-text');
+    // state panels
+    const stateReady    = document.getElementById('state-ready');
+    const stateLoading  = document.getElementById('state-loading');
+    const stateDone     = document.getElementById('state-done');
+    const progressText  = document.getElementById('progress-text');
+    const audioPreview  = document.getElementById('audio-preview-container');
 
     let ffmpeg = null;
+    let ffmpegLoading = false;
     let videoFile = null;
     let outputUrl = null;
 
+    // ── State helpers ─────────────────────────────────────────────────────
+    function showState(name) {
+        stateReady.style.display   = name === 'ready'   ? 'flex' : 'none';
+        stateLoading.style.display = name === 'loading' ? 'flex' : 'none';
+        stateDone.style.display    = name === 'done'    ? 'block': 'none';
+    }
+
+    function setProgress(msg) {
+        progressText.innerText = msg;
+    }
+
+    // ── FFmpeg loader ─────────────────────────────────────────────────────
     async function loadFFmpeg() {
         if (ffmpeg && ffmpeg.loaded) return;
+        if (ffmpegLoading) {
+            // Wait until the existing load finishes
+            await new Promise(res => {
+                const poll = setInterval(() => {
+                    if (!ffmpegLoading) { clearInterval(poll); res(); }
+                }, 200);
+            });
+            return;
+        }
 
-        progressOverlay.style.display = 'flex';
-        progressText.innerText = "Loading Audio Engine (first load ~20s)...";
+        ffmpegLoading = true;
+        showState('loading');
+        setProgress('Loading audio engine (first load ~20s)…');
 
         ffmpeg = new FFmpeg();
-
-        // Single-thread core — no SharedArrayBuffer / COOP headers needed
         const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core-st@0.12.9/dist/esm';
 
         ffmpeg.on('log', ({ message }) => console.log('[ffmpeg]', message));
         ffmpeg.on('progress', ({ progress }) => {
             const pct = Math.min(Math.round(progress * 100), 99);
-            progressText.innerText = `Extracting: ${pct}%`;
+            setProgress(`Extracting audio: ${pct}%`);
         });
 
         await ffmpeg.load({
@@ -426,56 +412,62 @@
             wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
         });
 
-        progressOverlay.style.display = 'none';
+        ffmpegLoading = false;
     }
 
+    // ── Handle file selection ─────────────────────────────────────────────
     async function handleFile(file) {
         if (!file) return;
         videoFile = file;
 
-        workspace.style.display = "grid";
-        fileInfo.innerText = file.name;
-        audioPreviewContainer.innerHTML = `<p style="color: #64748b; padding: 1rem 0;">Ready to extract audio — choose settings and click Extract.</p>`;
+        workspace.style.display = 'grid';
+        fileNameText.innerText = file.name;
+        if (outputUrl) { URL.revokeObjectURL(outputUrl); outputUrl = null; }
 
-        downloadBtn.style.display = "none";
-        resetBtn.style.display = "none";
-        extractBtn.style.display = "block";
+        downloadBtn.style.display = 'none';
+        resetBtn.style.display    = 'none';
+        extractBtn.style.display  = 'block';
+        extractBtn.disabled       = false;
 
-        // Pre-load FFmpeg in background
-        try { await loadFFmpeg(); } catch(e) { console.warn('Pre-load failed, will retry on extract:', e); }
+        // Pre-load FFmpeg silently in background — don't block UI
+        showState('ready');
+        loadFFmpeg().catch(e => console.warn('Pre-load failed, will retry on extract:', e))
+            .finally(() => {
+                // If user hasn't clicked extract yet, go back to ready state
+                if (stateLoading.style.display !== 'none') showState('ready');
+            });
     }
 
+    // ── Extract audio ─────────────────────────────────────────────────────
     async function extractAudio() {
         if (!videoFile) return;
 
         extractBtn.disabled = true;
-        progressOverlay.style.display = 'flex';
-        progressText.innerText = "Preparing engine...";
+        showState('loading');
+        setProgress('Preparing audio engine…');
 
         try {
             await loadFFmpeg();
         } catch (err) {
             console.error('FFmpeg load error:', err);
-            alert("Failed to load audio engine. Please check your internet connection and try again.");
+            alert('Failed to load audio engine. Please check your internet connection and try again.');
             extractBtn.disabled = false;
-            progressOverlay.style.display = 'none';
+            showState('ready');
             return;
         }
 
-        const bitrate   = bitrateSelect.value || '192k';
-        const format    = formatSelect.value  || 'mp3';
-        const outName   = `output.${format}`;
+        const bitrate = bitrateSelect.value || '192k';
+        const format  = formatSelect.value  || 'mp3';
+        const outName = `output.${format}`;
 
         try {
-            progressText.innerText = "Writing video to memory...";
-            const ext = (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
+            setProgress('Writing video to memory…');
+            const ext       = (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
             const inputName = `input.${ext}`;
 
             await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
 
-            progressText.innerText = "Extracting audio track...";
-
-            // Build FFmpeg args based on format
+            setProgress('Extracting audio track…');
             const args = ['-i', inputName, '-vn'];
 
             if (format === 'mp3') {
@@ -483,55 +475,57 @@
             } else if (format === 'ogg') {
                 args.push('-c:a', 'libvorbis', '-ab', bitrate);
             } else {
-                // wav / aac fallback
                 args.push('-ab', bitrate);
             }
 
             args.push('-y', outName);
             await ffmpeg.exec(args);
 
-            progressText.innerText = "Finalizing...";
+            setProgress('Finalizing…');
             const data = await ffmpeg.readFile(outName);
 
             if (outputUrl) URL.revokeObjectURL(outputUrl);
             const mimeMap = { mp3: 'audio/mpeg', ogg: 'audio/ogg', wav: 'audio/wav' };
             outputUrl = URL.createObjectURL(new Blob([data.buffer], { type: mimeMap[format] || 'audio/mpeg' }));
 
-            audioPreviewContainer.innerHTML = `
+            audioPreview.innerHTML = `
                 <audio controls style="width:100%; margin-top:0.5rem; filter:invert(1);">
                     <source src="${outputUrl}" type="${mimeMap[format] || 'audio/mpeg'}">
                     Your browser does not support the audio element.
                 </audio>
+                <p style="color:#64748b; font-size:0.8rem; margin-top:0.75rem;">✅ Extraction complete — preview above or download below.</p>
             `;
 
-            downloadBtn.style.display = "block";
-            resetBtn.style.display = "block";
-            extractBtn.style.display = "none";
+            showState('done');
+            downloadBtn.style.display = 'inline-flex';
+            resetBtn.style.display    = 'inline-flex';
+            extractBtn.style.display  = 'none';
 
-            // Cleanup
+            // Cleanup virtual FS
             try { await ffmpeg.deleteFile(inputName); await ffmpeg.deleteFile(outName); } catch(_) {}
 
         } catch (err) {
             console.error('Extraction error:', err);
-            alert("Audio extraction failed. Make sure the video has an audio track and the format is supported (MP4, MOV, WEBM, AVI).");
+            alert('Audio extraction failed. Make sure the video has an audio track and the format is supported (MP4, MOV, WEBM, AVI, MKV).');
+            showState('ready');
         } finally {
-            progressOverlay.style.display = 'none';
             extractBtn.disabled = false;
         }
     }
 
-    uploadZone.onclick = () => fileInput.click();
-    fileInput.onchange = e => { if (e.target.files.length) handleFile(e.target.files[0]); };
+    // ── Event listeners ───────────────────────────────────────────────────
+    uploadZone.onclick    = () => fileInput.click();
+    fileInput.onchange    = e => { if (e.target.files.length) handleFile(e.target.files[0]); };
     uploadZone.ondragover = e => { e.preventDefault(); uploadZone.classList.add('dragover'); };
     uploadZone.ondragleave = () => uploadZone.classList.remove('dragover');
-    uploadZone.ondrop = e => {
+    uploadZone.ondrop     = e => {
         e.preventDefault();
         uploadZone.classList.remove('dragover');
         if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
     };
 
     extractBtn.onclick = extractAudio;
-    resetBtn.onclick = () => location.reload();
+    resetBtn.onclick   = () => location.reload();
 
     downloadBtn.onclick = () => {
         if (!outputUrl) return;
@@ -545,11 +539,12 @@
     };
 
     // Mobile Menu
-    document.getElementById('menu-toggle').onclick = function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) menuToggle.onclick = function() {
         document.getElementById('nav-menu').classList.toggle('active');
     };
 </script>
-<!-- Global Context & Footer Builder -->
-<script src="/js/common.js?v=2.4"></script>
+
+<script src="/js/common.js?v=2.5"></script>
 </body>
 </html>
