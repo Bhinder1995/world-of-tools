@@ -199,6 +199,15 @@ function injectHeader() {
                                         <a href="/video-compressor" class="mega-item">
                                             <span class="nav-icon" style="background:#e91e63;">📹</span> Video Compressor
                                         </a>
+                                        <a href="/video-to-gif" class="mega-item">
+                                            <span class="nav-icon" style="background:#8b5cf6;">🎞️</span> Video to GIF
+                                        </a>
+                                        <a href="/video-to-mp3-converter" class="mega-item">
+                                            <span class="nav-icon" style="background:#06b6d4;">🎵</span> Video to MP3
+                                        </a>
+                                        <a href="/exif-metadata-remover" class="mega-item">
+                                            <span class="nav-icon" style="background:#ef4444;">🛡️</span> EXIF Remover
+                                        </a>
                                         <a href="/image-converter" class="mega-item">
                                             <span class="nav-icon" style="background:#673ab7;">🔄</span> Image Converter
                                         </a>
@@ -226,6 +235,7 @@ function injectHeader() {
                                         <a href="/remove-watermark-from-image" class="mega-item">
                                             <span class="nav-icon" style="background:#673ab7;">✨</span> Remove Watermark
                                         </a>
+                                        <div style="font-size: 0.7rem; color: #64748b; padding: 0.5rem; margin-top: 0.5rem; border-top: 1px solid #eee;">Note: Video tools require COOP/COEP headers.</div>
                                     </div>
 
                                 </div>
@@ -411,6 +421,9 @@ function injectFooter() {
                             <a href="/invoice-generator" class="footer-badge">Invoice Generator</a>
                             <a href="/audio-to-text" class="footer-badge">Audio to Text</a>
                             <a href="/cgpa-calculator" class="footer-badge">CGPA Calculator</a>
+                            <a href="/video-to-gif" class="footer-badge">Video to GIF ✨</a>
+                            <a href="/video-to-mp3-converter" class="footer-badge">Video to MP3 ✨</a>
+                            <a href="/exif-metadata-remover" class="footer-badge">EXIF Remover 🛡️</a>
                             <a href="/loan-comparison-calculator" class="footer-badge">Loan Comparison</a>
                             <a href="/remove-watermark-from-image" class="footer-badge">Remove Watermark</a>
                         </div>
