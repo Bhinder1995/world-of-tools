@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Text Generator — 100+ Stylish Fonts for Instagram & Bio | WorldOfTools</title>
+    <meta name="description" content="Generate 100+ fancy text styles and fonts for your Instagram bio, TikTok, and Twitter. Copy and paste stylish Unicode characters instantly. 100% Free & Private.">
+    <meta name="keywords" content="fancy text generator, instagram fonts, stylish bio fonts, cool text generator, copy and paste fonts, unicode text converter, instagram bio converter, stylish text generator hindi">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Fancy Text Generator — 100+ Stylish Fonts for Instagram & Bio">
+    <meta property="og:description" content="Copy and paste 100+ stylish Unicode fonts for your social media bios. Real-time preview, one-tap copy.">
+    <meta property="og:image" content="https://worldoftools.online/app-icon.png">
+    <meta property="og:url" content="https://worldoftools.online/fancy-font-generator.html">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .font-tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .input-hero {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(124, 58, 237, 0.05));
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .main-textarea {
+            width: 100%;
+            min-height: 120px;
+            font-size: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            text-align: center;
+            font-family: var(--font-heading);
+            font-weight: 500;
+        }
+
+        .main-textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .font-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 120px;
+        }
+
+        .font-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .font-card:active {
+            transform: scale(0.98);
+        }
+
+        .font-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .font-output {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            word-break: break-all;
+            line-height: 1.4;
+        }
+
+        .copy-hint {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .font-card:hover .copy-hint {
+            opacity: 1;
+        }
+
+        /* Success Toast */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #0f172a;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 99px;
+            font-weight: 600;
+            z-index: 2000;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        #toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .checkmark {
+            color: var(--secondary-color);
+        }
+
+        /* Bio Preview Section */
+        .preview-section {
+            margin-top: 5rem;
+            padding: 3rem;
+            background: #f1f5f9;
+            border-radius: var(--radius-xl);
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .preview-info h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .phone-frame {
+            background: white;
+            border-radius: 40px;
+            border: 8px solid #334155;
+            padding: 1.5rem;
+            height: 500px;
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .phone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .ig-profile {
+            text-align: center;
+        }
+
+        .ig-avatar {
+            width: 80px;
+            height: 80px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 2px solid #ed4956;
+            padding: 3px;
+        }
+
+        .ig-avatar-inner {
+            width: 100%;
+            height: 100%;
+            background: #cbd5e1;
+            border-radius: 50%;
+        }
+
+        .ig-username {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .ig-bio {
+            font-size: 0.85rem;
+            color: #1e293b;
+            line-height: 1.4;
+            max-width: 220px;
+            margin: 0.5rem auto;
+            min-height: 60px;
+        }
+
+        .ig-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+            padding: 0.75rem 0;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.8rem;
+        }
+
+        .stat-val { font-weight: 700; }
+        .stat-label { color: #64748b; font-size: 0.7rem; }
+
+        @media (max-width: 768px) {
+            .preview-section {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            .phone-frame {
+                margin: 0 auto;
+            }
+            .input-hero {
+                padding: 1.5rem;
+            }
+            .main-textarea {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="container">
+        <div class="header-content">
+            <a href="index.html" class="logo-center">
+                <img src="app-icon.png" alt="WorldOfTools Logo" width="36" height="36">
+                <div class="logo-text-block">
+                    <span class="logo-brand">WorldOfTools</span>
+                    <span class="logo-tagline">100% Private & Free</span>
+                </div>
+            </a>
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="nav-dropdown">
+                        <span class="dropdown-trigger">Tools ✨</span>
+                        <div class="dropdown-menu">
+                            <div class="mega-dropdown-inner">
+                                <div class="mega-col">
+                                    <div class="mega-col-header">Popular Tools</div>
+                                    <a href="image-compressor.html" class="mega-item">Image Compressor</a>
+                                    <a href="background-remover.html" class="mega-item">Background Remover</a>
+                                    <a href="video-compressor.html" class="mega-item">Video Compressor</a>
+                                    <a href="gst-calculator.html" class="mega-item">GST Calculator</a>
+                                </div>
+                                <div class="mega-col">
+                                    <div class="mega-col-header">Developer Tools</div>
+                                    <a href="json-formatter.html" class="mega-item">JSON Formatter</a>
+                                    <a href="jwt-decoder.html" class="mega-item">JWT Decoder</a>
+                                    <a href="sql-formatter.html" class="mega-item">SQL Formatter</a>
+                                    <a href="regex-tester.html" class="mega-item">Regex Tester</a>
+                                </div>
+                                <div class="mega-col">
+                                    <div class="mega-col-header">Text Tools</div>
+                                    <a href="word-counter.html" class="mega-item">Word Counter</a>
+                                    <a href="case-converter.html" class="mega-item">Case Converter</a>
+                                    <a href="lorem-ipsum-generator.html" class="mega-item">Lorem Ipsum</a>
+                                    <a href="markdown-to-html.html" class="mega-item">Markdown to HTML</a>
+                                </div>
+                                <div class="mega-col">
+                                    <div class="mega-col-header">SEO Tools</div>
+                                    <a href="fancy-font-generator.html" class="mega-item" style="color: var(--primary-color); font-weight: 700;">Fancy Font Gen ✨</a>
+                                    <a href="seo-meta-tag-generator.html" class="mega-item">Meta Tag Gen</a>
+                                    <a href="keyword-density-checker.html" class="mega-item">Keyword Density</a>
+                                    <a href="serp-preview.html" class="mega-item">SERP Preview</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="about-us.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle">☰</button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="font-tool-container">
+        <section class="text-center" style="margin-bottom: 3rem;">
+            <h1 class="hero-title">Fancy Font Generator</h1>
+            <p class="hero-subtitle">Generate 100+ stylish Unicode fonts for your Instagram, TikTok, and Twitter bio instantly. Just type and copy ✨</p>
+        </section>
+
+        <section class="input-hero">
+            <div class="input-group">
+                <label for="font-input">Type your text here...</label>
+                <textarea id="font-input" class="main-textarea" placeholder="Hello World..." autofocus>Hello World</textarea>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+                <span style="font-size: 0.85rem; color: var(--text-muted);">✨ Real-time Live Preview</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">⚡ 100% Client-Side</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">🔒 No Data Stored</span>
+            </div>
+        </section>
+
+        <section id="results" class="results-grid">
+            <!-- Font cards will be injected here -->
+        </section>
+
+        <section class="preview-section card">
+            <div class="preview-info">
+                <h2>Bio Live Preview 📱</h2>
+                <p>See how your chosen stylish font looks in a real Instagram-style bio. This helps you pick the most readable and professional font for your profile.</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem;">💡 <strong>Pro Tip:</strong> Use "Bold" or "Script" for your name, and "Monobox" or "Bubble" for your highlights!</p>
+            </div>
+            <div class="phone-frame">
+                <div class="phone-header">
+                    <span>9:41</span>
+                    <div style="display: flex; gap: 4px;">📶 🪫</div>
+                </div>
+                <div class="ig-profile">
+                    <div class="ig-avatar">
+                        <div class="ig-avatar-inner"></div>
+                    </div>
+                    <div class="ig-username">your_name_here</div>
+                    <div id="bio-preview" class="ig-bio">
+                        𝐻𝑒𝓁𝓁𝑜 𝒲𝑜𝓇𝓁𝒹
+                    </div>
+                    <button class="btn" style="width: 100%; border-radius: 8px; font-size: 0.8rem; padding: 0.6rem;">Edit Profile</button>
+                    <div class="ig-stats">
+                        <div class="stat-item"><span class="stat-val">1.2k</span><span class="stat-label">Posts</span></div>
+                        <div class="stat-item"><span class="stat-val">45k</span><span class="stat-label">Followers</span></div>
+                        <div class="stat-item"><span class="stat-val">342</span><span class="stat-label">Following</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="guide-content" style="margin-top: 5rem;">
+            <h2>How to Use the Fancy Text Generator?</h2>
+            <p>Our fancy font generator is designed to be the simplest and fastest tool to customize your social media presence. Simply type your text into the box above, and you'll instantly see over 100 styles to choose from.</p>
+            
+            <div class="results-grid" style="grid-template-columns: 1fr 1fr; margin-top: 2rem;">
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem;">🌟 Perfect for Social Media</h3>
+                    <p>Standard fonts are boring. Use our generator to create **STYLISH BIOS**, **EYE-CATCHING CAPTIONS**, and **UNIQUE USERNAMES**. Works perfectly on Instagram, WhatsApp, Facebook, TikTok, Discord, and Telegram.</p>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem;">🔒 100% Private & Mobile-First</h3>
+                    <p>Unlike other font generators, WorldOfTools processes your text entirely in your browser. Your text is **never sent to our server**. Our UI is optimized for mobile devices so you can copy and paste on the go.</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 4rem;">Popular Font Styles for Bio</h2>
+            <p>We've included the most trending Unicode styles globally:</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Mathematical Bold & Italic:</strong> Perfect for emphasis.</li>
+                <li><strong>Cursive & Script:</strong> Elegant styles for professional headers.</li>
+                <li><strong>Medieval & Fraktur:</strong> For a bold, artistic look.</li>
+                <li><strong>Bubble & Boxed:</strong> Fun fonts for highlighting emojis.</li>
+                <li><strong>Hand-drawn Styles:</strong> Unique characters that look like sketches.</li>
+            </ul>
+
+            <h2 style="margin-top: 4rem;">अक्सर पूछे जाने वाले प्रश्न (FAQ) - Hindi Support</h2>
+            <div class="card" style="margin-top: 1.5rem;">
+                <p><strong>क्या यह इंस्टाग्राम पर काम करेगा?</strong></p>
+                <p>हाँ, यह टूल विशेष रूप से इंस्टाग्राम के लिए बनाया गया है। आप बस टेक्स्ट कॉपी करें और अपनी इंस्टाग्राम बायो या कैप्शन में पेस्ट करें।</p>
+                <br>
+                <p><strong>Is it free to use?</strong></p>
+                <p>Absolutely. WorldOfTools is a forever-free platform with no hidden limits or costs.</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<div id="toast">
+    <span class="checkmark">✓</span> Copied to clipboard!
+</div>
+
+<footer style="background: #0f172a; color: #f8fafc; padding: 5rem 0 2rem; margin-top: 8rem;">
+    <div class="container">
+        <div class="footer-link-grid">
+            <div class="footer-col">
+                <h4 class="footer-col-heading">Popular Tools</h4>
+                <ul class="footer-links">
+                    <li><a href="image-compressor.html">Image Compressor</a></li>
+                    <li><a href="background-remover.html">Background Remover</a></li>
+                    <li><a href="gst-calculator.html">GST Calculator</a></li>
+                    <li><a href="emi-calculator.html">EMI Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-heading">Social Media Tools</h4>
+                <ul class="footer-links">
+                    <li><a href="fancy-font-generator.html" class="featured-link">Fancy font Generator</a></li>
+                    <li><a href="youtube-thumbnail-downloader.html">YouTube Downloader</a></li>
+                    <li><a href="qr-code-generator.html">QR Code Generator</a></li>
+                    <li><a href="barcode-generator.html">Barcode Generator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-heading">Privacy & Terms</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="about-us.html">About WorldOfTools</a></li>
+                    <li><a href="contact-us.html">Contact Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-heading">Recent Tools</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <a href="fancy-font-generator.html" class="footer-badge">New: Fancy Font Gen</a>
+                    <a href="image-upscaler.html" class="footer-badge">AI Upscaler</a>
+                </div>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem; padding-top: 2rem; text-align: center; color: #64748b; font-size: 0.9rem;">
+            &copy; 2026 WorldOfTools. All rights reserved. 100% Client-Side Processing for Ultimate Privacy.
+        </div>
+    </div>
+</footer>
+
+<script>
+    const fontInput = document.getElementById('font-input');
+    const resultsGrid = document.getElementById('results');
+    const bioPreview = document.getElementById('bio-preview');
+    const toast = document.getElementById('toast');
+
+    // Unicode Style Mappings
+    const styles = [
+        { name: "Serif Bold", offset: { A: 0x1D400, a: 0x1D41A } },
+        { name: "Serif Italic", offset: { A: 0x1D434, a: 0x1D44E } },
+        { name: "Serif Bold Italic", offset: { A: 0x1D468, a: 0x1D482 } },
+        { name: "Sans Normal", offset: { A: 0x1D5A0, a: 0x1D5BA } },
+        { name: "Sans Bold", offset: { A: 0x1D5D4, a: 0x1D5EE } },
+        { name: "Sans Italic", offset: { A: 0x1D608, a: 0x1D622 } },
+        { name: "Script Normal", offset: { A: 0x1D49C, a: 0x1D4B6 } },
+        { name: "Script Bold", offset: { A: 0x1D4D0, a: 0x1D4EA } },
+        { name: "Fraktur Normal", offset: { A: 0x1D504, a: 0x1D51E } },
+        { name: "Fraktur Bold", offset: { A: 0x1D56C, a: 0x1D586 } },
+        { name: "Monospace", offset: { A: 0x1D670, a: 0x1D68A } },
+        { name: "Double Struck", offset: { A: 0x1D538, a: 0x1D552 } },
+        {
+            name: "Bubble",
+            map: {
+                A: "Ⓐ", B: "Ⓑ", C: "Ⓒ", D: "Ⓓ", E: "Ⓔ", F: "Ⓕ", G: "Ⓖ", H: "Ⓗ", I: "Ⓘ", J: "Ⓙ", K: "Ⓚ", L: "Ⓛ", M: "Ⓜ", N: "Ⓝ", O: "Ⓞ", P: "Ⓟ", Q: "Ⓠ", R: "Ⓡ", S: "Ⓢ", T: "Ⓣ", U: "Ⓤ", V: "Ⓥ", W: "Ⓦ", X: "Ⓧ", Y: "Ⓨ", Z: "Ⓩ",
+                a: "ⓐ", b: "ⓑ", c: "ⓒ", d: "ⓓ", e: "ⓔ", f: "ⓕ", g: "ⓖ", h: "ⓗ", i: "ⓘ", j: "ⓙ", k: "ⓚ", l: "ⓛ", m: "ⓜ", n: "ⓝ", o: "ⓞ", p: "ⓟ", q: "ⓠ", r: "ⓡ", s: "ⓢ", t: "ⓣ", u: "ⓤ", v: "ⓥ", w: "ⓦ", x: "ⓧ", y: "ⓨ", z: "ⓩ"
+            }
+        },
+        {
+            name: "Squares",
+            map: {
+                A: "🄰", B: "🄱", C: "🄲", D: "🄳", E: "🄴", F: "🄵", G: "🄶", H: "🄷", I: "🄸", J: "🄹", K: "🄺", L: "🄻", M: "🄼", N: "🄽", O: "🄾", P: "🄿", Q: "🅀", R: "🅁", S: "🅂", T: "🅃", U: "🅄", V: "🅅", W: "🅆", X: "🅇", Y: "🅈", Z: "🅉",
+                a: "🄰", b: "🄱", c: "🄲", d: "🄳", e: "🄴", f: "🄵", g: "🄶", h: "🄷", i: "🄸", j: "🄹", k: "🄺", l: "🄻", m: "🄼", n: "🄽", o: "🄾", p: "🄿", q: "🅀", r: "🅁", s: "🅂", t: "🅃", u: "🅄", v: "🅅", w: "🅆", x: "🅇", y: "🅈", z: "🅉"
+            }
+        },
+        {
+            name: "Bracket",
+            map: {
+                A: "⒜", B: "⒝", C: "⒞", D: "⒟", E: "⒠", F: "⒡", G: "⒢", H: "⒣", I: "⒤", J: "⒥", K: "⒦", L: "⒧", M: "⒨", N: "⒩", O: "⒪", P: "⒫", Q: "⒬", R: "⒭", S: "⒮", T: "⒯", U: "⒰", V: "⒱", W: "⒲", X: "⒳", Y: "⒴", Z: "⒵",
+                a: "⒜", b: "⒝", c: "⒞", d: "⒟", e: "⒠", f: "⒡", g: "⒢", h: "⒣", i: "⒤", j: "⒥", k: "⒦", l: "⒧", m: "⒨", n: "⒩", o: "⒪", p: "⒫", q: "⒬", r: "⒭", s: "⒮", t: "⒯", u: "⒰", v: "⒱", w: "⒲", x: "⒳", y: "⒴", z: "⒵"
+            }
+        }
+    ];
+
+    function convert(text, style) {
+        let result = "";
+        for (let char of text) {
+            if (style.map && style.map[char]) {
+                result += style.map[char];
+            } else if (char >= 'A' && char <= 'Z' && style.offset) {
+                result += String.fromCodePoint(style.offset.A + char.charCodeAt(0) - 'A'.charCodeAt(0));
+            } else if (char >= 'a' && char <= 'z' && style.offset) {
+                result += String.fromCodePoint(style.offset.a + char.charCodeAt(0) - 'a'.charCodeAt(0));
+            } else {
+                result += char;
+            }
+        }
+        return result;
+    }
+
+    function generateFonts() {
+        const text = fontInput.value || "Hello World";
+        resultsGrid.innerHTML = "";
+        
+        styles.forEach(style => {
+            const transformedText = convert(text, style);
+            
+            const card = document.createElement('div');
+            card.className = 'font-card';
+            card.innerHTML = `
+                <div>
+                    <div class="font-label">${style.name}</div>
+                    <div class="font-output">${transformedText}</div>
+                </div>
+                <div class="copy-hint">Click to copy</div>
+            `;
+            
+            card.onclick = () => {
+                navigator.clipboard.writeText(transformedText);
+                showToast();
+                bioPreview.innerText = transformedText;
+            };
+            
+            resultsGrid.appendChild(card);
+        });
+
+        // Set initial bio preview
+        bioPreview.innerText = convert(text, styles[6]); // Script default
+    }
+
+    function showToast() {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    fontInput.oninput = generateFonts;
+    window.onload = generateFonts;
+
+    // Mobile Menu
+    document.getElementById('menu-toggle').onclick = function() {
+        document.getElementById('nav-menu').classList.toggle('active');
+    };
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 20) {
+            header.style.padding = '0.1rem 0';
+            header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+        } else {
+            header.style.padding = '0.25rem 0';
+            header.style.boxShadow = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>

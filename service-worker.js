@@ -1,4 +1,4 @@
-const CACHE_NAME = 'world-of-tools-v119';
+const CACHE_NAME = 'world-of-tools-v120';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -159,7 +159,18 @@ const ASSETS_TO_CACHE = [
     '/guides/cgpa-calculator-bengali-guide',
     '/guides/emi-calculator-marathi-guide',
     '/guides/gst-calculator-telugu-guide',
-    '/guides/remove-watermark-tamil-guide'
+    '/guides/remove-watermark-tamil-guide',
+    '/fancy-font-generator',
+    '/image-to-text-ocr',
+    '/exif-metadata-remover',
+    '/video-to-gif',
+    '/video-to-mp3-converter',
+    '/js/coi-serviceworker.js',
+    '/guides/fancy-font-generator-guide',
+    '/guides/image-to-text-ocr-guide',
+    '/guides/remove-exif-metadata-guide',
+    '/guides/video-to-gif-converter-guide',
+    '/guides/video-to-mp3-extractor-guide'
 ];
 
 

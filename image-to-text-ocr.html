@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Text (OCR) — Extract Text from Photos 100% Privately | WorldOfTools</title>
+    <meta name="description" content="Extract text from images (JPG, PNG) instantly with high accuracy. Supports Hindi, English & 100+ languages. 100% browser-based OCR — no files uploaded to server.">
+    <meta name="keywords" content="image to text, ocr online free, extract text from photo, image to text converter hindi, photo se text kaise nikale, online ocr tesseract, scribzee alternative free, private ocr tool">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Image to Text (OCR) — Extract Text from Photos 100% Privately">
+    <meta property="og:description" content="High-accuracy OCR for 100+ languages. No upload required — everything stays in your browser.">
+    <meta property="og:image" content="https://worldoftools.online/app-icon.png">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .ocr-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .upload-area {
+            background: white;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 4rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.02);
+            transform: translateY(-2px);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .lang-selectors {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .lang-select {
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            border: 2px solid var(--border-color);
+            background: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .lang-select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .progress-wrapper {
+            display: none;
+            margin-bottom: 2rem;
+            background: #f1f5f9;
+            height: 8px;
+            border-radius: 99px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .status-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .ocr-workspace {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            display: none; /* Hidden until processing starts */
+        }
+
+        .preview-pane {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .preview-pane img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .editor-pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ocr-textarea {
+            flex: 1;
+            min-height: 400px;
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border-color);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: none;
+        }
+
+        .editor-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .ocr-workspace {
+                grid-template-columns: 1fr;
+            }
+            .upload-area {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Tooltip style for privacy */
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="container">
+        <div class="header-content">
+            <a href="index.html" class="logo-center">
+                <img src="app-icon.png" alt="WorldOfTools Logo" width="36" height="36">
+                <div class="logo-text-block">
+                    <span class="logo-brand">WorldOfTools</span>
+                    <span class="logo-tagline">100% Private & Free</span>
+                </div>
+            </a>
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="nav-dropdown">
+                        <span class="dropdown-trigger">Tools ✨</span>
+                        <div class="dropdown-menu">
+                            <div class="mega-dropdown-inner">
+                                <div class="mega-col">
+                                    <div class="mega-col-header">Popular Tools</div>
+                                    <a href="image-compressor.html" class="mega-item">Image Compressor</a>
+                                    <a href="background-remover.html" class="mega-item">Background Remover</a>
+                                    <a href="image-to-text-ocr.html" class="mega-item" style="color: var(--primary-color); font-weight: 700;">Image to Text OCR</a>
+                                    <a href="video-compressor.html" class="mega-item">Video Compressor</a>
+                                </div>
+                                <div class="mega-col">
+                                    <div class="mega-col-header">Developer Tools</div>
+                                    <a href="json-formatter.html" class="mega-item">JSON Formatter</a>
+                                    <a href="jwt-decoder.html" class="mega-item">JWT Decoder</a>
+                                    <a href="sql-formatter.html" class="mega-item">SQL Formatter</a>
+                                    <a href="regex-tester.html" class="mega-item">Regex Tester</a>
+                                </div>
+                                <div class="mega-col">
+                                    <div class="mega-col-header">Text Tools</div>
+                                    <a href="word-counter.html" class="mega-item">Word Counter</a>
+                                    <a href="case-converter.html" class="mega-item">Case Converter</a>
+                                    <a href="fancy-font-generator.html" class="mega-item">Fancy Font Gen ✨</a>
+                                    <a href="markdown-to-html.html" class="mega-item">Markdown to HTML</a>
+                                </div>
+                                <div class="mega-col">
+                                    <div class="mega-col-header">SEO Tools</div>
+                                    <a href="seo-meta-tag-generator.html" class="mega-item">Meta Tag Gen</a>
+                                    <a href="keyword-density-checker.html" class="mega-item">Keyword Density</a>
+                                    <a href="serp-preview.html" class="mega-item">SERP Preview</a>
+                                    <a href="sitemap.xml" class="mega-item">Sitemap Checker</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="about-us.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle">☰</button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="ocr-container">
+        <section class="text-center" style="margin-bottom: 2rem;">
+            <div class="privacy-badge">🔒 Private Offline OCR — No Files Uploaded</div>
+            <h1 class="hero-title">Image to Text (OCR)</h1>
+            <p class="hero-subtitle">Convert any photo or screenshot into editable text instantly. Supporting Hindi, English, and 100+ more languages. Free & Private.</p>
+        </section>
+
+        <section class="lang-selectors">
+            <select id="main-lang" class="lang-select">
+                <option value="eng">English (Recommended)</option>
+                <option value="hin">Hindi (हिन्दी)</option>
+                <option value="ben">Bengali (বাংলা)</option>
+                <option value="mar">Marathi (मराठी)</option>
+                <option value="spa">Spanish (Español)</option>
+                <option value="fra">French (Français)</option>
+                <option value="deu">German (Deutsch)</option>
+                <option value="ara">Arabic (العربية)</option>
+            </select>
+            <div style="display: flex; align-items: center; color: var(--text-muted); font-size: 0.85rem;">
+                <span>💡 Higher resolution images give better results.</span>
+            </div>
+        </section>
+
+        <div id="upload-zone" class="upload-area">
+            <span class="upload-icon">📄</span>
+            <h3>Click to Upload or Drag & Drop Image</h3>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">PNG, JPG, WebP supported up to 15MB</p>
+            <input type="file" id="file-input" hidden accept="image/*">
+        </div>
+
+        <div id="progress-container" class="progress-wrapper">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="status-text" class="status-text">Ready to process...</div>
+
+        <section id="workspace" class="ocr-workspace">
+            <div class="preview-pane">
+                <img id="image-preview" src="" alt="OCR Preview">
+            </div>
+            <div class="editor-pane">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin-bottom: 0;">Extracted Text</h3>
+                    <div id="char-count" style="font-size: 0.8rem; color: var(--text-muted);">0 characters</div>
+                </div>
+                <textarea id="output-text" class="ocr-textarea" placeholder="Text will appear here..."></textarea>
+                <div class="editor-actions">
+                    <button id="copy-btn" class="btn btn-icon" style="flex: 1;">
+                        <span>📋</span> Copy Text
+                    </button>
+                    <button id="download-btn" class="btn btn-secondary btn-icon" style="flex: 1;">
+                        <span>📥</span> Download .txt
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="guide-content" style="margin-top: 5rem;">
+            <h2>Free Image to Text Converter — No Signup Required</h2>
+            <p>Our online OCR tool uses advanced machine learning to recognize text in images. Whether it's a scanned document, a mobile photo of a receipt, or a screenshot of a website, you can extract the text in seconds.</p>
+            
+            <div class="results-grid" style="grid-template-columns: 1fr 1fr; margin-top: 2rem; display: grid; gap: 2rem;">
+                <div class="card">
+                    <h3>🇮🇳 Hindi & Regional Support</h3>
+                    <p>We provide high-accuracy OCR for **Hindi (हिन्दी)**, Bengali, and Marathi. Most free tools struggle with Devanagari script, but our Tesseract-powered engine is trained for precision.</p>
+                </div>
+                <div class="card">
+                    <h3>🔒 Privacy-First OCR</h3>
+                    <p>Traditional OCR sites upload your documents to their servers. **WorldOfTools executes the OCR logic directly in your browser.** Your sensitive documents never leave your computer.</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 4rem;">Common Use Cases</h2>
+            <ul style="margin-left: 2rem; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                <li><strong>Students:</strong> Convert textbook photos or lecture notes into editable Word documents.</li>
+                <li><strong>Bank/Office:</strong> Extract table data from receipts or invoices for expense reporting.</li>
+                <li><strong>Content Creators:</strong> Quickly copy quotes from screenshots for Social Media posts.</li>
+                <li><strong>Developers:</strong> Turn design mockups into code snippets by extracting labels.</li>
+            </ul>
+
+            <h2 style="margin-top: 4rem;">Frequently Asked Questions</h2>
+            <div class="card" style="margin-top: 1.5rem;">
+                <p><strong>What is OCR?</strong></p>
+                <p>OCR stands for Optical Character Recognition. It is a technology that converts different types of documents, such as scanned paper documents, PDF files or images captured by a digital camera into editable and searchable data.</p>
+                <br>
+                <p><strong>Photo se text kaise nikale? (Hindi)</strong></p>
+                <p>ऊपर दिए गए 'Upload' बटन पर क्लिक करें, अपनी फोटो चुनें, और भाषा (Hindi) चुनें। कुछ ही सेकंड में आपकी फोटो का टेक्स्ट सामने होगा जिसे आप कॉपी कर सकते हैं।</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer style="background: #0f172a; color: #f8fafc; padding: 5rem 0 2rem; margin-top: 8rem;">
+    <div class="container">
+        <div class="footer-link-grid">
+            <div class="footer-col">
+                <h4 class="footer-col-heading">Popular Tools</h4>
+                <ul class="footer-links">
+                    <li><a href="image-compressor.html">Image Compressor</a></li>
+                    <li><a href="background-remover.html">Background Remover</a></li>
+                    <li><a href="gst-calculator.html">GST Calculator</a></li>
+                    <li><a href="emi-calculator.html">EMI Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-heading">Social Media Tools</h4>
+                <ul class="footer-links">
+                    <li><a href="fancy-font-generator.html">Fancy font Generator ✨</a></li>
+                    <li><a href="image-to-text-ocr.html" class="featured-link">Image to Text OCR</a></li>
+                    <li><a href="youtube-thumbnail-downloader.html">YouTube Downloader</a></li>
+                    <li><a href="qr-code-generator.html">QR Code Generator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-heading">Privacy & Terms</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="about-us.html">About WorldOfTools</a></li>
+                    <li><a href="contact-us.html">Contact Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-heading">Recent Tools</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <a href="fancy-font-generator.html" class="footer-badge">New: Fancy Font Gen</a>
+                    <a href="image-to-text-ocr.html" class="footer-badge">New: Image to Text</a>
+                </div>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem; padding-top: 2rem; text-align: center; color: #64748b; font-size: 0.9rem;">
+            &copy; 2026 WorldOfTools. All rights reserved. 100% Client-Side OCR.
+        </div>
+    </div>
+</footer>
+
+<!-- Tesseract.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<script>
+    const uploadZone = document.getElementById('upload-zone');
+    const fileInput = document.getElementById('file-input');
+    const imagePreview = document.getElementById('image-preview');
+    const outputText = document.getElementById('output-text');
+    const workspace = document.getElementById('workspace');
+    const progressBar = document.getElementById('progress-bar');
+    const progressContainer = document.getElementById('progress-container');
+    const statusText = document.getElementById('status-text');
+    const mainLang = document.getElementById('main-lang');
+    const copyBtn = document.getElementById('copy-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const charCount = document.getElementById('char-count');
+
+    let worker = null;
+
+    async function initWorker() {
+        if (worker) return worker;
+        
+        statusText.innerText = "Initializing OCR Engine...";
+        progressContainer.style.display = "block";
+        progressBar.style.width = "20%";
+
+        worker = await Tesseract.createWorker(mainLang.value, 1, {
+            logger: m => {
+                if (m.status === 'recognizing text') {
+                    progressBar.style.width = (m.progress * 100) + "%";
+                }
+                statusText.innerText = m.status.charAt(0).toUpperCase() + m.status.slice(1) + "...";
+            }
+        });
+        
+        return worker;
+    }
+
+    async function processOCR(file) {
+        try {
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = e => {
+                imagePreview.src = e.target.result;
+                workspace.style.display = "grid";
+            };
+            reader.readAsDataURL(file);
+
+            const ocrWorker = await initWorker();
+            
+            const { data: { text } } = await ocrWorker.recognize(file);
+            
+            outputText.value = text;
+            charCount.innerText = text.length + " characters";
+            statusText.innerText = "Processing Complete!";
+            progressBar.style.width = "100%";
+            
+            // Terminate worker if language changes next time
+            // Or just leave it for re-use if same language
+        } catch (err) {
+            console.error(err);
+            statusText.innerText = "Error processing image. Please try again.";
+        }
+    }
+
+    // Event Listeners
+    uploadZone.onclick = () => fileInput.click();
+    
+    fileInput.onchange = e => {
+        if (e.target.files.length) processOCR(e.target.files[0]);
+    };
+
+    uploadZone.ondragover = e => {
+        e.preventDefault();
+        uploadZone.classList.add('dragover');
+    };
+
+    uploadZone.ondragleave = () => uploadZone.classList.remove('dragover');
+
+    uploadZone.ondrop = e => {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) processOCR(e.dataTransfer.files[0]);
+    };
+
+    copyBtn.onclick = () => {
+        outputText.select();
+        document.execCommand('copy');
+        copyBtn.innerText = "✓ Copied!";
+        setTimeout(() => copyBtn.innerText = "📋 Copy Text", 2000);
+    };
+
+    downloadBtn.onclick = () => {
+        const element = document.createElement('a');
+        const file = new Blob([outputText.value], {type: 'text/plain'});
+        element.href = URL.createObjectURL(file);
+        element.download = "extracted-text.txt";
+        document.body.appendChild(element);
+        element.click();
+    };
+
+    mainLang.onchange = async () => {
+        if (worker) {
+            await worker.terminate();
+            worker = null;
+        }
+        statusText.innerText = "Language updated. Ready.";
+    };
+
+    // Mobile Menu
+    document.getElementById('menu-toggle').onclick = function() {
+        document.getElementById('nav-menu').classList.toggle('active');
+    };
+</script>
+
+</body>
+</html>
