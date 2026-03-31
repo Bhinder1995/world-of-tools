@@ -1,4 +1,4 @@
-const CACHE_NAME = 'worldoftools-v123';
+const CACHE_NAME = 'worldoftools-v125';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -200,6 +200,21 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // Add COOP/COEP headers for SharedArrayBuffer support (Video Tools)
+    const addSecurityHeaders = (response) => {
+        if (!response || response.status === 0 || response.type === 'opaque') return response;
+        
+        const newHeaders = new Headers(response.headers);
+        newHeaders.set("Cross-Origin-Embedder-Policy", "credentialless");
+        newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+        
+        return new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: newHeaders,
+        });
+    };
+
     // Network-first strategy for HTML pages (navigations)
     // This ensures users always get the latest version of the site
     if (event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/') {
@@ -211,11 +226,11 @@ self.addEventListener('fetch', (event) => {
                     caches.open(CACHE_NAME).then((cache) => {
                         cache.put(event.request, responseClone).catch(() => {});
                     });
-                    return response;
+                    return addSecurityHeaders(response);
                 })
                 .catch(() => {
                     // If network fails, try cache
-                    return caches.match(event.request);
+                    return caches.match(event.request).then(res => addSecurityHeaders(res));
                 })
         );
         return;
@@ -226,7 +241,7 @@ self.addEventListener('fetch', (event) => {
         caches.match(event.request)
             .then((response) => {
                 if (response) {
-                    return response;
+                    return addSecurityHeaders(response);
                 }
 
                 // If not in cache, fetch from network
@@ -241,7 +256,7 @@ self.addEventListener('fetch', (event) => {
                         cache.put(event.request, responseClone).catch(() => {});
                     });
 
-                    return response;
+                    return addSecurityHeaders(response);
                 });
             })
     );
@@ -263,4 +278,11 @@ self.addEventListener('activate', (event) => {
             self.clients.claim()
         ])
     );
+});
+
+// Handle skipWaiting message for instant updates
+self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
+    }
 });

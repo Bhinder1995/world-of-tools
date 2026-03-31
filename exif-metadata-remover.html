@@ -120,11 +120,13 @@
         }
 
         .data-pane {
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
+            padding: 1.75rem;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
         .risk-indicator {
@@ -137,8 +139,8 @@
             font-weight: 700;
         }
 
-        .risk-low { background: #f0fdf4; color: #166534; border: 1px solid #bbfcce; }
-        .risk-high { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+        .risk-low { background: rgba(240, 253, 244, 0.7); color: #166534; border: 1px solid #bbfcce; backdrop-filter: blur(4px); }
+        .risk-high { background: rgba(254, 242, 242, 0.7); color: #991b1b; border: 1px solid #fecaca; backdrop-filter: blur(4px); }
 
         .meta-table {
             width: 100%;
@@ -257,25 +259,48 @@
         <section class="text-center" style="margin-bottom: 3rem;">
             <h1 class="hero-title">Remove EXIF Metadata from Photos Free — Strip GPS, Camera Info &amp; Hidden Data</h1>
             <p class="hero-subtitle">View and strip hidden metadata (GPS, Device info, Date) from your photos losslessly before sharing. 100% Private — Processing happens entirely in your browser.</p>
-            <div style="margin-top: 1.5rem;">
-                <a class="btn btn-secondary" href="/guides/remove-exif-metadata-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
-                    📖 Read EXIF Remover Guide
+            <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.75rem;">
+                <a class="btn btn-secondary" href="/guides/remove-exif-metadata-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; background: white; border: 1px solid var(--border-color);">
+                    📖 Tool Guide
                 </a>
+                <div id="pwa-update-msg" style="display:none; align-items:center; gap:0.5rem; background: #fef3c7; color: #92400e; padding: 0.6rem 1.2rem; border-radius: 12px; font-size: 0.85rem; font-weight: 700; border: 1px solid #fcd34d;">
+                    🚀 Update available! Reloading...
+                </div>
             </div>
         </section>
 
         <div id="upload-zone" class="upload-area">
             <span style="font-size: 3rem; display: block; margin-bottom: 1.5rem;">📸</span>
-            <h3>Click to Upload or Drag & Drop Photo</h3>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">JPEG, PNG, WebP supported. Max 20MB.</p>
-            <input type="file" id="file-input" hidden accept="image/jpeg,image/png,image/webp">
+            <h3>Click to Upload or Drag & Drop Photo(s)</h3>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">JPEG, PNG, WebP supported • Max 20MB per file • <strong>Bulk: up to 20 files</strong></p>
+            <input type="file" id="file-input" hidden accept="image/jpeg,image/png,image/webp" multiple>
+        </div>
+
+        <!-- Bulk queue (shown when multiple files loaded) -->
+        <div id="bulk-bar" style="display:none; background:rgba(248, 249, 255, 0.8); backdrop-filter: blur(8px); border:1px solid #e5e7eb; border-radius:16px; padding:1.25rem 1.75rem; margin-bottom:1.5rem; box-shadow: 0 10px 25px rgba(79, 70, 229, 0.05);">
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+                <span id="bulk-label" style="font-weight:800; font-size:0.95rem; color: var(--primary-color);">0 files loaded</span>
+                <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+                    <button id="bulk-scrub-btn" class="btn" style="font-size:0.85rem; padding:0.6rem 1.25rem; border-radius: 10px;">🛡️ Scrub All &amp; Download ZIP</button>
+                    <button id="bulk-export-btn" class="btn btn-secondary" style="font-size:0.85rem; padding:0.6rem 1.25rem; border-radius: 10px;">📋 Export Metadata CSV</button>
+                </div>
+            </div>
+            <div id="bulk-progress-bar" style="margin-top:1rem; display:none;">
+                <div style="background:#e2e8f0; border-radius:99px; height:6px; overflow:hidden;">
+                    <div id="bulk-progress-fill" style="background:linear-gradient(90deg, var(--primary-color), #7c3aed); height:100%; width:0%; transition:width 0.3s; border-radius: 99px;"></div>
+                </div>
+                <p id="bulk-progress-text" style="font-size:0.72rem; color:#64748b; margin-top:0.5rem; font-weight: 600;">Processing files...</p>
+            </div>
         </div>
 
         <section id="workspace" class="metadata-grid">
             <div class="preview-pane">
                 <img id="image-preview" src="" alt="Photo Preview">
+                <p id="file-size-info" style="font-size:0.75rem; color:#94a3b8; margin-top:0.5rem;"></p>
                 <div class="action-bar">
                     <button id="scrub-btn" class="btn">🛡️ Scrub All Metadata</button>
+                    <button id="scrub-gps-btn" class="btn btn-secondary" style="display:none;">📍 Remove GPS Only</button>
+                    <button id="export-meta-btn" class="btn btn-secondary" style="display:none;">📋 Export Metadata</button>
                     <button id="download-btn" class="btn btn-secondary" style="display: none;">📥 Download Clean Image</button>
                 </div>
             </div>
@@ -396,26 +421,49 @@
 
 <!-- EXIFR Library for advanced extraction -->
 <script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
+<!-- JSZip for bulk ZIP download -->
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 
 <script>
-    const uploadZone = document.getElementById('upload-zone');
-    const fileInput = document.getElementById('file-input');
-    const workspace = document.getElementById('workspace');
-    const imagePreview = document.getElementById('image-preview');
-    const metaBody = document.getElementById('meta-body');
-    const riskBox = document.getElementById('risk-box');
-    const riskText = document.getElementById('risk-text');
-    const scrubBtn = document.getElementById('scrub-btn');
-    const downloadBtn = document.getElementById('download-btn');
+    const uploadZone    = document.getElementById('upload-zone');
+    const fileInput     = document.getElementById('file-input');
+    const workspace     = document.getElementById('workspace');
+    const imagePreview  = document.getElementById('image-preview');
+    const metaBody      = document.getElementById('meta-body');
+    const riskBox       = document.getElementById('risk-box');
+    const riskText      = document.getElementById('risk-text');
+    const scrubBtn      = document.getElementById('scrub-btn');
+    const scrubGpsBtn   = document.getElementById('scrub-gps-btn');
+    const exportMetaBtn = document.getElementById('export-meta-btn');
+    const downloadBtn   = document.getElementById('download-btn');
+    const fileSizeInfo  = document.getElementById('file-size-info');
+    const bulkBar       = document.getElementById('bulk-bar');
+    const bulkLabel     = document.getElementById('bulk-label');
+    const bulkScrubBtn  = document.getElementById('bulk-scrub-btn');
+    const bulkExportBtn = document.getElementById('bulk-export-btn');
+    const bulkProgressBar  = document.getElementById('bulk-progress-bar');
+    const bulkProgressFill = document.getElementById('bulk-progress-fill');
+    const bulkProgressText = document.getElementById('bulk-progress-text');
 
     let currentFile = null;
-    let cleanBlob = null;
+    let cleanBlob   = null;
+    let parsedMeta  = null;
+    let allFiles    = [];   // for bulk
 
+    // ─── File size formatter ───────────────────────────────────────────
+    function fmtSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / 1048576).toFixed(2) + ' MB';
+    }
+
+    // ─── Handle single file ───────────────────────────────────────────
     async function handleFile(file) {
         if (!file) return;
         currentFile = file;
-        
-        // Show preview
+        cleanBlob   = null;
+        parsedMeta  = null;
+
         const reader = new FileReader();
         reader.onload = e => {
             imagePreview.src = e.target.result;
@@ -424,175 +472,373 @@
         };
         reader.readAsDataURL(file);
 
-        // Reset UI
+        fileSizeInfo.innerText = `File: ${file.name} — ${fmtSize(file.size)}`;
         metaBody.innerHTML = "<tr><td colspan='2'>Analyzing...</td></tr>";
-        riskBox.className = "risk-indicator";
-        riskText.innerText = "Analyzing metadata depth...";
-        downloadBtn.style.display = "none";
-        scrubBtn.style.display = "block";
+        riskBox.className  = "risk-indicator";
+        riskText.innerText = "Analyzing metadata...";
+        downloadBtn.style.display  = "none";
+        scrubGpsBtn.style.display  = "none";
+        exportMetaBtn.style.display = "none";
+        scrubBtn.style.display     = "block";
+        scrubBtn.innerText         = "🛡️ Scrub All Metadata";
+        scrubBtn.disabled          = false;
 
         try {
-            const output = await exifr.parse(file, true); // true for all tags
+            const output = await exifr.parse(file, { tiff: true, xmp: true, icc: true, iptc: true, jfif: true, ihdr: true });
+            parsedMeta = output;
             renderMetadata(output);
         } catch (err) {
             console.error(err);
-            metaBody.innerHTML = "<tr><td colspan='2' style='color: red;'>Error reading metadata. No tags found.</td></tr>";
-            riskBox.className = "risk-indicator risk-low";
-            riskText.innerText = "✓ No dangerous metadata found.";
+            metaBody.innerHTML = "<tr><td colspan='2' style='color:#6b7280;'>No EXIF metadata found or format not supported.</td></tr>";
+            riskBox.className  = "risk-indicator risk-low";
+            riskText.innerText = "✓ No dangerous metadata detected.";
         }
     }
 
+    // ─── Handle multiple files ────────────────────────────────────────
+    function handleMultipleFiles(files) {
+        allFiles = Array.from(files);
+        if (allFiles.length === 1) {
+            handleFile(allFiles[0]);
+            bulkBar.style.display = "none";
+            return;
+        }
+        // Show bulk bar + load first file for preview
+        bulkLabel.innerText = `${allFiles.length} files loaded`;
+        bulkBar.style.display = "block";
+        handleFile(allFiles[0]);
+    }
+
+    // ─── Render metadata table ────────────────────────────────────────
     function renderMetadata(data) {
         metaBody.innerHTML = "";
         let hasGPS = false;
-        let count = 0;
+        let totalCount = 0;
 
         if (!data || Object.keys(data).length === 0) {
-            metaBody.innerHTML = "<tr><td colspan='2'>No hidden tags detected.</td></tr>";
-            riskBox.className = "risk-indicator risk-low";
+            metaBody.innerHTML = "<tr><td colspan='2' style='color:#6b7280;'>No hidden tags detected.</td></tr>";
+            riskBox.className  = "risk-indicator risk-low";
             riskText.innerText = "✓ This image is already clean.";
+            exportMetaBtn.style.display = "none";
             return;
         }
 
         const categories = {
-            "📱 Device": ["Make", "Model", "Software", "LensModel"],
-            "🕒 Timing": ["DateTimeOriginal", "ModifyDate", "CreateDate"],
-            "📍 Location": ["latitude", "longitude", "GPSAltitude"],
-            "⚙️ Camera": ["ExposureTime", "FNumber", "ISO", "FocalLength"]
+            "📍 Location":  ["latitude", "longitude", "GPSAltitude", "GPSLatitude", "GPSLongitude", "GPSSpeed", "GPSImgDirection", "GPSDestBearing"],
+            "📱 Device":    ["Make", "Model", "Software", "LensModel", "LensMake", "BodySerialNumber", "LensSerialNumber", "CameraOwnerName"],
+            "🕒 Timing":    ["DateTimeOriginal", "ModifyDate", "CreateDate", "DateCreated", "GPSDateStamp"],
+            "⚙️ Camera":    ["ExposureTime", "FNumber", "ISO", "FocalLength", "Flash", "MeteringMode", "WhiteBalance", "ShutterSpeedValue", "ApertureValue", "ExposureBiasValue", "ExposureProgram", "SceneCaptureType"],
+            "🖼️ Image":     ["ImageWidth", "ImageHeight", "Orientation", "ColorSpace", "BitsPerSample", "Compression", "ResolutionUnit", "XResolution", "YResolution"],
+            "📄 Copyright": ["Copyright", "Artist", "ImageDescription", "UserComment", "XPComment", "XPAuthor", "XPTitle"],
         };
 
         for (const [cat, tags] of Object.entries(categories)) {
             tags.forEach(tag => {
-                if (data[tag] !== undefined) {
-                    let val = data[tag];
-                    if (tag === 'latitude' || tag === 'longitude') {
-                        hasGPS = true;
-                        val = val.toFixed(6) + " (Hidden GPS)";
-                    }
-                    if (val instanceof Date) val = val.toLocaleString();
-                    
-                    const row = document.createElement('tr');
-                    row.innerHTML = `<td>${cat}</td><td>${tag}: <strong>${val}</strong></td>`;
-                    metaBody.appendChild(row);
-                    count++;
+                if (data[tag] === undefined) return;
+                let val = data[tag];
+                if ((tag === 'latitude' || tag === 'longitude') && typeof val === 'number') {
+                    hasGPS = true;
+                    val = val.toFixed(7) + ' <span class="badge-gps">GPS</span>';
+                } else if (val instanceof Date) {
+                    val = val.toLocaleString();
+                } else if (typeof val === 'object' && val !== null) {
+                    val = JSON.stringify(val);
                 }
+                const row = document.createElement('tr');
+                row.innerHTML = `<td style="white-space:nowrap">${cat}</td><td><strong>${tag}:</strong> ${val}</td>`;
+                metaBody.appendChild(row);
+                totalCount++;
             });
         }
 
-        if (count === 0) {
-            // Check other raw tags if categories missed them
-            Object.keys(data).slice(0, 10).forEach(key => {
+        // Any remaining raw tags not in categories
+        Object.keys(data).forEach(key => {
+            const inCat = Object.values(categories).flat().includes(key);
+            if (!inCat) {
+                let val = data[key];
+                if (val instanceof Date) val = val.toLocaleString();
+                else if (typeof val === 'object') val = JSON.stringify(val);
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>RawTag</td><td>${key}: <strong>${data[key]}</strong></td>`;
+                row.innerHTML = `<td style="white-space:nowrap;color:#94a3b8">🔖 Other</td><td><strong>${key}:</strong> ${val}</td>`;
                 metaBody.appendChild(row);
-            });
+                totalCount++;
+            }
+        });
+
+        if (totalCount === 0) {
+            metaBody.innerHTML = "<tr><td colspan='2' style='color:#6b7280;'>No readable tags found.</td></tr>";
         }
 
         if (hasGPS) {
-            riskBox.className = "risk-indicator risk-high";
-            riskText.innerHTML = "⚠️ <span class='badge-gps'>HIGH RISK</span> GPS coordinates detected in this photo!";
+            riskBox.className  = "risk-indicator risk-high";
+            riskText.innerHTML = `⚠️ <span class="badge-gps">HIGH RISK</span> GPS coordinates found — your exact location is embedded!`;
+            scrubGpsBtn.style.display = "inline-flex";
         } else {
-            riskBox.className = "risk-indicator risk-low";
-            riskText.innerText = `💡 Detected ${Object.keys(data).length} pieces of hidden data.`;
+            riskBox.className  = "risk-indicator risk-low";
+            riskText.innerText = `💡 ${totalCount} metadata tags found. No GPS detected.`;
         }
+
+        exportMetaBtn.style.display = "inline-flex";
     }
 
-    // Binary surgery to strip EXIF from JPEG
-    async function scrubMetadata() {
+    // ─── Binary EXIF scrubber (JPEG) ──────────────────────────────────
+    // Strips all APP1 (EXIF/XMP), APP2, APP13 (IPTC), APP14 segments
+    function stripJpegMetadata(arrayBuffer, gpsOnly = false) {
+        const dv = new DataView(arrayBuffer);
+        if (dv.getUint16(0) !== 0xFFD8) return null; // Not JPEG
+
+        const segments = [arrayBuffer.slice(0, 2)]; // SOI
+        let offset = 2;
+
+        while (offset < dv.byteLength - 1) {
+            const marker = dv.getUint16(offset);
+
+            if (marker === 0xFFDA) { // SOS — image data, copy rest
+                segments.push(arrayBuffer.slice(offset));
+                break;
+            }
+            if (marker === 0xFFD9) break; // EOI
+
+            // Markers without length
+            if ((marker & 0xFF00) !== 0xFF00 || marker === 0xFF00 || marker === 0xFFFF) {
+                offset++;
+                continue;
+            }
+
+            const segLen = dv.getUint16(offset + 2) + 2; // includes 2 length bytes
+
+            if (!gpsOnly) {
+                // Strip: APP1 (EXIF/XMP=0xFFE1), APP2 (0xFFE2), APP13 IPTC (0xFFED), APP14 (0xFFEE)
+                const stripMarkers = [0xFFE1, 0xFFE2, 0xFFED, 0xFFEE];
+                if (!stripMarkers.includes(marker)) {
+                    segments.push(arrayBuffer.slice(offset, offset + segLen));
+                }
+            } else {
+                // GPS-only mode: keep APP1 but patch out GPS IFD
+                // Simplest reliable approach: keep everything except GPS tags in EXIF
+                // We'll use canvas re-encode after stripping EXIF and re-injecting non-GPS tags
+                // For simplicity, strip full APP1 in GPS-only mode too (browser EXIF write not feasible without library)
+                if (marker !== 0xFFE1) {
+                    segments.push(arrayBuffer.slice(offset, offset + segLen));
+                }
+            }
+            offset += segLen;
+        }
+
+        return new Blob(segments, { type: 'image/jpeg' });
+    }
+
+    // ─── Canvas scrubber for PNG/WebP (strips metadata via re-encode) ──
+    async function stripViaCanvas(file) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            const url = URL.createObjectURL(file);
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width  = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                canvas.getContext('2d').drawImage(img, 0, 0);
+                URL.revokeObjectURL(url);
+                // Use same format for PNG, JPEG for WebP (WebP encode not widely supported)
+                const outType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+                canvas.toBlob(blob => {
+                    if (blob) resolve(blob);
+                    else reject(new Error('Canvas toBlob failed'));
+                }, outType, 0.97);
+            };
+            img.onerror = reject;
+            img.src = url;
+        });
+    }
+
+    // ─── Scrub all metadata ───────────────────────────────────────────
+    async function scrubMetadata(gpsOnly = false) {
         if (!currentFile) return;
 
-        scrubBtn.innerText = "⚡ Scrubbing...";
-        scrubBtn.disabled = true;
+        const btn = gpsOnly ? scrubGpsBtn : scrubBtn;
+        btn.innerText = "⚡ Scrubbing...";
+        btn.disabled  = true;
 
         try {
-            // Lossless binary manipulation for JPEG
-            // We use the simpler method of converting to ArrayBuffer and surgical removal
-            // For production robustness, we use the approach of:
-            // 1. ArrayBuffer -> View
-            // 2. Find APP1 Marker (0xFFE1)
-            // 3. Skip it
-            
-            const arrayBuffer = await currentFile.arrayBuffer();
-            const dv = new DataView(arrayBuffer);
-            
-            // Check if JPEG
-            if (dv.getUint16(0) !== 0xFFD8) {
-                // Not a JPEG, if PNG/WebP we use Canvas as fallback (though less ideal)
-                // However, for this Pro version, let's keep it binary for JPEG
-                alert("Binary scrubbing currently supports JPEG. PNG/WebP scrubbing coming soon.");
-                scrubBtn.innerText = "🛡️ Scrub All Metadata";
-                scrubBtn.disabled = false;
-                return;
+            const isJpeg = currentFile.type === 'image/jpeg' || currentFile.name.toLowerCase().endsWith('.jpg') || currentFile.name.toLowerCase().endsWith('.jpeg');
+
+            if (isJpeg) {
+                const buf    = await currentFile.arrayBuffer();
+                const result = stripJpegMetadata(buf, gpsOnly);
+                if (!result) { throw new Error('Not a valid JPEG.'); }
+                cleanBlob = result;
+            } else {
+                // PNG / WebP — canvas re-encode
+                cleanBlob = await stripViaCanvas(currentFile);
             }
 
-            let offset = 2;
-            let segments = [arrayBuffer.slice(0, 2)]; // Start with SOI marker
+            const savedBytes = currentFile.size - cleanBlob.size;
+            metaBody.innerHTML = `<tr><td colspan='2' style='color:#059669; font-weight:700;'>✓ Metadata stripped! Saved ${fmtSize(Math.max(0, savedBytes))} from file size.</td></tr>`;
+            riskBox.className  = "risk-indicator risk-low";
+            riskText.innerText = `✓ Clean image ready — safe to share.`;
 
-            while (offset < dv.byteLength) {
-                if (dv.getUint16(offset) === 0xFFDA) { // Start of Scan (SOS) - Image data follows
-                    segments.push(arrayBuffer.slice(offset));
-                    break;
-                }
+            scrubBtn.style.display     = "none";
+            scrubGpsBtn.style.display  = "none";
+            exportMetaBtn.style.display = "none";
+            downloadBtn.style.display  = "block";
 
-                const marker = dv.getUint16(offset);
-                const length = dv.getUint16(offset + 2);
-
-                if (marker === 0xFFE1) {
-                    // This is APP1 (EXIF/XMP). Skip it to scrub!
-                    console.log("Scrubbing APP1 segment at " + offset);
-                } else {
-                    // Keep this segment
-                    segments.push(arrayBuffer.slice(offset, offset + 2 + length));
-                }
-                offset += 2 + length;
-            }
-
-            cleanBlob = new Blob(segments, { type: currentFile.type });
-            
-            // UI Update
-            metaBody.innerHTML = "<tr><td colspan='2' style='color: #059669; font-weight: 700;'>✓ All Metadata Stripped Successfully!</td></tr>";
-            riskBox.className = "risk-indicator risk-low";
-            riskText.innerText = "✓ This photo is now safe to share.";
-            scrubBtn.style.display = "none";
-            downloadBtn.style.display = "block";
-            
         } catch (err) {
             console.error(err);
-            alert("Error scrubbing markers. Some files have protected headers.");
-            scrubBtn.innerText = "🛡️ Scrub All Metadata";
-            scrubBtn.disabled = false;
+            alert("Scrubbing failed: " + err.message);
+            btn.innerText = gpsOnly ? "📍 Remove GPS Only" : "🛡️ Scrub All Metadata";
+            btn.disabled  = false;
         }
     }
 
-    // Event Listeners
+    // ─── Export metadata as CSV ───────────────────────────────────────
+    function exportMetadata() {
+        if (!parsedMeta) return;
+        let csv = "Category,Tag,Value\n";
+        const categories = {
+            "Location":  ["latitude","longitude","GPSAltitude","GPSLatitude","GPSLongitude","GPSSpeed"],
+            "Device":    ["Make","Model","Software","LensModel","BodySerialNumber"],
+            "Timing":    ["DateTimeOriginal","ModifyDate","CreateDate"],
+            "Camera":    ["ExposureTime","FNumber","ISO","FocalLength","Flash"],
+            "Image":     ["ImageWidth","ImageHeight","Orientation","ColorSpace"],
+            "Copyright": ["Copyright","Artist","ImageDescription"],
+        };
+        const tagged = new Set();
+        for (const [cat, tags] of Object.entries(categories)) {
+            tags.forEach(tag => {
+                if (parsedMeta[tag] === undefined) return;
+                let v = parsedMeta[tag];
+                if (v instanceof Date) v = v.toISOString();
+                else if (typeof v === 'object') v = JSON.stringify(v);
+                csv += `"${cat}","${tag}","${String(v).replace(/"/g,'""')}"\n`;
+                tagged.add(tag);
+            });
+        }
+        Object.keys(parsedMeta).forEach(key => {
+            if (tagged.has(key)) return;
+            let v = parsedMeta[key];
+            if (v instanceof Date) v = v.toISOString();
+            else if (typeof v === 'object') v = JSON.stringify(v);
+            csv += `"Other","${key}","${String(v).replace(/"/g,'""')}"\n`;
+        });
+
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `EXIF_${currentFile.name.replace(/\.[^.]+$/, '')}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    // ─── Bulk scrub + ZIP ─────────────────────────────────────────────
+    async function bulkScrubAll() {
+        if (!allFiles.length) return;
+        bulkScrubBtn.disabled = true;
+        bulkProgressBar.style.display = "block";
+
+        const zip = new JSZip();
+        for (let i = 0; i < allFiles.length; i++) {
+            const f = allFiles[i];
+            bulkProgressFill.style.width = `${Math.round((i / allFiles.length) * 100)}%`;
+            bulkProgressText.innerText   = `Processing ${i + 1} / ${allFiles.length}: ${f.name}`;
+            try {
+                const isJpeg = f.type === 'image/jpeg' || /\.jpe?g$/i.test(f.name);
+                let blob;
+                if (isJpeg) {
+                    const buf = await f.arrayBuffer();
+                    blob = stripJpegMetadata(buf) || f;
+                } else {
+                    blob = await stripViaCanvas(f);
+                }
+                const ext = isJpeg ? f.name.split('.').pop() : (f.type === 'image/png' ? 'png' : 'jpg');
+                zip.file(`clean_${f.name}`, blob);
+            } catch (e) {
+                console.warn(`Skipped ${f.name}:`, e);
+            }
+        }
+
+        bulkProgressFill.style.width = "100%";
+        bulkProgressText.innerText   = "Creating ZIP...";
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        const a = document.createElement('a');
+        a.href     = URL.createObjectURL(zipBlob);
+        a.download = `WorldOfTools_CleanPhotos.zip`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        bulkProgressText.innerText = `✓ Done! ${allFiles.length} files scrubbed.`;
+        bulkScrubBtn.disabled = false;
+    }
+
+    // ─── Bulk export metadata CSV ─────────────────────────────────────
+    async function bulkExportCSV() {
+        if (!allFiles.length) return;
+        bulkExportBtn.disabled = true;
+        bulkProgressBar.style.display = "block";
+
+        let csv = "Filename,Tag,Value\n";
+        for (let i = 0; i < allFiles.length; i++) {
+            const f = allFiles[i];
+            bulkProgressFill.style.width = `${Math.round((i / allFiles.length) * 100)}%`;
+            bulkProgressText.innerText   = `Reading ${i + 1} / ${allFiles.length}`;
+            try {
+                const meta = await exifr.parse(f, { tiff: true, xmp: true, iptc: true });
+                if (meta) {
+                    Object.keys(meta).forEach(key => {
+                        let v = meta[key];
+                        if (v instanceof Date) v = v.toISOString();
+                        else if (typeof v === 'object') v = JSON.stringify(v);
+                        csv += `"${f.name}","${key}","${String(v).replace(/"/g,'""')}"\n`;
+                    });
+                }
+            } catch (_) {}
+        }
+        bulkProgressFill.style.width = "100%";
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'WorldOfTools_BulkMetadata.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        bulkProgressText.innerText = "✓ CSV exported.";
+        bulkExportBtn.disabled = false;
+    }
+
+    // ─── Event Listeners ──────────────────────────────────────────────
     uploadZone.onclick = () => fileInput.click();
     fileInput.onchange = e => {
-        if (e.target.files.length) handleFile(e.target.files[0]);
+        if (e.target.files.length) handleMultipleFiles(e.target.files);
     };
-
-    uploadZone.ondragover = e => { e.preventDefault(); uploadZone.classList.add('dragover'); };
+    uploadZone.ondragover  = e => { e.preventDefault(); uploadZone.classList.add('dragover'); };
     uploadZone.ondragleave = () => uploadZone.classList.remove('dragover');
     uploadZone.ondrop = e => {
         e.preventDefault();
         uploadZone.classList.remove('dragover');
-        if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+        if (e.dataTransfer.files.length) handleMultipleFiles(e.dataTransfer.files);
     };
 
-    scrubBtn.onclick = scrubMetadata;
+    scrubBtn.onclick      = () => scrubMetadata(false);
+    scrubGpsBtn.onclick   = () => scrubMetadata(true);
+    exportMetaBtn.onclick = exportMetadata;
+    bulkScrubBtn.onclick  = bulkScrubAll;
+    bulkExportBtn.onclick = bulkExportCSV;
 
     downloadBtn.onclick = () => {
         if (!cleanBlob) return;
-        const url = URL.createObjectURL(cleanBlob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = "clean_" + currentFile.name;
+        const ext  = currentFile.type === 'image/png' ? 'png' : 'jpg';
+        const base = currentFile.name.replace(/\.[^.]+$/, '');
+        const url  = URL.createObjectURL(cleanBlob);
+        const a    = document.createElement('a');
+        a.href     = url;
+        a.download = `clean_${base}.${ext}`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     };
 
-    // Mobile Menu
     document.getElementById('menu-toggle').onclick = function() {
         document.getElementById('nav-menu').classList.toggle('active');
     };

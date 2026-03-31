@@ -584,8 +584,8 @@ function registerServiceWorker() {
                         const newWorker = registration.installing;
                         newWorker.addEventListener('statechange', () => {
                             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // New worker is installed and waiting
-                                // controllerchange listener below will handle the reload
+                                // New worker is installed and waiting — tell it to skip waiting
+                                newWorker.postMessage({ type: 'SKIP_WAITING' });
                             }
                         });
                     });
@@ -600,7 +600,13 @@ function registerServiceWorker() {
         navigator.serviceWorker.addEventListener('controllerchange', () => {
             if (!refreshing) {
                 refreshing = true;
-                window.location.reload();
+                const updateMsg = document.getElementById('pwa-update-msg');
+                if (updateMsg) {
+                    updateMsg.style.display = 'flex';
+                    setTimeout(() => window.location.reload(), 1000);
+                } else {
+                    window.location.reload();
+                }
             }
         });
     }

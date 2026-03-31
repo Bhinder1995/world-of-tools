@@ -73,8 +73,6 @@
     </script>
     
     <link rel="stylesheet" href="css/style.css">
-    <!-- COI Service Worker to enable SharedArrayBuffer for FFmpeg.wasm -->
-    <script src="js/coi-serviceworker.js"></script>
     
     <style>
         .video-tool-container {
@@ -429,7 +427,7 @@
 
 <footer></footer>
 
-<!-- FFmpeg.wasm v0.12+ (Module Version) -->
+<!-- FFmpeg.wasm v0.12 — Single-Thread Core (No SharedArrayBuffer required) -->
 <script type="module">
     import { FFmpeg } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/esm/index.js';
     import { toBlobURL, fetchFile } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.2/dist/esm/index.js';
@@ -451,33 +449,37 @@
 
     let ffmpeg = null;
     let videoFile = null;
+    let outputGifUrl = null;
 
     async function loadFFmpeg() {
-        if (ffmpeg) return;
-        
+        if (ffmpeg && ffmpeg.loaded) return;
+
         progressOverlay.style.display = 'flex';
-        progressText.innerText = "Loading AI Media Engine...";
+        progressText.innerText = "Loading Media Engine (first load ~20s)...";
 
         ffmpeg = new FFmpeg();
-        const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/esm';
-        
+
+        // Use single-thread core — works WITHOUT SharedArrayBuffer / COOP headers
+        const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core-st@0.12.9/dist/esm';
+
+        ffmpeg.on('log', ({ message }) => console.log('[ffmpeg]', message));
+        ffmpeg.on('progress', ({ progress, time }) => {
+            const pct = Math.min(Math.round(progress * 100), 99);
+            progressText.innerText = `Processing: ${pct}%`;
+        });
+
         await ffmpeg.load({
             coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
             wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
         });
 
         progressOverlay.style.display = 'none';
-        ffmpeg.on('log', ({ message }) => console.log(message));
-        ffmpeg.on('progress', ({ progress }) => {
-            progressText.innerText = `Processing: ${Math.round(progress * 100)}%`;
-        });
     }
 
     async function handleFile(file) {
         if (!file) return;
         videoFile = file;
-        
-        // Show Workspace
+
         workspace.style.display = "grid";
         inputVideo.src = URL.createObjectURL(file);
         inputVideo.style.display = "block";
@@ -485,56 +487,88 @@
         downloadBtn.style.display = "none";
         resetBtn.style.display = "none";
         convertBtn.style.display = "block";
-        
-        // Load FFmpeg early
-        await loadFFmpeg();
+
+        // Pre-load FFmpeg in background
+        try { await loadFFmpeg(); } catch(e) { console.warn('Pre-load failed, will retry on convert:', e); }
     }
 
     async function generateGif() {
-        if (!videoFile || !ffmpeg) return;
+        if (!videoFile) return;
 
-        progressOverlay.style.display = 'flex';
-        progressText.innerText = "Initializing Conversion...";
         convertBtn.disabled = true;
-
-        const start = startTimeInput.value || "0";
-        const dur = durationInput.value || "5";
-        const fps = fpsSelect.value || "10";
-        const res = resSelect.value || "320";
+        progressOverlay.style.display = 'flex';
+        progressText.innerText = "Preparing engine...";
 
         try {
-            // Write input file with correct extension
-            const ext = videoFile.name.split('.').pop();
-            const inputFileName = `input.${ext}`;
-            await ffmpeg.writeFile(inputFileName, await fetchFile(videoFile));
+            await loadFFmpeg();
+        } catch (err) {
+            console.error('FFmpeg load error:', err);
+            alert("Failed to load media engine. Please check your internet connection and try again.");
+            convertBtn.disabled = false;
+            progressOverlay.style.display = 'none';
+            return;
+        }
 
-            // Construct FFmpeg command
-            const vfParams = `fps=${fps}${res !== "-1" ? `,scale=${res}:-1` : ""}`;
-            
+        const start = parseFloat(startTimeInput.value) || 0;
+        const dur   = parseFloat(durationInput.value)  || 5;
+        const fps   = fpsSelect.value  || "15";
+        const res   = resSelect.value  || "480";
+
+        // Cap duration for memory safety
+        const safeDur = Math.min(dur, 20);
+
+        try {
+            progressText.innerText = "Writing video to memory...";
+            const ext = (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
+            const inputName = `input.${ext}`;
+
+            await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+            // Two-pass palette GIF for much better colour quality
+            const scaleFilter = res !== "-1" ? `scale=${res}:-1:flags=lanczos` : "scale=trunc(iw/2)*2:trunc(ih/2)*2";
+            const paletteFilter = `fps=${fps},${scaleFilter},palettegen=max_colors=256:stats_mode=diff`;
+            const gifFilter = `fps=${fps},${scaleFilter} [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=3`;
+
+            progressText.innerText = "Pass 1/2: Building colour palette...";
             await ffmpeg.exec([
-                '-ss', start.toString(),
-                '-t', dur.toString(),
-                '-i', inputFileName,
-                '-vf', vfParams,
-                'output.gif'
+                '-ss', String(start),
+                '-t',  String(safeDur),
+                '-i',  inputName,
+                '-vf', paletteFilter,
+                '-y',  'palette.png'
             ]);
 
-            // Read output
+            progressText.innerText = "Pass 2/2: Rendering GIF...";
+            await ffmpeg.exec([
+                '-ss', String(start),
+                '-t',  String(safeDur),
+                '-i',  inputName,
+                '-i',  'palette.png',
+                '-lavfi', gifFilter,
+                '-y', 'output.gif'
+            ]);
+
+            progressText.innerText = "Finalizing...";
             const data = await ffmpeg.readFile('output.gif');
-            const gifUrl = URL.createObjectURL(new Blob([data.buffer], { type: 'image/gif' }));
-            
-            outputGif.src = gifUrl;
+
+            // Revoke previous blob URL
+            if (outputGifUrl) URL.revokeObjectURL(outputGifUrl);
+            outputGifUrl = URL.createObjectURL(new Blob([data.buffer], { type: 'image/gif' }));
+
+            outputGif.src = outputGifUrl;
             outputGif.style.display = "block";
             inputVideo.style.display = "none";
-            
-            // UI Update
+
             downloadBtn.style.display = "block";
             resetBtn.style.display = "block";
             convertBtn.style.display = "none";
-            
+
+            // Cleanup virtual FS
+            try { await ffmpeg.deleteFile(inputName); await ffmpeg.deleteFile('palette.png'); await ffmpeg.deleteFile('output.gif'); } catch(_) {}
+
         } catch (err) {
-            console.error(err);
-            alert("Error converting video. The file format might be unsupported or too heavy.");
+            console.error('Conversion error:', err);
+            alert("Conversion failed. Try a shorter duration (≤10s) or a smaller file. Check console for details.");
         } finally {
             progressOverlay.style.display = 'none';
             convertBtn.disabled = false;
@@ -556,9 +590,10 @@
     resetBtn.onclick = () => location.reload();
 
     downloadBtn.onclick = () => {
+        if (!outputGifUrl) return;
         const a = document.createElement('a');
-        a.href = outputGif.src;
-        a.download = "WorldOfTools_GIF.gif";
+        a.href = outputGifUrl;
+        a.download = `WorldOfTools_${videoFile.name.replace(/\.[^.]+$/, '')}.gif`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

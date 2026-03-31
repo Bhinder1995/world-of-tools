@@ -73,8 +73,6 @@
     </script>
     
     <link rel="stylesheet" href="css/style.css">
-    <!-- COI Service Worker to enable SharedArrayBuffer for FFmpeg.wasm -->
-    <script src="js/coi-serviceworker.js"></script>
     
     <style>
         .audio-tool-container {
@@ -384,7 +382,7 @@
 
 <footer></footer>
 
-<!-- FFmpeg.wasm v0.12+ (Module Version) -->
+<!-- FFmpeg.wasm v0.12 — Single-Thread Core (No SharedArrayBuffer required) -->
 <script type="module">
     import { FFmpeg } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/esm/index.js';
     import { toBlobURL, fetchFile } from 'https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.2/dist/esm/index.js';
@@ -407,81 +405,115 @@
     let outputUrl = null;
 
     async function loadFFmpeg() {
-        if (ffmpeg) return;
-        
+        if (ffmpeg && ffmpeg.loaded) return;
+
         progressOverlay.style.display = 'flex';
-        progressText.innerText = "Initializing Audio Engine...";
+        progressText.innerText = "Loading Audio Engine (first load ~20s)...";
 
         ffmpeg = new FFmpeg();
-        const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/esm';
-        
+
+        // Single-thread core — no SharedArrayBuffer / COOP headers needed
+        const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core-st@0.12.9/dist/esm';
+
+        ffmpeg.on('log', ({ message }) => console.log('[ffmpeg]', message));
+        ffmpeg.on('progress', ({ progress }) => {
+            const pct = Math.min(Math.round(progress * 100), 99);
+            progressText.innerText = `Extracting: ${pct}%`;
+        });
+
         await ffmpeg.load({
             coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
             wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
         });
 
         progressOverlay.style.display = 'none';
-        ffmpeg.on('progress', ({ progress }) => {
-            progressText.innerText = `Extracting: ${Math.round(progress * 100)}%`;
-        });
     }
 
     async function handleFile(file) {
         if (!file) return;
         videoFile = file;
-        
+
         workspace.style.display = "grid";
         fileInfo.innerText = file.name;
-        audioPreviewContainer.innerHTML = `<p style="color: #64748b;">Ready to extract audio at ${bitrateSelect.value}</p>`;
-        
+        audioPreviewContainer.innerHTML = `<p style="color: #64748b; padding: 1rem 0;">Ready to extract audio — choose settings and click Extract.</p>`;
+
         downloadBtn.style.display = "none";
         resetBtn.style.display = "none";
         extractBtn.style.display = "block";
-        
-        await loadFFmpeg();
+
+        // Pre-load FFmpeg in background
+        try { await loadFFmpeg(); } catch(e) { console.warn('Pre-load failed, will retry on extract:', e); }
     }
 
     async function extractAudio() {
-        if (!videoFile || !ffmpeg) return;
+        if (!videoFile) return;
 
-        progressOverlay.style.display = 'flex';
-        progressText.innerText = "Writing Virtual File...";
         extractBtn.disabled = true;
-
-        const bitrate = bitrateSelect.value;
-        const format = formatSelect.value;
-        const outFileName = `output.${format}`;
+        progressOverlay.style.display = 'flex';
+        progressText.innerText = "Preparing engine...";
 
         try {
-            // Correct input filename with extension for better probing
-            const ext = videoFile.name.split('.').pop();
-            const inputFileName = `input.${ext}`;
-            await ffmpeg.writeFile(inputFileName, await fetchFile(videoFile));
+            await loadFFmpeg();
+        } catch (err) {
+            console.error('FFmpeg load error:', err);
+            alert("Failed to load audio engine. Please check your internet connection and try again.");
+            extractBtn.disabled = false;
+            progressOverlay.style.display = 'none';
+            return;
+        }
 
-            // FFmpeg command: -i input -vn -ab 320k output.mp3
-            await ffmpeg.exec([
-                '-i', inputFileName,
-                '-vn',
-                '-ab', bitrate,
-                outFileName
-            ]);
+        const bitrate   = bitrateSelect.value || '192k';
+        const format    = formatSelect.value  || 'mp3';
+        const outName   = `output.${format}`;
 
-            const data = await ffmpeg.readFile(outFileName);
-            outputUrl = URL.createObjectURL(new Blob([data.buffer], { type: `audio/${format}` }));
-            
+        try {
+            progressText.innerText = "Writing video to memory...";
+            const ext = (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
+            const inputName = `input.${ext}`;
+
+            await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+
+            progressText.innerText = "Extracting audio track...";
+
+            // Build FFmpeg args based on format
+            const args = ['-i', inputName, '-vn'];
+
+            if (format === 'mp3') {
+                args.push('-c:a', 'libmp3lame', '-ab', bitrate, '-ar', '44100');
+            } else if (format === 'ogg') {
+                args.push('-c:a', 'libvorbis', '-ab', bitrate);
+            } else {
+                // wav / aac fallback
+                args.push('-ab', bitrate);
+            }
+
+            args.push('-y', outName);
+            await ffmpeg.exec(args);
+
+            progressText.innerText = "Finalizing...";
+            const data = await ffmpeg.readFile(outName);
+
+            if (outputUrl) URL.revokeObjectURL(outputUrl);
+            const mimeMap = { mp3: 'audio/mpeg', ogg: 'audio/ogg', wav: 'audio/wav' };
+            outputUrl = URL.createObjectURL(new Blob([data.buffer], { type: mimeMap[format] || 'audio/mpeg' }));
+
             audioPreviewContainer.innerHTML = `
-                <audio controls id="main-audio">
-                    <source src="${outputUrl}" type="audio/${format}">
+                <audio controls style="width:100%; margin-top:0.5rem; filter:invert(1);">
+                    <source src="${outputUrl}" type="${mimeMap[format] || 'audio/mpeg'}">
+                    Your browser does not support the audio element.
                 </audio>
             `;
-            
+
             downloadBtn.style.display = "block";
             resetBtn.style.display = "block";
             extractBtn.style.display = "none";
-            
+
+            // Cleanup
+            try { await ffmpeg.deleteFile(inputName); await ffmpeg.deleteFile(outName); } catch(_) {}
+
         } catch (err) {
-            console.error(err);
-            alert("Error extracting audio. Please ensure the file is a valid video format.");
+            console.error('Extraction error:', err);
+            alert("Audio extraction failed. Make sure the video has an audio track and the format is supported (MP4, MOV, WEBM, AVI).");
         } finally {
             progressOverlay.style.display = 'none';
             extractBtn.disabled = false;
@@ -503,9 +535,10 @@
 
     downloadBtn.onclick = () => {
         if (!outputUrl) return;
+        const baseName = videoFile.name.replace(/\.[^.]+$/, '');
         const a = document.createElement('a');
         a.href = outputUrl;
-        a.download = `WorldOfTools_${videoFile.name.split('.')[0]}.${formatSelect.value}`;
+        a.download = `WorldOfTools_${baseName}.${formatSelect.value}`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
