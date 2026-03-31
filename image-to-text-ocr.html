@@ -472,13 +472,15 @@
     const copyBtn = document.getElementById('copy-btn');
     const downloadBtn = document.getElementById('download-btn');
     const charCount = document.getElementById('char-count');
-
+    
+    let worker = null;
 
     async function processOCR(file) {
         if (worker) {
             await worker.terminate();
             worker = null;
         }
+
 
         try {
             statusText.innerText = "Initializing OCR Engine...";
@@ -574,6 +576,9 @@
         document.getElementById('nav-menu').classList.toggle('active');
     };
 </script>
+
+<!-- Global Context & Footer Builder -->
+<script src="/js/common.js?v=2.4"></script>
 
 </body>
 </html>

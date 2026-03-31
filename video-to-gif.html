@@ -493,10 +493,10 @@
         progressText.innerText = "Initializing Conversion...";
         convertBtn.disabled = true;
 
-        const start = startTimeInput.value;
-        const dur = durationInput.value;
-        const fps = fpsSelect.value;
-        const res = resSelect.value;
+        const start = startTimeInput.value || "0";
+        const dur = durationInput.value || "5";
+        const fps = fpsSelect.value || "10";
+        const res = resSelect.value || "320";
 
         try {
             // Write input file with correct extension
@@ -566,5 +566,9 @@
     };
 </script>
 
+<!-- Global Context & Footer Builder -->
+<script src="/js/common.js?v=2.4"></script>
+
 </body>
 </html>
+
