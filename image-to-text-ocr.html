@@ -148,10 +148,23 @@
         .status-text {
             text-align: center;
             font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-            font-weight: 600;
+            color: var(--text-color);
+            margin-top: 1rem;
+            font-weight: 700;
         }
+
+        .confidence-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-top: 0.5rem;
+        }
+
+        .conf-high { background: #dcfce7; color: #166534; }
+        .conf-med { background: #fef9c3; color: #854d0e; }
+        .conf-low { background: #fee2e2; color: #991b1b; }
 
         .ocr-workspace {
             display: grid;
@@ -238,7 +251,7 @@
     <div class="container">
         <div class="header-content">
             <a href="index.html" class="logo-center">
-                <img src="app-icon.png" alt="WorldOfTools Logo" width="36" height="36">
+                <img src="/logo.svg" alt="WorldOfTools Logo" width="36" height="36">
                 <div class="logo-text-block">
                     <span class="logo-brand">WorldOfTools</span>
                     <span class="logo-tagline">100% Private & Free</span>
@@ -324,7 +337,10 @@
         <div id="progress-container" class="progress-wrapper">
             <div id="progress-bar" class="progress-bar"></div>
         </div>
-        <div id="status-text" class="status-text">Ready to process...</div>
+        <div style="text-align: center;">
+            <div id="status-text" class="status-text">Ready to extract text...</div>
+            <div id="confidence-box"></div>
+        </div>
 
         <section id="workspace" class="ocr-workspace">
             <div class="preview-pane">
@@ -347,37 +363,69 @@
             </div>
         </section>
 
-        <section class="guide-content" style="margin-top: 5rem;">
-            <h2>Free Image to Text Converter — No Signup Required</h2>
-            <p>Our online OCR tool uses advanced machine learning to recognize text in images. Whether it's a scanned document, a mobile photo of a receipt, or a screenshot of a website, you can extract the text in seconds.</p>
-            
-            <div class="results-grid" style="grid-template-columns: 1fr 1fr; margin-top: 2rem; display: grid; gap: 2rem;">
-                <div class="card">
-                    <h3>🇮🇳 Hindi & Regional Support</h3>
-                    <p>We provide high-accuracy OCR for **Hindi (हिन्दी)**, Bengali, and Marathi. Most free tools struggle with Devanagari script, but our Tesseract-powered engine is trained for precision.</p>
-                </div>
-                <div class="card">
-                    <h3>🔒 Privacy-First OCR</h3>
-                    <p>Traditional OCR sites upload your documents to their servers. **WorldOfTools executes the OCR logic directly in your browser.** Your sensitive documents never leave your computer.</p>
-                </div>
-            </div>
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">What is the Image to Text OCR?</h2>
+                <p style="line-height:1.8;color:#4b5563;">
+                    The <strong>Image to Text OCR</strong> (Optical Character Recognition) tool by WorldOfTools is a high-performance utility that converts printed or handwritten text within images into machine-encoded text. Whether you have a scanned document, a photo of a receipt, or a screenshot of a webpage, our tool extracts the text instantly, allowing you to edit, copy, and share it without manual retyping.
+                </p>
+            </section>
 
-            <h2 style="margin-top: 4rem;">Common Use Cases</h2>
-            <ul style="margin-left: 2rem; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                <li><strong>Students:</strong> Convert textbook photos or lecture notes into editable Word documents.</li>
-                <li><strong>Bank/Office:</strong> Extract table data from receipts or invoices for expense reporting.</li>
-                <li><strong>Content Creators:</strong> Quickly copy quotes from screenshots for Social Media posts.</li>
-                <li><strong>Developers:</strong> Turn design mockups into code snippets by extracting labels.</li>
-            </ul>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Use OCR — Step-by-Step</h2>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Upload Image:</strong> Select your JPEG, PNG, or WebP photo from your device.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Select Language:</strong> Choose the primary language of the text in the image (e.g., Hindi, English).</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Copy & Save:</strong> Review the extracted text, copy it to your clipboard, or download it as a .txt file.</p>
+                </div>
+            </section>
 
-            <h2 style="margin-top: 4rem;">Frequently Asked Questions</h2>
-            <div class="card" style="margin-top: 1.5rem;">
-                <p><strong>What is OCR?</strong></p>
-                <p>OCR stands for Optical Character Recognition. It is a technology that converts different types of documents, such as scanned paper documents, PDF files or images captured by a digital camera into editable and searchable data.</p>
-                <br>
-                <p><strong>Photo se text kaise nikale? (Hindi)</strong></p>
-                <p>ऊपर दिए गए 'Upload' बटन पर क्लिक करें, अपनी फोटो चुनें, और भाषा (Hindi) चुनें। कुछ ही सेकंड में आपकी फोटो का टेक्स्ट सामने होगा जिसे आप कॉपी कर सकते हैं।</p>
-            </div>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Key Features & Benefits</h2>
+                <ul style="list-style:none;padding:0;margin:0;">
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>100+ Languages Supported:</strong> High precision for Devanagari (Hindi, Marathi), Bengali, Arabic, and more.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>No Server Uploads:</strong> Your sensitive data never leaves your device. Everything is processed locally via Tesseract.js.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Accuracy Insights:</strong> We show you a confidence score so you know exactly how reliable the extraction is.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Batch Processing Ready:</strong> Optimized for speed to handle documents one after another effortlessly.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Can I extract text from a blurry photo?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">While high resolution is best, our AI engine can often recover text from slightly blurry images. For best results, ensure the text is well-lit and flat.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Photo se text kaise copy karein? (Hindi)</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Apni photo upload karein, 'Copy Text' button par click karein, aur kahin bhi paste karein. Yeh tool poori tarah surakshit (private) hai.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is there a file size limit?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, we support images up to 15MB to ensure smooth local processing in your browser.</p>
+                </details>
+            </section>
+        </div>
         <section class="related-tools" style="margin-top: 5rem;">
             <h2 style="text-align: center; margin-bottom: 2rem;">Recommended Tools 🚀</h2>
             <div class="tools-grid">
@@ -406,49 +454,7 @@
     </div>
 </main>
 
-<footer style="background: #0f172a; color: #f8fafc; padding: 5rem 0 2rem; margin-top: 8rem;">
-    <div class="container">
-        <div class="footer-link-grid">
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Popular Tools</h4>
-                <ul class="footer-links">
-                    <li><a href="image-compressor.html">Image Compressor</a></li>
-                    <li><a href="background-remover.html">Background Remover</a></li>
-                    <li><a href="gst-calculator.html">GST Calculator</a></li>
-                    <li><a href="emi-calculator.html">EMI Calculator</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Social Media Tools</h4>
-                <ul class="footer-links">
-                    <li><a href="fancy-font-generator.html">Fancy font Generator ✨</a></li>
-                    <li><a href="image-to-text-ocr.html" class="featured-link">Image to Text OCR</a></li>
-                    <li><a href="youtube-thumbnail-downloader.html">YouTube Downloader</a></li>
-                    <li><a href="qr-code-generator.html">QR Code Generator</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Privacy & Terms</h4>
-                <ul class="footer-links">
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="about-us.html">About WorldOfTools</a></li>
-                    <li><a href="contact-us.html">Contact Support</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Recent Tools</h4>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <a href="fancy-font-generator.html" class="footer-badge">New: Fancy Font Gen</a>
-                    <a href="image-to-text-ocr.html" class="footer-badge">New: Image to Text</a>
-                </div>
-            </div>
-        </div>
-        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem; padding-top: 2rem; text-align: center; color: #64748b; font-size: 0.9rem;">
-            &copy; 2026 WorldOfTools. All rights reserved. 100% Client-Side OCR.
-        </div>
-    </div>
-</footer>
+<footer></footer>
 
 <!-- Tesseract.js Library -->
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
@@ -467,51 +473,59 @@
     const downloadBtn = document.getElementById('download-btn');
     const charCount = document.getElementById('char-count');
 
-    let worker = null;
-
-    async function initWorker() {
-        if (worker) return worker;
-        
-        statusText.innerText = "Initializing OCR Engine...";
-        progressContainer.style.display = "block";
-        progressBar.style.width = "20%";
-
-        worker = await Tesseract.createWorker(mainLang.value, 1, {
-            logger: m => {
-                if (m.status === 'recognizing text') {
-                    progressBar.style.width = (m.progress * 100) + "%";
-                }
-                statusText.innerText = m.status.charAt(0).toUpperCase() + m.status.slice(1) + "...";
-            }
-        });
-        
-        return worker;
-    }
 
     async function processOCR(file) {
+        if (worker) {
+            await worker.terminate();
+            worker = null;
+        }
+
         try {
+            statusText.innerText = "Initializing OCR Engine...";
+            progressContainer.style.display = "block";
+            progressBar.style.width = "10%";
+
             // Show preview
             const reader = new FileReader();
             reader.onload = e => {
                 imagePreview.src = e.target.result;
                 workspace.style.display = "grid";
+                workspace.scrollIntoView({ behavior: 'smooth' });
             };
             reader.readAsDataURL(file);
 
-            const ocrWorker = await initWorker();
+            // New Tesseract v5 Syntax
+            worker = await Tesseract.createWorker(mainLang.value, 1, {
+                logger: m => {
+                    if (m.status === 'recognizing text') {
+                        progressBar.style.width = (10 + (m.progress * 90)) + "%";
+                        statusText.innerText = `Recognizing text... ${Math.round(m.progress * 100)}%`;
+                    } else {
+                        statusText.innerText = m.status.charAt(0).toUpperCase() + m.status.slice(1) + "...";
+                    }
+                }
+            });
             
-            const { data: { text } } = await ocrWorker.recognize(file);
+            const { data } = await worker.recognize(file);
+            const text = data.text;
+            const confidence = data.confidence;
             
             outputText.value = text;
             charCount.innerText = text.length + " characters";
-            statusText.innerText = "Processing Complete!";
+            statusText.innerText = "Extraction Successful!";
             progressBar.style.width = "100%";
+
+            // Show confidence badge
+            const confBox = document.getElementById('confidence-box');
+            let colorClass = 'conf-high';
+            if (confidence < 70) colorClass = 'conf-med';
+            if (confidence < 40) colorClass = 'conf-low';
             
-            // Terminate worker if language changes next time
-            // Or just leave it for re-use if same language
+            confBox.innerHTML = `<span class="confidence-badge ${colorClass}">Confidence: ${Math.round(confidence)}%</span>`;
+            
         } catch (err) {
             console.error(err);
-            statusText.innerText = "Error processing image. Please try again.";
+            statusText.innerText = "Error: Text could not be extracted. Try a clearer image.";
         }
     }
 
@@ -551,12 +565,8 @@
         element.click();
     };
 
-    mainLang.onchange = async () => {
-        if (worker) {
-            await worker.terminate();
-            worker = null;
-        }
-        statusText.innerText = "Language updated. Ready.";
+    mainLang.onchange = () => {
+        statusText.innerText = `Language set to ${mainLang.options[mainLang.selectedIndex].text}`;
     };
 
     // Mobile Menu

@@ -155,21 +155,43 @@
             color: var(--text-color);
             word-break: break-all;
             line-height: 1.4;
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+
+        .copy-btn-mini {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            width: fit-content;
+        }
+
+        .copy-btn-mini:hover {
+            background: var(--primary-gradient);
+            transform: scale(1.05);
         }
 
         .copy-hint {
             position: absolute;
-            bottom: 0.75rem;
+            top: 0.75rem;
             right: 0.75rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .font-card:hover .copy-hint {
-            opacity: 1;
+            padding: 0.2rem 0.5rem;
+            background: #f1f5f9;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
         }
 
         /* Success Toast */
@@ -312,7 +334,7 @@
     <div class="container">
         <div class="header-content">
             <a href="index.html" class="logo-center">
-                <img src="app-icon.png" alt="WorldOfTools Logo" width="36" height="36">
+                <img src="/logo.svg" alt="WorldOfTools Logo" width="36" height="36">
                 <div class="logo-text-block">
                     <span class="logo-brand">WorldOfTools</span>
                     <span class="logo-tagline">100% Private & Free</span>
@@ -373,13 +395,16 @@
 
         <section class="input-hero">
             <div class="input-group">
-                <label for="font-input">Type your text here...</label>
-                <textarea id="font-input" class="main-textarea" placeholder="Hello World..." autofocus>Hello World</textarea>
+                <label for="font-input">Type or Paste your text here...</label>
+                <textarea id="font-input" class="main-textarea" placeholder="Type your name or bio here..." autofocus>Hello World</textarea>
             </div>
-            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
-                <span style="font-size: 0.85rem; color: var(--text-muted);">✨ Real-time Live Preview</span>
-                <span style="font-size: 0.85rem; color: var(--text-muted);">⚡ 100% Client-Side</span>
-                <span style="font-size: 0.85rem; color: var(--text-muted);">🔒 No Data Stored</span>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-secondary" onclick="resetInput()" style="padding: 0.6rem 1.5rem; border-radius: 12px; font-weight: 700;">🔄 Reset Styles</button>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                <span style="font-size: 0.8rem; color: var(--text-muted); background: #f8fafc; padding: 0.3rem 0.6rem; border-radius: 6px;">✨ Real-time Preview</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted); background: #f8fafc; padding: 0.3rem 0.6rem; border-radius: 6px;">⚡ 100% Browser-Based</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted); background: #f8fafc; padding: 0.3rem 0.6rem; border-radius: 6px;">🔒 Private Processing</span>
             </div>
         </section>
 
@@ -416,39 +441,69 @@
             </div>
         </section>
 
-        <section class="guide-content" style="margin-top: 5rem;">
-            <h2>How to Use the Fancy Text Generator?</h2>
-            <p>Our fancy font generator is designed to be the simplest and fastest tool to customize your social media presence. Simply type your text into the box above, and you'll instantly see over 100 styles to choose from.</p>
-            
-            <div class="results-grid" style="grid-template-columns: 1fr 1fr; margin-top: 2rem;">
-                <div class="card">
-                    <h3 style="margin-bottom: 1rem;">🌟 Perfect for Social Media</h3>
-                    <p>Standard fonts are boring. Use our generator to create **STYLISH BIOS**, **EYE-CATCHING CAPTIONS**, and **UNIQUE USERNAMES**. Works perfectly on Instagram, WhatsApp, Facebook, TikTok, Discord, and Telegram.</p>
-                </div>
-                <div class="card">
-                    <h3 style="margin-bottom: 1rem;">🔒 100% Private & Mobile-First</h3>
-                    <p>Unlike other font generators, WorldOfTools processes your text entirely in your browser. Your text is **never sent to our server**. Our UI is optimized for mobile devices so you can copy and paste on the go.</p>
-                </div>
-            </div>
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">What is a Fancy Font Generator?</h2>
+                <p style="line-height:1.8;color:#4b5563;">
+                    The <strong>Fancy Font Generator</strong> by WorldOfTools is a sophisticated Unicode-based utility that transforms your standard text into stylized characters. Unlike traditional fonts that require installation, these stylish fonts use special mathematical and script characters from the Unicode standard, making them compatible with almost all social media platforms including <strong>Instagram, TikTok, WhatsApp, and Discord</strong>.
+                </p>
+            </section>
 
-            <h2 style="margin-top: 4rem;">Popular Font Styles for Bio</h2>
-            <p>We've included the most trending Unicode styles globally:</p>
-            <ul style="margin-left: 2rem; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <li><strong>Mathematical Bold & Italic:</strong> Perfect for emphasis.</li>
-                <li><strong>Cursive & Script:</strong> Elegant styles for professional headers.</li>
-                <li><strong>Medieval & Fraktur:</strong> For a bold, artistic look.</li>
-                <li><strong>Bubble & Boxed:</strong> Fun fonts for highlighting emojis.</li>
-                <li><strong>Hand-drawn Styles:</strong> Unique characters that look like sketches.</li>
-            </ul>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Use Stylish Fonts for Social Media</h2>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Type your name, bio, or caption into the generator box at the top.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Scroll through the 100+ generated styles and click the <strong>"Copy"</strong> button next to your favorite.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;">Paste it into your Instagram bio, TikTok profile, or Facebook post instantly!</p>
+                </div>
+            </section>
 
-            <h2 style="margin-top: 4rem;">अक्सर पूछे जाने वाले प्रश्न (FAQ) - Hindi Support</h2>
-            <div class="card" style="margin-top: 1.5rem;">
-                <p><strong>क्या यह इंस्टाग्राम पर काम करेगा?</strong></p>
-                <p>हाँ, यह टूल विशेष रूप से इंस्टाग्राम के लिए बनाया गया है। आप बस टेक्स्ट कॉपी करें और अपनी इंस्टाग्राम बायो या कैप्शन में पेस्ट करें।</p>
-                <br>
-                <p><strong>Is it free to use?</strong></p>
-                <p>Absolutely. WorldOfTools is a forever-free platform with no hidden limits or costs.</p>
-            </div>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Key Features — Why Choose Our Tool?</h2>
+                <ul style="list-style:none;padding:0;margin:0;">
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>100+ Unique Styles:</strong> From cursive script and bold serif to bubbles and medieval gothic styles.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Instagram Bio Preview:</strong> See exactly how your text will look in a mobile social profile before you copy.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>One-Click Copy:</strong> No more highlighting text manually; use our easy copy buttons.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Privacy Guaranteed:</strong> Your data stays in your browser. We never track what you generate.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Will these fonts work on Instagram?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes! These styles use Unicode characters which are natively supported by Instagram for bios, names, and captions.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Bio ke liye stylish text copy kaise karein?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Apna text upar likhein, 'Copy' button par click karein, aur Instagram bio mein jaakar paste kar dein. Yeh bilkul free hai.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Are these fonts safe for my account?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. These are standard characters and do not require any app permissions or account access.</p>
+                </details>
+            </section>
+        </div>
         <section class="related-tools" style="margin-top: 5rem;">
             <h2 style="text-align: center; margin-bottom: 2rem;">Tools You Might Need 🚀</h2>
             <div class="tools-grid">
@@ -481,49 +536,7 @@
     <span class="checkmark">✓</span> Copied to clipboard!
 </div>
 
-<footer style="background: #0f172a; color: #f8fafc; padding: 5rem 0 2rem; margin-top: 8rem;">
-    <div class="container">
-        <div class="footer-link-grid">
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Popular Tools</h4>
-                <ul class="footer-links">
-                    <li><a href="image-compressor.html">Image Compressor</a></li>
-                    <li><a href="background-remover.html">Background Remover</a></li>
-                    <li><a href="gst-calculator.html">GST Calculator</a></li>
-                    <li><a href="emi-calculator.html">EMI Calculator</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Social Media Tools</h4>
-                <ul class="footer-links">
-                    <li><a href="fancy-font-generator.html" class="featured-link">Fancy font Generator</a></li>
-                    <li><a href="youtube-thumbnail-downloader.html">YouTube Downloader</a></li>
-                    <li><a href="qr-code-generator.html">QR Code Generator</a></li>
-                    <li><a href="barcode-generator.html">Barcode Generator</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Privacy & Terms</h4>
-                <ul class="footer-links">
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="about-us.html">About WorldOfTools</a></li>
-                    <li><a href="contact-us.html">Contact Support</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Recent Tools</h4>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <a href="fancy-font-generator.html" class="footer-badge">New: Fancy Font Gen</a>
-                    <a href="image-upscaler.html" class="footer-badge">AI Upscaler</a>
-                </div>
-            </div>
-        </div>
-        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem; padding-top: 2rem; text-align: center; color: #64748b; font-size: 0.9rem;">
-            &copy; 2026 WorldOfTools. All rights reserved. 100% Client-Side Processing for Ultimate Privacy.
-        </div>
-    </div>
-</footer>
+<footer></footer>
 
 <script>
     const fontInput = document.getElementById('font-input');
@@ -597,14 +610,17 @@
                 <div>
                     <div class="font-label">${style.name}</div>
                     <div class="font-output">${transformedText}</div>
+                    <button class="copy-btn-mini" onclick="copyIndividual('${transformedText.replace(/'/g, "\\'")}', this)">
+                        <span>📋</span> Copy Text
+                    </button>
                 </div>
-                <div class="copy-hint">Click to copy</div>
+                <div class="copy-hint">${style.name}</div>
             `;
             
-            card.onclick = () => {
-                navigator.clipboard.writeText(transformedText);
-                showToast();
-                bioPreview.innerText = transformedText;
+            card.onclick = (e) => {
+                if (e.target.tagName !== 'BUTTON') {
+                    copyIndividual(transformedText, card.querySelector('.copy-btn-mini'));
+                }
             };
             
             resultsGrid.appendChild(card);
@@ -614,9 +630,24 @@
         bioPreview.innerText = convert(text, styles[6]); // Script default
     }
 
-    function showToast() {
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2000);
+    function copyIndividual(text, btn) {
+        navigator.clipboard.writeText(text);
+        showToast();
+        bioPreview.innerText = text;
+        
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "<span>✅</span> Copied!";
+        btn.style.background = "#059669";
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = "";
+        }, 2000);
+    }
+
+    function resetInput() {
+        fontInput.value = "";
+        generateFonts();
+        fontInput.focus();
     }
 
     fontInput.oninput = generateFonts;

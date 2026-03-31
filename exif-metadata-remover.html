@@ -183,9 +183,18 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 960px) {
             .metadata-grid {
                 grid-template-columns: 1fr;
+            }
+            .preview-pane img {
+                max-height: 300px;
+            }
+            .action-bar {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
             }
         }
     </style>
@@ -196,7 +205,7 @@
     <div class="container">
         <div class="header-content">
             <a href="index.html" class="logo-center">
-                <img src="app-icon.png" alt="WorldOfTools Logo" width="36" height="36">
+                <img src="/logo.svg" alt="WorldOfTools Logo" width="36" height="36">
                 <div class="logo-text-block">
                     <span class="logo-brand">WorldOfTools</span>
                     <span class="logo-tagline">100% Private & Free</span>
@@ -288,34 +297,69 @@
             </div>
         </section>
 
-        <section class="guide-content" style="margin-top: 5rem;">
-            <h2>Protect Your Privacy with One Click</h2>
-            <p>Every time you take a photo with your smartphone, it records hidden data called **EXIF (Exchangeable Image File Format)**. This data often includes your exact GPS coordinates, the date and time of the photo, and the specific device used. Sharing these photos online means sharing your private location.</p>
-            
-            <div class="results-grid" style="grid-template-columns: 1fr 1fr; margin-top: 2rem; display: grid; gap: 2rem;">
-                <div class="card">
-                    <h3>💎 Lossless & No Re-encoding</h3>
-                    <p>Unlike other tools that "save as" a new image (which loses quality), our tool performs **Binary Surgery**. We surgically remove the metadata segments from the file buffer, keeping every single pixel exactly as it was original.</p>
-                </div>
-                <div class="card">
-                    <h3>🔒 100% Client-Side</h3>
-                    <p>Your photos are **never uploaded to any server**. The entire scanning and scrubbing process happens locally on your computer or phone. This is the only way to ensure 100% privacy for sensitive photos.</p>
-                </div>
-            </div>
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Why You Need an EXIF Metadata Remover</h2>
+                <p style="line-height:1.8;color:#4b5563;">
+                    The <strong>EXIF Metadata Remover</strong> by WorldOfTools is a privacy-first utility that helps you protect your digital footprint. Every photo you take with a modern camera or smartphone contains hidden markers—GPS coordinates, device serial numbers, and exact timestamps. When you share these photos on social media or via email, you are inadvertently sharing your home address or daily routines. Our tool strips this "invisible" data, leaving only the beautiful pixels you intended to share.
+                </p>
+            </section>
 
-            <h2 style="margin-top: 4rem;">What metadata is removed?</h2>
-            <ul style="margin-left: 2rem; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                <li><strong>GPS Location:</strong> Latitude, Longitude, and Altitude where the photo was taken.</li>
-                <li><strong>Device Info:</strong> Smartphone model, camera maker, lens specs, and serial numbers.</li>
-                <li><strong>Software:</strong> Editing apps used (e.g., Photoshop, Lightroom) and OS versions.</li>
-                <li><strong>Date/Time:</strong> Absolute timestamp of when the shutter was pressed.</li>
-                <li><strong>User Data:</strong> Copyright info, owner name, and comments.</li>
-            </ul>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Remove Metadata — 3 Simple Steps</h2>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Upload Photo:</strong> Select a JPEG, PNG, or WebP image from your gallery.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Analyze Data:</strong> Our tool instantly scans the file and highlights 'High Risk' markers like GPS and Device IDs.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Scrub & Download:</strong> Click 'Scrub All Metadata' to surgically remove the tags and download your private photo.</p>
+                </div>
+            </section>
 
-            <h2 style="margin-top: 4rem;">Photo se Location kaise hataye? (Hindi)</h2>
-            <div class="card" style="margin-top: 1.5rem;">
-                <p>अपनी फोटो को सुरक्षित बनाने के लिए ऊपर 'Upload' बटन का उपयोग करें। हमारा टूल आपकी फोटो में छिपी **GPS लोकेशन** और अन्य डेटा को तुरंत ढूंढ लेगा। 'Scrub All' बटन दबाते ही वह डेटा सुरक्षित रूप से हटा दिया जाएगा बिना फोटो की क्वालिटी कम किए।</p>
-            </div>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Premium Privacy Features</h2>
+                <ul style="list-style:none;padding:0;margin:0;">
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Binary Surgery Technology:</strong> We don't re-compress your image. We surgically remove metadata segments from the original file buffer for zero quality loss.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>GPS Scrubbing:</strong> Specifically targets and destroys latitude/longitude markers that expose your home or work location.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>100% Client-Side:</strong> No data is ever sent to our servers. Your private photos stay on your device throughout the entire process.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Cross-Platform Support:</strong> Works flawlessly on Android, iOS, Windows, and Mac browsers.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Will removing EXIF data lower photo quality?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">No! Unlike most online tools that "re-save" your image, WorldOfTools uses binary manipulation to strip metadata segments without touching the pixel data. Your image quality remains 100% identical.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Photo se location kaise hataye? (Hindi)</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Upni photo upload karein, 'Scrub All' button dabayein, aur GPS data ko hamesha ke liye remove karein. Yeh hamare secure browser engine mein privately hota hai.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is there a file size limit?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">We support photos up to 20MB, which covers most high-resolution DSLR and smartphone images.</p>
+                </details>
+            </section>
+        </div>
         <section class="related-tools" style="margin-top: 5rem;">
             <h2 style="text-align: center; margin-bottom: 2rem;">Protect Your Privacy Further 🔒</h2>
             <div class="tools-grid">
@@ -344,32 +388,7 @@
     </div>
 </main>
 
-<footer style="background: #0f172a; color: #f8fafc; padding: 5rem 0 2rem; margin-top: 8rem;">
-    <div class="container">
-        <div class="footer-link-grid">
-            <div class="footer-col" style="grid-column: span 2;">
-                <h4 class="footer-col-heading">Privacy-First Platform</h4>
-                <p style="color: #64748b; font-size: 0.9rem; max-width: 400px; margin-bottom: 2rem;">WorldOfTools provides mission-critical utilities that process all data locally. We never see your files, your passwords, or your data.</p>
-                <div style="display: flex; gap: 0.5rem;">
-                    <a href="exif-metadata-remover.html" class="footer-badge">Latest: EXIF Scrubber</a>
-                    <a href="fancy-font-generator.html" class="footer-badge">New: Fancy Font Gen</a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4 class="footer-col-heading">Privacy Stack</h4>
-                <ul class="footer-links">
-                    <li><a href="password-generator.html">Password Generator</a></li>
-                    <li><a href="hash-generator.html">Hash Generator</a></li>
-                    <li><a href="jwt-decoder.html">JWT Decoder</a></li>
-                    <li><a href="privacy.html">Privacy Promise</a></li>
-                </ul>
-            </div>
-        </div>
-        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem; padding-top: 2rem; text-align: center; color: #64748b; font-size: 0.9rem;">
-            &copy; 2026 WorldOfTools. No Pixel Left Behind.
-        </div>
-    </div>
-</footer>
+<footer></footer>
 
 <!-- EXIFR Library for advanced extraction -->
 <script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
@@ -397,6 +416,7 @@
         reader.onload = e => {
             imagePreview.src = e.target.result;
             workspace.style.display = "grid";
+            workspace.scrollIntoView({ behavior: 'smooth' });
         };
         reader.readAsDataURL(file);
 

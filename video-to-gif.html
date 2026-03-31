@@ -162,6 +162,21 @@
             display: none;
         }
 
+        @media (max-width: 960px) {
+            .video-workspace {
+                grid-template-columns: 1fr;
+            }
+            .preview-box {
+                min-height: 250px;
+            }
+            .controls-pane {
+                padding: 1.25rem;
+            }
+            .trim-controls {
+                gap: 0.75rem;
+            }
+        }
+
         .loader {
             width: 48px;
             height: 48px;
@@ -193,7 +208,7 @@
     <div class="container" style="padding-top: 0; padding-bottom: 0;">
         <div class="header-content">
             <a href="index.html" class="logo-center">
-                <img src="app-icon.png" alt="WorldOfTools Logo" width="36" height="36">
+                <img src="/logo.svg" alt="WorldOfTools Logo" width="36" height="36">
                 <div class="logo-text-block">
                     <span class="logo-brand">WorldOfTools</span>
                     <span class="logo-tagline">100% Private & Free</span>
@@ -317,34 +332,69 @@
             </aside>
         </section>
 
-        <section class="guide-content" style="margin-top: 6rem;">
-            <h2>Pro Video to GIF Converter — Unlimited & Private</h2>
-            <p>Most online converters upload your video to a server, add watermarks, and limit you to 5-10 second clips. At WorldOfTools, our generator runs **entirely in your browser**. We use WebAssembly to bring desktop-grade FFmpeg power to your screen.</p>
-            
-            <div class="results-grid" style="grid-template-columns: 1fr 1fr; margin-top: 2rem; display: grid; gap: 2rem;">
-                <div class="card">
-                    <h3>🎬 Ultra-Precise Trimming</h3>
-                    <p>Select the exact sub-second range of your video to capture that perfect moment. Whether it's a reaction shot or a product demo, our trimmer is frame-accurate.</p>
-                </div>
-                <div class="card">
-                    <h3>📏 Custom Quality & Resolution</h3>
-                    <p>Adjust the **FPS** and **Resolution** to balance between smooth movement and file size. Perfect for creating GIFs that fit within Discord and Telegram's 8MB limits.</p>
-                </div>
-            </div>
+        <!-- SEO Content Block -->
+        <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Advanced Video to GIF Converter</h2>
+                <p style="line-height:1.8;color:#4b5563;">
+                    The <strong>Video to GIF Generator</strong> by WorldOfTools is a premium utilities tool that allows you to turn any video clip into a high-quality animated GIF. Whether you need a funny meme for Reddit, a product demonstration for your website, or a quick reaction for Discord, our converter provides the precision and quality you need without the bloat of traditional online tools.
+                </p>
+            </section>
 
-            <h2 style="margin-top: 5rem;">Why use WorldOfTools GIF Maker?</h2>
-            <p>Our tool is built for creators, developers, and memes. Here is why we are better than EZGIF or GIPHY:</p>
-            <ul style="margin-left: 2rem; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-                <li><strong>No Watermark:</strong> We never ruin your content with logos.</li>
-                <li><strong>No Upload Limits:</strong> Convert videos up to 100MB right in your browser.</li>
-                <li><strong>High FPS:</strong> Support for 30FPS for buttery smooth animations.</li>
-                <li><strong>Privacy:</strong> Your video is never sent or stored on any server.</li>
-            </ul>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Make a GIF from Video</h2>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Upload:</strong> Select an MP4, WEBM, or MOV file from your gallery or desktop.</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Customize:</strong> Use the sliders to trim the start time and duration. Choose your preferred FPS (Frames Per Second).</p>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
+                    <p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Generate:</strong> Click 'Generate GIF' and wait a few seconds. Local processing means no data leaves your browser!</p>
+                </div>
+            </section>
 
-            <h2 style="margin-top: 5rem;">Video se GIF kaise banaye? (Hindi)</h2>
-            <div class="card" style="margin-top: 1.5rem;">
-                <p>अपनी वीडियो फाइल चुनें, वह हिस्सा सेलेक्ट करें जिसे आप GIF बनाना चाहते हैं (Start and Duration), और 'Generate GIF' बटन पर क्लिक करें। कुछ ही सेकंड में हाई-क्वालिटी GIF तैयार हो जाएगी जिसे आप 'Download' कर सकते हैं। यह सब आपके फोन या कंप्यूटर पर सुरक्षित रूप से होता है।</p>
-            </div>
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Professional Features</h2>
+                <ul style="list-style:none;padding:0;margin:0;">
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>No Watermarks:</strong> We believe your content should stay yours. Zero logos added.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Variable FPS Control:</strong> Choose from 10fps for low size to 30fps for ultra-smooth movement.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>Smart Compression:</strong> Optimized algorithms to ensure high quality at the lowest possible KB size.</span>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+                        <span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
+                        <span style="line-height:1.6;"><strong>100% Secure:</strong> Powered by WebAssembly, your video never touches our servers. Your privacy is paramount.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom:3rem;">
+                <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Can I convert 4K videos to GIF?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes! While processing 4K on a mobile device may be slower, our engine supports all high-resolution formats. We recommend choosing a lower output resolution for best performance on social media.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Video se GIF banane wala software free hai?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Haan, WorldOfTools bilkul free hai. Aap jitni chahein utni videos convert kar sakte hain bina kisi limit ya watermark ke.</p>
+                </details>
+                <details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+                    <summary style="font-weight:700;cursor:pointer;">Is there a time limit for GIFs?</summary>
+                    <p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">We recommend keeping GIFs under 15 seconds for optimal file size and loading speed, though our tool can handle longer clips depending on your device's memory.</p>
+                </details>
+            </section>
+        </div>
         <section class="related-tools" style="margin-top: 5rem;">
             <h2 style="text-align: center; margin-bottom: 2rem;">Related Media Tools 🚀</h2>
             <div class="tools-grid">
@@ -373,26 +423,7 @@
     </div>
 </main>
 
-<footer style="background: #0f172a; color: #f8fafc; padding: 5rem 0 2rem; margin-top: 8rem;">
-    <div class="container">
-        <div class="footer-link-grid">
-            <div class="footer-col" style="grid-column: span 2;">
-                <h4 class="footer-col-heading">WorldOfTools Media Engine</h4>
-                <p style="color: #64748b; font-size: 0.9rem; max-width: 400px; margin-bottom: 2rem;">Empowering creators with lossless, private media conversion tools. All processing is powered by WebAssembly (WASM).</p>
-            </div>
-            <div class="footer-col" style="grid-column: span 2; display: flex; flex-direction: column; align-items: flex-end;">
-                <h4 class="footer-col-heading">Recent Updates</h4>
-                <div style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.5rem;">
-                    <a href="video-to-gif.html" class="footer-badge" style="background: var(--primary-color);">Pro: Video to GIF</a>
-                    <a href="image-to-text-ocr.html" class="footer-badge">New: Image to Text</a>
-                </div>
-            </div>
-        </div>
-        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem; padding-top: 2rem; text-align: center; color: #64748b; font-size: 0.9rem;">
-            &copy; 2026 WorldOfTools. Processed with FFmpeg.wasm.
-        </div>
-    </div>
-</footer>
+<footer></footer>
 
 <!-- FFmpeg.wasm v0.12+ (Module Version) -->
 <script type="module">
@@ -468,17 +499,18 @@
         const res = resSelect.value;
 
         try {
-            // Write input file
-            await ffmpeg.writeFile('input.mp4', await fetchFile(videoFile));
+            // Write input file with correct extension
+            const ext = videoFile.name.split('.').pop();
+            const inputFileName = `input.${ext}`;
+            await ffmpeg.writeFile(inputFileName, await fetchFile(videoFile));
 
             // Construct FFmpeg command
-            // Examples: -ss 00:00:02 -t 5 -i input.mp4 -vf "fps=15,scale=480:-1" output.gif
             const vfParams = `fps=${fps}${res !== "-1" ? `,scale=${res}:-1` : ""}`;
             
             await ffmpeg.exec([
-                '-ss', start,
-                '-t', dur,
-                '-i', 'input.mp4',
+                '-ss', start.toString(),
+                '-t', dur.toString(),
+                '-i', inputFileName,
                 '-vf', vfParams,
                 'output.gif'
             ]);
