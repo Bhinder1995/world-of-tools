@@ -30,18 +30,19 @@
     .card{transition:transform .3s ease}
     .card:hover{transform:translateY(-5px)}
     .kw-list{display:grid;gap:.6rem;margin-top:1.25rem}
-    .kw-row{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;background:white;border:1.5px solid var(--border-color);border-radius:12px;cursor:pointer;transition:all .2s;min-width:0;width:100%;box-sizing:border-box}
-    .kw-row:hover{border-color:var(--primary-color);box-shadow:0 4px 16px rgba(79,70,229,.1);transform:translateY(-1px)}
-    .kw-text{font-weight:600;font-size:.95rem;color:#1e293b;flex:1;min-width:0;overflow-wrap:anywhere;word-break:break-word}
-    .kw-meta{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0;align-items:center}
-    .badge{padding:.2rem .6rem;border-radius:99px;font-size:.72rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+    .kw-row{display:flex;flex-direction:column;gap:.75rem;padding:1.1rem 1.35rem;background:white;border:1.5px solid var(--border-color);border-radius:16px;cursor:pointer;transition:all .2s;width:100%;box-sizing:border-box}
+    .kw-row:hover{border-color:var(--primary-color);box-shadow:0 8px 24px rgba(79,70,229,.12);transform:translateY(-2px)}
+    .kw-text{font-weight:700;font-size:1.1rem;color:#0f172a;width:100%;min-width:0;overflow-wrap:anywhere;word-break:break-word;display:block}
+    .kw-meta-row{display:flex;align-items:center;justify-content:space-between;width:100%;gap:1rem}
+    .kw-meta{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;flex:1}
+    .badge{padding:.3rem .75rem;border-radius:8px;font-size:.75rem;font-weight:700;white-space:nowrap;flex-shrink:0}
     .b-intent{background:#eef2ff;color:#4338ca}
     .b-type{background:#f0fdf4;color:#15803d}
     .b-low{background:#f0fdf4;color:#15803d}
     .b-med{background:#fffbeb;color:#b45309}
     .b-high{background:#fef2f2;color:#dc2626}
-    .copy-btn{background:none;border:none;cursor:pointer;font-size:.9rem;opacity:.35;transition:opacity .2s;padding:.2rem;flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center}
-    .copy-btn:hover{opacity:1}
+    .copy-btn{background:#f1f5f9;border:1px solid #e2e8f0;cursor:pointer;font-size:1rem;color:var(--text-muted);width:36px;height:36px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:10px;transition:all .2s}
+    .copy-btn:hover{background:var(--primary-color);color:white;border-color:var(--primary-color);transform:scale(1.1)}
     .sec-title{font-size:1.1rem;font-weight:800;margin:2rem 0 .75rem;color:#1e293b;display:flex;align-items:center;gap:.5rem}
     .stat-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem;justify-content:center}
     .stat-chip{padding:.55rem 1.1rem;border-radius:99px;font-weight:700;font-size:.88rem;background:#eef2ff;color:var(--primary-color)}
@@ -537,13 +538,15 @@
     if (!items.length) return `<div class="no-results">No keywords found. Try a different seed term.</div>`;
     const rows = items.slice(0, 100).map(k =>
       `<div class="kw-row" onclick="copyKw(this,'${k.keyword.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">
-        <span class="kw-text">${k.keyword}</span>
-        <span class="kw-meta">
-          <span class="badge b-intent">${k.intent}</span>
-          <span class="badge b-type">${k.type}</span>
-          ${diffBadge(k.difficulty)}
-        </span>
-        <button class="copy-btn" title="Copy">📋</button>
+        <div class="kw-text">${k.keyword}</div>
+        <div class="kw-meta-row">
+          <div class="kw-meta">
+            <span class="badge b-intent">${k.intent}</span>
+            <span class="badge b-type">${k.type}</span>
+            ${diffBadge(k.difficulty)}
+          </div>
+          <button class="copy-btn" title="Copy">📋</button>
+        </div>
       </div>`
     ).join('');
 
