@@ -1,4 +1,4 @@
-const CACHE_NAME = 'worldoftools-v126';
+const CACHE_NAME = 'worldoftools-v127';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -165,12 +165,14 @@ const ASSETS_TO_CACHE = [
     '/exif-metadata-remover',
     '/video-to-gif',
     '/video-to-mp3-converter',
+    '/keyword-research-tool',
     '/js/coi-serviceworker.js',
     '/guides/fancy-font-generator-guide',
     '/guides/image-to-text-ocr-guide',
     '/guides/remove-exif-metadata-guide',
     '/guides/video-to-gif-converter-guide',
-    '/guides/video-to-mp3-extractor-guide'
+    '/guides/video-to-mp3-extractor-guide',
+    '/guides/keyword-research-guide'
 ];
 
 

@@ -141,6 +141,9 @@ function injectHeader() {
                                         <a href="/case-converter" class="mega-item">
                                             <span class="nav-icon" style="background:#9b59b6;">Cc</span> Case Converter
                                         </a>
+                                        <a href="/keyword-research-tool" class="mega-item">
+                                            <span class="nav-icon" style="background:#f59e0b;">🔑</span> Keyword Researcher
+                                        </a>
                                         <a href="/seo-meta-tag-generator" class="mega-item">
                                             <span class="nav-icon" style="background:#e74c3c;">🔍</span> Meta Tag Generator
                                         </a>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <script></script>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Best Free Keyword Research Tool — Find SEO Keywords &amp; Competitor Traffic</title>
+  <meta content="Use the best free keyword research tool to find high-volume SEO keywords, long-tail ideas, and analyze competitor keyword traffic. Overcome competitors with free insights, no login needed." name="description"/>
+  <meta content="keyword research tool free, best free keyword research tool, SEO keyword finder, competitor keyword traffic, long tail keyword generator, keyword ideas, keyword planner alternative, free SEO tools, keyword research India, how to find keywords for SEO, content keyword ideas" name="keywords"/>
+
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},{"@type":"ListItem","position":2,"name":"Keyword Research Tool","item":"https://worldoftools.in/keyword-research-tool"}]}
+  </script>
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a keyword research tool?","acceptedAnswer":{"@type":"Answer","text":"A keyword research tool helps you discover what words and phrases people search on Google. It finds related keywords, long-tail variations, and content ideas to help your website rank higher."}},{"@type":"Question","name":"How do I find low competition keywords for my blog?","acceptedAnswer":{"@type":"Answer","text":"Enter your seed keyword and switch to the Long-Tail tab. Long-tail keywords (4+ words) have lower competition and higher conversion. Focus on question-based keywords matching your audience's intent."}},{"@type":"Question","name":"Is this keyword research tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no login or signup required. All keyword ideas are generated instantly in your browser with no data sent to any server."}},{"@type":"Question","name":"Is my keyword data private?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs locally in your browser. No keyword data is uploaded, stored, or shared with anyone."}}]}
+  </script>
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Keyword Research Tool","operatingSystem":"Any","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"WebApplication","name":"Keyword Research Tool","description":"Find SEO keywords, long-tail variations, and content ideas for free. 100% client-side.","url":"https://worldoftools.in/keyword-research-tool","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isPartOf":{"@type":"CollectionPage","name":"SEO Tools Online","url":"https://worldoftools.in/seo-tools"}}
+  </script>
+
+  <style>
+    .tabs{display:flex;gap:.5rem;margin-bottom:2rem;overflow-x:auto;padding-bottom:.5rem}
+    .tab-btn{padding:.75rem 1.5rem;border-radius:12px;border:2px solid var(--border-color);background:white;cursor:pointer;font-weight:600;white-space:nowrap;transition:all .2s;font-family:inherit;font-size:.95rem}
+    .tab-btn.active{background:var(--primary-color);color:white;border-color:var(--primary-color)}
+    input,textarea,select{font-size:1.05rem;padding:1rem;width:100%;box-sizing:border-box;border:2px solid var(--border-color);border-radius:10px;font-family:inherit;outline:none;transition:border-color .2s}
+    input:focus,textarea:focus,select:focus{border-color:var(--primary-color)}
+    .card{transition:transform .3s ease}
+    .card:hover{transform:translateY(-5px)}
+    .kw-list{display:grid;gap:.6rem;margin-top:1.25rem}
+    .kw-row{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;background:white;border:1.5px solid var(--border-color);border-radius:12px;cursor:pointer;transition:all .2s}
+    .kw-row:hover{border-color:var(--primary-color);box-shadow:0 4px 16px rgba(79,70,229,.1);transform:translateY(-1px)}
+    .kw-text{font-weight:600;font-size:.95rem;color:#1e293b;flex:1}
+    .kw-meta{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0}
+    .badge{padding:.2rem .6rem;border-radius:99px;font-size:.72rem;font-weight:700;white-space:nowrap}
+    .b-intent{background:#eef2ff;color:#4338ca}
+    .b-type{background:#f0fdf4;color:#15803d}
+    .b-low{background:#f0fdf4;color:#15803d}
+    .b-med{background:#fffbeb;color:#b45309}
+    .b-high{background:#fef2f2;color:#dc2626}
+    .copy-btn{background:none;border:none;cursor:pointer;font-size:.9rem;opacity:.35;transition:opacity .2s;padding:.2rem;flex-shrink:0}
+    .copy-btn:hover{opacity:1}
+    .sec-title{font-size:1.1rem;font-weight:800;margin:2rem 0 .75rem;color:#1e293b;display:flex;align-items:center;gap:.5rem}
+    .stat-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem;justify-content:center}
+    .stat-chip{padding:.55rem 1.1rem;border-radius:99px;font-weight:700;font-size:.88rem;background:#eef2ff;color:var(--primary-color)}
+    .idea-card{background:#f8fafc;border:1px solid var(--border-color);border-radius:12px;padding:1.1rem 1.35rem;margin-bottom:.75rem}
+    .idea-card h4{margin:0 0 .4rem 0;font-size:.95rem;color:var(--primary-color)}
+    .idea-card p{margin:0;color:#4b5563;font-size:.88rem;line-height:1.6}
+    .seed-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+    .seed-tag{display:inline-flex;align-items:center;gap:.3rem;background:#eef2ff;color:var(--primary-color);border-radius:99px;padding:.3rem .85rem;font-size:.82rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;font-family:inherit}
+    .seed-tag:hover{background:var(--primary-color);color:white}
+    .export-bar{display:flex;gap:.65rem;margin-top:1.75rem;flex-wrap:wrap;justify-content:flex-end}
+    .loading-wrap{text-align:center;padding:3rem 1rem;display:none}
+    .spinner{width:48px;height:48px;border:5px solid #e2e8f0;border-top-color:var(--primary-color);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .results-anim{animation:fadeUp .45s ease-out}
+    .no-results{text-align:center;padding:2.5rem 1rem;color:var(--text-muted);font-weight:600}
+  </style>
+
+  <link href="https://worldoftools.in/keyword-research-tool" rel="canonical"/>
+  <link href="/css/style.css?v=2.5" rel="stylesheet"/>
+  <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="/manifest.json" rel="manifest"/>
+  <link href="/app-icon.png" rel="apple-touch-icon"/>
+  <meta content="#4f46e5" name="theme-color"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+  <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+ </head>
+
+ <body>
+  <header></header>
+
+  <main class="container"
+        data-category-name="SEO Tools"
+        data-category-url="/seo-tools"
+        data-tool-name="Keyword Research Tool">
+
+   <div class="tool-container">
+
+    <section class="tool-header">
+     <div class="privacy-badge-banner">
+      <span>🛡️</span>
+      <span>100% Private — Client-Side Processing</span>
+     </div>
+     <h1>Free Keyword Research Tool — Find SEO Keywords, Long-Tail Phrases &amp; Content Ideas</h1>
+     <p style="color:var(--text-muted);font-size:1.1rem;">
+      Generate hundreds of keyword ideas from any seed term. Discover long-tail keywords, question phrases, competitor angles, and content gaps — instantly in your browser.
+     </p>
+     <div style="margin-top: 1.5rem;">
+      <a class="btn btn-secondary" href="/guides/keyword-research-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">
+       📖 Tool Guide
+      </a>
+     </div>
+    </section>
+
+    <div class="tool-main-card">
+
+     <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('keyword-ideas')">💡 Keyword Ideas</button>
+      <button class="tab-btn" onclick="switchTab('long-tail')">🎯 Long-Tail Finder</button>
+      <button class="tab-btn" onclick="switchTab('questions')">❓ Questions</button>
+      <button class="tab-btn" onclick="switchTab('content-ideas')">📝 Content Ideas</button>
+      <button class="tab-btn" onclick="switchTab('competitor')">🕵️ Competitor Angles</button>
+     </div>
+
+     <div class="error-msg" id="errorMessage"></div>
+
+     <!-- TAB: Keyword Ideas -->
+     <div class="tab-content" id="keyword-ideas-tab">
+      <div class="input-group">
+       <label for="seedKeyword">Enter your seed keyword or topic</label>
+       <input id="seedKeyword" type="text" placeholder="e.g. home loan, digital marketing, protein powder India" autocomplete="off" onkeydown="if(event.key==='Enter')runTool()"/>
+      </div>
+      <div class="input-group">
+       <label for="industrySelect">Industry / Niche <span style="color:var(--text-muted);font-weight:400;">(optional — improves results)</span></label>
+       <select id="industrySelect">
+        <option value="">-- Select Industry --</option>
+        <option value="finance">Finance &amp; Banking</option>
+        <option value="ecommerce">E-Commerce &amp; Shopping</option>
+        <option value="health">Health &amp; Fitness</option>
+        <option value="education">Education &amp; Careers</option>
+        <option value="tech">Technology &amp; Software</option>
+        <option value="travel">Travel &amp; Tourism</option>
+        <option value="food">Food &amp; Recipes</option>
+        <option value="realestate">Real Estate</option>
+        <option value="marketing">Marketing &amp; SEO</option>
+        <option value="saas">SaaS &amp; Tools</option>
+       </select>
+      </div>
+      <div style="margin-bottom:1.25rem;">
+       <div style="font-size:.82rem;color:var(--text-muted);font-weight:600;margin-bottom:.4rem;">💡 Try a popular seed:</div>
+       <div class="seed-tags">
+        <button class="seed-tag" onclick="setSeed('home loan')">home loan</button>
+        <button class="seed-tag" onclick="setSeed('digital marketing')">digital marketing</button>
+        <button class="seed-tag" onclick="setSeed('python tutorial')">python tutorial</button>
+        <button class="seed-tag" onclick="setSeed('weight loss tips')">weight loss tips</button>
+        <button class="seed-tag" onclick="setSeed('protein powder India')">protein powder India</button>
+        <button class="seed-tag" onclick="setSeed('online business')">online business</button>
+       </div>
+      </div>
+      <button class="btn" style="width:100%;" onclick="runTool()">🔍 Find Keywords</button>
+     </div>
+
+     <!-- TAB: Long-Tail Finder -->
+     <div class="tab-content" id="long-tail-tab" style="display:none;">
+      <div class="input-group">
+       <label for="ltSeed">Enter your main keyword</label>
+       <input id="ltSeed" type="text" placeholder="e.g. credit card, keto diet, laptop under 50000" onkeydown="if(event.key==='Enter')runTool()"/>
+      </div>
+      <div class="input-group">
+       <label for="ltTarget">Target Audience</label>
+       <select id="ltTarget">
+        <option value="general">General</option>
+        <option value="beginner">Beginners</option>
+        <option value="expert">Experts / Professionals</option>
+        <option value="buyer">Buyers (ready to buy)</option>
+        <option value="india">India-specific</option>
+       </select>
+      </div>
+      <button class="btn" style="width:100%;" onclick="runTool()">🎯 Generate Long-Tail Keywords</button>
+     </div>
+
+     <!-- TAB: Questions -->
+     <div class="tab-content" id="questions-tab" style="display:none;">
+      <div class="input-group">
+       <label for="qSeed">Enter your topic or keyword</label>
+       <input id="qSeed" type="text" placeholder="e.g. mutual funds, wordpress, keto diet" onkeydown="if(event.key==='Enter')runTool()"/>
+      </div>
+      <div class="input-group">
+       <label for="qType">Question Type</label>
+       <select id="qType">
+        <option value="all">All Question Types</option>
+        <option value="how">How (How-to intent)</option>
+        <option value="what">What (Informational)</option>
+        <option value="why">Why (Research intent)</option>
+        <option value="which">Which / Best (Comparison)</option>
+        <option value="can">Can / Is (FAQ intent)</option>
+       </select>
+      </div>
+      <button class="btn" style="width:100%;" onclick="runTool()">❓ Find Question Keywords</button>
+     </div>
+
+     <!-- TAB: Content Ideas -->
+     <div class="tab-content" id="content-ideas-tab" style="display:none;">
+      <div class="input-group">
+       <label for="ciSeed">Enter your keyword or niche</label>
+       <input id="ciSeed" type="text" placeholder="e.g. email marketing, SIP investment, yoga for beginners" onkeydown="if(event.key==='Enter')runTool()"/>
+      </div>
+      <div class="input-group">
+       <label for="ciFormat">Content Format</label>
+       <select id="ciFormat">
+        <option value="all">All Formats</option>
+        <option value="blog">Blog Articles</option>
+        <option value="listicle">Listicles</option>
+        <option value="guide">Ultimate Guides</option>
+        <option value="comparison">Comparisons</option>
+        <option value="casestudy">Case Studies</option>
+       </select>
+      </div>
+      <button class="btn" style="width:100%;" onclick="runTool()">📝 Generate Content Ideas</button>
+     </div>
+
+     <!-- TAB: Competitor Angles -->
+     <div class="tab-content" id="competitor-tab" style="display:none;">
+      <div class="input-group">
+       <label for="compSeed">Enter your main keyword or product</label>
+       <input id="compSeed" type="text" placeholder="e.g. project management tool, online CA course, standing desk India" onkeydown="if(event.key==='Enter')runTool()"/>
+      </div>
+      <div class="input-group">
+       <label for="compType">Angle Type</label>
+       <select id="compType">
+        <option value="all">All Angles</option>
+        <option value="alternative">Alternatives &amp; Competitors</option>
+        <option value="vs">Comparison (vs)</option>
+        <option value="review">Reviews &amp; Ratings</option>
+        <option value="price">Price &amp; Discount</option>
+        <option value="problem">Pain Points &amp; Problems</option>
+       </select>
+      </div>
+      <button class="btn" style="width:100%;" onclick="runTool()">🕵️ Find Competitor Angles</button>
+     </div>
+
+     <div style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-muted);">
+      ⚡ All keyword data is generated locally in your browser. Nothing is uploaded or stored.
+     </div>
+
+     <!-- Loading -->
+     <div class="loading-wrap" id="loadingWrap">
+      <div class="spinner"></div>
+      <div style="font-weight:700;color:var(--text-muted);" id="loadingMsg">Generating keywords…</div>
+     </div>
+
+     <!-- Results -->
+     <div id="results" style="display:none;margin-top:3rem;" class="results-anim">
+      <hr style="border:0;border-top:1px solid var(--border-color);margin-bottom:2.5rem;"/>
+      <div id="resultsInner"></div>
+     </div>
+
+    </div>
+   </div>
+
+   <!-- SEO Content Block -->
+   <div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">What is a Keyword Research Tool?</h2>
+     <p style="line-height:1.8;color:#4b5563;">The <strong>Keyword Research Tool</strong> by WorldOfTools helps bloggers, SEO professionals, and content creators discover the exact search terms their target audience uses on Google. Instead of guessing, you get structured keyword ideas organised by intent, format, and competition level — all without any signup or paid subscription.</p>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">How to Do Keyword Research for SEO in India</h2>
+     <p style="line-height:1.8;color:#4b5563;">Start with a broad seed keyword in the <strong>Keyword Ideas</strong> tab. Use the <strong>Long-Tail Finder</strong> for low-competition phrases, then switch to <strong>Questions</strong> to capture featured snippet opportunities. Finally, use <strong>Competitor Angles</strong> to discover what alternative and review searches you can target.</p>
+    </section>
+
+     <section style="margin-bottom:3rem;">
+      <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">How to Get Competitor Traffic Insights?</h2>
+      <p style="line-height:1.8;color:#4b5563;">It is crucial to understand how top competitors get their traffic. Using the <strong>Competitor Angles</strong> tab, you can pinpoint the comparative phrases users type when evaluating products or services in your niche (e.g. <em>'alternative to'</em>, <em>'versus'</em>). This helps you perform a fundamental <strong>keyword gap analysis</strong> to create content pages that hijack competitor traffic—an essential SEO keyword finder strategy used by professionals.</p>
+     </section>
+
+     <section style="margin-bottom:3rem;">
+      <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">How to Use This SEO Keyword Finder — Step by Step</h2>
+      <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+       <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">1</span>
+       <p style="margin:0;line-height:1.6;padding-top:.3rem;">Enter any seed keyword — a topic, product name, or niche phrase.</p>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+       <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">2</span>
+       <p style="margin:0;line-height:1.6;padding-top:.3rem;">Choose the right tab — Use Keyword Ideas for broad research, Long-Tail to identify low-difficulty traffic drivers, and Competitor Angles to perform gap analysis.</p>
+      </div>
+     <div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
+      <span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">3</span>
+      <p style="margin:0;line-height:1.6;padding-top:.3rem;">Click any keyword to copy it instantly. Use Export CSV to save your full list for Ahrefs, GSC, or Sheets.</p>
+     </div>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">Key Features — Why Use Our Keyword Tool?</h2>
+     <ul style="list-style:none;padding:0;margin:0;">
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>5 Research Modes:</strong> Keyword Ideas, Long-Tail Finder, Questions, Content Ideas, and Competitor Angles — all in one tool.</span></li>
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Intent Labelling:</strong> Every keyword is tagged — Informational, Commercial, Transactional, or Navigational.</span></li>
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Difficulty Indicator:</strong> Low / Medium / High signals to prioritise which keywords to target first.</span></li>
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Export to CSV:</strong> Save your full keyword list in one click — open in Excel or Google Sheets.</span></li>
+      <li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>100% Private:</strong> Everything runs in your browser. No keywords are ever sent to any server.</span></li>
+     </ul>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+     <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">Frequently Asked Questions</h2>
+     <div style="display:grid;gap:1rem;">
+      <details style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;">
+       <summary style="font-weight:700;cursor:pointer;">What makes a keyword "low competition"?</summary>
+       <p style="margin:.75rem 0 0;color:#4b5563;line-height:1.7;">Low-competition keywords typically have 3+ words (long-tail), are question-based, or are hyper-specific. Our tool labels these as Low difficulty.</p>
+      </details>
+      <details style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;">
+       <summary style="font-weight:700;cursor:pointer;">How is keyword difficulty calculated here?</summary>
+       <p style="margin:.75rem 0 0;color:#4b5563;line-height:1.7;">Difficulty is estimated based on keyword length (more words = lower difficulty), presence of commercial modifiers, and keyword specificity — all calculated locally in your browser.</p>
+      </details>
+      <details style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;">
+       <summary style="font-weight:700;cursor:pointer;">Can I export keywords to Excel or Google Sheets?</summary>
+       <p style="margin:.75rem 0 0;color:#4b5563;line-height:1.7;">Yes. Click "Export CSV" after generating results. The file opens directly in Microsoft Excel, Google Sheets, or any spreadsheet app.</p>
+      </details>
+      <details style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;">
+       <summary style="font-weight:700;cursor:pointer;">Is my keyword data stored on your servers?</summary>
+       <p style="margin:.75rem 0 0;color:#4b5563;line-height:1.7;">No. This tool is fully client-side. All keyword generation runs in your browser using JavaScript. Nothing is uploaded, stored, or shared.</p>
+      </details>
+     </div>
+    </section>
+
+   </div>
+  </main>
+
+  <footer></footer>
+  <script src="/js/common.js?v=2.5"></script>
+
+  <script>
+  // ─────────────────────────────────────────────
+  // DATA — modifiers & patterns
+  // ─────────────────────────────────────────────
+  const MOD = {
+    prefix: ['best','top','free','cheap','affordable','easy','quick','simple','complete','ultimate','online','professional','trusted','popular','trending','advanced','beginner','expert','reliable','fastest'],
+    suffix: ['guide','tips','tools','course','tutorial','examples','strategies','techniques','review','comparison','checklist','template','software','app','services','near me','in India','2025','for beginners','for business','for students','step by step','online','free download'],
+    info:   ['what is','how to','why use','benefits of','types of','difference between','introduction to','explained','meaning of','overview of','basics of','fundamentals of','advantages of','disadvantages of','uses of'],
+    buy:    ['buy','price','cost','cheap','discount','offer','deals','coupon','where to buy','shop','order','purchase','free trial','subscription'],
+    compare:['vs','versus','compare','alternative to','alternatives','similar to','instead of','or','better than'],
+    problem:['not working','problems with','issues with','fix','solve','troubleshoot','common mistakes','avoid','without','errors in','limitations of'],
+  };
+
+  const QPFX = {
+    how:   ['How to','How do I','How can I','How does','How much does','How long does','How many','How often should','How to start','How to use','How to get','How to choose','How to improve'],
+    what:  ['What is','What are','What does','What are the best','What is the difference between','What are the benefits of','What is the cost of','What is the meaning of','What happens if','What are the types of'],
+    why:   ['Why is','Why should I','Why use','Why choose','Why does','Why is it important to','Why is better than','Why are','Why do people use'],
+    which: ['Which is best','Which is better','Which is the most','Which tool for','Which platform for','Which type of','Which one should I choose'],
+    can:   ['Can I','Can you','Is it possible to','Is it safe to','Is it worth','Is it free','Is there a','Does it work','Do I need','Should I use'],
+  };
+
+  const IND_MOD = {
+    finance:    ['EMI','CIBIL score','RBI','GST','FD','mutual fund','SIP','NPS','ELSS','tax saving','ITR','home loan'],
+    ecommerce:  ['COD','free shipping','return policy','authentic','genuine','price drop','flash sale','cashback'],
+    health:     ['ayurvedic','natural','organic','no side effects','clinically tested','doctor recommended','sugar free','FSSAI'],
+    education:  ['UPSC','SSC','JEE','NEET','entrance exam','scholarship','government job','placement','syllabus','online coaching'],
+    tech:       ['open source','API','integration','cloud','SaaS','no code','automation','AI powered','plugin','extension'],
+    travel:     ['budget','visa free','backpacker','solo travel','family trip','honeymoon','hill station','offbeat','packages'],
+    food:       ['homemade','restaurant style','healthy','5 minute','no bake','high protein','low calorie','vegan','Indian style'],
+    realestate: ['RERA approved','ready to move','under construction','2 BHK','3 BHK','resale','stamp duty','builder floor'],
+    marketing:  ['ROI','conversion rate','organic','paid ads','funnel','B2B','B2C','growth hack','lead gen','CTR'],
+    saas:       ['free trial','lifetime deal','no credit card','monthly plan','API access','white label','scalable','integration'],
+  };
+
+  // ─────────────────────────────────────────────
+  // STATE
+  // ─────────────────────────────────────────────
+  let activeTab = 'keyword-ideas';
+  let lastResults = [];
+
+  // ─────────────────────────────────────────────
+  // TAB SWITCHING
+  // ─────────────────────────────────────────────
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(tab + '-tab').style.display = 'block';
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'" + tab + "'"))
+        btn.classList.add('active');
+    });
+    activeTab = tab;
+    hideResults();
+  }
+
+  function hideResults() {
+    document.getElementById('results').style.display = 'none';
+    showError('');
+    lastResults = [];
+  }
+
+  function showError(msg) {
+    const e = document.getElementById('errorMessage');
+    if (msg) { e.textContent = '⚠️ ' + msg; e.style.display = 'flex'; e.scrollIntoView({behavior:'smooth',block:'center'}); }
+    else { e.style.display = 'none'; e.textContent = ''; }
+  }
+
+  function getSeed() {
+    const map = {'keyword-ideas':'seedKeyword','long-tail':'ltSeed','questions':'qSeed','content-ideas':'ciSeed','competitor':'compSeed'};
+    return (document.getElementById(map[activeTab])?.value || '').trim();
+  }
+
+  function setSeed(val) {
+    switchTab('keyword-ideas');
+    document.getElementById('seedKeyword').value = val;
+  }
+
+  // ─────────────────────────────────────────────
+  // HELPERS
+  // ─────────────────────────────────────────────
+  function calcDiff(kw) {
+    const w = kw.split(' ').length;
+    const buy = /\b(buy|price|cost|cheap|deal|discount|shop|order)\b/i.test(kw);
+    const q   = /^(how|what|why|which|can|is |do |does )\b/i.test(kw);
+    if (w >= 5 || q) return 'Low';
+    if (w === 4 || buy) return 'Medium';
+    return w <= 2 ? 'High' : 'Medium';
+  }
+
+  function getIntent(kw) {
+    if (/\b(buy|price|cost|shop|order|purchase|deal|discount|cheap|offer|coupon)\b/i.test(kw)) return 'Transactional';
+    if (/\b(vs|versus|alternative|compare|best|top|review|comparison|better)\b/i.test(kw)) return 'Commercial';
+    if (/^(what|why|how|when|where|who|which|is |are |can |does )/i.test(kw) || /\b(guide|tutorial|learn|tips|examples|basics|meaning|definition|explained)\b/i.test(kw)) return 'Informational';
+    return 'Navigational';
+  }
+
+  function getType(kw) {
+    if (/^(how|what|why|which|can|is |do |does )/i.test(kw)) return 'Question';
+    const w = kw.split(' ').length;
+    if (w >= 4) return 'Long-tail';
+    if (w <= 2) return 'Short-tail';
+    return 'Mid-tail';
+  }
+
+  function pick(arr, n) { return [...arr].sort(() => Math.random() - .5).slice(0, n); }
+
+  function buildKws(raw) {
+    const seen = new Set();
+    return raw.filter(k => { const l = k.toLowerCase().trim(); if (!l || seen.has(l)) return false; seen.add(l); return true; })
+              .map(k => ({ keyword: k.trim(), difficulty: calcDiff(k), intent: getIntent(k), type: getType(k) }));
+  }
+
+  // ─────────────────────────────────────────────
+  // GENERATORS
+  // ─────────────────────────────────────────────
+  function genKeywordIdeas(seed, industry) {
+    const s = seed.toLowerCase();
+    const kws = [seed];
+    MOD.prefix.forEach(p => kws.push(p + ' ' + s));
+    MOD.suffix.forEach(sf => kws.push(s + ' ' + sf));
+    pick(MOD.info, 12).forEach(p => kws.push(p + ' ' + s));
+    pick(MOD.buy, 8).forEach(b => kws.push(s + ' ' + b));
+    pick(MOD.compare, 5).forEach(c => kws.push(s + ' ' + c + ' alternatives'));
+    pick(MOD.problem, 6).forEach(p => kws.push(p + ' ' + s));
+    if (industry && IND_MOD[industry]) {
+      IND_MOD[industry].forEach(m => { kws.push(s + ' ' + m); kws.push(m + ' ' + s); });
+    }
+    return buildKws(kws);
+  }
+
+  function genLongTail(seed, target) {
+    const s = seed.toLowerCase();
+    const targetMods = {
+      beginner: ['for beginners','step by step','easy guide','getting started with','basics of','introduction to','learn from scratch','for newbies','simple explanation'],
+      expert:   ['advanced','professional','enterprise','expert guide','deep dive','technical','for professionals','mastery','in depth'],
+      buyer:    ['buy online','best price','discount','where to buy','deal','offer','cheapest','coupon code','review before buying','worth buying'],
+      india:    ['in India','India 2025','for Indians','India guide','India price','for Indian market','in Hindi','best in India'],
+      general:  ['complete guide','step by step','for free','without paying','explained simply','in 5 minutes','for everyone','quick start','full guide'],
+    };
+    const mods = targetMods[target] || targetMods.general;
+    const kws = [];
+    mods.forEach(m => kws.push(s + ' ' + m));
+    pick(MOD.prefix, 8).forEach(p => mods.slice(0, 4).forEach(m => kws.push(p + ' ' + s + ' ' + m)));
+    ['complete step by step guide to','the easiest way to use','how to get started with','best tools and tips for','everything you need to know about','a simple explanation of','the definitive guide to'].forEach(t => kws.push(t + ' ' + s));
+    ['tips and tricks','best practices','common mistakes','pros and cons','complete checklist','ultimate resource','free resources','dos and donts'].forEach(m => kws.push(s + ' ' + m));
+    return buildKws(kws).filter(k => k.keyword.split(' ').length >= 3);
+  }
+
+  function genQuestions(seed, qtype) {
+    const s = seed.toLowerCase();
+    const kws = [];
+    const types = qtype === 'all' ? ['how','what','why','which','can'] : [qtype];
+    types.forEach(t => {
+      (QPFX[t] || []).forEach(q => { kws.push(q + ' ' + s); });
+    });
+    ['Is ' + s + ' worth it','Does ' + s + ' really work','What are the pros and cons of ' + s,'Is ' + s + ' free to use','Can I learn ' + s + ' at home','What is the best ' + s + ' for beginners','How long does ' + s + ' take','What is the cost of ' + s,'Who should use ' + s,'Where can I find ' + s,'Is ' + s + ' safe to use','How to get the most out of ' + s].forEach(q => kws.push(q));
+    return buildKws(kws);
+  }
+
+  function genContentIdeas(seed, format) {
+    const s = seed.toLowerCase();
+    const S = seed.charAt(0).toUpperCase() + seed.slice(1);
+    const templates = {
+      blog: [
+        `The Complete Beginner's Guide to ${S}`,`Everything You Need to Know About ${S}`,`${S} Explained: A Simple Guide for 2025`,`How ${S} Works and Why It Matters`,`The Truth About ${S} Nobody Tells You`,`My Experience With ${S} After 6 Months`,`${S}: Is It Worth Your Time and Money?`,`How I Used ${S} to Solve a Real Problem`,
+      ],
+      listicle: [
+        `10 Best ${S} Tips for 2025`,`7 Common ${S} Mistakes to Avoid`,`15 Things to Know Before Starting With ${S}`,`Top 5 ${S} Tools You Need Right Now`,`8 Reasons Why ${S} is Changing the Game`,`12 ${S} Hacks That Actually Work`,`5 Signs You're Using ${S} Wrong`,
+      ],
+      guide: [
+        `The Ultimate ${S} Guide (Step-by-Step)`,`How to Master ${S} in 30 Days`,`${S}: The Only Guide You'll Ever Need`,`A Complete Roadmap to ${S} for Beginners`,`${S} From Zero to Pro: The Full Guide`,`The No-Nonsense ${S} Handbook`,
+      ],
+      comparison: [
+        `${S} vs Competitors: Which is Better in 2025?`,`Best ${S} Alternatives You Should Try`,`${S} Compared: Free vs Paid Options`,`Which ${S} is Right for You?`,`${S} Side-by-Side Comparison`,`Top 5 ${S} Options Ranked`,
+      ],
+      casestudy: [
+        `How We Used ${S} to Grow 3x in 90 Days`,`${S} Case Study: Real Results and Lessons`,`What Happened When We Switched to ${S}`,`How a Small Business Used ${S} to Save Time`,`${S} Results After 6 Months: Honest Report`,
+      ],
+    };
+    const all = Object.values(templates).flat();
+    const chosen = format === 'all' ? all : (templates[format] || all);
+    return chosen.map(title => {
+      let angle = '';
+      if (/beginner|newbie|start/i.test(title)) angle = 'Target beginners. Cover basic terminology, common misconceptions, and 3 actionable first steps.';
+      else if (/mistake|wrong/i.test(title)) angle = 'Research top mistakes via Reddit, Quora, and forums. Use real user examples for credibility.';
+      else if (/vs|alternative|compar/i.test(title)) angle = 'Build a comparison table with 5+ features. Include a "best for" summary and clear winner section.';
+      else if (/case study|result/i.test(title)) angle = 'Use before/after data with specific numbers. Include timeline, key learnings, and what failed.';
+      else if (/guide|step|roadmap/i.test(title)) angle = 'Structure with H2 steps. Add a clickable table of contents and a downloadable checklist at the end.';
+      else if (/hack|tip|trick/i.test(title)) angle = 'Lead with the most surprising tip. Keep each point under 100 words. Add a quick-action box per tip.';
+      else angle = 'Lead with a strong stat or surprising finding. End with a clear, specific CTA relevant to the reader.';
+      return { title, angle };
+    });
+  }
+
+  function genCompetitorAngles(seed, angleType) {
+    const s = seed.toLowerCase();
+    const S = seed.charAt(0).toUpperCase() + seed.slice(1);
+    const all = {
+      alternative: [`best ${s} alternatives`,`${s} alternatives free`,`top alternatives to ${s}`,`${s} replacement`,`similar to ${s}`,`${s} competitors list`,`tools like ${s}`,`${s} open source alternative`,`free ${s} alternatives 2025`],
+      vs:          [`${s} vs alternatives`,`${S} comparison`,`${s} compared to competitors`,`which is better ${s}`,`${s} side by side`,`${s} vs free options`],
+      review:      [`${s} review`,`${s} honest review`,`${s} pros and cons`,`is ${s} worth it`,`${s} user reviews`,`${s} rating 2025`,`${s} trustworthy`,`${s} real experience`],
+      price:       [`${s} price`,`${s} cost`,`how much does ${s} cost`,`${s} free plan`,`${s} discount`,`${s} coupon`,`${s} cheap option`,`${s} pricing plans`,`${s} free vs paid`],
+      problem:     [`${s} not working`,`${s} issues`,`${s} problems`,`why is ${s} slow`,`${s} errors`,`${s} limitations`,`disadvantages of ${s}`,`${s} complaints`,`${s} downtime`],
+    };
+    const types = angleType === 'all' ? Object.values(all).flat() : (all[angleType] || Object.values(all).flat());
+    return buildKws(types);
+  }
+
+  // ─────────────────────────────────────────────
+  // RENDER
+  // ─────────────────────────────────────────────
+  function diffBadge(d) {
+    const c = d === 'Low' ? 'b-low' : d === 'Medium' ? 'b-med' : 'b-high';
+    return `<span class="badge ${c}">${d}</span>`;
+  }
+
+  function renderKwList(items, label) {
+    if (!items.length) return `<div class="no-results">No keywords found. Try a different seed term.</div>`;
+    const rows = items.slice(0, 100).map(k =>
+      `<div class="kw-row" onclick="copyKw(this,'${k.keyword.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">
+        <span class="kw-text">${k.keyword}</span>
+        <span class="kw-meta">
+          <span class="badge b-intent">${k.intent}</span>
+          <span class="badge b-type">${k.type}</span>
+          ${diffBadge(k.difficulty)}
+        </span>
+        <button class="copy-btn" title="Copy">📋</button>
+      </div>`
+    ).join('');
+
+    const low  = items.filter(k => k.difficulty==='Low').length;
+    const med  = items.filter(k => k.difficulty==='Medium').length;
+    const hi   = items.filter(k => k.difficulty==='High').length;
+    const info = items.filter(k => k.intent==='Informational').length;
+    const tran = items.filter(k => k.intent==='Transactional').length;
+    const comm = items.filter(k => k.intent==='Commercial').length;
+
+    return `
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div style="font-size:.85rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">${label}</div>
+        <div class="result-value" style="font-size:clamp(2rem,6vw,3.5rem);">${items.length} Keywords</div>
+      </div>
+      <div class="stat-row">
+        <span class="stat-chip">🟢 ${low} Low</span>
+        <span class="stat-chip">🟡 ${med} Medium</span>
+        <span class="stat-chip">🔴 ${hi} High</span>
+        <span class="stat-chip">ℹ️ ${info} Informational</span>
+        <span class="stat-chip">🛒 ${tran} Transactional</span>
+        <span class="stat-chip">⚖️ ${comm} Commercial</span>
+      </div>
+      <div class="sec-title">🔑 All Keywords <span style="font-size:.82rem;font-weight:500;color:var(--text-muted);">(click any row to copy)</span></div>
+      <div class="kw-list">${rows}</div>`;
+  }
+
+  function renderContentIdeas(items) {
+    const cards = items.map(c =>
+      `<div class="idea-card">
+        <h4>📄 ${c.title}</h4>
+        <p>💡 <strong>Angle:</strong> ${c.angle}</p>
+      </div>`
+    ).join('');
+    return `
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div style="font-size:.85rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">Content Ideas Generated</div>
+        <div class="result-value" style="font-size:clamp(2rem,6vw,3.5rem);">${items.length} Ideas</div>
+      </div>
+      <div class="sec-title">📝 Content Ideas with Angles</div>
+      ${cards}`;
+  }
+
+  // ─────────────────────────────────────────────
+  // COPY / EXPORT / SHARE
+  // ─────────────────────────────────────────────
+  function copyKw(el, kw) {
+    navigator.clipboard.writeText(kw).then(() => {
+      const btn = el.querySelector('.copy-btn');
+      const orig = btn.textContent; btn.textContent = '✅';
+      setTimeout(() => btn.textContent = orig, 1500);
+    });
+  }
+
+  function copyAllKeywords() {
+    if (!lastResults.length) return;
+    const text = lastResults.map(r => r.keyword || r.title).join('\n');
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyAllBtn');
+      const orig = btn.textContent; btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  function exportCSV() {
+    if (!lastResults.length) return;
+    const isContent = lastResults[0].title !== undefined;
+    const csv = isContent
+      ? 'Title,Angle\n' + lastResults.map(r => `"${r.title}","${r.angle}"`).join('\n')
+      : 'Keyword,Difficulty,Intent,Type\n' + lastResults.map(r => `"${r.keyword}","${r.difficulty}","${r.intent}","${r.type}"`).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+    a.download = 'keywords-worldoftools.csv';
+    a.click();
+    if (typeof gtag !== 'undefined') gtag('event','export_csv',{event_category:'keyword_tool'});
+  }
+
+  function shareResult(seed) {
+    const count = lastResults.length;
+    const text = `Just found ${count} SEO keywords for "${seed}" using WorldOfTools free keyword research tool! https://worldoftools.in/keyword-research-tool`;
+    if (navigator.share) { navigator.share({title:'Keyword Research',text,url:'https://worldoftools.in/keyword-research-tool'}); }
+    else { window.open('https://wa.me/?text=' + encodeURIComponent(text)); }
+  }
+
+  // ─────────────────────────────────────────────
+  // MAIN RUN
+  // ─────────────────────────────────────────────
+  function runTool() {
+    const seed = getSeed();
+    if (!seed) return showError('Please enter a seed keyword first.');
+    if (seed.length < 2) return showError('Keyword is too short. Enter at least 2 characters.');
+    showError('');
+
+    const loadingWrap = document.getElementById('loadingWrap');
+    const results     = document.getElementById('results');
+    results.style.display = 'none';
+    loadingWrap.style.display = 'block';
+
+    const msgs = ['Analysing search patterns…','Building keyword clusters…','Scoring difficulty…','Labelling search intent…','Almost ready…'];
+    let mi = 0;
+    const msgEl = document.getElementById('loadingMsg');
+    const iv = setInterval(() => { msgEl.textContent = msgs[mi++ % msgs.length]; }, 380);
+
+    setTimeout(() => {
+      clearInterval(iv);
+      loadingWrap.style.display = 'none';
+
+      const industry = document.getElementById('industrySelect')?.value || '';
+      let html = '';
+
+      if (activeTab === 'keyword-ideas') {
+        lastResults = genKeywordIdeas(seed, industry);
+        html = renderKwList(lastResults, 'Keyword Ideas');
+      } else if (activeTab === 'long-tail') {
+        lastResults = genLongTail(seed, document.getElementById('ltTarget')?.value || 'general');
+        html = renderKwList(lastResults, 'Long-Tail Keywords');
+      } else if (activeTab === 'questions') {
+        lastResults = genQuestions(seed, document.getElementById('qType')?.value || 'all');
+        html = renderKwList(lastResults, 'Question Keywords');
+      } else if (activeTab === 'content-ideas') {
+        lastResults = genContentIdeas(seed, document.getElementById('ciFormat')?.value || 'all');
+        html = renderContentIdeas(lastResults);
+      } else if (activeTab === 'competitor') {
+        lastResults = genCompetitorAngles(seed, document.getElementById('compType')?.value || 'all');
+        html = renderKwList(lastResults, 'Competitor Angle Keywords');
+      }
+
+      const isContent = lastResults[0]?.title !== undefined;
+      const safeS = seed.replace(/'/g,"\\'");
+
+      html += `
+        <div class="export-bar">
+          ${!isContent ? `<button class="btn btn-secondary" id="copyAllBtn" onclick="copyAllKeywords()" style="padding:.55rem 1.1rem;font-size:.88rem;">📋 Copy All</button>` : ''}
+          <button class="btn btn-secondary" onclick="exportCSV()" style="padding:.55rem 1.1rem;font-size:.88rem;">⬇️ Export CSV</button>
+          <button class="btn btn-secondary" onclick="shareResult('${safeS}')" style="padding:.55rem 1.1rem;font-size:.88rem;">🔗 Share</button>
+        </div>
+        <div style="text-align:center;margin-top:2rem;padding:1.5rem;background:#fffbeb;border:1px solid #fef3c7;border-radius:12px;">
+          <span style="font-size:1.3rem;display:block;margin-bottom:.4rem;">💡</span>
+          <div style="font-weight:600;color:#92400e;font-style:italic;font-size:.92rem;">
+            Pro Tip: Target <strong>Low difficulty</strong> keywords first for quick wins. Build topical authority with <strong>Informational</strong> content, then monetise with <strong>Transactional</strong> keywords.
+          </div>
+        </div>`;
+
+      document.getElementById('resultsInner').innerHTML = html;
+      results.style.display = 'block';
+      results.scrollIntoView({behavior:'smooth', block:'start'});
+
+      if (typeof gtag !== 'undefined') gtag('event','keyword_research',{event_category:'tool_use',event_label:activeTab,value:lastResults.length});
+    }, 850);
+  }
+  </script>
+ </body>
+</html>
