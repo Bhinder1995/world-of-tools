@@ -213,7 +213,7 @@
        100% Client-Side Processing
       </span>
      </div>
-     <textarea id="jsonInput" placeholder="Paste your JSON here..."></textarea>
+     <textarea id="jsonInput" oninput="validateJSON()" placeholder="Paste your JSON here..."></textarea>
     </div>
    </div>
    <!-- SEO Content Block -->
@@ -686,7 +686,7 @@
                 }
                 validateJSON();
             } catch (e) {
-                // validation already handles badge and error message
+                validateJSON();
             }
         }
 
