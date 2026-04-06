@@ -1,4 +1,4 @@
-const CACHE_NAME = 'worldoftools-v134';
+const CACHE_NAME = 'worldoftools-v135';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -9,6 +9,8 @@ const ASSETS_TO_CACHE = [
     '/manifest.json',
     '/guides/',
     '/guides/index.html',
+    '/thermal-label-maker',
+    '/guides/thermal-label-maker-guide',
     '/app-icon.png',
     '/favicon.png',
     '/favicon.ico',

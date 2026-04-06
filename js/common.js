@@ -200,7 +200,7 @@ function injectHeader() {
                                             <span class="nav-icon" style="background:#37474f;">|||</span> Barcode Generator
                                         </a>
                                         <a href="/thermal-label-maker" class="mega-item">
-                                            <span class="nav-icon" style="background:#4b5563;">🖨️</span> Thermal Label Maker
+                                            <span class="nav-icon" style="background:#1e293b;">🖨️</span> Thermal Label Maker
                                         </a>
                                         <a href="/video-compressor" class="mega-item">
                                             <span class="nav-icon" style="background:#e91e63;">📹</span> Video Compressor
