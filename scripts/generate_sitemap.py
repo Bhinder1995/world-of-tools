@@ -1,4 +1,5 @@
 import os
+import json
 from datetime import datetime
 
 def generate_sitemap(base_path, base_url):
@@ -38,6 +39,25 @@ def generate_sitemap(base_path, base_url):
                     'changefreq': 'monthly',
                     'priority': '0.6'
                 })
+
+    # Read Vercel.json for programmatic SEO routes
+    vercel_path = os.path.join(base_path, 'vercel.json')
+    if os.path.exists(vercel_path):
+        with open(vercel_path, 'r', encoding='utf-8') as vf:
+            vercel_data = json.load(vf)
+            rewrites = vercel_data.get('rewrites', [])
+            for r in rewrites:
+                source = r.get('source', '')
+                # Ignore dynamic routes or workers
+                if ':' not in source and not source.startswith('/go'):
+                    # Source already has a leading slash
+                    full_loc = f"{base_url}{source}"
+                    urls.append({
+                        'loc': full_loc,
+                        'lastmod': datetime.utcnow().strftime('%Y-%m-%d'),
+                        'changefreq': 'monthly',
+                        'priority': '0.7'
+                    })
 
     # Generate XML
     xml_lines = [
