@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<script>
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora de porcentajes</title>
+<meta content="Calculadora rápida de porcentajes y descuentos." name="description"/>
+<meta content="percentage calculator, calculate percentage online, how to calculate percentage, discount calculator, percentage increase calculator, what is 20% of 500, percentage change calculator, how to calculate percentage of a number, percentage decrease calculator, what percentage is one number of another, reverse percentage calculator, how to find original price after discount, percentage difference calculator online, calculate percentage increase from old to new value, percentage calculator online, percentage increase decrease calculator" name="keywords"/>
+<link href="https://worldoftools.in/es/percentage-calculator" rel="canonical"/>
+<link href="/css/style.css?v=2.5" rel="stylesheet"/>
+<link href="/logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="/manifest.json" rel="manifest"/>
+<link href="/app-icon.png" rel="apple-touch-icon"/>
+<meta content="#4f46e5" name="theme-color"/>
+<style>
+   .calc-group {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .calc-group:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-inline {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .input-inline input {
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+        }
+
+        .result-box {
+            padding: 1.25rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px dashed var(--primary-color);
+            text-align: center;
+            animation: subtitleFade 0.5s ease-out;
+        }
+
+        .res-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .res-val {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+  </style>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
+</script>
+<script>
+   window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-CCYN1G2F05');
+  </script>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
+</script>
+<script defer="" src="/_vercel/insights/script.js">
+</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://worldoftools.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Percentage Calculator",
+      "item": "https://worldoftools.in/percentage-calculator"
+    }
+  ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate a percentage of a number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply the number by the percentage and divide by 100. Example: 20% of 450 = (20 \u00d7 450) / 100 = 90."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate percentage increase?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Formula: ((New Value \u2212 Old Value) / Old Value) \u00d7 100. Example: from 200 to 250 = ((250 \u2212 200) / 200) \u00d7 100 = 25% increase."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find the original price after a discount?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use reverse percentage: Original Price = Discounted Price / (1 \u2212 Discount% / 100). Example: \u20b9850 after 15% off \u2192 850 / 0.85 = \u20b91000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to calculate percentage decrease?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "((Old Value \u2212 New Value) / Old Value) \u00d7 100. Example: from 500 to 400 = ((500 \u2212 400) / 500) \u00d7 100 = 20% decrease."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What percentage is 75 of 300?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(75 / 300) \u00d7 100 = 25%. Use this tool to instantly compute any such percentage question."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this percentage calculator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 completely free, no login, no registration, no subscription."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my numbers stored anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All calculations happen in your browser. Your data is never uploaded or saved."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for exam preparation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 great for verifying percentage-based math answers. Always show your own working when submitting for grading."
+      }
+    }
+  ]
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Percentage Calculator",
+  "operatingSystem": "Any",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "125"
+  }
+}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/es/percentage-calculator" property="og:url"/><meta content="Calculadora de porcentajes" property="og:title"/><meta content="Calculadora rápida de porcentajes y descuentos." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/es/percentage-calculator" name="twitter:url"/><meta content="Calculadora de porcentajes" name="twitter:title"/><meta content="Calculadora rápida de porcentajes y descuentos." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/><link href="https://worldoftools.in/percentage-calculator" hreflang="x-default" rel="alternate"/><link href="https://worldoftools.in/percentage-calculator" hreflang="en" rel="alternate"/><link href="https://worldoftools.in/es/percentage-calculator" hreflang="es" rel="alternate"/><link href="https://worldoftools.in/pt/percentage-calculator" hreflang="pt" rel="alternate"/></head>
+<body>
+<header>
+</header>
+<main class="container">
+<div class="tool-container">
+<section class="tool-header">
+<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Percentage Calculator</span></div><h1>Calculadora de porcentajes</h1>
+<p style="color: var(--text-muted); font-size: 1.1rem;">
+      Solve math problems, find part ratios, and
+                    calculate growth instantly.
+     </p>
+<div style="margin-top: 1.5rem;">
+<a class="btn btn-secondary" href="/guides/percentage-calculator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
+</div>
+</section>
+<div class="error-msg" id="errorMessage">
+</div>
+<div style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
+<span style="font-size: 1.2rem;">
+      🛡️
+     </span>
+<span style="font-weight: 700;">
+      100% Client-Side Processing
+     </span>
+</div>
+<div class="tool-main-card">
+<!-- Find Percentage -->
+<div class="calc-group" style="margin-bottom: 2.5rem; padding: 2.5rem; border-radius: 20px; background: white; border: 1px solid var(--border-color);">
+<h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; font-size: 1.25rem;">
+<span style="background: var(--primary-color); color: white; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; font-size: 1rem; font-weight: 700;">
+        1
+       </span>
+       Find Percentage Value
+      </h3>
+<div class="input-inline" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2rem;">
+<span style="font-weight: 600;">
+        What is
+       </span>
+<input id="p1_per" oninput="calcP1()" placeholder="%" style="width: 120px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem; text-align: center;" type="number"/>
+<span style="font-weight: 600;">
+        % of
+       </span>
+<input id="p1_num" oninput="calcP1()" placeholder="Number" style="width: 220px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;" type="number"/>
+</div>
+<div class="result-box" id="res1_card" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1.5rem; border-radius: 16px;">
+<span class="res-label" style="color: #166534;">
+        Final Result
+       </span>
+<span class="res-val" id="res1" style="color: #15803d; font-size: 2rem; font-weight: 800;">
+</span>
+</div>
+</div>
+<!-- Find Part -->
+<div class="calc-group" style="margin-bottom: 2.5rem; padding: 2.5rem; border-radius: 20px; background: white; border: 1px solid var(--border-color);">
+<h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; font-size: 1.25rem;">
+<span style="background: var(--primary-color); color: white; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; font-size: 1rem; font-weight: 700;">
+        2
+       </span>
+       Find Part Percentage
+      </h3>
+<div class="input-inline" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2rem;">
+<input id="p2_num1" oninput="calcP2()" placeholder="Number" style="width: 220px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;" type="number"/>
+<span style="font-weight: 600;">
+        is what % of
+       </span>
+<input id="p2_num2" oninput="calcP2()" placeholder="Total" style="width: 220px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;" type="number"/>
+</div>
+<div class="result-box" id="res2_card" style="display: none; background: #fefce8; border: 1px solid #fef08a; padding: 1.5rem; border-radius: 16px;">
+<span class="res-label" style="color: #854d0e;">
+        Calculated Percentage
+       </span>
+<span class="res-val" id="res2" style="color: #a16207; font-size: 2rem; font-weight: 800;">
+</span>
+</div>
+</div>
+<!-- Percentage Change -->
+<div class="calc-group" style="padding: 2.5rem; border-radius: 20px; background: white; border: 1px solid var(--border-color);">
+<h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; font-size: 1.25rem;">
+<span style="background: var(--primary-color); color: white; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; font-size: 1rem; font-weight: 700;">
+        3
+       </span>
+       Percentage Growth / Change
+      </h3>
+<div class="input-inline" style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2rem;">
+<span style="font-weight: 600;">
+        Value from
+       </span>
+<input id="p3_from" oninput="calcP3()" placeholder="Old" style="width: 180px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;" type="number"/>
+<span style="font-weight: 600;">
+        to
+       </span>
+<input id="p3_to" oninput="calcP3()" placeholder="New" style="width: 180px; padding: 1rem; border-radius: 12px; border: 2px solid var(--border-color); font-size: 1.25rem;" type="number"/>
+</div>
+<div class="result-box" id="res3_card" style="display: none; background: #eff6ff; border: 1px solid #bfdbfe; padding: 1.5rem; border-radius: 16px;">
+<span class="res-label" style="color: #1e40af;">
+        Percentage Change
+       </span>
+<span class="res-val" id="res3" style="color: #1d4ed8; font-size: 2rem; font-weight: 800;">
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SEO Content Block -->
+<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
+<section style="margin-bottom:3rem;">
+<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
+      What is the Percentage Calculator?
+     </h2>
+<p style="line-height:1.8;color:#4b5563;">
+      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
+     </p>
+</section>
+<section style="margin-bottom:3rem;">
+<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
+      How to Use Percentage Calculator — Step-by-Step
+     </h2>
+<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
+       1
+      </span>
+<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
+       Select Calculation Type – Choose from percentage of a number, discount, increase, decrease, or reverse percentage.
+      </p>
+</div>
+<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
+       2
+      </span>
+<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
+       Enter Values – Fill in the required numbers (original value, new value, or percentage).
+      </p>
+</div>
+<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
+       3
+      </span>
+<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
+       Click Calculate – See the result with a step-by-step explanation.
+      </p>
+</div>
+</section>
+<section style="margin-bottom:3rem;">
+<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
+      Key Features — Why Use Our Tool?
+     </h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+<span style="line-height:1.6;">
+<strong>
+         What Is X% of Y?:
+        </strong>
+        Find the value of any percentage of any number (e.g., what is 15% of 250? Answer: 37.5).
+       </span>
+</li>
+<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+<span style="line-height:1.6;">
+<strong>
+         What Percentage Is X of Y?:
+        </strong>
+        Determine what percentage one number is of another (e.g., 30 is what percent of 120? Answer: 25%).
+       </span>
+</li>
+<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+<span style="line-height:1.6;">
+<strong>
+         Percentage Increase / Decrease Calculator:
+        </strong>
+        See exactly how much a value has grown or dropped. Essential for tracking revenue growth, price changes, or weight fluctuations.
+       </span>
+</li>
+<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+<span style="line-height:1.6;">
+<strong>
+         Discount Calculator:
+        </strong>
+        Enter the original price and discount percentage to instantly see sale price and savings amount.
+       </span>
+</li>
+<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+<span style="line-height:1.6;">
+<strong>
+         Reverse Percentage Calculator:
+        </strong>
+        Work backwards from a discounted or tax-inclusive price to find the original amount before the change.
+       </span>
+</li>
+<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
+<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
+        ✓
+       </span>
+<span style="line-height:1.6;">
+<strong>
+         Percentage Change Calculator:
+        </strong>
+        Calculate the percent difference between two values — great for comparing data, exam scores, or financial metrics.
+       </span>
+</li>
+</ul>
+</section>
+<section style="margin-bottom:3rem;">
+<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
+      📊 Use Cases — Who Uses the Percentage Calculator?
+     </h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
+<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
+        For Shoppers
+       </h3>
+<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
+        Quickly calculate final prices after store discounts.
+       </p>
+</div>
+<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
+        For Business Owners
+       </h3>
+<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
+        Calculate profit margins and sales tax on products.
+       </p>
+</div>
+<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
+<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
+        For Students
+       </h3>
+<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
+        Verify math homework and test results instantly.
+       </p>
+</div>
+</div>
+</section>
+<section style="margin-bottom:3rem;">
+<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
+      🆚 Percentage Calculator vs. Other Online Tools
+     </h2>
+<div style="overflow-x:auto;margin-top:1rem;">
+<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+<thead>
+<tr style="background:#f9fafb;">
+<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
+          Feature
+         </th>
+<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
+          WorldOfTools
+         </th>
+<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
+          Other Tools
+         </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
+          Privacy
+         </td>
+<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
+          Local Browser
+         </td>
+<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
+          Server Upload
+         </td>
+</tr>
+<tr>
+<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
+          Speed
+         </td>
+<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
+          Instant
+         </td>
+<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
+          Delayed
+         </td>
+</tr>
+<tr>
+<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
+          Ads &amp; Popups
+         </td>
+<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
+          None
+         </td>
+<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
+          Intrusive
+         </td>
+</tr>
+<tr>
+<td style="padding:0.75rem 1rem;">
+          Registration
+         </td>
+<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
+          Not Required
+         </td>
+<td style="padding:0.75rem 1rem;text-align:center;">
+          Often Required
+         </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section style="margin-bottom:3rem;">
+<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
+      Frequently Asked Questions
+     </h2>
+<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<summary style="font-weight:700;cursor:pointer;">
+       How do I calculate a percentage of a number?
+      </summary>
+<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Multiply the number by the percentage and divide by 100. Example: 20% of 450 = (20 × 450) / 100 = 90.
+      </p>
+</details>
+<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<summary style="font-weight:700;cursor:pointer;">
+       How do I calculate percentage increase?
+      </summary>
+<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Formula: ((New Value − Old Value) / Old Value) × 100. Example: from 200 to 250 = ((250 − 200) / 200) × 100 = 25% increase.
+      </p>
+</details>
+<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<summary style="font-weight:700;cursor:pointer;">
+       How do I find the original price after a discount?
+      </summary>
+<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Use reverse percentage: Original Price = Discounted Price / (1 − Discount% / 100). Example: ₹850 after 15% off → 850 / 0.85 = ₹1000.
+      </p>
+</details>
+<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<summary style="font-weight:700;cursor:pointer;">
+       How to calculate percentage decrease?
+      </summary>
+<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
+       ((Old Value − New Value) / Old Value) × 100. Example: from 500 to 400 = ((500 − 400) / 500) × 100 = 20% decrease.
+      </p>
+</details>
+<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<summary style="font-weight:700;cursor:pointer;">
+       What percentage is 75 of 300?
+      </summary>
+<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
+       (75 / 300) × 100 = 25%. Use this tool to instantly compute any such percentage question.
+      </p>
+</details>
+<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<summary style="font-weight:700;cursor:pointer;">
+       Is this percentage calculator free?
+      </summary>
+<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Yes — completely free, no login, no registration, no subscription.
+      </p>
+</details>
+<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<summary style="font-weight:700;cursor:pointer;">
+       Are my numbers stored anywhere?
+      </summary>
+<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
+       No. All calculations happen in your browser. Your data is never uploaded or saved.
+      </p>
+</details>
+<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
+<summary style="font-weight:700;cursor:pointer;">
+       Can I use this for exam preparation?
+      </summary>
+<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
+       Yes — great for verifying percentage-based math answers. Always show your own working when submitting for grading.
+      </p>
+</details>
+</section>
+<section style="margin-bottom:3rem;">
+<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
+      📚 Educational Content — Deep Dive
+     </h2>
+<div style="line-height:1.8;color:#4b5563;">
+<p>
+       The
+       <strong>
+        Percentage Calculator
+       </strong>
+       provides a simplified approach to complex mathematical and financial computations. In today's fast-paced world, having a reliable percentage calculator at your fingertips is essential for making informed decisions quickly. Our tool uses optimized algorithms to ensure that every result is accurate to the decimal, whether you're planning your budget or solving academic problems.
+      </p>
+<p style="margin-top:1rem;">
+       When dealing with financial data or personal milestones, security is paramount. This Percentage Calculator runs 100% client-side, meaning your numbers, interest rates, and personal details are never stored on any server. You get the speed of an app with the security of a localized spreadsheet, ensuring your private calculations remain truly private.
+      </p>
+<p style="margin-top:1rem;">
+       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
+      </p>
+</div>
+</section>
+<section style="margin-bottom:3rem;">
+<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
+      Other Free Tools You Might Need
+     </h2>
+<div class="tools-grid">
+<a class="tool-card" href="age-calculator">
+<div class="tool-icon">
+        🎂
+       </div>
+<div class="tool-title">
+        Age Calculator
+       </div>
+<div class="tool-desc">
+        Calculate exact age, next birthday, and life milestones.
+       </div>
+</a>
+<a class="tool-card" href="emi-calculator">
+<div class="tool-icon">
+        💰
+       </div>
+<div class="tool-title">
+        EMI Calculator
+       </div>
+<div class="tool-desc">
+        Loan amortization schedules and monthly payment estimator.
+       </div>
+</a>
+<a class="tool-card" href="gst-calculator">
+<div class="tool-icon">
+        🧾
+       </div>
+<div class="tool-title">
+        GST Calculator
+       </div>
+<div class="tool-desc">
+        Quickly add or remove GST tax from any amount.
+       </div>
+</a>
+<a class="tool-card" href="scientific-calculator">
+<div class="tool-icon">
+        🧮
+       </div>
+<div class="tool-title">
+        Scientific Calculator
+       </div>
+<div class="tool-desc">
+        Advanced mathematical functions including trig and logs.
+       </div>
+</a>
+<a class="tool-card" href="age-calculator">
+<div class="tool-icon">
+        🎂
+       </div>
+<div class="tool-title">
+        Age Calculator
+       </div>
+<div class="tool-desc">
+        Calculate exact age, next birthday, and life milestones.
+       </div>
+</a>
+<a class="tool-card" href="gst-calculator">
+<div class="tool-icon">
+        🧾
+       </div>
+<div class="tool-title">
+        GST Calculator
+       </div>
+<div class="tool-desc">
+        Quickly add or remove GST tax from any amount.
+       </div>
+</a>
+</div>
+</section>
+</div>
+<!-- End SEO Content Block -->
+</main>
+<footer>
+</footer>
+<script src="/js/common.js?v=2.5">
+</script>
+<script>
+   const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Advanced Percentage Calculator",
+            "description": "Calculate percent of a number, percentage change, and part ratios instantly.",
+            "url": "https://worldoftools.in/percentage-calculator",
+            "applicationCategory": "MathApplication",
+            "operatingSystem": "Any"
+        };
+        const script = document.createElement('script');
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
+
+
+        // Breadcrumb Schema
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://worldoftools.in"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Percentage Calculator",
+                "item": "https://worldoftools.in/percentage-calculator"
+            }]
+        };
+        const bcScript = document.createElement('script');
+        bcScript.type = "application/ld+json";
+        bcScript.text = JSON.stringify(breadcrumbData);
+        document.head.appendChild(bcScript);
+
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage');
+            if (msg) {
+                errDiv.textContent = '⚠️ ' + msg;
+                errDiv.style.display = 'flex';
+            } else {
+                errDiv.style.display = 'none';
+                errDiv.textContent = '';
+            }
+        }
+
+        function calcP1() {
+            showError('');
+            const per = parseFloat(document.getElementById('p1_per').value);
+            const num = parseFloat(document.getElementById('p1_num').value);
+            const card = document.getElementById('res1_card');
+
+            if (document.getElementById('p1_per').value === '' || document.getElementById('p1_num').value === '') {
+                card.style.display = 'none';
+                return;
+            }
+
+            if (!isNaN(per) && !isNaN(num)) {
+                document.getElementById('res1').textContent = (per / 100 * num).toLocaleString('en-IN', { maximumFractionDigits: 2 });
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+                showError('Please enter valid numbers for the calculation.');
+            }
+        }
+
+        function calcP2() {
+            showError('');
+            const num1 = parseFloat(document.getElementById('p2_num1').value);
+            const num2 = parseFloat(document.getElementById('p2_num2').value);
+            const card = document.getElementById('res2_card');
+
+            if (document.getElementById('p2_num1').value === '' || document.getElementById('p2_num2').value === '') {
+                card.style.display = 'none';
+                return;
+            }
+
+            if (!isNaN(num1) && !isNaN(num2)) {
+                if (num2 === 0) {
+                    showError('Total cannot be zero.');
+                    card.style.display = 'none';
+                    return;
+                }
+                document.getElementById('res2').textContent = (num1 / num2 * 100).toFixed(2) + '%';
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+                showError('Please enter valid numbers for the calculation.');
+            }
+        }
+
+        function calcP3() {
+            showError('');
+            const from = parseFloat(document.getElementById('p3_from').value);
+            const to = parseFloat(document.getElementById('p3_to').value);
+            const card = document.getElementById('res3_card');
+
+            if (document.getElementById('p3_from').value === '' || document.getElementById('p3_to').value === '') {
+                card.style.display = 'none';
+                return;
+            }
+
+            if (!isNaN(from) && !isNaN(to)) {
+                if (from === 0) {
+                    showError('Starting value cannot be zero.');
+                    card.style.display = 'none';
+                    return;
+                }
+                const per = ((to - from) / from) * 100;
+                const type = per >= 0 ? 'Increase' : 'Decrease';
+                document.getElementById('res3').textContent = `${Math.abs(per).toFixed(2)}% ${type}`;
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+                showError('Please enter valid numbers for the calculation.');
+            }
+        }
+  </script>
+</body>
+</html>

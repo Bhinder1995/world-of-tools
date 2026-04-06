@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-    <script>
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWT, Base64, and Hash Functions Explained: A Developer's Guide to Web Security Encoding | WorldOfTools Guides</title>
-    <meta name="description" content="Understand JWT tokens, Base64 encoding, and hash functions — what they are, how they work, when to use each, and free online tools to decode and test them.">
-    <link rel="canonical" href="https://worldoftools.in/guides/jwt-base64-hash-developer-security-guide" />
-    <link rel="stylesheet" href="/css/style.css?v=2.5">
-    <link rel="icon" type="image/svg+xml" href="/logo.svg">
-    <style>
+<script>
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JWT, Base64, and Hash Functions Explained: A Developer's Guide to Web Security Encoding | WorldOfTools Guides</title>
+<meta content="Understand JWT tokens, Base64 encoding, and hash functions — what they are, how they work, when to use each, and free online tools to decode and test them." name="description"/>
+<link href="https://worldoftools.in/guides/jwt-base64-hash-developer-security-guide" rel="canonical"/>
+<link href="/css/style.css?v=2.5" rel="stylesheet"/>
+<link href="/logo.svg" rel="icon" type="image/svg+xml"/>
+<style>
         .guide-article {
             max-width: 800px;
             margin: 0 auto;
@@ -97,32 +97,30 @@
             color: #111827;
         }
     </style>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
-    <script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-CCYN1G2F05');
     </script>
-</head>
-
+<meta content="website" property="og:type"/><meta content="https://worldoftools.in/jwt-base64-hash-developer-security-guide" property="og:url"/><meta content="JWT, Base64, and Hash Functions Explained: A Developer's Guide to Web Security Encoding | WorldOfTools Guides" property="og:title"/><meta content="Understand JWT tokens, Base64 encoding, and hash functions — what they are, how they work, when to use each, and free online tools to decode and test them." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/jwt-base64-hash-developer-security-guide" name="twitter:url"/><meta content="JWT, Base64, and Hash Functions Explained: A Developer's Guide to Web Security Encoding | WorldOfTools Guides" name="twitter:title"/><meta content="Understand JWT tokens, Base64 encoding, and hash functions — what they are, how they work, when to use each, and free online tools to decode and test them." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
 <body>
-    <header></header>
-
-    <main class="container">
-        <article class="guide-article">
-            <div class="hero-badge">📚 Tool Guide</div>
-            <h1>JWT, Base64, and Hash Functions Explained: A Developer's Guide to Web Security Encoding</h1>
+<header></header>
+<main class="container">
+<article class="guide-article">
+<div class="hero-badge">📚 Tool Guide</div>
+<h1>JWT, Base64, and Hash Functions Explained: A Developer's Guide to Web Security Encoding</h1>
 <p>If you've worked with APIs, authentication, or web applications for any length of time, you've run into these three things: a JWT token in an Authorization header, a Base64-encoded string somewhere in a payload, and an MD5 or SHA256 hash used to verify a file or password. They're everywhere — and they're often confused with each other.</p>
 <p>This guide breaks down all three clearly: what each one actually does, how they're different, when you'd use each one, and how to work with them using free online tools.</p>
-<hr />
+<hr/>
 <h2>The Core Distinction: Encoding vs Encryption vs Hashing</h2>
 <p>Before diving into each tool, here's the conceptual framework you need:</p>
 <p><strong>Encoding (Base64)</strong> — Transforms data into a different format for transmission or storage. Not secret. Anyone can decode it. The purpose is compatibility, not security.</p>
 <p><strong>Hashing (MD5, SHA256, etc.)</strong> — A one-way transformation. You can go from data → hash, but not hash → data. Used to verify integrity, not to protect secrets in transmission.</p>
 <p><strong>Encryption (AES, RSA, etc.)</strong> — Transforms data into ciphertext that only someone with the correct key can reverse. Actually secret. Note: JWT can use encryption, but most commonly uses signing (which is closer to hashing than encryption).</p>
 <p>Understanding this triangle saves you from a very common mistake: treating Base64 as security. It's not. A Base64-encoded string is not protected in any way — it's just reformatted.</p>
-<hr />
+<hr/>
 <h2>Part 1: Base64 Encoding and Decoding</h2>
 <h3>What Is Base64?</h3>
 <p>Base64 is an encoding scheme that converts binary data into a string of ASCII characters using an alphabet of 64 characters: A–Z, a–z, 0–9, and <code>+</code> and <code>/</code> (with <code>=</code> for padding).</p>
@@ -144,7 +142,7 @@
 <p><strong>Encoding:</strong> Paste any text or data string → get the Base64 representation. Useful when you need to pass binary data through a text-only channel.</p>
 <p><strong>Decoding:</strong> Paste any Base64 string → get the original text. Useful when debugging API requests, reading JWT payloads, or investigating what a Base64 value in a token or header actually contains.</p>
 <p><strong>Base64URL variant:</strong> Standard Base64 uses <code>+</code> and <code>/</code>, which are reserved characters in URLs. Base64URL replaces these with <code>-</code> and <code>_</code> to make the string URL-safe. JWTs use Base64URL. If you're decoding a JWT section, use a tool that handles Base64URL (or just replace <code>-</code> with <code>+</code> and <code>_</code> with <code>/</code> before decoding standard Base64).</p>
-<hr />
+<hr/>
 <h2>Part 2: JWT — JSON Web Tokens</h2>
 <h3>What Is a JWT?</h3>
 <p>A JSON Web Token (JWT) is a compact, URL-safe way to represent claims (pieces of information) that can be verified and trusted. In practice: it's an authentication token your server issues after login, which your browser sends with every subsequent request to prove who you are.</p>
@@ -184,7 +182,7 @@
 <li>Set reasonable expiration times — short-lived tokens (15–60 minutes) with refresh token rotation is the current best practice</li>
 <li>The <code>none</code> algorithm (no signature) is a known attack vector — always reject JWTs with <code>alg: none</code></li>
 </ul>
-<hr />
+<hr/>
 <h2>Part 3: Hash Functions (MD5, SHA256, and Others)</h2>
 <h3>What Is a Hash Function?</h3>
 <p>A hash function takes any input (a string, a file, a password) and produces a fixed-length string of characters called a digest or hash. Three defining properties:</p>
@@ -232,13 +230,13 @@
 <p><strong>MD5 is not secure for passwords.</strong> MD5 hashes are pre-computed in "rainbow tables" — databases of millions of common passwords and their MD5 hashes. If someone gets your MD5 password hash, they can look it up and find the original in seconds. Use SHA256 (with salt and stretching, ideally bcrypt or Argon2) for anything security-sensitive.</p>
 <p>MD5 is still fine for non-security file integrity checks — verifying a downloaded file hasn't been corrupted in transit.</p>
 <h3>Practical Uses of Hash Tools</h3>
-<p><strong>Verify a downloaded file:</strong><br />
+<p><strong>Verify a downloaded file:</strong><br/>
 Many software downloads list the SHA256 hash of the file. After downloading, run the <a href="https://worldoftools.in/hash-generator">hash generator</a> on the downloaded file and compare it to the listed hash. If they match, the file is intact and unmodified.</p>
-<p><strong>Generate content fingerprints:</strong><br />
+<p><strong>Generate content fingerprints:</strong><br/>
 If you're building a system that needs to detect duplicate files without comparing full content, hash each file and compare hashes — identical hashes mean identical content.</p>
-<p><strong>Test your hashing implementation:</strong><br />
+<p><strong>Test your hashing implementation:</strong><br/>
 If you're building an API that signs payloads with HMAC-SHA256, use the hash tool to manually compute expected values and verify your implementation produces the same output.</p>
-<p><strong>Anonymize data for testing:</strong><br />
+<p><strong>Anonymize data for testing:</strong><br/>
 When testing systems with real data you shouldn't expose, hash PII fields (email addresses, phone numbers) — the data becomes unusable as PII but retains uniqueness for testing.</p>
 <h3>Using the Hash Generator</h3>
 <p>The <a href="https://worldoftools.in/hash-generator">hash generator</a> at WorldofTools supports MD5, SHA1, SHA256, and SHA512:</p>
@@ -248,7 +246,7 @@ When testing systems with real data you shouldn't expose, hash PII fields (email
 <li>Copy the resulting hash</li>
 </ol>
 <p>All computation happens in your browser — no data is sent anywhere. This matters when hashing sensitive strings like API keys or data samples.</p>
-<hr />
+<hr/>
 <h2>How These Three Tools Work Together in Real Development</h2>
 <p>A common real-world flow:</p>
 <ol>
@@ -260,11 +258,9 @@ When testing systems with real data you shouldn't expose, hash PII fields (email
 </ol>
 <p>These three concepts aren't separate tools — they're layers of the same web security stack. Understanding each one makes the whole system legible.</p>
 <p><strong>Related tools for developers:</strong> <a href="https://worldoftools.in/url-encoder-decoder">URL encoder/decoder</a> for debugging query strings and API URLs, <a href="https://worldoftools.in/json-formatter">JSON formatter</a> for reading API responses cleanly, and <a href="https://worldoftools.in/regex-tester">regex tester</a> for validating token patterns.</p>
-        </article>
-    </main>
-
-    <footer></footer>
-
-    <script src="/js/common.js?v=2.5"></script>
+</article>
+</main>
+<footer></footer>
+<script src="/js/common.js?v=2.5"></script>
 </body>
 </html>
