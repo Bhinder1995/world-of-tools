@@ -39,20 +39,6 @@ def generate_sitemap(base_path, base_url):
                     'priority': '0.6'
                 })
 
-    # Scan i18n directories
-    for lang in ['es', 'pt']:
-        lang_dir = os.path.join(base_path, lang)
-        if os.path.exists(lang_dir):
-            for f in os.listdir(lang_dir):
-                if f.endswith('.html') and os.path.isfile(os.path.join(lang_dir, f)):
-                    url_path = f"{lang}/{f.replace('.html', '')}"
-                    urls.append({
-                        'loc': f"{base_url}/{url_path}",
-                        'lastmod': datetime.utcnow().strftime('%Y-%m-%d'),
-                        'changefreq': 'weekly',
-                        'priority': '0.8'
-                    })
-
     # Generate XML
     xml_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
