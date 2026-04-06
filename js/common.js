@@ -199,6 +199,9 @@ function injectHeader() {
                                         <a href="/barcode-generator" class="mega-item">
                                             <span class="nav-icon" style="background:#37474f;">|||</span> Barcode Generator
                                         </a>
+                                        <a href="/thermal-label-maker" class="mega-item">
+                                            <span class="nav-icon" style="background:#4b5563;">🖨️</span> Thermal Label Maker
+                                        </a>
                                         <a href="/video-compressor" class="mega-item">
                                             <span class="nav-icon" style="background:#e91e63;">📹</span> Video Compressor
                                         </a>
@@ -429,6 +432,7 @@ function injectFooter() {
                             <a href="/exif-metadata-remover" class="footer-badge">EXIF Remover 🛡️</a>
                             <a href="/loan-comparison-calculator" class="footer-badge">Loan Comparison</a>
                             <a href="/remove-watermark-from-image" class="footer-badge">Remove Watermark</a>
+                            <a href="/thermal-label-maker" class="footer-badge">Thermal Label Maker ✨</a>
                         </div>
                     </div>
 

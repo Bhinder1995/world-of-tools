@@ -1,4 +1,4 @@
-const CACHE_NAME = 'worldoftools-v133';
+const CACHE_NAME = 'worldoftools-v134';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -46,6 +46,7 @@ const ASSETS_TO_CACHE = [
     '/xml-formatter',
     '/markdown-to-html',
     '/keyword-density-checker',
+    '/thermal-label-maker',
     '/scientific-calculator',
     '/time-zone-converter',
     '/lorem-ipsum-generator',
@@ -172,7 +173,8 @@ const ASSETS_TO_CACHE = [
     '/guides/remove-exif-metadata-guide',
     '/guides/video-to-gif-converter-guide',
     '/guides/video-to-mp3-extractor-guide',
-    '/guides/keyword-research-guide'
+    '/guides/keyword-research-guide',
+    '/guides/thermal-label-maker-guide'
 ];
 
 
