@@ -250,6 +250,16 @@ function injectHeader() {
                 </nav>
 
                 <div class="header-actions" style="display: flex; align-items: center; gap: 1rem; position: relative; z-index: 2;">
+                    <!-- Language Switcher -->
+                    <div class="lang-switcher" style="position: relative; display: flex; align-items: center; cursor: pointer; padding: 0.4rem 0.8rem; background: rgba(0,0,0,0.03); border-radius: 8px; font-weight: 600; font-size: 0.85rem;" onclick="this.querySelector('.lang-dropdown').classList.toggle('show')">
+                        🌍 <span id="current-lang" style="margin-left: 5px;">EN</span>
+                        <div class="lang-dropdown" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #eee; border-radius: 8px; padding: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 0.5rem; width: max-content; z-index: 100;">
+                            <a href="#" onclick="switchLanguage('en')" style="display: block; padding: 0.5rem 1rem; color: #333; text-decoration: none; border-radius: 4px;">🇺🇸 English</a>
+                            <a href="#" onclick="switchLanguage('es')" style="display: block; padding: 0.5rem 1rem; color: #333; text-decoration: none; border-radius: 4px;">🇪🇸 Español</a>
+                            <a href="#" onclick="switchLanguage('pt')" style="display: block; padding: 0.5rem 1rem; color: #333; text-decoration: none; border-radius: 4px;">🇧🇷 Português</a>
+                        </div>
+                    </div>
+
                     <div class="global-privacy-badge" style="display: flex; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.1); color: #059669; padding: 0.4rem 0.8rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.2);" class="hide-mobile">
                         🛡️ <span class="badge-text" style="white-space: nowrap;">100% Private</span>
                     </div>
@@ -271,6 +281,48 @@ function injectHeader() {
         }
         header.innerHTML = headerHTML;
         setupMobileMenu();
+        
+        // Auto-detect current language for UI
+        const path = window.location.pathname;
+        const currentLangSpan = document.getElementById('current-lang');
+        if (path.startsWith('/es/')) currentLangSpan.innerText = 'ES';
+        else if (path.startsWith('/pt/')) currentLangSpan.innerText = 'PT';
+        
+        // Setup language dropdown click outside logic
+        document.addEventListener('click', (e) => {
+            const switcher = document.querySelector('.lang-switcher');
+            const dropdown = document.querySelector('.lang-dropdown');
+            if (switcher && dropdown && !switcher.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+        
+        // Add CSS dynamically for .show
+        if(!document.getElementById('lang-styles')) {
+            const style = document.createElement('style');
+            style.id = 'lang-styles';
+            style.innerHTML = `
+                .lang-dropdown.show { display: block !important; }
+                .lang-dropdown a:hover { background: #f3f4f6; }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+}
+
+window.switchLanguage = function(targetLang) {
+    let path = window.location.pathname;
+    // Strip existing language codes handles `/es/tool` or `/pt/tool` -> `/tool`
+    if (path.startsWith('/es/')) path = path.replace('/es/', '/');
+    if (path.startsWith('/pt/')) path = path.replace('/pt/', '/');
+    
+    // Construct new path
+    if (targetLang === 'en') {
+        window.location.href = path; // Default english root
+    } else {
+        // Append new lang code
+        const newPath = '/' + targetLang + path;
+        window.location.href = newPath;
     }
 }
 
