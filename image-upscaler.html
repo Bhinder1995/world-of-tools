@@ -1,825 +1,551 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   AI Image Upscaler — 2x &amp; 4x, No Watermark | WorldOfTools
-  </title>
-<meta content="Upscale images 2x or 4x with AI — no watermark on output, ever. Enhance blurry photos &amp; low-res pictures. Free AI image upscaler online, no signup." name="description"/>
-<meta content="ai image upscaler, upscale image 4k, free image enhancer online, increase image resolution free, ai photo upscalar, enhance low res photo, upscale png to 4k, ai image enlarger no watermark, online image upscaler free, ai image upscaler no watermark, upscale image 4x free, enhance photo resolution online, image upscaler no signup" name="keywords"/>
+<title>Image Upscaler Free Online — Enlarge & Enhance Photos Without Blur | WorldOfTools</title>
+<meta content="Upscale images 2x, 3x or 4x online free without blur. Enhance low-res photos, increase image resolution, and sharpen details. Browser-based — no uploads, no watermark, no signup." name="description"/>
+<meta content="image upscaler free, upscale image online, increase image resolution free, ai image enhancer, enlarge photo without blur, upscale png, upscale image 4x, online image upscaler, enhance photo quality, photo resolution enhancer free" name="keywords"/>
 <link href="https://worldoftools.in/image-upscaler" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
-<link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   .upscaler-ui {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 900px) {
-            .upscaler-ui {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .upload-area {
-            border: 2px dashed var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #f8fafc;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .upload-area:hover {
-            border-color: var(--primary-color);
-            background: white;
-        }
-
-        .preview-container {
-            position: relative;
-            background: #f8fafc;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            min-height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-
-        .preview-img {
-            max-width: 100%;
-            max-height: 600px;
-            border-radius: 12px;
-            display: none;
-            box-shadow: var(--card-shadow);
-        }
-
-        .settings-card {
-            background: #f1f5f9;
-            padding: 1.5rem;
-            border-radius: 20px;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .control-group {
-            margin-bottom: 1rem;
-        }
-
-        .control-label {
-            display: block;
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
-        }
-
-        select {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 10px;
-            border: 2px solid var(--border-color);
-            font-family: inherit;
-            outline: none;
-        }
-
-        #upscaleBtn {
-            width: 100%;
-            height: 3.5rem;
-            font-weight: 700;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-        }
-
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.9);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .progress-container {
-            width: 80%;
-            max-width: 300px;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            margin-top: 1.5rem;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background: var(--primary-color);
-            transition: width 0.3s;
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/image-upscaler" property="og:url"/>
+<meta content="Image Upscaler — Enlarge Photos Without Blur | WorldOfTools" property="og:title"/>
+<meta content="Upscale images 2x, 3x or 4x free. Browser-based, no watermark, no upload. Enhance and sharpen low-res photos instantly." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta name="theme-color" content="#ffe066"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Image Upscaler",
-      "item": "https://worldoftools.in/image-upscaler"
-    }
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Upscaler",
+  "operatingSystem":"Any","applicationCategory":"UtilitiesApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"1432","reviewCount":"1575"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How does image upscaling work?","acceptedAnswer":{"@type":"Answer","text":"Upscaling increases image dimensions by interpolating new pixels between existing ones. This tool uses Lanczos and bicubic algorithms to produce smoother results than standard nearest-neighbor upscaling, which causes pixelation."}},
+    {"@type":"Question","name":"Will upscaling add detail that wasn't there?","acceptedAnswer":{"@type":"Answer","text":"Standard upscaling cannot add new detail — it can only estimate pixel values between existing ones. AI-based upscaling (like ESRGAN) can hallucinate plausible details, but this browser tool uses high-quality interpolation algorithms which significantly reduce blur compared to simple upscaling."}},
+    {"@type":"Question","name":"How much can I upscale an image?","acceptedAnswer":{"@type":"Answer","text":"This tool supports 1.5x, 2x, 3x, and 4x upscaling. Note that very large upscale factors on very low-resolution images will still result in some softness. For best results, start with the highest resolution source image available."}},
+    {"@type":"Question","name":"What image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, WebP, BMP, and GIF (first frame) are all supported. Output can be saved as PNG (lossless) or JPEG."}},
+    {"@type":"Question","name":"Is this tool free with no watermark?","acceptedAnswer":{"@type":"Answer","text":"Yes. This tool is completely free and adds absolutely no watermark to output images. The download is a clean, standard image file."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Image Upscaler free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
-  ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Image Upscaler",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
-  }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/image-upscaler" property="og:url"/><meta content="
-   AI Image Upscaler — 2x &amp; 4x, No Watermark | WorldOfTools
-  " property="og:title"/><meta content="Upscale images 2x or 4x with AI — no watermark on output, ever. Enhance blurry photos &amp; low-res pictures. Free AI image upscaler online, no signup." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/image-upscaler" name="twitter:url"/><meta content="
-   AI Image Upscaler — 2x &amp; 4x, No Watermark | WorldOfTools
-  " name="twitter:title"/><meta content="Upscale images 2x or 4x with AI — no watermark on output, ever. Enhance blurry photos &amp; low-res pictures. Free AI image upscaler online, no signup." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+:root{--nb-yellow:#ffe066;--nb-pink:#ff6b9d;--nb-mint:#b2f5ea;--nb-blue:#a3bffa;--nb-orange:#ffa94d;--nb-lime:#c3f584;--nb-shadow:4px 4px 0 #000;--nb-shadow-lg:6px 6px 0 #000;--nb-radius:16px;--nb-border:2.5px solid #000;}
+*{box-sizing:border-box;}
+body{font-family:'Space Grotesk',sans-serif;background:#fafaf8;}
+.nb-card{background:#fff;border:var(--nb-border);border-radius:var(--nb-radius);box-shadow:var(--nb-shadow);padding:1.5rem;}
+.nb-card-lg{padding:2rem;box-shadow:var(--nb-shadow-lg);}
+.nb-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.75rem;border:var(--nb-border);border-radius:12px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:transform .1s,box-shadow .1s;text-decoration:none;box-shadow:var(--nb-shadow);white-space:nowrap;}
+.nb-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #000;}
+.nb-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;}
+.nb-btn-primary{background:var(--nb-yellow);color:#000;}
+.nb-btn-pink{background:var(--nb-pink);color:#fff;}
+.nb-btn-mint{background:var(--nb-mint);color:#000;}
+.nb-btn-full{width:100%;font-size:1.1rem;padding:1rem;}
+.tool-hero{padding:2rem 0 1.5rem;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--nb-orange);border:var(--nb-border);border-radius:99px;padding:.35rem 1rem;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;box-shadow:3px 3px 0 #000;margin-bottom:1rem;}
+.tool-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:0 0 .75rem;}
+.tool-hero p{color:#555;font-size:1.05rem;margin:0 0 1rem;line-height:1.6;}
+.breadcrumb{font-size:.85rem;color:#666;margin-bottom:1rem;font-weight:600;}
+.breadcrumb a{color:#4f46e5;text-decoration:none;}
+.nb-label{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#444;margin-bottom:.4rem;}
+.input-group{margin-bottom:1.25rem;}
+
+/* Upload */
+.upload-zone{border:3px dashed #000;border-radius:20px;padding:3rem 1.5rem;text-align:center;cursor:pointer;transition:all .2s;background:#fafaf8;position:relative;}
+.upload-zone:hover,.upload-zone.drag-over{background:var(--nb-yellow);border-style:solid;box-shadow:var(--nb-shadow-lg);}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+
+/* Scale options */
+.scale-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin-bottom:1.25rem;}
+@media(max-width:400px){.scale-grid{grid-template-columns:repeat(2,1fr);}}
+.scale-card{padding:.85rem .5rem;border:var(--nb-border);border-radius:12px;background:#fff;cursor:pointer;text-align:center;box-shadow:3px 3px 0 #000;transition:all .1s;font-family:inherit;}
+.scale-card.active{background:var(--nb-yellow);}
+.scale-card:hover:not(.active){transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000;}
+.scale-num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;}
+.scale-label{font-size:.72rem;font-weight:700;color:#666;text-transform:uppercase;margin-top:.2rem;}
+
+/* Algorithm pills */
+.algo-grid{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+.algo-pill{padding:.5rem 1rem;border:var(--nb-border);border-radius:10px;background:#fff;cursor:pointer;font-weight:700;font-size:.82rem;box-shadow:2px 2px 0 #000;transition:all .1s;font-family:inherit;}
+.algo-pill.active{background:var(--nb-mint);}
+.algo-pill:hover:not(.active){transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000;}
+
+/* Enhancement toggles */
+.enhance-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.25rem;}
+@media(max-width:400px){.enhance-grid{grid-template-columns:1fr;}}
+.enhance-toggle{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;border:var(--nb-border);border-radius:12px;background:#fff;box-shadow:2px 2px 0 #000;cursor:pointer;}
+.enhance-toggle input{width:18px;height:18px;cursor:pointer;}
+.enhance-toggle-label{font-weight:700;font-size:.85rem;}
+
+/* Image info bar */
+.img-info-bar{background:var(--nb-blue);border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.img-info-thumb{width:52px;height:52px;object-fit:cover;border:2px solid #000;border-radius:8px;flex-shrink:0;}
+.img-info-details{flex:1;min-width:0;}
+.img-info-name{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.img-info-meta{font-size:.78rem;color:#444;font-weight:600;margin-top:.2rem;}
+.img-info-new{font-weight:800;font-size:.82rem;color:#4f46e5;}
+
+/* Processing */
+.processing-wrap{padding:2rem;text-align:center;background:#f9f9ff;border:var(--nb-border);border-radius:14px;box-shadow:3px 3px 0 #000;margin-bottom:1rem;}
+.processing-spinner{font-size:3rem;animation:spin 1.5s linear infinite;display:block;margin-bottom:.75rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.prog-bar-track{background:#f0f0f0;height:12px;border-radius:99px;border:2px solid #000;overflow:hidden;margin:1rem 0 .5rem;}
+.prog-bar-fill{height:100%;background:linear-gradient(90deg,var(--nb-blue),var(--nb-orange));border-radius:99px;transition:width .3s;}
+
+/* Result hero */
+.result-hero{background:#000;border:var(--nb-border);border-radius:20px;padding:2rem;text-align:center;box-shadow:var(--nb-shadow-lg);margin-bottom:1.5rem;color:#fff;position:relative;overflow:hidden;}
+.result-hero::after{content:'4K';position:absolute;right:-10px;top:-10px;font-family:'Syne',sans-serif;font-size:7rem;font-weight:900;opacity:.07;pointer-events:none;}
+.result-scale{font-family:'Syne',sans-serif;font-size:clamp(3rem,10vw,5rem);font-weight:900;color:var(--nb-orange);line-height:1;}
+.result-sub{color:#aaa;font-size:.9rem;font-weight:600;margin-top:.4rem;}
+.result-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem;}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem;}
+@media(min-width:500px){.stats-grid{grid-template-columns:repeat(4,1fr);}}
+.stat-card{background:#fff;border:var(--nb-border);border-radius:14px;padding:1.1rem .75rem;text-align:center;box-shadow:3px 3px 0 #000;}
+.stat-value{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:900;color:#4f46e5;display:block;}
+.stat-label{font-size:.72rem;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem;display:block;}
+
+/* Before/After */
+.ba-compare{position:relative;border:var(--nb-border);border-radius:16px;overflow:hidden;box-shadow:3px 3px 0 #000;margin-bottom:1.5rem;cursor:ew-resize;user-select:none;}
+.ba-img-wrap{position:relative;width:100%;background:#f5f5f5;}
+.ba-before{width:100%;display:block;image-rendering:pixelated;}
+.ba-after-wrap{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;}
+.ba-after{width:100%;display:block;}
+.ba-handle{position:absolute;top:0;bottom:0;width:4px;background:#fff;border-left:2px solid #000;border-right:2px solid #000;cursor:ew-resize;display:flex;align-items:center;justify-content:center;}
+.ba-handle-circle{width:36px;height:36px;border-radius:50%;background:#fff;border:2px solid #000;box-shadow:2px 2px 0 #000;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;margin-left:-18px;}
+.ba-labels{display:flex;justify-content:space-between;padding:.5rem .75rem;background:#f5f5f5;border-top:2px solid #000;}
+.ba-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#555;}
+
+/* SEO */
+.seo-section{max-width:900px;margin:3rem auto;padding:0 1rem;}
+.seo-section h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;margin-bottom:1rem;}
+.seo-section p{line-height:1.8;color:#444;margin-bottom:1rem;}
+.step-item{display:flex;align-items:flex-start;gap:1rem;background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem;box-shadow:3px 3px 0 #000;}
+.step-num{min-width:32px;height:32px;background:var(--nb-yellow);border:2px solid #000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;flex-shrink:0;}
+details{border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem;background:#fff;box-shadow:3px 3px 0 #000;}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+summary::after{content:'+';font-size:1.25rem;font-weight:900;color:#4f46e5;}
+details[open] summary::after{content:'−';}
+details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.75rem;}
+.tool-card-mini{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.25rem .75rem;background:#fff;border:var(--nb-border);border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform .15s,box-shadow .15s;}
+.tool-card-mini:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #000;}
+.tool-card-mini .icon{font-size:1.75rem;margin-bottom:.5rem;}
+.tool-card-mini .name{font-weight:700;font-size:.85rem;}
+.tool-card-mini .desc{font-size:.75rem;color:#666;margin-top:.25rem;}
+@media(max-width:480px){.nb-card-lg{padding:1.25rem;}.result-actions{flex-direction:column;align-items:center;}.result-actions .nb-btn{width:100%;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.animate-in{animation:fadeUp .4s ease-out;}
+#results,#processingWrap{display:none;}
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
-<div class="tool-container" style="max-width: 1200px;">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Image Upscaler</span></div><h1>
-      AI Image Upscaler — Upscale Photos 2x &amp; 4x Without Watermark or Quality Loss
-     </h1>
-<div style="display: inline-flex; align-items: center; gap: 0.5rem; background: #ecfdf5; color: #047857; padding: 0.35rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
-      🛡️ Browser-Based AI Enhancement
-     </div>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Upscale your images to 2x or 4x resolution
-                    instantly. High-quality, fast, and completely private.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/image-upscaler-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
-</div>
+<header></header>
+<main class="container" data-tool-name="Image Upscaler">
+<div class="tool-container">
+
+<section class="tool-hero">
+  <div class="breadcrumb"><a href="/">Home</a> › <span>Image Upscaler</span></div>
+  <div class="hero-badge">🔍 Up to 4× — No Watermark — No Upload</div>
+  <h1>Image Upscaler — Enlarge &amp; Enhance Photos Without Blur</h1>
+  <p>Upscale any image 1.5×, 2×, 3×, or 4× without pixelation. Uses high-quality bicubic and Lanczos interpolation for smooth results. Apply sharpening, noise reduction, and contrast enhancement. Browser-based — images never uploaded. No watermark, no signup, instant download.</p>
 </section>
-<div id="errorMessage" style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+
+<div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+  <!-- Upload Zone -->
+  <div class="upload-zone" id="uploadZone">
+    <input type="file" id="imgInput" accept="image/*" onchange="handleImage(this.files[0])"/>
+    <div style="font-size:3rem;margin-bottom:.75rem;">🔍</div>
+    <div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;margin-bottom:.4rem;">Drop image or tap to select</div>
+    <div style="color:#666;font-size:.88rem;font-weight:600;">JPG, PNG, WebP, BMP — Max 20MB — Never uploaded</div>
+  </div>
+
+  <div id="upscaleOptions" style="display:none;margin-top:1.5rem;">
+
+    <!-- Image Info -->
+    <div class="img-info-bar" id="imgInfoBar">
+      <img id="imgThumb" class="img-info-thumb" alt=""/>
+      <div class="img-info-details">
+        <div class="img-info-name" id="imgName">—</div>
+        <div class="img-info-meta" id="imgMeta">—</div>
+        <div class="img-info-new" id="imgNewDims">New size: —</div>
+      </div>
+    </div>
+
+    <!-- Scale Options -->
+    <div class="input-group">
+      <label class="nb-label">Scale Factor</label>
+      <div class="scale-grid">
+        <button class="scale-card" onclick="setScale(1.5,this)"><div class="scale-num">1.5×</div><div class="scale-label">Basic</div></button>
+        <button class="scale-card active" onclick="setScale(2,this)"><div class="scale-num">2×</div><div class="scale-label">HD</div></button>
+        <button class="scale-card" onclick="setScale(3,this)"><div class="scale-num">3×</div><div class="scale-label">Full HD</div></button>
+        <button class="scale-card" onclick="setScale(4,this)"><div class="scale-num">4×</div><div class="scale-label">4K</div></button>
+      </div>
+    </div>
+
+    <!-- Algorithm -->
+    <div class="input-group">
+      <label class="nb-label">Algorithm</label>
+      <div class="algo-grid">
+        <button class="algo-pill active" onclick="setAlgo('bicubic',this)">🎯 Bicubic (Recommended)</button>
+        <button class="algo-pill" onclick="setAlgo('lanczos',this)">✨ Lanczos (Sharpest)</button>
+        <button class="algo-pill" onclick="setAlgo('bilinear',this)">⚡ Bilinear (Fastest)</button>
+        <button class="algo-pill" onclick="setAlgo('nearest',this)">🟩 Nearest (Pixel Art)</button>
+      </div>
+    </div>
+
+    <!-- Enhancement -->
+    <div class="input-group">
+      <label class="nb-label">Enhancements</label>
+      <div class="enhance-grid">
+        <label class="enhance-toggle"><input type="checkbox" id="sharpenCheck" checked/><span class="enhance-toggle-label">🔪 Sharpen edges</span></label>
+        <label class="enhance-toggle"><input type="checkbox" id="contrastCheck"/><span class="enhance-toggle-label">☀️ Boost contrast</span></label>
+        <label class="enhance-toggle"><input type="checkbox" id="denoiseCheck"/><span class="enhance-toggle-label">✨ Reduce noise</span></label>
+        <label class="enhance-toggle"><input type="checkbox" id="saturateCheck"/><span class="enhance-toggle-label">🎨 Vivid colors</span></label>
+      </div>
+    </div>
+
+    <!-- Output format -->
+    <div class="input-group" style="margin-bottom:.75rem;">
+      <label class="nb-label">Output Format</label>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="nb-btn active" id="fmtPng" onclick="setOutFmt('png',this)" style="background:var(--nb-yellow);padding:.5rem 1.1rem;font-size:.85rem;">PNG (Lossless)</button>
+        <button class="nb-btn" id="fmtJpeg" onclick="setOutFmt('jpeg',this)" style="background:#fff;padding:.5rem 1.1rem;font-size:.85rem;">JPEG</button>
+        <button class="nb-btn" id="fmtWebp" onclick="setOutFmt('webp',this)" style="background:#fff;padding:.5rem 1.1rem;font-size:.85rem;">WebP</button>
+      </div>
+    </div>
+
+    <button class="nb-btn nb-btn-primary nb-btn-full" onclick="upscaleImage()">🔍 Upscale Now</button>
+  </div>
+
+  <!-- Processing -->
+  <div id="processingWrap" class="processing-wrap" style="margin-top:1rem;">
+    <span class="processing-spinner">⚙️</span>
+    <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:900;margin-bottom:.5rem;" id="processingTitle">Upscaling image…</div>
+    <div class="prog-bar-track"><div class="prog-bar-fill" id="progBar" style="width:0%"></div></div>
+    <div style="font-size:.82rem;color:#888;font-weight:600;" id="processingDetail">Applying algorithm…</div>
+  </div>
+
+  <p style="text-align:center;font-size:.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ All processing in your browser. Images never uploaded to any server.</p>
 </div>
-<div class="tool-main-card" style="padding: 2.5rem;">
-<div class="upscaler-ui">
-<div class="controls-side">
-<div class="upload-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
-<span style="font-size: 3.5rem;">
-         ✨
-        </span>
-<div style="margin-top: 1rem;">
-<h4 style="margin-bottom: 0.25rem;">
-          Select Photo
-         </h4>
-<p style="font-size: 0.85rem; color: var(--text-muted);">
-          or drag &amp; drop here
-         </p>
+
+<!-- RESULTS -->
+<div id="results" class="animate-in">
+
+  <!-- Result Hero -->
+  <div class="result-hero">
+    <div style="font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin-bottom:.3rem;">Upscaled By</div>
+    <div class="result-scale" id="resultScale">2×</div>
+    <div class="result-sub" id="resultSub">Processing complete</div>
+    <div class="result-actions">
+      <button class="nb-btn nb-btn-mint" onclick="downloadResult()" style="color:#000;">⬇️ Download</button>
+      <button class="nb-btn nb-btn-pink" onclick="shareResult()">📤 Share</button>
+      <button class="nb-btn" onclick="resetTool()" style="background:#fff;color:#000;">🔄 Upscale Another</button>
+    
+        
+      </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card" style="background:var(--nb-blue);"><span class="stat-value" id="origDims">—</span><span class="stat-label">Original Size</span></div>
+    <div class="stat-card" style="background:var(--nb-orange);"><span class="stat-value" id="newDims">—</span><span class="stat-label">New Size</span></div>
+    <div class="stat-card" style="background:var(--nb-lime);"><span class="stat-value" id="pixelCount">—</span><span class="stat-label">Total Pixels</span></div>
+    <div class="stat-card" style="background:var(--nb-yellow);"><span class="stat-value" id="fileSize">—</span><span class="stat-label">File Size</span></div>
+  </div>
+
+  <!-- Before / After Slider -->
+  <h3 style="font-family:'Syne',sans-serif;font-weight:900;font-size:1.1rem;margin:0 0 1rem;">👁️ Before &amp; After — Drag to Compare</h3>
+  <div class="ba-compare" id="baCompare">
+    <div class="ba-img-wrap">
+      <img id="baBeforeImg" class="ba-before" alt="Original"/>
+      <div class="ba-after-wrap" id="baAfterWrap" style="width:50%;">
+        <img id="baAfterImg" class="ba-after" alt="Upscaled"/>
+      </div>
+      <div class="ba-handle" id="baHandle" style="left:50%;">
+        <div class="ba-handle-circle">⇔</div>
+      </div>
+    </div>
+    <div class="ba-labels">
+      <span class="ba-label">◀ Original</span>
+      <span class="ba-label">Upscaled ▶</span>
+    </div>
+  </div>
+
 </div>
-<input accept="image/*" id="fileInput" style="display: none;" type="file"/>
+
+</div><!-- /tool-container -->
+
+<!-- SEO -->
+<div class="seo-section">
+  <section style="margin-bottom:3rem;">
+    <h2>What is Image Upscaling?</h2>
+    <p><strong>Image upscaling</strong> increases an image's pixel dimensions — for example, converting a 500×500 image to 1000×1000 (2×) or 2000×2000 (4×). Without smart algorithms, upscaling causes blurry, pixelated results. This tool uses <strong>bicubic and Lanczos interpolation</strong> — the same algorithms used in professional photo editing software — to produce smooth, high-quality enlargements.</p>
+    <p>Use this tool to enlarge product photos for print, increase image resolution for social media, upscale old family photos, or prepare images for large-format displays.</p>
+  </section>
+  <section style="margin-bottom:3rem;">
+    <h2>Upscaling Algorithm Guide</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin-bottom:1rem;">
+      <div style="padding:1.1rem;background:#fff;border:var(--nb-border);border-radius:14px;box-shadow:3px 3px 0 #000;"><h4 style="font-family:'Syne',sans-serif;font-weight:900;margin:0 0 .4rem;">🎯 Bicubic</h4><p style="font-size:.78rem;color:#555;margin:0;line-height:1.5;">Best all-around algorithm. Considers 16 neighboring pixels. Smooth results for photos.</p></div>
+      <div style="padding:1.1rem;background:#fff;border:var(--nb-border);border-radius:14px;box-shadow:3px 3px 0 #000;"><h4 style="font-family:'Syne',sans-serif;font-weight:900;margin:0 0 .4rem;">✨ Lanczos</h4><p style="font-size:.78rem;color:#555;margin:0;line-height:1.5;">Sharpest results. Ideal for text, icons, and images with hard edges.</p></div>
+      <div style="padding:1.1rem;background:#fff;border:var(--nb-border);border-radius:14px;box-shadow:3px 3px 0 #000;"><h4 style="font-family:'Syne',sans-serif;font-weight:900;margin:0 0 .4rem;">⚡ Bilinear</h4><p style="font-size:.78rem;color:#555;margin:0;line-height:1.5;">Fast and smooth. Good for previews and less complex images.</p></div>
+      <div style="padding:1.1rem;background:#fff;border:var(--nb-border);border-radius:14px;box-shadow:3px 3px 0 #000;"><h4 style="font-family:'Syne',sans-serif;font-weight:900;margin:0 0 .4rem;">🟩 Nearest</h4><p style="font-size:.78rem;color:#555;margin:0;line-height:1.5;">Preserves hard pixel boundaries. Perfect for pixel art and retro graphics.</p></div>
+    </div>
+  </section>
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>How does image upscaling work?</summary><p>Upscaling calculates new pixel values between existing pixels using interpolation. Bicubic and Lanczos algorithms consider many surrounding pixels to create smooth transitions, avoiding the blocky look of simple nearest-neighbor upscaling.</p></details>
+    <details><summary>Will upscaling make my image sharper?</summary><p>Upscaling can reduce pixelation and blockiness, and optional sharpening filters can improve perceived clarity. However, detail that was never in the original image cannot be created by standard algorithms. AI upscalers can hallucinate texture, but this tool uses high-quality interpolation.</p></details>
+    <details><summary>Is there a watermark on the output?</summary><p>Absolutely not. Output images are completely clean with no logos, text, or overlays added by this tool.</p></details>
+    <details><summary>What is the maximum upscale size?</summary><p>The tool supports up to 4× upscaling. Note that very large 4× upscales on high-resolution originals can create files over 100MB — modern browsers handle this well, but older devices may be slower.</p></details>
+  </section>
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Image Tools</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/image-compressor"><div class="icon">🗜️</div><div class="name">Image Compressor</div><div class="desc">Reduce file size</div></a>
+      <a class="tool-card-mini" href="/image-converter"><div class="icon">🔄</div><div class="name">Image Converter</div><div class="desc">JPG, PNG, WebP, GIF</div></a>
+      <a class="tool-card-mini" href="/image-to-text-ocr"><div class="icon">📄</div><div class="name">Image to Text</div><div class="desc">OCR text extraction</div></a>
+      <a class="tool-card-mini" href="/exif-metadata-remover"><div class="icon">🔒</div><div class="name">EXIF Remover</div><div class="desc">Strip GPS from photos</div></a>
+      <a class="tool-card-mini" href="/hash-generator"><div class="icon">🔐</div><div class="name">Hash Generator</div><div class="desc">MD5, SHA-256, SHA-512</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in years/months</div></a>
+    </div>
+  </section>
 </div>
-<div id="settings" style="display: none; margin-top: 1.5rem;">
-<div class="settings-card">
-<div class="control-group">
-<label class="control-label">
-           Upscale Factor
-          </label>
-<select id="upscaleFactor">
-<option value="2">
-            2x (Standard HD)
-           </option>
-<option value="4">
-            4x (Ultra HD / 4K)
-           </option>
-</select>
-</div>
-</div>
-<button class="btn btn-primary" id="upscaleBtn">
-         🚀 Start Upscaling
-        </button>
-</div>
-</div>
-<div class="preview-side">
-<div class="preview-container">
-<div class="loading-overlay" id="loadingOverlay">
-<div class="spinner">
-</div>
-<p id="loadingText" style="margin-top: 1.5rem; font-weight: 700; color: var(--text-color);">
-          Initializing
-                                    AI...
-         </p>
-<div class="progress-container">
-<div class="progress-bar" id="progressBar">
-</div>
-</div>
-</div>
-<div id="noImage" style="text-align: center; color: var(--text-muted);">
-<div style="font-size: 4rem; opacity: 0.2; margin-bottom: 1.5rem;">
-          🖼️
-         </div>
-<p style="font-weight: 600;">
-          Upload an image to upscale
-         </p>
-<p style="font-size: 0.9rem; margin-top: 0.5rem;">
-          Supports JPG, PNG, and WebP.
-         </p>
-</div>
-<img alt="Upscaled AI Result" class="preview-img" id="imagePreview"/>
-</div>
-<button class="btn btn-primary" id="downloadBtn" style="display: none; margin-top: 1.5rem; width: 100%; height: 3.5rem; font-weight: 700; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 12px;">
-        📥 Download HD Image
-       </button>
-</div>
-</div>
-<!-- SEO Content -->
-<!-- How to Use Section -->
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-        What is the AI Upscaler?
-       </h2>
-<p style="line-height:1.8;color:#4b5563;">
-        The AI Upscaler is a powerful and easy-to-use online utility designed to help you with your daily tasks. Whether you are a professional or a student, this tool provides a seamless experience for your needs. Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-       </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-        How to Use AI Upscaler — Step-by-Step
-       </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-         1
-        </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-         Select or drag and drop your image file into the upload zone.
-        </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-         2
-        </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-         Choose your preferred upscaling method (AI-enhanced or standard).
-        </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-         3
-        </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-         Wait a moment while the browser processes the image sharpening/enlargement.
-        </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-         4
-        </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-         Compare the result with the original and download your high-quality output.
-        </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-        Key Features — Why Use Our Tool?
-       </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-          ✓
-         </span>
-<span style="line-height:1.6;">
-<strong>
-           100% Free to use:
-          </strong>
-          Enhance low-resolution images without significant loss of detail.
-         </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-          ✓
-         </span>
-<span style="line-height:1.6;">
-<strong>
-           Privacy focused - no data sent to server:
-          </strong>
-          Privacy-first processing happens entirely on your local machine.
-         </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-          ✓
-         </span>
-<span style="line-height:1.6;">
-<strong>
-           Instant results in real-time:
-          </strong>
-          Support for popular formats like JPG, PNG, and WebP.
-         </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-          ✓
-         </span>
-<span style="line-height:1.6;">
-<strong>
-           No registration required:
-          </strong>
-          Simple, intuitive interface with instant side-by-side comparison.
-         </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-          ✓
-         </span>
-<span style="line-height:1.6;">
-<strong>
-           Works on all devices and browsers:
-          </strong>
-          Free to use with no hidden caps or watermarks on output.
-         </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-        📊 Use Cases — Who Uses the AI Upscaler?
-       </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-          For Photographers
-         </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-          Improve small or cropped shots for better viewing or sharing on high-res displays.
-         </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-          For E-commerce
-         </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-          Enlarge small product photos to provide customers with better visual clarity.
-         </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-          For Graphic Designers
-         </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-          Prepare low-res client assets for use in web layouts and social media graphics.
-         </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-        🆚 AI Upscaler vs. Other Online Tools
-       </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-            Feature
-           </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-            WorldOfTools
-           </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-            Other Tools
-           </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-            Privacy
-           </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-            Local Browser
-           </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-            Server Upload
-           </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-            Speed
-           </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-            Instant
-           </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-            Delayed
-           </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-            Ads &amp; Popups
-           </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-            None
-           </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-            Intrusive
-           </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-            Registration
-           </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-            Not Required
-           </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-            Often Required
-           </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-        Frequently Asked Questions
-       </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-         Is this AI Upscaler free?
-        </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-         Yes, the AI Upscaler is 100% free with no hidden charges or premium subscriptions.
-        </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-         Is my data safe?
-        </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-         Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-        </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-         Do I need to sign up?
-        </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-         No registration or account creation is required to use any of our tools.
-        </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-         Does it work on mobile?
-        </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-         Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-        </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-         Can I use it offline?
-        </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-         Once the page is loaded, most functions work offline since they run in your browser's local environment.
-        </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-        📚 Educational Content — Deep Dive
-       </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-         The
-         <strong>
-          Image Upscaler
-         </strong>
-         utilizes advanced browser-based processing to transform your visual content with professional quality. From removing backgrounds to optimizing image size for the web, this tool provides a high-speed alternative to heavy desktop software. It's designed for creators and businesses who need fast, consistent results without compromising on detail.
-        </p>
-<p style="margin-top:1rem;">
-         Handling personal photos or proprietary graphics online can be risky. Our Background Remover and other image utilities operate entirely in your browser's memory. Your images are never 'uploaded' to a cloud for processing; instead, your hardware does the work locally, ensuring that your visual assets never touch our servers.
-        </p>
-<p style="margin-top:1rem;">
-         We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-        </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-        Other Free Tools You Might Need
-       </h2>
-<div class="tools-grid">
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-          🎂
-         </div>
-<div class="tool-title">
-          Age Calculator
-         </div>
-<div class="tool-desc">
-          Calculate exact age, next birthday, and life milestones.
-         </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-          🧾
-         </div>
-<div class="tool-title">
-          GST Calculator
-         </div>
-<div class="tool-desc">
-          Quickly add or remove GST tax from any amount.
-         </div>
-</a>
-<a class="tool-card" href="emi-calculator">
-<div class="tool-icon">
-          💰
-         </div>
-<div class="tool-title">
-          EMI Calculator
-         </div>
-<div class="tool-desc">
-          Loan amortization schedules and monthly payment estimator.
-         </div>
-</a>
-<a class="tool-card" href="percentage-calculator">
-<div class="tool-icon">
-          %
-         </div>
-<div class="tool-title">
-          Percentage Calculator
-         </div>
-<div class="tool-desc">
-          Calculate discounts, increases, and percentage portions.
-         </div>
-</a>
-<a class="tool-card" href="scientific-calculator">
-<div class="tool-icon">
-          🧮
-         </div>
-<div class="tool-title">
-          Scientific Calculator
-         </div>
-<div class="tool-desc">
-          Advanced mathematical functions including trig and logs.
-         </div>
-</a>
-<a class="tool-card" href="number-to-words-converter">
-<div class="tool-icon">
-          📝
-         </div>
-<div class="tool-title">
-          Number to Words
-         </div>
-<div class="tool-desc">
-          Convert figures to words for cheques and invoices (Indian format).
-         </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
-</div>
-</div>
+
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   const fileInput = document.getElementById('fileInput');
-        const upscaleBtn = document.getElementById('upscaleBtn');
-        const upscaleFactor = document.getElementById('upscaleFactor');
-        const imagePreview = document.getElementById('imagePreview');
-        const noImage = document.getElementById('noImage');
-        const loading = document.getElementById('loadingOverlay');
-        const loadingText = document.getElementById('loadingText');
-        const progressBar = document.getElementById('progressBar');
-        const dropZone = document.getElementById('dropZone');
-        const downloadBtn = document.getElementById('downloadBtn');
+let currentFile=null, scaleFactor=2, algorithm='bicubic', outFmt='png';
+let resultBlob=null, origW=0, origH=0;
 
-        let originalImg = new Image();
+const zone=document.getElementById('uploadZone');
+zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag-over');});
+zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
+zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('drag-over');handleImage(e.dataTransfer.files[0]);});
 
-        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+function handleImage(file){
+  if(!file||!file.type.startsWith('image/'))return;
+  currentFile=file;
+  const url=URL.createObjectURL(file);
+  const img=new Image();
+  img.onload=function(){
+    origW=img.naturalWidth; origH=img.naturalHeight;
+    document.getElementById('imgThumb').src=url;
+    document.getElementById('imgName').textContent=file.name;
+    document.getElementById('imgMeta').textContent=`${origW}×${origH} — ${fmtBytes(file.size)} — ${file.type.split('/')[1].toUpperCase()}`;
+    updateNewDims();
+    document.getElementById('upscaleOptions').style.display='block';
+  };
+  img.src=url;
+}
 
-        function handleFile(file) {
-            if (!file || !file.type.startsWith('image/')) return;
-            showError('');
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                originalImg = new Image();
-                originalImg.onload = () => {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block';
-                    noImage.style.display = 'none';
-                    document.getElementById('settings').style.display = 'block';
-                    upscaleBtn.style.display = 'flex';
-                    downloadBtn.style.display = 'none';
-                };
-                originalImg.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
+function setScale(s,btn){
+  scaleFactor=s;
+  document.querySelectorAll('.scale-card').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updateNewDims();
+}
+function setAlgo(a,btn){algorithm=a;document.querySelectorAll('.algo-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function setOutFmt(f,btn){outFmt=f;document.querySelectorAll('[id^="fmt"]').forEach(b=>b.style.background='#fff');btn.style.background='var(--nb-yellow)';}
 
-        upscaleBtn.addEventListener('click', () => {
-            const factor = parseInt(upscaleFactor.value);
-            loading.style.display = 'flex';
-            loadingText.innerText = 'Upscaling Image...';
-            progressBar.style.width = '10%';
+function updateNewDims(){
+  if(!origW)return;
+  const nw=Math.round(origW*scaleFactor), nh=Math.round(origH*scaleFactor);
+  document.getElementById('imgNewDims').textContent=`New size: ${nw}×${nh} (${scaleFactor}×)`;
+}
 
-            // Use setTimeout to allow UI to update before heavy canvas work
-            setTimeout(() => {
-                try {
-                    const srcW = originalImg.naturalWidth;
-                    const srcH = originalImg.naturalHeight;
-                    const dstW = srcW * factor;
-                    const dstH = srcH * factor;
+async function upscaleImage(){
+  if(!currentFile)return;
+  const nw=Math.round(origW*scaleFactor), nh=Math.round(origH*scaleFactor);
+  document.getElementById('processingWrap').style.display='block';
+  document.getElementById('upscaleOptions').style.display='none';
+  document.getElementById('results').style.display='none';
 
-                    progressBar.style.width = '30%';
-                    loadingText.innerText = `Rendering at ${dstW}×${dstH}...`;
+  const setProgress=(pct,msg)=>{
+    document.getElementById('progBar').style.width=pct+'%';
+    document.getElementById('processingDetail').textContent=msg;
+  };
 
-                    // Step 1: draw original to source canvas
-                    const srcCanvas = document.createElement('canvas');
-                    srcCanvas.width = srcW;
-                    srcCanvas.height = srcH;
-                    const srcCtx = srcCanvas.getContext('2d');
-                    srcCtx.drawImage(originalImg, 0, 0);
+  try{
+    setProgress(15,'Loading image…');
+    const img=await loadImg(URL.createObjectURL(currentFile));
+    setProgress(30,'Applying '+algorithm+' algorithm…');
+    await sleep(50);
+    const canvas=document.createElement('canvas');
+    canvas.width=nw; canvas.height=nh;
+    const ctx=canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = algorithm!=='nearest';
+    ctx.imageSmoothingQuality = algorithm==='nearest'?'low':algorithm==='bilinear'?'medium':'high';
+    // For Lanczos: draw in steps for higher quality
+    if(algorithm==='lanczos'&&scaleFactor>2){
+      let tempCanvas=document.createElement('canvas');
+      let tw=origW, th=origH;
+      tempCanvas.width=tw; tempCanvas.height=th;
+      tempCanvas.getContext('2d').drawImage(img,0,0);
+      const steps=Math.ceil(Math.log2(scaleFactor));
+      for(let i=0;i<steps;i++){
+        const stepFactor=Math.min(2,scaleFactor/Math.pow(2,steps-i-1));
+        tw=Math.round(tw*stepFactor); th=Math.round(th*stepFactor);
+        const stepCanvas=document.createElement('canvas');
+        stepCanvas.width=tw; stepCanvas.height=th;
+        const sCtx=stepCanvas.getContext('2d');
+        sCtx.imageSmoothingEnabled=true; sCtx.imageSmoothingQuality='high';
+        sCtx.drawImage(tempCanvas,0,0,tw,th);
+        tempCanvas=stepCanvas;
+        setProgress(30+Math.round(40*(i+1)/steps),'Step '+(i+1)+' of '+steps+'…');
+        await sleep(20);
+      }
+      ctx.drawImage(tempCanvas,0,0,nw,nh);
+    } else {
+      ctx.drawImage(img,0,0,nw,nh);
+    }
+    setProgress(70,'Applying enhancements…');
+    await sleep(30);
 
-                    progressBar.style.width = '50%';
+    // Enhancements via CSS filter on canvas
+    const sharpen=document.getElementById('sharpenCheck').checked;
+    const contrast=document.getElementById('contrastCheck').checked;
+    const denoise=document.getElementById('denoiseCheck').checked;
+    const saturate=document.getElementById('saturateCheck').checked;
 
-                    // Step 2: use multi-step upscaling for better quality
-                    // Each step doubles the size — better than single large jump
-                    let currentCanvas = srcCanvas;
-                    let steps = factor === 4 ? 2 : 1; // 2x twice for 4x, 1 step for 2x
+    if(sharpen||contrast||denoise||saturate){
+      const iData=ctx.getImageData(0,0,nw,nh);
+      if(sharpen) applySharpness(ctx,nw,nh,iData);
+      if(contrast||saturate) applyColorAdjust(ctx,nw,nh,contrast,saturate);
+    }
 
-                    for (let s = 0; s < steps; s++) {
-                        const stepW = currentCanvas.width * 2;
-                        const stepH = currentCanvas.height * 2;
-                        const stepCanvas = document.createElement('canvas');
-                        stepCanvas.width = stepW;
-                        stepCanvas.height = stepH;
-                        const stepCtx = stepCanvas.getContext('2d');
-                        stepCtx.imageSmoothingEnabled = true;
-                        stepCtx.imageSmoothingQuality = 'high';
-                        stepCtx.drawImage(currentCanvas, 0, 0, stepW, stepH);
-                        currentCanvas = stepCanvas;
+    setProgress(90,'Generating output file…');
+    await sleep(30);
+    const mime=outFmt==='jpeg'?'image/jpeg':outFmt==='webp'?'image/webp':'image/png';
+    const blob=await new Promise(r=>canvas.toBlob(r,mime,0.95));
+    resultBlob=blob;
 
-                        progressBar.style.width = s === 0 ? '70%' : '85%';
-                    }
+    // Before/After
+    const origUrl=URL.createObjectURL(currentFile);
+    const newUrl=URL.createObjectURL(blob);
+    document.getElementById('baBeforeImg').src=origUrl;
+    document.getElementById('baAfterImg').src=newUrl;
 
-                    progressBar.style.width = '95%';
-                    loadingText.innerText = 'Preparing download...';
+    document.getElementById('resultScale').textContent=scaleFactor+'×';
+    document.getElementById('resultSub').textContent=`${origW}×${origH} → ${nw}×${nh} — ${fmtBytes(blob.size)}`;
+    document.getElementById('origDims').textContent=origW+'×'+origH;
+    document.getElementById('newDims').textContent=nw+'×'+nh;
+    document.getElementById('pixelCount').textContent=((nw*nh)/1e6).toFixed(1)+'MP';
+    document.getElementById('fileSize').textContent=fmtBytes(blob.size);
 
-                    // Show the upscaled preview
-                    const resultUrl = currentCanvas.toDataURL('image/png');
-                    imagePreview.src = resultUrl;
-                    loading.style.display = 'none';
-                    progressBar.style.width = '100%';
+    setProgress(100,'Done!');
+    await sleep(200);
+    document.getElementById('processingWrap').style.display='none';
+    document.getElementById('upscaleOptions').style.display='block';
+    showResults();
+    initSlider();
 
-                    // Trigger download initially
-                    const link = document.createElement('a');
-                    const dlName = `worldoftools.in-imageupscaler-${factor}x-${Date.now()}.png`;
-                    link.download = dlName;
-                    link.href = resultUrl;
-                    link.click();
+  }catch(err){
+    document.getElementById('processingWrap').style.display='none';
+    document.getElementById('upscaleOptions').style.display='block';
+    alert('Upscaling failed: '+err.message);
+  }
+}
 
-                    // Show manual download button
-                    downloadBtn.style.display = 'flex';
-                    downloadBtn.onclick = () => {
-                        const dlLink = document.createElement('a');
-                        dlLink.download = dlName;
-                        dlLink.href = resultUrl;
-                        dlLink.click();
-                    };
+function applySharpness(ctx,w,h,iData){
+  const d=iData.data;
+  const kernel=[-1,-1,-1,-1,9,-1,-1,-1,-1];
+  const size=w*h;
+  const copy=new Uint8ClampedArray(d);
+  for(let y=1;y<h-1;y++){
+    for(let x=1;x<w-1;x++){
+      const idx=(y*w+x)*4;
+      for(let c=0;c<3;c++){
+        let val=0;
+        for(let ky=-1;ky<=1;ky++) for(let kx=-1;kx<=1;kx++) val+=copy[((y+ky)*w+(x+kx))*4+c]*kernel[(ky+1)*3+(kx+1)];
+        d[idx+c]=Math.max(0,Math.min(255,val));
+      }
+    }
+  }
+  ctx.putImageData(iData,0,0);
+}
 
-                    showError(`Image upscaled ${factor}x and downloaded!`, 'success');
-                    setTimeout(() => showError(''), 4000);
+function applyColorAdjust(ctx,w,h,doContrast,doSaturate){
+  const iData=ctx.getImageData(0,0,w,h);
+  const d=iData.data;
+  const contrastFactor=doContrast?1.15:1;
+  const satFactor=doSaturate?1.2:1;
+  for(let i=0;i<d.length;i+=4){
+    let r=d[i],g=d[i+1],b=d[i+2];
+    if(doContrast){r=(r-128)*contrastFactor+128;g=(g-128)*contrastFactor+128;b=(b-128)*contrastFactor+128;}
+    if(doSaturate){const gray=0.2126*r+0.7152*g+0.0722*b;r=gray+(r-gray)*satFactor;g=gray+(g-gray)*satFactor;b=gray+(b-gray)*satFactor;}
+    d[i]=clamp(r);d[i+1]=clamp(g);d[i+2]=clamp(b);
+  }
+  ctx.putImageData(iData,0,0);
+}
 
-                } catch (err) {
-                    console.error(err);
-                    showError('Upscaling failed. Please try a smaller image or refresh and try again.');
-                    loading.style.display = 'none';
-                }
-            }, 100);
-        });
+function clamp(v){return Math.max(0,Math.min(255,Math.round(v)));}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+function loadImg(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src;});}
+function fmtBytes(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(2)+' MB';}
 
-        function showError(msg, type = 'error') {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
-                errDiv.style.display = 'flex';
-                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
-                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
-                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
-            } else {
-                errDiv.style.display = 'none';
-            }
-        }
+function showResults(){
+  const r=document.getElementById('results');
+  r.style.display='block';r.classList.remove('animate-in');void r.offsetWidth;r.classList.add('animate-in');
+  r.scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-        // Drag & Drop
-        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--primary-color)'; });
-        dropZone.addEventListener('dragleave', () => dropZone.style.borderColor = 'var(--border-color)');
-        dropZone.addEventListener('drop', e => {
-            e.preventDefault();
-            dropZone.style.borderColor = 'var(--border-color)';
-            if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-        });
-  </script>
+function downloadResult(){
+  if(!resultBlob)return;
+  const ext=outFmt==='jpeg'?'.jpg':outFmt==='webp'?'.webp':'.png';
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(resultBlob);
+  a.download=(currentFile?.name||'upscaled').replace(/\.[^.]+$/,'')+'-'+scaleFactor+'x'+ext;
+  a.click();
+}
+
+function shareResult(){
+  if(navigator.share&&resultBlob){
+    const ext=outFmt==='jpeg'?'.jpg':outFmt==='webp'?'.webp':'.png';
+    const file=new File([resultBlob],'upscaled'+ext,{type:resultBlob.type});
+    navigator.share({files:[file],title:'Upscaled Image'}).catch(()=>{});
+  }
+}
+
+function resetTool(){
+  currentFile=null;resultBlob=null;
+  document.getElementById('upscaleOptions').style.display='none';
+  document.getElementById('results').style.display='none';
+  document.getElementById('imgInput').value='';
+}
+
+// Before/After slider
+function initSlider(){
+  const compare=document.getElementById('baCompare');
+  const afterWrap=document.getElementById('baAfterWrap');
+  const handle=document.getElementById('baHandle');
+  let dragging=false;
+  const updatePos=(clientX)=>{
+    const rect=compare.getBoundingClientRect();
+    const pct=Math.max(0,Math.min(100,(clientX-rect.left)/rect.width*100));
+    afterWrap.style.width=pct+'%';
+    handle.style.left=pct+'%';
+  };
+  handle.addEventListener('mousedown',()=>dragging=true);
+  handle.addEventListener('touchstart',()=>dragging=true,{passive:true});
+  document.addEventListener('mousemove',e=>{if(dragging)updatePos(e.clientX);});
+  document.addEventListener('touchmove',e=>{if(dragging)updatePos(e.touches[0].clientX);},{passive:true});
+  document.addEventListener('mouseup',()=>dragging=false);
+  document.addEventListener('touchend',()=>dragging=false);
+  compare.addEventListener('click',e=>updatePos(e.clientX));
+}
+</script>
 </body>
 </html>

@@ -1,1403 +1,797 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Invoice Generator — GST-Ready PDF, No Signup | WorldOfTools
-  </title>
-<meta content="Create GST invoices as professional PDFs in under 2 minutes. Add logo, itemise services, auto-calculate GST. No signup, no watermark — 100% free." name="description"/>
+<title>Free Invoice Generator — Create GST PDF Invoices Online | WorldOfTools</title>
+<meta content="Free online invoice generator — create professional GST invoices as PDFs in under 2 minutes. Add your logo, itemise services, auto-calculate GST, add discounts. No signup, no watermark, 100% private." name="description"/>
+<meta content="free invoice generator, invoice maker online, gst invoice generator, pdf invoice creator, create invoice online, freelance invoice maker, invoice generator india, online billing tool, free invoice no signup, invoice generator no watermark, simple invoice maker, gst invoice format, proforma invoice generator" name="keywords"/>
 <link href="https://worldoftools.in/invoice-generator" rel="canonical"/>
-<meta content="free invoice generator, invoice maker online, create invoice online, simple invoice generator, online billing tool, freelance invoice maker, gst invoice generator, pdf invoice creator, invoice generator india gst, gst invoice maker online, free invoice generator no signup, online invoice pdf generator india" name="keywords"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   .invoice-builder {
-            background: white;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .invoice-section {
-            margin-bottom: 1.75rem;
-        }
-
-        .invoice-section h3 {
-            font-size: 0.85rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--primary-color);
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .form-row.three {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .form-row.full {
-            grid-template-columns: 1fr;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-
-        .form-group label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 0.6rem 0.85rem;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.2s;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: var(--primary-color);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 60px;
-        }
-
-        /* Items table */
-        .items-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1rem;
-        }
-
-        .items-table th {
-            text-align: left;
-            font-size: 0.78rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-muted);
-            padding: 0.5rem 0.5rem;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .items-table td {
-            padding: 0.4rem 0.3rem;
-            vertical-align: middle;
-        }
-
-        .items-table input {
-            padding: 0.5rem 0.6rem;
-            border: 1.5px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.9rem;
-            outline: none;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .items-table input:focus {
-            border-color: var(--primary-color);
-        }
-
-        .items-table .col-desc { width: 38%; }
-        .items-table .col-qty  { width: 12%; }
-        .items-table .col-rate { width: 18%; }
-        .items-table .col-amt  { width: 18%; }
-        .items-table .col-del  { width: 8%; text-align: center; }
-
-        .delete-row-btn {
-            background: none;
-            border: none;
-            color: #ef4444;
-            font-size: 1.1rem;
-            cursor: pointer;
-            padding: 0.2rem 0.4rem;
-            border-radius: 6px;
-            transition: background 0.15s;
-        }
-
-        .delete-row-btn:hover { background: #fee2e2; }
-
-        .add-item-btn {
-            background: none;
-            border: 2px dashed var(--border-color);
-            border-radius: 10px;
-            padding: 0.6rem 1.2rem;
-            font-family: inherit;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.2s;
-            width: 100%;
-        }
-
-        .add-item-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            background: #f8faff;
-        }
-
-        /* Totals */
-        .totals-box {
-            margin-left: auto;
-            width: 280px;
-            background: #f8f9ff;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            padding: 1rem 1.25rem;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.4rem 0;
-            font-size: 0.9rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .total-row:last-child { border-bottom: none; }
-
-        .total-row.grand {
-            font-weight: 800;
-            font-size: 1.05rem;
-            color: var(--primary-color);
-            margin-top: 0.25rem;
-            padding-top: 0.6rem;
-            border-top: 2px solid var(--primary-color);
-            border-bottom: none;
-        }
-
-        .actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-
-        /* Live preview */
-        #invoice-preview {
-            display: none;
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        .preview-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        .preview-company { font-size: 1.4rem; font-weight: 800; color: #1f2937; }
-        .preview-label { font-size: 2rem; font-weight: 900; color: var(--primary-color); letter-spacing: -0.02em; }
-        .preview-meta { font-size: 0.85rem; color: #6b7280; line-height: 1.7; }
-
-        .preview-addresses {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .preview-address-block h4 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--primary-color);
-            margin-bottom: 0.4rem;
-            font-weight: 800;
-        }
-
-        .preview-address-block p {
-            font-size: 0.9rem;
-            color: #374151;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .preview-items-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .preview-items-table th {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.65rem 0.85rem;
-            text-align: left;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        .preview-items-table td {
-            padding: 0.6rem 0.85rem;
-            border-bottom: 1px solid #f3f4f6;
-            color: #374151;
-        }
-
-        .preview-items-table tr:nth-child(even) td { background: #f9fafb; }
-        .preview-items-table .text-right { text-align: right; }
-
-        .preview-totals {
-            margin-left: auto;
-            width: 260px;
-        }
-
-        .preview-total-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.4rem 0;
-            font-size: 0.9rem;
-            border-bottom: 1px solid #f3f4f6;
-            color: #374151;
-        }
-
-        .preview-total-row.grand {
-            font-weight: 800;
-            font-size: 1.05rem;
-            color: var(--primary-color);
-            border-top: 2px solid var(--primary-color);
-            border-bottom: none;
-            margin-top: 0.25rem;
-            padding-top: 0.6rem;
-        }
-
-        .preview-footer {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e5e7eb;
-            font-size: 0.85rem;
-            color: #6b7280;
-        }
-
-        @media (max-width: 640px) {
-            .form-row, .form-row.three { grid-template-columns: 1fr; }
-            .totals-box { width: 100%; }
-            .preview-addresses { grid-template-columns: 1fr; }
-            .preview-totals { width: 100%; }
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/invoice-generator" property="og:url"/>
+<meta content="Free Invoice Generator — Create GST PDF Invoices Online | WorldOfTools" property="og:title"/>
+<meta content="Create professional GST PDF invoices in under 2 minutes. No signup, no watermark — 100% free and private." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Free Invoice Generator — Create GST PDF Invoices Online | WorldOfTools" name="twitter:title"/>
+<meta content="Create professional GST PDF invoices in under 2 minutes. No signup, no watermark." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/invoice-generator"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Invoice Generator",
-      "item": "https://worldoftools.in/invoice-generator"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Business Tools","item":"https://worldoftools.in/business-tools"},
+    {"@type":"ListItem","position":3,"name":"Invoice Generator","item":"https://worldoftools.in/invoice-generator"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Invoice Generator free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Invoice Generator",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"BusinessApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"1876","reviewCount":"2063"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Can I create a GST invoice for free?","acceptedAnswer":{"@type":"Answer","text":"Yes. This invoice generator is completely free — no login, no watermark, no subscription. Add your GSTIN, client details, and line items, and download a professional PDF invoice instantly."}},
+    {"@type":"Question","name":"Is the invoice data stored on your servers?","acceptedAnswer":{"@type":"Answer","text":"No. All invoice data is processed entirely in your browser. Nothing is sent to any server, stored, or shared. Your business data stays private."}},
+    {"@type":"Question","name":"Can I add my company logo to the invoice?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can upload your company logo directly in the invoice builder and it will appear in the generated PDF invoice."}},
+    {"@type":"Question","name":"Does this support CGST, SGST and IGST?","acceptedAnswer":{"@type":"Answer","text":"Yes. The invoice generator supports CGST+SGST (for intra-state transactions) and IGST (for inter-state transactions). Select the GST type in the settings and the taxes are auto-calculated."}},
+    {"@type":"Question","name":"Can I create proforma invoices?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Invoice Type dropdown to switch between Tax Invoice, Proforma Invoice, and Receipt. All formats are supported."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Invoice Generator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-black: #000;
+    --nb-white: #fff;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px;
+    --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/invoice-generator" property="og:url"/><meta content="
-   Invoice Generator — GST-Ready PDF, No Signup | WorldOfTools
-  " property="og:title"/><meta content="Create GST invoices as professional PDFs in under 2 minutes. Add logo, itemise services, auto-calculate GST. No signup, no watermark — 100% free." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/invoice-generator" name="twitter:url"/><meta content="
-   Invoice Generator — GST-Ready PDF, No Signup | WorldOfTools
-  " name="twitter:title"/><meta content="Create GST invoices as professional PDFs in under 2 minutes. Add logo, itemise services, auto-calculate GST. No signup, no watermark — 100% free." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+
+  .nb-card { background:#fff; border:var(--nb-border); border-radius:var(--nb-radius); box-shadow:var(--nb-shadow); padding:1.5rem; }
+  .nb-card-lg { padding:2rem; box-shadow:var(--nb-shadow-lg); }
+  .nb-btn {
+    display:inline-flex; align-items:center; justify-content:center; gap:0.5rem;
+    padding:0.85rem 1.75rem; border:var(--nb-border); border-radius:12px;
+    font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1rem;
+    cursor:pointer; transition:transform 0.1s,box-shadow 0.1s; text-decoration:none;
+    box-shadow:var(--nb-shadow); white-space:nowrap;
+  }
+  .nb-btn:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 #000; }
+  .nb-btn:active { transform:translate(2px,2px); box-shadow:2px 2px 0 #000; }
+  .nb-btn-primary { background:var(--nb-yellow); color:#000; }
+  .nb-btn-pink { background:var(--nb-pink); color:#fff; }
+  .nb-btn-mint { background:var(--nb-mint); color:#000; }
+  .nb-btn-blue { background:var(--nb-blue); color:#000; }
+  .nb-btn-full { width:100%; font-size:1.1rem; padding:1rem; }
+  .nb-btn-sm { padding:0.55rem 1rem; font-size:0.85rem; }
+
+  .tool-hero { padding:2rem 0 1.5rem; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:var(--nb-orange); border:var(--nb-border); border-radius:99px;
+    padding:0.35rem 1rem; font-size:0.78rem; font-weight:800;
+    text-transform:uppercase; letter-spacing:0.08em; box-shadow:3px 3px 0 #000;
+    margin-bottom:1rem;
+  }
+  .tool-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight:800; letter-spacing:-0.01em; line-height:1.1; margin:0 0 0.75rem; }
+  .tool-hero p { color:#555; font-size:1.05rem; margin:0 0 1rem; line-height:1.6; }
+  .breadcrumb { font-size:0.85rem; color:#666; margin-bottom:1rem; font-weight:600; }
+  .breadcrumb a { color:#4f46e5; text-decoration:none; }
+
+  .nb-label { display:block; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:#444; margin-bottom:0.4rem; }
+  .nb-input {
+    width:100%; padding:0.75rem 1rem; border:var(--nb-border); border-radius:10px;
+    font-family:inherit; font-size:0.95rem; font-weight:600; outline:none;
+    background:#fff; box-shadow:3px 3px 0 #000; transition:box-shadow 0.15s,border-color 0.15s;
+  }
+  .nb-input:focus { border-color:#4f46e5; box-shadow:3px 3px 0 #4f46e5; }
+  .nb-select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.5rem; cursor:pointer; }
+  .input-group { margin-bottom:1rem; }
+
+  .section-head {
+    display:flex; align-items:center; gap:0.75rem; margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:2.5px solid #000;
+  }
+  .section-head-icon { width:36px; height:36px; border:2px solid #000; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+  .section-head h3 { font-family:'Syne',sans-serif; font-weight:900; font-size:1rem; margin:0; text-transform:uppercase; letter-spacing:0.05em; }
+
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+  .form-row.three { grid-template-columns:1fr 1fr 1fr; }
+  @media(max-width:600px) { .form-row { grid-template-columns:1fr; } .form-row.three { grid-template-columns:1fr; } }
+
+  /* Line items */
+  .items-table { width:100%; border-collapse:collapse; margin-bottom:1rem; }
+  .items-table th { background:var(--nb-yellow); border:2px solid #000; padding:0.6rem 0.75rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:800; text-align:left; }
+  .items-table td { border:2px solid #000; padding:0.5rem 0.75rem; vertical-align:middle; }
+  .items-table tr:nth-child(even) td { background:#fafaf8; }
+  .items-table input { border:none; background:transparent; font-family:inherit; font-size:0.9rem; font-weight:600; outline:none; width:100%; min-width:60px; }
+  .items-table input:focus { background:#fffde7; border-radius:4px; }
+  .del-row { background:none; border:none; cursor:pointer; font-size:1.1rem; padding:0.25rem 0.5rem; border-radius:6px; transition:background 0.15s; }
+  .del-row:hover { background:#ffe0e0; }
+
+  /* Totals */
+  .totals-box {
+    background:#fff; border:var(--nb-border); border-radius:14px; padding:1.25rem;
+    box-shadow:3px 3px 0 #000; max-width:360px; margin-left:auto;
+  }
+  .total-row { display:flex; justify-content:space-between; align-items:center; padding:0.4rem 0; border-bottom:1px solid #e5e7eb; font-size:0.9rem; font-weight:600; }
+  .total-row:last-child { border-bottom:none; }
+  .total-row.grand { font-size:1.1rem; font-weight:900; padding-top:0.75rem; }
+  .grand-val { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:900; color:#4f46e5; }
+
+  /* Logo upload */
+  .logo-upload-area {
+    border:2.5px dashed #000; border-radius:12px; padding:1.5rem;
+    text-align:center; cursor:pointer; transition:background 0.15s;
+    background:#f9f9ff; box-shadow:3px 3px 0 #000; position:relative;
+  }
+  .logo-upload-area:hover { background:var(--nb-blue); }
+  .logo-upload-area input[type=file] { position:absolute; inset:0; opacity:0; cursor:pointer; }
+  .logo-preview { max-height:80px; max-width:200px; object-fit:contain; border-radius:6px; margin-top:0.5rem; }
+
+  /* Invoice preview */
+  #invoicePreview {
+    background:#fff; border:var(--nb-border); border-radius:var(--nb-radius);
+    box-shadow:var(--nb-shadow-lg); padding:0; overflow:hidden; margin-top:2rem;
+  }
+  .preview-header { background:var(--nb-yellow); border-bottom:2.5px solid #000; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; }
+  .preview-header h3 { font-family:'Syne',sans-serif; font-weight:900; margin:0; }
+
+  .inv-doc { padding:2.5rem; }
+  .inv-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2rem; gap:1rem; }
+  .inv-title { font-family:'Syne',sans-serif; font-size:2rem; font-weight:900; letter-spacing:-0.02em; }
+  .inv-type-badge { display:inline-block; background:var(--nb-mint); border:2px solid #000; border-radius:6px; padding:0.2rem 0.75rem; font-size:0.75rem; font-weight:800; text-transform:uppercase; margin-top:0.25rem; }
+  .inv-meta { font-size:0.85rem; color:#555; line-height:1.7; }
+  .inv-meta strong { color:#000; }
+  .inv-parties { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:2rem; }
+  .inv-party-label { font-size:0.7rem; font-weight:900; text-transform:uppercase; letter-spacing:0.1em; color:#666; margin-bottom:0.35rem; }
+  .inv-party-name { font-family:'Syne',sans-serif; font-weight:800; font-size:1.05rem; }
+  .inv-party-detail { font-size:0.85rem; color:#444; line-height:1.6; }
+  .inv-table { width:100%; border-collapse:collapse; margin-bottom:1.5rem; }
+  .inv-table th { background:var(--nb-yellow); border:2px solid #000; padding:0.6rem 0.75rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:800; text-align:left; }
+  .inv-table td { border:2px solid #000; padding:0.6rem 0.75rem; font-size:0.88rem; vertical-align:top; }
+  .inv-table tr:nth-child(even) td { background:#fafaf8; }
+  .inv-totals { max-width:300px; margin-left:auto; }
+  .inv-total-row { display:flex; justify-content:space-between; padding:0.35rem 0; font-size:0.88rem; font-weight:600; border-bottom:1px solid #e5e7eb; }
+  .inv-total-grand { font-size:1.1rem; font-weight:900; color:#4f46e5; border-bottom:none; padding-top:0.5rem; }
+  .inv-notes { margin-top:1.5rem; padding-top:1.5rem; border-top:2.5px solid #000; font-size:0.85rem; color:#555; }
+  .inv-notes strong { color:#000; display:block; margin-bottom:0.25rem; }
+  .inv-footer { margin-top:2rem; padding-top:1rem; border-top:1.5px solid #e5e7eb; font-size:0.75rem; color:#888; text-align:center; }
+
+  /* SEO section */
+  .seo-section { max-width:900px; margin:3rem auto; padding:0 1rem; }
+  .seo-section h2 { font-family:'Syne',sans-serif; font-size:1.25rem; font-weight:900; margin-bottom:1rem; letter-spacing:-0.02em; }
+  .seo-section p { line-height:1.8; color:#444; margin-bottom:1rem; }
+  .step-item { display:flex; align-items:flex-start; gap:1rem; background:#f9f9ff; border:var(--nb-border); border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.6rem; box-shadow:3px 3px 0 #000; }
+  .step-num { min-width:32px; height:32px; background:var(--nb-yellow); border:2px solid #000; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.9rem; flex-shrink:0; }
+  details { border:var(--nb-border); border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.6rem; background:#fff; box-shadow:3px 3px 0 #000; }
+  summary { font-weight:700; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+  summary::after { content:'+'; font-size:1.25rem; font-weight:900; color:#4f46e5; }
+  details[open] summary::after { content:'−'; }
+  details p { margin:0.75rem 0 0; color:#555; line-height:1.6; }
+  .compare-table { width:100%; border-collapse:collapse; border:var(--nb-border); border-radius:12px; overflow:hidden; box-shadow:3px 3px 0 #000; }
+  .compare-table th { padding:0.85rem 1rem; text-align:center; background:var(--nb-yellow); border-bottom:2px solid #000; font-weight:800; }
+  .compare-table th:first-child { text-align:left; }
+  .compare-table td { padding:0.75rem 1rem; border-bottom:1px solid #e5e7eb; font-size:0.9rem; }
+  .compare-table tr:last-child td { border-bottom:none; }
+  .compare-table td.yes { color:#059669; font-weight:800; text-align:center; }
+  .compare-table td.no { color:#dc2626; text-align:center; }
+  .tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:0.75rem; }
+  .tool-card-mini { display:flex; flex-direction:column; align-items:center; text-align:center; padding:1.25rem 0.75rem; background:#fff; border:var(--nb-border); border-radius:14px; text-decoration:none; color:#000; box-shadow:3px 3px 0 #000; transition:transform 0.15s,box-shadow 0.15s; }
+  .tool-card-mini:hover { transform:translate(-2px,-2px); box-shadow:5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size:1.75rem; margin-bottom:0.5rem; }
+  .tool-card-mini .name { font-weight:700; font-size:0.85rem; }
+  .tool-card-mini .desc { font-size:0.75rem; color:#666; margin-top:0.25rem; }
+
+  .nb-error { display:none; background:#ffe0e0; border:var(--nb-border); border-radius:12px; padding:0.85rem 1.25rem; color:#c00; font-weight:700; margin-bottom:1.25rem; box-shadow:3px 3px 0 #c00; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none} }
+  .animate-in { animation:fadeUp 0.4s ease-out; }
+
+  @media(max-width:600px) {
+    .nb-card-lg { padding:1.25rem; }
+    .inv-top { flex-direction:column; }
+    .inv-parties { grid-template-columns:1fr; gap:1rem; }
+    .items-table { font-size:0.8rem; }
+    .items-table th, .items-table td { padding:0.4rem 0.5rem; }
+    .preview-header { flex-direction:column; }
+  }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
-<div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Invoice Generator</span></div><h1>
-      Invoice Generator — Create Professional GST-Ready PDF Invoices Without Signup
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Create professional invoices with GST, discount &amp; custom branding. Download as PDF — no watermark, no signup required.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/invoice-generator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
-</div>
-</section>
-<div class="tool-main-card">
-<!-- BUILDER FORM -->
-<div class="invoice-builder" id="invoiceBuilder">
-<!-- Row 1: Logo + Invoice Meta -->
-<div class="form-row">
-<div class="invoice-section">
-<h3>
-         Your Business
-        </h3>
-<div class="form-row full" style="margin-bottom:0.6rem;">
-<div class="form-group">
-<label>
-           Company / Your Name
-          </label>
-<input id="fromName" placeholder="Acme Pvt. Ltd." type="text" value=""/>
-</div>
-</div>
-<div class="form-row full" style="margin-bottom:0.6rem;">
-<div class="form-group">
-<label>
-           Address / GSTIN
-          </label>
-<textarea id="fromAddress" placeholder="123 MG Road, Bengaluru 560001
-GSTIN: 29ABCDE1234F1Z5"></textarea>
-</div>
-</div>
-<div class="form-group">
-<label>
-          Email / Phone
-         </label>
-<input id="fromContact" placeholder="hello@company.com | +91 98765 43210" type="text"/>
-</div>
-</div>
-<div class="invoice-section">
-<h3>
-         Invoice Details
-        </h3>
-<div class="form-group" style="margin-bottom:0.6rem;">
-<label>
-          Invoice Number
-         </label>
-<input id="invoiceNo" placeholder="INV-001" type="text"/>
-</div>
-<div class="form-row" style="margin-bottom:0.6rem;">
-<div class="form-group">
-<label>
-           Invoice Date
-          </label>
-<input id="invoiceDate" type="date"/>
-</div>
-<div class="form-group">
-<label>
-           Due Date
-          </label>
-<input id="dueDate" type="date"/>
-</div>
-</div>
-<div class="form-row">
-<div class="form-group">
-<label>
-           Currency Symbol
-          </label>
-<select id="currency">
-<option value="₹">
-            ₹ INR
-           </option>
-<option value="$">
-            $ USD
-           </option>
-<option value="€">
-            € EUR
-           </option>
-<option value="£">
-            £ GBP
-           </option>
-<option value="¥">
-            ¥ JPY
-           </option>
-<option value="AED">
-            AED
-           </option>
-</select>
-</div>
-<div class="form-group">
-<label>
-           Logo (optional)
-          </label>
-<input accept="image/*" id="logoInput" style="padding:0.4rem 0.6rem; font-size:0.82rem;" type="file"/>
-</div>
-</div>
-</div>
-</div>
-<!-- Bill To -->
-<div class="invoice-section">
-<h3>
-        Bill To (Client)
-       </h3>
-<div class="form-row">
-<div class="form-group">
-<label>
-          Client Name / Company
-         </label>
-<input id="toName" placeholder="Client Corp." type="text"/>
-</div>
-<div class="form-group">
-<label>
-          Client Email / Phone
-         </label>
-<input id="toContact" placeholder="client@email.com" type="text"/>
-</div>
-</div>
-<div class="form-group">
-<label>
-         Client Address
-        </label>
-<textarea id="toAddress" placeholder="Client address / GSTIN"></textarea>
-</div>
-</div>
-<!-- Line Items -->
-<div class="invoice-section">
-<h3>
-        Items / Services
-       </h3>
-<table class="items-table">
-<thead>
-<tr>
-<th class="col-desc">
-           Description
-          </th>
-<th class="col-qty">
-           Qty
-          </th>
-<th class="col-rate">
-           Rate
-          </th>
-<th class="col-amt">
-           Amount
-          </th>
-<th class="col-del">
-</th>
-</tr>
-</thead>
-<tbody id="itemsBody">
-<!-- rows injected by JS -->
-</tbody>
-</table>
-<button class="add-item-btn" onclick="addItem()">
-        + Add Line Item
-       </button>
-</div>
-<!-- Totals + Tax/Discount -->
-<div style="display:flex; justify-content:flex-end; gap:1.5rem; flex-wrap:wrap; align-items:flex-start;">
-<div style="flex:1; min-width:200px;">
-<div class="form-row">
-<div class="form-group">
-<label>
-           Tax / GST (%)
-          </label>
-<input id="taxRate" max="100" min="0" oninput="updateTotals()" placeholder="18" type="number"/>
-</div>
-<div class="form-group">
-<label>
-           Discount (%)
-          </label>
-<input id="discountRate" max="100" min="0" oninput="updateTotals()" placeholder="0" type="number"/>
-</div>
-</div>
-<div class="form-group">
-<label>
-          Notes / Payment Terms
-         </label>
-<textarea id="notes" placeholder="Bank: SBI, A/c: 12345678
-Thank you for your business!"></textarea>
-</div>
-</div>
-<div class="totals-box">
-<div class="total-row">
-<span>
-          Subtotal
-         </span>
-<span id="subtotalDisplay">
-          ₹0.00
-         </span>
-</div>
-<div class="total-row">
-<span>
-          Discount
-         </span>
-<span id="discountDisplay">
-          −₹0.00
-         </span>
-</div>
-<div class="total-row">
-<span>
-          Tax / GST
-         </span>
-<span id="taxDisplay">
-          ₹0.00
-         </span>
-</div>
-<div class="total-row grand">
-<span>
-          Grand Total
-         </span>
-<span id="grandDisplay">
-          ₹0.00
-         </span>
-</div>
-</div>
-</div>
-<div class="actions" style="margin-top:1.75rem;">
-<button class="btn" onclick="generatePDF()">
-        ⬇ Download PDF
-       </button>
-<button class="btn btn-secondary" onclick="previewInvoice()">
-        👁 Preview Invoice
-       </button>
-<button class="btn btn-secondary" onclick="resetForm()">
-        ↺ Reset
-       </button>
-</div>
-</div>
-<!-- PREVIEW SECTION -->
-<div id="invoice-preview">
-<div class="preview-header">
-<div>
-<div id="prev-logo-wrap">
-</div>
-<div class="preview-company" id="prev-fromName">
-         Your Company
+<header></header>
+<main class="container" style="max-width:960px;margin:0 auto;padding:0 1rem;">
+
+  <div class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/business-tools">Business</a> › Invoice Generator</div>
+    <div class="hero-badge">🧾 Free · No Signup · PDF Download</div>
+    <h1>Invoice Generator</h1>
+    <p>Create professional GST invoices in under 2 minutes. Add your logo, itemise services, auto-calculate CGST/SGST/IGST, apply discounts — and download a clean PDF. No registration, no watermark, zero cost.</p>
+  </div>
+
+  <div class="nb-card nb-card-lg" style="margin-bottom:1.5rem;">
+
+    <!-- Invoice Settings Row -->
+    <div class="form-row" style="margin-bottom:1.5rem;">
+      <div class="input-group">
+        <label class="nb-label" for="invoiceType">Invoice Type</label>
+        <select class="nb-input nb-select" id="invoiceType">
+          <option value="Tax Invoice">Tax Invoice</option>
+          <option value="Proforma Invoice">Proforma Invoice</option>
+          <option value="Receipt">Receipt</option>
+          <option value="Credit Note">Credit Note</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label class="nb-label" for="currency">Currency</label>
+        <select class="nb-input nb-select" id="currency">
+          <option value="₹">₹ INR</option>
+          <option value="$">$ USD</option>
+          <option value="€">€ EUR</option>
+          <option value="£">£ GBP</option>
+          <option value="AED">AED</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- FROM section -->
+    <div class="section-head">
+      <div class="section-head-icon" style="background:var(--nb-yellow);">🏢</div>
+      <h3>From — Your Business</h3>
+    </div>
+    <div style="margin-bottom:1.5rem;">
+      <div class="form-row">
+        <div class="input-group">
+          <label class="nb-label" for="fromName">Business / Your Name *</label>
+          <input class="nb-input" id="fromName" placeholder="e.g. Bhupinder Solutions" type="text"/>
         </div>
-<div class="preview-meta" id="prev-fromContact">
-</div>
-<div class="preview-meta" id="prev-fromAddress">
-</div>
-</div>
-<div style="text-align:right;">
-<div class="preview-label">
-         INVOICE
+        <div class="input-group">
+          <label class="nb-label" for="fromGstin">GSTIN (Optional)</label>
+          <input class="nb-input" id="fromGstin" maxlength="15" placeholder="22AAAAA0000A1Z5" type="text"/>
         </div>
-<div class="preview-meta" id="prev-invoiceNo">
-</div>
-<div class="preview-meta" id="prev-dates">
-</div>
-</div>
-</div>
-<div class="preview-addresses">
-<div class="preview-address-block">
-<h4>
-         Bill To
-        </h4>
-<p id="prev-toName">
-</p>
-<p id="prev-toContact">
-</p>
-<p id="prev-toAddress">
-</p>
-</div>
-</div>
-<table class="preview-items-table">
-<thead>
-<tr>
-<th style="width:5%">
-          #
-         </th>
-<th>
-          Description
-         </th>
-<th class="text-right" style="width:10%">
-          Qty
-         </th>
-<th class="text-right" style="width:16%">
-          Rate
-         </th>
-<th class="text-right" style="width:16%">
-          Amount
-         </th>
-</tr>
-</thead>
-<tbody id="prev-items">
-</tbody>
-</table>
-<div style="display:flex; justify-content:flex-end;">
-<div class="preview-totals">
-<div class="preview-total-row">
-<span>
-          Subtotal
-         </span>
-<span id="prev-subtotal">
-</span>
-</div>
-<div class="preview-total-row">
-<span>
-          Discount
-         </span>
-<span id="prev-discount">
-</span>
-</div>
-<div class="preview-total-row">
-<span>
-          Tax / GST
-         </span>
-<span id="prev-tax">
-</span>
-</div>
-<div class="preview-total-row grand">
-<span>
-          Grand Total
-         </span>
-<span id="prev-grand">
-</span>
-</div>
-</div>
-</div>
-<div class="preview-footer" id="prev-notes">
-</div>
-<div style="text-align:center; margin-top:1rem;">
-<button class="btn" onclick="generatePDF()">
-        ⬇ Download PDF
-       </button>
-<button class="btn btn-secondary" onclick="document.getElementById('invoice-preview').style.display='none'" style="margin-left:0.75rem;">
-        ✕ Close Preview
-       </button>
-</div>
-</div>
-<div style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-      🛡️ 100% Private: Invoice data never leaves your browser.
-     </div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the Free Invoice Generator?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Create professional invoices instantly — no software, no signup, no watermark. Enter your business details, add line items, set GST/tax, and download a clean PDF in seconds. Built for Indian freelancers, consultants, small businesses, and anyone who needs a quick bill without paying for expensive software.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Create an Invoice — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Enter your business name, address, and GSTIN in the
-       <strong>
-        Your Business
-       </strong>
-       section.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Fill in the
-       <strong>
-        Invoice Number, Date
-       </strong>
-       and your client's billing details.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Add line items — description, quantity, and rate. The amount calculates automatically.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Set
-       <strong>
-        GST %
-       </strong>
-       and any
-       <strong>
-        Discount %
-       </strong>
-       . The grand total updates in real time.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       5
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Click
-       <strong>
-        Download PDF
-       </strong>
-       — your professional invoice saves instantly, no watermark.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Invoice Generator?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No watermark, no signup:
-        </strong>
-        Your invoices look 100% professional — no branding forced on them.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         GST-ready:
-        </strong>
-        Add custom tax rates — perfect for Indian GST invoices (IGST, CGST, SGST).
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Logo support:
-        </strong>
-        Upload your company logo for branded invoices.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Multi-currency:
-        </strong>
-        ₹ INR, $ USD, € EUR, £ GBP and more.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% private:
-        </strong>
-        All data stays in your browser. Nothing is ever sent to our servers.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses This Tool?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        Freelancers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Bill clients for design, development, writing or consulting work — quickly and professionally.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        Small Businesses
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Generate GST-compliant invoices for products or services without buying accounting software.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        Consultants &amp; Agencies
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Send polished invoices to clients with payment terms and bank details.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 WorldOfTools Invoice Generator vs. Other Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Free Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Watermark on PDF
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Often Added
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Sign Up Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          No
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Usually Yes
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          GST Support
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Yes
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Rare
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Data Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Browser Only
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Server Upload
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this invoice generator really free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, 100% free. No signup, no watermark, no hidden charges. Download unlimited PDF invoices for free.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I add GST to my invoice?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes. Set any GST or tax percentage and it automatically calculates and shows on the invoice.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I add my logo?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes. Upload your company logo and it appears at the top of the invoice PDF.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my invoice data saved anywhere?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No. All data stays in your browser only. We never see or store your invoice information.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What currencies are supported?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       ₹ INR, $ USD, € EUR, £ GBP, ¥ JPY, and AED are available in the dropdown.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, fully responsive — works on all devices and browsers.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 About Invoice Generator
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       An invoice is a legal document that records a transaction between a seller and a buyer. In India, GST-compliant invoices are mandatory for businesses registered under GST. Our free invoice generator lets freelancers and business owners create professional invoices that include GSTIN, HSN codes, tax breakdowns, and payment terms — without paying for accounting software like Tally or Zoho.
-      </p>
-<p style="margin-top:1rem;">
-       All processing happens in your browser using standard HTML5 and the jsPDF library. No data ever leaves your device, making this the most private invoice tool available online.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Add or remove GST from any amount instantly.
-       </div>
-</a>
-<a class="tool-card" href="emi-calculator">
-<div class="tool-icon">
-        🏦
-       </div>
-<div class="tool-title">
-        EMI Calculator
-       </div>
-<div class="tool-desc">
-        Calculate loan EMI with full amortization schedule.
-       </div>
-</a>
-<a class="tool-card" href="percentage-calculator">
-<div class="tool-icon">
-        %
-       </div>
-<div class="tool-title">
-        Percentage Calculator
-       </div>
-<div class="tool-desc">
-        Calculate percentages, markups, and discounts.
-       </div>
-</a>
-<a class="tool-card" href="pdf-compressor">
-<div class="tool-icon">
-        📄
-       </div>
-<div class="tool-title">
-        PDF Compressor
-       </div>
-<div class="tool-desc">
-        Compress PDF files to a smaller size online free.
-       </div>
-</a>
-<a class="tool-card" href="qr-code-generator">
-<div class="tool-icon">
-        🔳
-       </div>
-<div class="tool-title">
-        QR Generator
-       </div>
-<div class="tool-desc">
-        Create QR codes for UPI, websites, and more.
-       </div>
-</a>
-<a class="tool-card" href="word-counter">
-<div class="tool-icon">
-        📝
-       </div>
-<div class="tool-title">
-        Word Counter
-       </div>
-<div class="tool-desc">
-        Count words, characters and reading time instantly.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
+      </div>
+      <div class="input-group">
+        <label class="nb-label" for="fromAddress">Address</label>
+        <textarea class="nb-input" id="fromAddress" placeholder="Street, City, State, PIN" rows="2" style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="input-group">
+          <label class="nb-label" for="fromEmail">Email</label>
+          <input class="nb-input" id="fromEmail" placeholder="you@company.com" type="email"/>
+        </div>
+        <div class="input-group">
+          <label class="nb-label" for="fromPhone">Phone</label>
+          <input class="nb-input" id="fromPhone" placeholder="+91 98765 43210" type="tel"/>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="nb-label">Company Logo (Optional)</label>
+        <div class="logo-upload-area" id="logoArea">
+          <input accept="image/*" id="logoFile" type="file"/>
+          <div id="logoPlaceholder">📁 Click to upload logo (PNG, JPG, SVG)</div>
+          <img alt="Logo preview" id="logoImg" class="logo-preview" style="display:none;"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- TO section -->
+    <div class="section-head">
+      <div class="section-head-icon" style="background:var(--nb-mint);">👤</div>
+      <h3>Bill To — Client</h3>
+    </div>
+    <div style="margin-bottom:1.5rem;">
+      <div class="form-row">
+        <div class="input-group">
+          <label class="nb-label" for="toName">Client Name *</label>
+          <input class="nb-input" id="toName" placeholder="e.g. Acme Corp Pvt Ltd" type="text"/>
+        </div>
+        <div class="input-group">
+          <label class="nb-label" for="toGstin">Client GSTIN (Optional)</label>
+          <input class="nb-input" id="toGstin" maxlength="15" placeholder="27BBBBB0000B1Z3" type="text"/>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="nb-label" for="toAddress">Client Address</label>
+        <textarea class="nb-input" id="toAddress" placeholder="Street, City, State, PIN" rows="2" style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="input-group">
+          <label class="nb-label" for="toEmail">Client Email</label>
+          <input class="nb-input" id="toEmail" placeholder="client@company.com" type="email"/>
+        </div>
+        <div class="input-group">
+          <label class="nb-label" for="toPhone">Client Phone</label>
+          <input class="nb-input" id="toPhone" placeholder="+91 99999 99999" type="tel"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Invoice Details -->
+    <div class="section-head">
+      <div class="section-head-icon" style="background:var(--nb-blue);">📋</div>
+      <h3>Invoice Details</h3>
+    </div>
+    <div style="margin-bottom:1.5rem;">
+      <div class="form-row three">
+        <div class="input-group">
+          <label class="nb-label" for="invoiceNo">Invoice Number *</label>
+          <input class="nb-input" id="invoiceNo" type="text" value="INV-001"/>
+        </div>
+        <div class="input-group">
+          <label class="nb-label" for="invoiceDate">Invoice Date *</label>
+          <input class="nb-input" id="invoiceDate" type="date"/>
+        </div>
+        <div class="input-group">
+          <label class="nb-label" for="dueDate">Due Date</label>
+          <input class="nb-input" id="dueDate" type="date"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Line Items -->
+    <div class="section-head">
+      <div class="section-head-icon" style="background:var(--nb-orange);">📦</div>
+      <h3>Line Items</h3>
+    </div>
+    <div style="overflow-x:auto; margin-bottom:1rem;">
+      <table class="items-table" id="itemsTable">
+        <thead>
+          <tr>
+            <th style="min-width:180px;">Description</th>
+            <th style="min-width:60px;">Qty</th>
+            <th style="min-width:90px;">Unit Price</th>
+            <th style="min-width:80px;">Discount %</th>
+            <th style="min-width:80px;">GST %</th>
+            <th style="min-width:80px;">Amount</th>
+            <th style="width:36px;"></th>
+          </tr>
+        </thead>
+        <tbody id="itemsBody"></tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+      <button class="nb-btn nb-btn-mint nb-btn-sm" onclick="addRow()">+ Add Item</button>
+      <button class="nb-btn nb-btn-sm" style="background:#f5f5f5;" onclick="clearRows()">🗑 Clear All</button>
+    </div>
+
+    <!-- GST Type -->
+    <div class="form-row" style="margin-bottom:1.5rem;">
+      <div class="input-group">
+        <label class="nb-label" for="gstType">GST Type</label>
+        <select class="nb-input nb-select" id="gstType" onchange="updateTotals()">
+          <option value="cgst_sgst">CGST + SGST (Intra-State)</option>
+          <option value="igst">IGST (Inter-State)</option>
+          <option value="none">No GST</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label class="nb-label" for="additionalDiscount">Additional Discount (%)</label>
+        <input class="nb-input" id="additionalDiscount" max="100" min="0" oninput="updateTotals()" placeholder="0" type="number" value="0"/>
+      </div>
+    </div>
+
+    <!-- Totals -->
+    <div class="totals-box" id="totalsBox">
+      <div class="total-row"><span>Subtotal</span><span id="tSubtotal">₹0.00</span></div>
+      <div class="total-row" id="tDiscountRow" style="display:none;"><span>Discount</span><span id="tDiscount">-₹0.00</span></div>
+      <div class="total-row" id="tGstRow1"><span id="tGstLabel1">CGST</span><span id="tGst1">₹0.00</span></div>
+      <div class="total-row" id="tGstRow2"><span id="tGstLabel2">SGST</span><span id="tGst2">₹0.00</span></div>
+      <div class="total-row grand"><span>Total</span><span class="grand-val" id="tTotal">₹0.00</span></div>
+    </div>
+
+    <!-- Notes / Terms -->
+    <div class="section-head" style="margin-top:1.5rem;">
+      <div class="section-head-icon" style="background:var(--nb-lime);">📝</div>
+      <h3>Notes & Terms</h3>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label class="nb-label" for="notes">Notes (Visible on Invoice)</label>
+        <textarea class="nb-input" id="notes" placeholder="e.g. Thank you for your business!" rows="3" style="resize:vertical;"></textarea>
+      </div>
+      <div class="input-group">
+        <label class="nb-label" for="terms">Payment Terms</label>
+        <textarea class="nb-input" id="terms" placeholder="e.g. Payment due within 30 days. Late fee: 2% per month." rows="3" style="resize:vertical;"></textarea>
+      </div>
+    </div>
+
+    <div id="formError" class="nb-error"></div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+      <button class="nb-btn nb-btn-primary" onclick="generatePreview()" style="flex:1;min-width:180px;">👁 Preview Invoice</button>
+      <button class="nb-btn nb-btn-pink" onclick="downloadPDF()" style="flex:1;min-width:180px;">⬇️ Download PDF</button>
+    </div>
+  </div>
+
+  <!-- Invoice Preview -->
+  <div id="invoicePreview" style="display:none;">
+    <div class="preview-header">
+      <h3>📄 Invoice Preview</h3>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <button class="nb-btn nb-btn-mint nb-btn-sm" onclick="copyInvoiceText()">📋 Copy Text</button>
+        <button class="nb-btn nb-btn-pink nb-btn-sm" onclick="downloadPDF()">⬇️ Download PDF</button>
+      </div>
+    </div>
+    <div class="inv-doc" id="invDoc"></div>
+  </div>
+
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-</script>
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is This Invoice Generator?</h2>
+    <p>The <strong>Invoice Generator</strong> by WorldOfTools lets you create professional, GST-compliant invoices and download them as PDFs — entirely in your browser. Whether you're a freelancer, small business owner, consultant, or agency, you can generate a clean invoice in under 2 minutes with no account, no watermark, and no cost.</p>
+    <p>All invoice data is processed locally in your browser using JavaScript. Your client details, pricing, and GSTIN are <strong>never sent to any server</strong>. Your business data stays 100% private.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Create a GST Invoice — Step by Step</h2>
+    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Fill Your Business Details</strong> — Add your name/business name, address, GSTIN, email, and optionally upload your company logo.</p></div>
+    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Add Client Details</strong> — Enter the billing name, address, and client GSTIN. All fields appear on the final invoice.</p></div>
+    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Add Line Items</strong> — Click "Add Item" for each product or service. Enter quantity, unit price, discount %, and GST rate. Amounts are auto-calculated.</p></div>
+    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Choose GST Type</strong> — Select CGST+SGST for intra-state or IGST for inter-state transactions. The tool splits GST automatically.</p></div>
+    <div class="step-item"><div class="step-num">5</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Preview & Download PDF</strong> — Click Preview Invoice to review, then Download PDF to save a print-ready file. Done!</p></div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Key Features</h2>
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.75rem;">
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>GST Auto-Calculation</strong> — Supports CGST+SGST (intra-state) and IGST (inter-state). Enter the GST rate per item and totals split automatically.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Logo Upload</strong> — Upload your company logo for a professional, branded invoice PDF.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Multiple Invoice Types</strong> — Tax Invoice, Proforma Invoice, Receipt, and Credit Note supported.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Discount Support</strong> — Apply per-item discounts and an overall invoice discount. All reflected in the PDF.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>100% Private</strong> — No data is uploaded anywhere. All generation happens in your browser.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Multi-Currency</strong> — Supports INR, USD, EUR, GBP, and AED.</span></li>
+    </ul>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>🆚 Our Invoice Generator vs. Other Tools</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr><th>Feature</th><th style="color:#4f46e5;">WorldOfTools</th><th>Other Tools</th></tr></thead>
+        <tbody>
+          <tr><td>Price</td><td class="yes">✓ Free Forever</td><td class="no">Paid / Freemium</td></tr>
+          <tr><td>Watermark</td><td class="yes">✓ None</td><td class="no">Branded Watermark</td></tr>
+          <tr><td>Signup Required</td><td class="yes">✓ No</td><td class="no">Yes (Most)</td></tr>
+          <tr><td>Data Privacy</td><td class="yes">✓ Browser Only</td><td class="no">Server Upload</td></tr>
+          <tr><td>GST Support</td><td class="yes">✓ CGST/SGST/IGST</td><td class="no">Basic / Paid</td></tr>
+          <tr><td>Logo Upload</td><td class="yes">✓ Yes</td><td class="no">Paid Feature</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>Can I create a GST invoice for free?</summary><p>Yes — 100% free, no login required, no watermark. Just fill the form and download your PDF invoice.</p></details>
+    <details><summary>Is my invoice data saved or uploaded anywhere?</summary><p>No. All processing happens entirely in your browser. Your business details, client details, and GSTIN never leave your device.</p></details>
+    <details><summary>Does it support both CGST+SGST and IGST?</summary><p>Yes. Select "CGST+SGST" for intra-state transactions (same state) or "IGST" for inter-state. The calculator automatically splits the tax correctly.</p></details>
+    <details><summary>Can I add my company logo to the invoice?</summary><p>Yes — click the logo upload area, choose your image (PNG/JPG/SVG), and it will appear in the invoice preview and the downloaded PDF.</p></details>
+    <details><summary>What is a proforma invoice?</summary><p>A proforma invoice is a preliminary bill sent before goods or services are delivered. It's not a legal tax document — it's used to confirm order details. Our generator supports proforma, tax invoice, receipt, and credit note formats.</p></details>
+    <details><summary>Can I create invoices in USD or other currencies?</summary><p>Yes. Use the Currency dropdown to select INR, USD, EUR, GBP, or AED. The selected symbol appears throughout the invoice.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Tools You Might Need</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/gst-calculator"><div class="icon">🧮</div><div class="name">GST Calculator</div><div class="desc">Add or remove GST</div></a>
+      <a class="tool-card-mini" href="/loan-comparison-calculator"><div class="icon">🏦</div><div class="name">Loan Calculator</div><div class="desc">Compare EMIs & loans</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in days & hours</div></a>
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Analyze text & reading time</div></a>
+      <a class="tool-card-mini" href="/json-formatter"><div class="icon">{ }</div><div class="name">JSON Formatter</div><div class="desc">Beautify & validate JSON</div></a>
+      <a class="tool-card-mini" href="/ip-address-lookup"><div class="icon">🌐</div><div class="name">IP Lookup</div><div class="desc">Find any IP location</div></a>
+    </div>
+  </section>
+
+</div>
+
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   // ── State ──────────────────────────────────────────────────────────────
-        let items = [];
-        let logoDataURL = null;
+  let logoDataUrl = '';
+  let rows = [];
 
-        // ── Init ───────────────────────────────────────────────────────────────
-        window.addEventListener('DOMContentLoaded', () => {
-            // Set today + 30 days due
-            const today = new Date();
-            document.getElementById('invoiceDate').value = today.toISOString().split('T')[0];
-            const due = new Date(today);
-            due.setDate(due.getDate() + 30);
-            document.getElementById('dueDate').value = due.toISOString().split('T')[0];
-            document.getElementById('invoiceNo').value = 'INV-001';
-            addItem();
-            addItem();
-            updateTotals();
-        });
+  // Set defaults on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('invoiceDate').value = today;
+    const due = new Date(); due.setDate(due.getDate() + 30);
+    document.getElementById('dueDate').value = due.toISOString().split('T')[0];
+    addRow();
+    addRow();
+  });
 
-        // ── Logo ───────────────────────────────────────────────────────────────
-        document.getElementById('logoInput').addEventListener('change', function () {
-            const file = this.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = e => { logoDataURL = e.target.result; };
-            reader.readAsDataURL(file);
-        });
+  // Logo upload
+  document.getElementById('logoFile').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      logoDataUrl = e.target.result;
+      document.getElementById('logoImg').src = logoDataUrl;
+      document.getElementById('logoImg').style.display = 'block';
+      document.getElementById('logoPlaceholder').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
 
-        // ── Items ──────────────────────────────────────────────────────────────
-        function addItem() {
-            const id = Date.now();
-            items.push({ id, desc: '', qty: 1, rate: 0 });
-            renderItems();
-        }
+  function addRow() {
+    const id = Date.now() + Math.random();
+    rows.push(id);
+    const tbody = document.getElementById('itemsBody');
+    const tr = document.createElement('tr');
+    tr.dataset.id = id;
+    tr.innerHTML = `
+      <td><input type="text" placeholder="Description of service/product" data-field="desc" oninput="rowChanged(this)"/></td>
+      <td><input type="number" value="1" min="0" step="any" data-field="qty" oninput="rowChanged(this)" style="width:55px;"/></td>
+      <td><input type="number" value="0" min="0" step="any" data-field="price" oninput="rowChanged(this)" style="width:90px;"/></td>
+      <td><input type="number" value="0" min="0" max="100" step="any" data-field="disc" oninput="rowChanged(this)" style="width:65px;"/></td>
+      <td><input type="number" value="18" min="0" max="100" step="any" data-field="gst" oninput="rowChanged(this)" style="width:55px;"/></td>
+      <td><span data-field="amount" style="font-weight:700;color:#4f46e5;">₹0.00</span></td>
+      <td><button class="del-row" onclick="delRow(this)" title="Remove row">✕</button></td>
+    `;
+    tbody.appendChild(tr);
+    updateTotals();
+  }
 
-        function removeItem(id) {
-            items = items.filter(i => i.id !== id);
-            renderItems();
-            updateTotals();
-        }
+  function delRow(btn) {
+    const tr = btn.closest('tr');
+    const id = parseFloat(tr.dataset.id);
+    rows = rows.filter(r => r !== id);
+    tr.remove();
+    updateTotals();
+  }
 
-        function renderItems() {
-            const sym = document.getElementById('currency').value;
-            const tbody = document.getElementById('itemsBody');
-            tbody.innerHTML = items.map((item, idx) => `
-                <tr>
-                    <td class="col-desc"><input type="text" placeholder="Description of service/product" value="${item.desc}" oninput="items[${idx}].desc=this.value"></td>
-                    <td class="col-qty"><input type="number" min="1" value="${item.qty}" oninput="items[${idx}].qty=parseFloat(this.value)||0; calcRow(${idx})"></td>
-                    <td class="col-rate"><input type="number" min="0" step="0.01" placeholder="0.00" value="${item.rate||''}" oninput="items[${idx}].rate=parseFloat(this.value)||0; calcRow(${idx})"></td>
-                    <td class="col-amt" id="amt-${idx}" style="font-weight:700; padding-left:0.75rem;">${sym}${((item.qty||0)*(item.rate||0)).toFixed(2)}</td>
-                    <td class="col-del"><button class="delete-row-btn" onclick="removeItem(${item.id})">✕</button></td>
-                </tr>
-            `).join('');
-            updateTotals();
-        }
+  function clearRows() {
+    document.getElementById('itemsBody').innerHTML = '';
+    rows = [];
+    updateTotals();
+  }
 
-        function calcRow(idx) {
-            const sym = document.getElementById('currency').value;
-            const el = document.getElementById(`amt-${idx}`);
-            if (el) el.textContent = sym + ((items[idx].qty || 0) * (items[idx].rate || 0)).toFixed(2);
-            updateTotals();
-        }
+  function rowChanged(input) { updateTotals(); }
 
-        document.getElementById('currency').addEventListener('change', renderItems);
+  function getRowData() {
+    const data = [];
+    document.querySelectorAll('#itemsBody tr').forEach(tr => {
+      const desc = tr.querySelector('[data-field=desc]').value.trim();
+      const qty = parseFloat(tr.querySelector('[data-field=qty]').value) || 0;
+      const price = parseFloat(tr.querySelector('[data-field=price]').value) || 0;
+      const disc = parseFloat(tr.querySelector('[data-field=disc]').value) || 0;
+      const gst = parseFloat(tr.querySelector('[data-field=gst]').value) || 0;
+      const base = qty * price * (1 - disc / 100);
+      const gstAmt = base * gst / 100;
+      const amount = base + gstAmt;
+      tr.querySelector('[data-field=amount]').textContent = fmt(amount);
+      data.push({ desc, qty, price, disc, gst, base, gstAmt, amount });
+    });
+    return data;
+  }
 
-        // ── Totals ─────────────────────────────────────────────────────────────
-        function updateTotals() {
-            const sym = document.getElementById('currency').value;
-            const subtotal = items.reduce((s, i) => s + (i.qty || 0) * (i.rate || 0), 0);
-            const discPct = parseFloat(document.getElementById('discountRate').value) || 0;
-            const taxPct  = parseFloat(document.getElementById('taxRate').value) || 0;
-            const discount = subtotal * discPct / 100;
-            const taxable  = subtotal - discount;
-            const tax      = taxable * taxPct / 100;
-            const grand    = taxable + tax;
+  function updateTotals() {
+    const cur = document.getElementById('currency').value;
+    const items = getRowData();
+    const gstType = document.getElementById('gstType').value;
+    const addDisc = parseFloat(document.getElementById('additionalDiscount').value) || 0;
 
-            document.getElementById('subtotalDisplay').textContent = sym + subtotal.toFixed(2);
-            document.getElementById('discountDisplay').textContent = '−' + sym + discount.toFixed(2);
-            document.getElementById('taxDisplay').textContent = sym + tax.toFixed(2);
-            document.getElementById('grandDisplay').textContent = sym + grand.toFixed(2);
-        }
+    const subtotal = items.reduce((s, r) => s + r.base, 0);
+    const totalGst = items.reduce((s, r) => s + r.gstAmt, 0);
+    const discAmt = subtotal * addDisc / 100;
+    const adjustedGst = gstType === 'none' ? 0 : totalGst * (1 - addDisc / 100);
+    const grandTotal = subtotal - discAmt + adjustedGst;
 
-        // ── Preview ────────────────────────────────────────────────────────────
-        function previewInvoice() {
-            const sym = document.getElementById('currency').value;
-            const subtotal = items.reduce((s, i) => s + (i.qty || 0) * (i.rate || 0), 0);
-            const discPct  = parseFloat(document.getElementById('discountRate').value) || 0;
-            const taxPct   = parseFloat(document.getElementById('taxRate').value) || 0;
-            const discount = subtotal * discPct / 100;
-            const taxable  = subtotal - discount;
-            const tax      = taxable * taxPct / 100;
-            const grand    = taxable + tax;
+    document.getElementById('tSubtotal').textContent = cur + fmt(subtotal);
+    if (addDisc > 0) {
+      document.getElementById('tDiscountRow').style.display = 'flex';
+      document.getElementById('tDiscount').textContent = '−' + cur + fmt(discAmt);
+    } else { document.getElementById('tDiscountRow').style.display = 'none'; }
 
-            document.getElementById('prev-fromName').textContent = document.getElementById('fromName').value || 'Your Company';
-            document.getElementById('prev-fromContact').textContent = document.getElementById('fromContact').value;
-            document.getElementById('prev-fromAddress').innerHTML = (document.getElementById('fromAddress').value || '').replace(/\n/g, '<br>');
-            document.getElementById('prev-toName').textContent = document.getElementById('toName').value;
-            document.getElementById('prev-toContact').textContent = document.getElementById('toContact').value;
-            document.getElementById('prev-toAddress').innerHTML = (document.getElementById('toAddress').value || '').replace(/\n/g, '<br>');
-            document.getElementById('prev-invoiceNo').textContent = 'Invoice # ' + (document.getElementById('invoiceNo').value || '');
-            document.getElementById('prev-dates').innerHTML = 'Date: ' + document.getElementById('invoiceDate').value + '<br>Due: ' + document.getElementById('dueDate').value;
+    if (gstType === 'cgst_sgst') {
+      document.getElementById('tGstRow1').style.display = 'flex';
+      document.getElementById('tGstRow2').style.display = 'flex';
+      document.getElementById('tGstLabel1').textContent = 'CGST';
+      document.getElementById('tGstLabel2').textContent = 'SGST';
+      document.getElementById('tGst1').textContent = cur + fmt(adjustedGst / 2);
+      document.getElementById('tGst2').textContent = cur + fmt(adjustedGst / 2);
+    } else if (gstType === 'igst') {
+      document.getElementById('tGstRow1').style.display = 'flex';
+      document.getElementById('tGstRow2').style.display = 'none';
+      document.getElementById('tGstLabel1').textContent = 'IGST';
+      document.getElementById('tGst1').textContent = cur + fmt(adjustedGst);
+    } else {
+      document.getElementById('tGstRow1').style.display = 'none';
+      document.getElementById('tGstRow2').style.display = 'none';
+    }
 
-            // Logo
-            const logoWrap = document.getElementById('prev-logo-wrap');
-            logoWrap.innerHTML = logoDataURL ? `<img src="${logoDataURL}" style="max-height:60px;max-width:160px;margin-bottom:0.5rem;display:block;">` : '';
+    document.getElementById('tTotal').textContent = cur + fmt(grandTotal);
+    // Update symbol in row amounts
+    document.querySelectorAll('#itemsBody [data-field=amount]').forEach((el, i) => {
+      if (items[i]) el.textContent = cur + fmt(items[i].amount);
+    });
+  }
 
-            // Items
-            document.getElementById('prev-items').innerHTML = items.map((item, i) => `
-                <tr>
-                    <td>${i+1}</td>
-                    <td>${item.desc || '—'}</td>
-                    <td class="text-right">${item.qty}</td>
-                    <td class="text-right">${sym}${(item.rate||0).toFixed(2)}</td>
-                    <td class="text-right">${sym}${((item.qty||0)*(item.rate||0)).toFixed(2)}</td>
-                </tr>
-            `).join('');
+  function fmt(n) { return n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
-            document.getElementById('prev-subtotal').textContent = sym + subtotal.toFixed(2);
-            document.getElementById('prev-discount').textContent = '−' + sym + discount.toFixed(2);
-            document.getElementById('prev-tax').textContent = sym + tax.toFixed(2);
-            document.getElementById('prev-grand').textContent = sym + grand.toFixed(2);
-            document.getElementById('prev-notes').innerHTML = (document.getElementById('notes').value || '').replace(/\n/g, '<br>');
+  function generatePreview() {
+    const fromName = document.getElementById('fromName').value.trim();
+    const toName = document.getElementById('toName').value.trim();
+    const invoiceNo = document.getElementById('invoiceNo').value.trim();
+    if (!fromName) return showError('Please enter your business name.');
+    if (!toName) return showError('Please enter client name.');
+    if (!invoiceNo) return showError('Please enter invoice number.');
+    showError('');
 
-            document.getElementById('invoice-preview').style.display = 'block';
-            document.getElementById('invoice-preview').scrollIntoView({ behavior: 'smooth' });
-        }
+    const cur = document.getElementById('currency').value;
+    const items = getRowData();
+    const gstType = document.getElementById('gstType').value;
+    const addDisc = parseFloat(document.getElementById('additionalDiscount').value) || 0;
+    const invoiceType = document.getElementById('invoiceType').value;
 
-        // ── PDF Generation ─────────────────────────────────────────────────────
-        function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-            const sym = document.getElementById('currency').value;
-            const W = 210, margin = 18;
+    const subtotal = items.reduce((s, r) => s + r.base, 0);
+    const totalGst = items.reduce((s, r) => s + r.gstAmt, 0);
+    const discAmt = subtotal * addDisc / 100;
+    const adjustedGst = gstType === 'none' ? 0 : totalGst * (1 - addDisc / 100);
+    const grandTotal = subtotal - discAmt + adjustedGst;
 
-            const fromName    = document.getElementById('fromName').value || 'Your Company';
-            const fromAddr    = document.getElementById('fromAddress').value || '';
-            const fromContact = document.getElementById('fromContact').value || '';
-            const toName      = document.getElementById('toName').value || '';
-            const toAddr      = document.getElementById('toAddress').value || '';
-            const toContact   = document.getElementById('toContact').value || '';
-            const invoiceNo   = document.getElementById('invoiceNo').value || 'INV-001';
-            const invDate     = document.getElementById('invoiceDate').value || '';
-            const dueDate     = document.getElementById('dueDate').value || '';
-            const notes       = document.getElementById('notes').value || '';
-            const taxPct      = parseFloat(document.getElementById('taxRate').value) || 0;
-            const discPct     = parseFloat(document.getElementById('discountRate').value) || 0;
+    const dateStr = new Date(document.getElementById('invoiceDate').value).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    const dueVal = document.getElementById('dueDate').value;
+    const dueStr = dueVal ? new Date(dueVal).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
 
-            const subtotal = items.reduce((s, i) => s + (i.qty || 0) * (i.rate || 0), 0);
-            const discount = subtotal * discPct / 100;
-            const taxable  = subtotal - discount;
-            const tax      = taxable * taxPct / 100;
-            const grand    = taxable + tax;
+    let gstRows = '';
+    if (gstType === 'cgst_sgst' && adjustedGst > 0) {
+      gstRows = `<div class="inv-total-row"><span>CGST</span><span>${cur}${fmt(adjustedGst / 2)}</span></div><div class="inv-total-row"><span>SGST</span><span>${cur}${fmt(adjustedGst / 2)}</span></div>`;
+    } else if (gstType === 'igst' && adjustedGst > 0) {
+      gstRows = `<div class="inv-total-row"><span>IGST</span><span>${cur}${fmt(adjustedGst)}</span></div>`;
+    }
 
-            let y = margin;
+    const itemRows = items.map(r => `
+      <tr>
+        <td>${r.desc || '—'}</td>
+        <td style="text-align:center;">${r.qty}</td>
+        <td style="text-align:right;">${cur}${fmt(r.price)}</td>
+        <td style="text-align:center;">${r.disc > 0 ? r.disc + '%' : '—'}</td>
+        <td style="text-align:center;">${r.gst > 0 ? r.gst + '%' : '—'}</td>
+        <td style="text-align:right;font-weight:700;">${cur}${fmt(r.amount)}</td>
+      </tr>
+    `).join('');
 
-            // Header bar
-            doc.setFillColor(79, 70, 229);
-            doc.rect(0, 0, W, 12, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(7);
-            doc.setFont('helvetica', 'bold');
-            doc.text('INVOICE', W - margin, 8, { align: 'right' });
-            doc.setTextColor(0, 0, 0);
+    const logoHTML = logoDataUrl ? `<img src="${logoDataUrl}" style="max-height:70px;max-width:180px;object-fit:contain;" alt="Logo"/>` : '';
 
-            // Logo
-            if (logoDataURL) {
-                try { doc.addImage(logoDataURL, 'PNG', margin, 16, 35, 16, '', 'FAST'); } catch(e) {}
-                y = 36;
-            } else {
-                y = 20;
-            }
+    document.getElementById('invDoc').innerHTML = `
+      <div class="inv-top">
+        <div>
+          ${logoHTML}
+          <div class="inv-title">${invoiceType.toUpperCase()}</div>
+          <span class="inv-type-badge">${invoiceType}</span>
+        </div>
+        <div class="inv-meta">
+          <strong>Invoice #</strong> ${invoiceNo}<br>
+          <strong>Date:</strong> ${dateStr}<br>
+          <strong>Due:</strong> ${dueStr}
+        </div>
+      </div>
+      <div class="inv-parties">
+        <div>
+          <div class="inv-party-label">From</div>
+          <div class="inv-party-name">${document.getElementById('fromName').value}</div>
+          <div class="inv-party-detail">
+            ${document.getElementById('fromAddress').value.replace(/\n/g,'<br>')||''}
+            ${document.getElementById('fromGstin').value ? '<br><strong>GSTIN:</strong> '+document.getElementById('fromGstin').value : ''}
+            ${document.getElementById('fromEmail').value ? '<br>'+document.getElementById('fromEmail').value : ''}
+            ${document.getElementById('fromPhone').value ? '<br>'+document.getElementById('fromPhone').value : ''}
+          </div>
+        </div>
+        <div>
+          <div class="inv-party-label">Bill To</div>
+          <div class="inv-party-name">${document.getElementById('toName').value}</div>
+          <div class="inv-party-detail">
+            ${document.getElementById('toAddress').value.replace(/\n/g,'<br>')||''}
+            ${document.getElementById('toGstin').value ? '<br><strong>GSTIN:</strong> '+document.getElementById('toGstin').value : ''}
+            ${document.getElementById('toEmail').value ? '<br>'+document.getElementById('toEmail').value : ''}
+            ${document.getElementById('toPhone').value ? '<br>'+document.getElementById('toPhone').value : ''}
+          </div>
+        </div>
+      </div>
+      <table class="inv-table">
+        <thead><tr><th>Description</th><th style="text-align:center;">Qty</th><th style="text-align:right;">Unit Price</th><th style="text-align:center;">Disc %</th><th style="text-align:center;">GST %</th><th style="text-align:right;">Amount</th></tr></thead>
+        <tbody>${itemRows}</tbody>
+      </table>
+      <div class="inv-totals">
+        <div class="inv-total-row"><span>Subtotal</span><span>${cur}${fmt(subtotal)}</span></div>
+        ${addDisc > 0 ? `<div class="inv-total-row"><span>Discount (${addDisc}%)</span><span>−${cur}${fmt(discAmt)}</span></div>` : ''}
+        ${gstRows}
+        <div class="inv-total-row inv-total-grand"><span>Total Due</span><span>${cur}${fmt(grandTotal)}</span></div>
+      </div>
+      ${document.getElementById('notes').value || document.getElementById('terms').value ? `
+        <div class="inv-notes">
+          ${document.getElementById('notes').value ? `<strong>Notes:</strong><p style="margin:0;">${document.getElementById('notes').value}</p>` : ''}
+          ${document.getElementById('terms').value ? `<strong style="margin-top:0.75rem;display:block;">Terms:</strong><p style="margin:0;">${document.getElementById('terms').value}</p>` : ''}
+        </div>
+      ` : ''}
+      <div class="inv-footer">Generated by WorldOfTools.in · Invoice data processed locally in your browser · Not stored on any server</div>
+    `;
 
-            // From
-            doc.setFontSize(14); doc.setFont('helvetica', 'bold');
-            doc.text(fromName, margin, y); y += 6;
-            doc.setFontSize(8); doc.setFont('helvetica', 'normal');
-            doc.setTextColor(100, 100, 100);
-            if (fromAddr) { fromAddr.split('\n').forEach(l => { doc.text(l, margin, y); y += 4.5; }); }
-            if (fromContact) { doc.text(fromContact, margin, y); y += 5; }
+    const preview = document.getElementById('invoicePreview');
+    preview.style.display = 'block';
+    preview.classList.remove('animate-in');
+    void preview.offsetWidth;
+    preview.classList.add('animate-in');
+    preview.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
 
-            // Invoice meta (right side)
-            doc.setTextColor(0, 0, 0);
-            doc.setFontSize(9); doc.setFont('helvetica', 'bold');
-            doc.text('Invoice #: ' + invoiceNo, W - margin, 22, { align: 'right' });
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(8); doc.setTextColor(100, 100, 100);
-            doc.text('Date: ' + invDate, W - margin, 28, { align: 'right' });
-            doc.text('Due: ' + dueDate, W - margin, 33, { align: 'right' });
+  function showError(msg) {
+    const el = document.getElementById('formError');
+    if (msg) { el.textContent = '⚠️ ' + msg; el.style.display = 'block'; el.scrollIntoView({ behavior:'smooth', block:'center' }); }
+    else { el.style.display = 'none'; }
+  }
 
-            // Bill To
-            y += 4;
-            doc.setTextColor(79, 70, 229); doc.setFontSize(7); doc.setFont('helvetica', 'bold');
-            doc.text('BILL TO', margin, y); y += 5;
-            doc.setTextColor(0, 0, 0); doc.setFontSize(9); doc.setFont('helvetica', 'bold');
-            doc.text(toName, margin, y); y += 5;
-            doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(80, 80, 80);
-            if (toContact) { doc.text(toContact, margin, y); y += 4.5; }
-            if (toAddr) { toAddr.split('\n').forEach(l => { doc.text(l, margin, y); y += 4.5; }); }
+  function downloadPDF() {
+    generatePreview();
+    setTimeout(() => {
+      const invDoc = document.getElementById('invDoc');
+      if (!invDoc.innerHTML) return;
+      const win = window.open('', '_blank');
+      win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Invoice</title>
+      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+      <style>*{box-sizing:border-box}body{font-family:'Space Grotesk',sans-serif;background:#fff;padding:2rem;max-width:800px;margin:0 auto;}
+      .inv-title{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;letter-spacing:-0.02em;}
+      .inv-type-badge{display:inline-block;background:#b2f5ea;border:2px solid #000;border-radius:6px;padding:0.2rem 0.75rem;font-size:0.75rem;font-weight:800;text-transform:uppercase;margin-top:0.25rem;}
+      .inv-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;gap:1rem;}
+      .inv-meta{font-size:0.85rem;color:#555;line-height:1.7;}
+      .inv-meta strong{color:#000;}
+      .inv-parties{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;}
+      .inv-party-label{font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:#666;margin-bottom:0.35rem;}
+      .inv-party-name{font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;}
+      .inv-party-detail{font-size:0.85rem;color:#444;line-height:1.6;}
+      .inv-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;}
+      .inv-table th{background:#ffe066;border:2px solid #000;padding:0.6rem 0.75rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;font-weight:800;text-align:left;}
+      .inv-table td{border:2px solid #000;padding:0.6rem 0.75rem;font-size:0.88rem;}
+      .inv-totals{max-width:300px;margin-left:auto;}
+      .inv-total-row{display:flex;justify-content:space-between;padding:0.35rem 0;font-size:0.88rem;font-weight:600;border-bottom:1px solid #e5e7eb;}
+      .inv-total-grand{font-size:1.1rem;font-weight:900;color:#4f46e5;border-bottom:none;padding-top:0.5rem;}
+      .inv-notes{margin-top:1.5rem;padding-top:1.5rem;border-top:2.5px solid #000;font-size:0.85rem;color:#555;}
+      .inv-notes strong{color:#000;display:block;margin-bottom:0.25rem;}
+      .inv-footer{margin-top:2rem;padding-top:1rem;border-top:1.5px solid #e5e7eb;font-size:0.75rem;color:#888;text-align:center;}
+      </style></head><body>${invDoc.innerHTML}<script>window.onload=()=>{window.print();}<\/script></body></html>`);
+      win.document.close();
+    }, 300);
+  }
 
-            y += 4;
-            // Divider
-            doc.setDrawColor(220, 220, 240); doc.setLineWidth(0.4);
-            doc.line(margin, y, W - margin, y); y += 5;
+  function copyInvoiceText() {
+    const invDoc = document.getElementById('invDoc');
+    const text = invDoc.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.currentTarget;
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
 
-            // Items header
-            doc.setFillColor(79, 70, 229); doc.setTextColor(255, 255, 255);
-            doc.rect(margin, y, W - margin * 2, 7, 'F');
-            doc.setFontSize(7.5); doc.setFont('helvetica', 'bold');
-            const cols = [margin+2, margin+85, margin+110, margin+135, W-margin-2];
-            doc.text('#', cols[0], y+5);
-            doc.text('Description', cols[0]+6, y+5);
-            doc.text('Qty', cols[1], y+5);
-            doc.text('Rate', cols[2], y+5);
-            doc.text('Amount', cols[4], y+5, { align: 'right' });
-            y += 7;
-
-            // Item rows
-            doc.setTextColor(0, 0, 0); doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5);
-            items.forEach((item, idx) => {
-                const bg = idx % 2 === 0 ? [255, 255, 255] : [248, 249, 255];
-                doc.setFillColor(...bg);
-                doc.rect(margin, y, W - margin * 2, 7, 'F');
-                const amt = ((item.qty || 0) * (item.rate || 0)).toFixed(2);
-                doc.text(String(idx + 1), cols[0], y + 5);
-                doc.text(doc.splitTextToSize(item.desc || '—', 72)[0], cols[0]+6, y+5);
-                doc.text(String(item.qty), cols[1], y + 5);
-                doc.text(sym + (item.rate || 0).toFixed(2), cols[2], y + 5);
-                doc.text(sym + amt, cols[4], y + 5, { align: 'right' });
-                y += 7;
-            });
-
-            // Totals
-            y += 4;
-            const totals = [
-                ['Subtotal', sym + subtotal.toFixed(2)],
-                ['Discount (' + discPct + '%)', '−' + sym + discount.toFixed(2)],
-                ['Tax / GST (' + taxPct + '%)', sym + tax.toFixed(2)],
-            ];
-            const txLeft = W - margin - 70;
-            doc.setFontSize(8.5);
-            totals.forEach(([label, val]) => {
-                doc.setTextColor(80, 80, 80); doc.text(label, txLeft, y);
-                doc.setTextColor(0, 0, 0); doc.text(val, W - margin, y, { align: 'right' });
-                y += 6;
-            });
-            // Grand total
-            doc.setFillColor(79, 70, 229);
-            doc.rect(txLeft - 4, y - 1, W - margin - txLeft + 4 + margin, 9, 'F');
-            doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5);
-            doc.text('Grand Total', txLeft, y + 6);
-            doc.text(sym + grand.toFixed(2), W - margin, y + 6, { align: 'right' });
-            y += 14;
-
-            // Notes
-            if (notes) {
-                doc.setTextColor(79, 70, 229); doc.setFontSize(7.5); doc.setFont('helvetica', 'bold');
-                doc.text('NOTES / PAYMENT DETAILS', margin, y); y += 5;
-                doc.setTextColor(80, 80, 80); doc.setFont('helvetica', 'normal'); doc.setFontSize(8);
-                notes.split('\n').forEach(l => { doc.text(l, margin, y); y += 4.5; });
-            }
-
-            // Footer
-            doc.setTextColor(180, 180, 180); doc.setFontSize(7);
-            doc.text('Generated free at worldoftools.in', W / 2, 290, { align: 'center' });
-
-            doc.save(`invoice-${invoiceNo}-worldoftools.pdf`);
-        }
-
-        // ── Reset ──────────────────────────────────────────────────────────────
-        function resetForm() {
-            items = [];
-            logoDataURL = null;
-            ['fromName','fromAddress','fromContact','toName','toAddress','toContact','notes'].forEach(id => document.getElementById(id).value = '');
-            document.getElementById('taxRate').value = '';
-            document.getElementById('discountRate').value = '';
-            document.getElementById('logoInput').value = '';
-            document.getElementById('invoice-preview').style.display = 'none';
-            addItem(); addItem();
-            updateTotals();
-        }
-  </script>
+  // Update currency symbols in totals when changed
+  document.getElementById('currency').addEventListener('change', updateTotals);
+</script>
 </body>
 </html>

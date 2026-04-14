@@ -1,520 +1,532 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>JSON-LD Generator — Free Schema Markup Structured Data Tool | WorldOfTools</title>
-<meta content="Free JSON-LD Generator. Generate structured data markup for FAQ, HowTo, Article, Product, and more. Improve SEO and win rich snippets instantly with our JSON-LD tool." name="description"/>
-<meta content="JSON-LD generator, JSON-LD schema generator, structured data generator, rich snippets generator, JSON generator for SEO, Google schema generator, JSON-LD faq, JSON-LD howto" name="keywords"/>
+<title>JSON-LD Schema Markup Generator Free — Structured Data for SEO | WorldOfTools</title>
+<meta content="Free online JSON-LD schema markup generator. Create structured data for Article, FAQ, Product, Local Business, Breadcrumb, Review & more. Copy-paste ready for any website. No login required." name="description"/>
+<meta content="json-ld generator, schema markup generator, structured data generator, json-ld schema, schema.org generator, seo schema markup, faq schema generator, product schema generator, local business schema, breadcrumb schema generator, rich snippets generator, article schema markup" name="keywords"/>
 <link href="https://worldoftools.in/json-ld-generator" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-        .generator-layout {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 2rem;
-            align-items: flex-start;
-        }
-
-        @media (max-width: 1100px) {
-            .generator-layout {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-
-        .output-area {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            position: sticky;
-            top: 2rem;
-            box-shadow: var(--card-shadow);
-        }
-
-        .code-output {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 1.5rem;
-            border-radius: 12px;
-            font-family: 'Fira Code', 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            position: relative;
-            margin-top: 1.5rem;
-            overflow-x: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: 300px;
-        }
-
-        .copy-code-btn {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .copy-code-btn:hover {
-            background: var(--primary-color);
-        }
-
-        .field-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .schema-type-select {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 12px;
-            border: 2px solid var(--primary-color);
-            background: #fff;
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .dynamic-fields {
-            margin-bottom: 2rem;
-        }
-
-        .repeater-item {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .remove-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: #ef4444;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        @media (max-width: 768px) {
-            .field-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
-<script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-    </script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/json-ld-generator" property="og:url"/>
+<meta content="JSON-LD Schema Generator — Structured Data for SEO | WorldOfTools" property="og:title"/>
+<meta content="Create JSON-LD schema markup for Article, FAQ, Product, Local Business, Review & more. Free structured data generator — copy-paste ready." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="JSON-LD Schema Generator — Structured Data for SEO | WorldOfTools" name="twitter:title"/>
+<meta content="Create structured data markup for rich snippets. Free, browser-only, copy-paste ready." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Json Ld Generator",
-      "item": "https://worldoftools.in/json-ld-generator"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"SEO Tools","item":"https://worldoftools.in/seo-tools"},
+    {"@type":"ListItem","position":3,"name":"JSON-LD Generator","item":"https://worldoftools.in/json-ld-generator"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Json Ld Generator free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON-LD Schema Markup Generator",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"DeveloperApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"876","reviewCount":"963"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is JSON-LD structured data?","acceptedAnswer":{"@type":"Answer","text":"JSON-LD (JavaScript Object Notation for Linked Data) is a method of encoding structured data using JSON format. Google and other search engines read it to understand page content and generate rich results in search like FAQ dropdowns, star ratings, and breadcrumb trails."}},
+    {"@type":"Question","name":"How do I add JSON-LD to my website?","acceptedAnswer":{"@type":"Answer","text":"Copy the generated JSON-LD code and paste it inside a script tag with type='application/ld+json' in the head or body of your HTML page. Google recommends placing it in the head section."}},
+    {"@type":"Question","name":"Does JSON-LD help SEO?","acceptedAnswer":{"@type":"Answer","text":"Yes. Structured data markup helps search engines understand your content better and can enable rich results (rich snippets) like FAQ dropdowns, star ratings, and breadcrumbs in Google Search, which can improve click-through rates."}},
+    {"@type":"Question","name":"Which schema types does this generator support?","acceptedAnswer":{"@type":"Answer","text":"This generator supports Article, FAQ Page, Product, Local Business, Breadcrumb List, Person, Review, and SoftwareApplication schema types. More types are added regularly."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Json Ld Generator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root{--nb-yellow:#ffe066;--nb-pink:#ff6b9d;--nb-mint:#b2f5ea;--nb-blue:#a3bffa;--nb-orange:#ffa94d;--nb-lime:#c3f584;--nb-shadow:4px 4px 0 #000;--nb-shadow-lg:6px 6px 0 #000;--nb-radius:16px;--nb-border:2.5px solid #000;}
+  *{box-sizing:border-box;}
+  body{font-family:'Space Grotesk',sans-serif;background:#fafaf8;}
+  .nb-card{background:#fff;border:var(--nb-border);border-radius:var(--nb-radius);box-shadow:var(--nb-shadow);padding:1.5rem;}
+  .nb-card-lg{padding:2rem;box-shadow:var(--nb-shadow-lg);}
+  .nb-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem 1.5rem;border:var(--nb-border);border-radius:12px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:0.95rem;cursor:pointer;transition:transform 0.1s,box-shadow 0.1s;text-decoration:none;box-shadow:var(--nb-shadow);white-space:nowrap;}
+  .nb-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #000;}
+  .nb-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;}
+  .nb-btn-primary{background:var(--nb-yellow);color:#000;}
+  .nb-btn-pink{background:var(--nb-pink);color:#fff;}
+  .nb-btn-mint{background:var(--nb-mint);color:#000;}
+  .nb-btn-sm{padding:0.55rem 1rem;font-size:0.85rem;}
+  .tool-hero{padding:2rem 0 1.5rem;}
+  .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--nb-orange);border:var(--nb-border);border-radius:99px;padding:0.35rem 1rem;font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;box-shadow:3px 3px 0 #000;margin-bottom:1rem;}
+  .tool-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:800;letter-spacing:-0.01em;line-height:1.1;margin:0 0 0.75rem;}
+  .tool-hero p{color:#555;font-size:1.05rem;margin:0 0 1rem;line-height:1.6;}
+  .breadcrumb{font-size:0.85rem;color:#666;margin-bottom:1rem;font-weight:600;}
+  .breadcrumb a{color:#4f46e5;text-decoration:none;}
+  .nb-label{display:block;font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#444;margin-bottom:0.4rem;}
+  .nb-input{width:100%;padding:0.75rem 1rem;border:var(--nb-border);border-radius:10px;font-family:inherit;font-size:0.95rem;font-weight:600;outline:none;background:#fff;box-shadow:3px 3px 0 #000;transition:box-shadow 0.15s,border-color 0.15s;}
+  .nb-input:focus{border-color:#4f46e5;box-shadow:3px 3px 0 #4f46e5;}
+  .nb-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer;}
+  .input-group{margin-bottom:1rem;}
+
+  /* Schema type tabs */
+  .schema-type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.6rem;margin-bottom:1.5rem;}
+  .schema-type-btn{padding:0.75rem 0.5rem;border:var(--nb-border);border-radius:12px;background:#fff;cursor:pointer;font-weight:700;font-size:0.82rem;text-align:center;transition:all 0.15s;font-family:inherit;box-shadow:3px 3px 0 #000;line-height:1.3;}
+  .schema-type-btn .schema-icon{font-size:1.4rem;display:block;margin-bottom:0.25rem;}
+  .schema-type-btn.active{background:var(--nb-yellow);border-color:#000;}
+  .schema-type-btn:hover:not(.active){background:#f5f5f5;transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000;}
+
+  /* Form sections */
+  .schema-form{display:none;}
+  .schema-form.active{display:block;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+  @media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+
+  /* FAQ items */
+  .faq-item{background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem;margin-bottom:0.75rem;box-shadow:3px 3px 0 #000;position:relative;}
+  .faq-item-num{font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:#4f46e5;margin-bottom:0.5rem;}
+  .remove-faq{position:absolute;top:0.75rem;right:0.75rem;background:none;border:none;cursor:pointer;font-size:1rem;padding:0.2rem 0.4rem;border-radius:6px;}
+  .remove-faq:hover{background:#ffe0e0;}
+
+  /* Output */
+  .output-area{
+    border:var(--nb-border);border-radius:14px;padding:1.25rem;background:#0d1117;color:#e6edf3;
+    font-family:'Courier New',Courier,monospace;font-size:0.88rem;line-height:1.7;
+    min-height:200px;overflow-x:auto;box-shadow:3px 3px 0 #000;white-space:pre;
+    tab-size:2;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/json-ld-generator" property="og:url"/><meta content="JSON-LD Generator — Free Schema Markup Structured Data Tool | WorldOfTools" property="og:title"/><meta content="Free JSON-LD Generator. Generate structured data markup for FAQ, HowTo, Article, Product, and more. Improve SEO and win rich snippets instantly with our JSON-LD tool." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/json-ld-generator" name="twitter:url"/><meta content="JSON-LD Generator — Free Schema Markup Structured Data Tool | WorldOfTools" name="twitter:title"/><meta content="Free JSON-LD Generator. Generate structured data markup for FAQ, HowTo, Article, Product, and more. Improve SEO and win rich snippets instantly with our JSON-LD tool." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  .output-header{background:var(--nb-blue);border:var(--nb-border);border-radius:12px 12px 0 0;border-bottom:none;padding:0.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+  .output-header-label{font-weight:800;font-size:0.85rem;}
+  .output-wrap{margin-top:1.5rem;}
+
+  /* SEO */
+  .seo-section{max-width:900px;margin:3rem auto;padding:0 1rem;}
+  .seo-section h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;margin-bottom:1rem;letter-spacing:-0.02em;}
+  .seo-section p{line-height:1.8;color:#444;margin-bottom:1rem;}
+  .step-item{display:flex;align-items:flex-start;gap:1rem;background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.6rem;box-shadow:3px 3px 0 #000;}
+  .step-num{min-width:32px;height:32px;background:var(--nb-yellow);border:2px solid #000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.9rem;flex-shrink:0;}
+  details{border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.6rem;background:#fff;box-shadow:3px 3px 0 #000;}
+  summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+  summary::after{content:'+';font-size:1.25rem;font-weight:900;color:#4f46e5;}
+  details[open] summary::after{content:'−';}
+  details p{margin:0.75rem 0 0;color:#555;line-height:1.6;}
+  .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0.75rem;}
+  .tool-card-mini{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.25rem 0.75rem;background:#fff;border:var(--nb-border);border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;}
+  .tool-card-mini:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #000;}
+  .tool-card-mini .icon{font-size:1.75rem;margin-bottom:0.5rem;}
+  .tool-card-mini .name{font-weight:700;font-size:0.85rem;}
+  .tool-card-mini .desc{font-size:0.75rem;color:#666;margin-top:0.25rem;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .animate-in{animation:fadeUp 0.4s ease-out;}
+  @media(max-width:480px){.nb-card-lg{padding:1.25rem;}.schema-type-grid{grid-template-columns:repeat(3,1fr);}}
+</style>
+</head>
 <body>
 <header></header>
-<main class="container">
-<div class="tool-container" style="max-width: 1200px;">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Json Ld Generator</span></div><h1>🛠️ JSON-LD Generator</h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">Generate valid JSON-LD structured data in seconds to boost your SEO visibility.</p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/schema-markup-generator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
-                        📖 Read Schema Markup Guide
-                    </a>
+<main class="container" style="max-width:960px;margin:0 auto;padding:0 1rem;">
+
+  <div class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/seo-tools">SEO Tools</a> › JSON-LD Generator</div>
+    <div class="hero-badge">🏷️ Rich Snippets · SEO · Schema.org</div>
+    <h1>JSON-LD Schema Markup Generator</h1>
+    <p>Generate structured data markup for rich snippets in Google Search. Select a schema type, fill in the details, and get copy-paste ready JSON-LD code — instantly. No login, no signup.</p>
+  </div>
+
+  <div class="nb-card nb-card-lg" style="margin-bottom:1.5rem;">
+
+    <!-- Schema type selector -->
+    <div class="nb-label" style="margin-bottom:0.75rem;">Select Schema Type</div>
+    <div class="schema-type-grid">
+      <button class="schema-type-btn active" data-type="article" onclick="switchSchema('article',this)"><span class="schema-icon">📰</span>Article</button>
+      <button class="schema-type-btn" data-type="faq" onclick="switchSchema('faq',this)"><span class="schema-icon">❓</span>FAQ Page</button>
+      <button class="schema-type-btn" data-type="product" onclick="switchSchema('product',this)"><span class="schema-icon">🛒</span>Product</button>
+      <button class="schema-type-btn" data-type="localbusiness" onclick="switchSchema('localbusiness',this)"><span class="schema-icon">🏪</span>Local Business</button>
+      <button class="schema-type-btn" data-type="breadcrumb" onclick="switchSchema('breadcrumb',this)"><span class="schema-icon">🧭</span>Breadcrumb</button>
+      <button class="schema-type-btn" data-type="person" onclick="switchSchema('person',this)"><span class="schema-icon">👤</span>Person</button>
+      <button class="schema-type-btn" data-type="review" onclick="switchSchema('review',this)"><span class="schema-icon">⭐</span>Review</button>
+      <button class="schema-type-btn" data-type="software" onclick="switchSchema('software',this)"><span class="schema-icon">💻</span>Software App</button>
+    </div>
+
+    <!-- ARTICLE -->
+    <div class="schema-form active" id="form-article">
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Headline / Title *</label><input class="nb-input" id="art-title" placeholder="Article headline" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Page URL *</label><input class="nb-input" id="art-url" placeholder="https://example.com/article" type="url"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Author Name</label><input class="nb-input" id="art-author" placeholder="John Doe" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Publisher Name</label><input class="nb-input" id="art-publisher" placeholder="My Website" type="text"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Date Published</label><input class="nb-input" id="art-pub-date" type="date"/></div>
+        <div class="input-group"><label class="nb-label">Date Modified</label><input class="nb-input" id="art-mod-date" type="date"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Featured Image URL</label><input class="nb-input" id="art-image" placeholder="https://example.com/image.jpg" type="url"/></div>
+        <div class="input-group"><label class="nb-label">Article Type</label>
+          <select class="nb-input nb-select" id="art-type">
+            <option value="Article">Article</option>
+            <option value="BlogPosting">Blog Post</option>
+            <option value="NewsArticle">News Article</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group"><label class="nb-label">Description</label><textarea class="nb-input" id="art-desc" placeholder="Brief article description…" rows="2" style="resize:vertical;"></textarea></div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="schema-form" id="form-faq">
+      <div id="faqItems"></div>
+      <button class="nb-btn nb-btn-mint nb-btn-sm" onclick="addFAQ()">+ Add Question</button>
+    </div>
+
+    <!-- PRODUCT -->
+    <div class="schema-form" id="form-product">
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Product Name *</label><input class="nb-input" id="prod-name" placeholder="e.g. Wireless Headphones" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Brand</label><input class="nb-input" id="prod-brand" placeholder="e.g. Sony" type="text"/></div>
+      </div>
+      <div class="input-group"><label class="nb-label">Description</label><textarea class="nb-input" id="prod-desc" placeholder="Product description…" rows="2" style="resize:vertical;"></textarea></div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Price *</label><input class="nb-input" id="prod-price" placeholder="99.99" type="number"/></div>
+        <div class="input-group"><label class="nb-label">Currency</label><select class="nb-input nb-select" id="prod-currency"><option value="INR">INR</option><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Rating Value (1–5)</label><input class="nb-input" id="prod-rating" max="5" min="1" placeholder="4.5" step="0.1" type="number"/></div>
+        <div class="input-group"><label class="nb-label">Review Count</label><input class="nb-input" id="prod-reviews" placeholder="128" type="number"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Product URL</label><input class="nb-input" id="prod-url" placeholder="https://example.com/product" type="url"/></div>
+        <div class="input-group"><label class="nb-label">Image URL</label><input class="nb-input" id="prod-image" placeholder="https://example.com/product.jpg" type="url"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">SKU</label><input class="nb-input" id="prod-sku" placeholder="SKU12345" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Availability</label><select class="nb-input nb-select" id="prod-avail"><option value="InStock">In Stock</option><option value="OutOfStock">Out of Stock</option><option value="PreOrder">Pre-Order</option></select></div>
+      </div>
+    </div>
+
+    <!-- LOCAL BUSINESS -->
+    <div class="schema-form" id="form-localbusiness">
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Business Name *</label><input class="nb-input" id="lb-name" placeholder="e.g. Sharma Enterprises" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Business Type</label><select class="nb-input nb-select" id="lb-type"><option value="LocalBusiness">Local Business</option><option value="Restaurant">Restaurant</option><option value="Store">Store</option><option value="MedicalBusiness">Medical</option><option value="FinancialService">Financial Service</option><option value="LegalService">Legal Service</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Phone</label><input class="nb-input" id="lb-phone" placeholder="+91 98765 43210" type="tel"/></div>
+        <div class="input-group"><label class="nb-label">Website URL</label><input class="nb-input" id="lb-url" placeholder="https://yourbusiness.com" type="url"/></div>
+      </div>
+      <div class="input-group"><label class="nb-label">Street Address</label><input class="nb-input" id="lb-street" placeholder="123 Main St" type="text"/></div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">City</label><input class="nb-input" id="lb-city" placeholder="Ludhiana" type="text"/></div>
+        <div class="input-group"><label class="nb-label">State / Region</label><input class="nb-input" id="lb-region" placeholder="Punjab" type="text"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Postal Code</label><input class="nb-input" id="lb-postal" placeholder="141001" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Country Code</label><input class="nb-input" id="lb-country" placeholder="IN" type="text" maxlength="2"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Rating (1–5)</label><input class="nb-input" id="lb-rating" max="5" min="1" placeholder="4.7" step="0.1" type="number"/></div>
+        <div class="input-group"><label class="nb-label">Review Count</label><input class="nb-input" id="lb-reviews" placeholder="85" type="number"/></div>
+      </div>
+      <div class="input-group"><label class="nb-label">Opening Hours (e.g. Mo-Sa 09:00-18:00)</label><input class="nb-input" id="lb-hours" placeholder="Mo-Sa 09:00-18:00" type="text"/></div>
+    </div>
+
+    <!-- BREADCRUMB -->
+    <div class="schema-form" id="form-breadcrumb">
+      <div id="bcItems"></div>
+      <button class="nb-btn nb-btn-mint nb-btn-sm" onclick="addBC()">+ Add Level</button>
+    </div>
+
+    <!-- PERSON -->
+    <div class="schema-form" id="form-person">
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Full Name *</label><input class="nb-input" id="per-name" placeholder="Jane Doe" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Job Title</label><input class="nb-input" id="per-job" placeholder="Founder & Developer" type="text"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Profile URL</label><input class="nb-input" id="per-url" placeholder="https://yoursite.com/about" type="url"/></div>
+        <div class="input-group"><label class="nb-label">Profile Image URL</label><input class="nb-input" id="per-image" placeholder="https://yoursite.com/photo.jpg" type="url"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Organization</label><input class="nb-input" id="per-org" placeholder="WorldOfTools" type="text"/></div>
+        <div class="input-group"><label class="nb-label">LinkedIn URL</label><input class="nb-input" id="per-linkedin" placeholder="https://linkedin.com/in/username" type="url"/></div>
+      </div>
+      <div class="input-group"><label class="nb-label">Description / Bio</label><textarea class="nb-input" id="per-desc" placeholder="Brief bio…" rows="2" style="resize:vertical;"></textarea></div>
+    </div>
+
+    <!-- REVIEW -->
+    <div class="schema-form" id="form-review">
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Item Reviewed (Name) *</label><input class="nb-input" id="rev-item" placeholder="e.g. Sony WH-1000XM5" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Item Type</label><select class="nb-input nb-select" id="rev-type"><option value="Product">Product</option><option value="Book">Book</option><option value="Movie">Movie</option><option value="SoftwareApplication">Software</option><option value="LocalBusiness">Business</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Reviewer Name *</label><input class="nb-input" id="rev-author" placeholder="Your Name" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Review Date</label><input class="nb-input" id="rev-date" type="date"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Rating (1–5) *</label><input class="nb-input" id="rev-rating" max="5" min="1" placeholder="4.5" step="0.5" type="number"/></div>
+        <div class="input-group"><label class="nb-label">Review URL</label><input class="nb-input" id="rev-url" placeholder="https://example.com/review" type="url"/></div>
+      </div>
+      <div class="input-group"><label class="nb-label">Review Body *</label><textarea class="nb-input" id="rev-body" placeholder="Your full review text…" rows="3" style="resize:vertical;"></textarea></div>
+    </div>
+
+    <!-- SOFTWARE APP -->
+    <div class="schema-form" id="form-software">
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">App Name *</label><input class="nb-input" id="sw-name" placeholder="e.g. WorldOfTools" type="text"/></div>
+        <div class="input-group"><label class="nb-label">Application Category</label><select class="nb-input nb-select" id="sw-cat"><option value="UtilitiesApplication">Utilities</option><option value="BusinessApplication">Business</option><option value="DeveloperApplication">Developer</option><option value="EducationApplication">Education</option><option value="FinanceApplication">Finance</option></select></div>
+      </div>
+      <div class="input-group"><label class="nb-label">Description</label><textarea class="nb-input" id="sw-desc" placeholder="What does this app do?" rows="2" style="resize:vertical;"></textarea></div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">App URL</label><input class="nb-input" id="sw-url" placeholder="https://worldoftools.in" type="url"/></div>
+        <div class="input-group"><label class="nb-label">App Image URL</label><input class="nb-input" id="sw-image" placeholder="https://worldoftools.in/icon.png" type="url"/></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Price (0 = free)</label><input class="nb-input" id="sw-price" placeholder="0" type="number" value="0"/></div>
+        <div class="input-group"><label class="nb-label">Currency</label><select class="nb-input nb-select" id="sw-currency"><option value="USD">USD</option><option value="INR">INR</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Rating Value</label><input class="nb-input" id="sw-rating" max="5" min="1" placeholder="4.9" step="0.1" type="number"/></div>
+        <div class="input-group"><label class="nb-label">Rating Count</label><input class="nb-input" id="sw-rcount" placeholder="200" type="number"/></div>
+      </div>
+      <div class="input-group"><label class="nb-label">Operating System</label><input class="nb-input" id="sw-os" placeholder="Any" type="text" value="Any"/></div>
+    </div>
+
+    <!-- Generate button -->
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+      <button class="nb-btn nb-btn-primary" onclick="generate()" style="flex:1;min-width:180px;">⚡ Generate JSON-LD</button>
+      <button class="nb-btn" style="background:#fff;flex:none;" onclick="clearOutput()">🗑 Clear</button>
+    </div>
+
+    <!-- Output -->
+    <div class="output-wrap" id="outputWrap" style="display:none;">
+      <div class="output-header">
+        <span class="output-header-label">📋 Generated JSON-LD — Copy into your &lt;head&gt;</span>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <button class="nb-btn nb-btn-mint nb-btn-sm" onclick="copyOutput()">📋 Copy Code</button>
+          <a class="nb-btn nb-btn-sm" style="background:#fff;" href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">🔍 Test in Google</a>
+        </div>
+      </div>
+      <div class="output-area" id="outputArea"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is JSON-LD Structured Data?</h2>
+    <p><strong>JSON-LD</strong> (JavaScript Object Notation for Linked Data) is Google's recommended format for adding structured data markup to web pages. It helps search engines understand your page content and enables <strong>rich results</strong> in Google Search — including FAQ dropdowns, star ratings, breadcrumb trails, and product price snippets — which can dramatically improve click-through rates.</p>
+    <p>The markup is added as a &lt;script type="application/ld+json"&gt; block in your HTML and doesn't affect page rendering. This generator creates valid schema.org-compliant JSON-LD for eight of the most commonly used schema types.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Add JSON-LD to Your Website</h2>
+    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Select Your Schema Type</strong> — Choose from Article, FAQ, Product, Local Business, Breadcrumb, Person, Review, or Software App.</p></div>
+    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Fill In the Details</strong> — Enter the relevant information for your schema type. Required fields are marked with *.</p></div>
+    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Generate & Copy</strong> — Click Generate JSON-LD. Copy the output and paste it inside your page's &lt;head&gt; tag. Done!</p></div>
+    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Validate with Google</strong> — Click "Test in Google" to open Google's Rich Results Test and verify your markup is valid before going live.</p></div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What is JSON-LD structured data?</summary><p>JSON-LD is a method for encoding structured data using JSON. Search engines like Google read it to understand page content and potentially display rich results (FAQ accordions, star ratings, breadcrumbs) directly in search results.</p></details>
+    <details><summary>How do I add JSON-LD to my website?</summary><p>Copy the generated code and paste it inside a &lt;script type="application/ld+json"&gt; tag in the &lt;head&gt; section of your HTML page. It doesn't affect page rendering or performance.</p></details>
+    <details><summary>Does structured data directly improve rankings?</summary><p>Structured data doesn't directly boost rankings, but it enables rich results which improve your click-through rate (CTR). Higher CTR sends a positive signal to Google and can indirectly improve your ranking over time.</p></details>
+    <details><summary>Which schema type should I use?</summary><p>Use FAQ for pages with questions and answers, Article/BlogPosting for blog content, Product for e-commerce pages, Local Business for brick-and-mortar businesses, and Breadcrumb for navigation hierarchy. Google's documentation covers which types can produce rich results.</p></details>
+    <details><summary>Can I use multiple schema types on one page?</summary><p>Yes. You can have multiple JSON-LD blocks on one page (e.g., Article + BreadcrumbList + FAQPage). Generate each separately and add each as its own &lt;script&gt; block in your &lt;head&gt;.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free SEO & Developer Tools</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/json-formatter"><div class="icon">{ }</div><div class="name">JSON Formatter</div><div class="desc">Beautify & validate JSON</div></a>
+      <a class="tool-card-mini" href="/jwt-decoder"><div class="icon">🔐</div><div class="name">JWT Decoder</div><div class="desc">Decode JSON web tokens</div></a>
+      <a class="tool-card-mini" href="/ip-address-lookup"><div class="icon">🌐</div><div class="name">IP Lookup</div><div class="desc">Find any IP location</div></a>
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Analyze text & reading time</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in days & hours</div></a>
+      <a class="tool-card-mini" href="/invoice-generator"><div class="icon">📄</div><div class="name">Invoice Generator</div><div class="desc">Free GST PDF invoices</div></a>
+    </div>
+  </section>
+
 </div>
-</section>
-<div class="error-msg" id="statusMessage"></div>
-<div style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
-<span style="font-size: 1.2rem;">🛡️</span>
-<span style="font-weight: 700;">100% Client-Side Processing — No Data Stored</span>
-</div>
-<div class="generator-layout">
-<!-- Left: Config -->
-<div class="tool-main-card">
-<label style="font-weight: 800; text-transform: uppercase; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; display: block;">Select Schema Type</label>
-<select class="schema-type-select" id="schemaType" onchange="initSchemaFields()">
-<option value="FAQPage">FAQ Page</option>
-<option value="HowTo">HowTo Guide</option>
-<option value="Article">Blog / News Article</option>
-<option value="Product">Product Details</option>
-<option value="LocalBusiness">Local Business</option>
-<option value="Organization">Organization</option>
-<option value="BreadcrumbList">Breadcrumb List</option>
-<option value="VideoObject">Video Info</option>
-</select>
-<div class="dynamic-fields" id="formFields">
-<!-- Dynamic fields injected here -->
-</div>
-<div style="display: flex; gap: 1rem; margin-top: 2rem;">
-<button class="btn btn-secondary" onclick="clearForm()" style="flex: 1;">🗑️ Clear</button>
-<button class="btn btn-primary" onclick="copyJSON()" style="flex: 1;">📋 Copy Code</button>
-</div>
-</div>
-<!-- Right: Output -->
-<div class="output-area">
-<div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-<span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span>
-                        JSON-LD Code (Generated Live)
-                    </div>
-<div class="code-output">
-<button class="copy-code-btn" onclick="copyJSON()">Copy</button>
-<pre id="jsonOutput" style="margin: 0;"></pre>
-</div>
-<div style="margin-top: 1.5rem; padding: 1.25rem; background: #eff6ff; border-radius: 12px; border: 1px solid #bfdbfe;">
-<h4 style="font-size: 0.95rem; font-weight: 800; color: #1e40af; margin-bottom: 0.5rem;">Test Your Code</h4>
-<p style="font-size: 0.85rem; color: #1e3a8a; line-height: 1.5; margin-bottom: 1rem;">Once you've copied the code, verify it with Google's tool to ensure it qualifies for rich snippets.</p>
-<a class="btn btn-secondary" href="https://search.google.com/test/rich-results" style="width: 100%; border: 1px solid #1e40af; color: #1e40af; background: white; font-size: 0.85rem; padding: 0.5rem;" target="_blank">Go to Google Rich Results Test ➔</a>
-</div>
-</div>
-</div>
-</div>
-<!-- High-Intent SEO Content -->
-<div style="max-width: 900px; margin: 5rem auto; padding: 0 1.5rem;">
-<section style="margin-bottom: 4rem;">
-<h2 style="font-size: 2.25rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 1.5rem;">What is a JSON-LD Generator?</h2>
-<p style="font-size: 1.15rem; line-height: 1.8; color: #4b5563; margin-bottom: 1.5rem;">
-                    A **JSON-LD Generator** is a specialized SEO tool that automates the creation of JavaScript Object Notation for Linked Data. JSON-LD is the format recommended by Google for structured data because it is clean, easy to read, and can be pasted directly into the `&lt;head&gt;` of a webpage. Our tool helps you generate this code without any programming knowledge.
-                </p>
-<p style="line-height: 1.8; color: #4b5563;">
-                    By using our **JSON-LD Schema Generator**, you ensure that your website communicates effectively with search engine crawlers. This increases the chances of your content being displayed as a rich result, complete with star ratings, product prices, and FAQ accordions, which significantly boosts clicks.
-                </p>
-</section>
-<section style="margin-bottom: 4rem;">
-<h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem; border-left: 5px solid var(--primary-color); padding-left: 1rem;">Why Schema Markup is Critical for SEO in 2025</h2>
-<p style="line-height: 1.8; color: #4b5563; margin-bottom: 1rem;">
-                    In modern SEO, simply having great content isn't enough. Search engines are evolving into "answer engines," and they rely on structured data to categorize information accurately. Here is why you must use schema:
-                </p>
-<ul style="list-style: none; padding: 0;">
-<li style="margin-bottom: 1.5rem; background: #fff; padding: 1.5rem; border: 1px solid #e2e8f0; border-radius: 16px;">
-<strong style="display: block; font-size: 1.1rem; margin-bottom: 0.5rem; color: #111827;">📈 Higher Click-Through Rates (CTR)</strong>
-                        Pages with rich snippets stand out. An FAQ schema can increase your screen real estate in search results by 2x, making users more likely to click your link over a standard blue link.
-                    </li>
-<li style="margin-bottom: 1.5rem; background: #fff; padding: 1.5rem; border: 1px solid #e2e8f0; border-radius: 16px;">
-<strong style="display: block; font-size: 1.1rem; margin-bottom: 0.5rem; color: #111827;">🤖 Better Crawling Accuracy</strong>
-                        Structured data removes ambiguity. When you tag a product as an "Article" or a "Product," Google knows exactly how to index it, preventing ranking drops due to miscategorization.
-                    </li>
-<li style="margin-bottom: 1.5rem; background: #fff; padding: 1.5rem; border: 1px solid #e2e8f0; border-radius: 16px;">
-<strong style="display: block; font-size: 1.1rem; margin-bottom: 0.5rem; color: #111827;">🎧 Voice Search Optimization</strong>
-                        Devices like Alexa and Google Assistant rely heavily on schema.org markers to pull "position zero" answers. Using the HowTo or FAQ schema makes your site more likely to be read aloud.
-                    </li>
-</ul>
-</section>
-<section style="margin-bottom: 4rem; background: #1e293b; color: white; padding: 3rem; border-radius: 24px;">
-<h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">How to Use our Schema Tool</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-<div>
-<span style="font-size: 2.5rem; font-weight: 900; color: var(--primary-color);">01</span>
-<h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Select Type</h3>
-<p style="font-size: 0.95rem; opacity: 0.8;">Choose the schema type that matches your content (e.g., FAQ for a blog post).</p>
-</div>
-<div>
-<span style="font-size: 2.5rem; font-weight: 900; color: var(--primary-color);">02</span>
-<h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Fill Fields</h3>
-<p style="font-size: 0.95rem; opacity: 0.8;">Enter the titles, descriptions, and details. All code updates in real-time.</p>
-</div>
-<div>
-<span style="font-size: 2.5rem; font-weight: 900; color: var(--primary-color);">03</span>
-<h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Copy &amp; Paste</h3>
-<p style="font-size: 0.95rem; opacity: 0.8;">Copy the JSON-LD and paste it anywhere in the <code>&lt;head&gt;</code> of your HTML.</p>
-</div>
-</div>
-</section>
-<section style="margin-bottom: 4rem;">
-<h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
-<div style="display: flex; flex-direction: column; gap: 1rem;">
-<details style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem; cursor: pointer;">
-<summary style="font-weight: 700;">Where should I put the schema markup code?</summary>
-<p style="margin-top: 1rem; color: #4b5563; line-height: 1.6;">You should paste the generated JSON-LD code into the <code>&lt;head&gt;</code> section of your HTML. However, search engines also recognize it if placed in the <code>&lt;body&gt;</code>.</p>
-</details>
-<details style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem; cursor: pointer;">
-<summary style="font-weight: 700;">How long does it take for rich snippets to appear?</summary>
-<p style="margin-top: 1rem; color: #4b5563; line-height: 1.6;">It depends on how often Google crawls your site. Usually, it takes anywhere from a few days to two weeks for updated rich results to show in SERPs after you add the code.</p>
-</details>
-<details style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem; cursor: pointer;">
-<summary style="font-weight: 700;">Does schema markup guarantee a higher ranking?</summary>
-<p style="margin-top: 1rem; color: #4b5563; line-height: 1.6;">Schema markup is not a direct ranking factor in the same way backlinks are, but it significantly improves how your site is indexed and presented. Indirectly, higher CTR from rich snippets can signal to Google that your site is high-quality, leading to better rankings over time.</p>
-</details>
-</div>
-</section>
-</div>
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<!-- SEO Content Block -->
-<section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features of Json Ld Generator</h2><ul style="list-style:none;padding:0;margin:0;"><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Instant Results:</strong> Process your data instantly with our optimized Json Ld Generator.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>100% Privacy:</strong> Everything runs securely in your browser. No files or data are uploaded to our servers.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Completely Free:</strong> Enjoy full access without subscriptions, hidden fees, or intrusive ads.</span></li></ul></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How Does Json Ld Generator Work?</h2><div style="line-height:1.8;color:#4b5563;">Our Json Ld Generator leverages modern web technologies to process your input locally in your browser. This ensures maximum speed and guarantees your privacy.</div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use Json Ld Generator — Step-by-Step</h2><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Input your desired content or file.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Select any available options or parameters.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Click execute to generate your result instantly.</p></div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this Json Ld Generator free to use?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, it is completely free to use with no hidden charges or limits.</p></details><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is my data secure?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. Your data never leaves your device because all processing happens client-side in your browser.</p></details></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Final Thoughts</h2><div style="line-height:1.8;color:#4b5563;">Bookmark this Json Ld Generator for quick access whenever you need it.</div></section></div></main>
+
 <footer></footer>
-<script src="/js/common.js?v=2.5"></script>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-        let schemaData = {};
+  let activeSchema = 'article';
+  let faqCount = 0;
+  let bcCount = 0;
 
-        function initSchemaFields() {
-            const type = document.getElementById('schemaType').value;
-            const container = document.getElementById('formFields');
-            container.innerHTML = '';
-            
-            switch(type) {
-                case 'FAQPage':
-                    container.innerHTML = `
-                        <div id="repeaters"></div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="addFAQItem()">+ Add Question</button>
-                    `;
-                    addFAQItem();
-                    break;
-                case 'HowTo':
-                    container.innerHTML = `
-                        <div class="input-group">
-                            <label>Guide Name</label>
-                            <input type="text" id="name" oninput="generateJSON()" placeholder="How to bake a cake">
-                        </div>
-                        <div class="input-group">
-                            <label>Description</label>
-                            <textarea id="description" oninput="generateJSON()" placeholder="Steps to bake a delicious chocolate cake"></textarea>
-                        </div>
-                        <div id="repeaters"></div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="addHowToStep()">+ Add Step</button>
-                    `;
-                    addHowToStep();
-                    break;
-                case 'Article':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Headline</label><input type="text" id="headline" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Image URL</label><input type="text" id="image" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Author Name</label><input type="text" id="author" oninput="generateJSON()"></div>
-                    `;
-                    break;
-                case 'Product':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Product Name</label><input type="text" id="name" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Image URL</label><input type="text" id="image" oninput="generateJSON()"></div>
-                        <div class="field-row">
-                            <div class="input-group"><label>Price</label><input type="text" id="price" oninput="generateJSON()"></div>
-                            <div class="input-group"><label>Currency</label><input type="text" id="currency" value="USD" oninput="generateJSON()"></div>
-                        </div>
-                    `;
-                    break;
-                case 'LocalBusiness':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Business Name</label><input type="text" id="name" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Address</label><input type="text" id="address" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Image URL</label><input type="text" id="image" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Telephone</label><input type="text" id="phone" oninput="generateJSON()"></div>
-                    `;
-                    break;
-                case 'Organization':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Organization Name</label><input type="text" id="name" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>URL</label><input type="text" id="url" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Logo URL</label><input type="text" id="logo" oninput="generateJSON()"></div>
-                    `;
-                    break;
-                case 'BreadcrumbList':
-                    container.innerHTML = `
-                        <div id="repeaters"></div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="addBreadcrumb()">+ Add Page</button>
-                    `;
-                    addBreadcrumb();
-                    break;
-                case 'VideoObject':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Title</label><input type="text" id="name" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Description</label><textarea id="description" oninput="generateJSON()"></textarea></div>
-                        <div class="input-group"><label>Thumbnail URL</label><input type="text" id="thumb" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Upload Date</label><input type="date" id="date" oninput="generateJSON()"></div>
-                    `;
-                    break;
-            }
-            generateJSON();
-        }
+  function switchSchema(type, btn) {
+    activeSchema = type;
+    document.querySelectorAll('.schema-form').forEach(f => f.classList.remove('active'));
+    document.querySelectorAll('.schema-type-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('form-' + type).classList.add('active');
+    btn.classList.add('active');
+    document.getElementById('outputWrap').style.display = 'none';
 
-        function addFAQItem() {
-            const div = document.createElement('div');
-            div.className = 'repeater-item';
-            div.innerHTML = `
-                <span class="remove-btn" onclick="this.parentElement.remove(); generateJSON()">✕</span>
-                <div class="input-group"><label>Question</label><input type="text" class="faq-q" oninput="generateJSON()"></div>
-                <div class="input-group" style="margin-bottom:0;"><label>Answer</label><textarea class="faq-a" oninput="generateJSON()"></textarea></div>
-            `;
-            document.getElementById('repeaters').appendChild(div);
-        }
+    // Init dynamic forms
+    if (type === 'faq' && document.getElementById('faqItems').children.length === 0) { addFAQ(); addFAQ(); }
+    if (type === 'breadcrumb' && document.getElementById('bcItems').children.length === 0) { addBC('Home','https://worldoftools.in'); addBC('Tools','https://worldoftools.in/tools'); }
+  }
 
-        function addHowToStep() {
-            const div = document.createElement('div');
-            div.className = 'repeater-item';
-            div.innerHTML = `
-                <span class="remove-btn" onclick="this.parentElement.remove(); generateJSON()">✕</span>
-                <div class="input-group"><label>Step Name</label><input type="text" class="step-name" oninput="generateJSON()"></div>
-                <div class="input-group" style="margin-bottom:0;"><label>Step Text</label><textarea class="step-text" oninput="generateJSON()"></textarea></div>
-            `;
-            document.getElementById('repeaters').appendChild(div);
-        }
+  function addFAQ() {
+    faqCount++;
+    const div = document.createElement('div');
+    div.className = 'faq-item';
+    div.dataset.faq = faqCount;
+    div.innerHTML = `
+      <div class="faq-item-num">Q${faqCount}</div>
+      <button class="remove-faq" onclick="this.parentElement.remove()">✕</button>
+      <div class="input-group"><label class="nb-label">Question</label><input class="nb-input" type="text" placeholder="e.g. How does this tool work?" data-field="q"/></div>
+      <div class="input-group"><label class="nb-label">Answer</label><textarea class="nb-input" rows="2" placeholder="The detailed answer…" data-field="a" style="resize:vertical;"></textarea></div>
+    `;
+    document.getElementById('faqItems').appendChild(div);
+  }
 
-        function addBreadcrumb() {
-            const div = document.createElement('div');
-            div.className = 'repeater-item';
-            div.innerHTML = `
-                <span class="remove-btn" onclick="this.parentElement.remove(); generateJSON()">✕</span>
-                <div class="field-row">
-                    <div class="input-group" style="margin-bottom:0;"><label>Page Name</label><input type="text" class="bc-name" oninput="generateJSON()"></div>
-                    <div class="input-group" style="margin-bottom:0;"><label>URL</label><input type="text" class="bc-url" oninput="generateJSON()"></div>
-                </div>
-            `;
-            document.getElementById('repeaters').appendChild(div);
-        }
+  function addBC(name = '', url = '') {
+    bcCount++;
+    const div = document.createElement('div');
+    div.className = 'faq-item';
+    div.innerHTML = `
+      <div class="faq-item-num">Level ${bcCount}</div>
+      <button class="remove-faq" onclick="this.parentElement.remove()">✕</button>
+      <div class="form-row">
+        <div class="input-group"><label class="nb-label">Name</label><input class="nb-input" type="text" placeholder="e.g. Home" data-field="name" value="${name}"/></div>
+        <div class="input-group"><label class="nb-label">URL</label><input class="nb-input" type="url" placeholder="https://example.com" data-field="url" value="${url}"/></div>
+      </div>
+    `;
+    document.getElementById('bcItems').appendChild(div);
+  }
 
-        function generateJSON() {
-            const type = document.getElementById('schemaType').value;
-            let output = {
-                "@context": "https://schema.org",
-                "@type": type
-            };
+  function generate() {
+    let schema = {};
+    try {
+      schema = buildSchema();
+    } catch(e) {
+      alert('Please fill in the required fields.');
+      return;
+    }
+    const wrap = `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n<\/script>`;
+    document.getElementById('outputArea').textContent = wrap;
+    const out = document.getElementById('outputWrap');
+    out.style.display = 'block';
+    out.classList.add('animate-in');
+    out.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
 
-            switch(type) {
-                case 'FAQPage':
-                    output.mainEntity = Array.from(document.querySelectorAll('.repeater-item')).map(item => ({
-                        "@type": "Question",
-                        "name": item.querySelector('.faq-q').value,
-                        "acceptedAnswer": { "@type": "Answer", "text": item.querySelector('.faq-a').value }
-                    }));
-                    break;
-                case 'HowTo':
-                    output.name = document.getElementById('name').value;
-                    output.description = document.getElementById('description').value;
-                    output.step = Array.from(document.querySelectorAll('.repeater-item')).map(item => ({
-                        "@type": "HowToStep",
-                        "name": item.querySelector('.step-name').value,
-                        "text": item.querySelector('.step-text').value
-                    }));
-                    break;
-                case 'Article':
-                    output.headline = document.getElementById('headline').value;
-                    output.image = [document.getElementById('image').value];
-                    output.author = { "@type": "Person", "name": document.getElementById('author').value };
-                    break;
-                case 'Product':
-                    output.name = document.getElementById('name').value;
-                    output.image = [document.getElementById('image').value];
-                    output.offers = {
-                        "@type": "Offer",
-                        "price": document.getElementById('price').value,
-                        "priceCurrency": document.getElementById('currency').value,
-                        "availability": "https://schema.org/InStock"
-                    };
-                    break;
-                case 'LocalBusiness':
-                    output.name = document.getElementById('name').value;
-                    output.address = { "@type": "PostalAddress", "streetAddress": document.getElementById('address').value };
-                    output.image = document.getElementById('image').value;
-                    output.telephone = document.getElementById('phone').value;
-                    break;
-                case 'Organization':
-                    output.name = document.getElementById('name').value;
-                    output.url = document.getElementById('url').value;
-                    output.logo = document.getElementById('logo').value;
-                    break;
-                case 'BreadcrumbList':
-                    output.itemListElement = Array.from(document.querySelectorAll('.repeater-item')).map((item, i) => ({
-                        "@type": "ListItem",
-                        "position": i + 1,
-                        "name": item.querySelector('.bc-name').value,
-                        "item": item.querySelector('.bc-url').value
-                    }));
-                    break;
-                case 'VideoObject':
-                    output.name = document.getElementById('name').value;
-                    output.description = document.getElementById('description').value;
-                    output.thumbnailUrl = [document.getElementById('thumb').value];
-                    output.uploadDate = document.getElementById('date').value;
-                    break;
-            }
+  function buildSchema() {
+    const s = activeSchema;
+    if (s === 'article') {
+      const type = document.getElementById('art-type').value;
+      const schema = {"@context":"https://schema.org","@type":type,"headline":v('art-title'),"url":v('art-url')};
+      if(v('art-author')) schema.author = {"@type":"Person","name":v('art-author')};
+      if(v('art-publisher')) schema.publisher = {"@type":"Organization","name":v('art-publisher')};
+      if(v('art-pub-date')) schema.datePublished = v('art-pub-date');
+      if(v('art-mod-date')) schema.dateModified = v('art-mod-date');
+      if(v('art-image')) schema.image = v('art-image');
+      if(v('art-desc')) schema.description = v('art-desc');
+      return schema;
+    }
+    if (s === 'faq') {
+      const items = [...document.querySelectorAll('#faqItems .faq-item')].map(el => ({
+        "@type":"Question",
+        "name": el.querySelector('[data-field=q]').value,
+        "acceptedAnswer":{"@type":"Answer","text":el.querySelector('[data-field=a]').value}
+      })).filter(i => i.name && i.acceptedAnswer.text);
+      return {"@context":"https://schema.org","@type":"FAQPage","mainEntity":items};
+    }
+    if (s === 'product') {
+      const schema = {"@context":"https://schema.org","@type":"Product","name":v('prod-name')};
+      if(v('prod-brand')) schema.brand = {"@type":"Brand","name":v('prod-brand')};
+      if(v('prod-desc')) schema.description = v('prod-desc');
+      if(v('prod-image')) schema.image = v('prod-image');
+      if(v('prod-url')) schema.url = v('prod-url');
+      if(v('prod-sku')) schema.sku = v('prod-sku');
+      schema.offers = {"@type":"Offer","price":v('prod-price')||0,"priceCurrency":v('prod-currency'),"availability":"https://schema.org/"+document.getElementById('prod-avail').value};
+      if(v('prod-rating') && v('prod-reviews')) schema.aggregateRating = {"@type":"AggregateRating","ratingValue":v('prod-rating'),"reviewCount":v('prod-reviews')};
+      return schema;
+    }
+    if (s === 'localbusiness') {
+      const schema = {"@context":"https://schema.org","@type":document.getElementById('lb-type').value,"name":v('lb-name')};
+      if(v('lb-phone')) schema.telephone = v('lb-phone');
+      if(v('lb-url')) schema.url = v('lb-url');
+      if(v('lb-street')||v('lb-city')) schema.address = {"@type":"PostalAddress","streetAddress":v('lb-street'),"addressLocality":v('lb-city'),"addressRegion":v('lb-region'),"postalCode":v('lb-postal'),"addressCountry":v('lb-country')||'IN'};
+      if(v('lb-rating') && v('lb-reviews')) schema.aggregateRating = {"@type":"AggregateRating","ratingValue":v('lb-rating'),"reviewCount":v('lb-reviews')};
+      if(v('lb-hours')) schema.openingHours = v('lb-hours');
+      return schema;
+    }
+    if (s === 'breadcrumb') {
+      const items = [...document.querySelectorAll('#bcItems .faq-item')].map((el, i) => ({
+        "@type":"ListItem","position":i+1,
+        "name":el.querySelector('[data-field=name]').value,
+        "item":el.querySelector('[data-field=url]').value
+      }));
+      return {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":items};
+    }
+    if (s === 'person') {
+      const schema = {"@context":"https://schema.org","@type":"Person","name":v('per-name')};
+      if(v('per-job')) schema.jobTitle = v('per-job');
+      if(v('per-url')) schema.url = v('per-url');
+      if(v('per-image')) schema.image = v('per-image');
+      if(v('per-org')) schema.worksFor = {"@type":"Organization","name":v('per-org')};
+      if(v('per-desc')) schema.description = v('per-desc');
+      const same = []; if(v('per-linkedin')) same.push(v('per-linkedin'));
+      if(same.length) schema.sameAs = same;
+      return schema;
+    }
+    if (s === 'review') {
+      return {"@context":"https://schema.org","@type":"Review",
+        "itemReviewed":{"@type":document.getElementById('rev-type').value,"name":v('rev-item')},
+        "reviewRating":{"@type":"Rating","ratingValue":v('rev-rating'),"bestRating":"5"},
+        "author":{"@type":"Person","name":v('rev-author')},
+        "reviewBody":v('rev-body'),
+        ...(v('rev-date') && {"datePublished":v('rev-date')}),
+        ...(v('rev-url') && {"url":v('rev-url')})
+      };
+    }
+    if (s === 'software') {
+      const schema = {"@context":"https://schema.org","@type":"SoftwareApplication",
+        "name":v('sw-name'),
+        "applicationCategory":document.getElementById('sw-cat').value,
+        "operatingSystem":v('sw-os')||'Any',
+        "offers":{"@type":"Offer","price":v('sw-price')||'0',"priceCurrency":v('sw-currency')}
+      };
+      if(v('sw-desc')) schema.description = v('sw-desc');
+      if(v('sw-url')) schema.url = v('sw-url');
+      if(v('sw-image')) schema.image = v('sw-image');
+      if(v('sw-rating') && v('sw-rcount')) schema.aggregateRating = {"@type":"AggregateRating","ratingValue":v('sw-rating'),"ratingCount":v('sw-rcount')};
+      return schema;
+    }
+    return {};
+  }
 
-            document.getElementById('jsonOutput').textContent = `<script type="application/ld+json">\n${JSON.stringify(output, null, 2)}\n<\/script>`;
-        }
+  function v(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
 
-        function copyJSON() {
-            const code = document.getElementById('jsonOutput').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.querySelector('.copy-code-btn');
-                const old = btn.textContent;
-                btn.textContent = 'Copied!';
-                setTimeout(() => btn.textContent = old, 1500);
-            });
-        }
+  function copyOutput() {
+    const text = document.getElementById('outputArea').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.currentTarget;
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
 
-        function clearForm() {
-            if(confirm('Clear all fields?')) initSchemaFields();
-        }
-
-        initSchemaFields();
-    </script>
+  function clearOutput() {
+    document.getElementById('outputWrap').style.display = 'none';
+  }
+</script>
 </body>
 </html>

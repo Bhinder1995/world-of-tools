@@ -1,782 +1,427 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   CSS Minifier — Compress CSS Instantly, No Login | WorldOfTools
-  </title>
-<meta content="Minify CSS to reduce file size instantly. Removes whitespace, comments &amp; redundant code. No login, no upload — free online CSS minifier for developers." name="description"/>
-<meta content="CSS minifier, minify CSS online, compress CSS code, CSS compressor online free, reduce CSS file size, optimize CSS for web, how to minify CSS online, CSS file size reducer, remove CSS comments online, CSS minifier tool free, minify CSS without changing styles, what does CSS minification do, CSS minifier for website speed, css minifier online, compress css no login, minify css instantly, css compressor browser tool" name="keywords"/>
+<title>CSS Minifier Free Online — Compress & Minify CSS Code Instantly for Faster Websites | WorldOfTools</title>
+<meta name="description" content="Free online CSS minifier — compress and minify your CSS code instantly to reduce file size, remove whitespace, comments and redundant code. Improve website load speed. No login, no upload required. Works 100% in your browser."/>
+<meta name="keywords" content="css minifier online free, minify css code instantly, compress css file size, css compressor no login, reduce css file size online, remove css whitespace, css minifier for website speed, css optimizer online, minify css without changing styles, css file size reducer, how to minify css online, css minifier browser tool, best css minifier 2024, online css compressor free, css code optimizer for seo"/>
 <link href="https://worldoftools.in/css-minifier" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
-<link href="/manifest.json" rel="manifest"/>
-<link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://worldoftools.in/css-minifier"/>
+<meta property="og:title" content="CSS Minifier — Compress CSS Instantly, Reduce File Size | WorldOfTools"/>
+<meta property="og:description" content="Minify CSS to reduce file size instantly. Removes whitespace, comments & redundant code. No login, no upload — free online CSS minifier for developers."/>
+<meta property="og:image" content="https://worldoftools.in/app-icon.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="theme-color" content="#ffe066"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},{"@type":"ListItem","position":2,"name":"CSS Tools","item":"https://worldoftools.in/css-tools"},{"@type":"ListItem","position":3,"name":"CSS Minifier","item":"https://worldoftools.in/css-minifier"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSS Minifier","operatingSystem":"Any","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"1198","reviewCount":"1317"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does CSS minification do?","acceptedAnswer":{"@type":"Answer","text":"CSS minification removes whitespace, comments, redundant semicolons, and unnecessary characters from CSS code to reduce file size, which improves page load speed and Core Web Vitals scores."}},{"@type":"Question","name":"How much does CSS minification reduce file size?","acceptedAnswer":{"@type":"Answer","text":"Typical CSS files see a 20–60% size reduction after minification. Large stylesheets with many comments can see even greater reductions."}},{"@type":"Question","name":"Is minified CSS safe to use in production?","acceptedAnswer":{"@type":"Answer","text":"Yes. Minified CSS is functionally identical to the original. Only whitespace, comments, and unnecessary characters are removed — the styling rules remain exactly the same."}},{"@type":"Question","name":"Does this CSS minifier remove important comments?","acceptedAnswer":{"@type":"Answer","text":"By default, all comments are removed. If you want to preserve license comments (/*! ... */), enable the 'Preserve important comments' option."}},{"@type":"Question","name":"Can I minify multiple CSS files at once?","acceptedAnswer":{"@type":"Answer","text":"Paste or combine multiple CSS files into the input and minify them together — the output will be a single minified stylesheet."}}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
 <style>
-   .minifier-controls {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-            background: #f1f5f9;
-            padding: 0.75rem;
-            border-radius: 12px;
-            align-items: center;
-        }
-
-        textarea {
-            width: 100%;
-            min-height: 400px;
-            padding: 1.5rem;
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            resize: vertical;
-            background: #f8fafc;
-            margin-bottom: 1rem;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-        }
-
-        .stats-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-
-        .saving-badge {
-            background: #dcfce7;
-            color: #166534;
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "CSS Minifier",
-      "item": "https://worldoftools.in/css-minifier"
-    }
-  ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Does CSS minification change how my website looks?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Minification only removes whitespace, comments, and redundant characters. Visual output and behavior are completely unchanged."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much does CSS minification reduce file size?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Typically 20\u201350% reduction, depending on how much whitespace and comment content exists in your original CSS."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Should I minify CSS for my website?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 minified CSS reduces page load time, improves Google PageSpeed Insights scores, and contributes to better Core Web Vitals."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can it handle CSS with variables and animations?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 supports CSS custom properties (variables), keyframe animations, flexbox, grid, pseudo-elements, and all modern CSS features."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is it safe to use minified CSS in production?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 always test the minified output locally before deploying. If something breaks, check for any unusual CSS edge cases."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I un-minify or beautify CSS?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 use a CSS formatter/beautifier (available in developer tools) to expand minified CSS back into readable format."
-      }
-    }
-  ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "CSS Minifier",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
-  }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/css-minifier" property="og:url"/><meta content="
-   CSS Minifier — Compress CSS Instantly, No Login | WorldOfTools
-  " property="og:title"/><meta content="Minify CSS to reduce file size instantly. Removes whitespace, comments &amp; redundant code. No login, no upload — free online CSS minifier for developers." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/css-minifier" name="twitter:url"/><meta content="
-   CSS Minifier — Compress CSS Instantly, No Login | WorldOfTools
-  " name="twitter:title"/><meta content="Minify CSS to reduce file size instantly. Removes whitespace, comments &amp; redundant code. No login, no upload — free online CSS minifier for developers." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+:root{--nb-yellow:#ffe066;--nb-pink:#ff6b9d;--nb-mint:#b2f5ea;--nb-blue:#a3bffa;--nb-orange:#ffa94d;--nb-lime:#c3f584;--nb-purple:#c4b5fd;--nb-black:#000;--nb-shadow:4px 4px 0 #000;--nb-shadow-lg:6px 6px 0 #000;--nb-radius:16px;--nb-border:2.5px solid #000;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Space Grotesk',sans-serif;background:#fafaf8;color:#111;}
+.container{max-width:1000px;margin:0 auto;padding:0 1rem;}
+.nb-card{background:#fff;border:var(--nb-border);border-radius:var(--nb-radius);box-shadow:var(--nb-shadow);padding:1.5rem;}
+.nb-card-lg{padding:2rem;box-shadow:var(--nb-shadow-lg);}
+.nb-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.75rem;border:var(--nb-border);border-radius:12px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:transform .1s,box-shadow .1s;text-decoration:none;box-shadow:var(--nb-shadow);white-space:nowrap;background:#fff;}
+.nb-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #000;}
+.nb-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;}
+.nb-btn-yellow{background:var(--nb-yellow);color:#000;}
+.nb-btn-pink{background:var(--nb-pink);color:#fff;}
+.nb-btn-mint{background:var(--nb-mint);color:#000;}
+.nb-btn-orange{background:var(--nb-orange);color:#000;}
+.nb-btn-full{width:100%;font-size:1.05rem;padding:1rem;}
+.nb-btn-sm{padding:.55rem 1rem;font-size:.85rem;}
+.tool-hero{padding:2rem 0 1.5rem;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--nb-lime);border:var(--nb-border);border-radius:99px;padding:.35rem 1rem;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;box-shadow:3px 3px 0 #000;margin-bottom:1rem;}
+.tool-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:0 0 .75rem;}
+.tool-hero p{color:#555;font-size:1.05rem;margin:0 0 1rem;line-height:1.6;}
+.breadcrumb{font-size:.85rem;color:#666;margin-bottom:1rem;font-weight:600;}
+.breadcrumb a{color:#4f46e5;text-decoration:none;}
+.nb-label{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#444;margin-bottom:.4rem;}
+/* Textarea */
+.code-area{width:100%;min-height:280px;padding:1.25rem;border:var(--nb-border);border-radius:14px;font-family:'Courier New',monospace;font-size:.9rem;line-height:1.6;resize:vertical;background:#fafff8;box-shadow:3px 3px 0 #000;outline:none;color:#1a1a2e;transition:border-color .15s,box-shadow .15s;}
+.code-area:focus{border-color:#4f46e5;box-shadow:3px 3px 0 #4f46e5;}
+.code-area.output-area{background:#1e1e2e;color:#a6e3a1;font-size:.88rem;}
+/* Options row */
+.options-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;padding:.75rem 1rem;background:#f9f9ff;border:var(--nb-border);border-radius:12px;box-shadow:3px 3px 0 #000;}
+.opt-check{display:flex;align-items:center;gap:.5rem;cursor:pointer;font-weight:700;font-size:.88rem;}
+.opt-check input[type=checkbox]{width:18px;height:18px;cursor:pointer;accent-color:#4f46e5;}
+/* Stats bar */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem;}
+@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+.stat-card{background:#fff;border:var(--nb-border);border-radius:14px;padding:1.1rem;text-align:center;box-shadow:3px 3px 0 #000;}
+.stat-val{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:900;color:#4f46e5;display:block;}
+.stat-lbl{font-size:.72rem;font-weight:800;color:#666;text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem;display:block;}
+/* Savings bar */
+.savings-bar-wrap{background:#fff;border:var(--nb-border);border-radius:16px;padding:1.5rem;box-shadow:3px 3px 0 #000;margin-bottom:1.5rem;display:none;}
+.savings-bar-track{background:#f0f0f0;height:1.5rem;border-radius:99px;border:2px solid #000;overflow:hidden;margin-bottom:.5rem;}
+.savings-bar-fill{height:100%;background:linear-gradient(90deg,#b2f5ea,#059669);transition:width 1s ease-out;border-radius:99px;}
+.savings-bar-text{text-align:center;font-weight:800;color:#059669;font-size:.9rem;}
+/* Two panels */
+.editor-layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;}
+@media(max-width:700px){.editor-layout{grid-template-columns:1fr;}}
+/* Action row */
+.action-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem;}
+/* SEO */
+.seo-section{max-width:900px;margin:3rem auto;padding:0 1rem;}
+.seo-section h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;margin-bottom:.9rem;letter-spacing:-.02em;}
+.seo-section p{line-height:1.8;color:#444;margin-bottom:1rem;}
+details{border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem;background:#fff;box-shadow:3px 3px 0 #000;}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+summary::after{content:'+';font-size:1.25rem;font-weight:900;color:#4f46e5;}
+details[open] summary::after{content:'−';}
+details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
+.step-item{display:flex;align-items:flex-start;gap:1rem;background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem;box-shadow:3px 3px 0 #000;}
+.step-num{min-width:32px;height:32px;background:var(--nb-yellow);border:2px solid #000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;flex-shrink:0;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem;}
+.tool-card-mini{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.25rem .75rem;background:#fff;border:var(--nb-border);border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform .15s,box-shadow .15s;}
+.tool-card-mini:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #000;}
+.tool-card-mini .icon{font-size:1.75rem;margin-bottom:.5rem;}
+.tool-card-mini .name{font-weight:700;font-size:.85rem;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.animate-in{animation:fadeUp .4s ease-out;}
+.drop-zone{border:3px dashed #000;border-radius:16px;padding:2rem;text-align:center;cursor:pointer;background:#f9f9ff;transition:background .15s;font-weight:700;color:#666;margin-bottom:.75rem;}
+.drop-zone:hover,.drop-zone.dragover{background:#f0f0ff;border-color:#4f46e5;}
+@media(max-width:480px){.nb-card-lg{padding:1.25rem;}}
+</style>
+</head>
 <body>
-<header>
-</header>
+<header></header>
 <main class="container">
-<div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>CSS Minifier</span></div><h1>
-      CSS Minifier — Compress &amp; Minify CSS Code Instantly, No Login Needed
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Compress your CSS code for faster website
-                    loading speeds.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/css-minifier-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
-</div>
+<section class="tool-hero">
+  <div class="breadcrumb"><a href="/">Home</a> › CSS Tools › <span>CSS Minifier</span></div>
+  <div class="hero-badge">⚡ Instant — Browser Only</div>
+  <h1>CSS Minifier — Compress &amp; Minify CSS Code Instantly</h1>
+  <p>Minify your CSS files instantly to reduce page load time and improve Core Web Vitals. Removes whitespace, comments, and redundant code. No upload needed — everything runs in your browser.</p>
 </section>
-<div class="error-msg" id="errorMessage">
+
+<!-- Options -->
+<div class="nb-card nb-card-lg" style="margin-bottom:1.5rem;">
+  <div class="options-row">
+    <label class="opt-check"><input type="checkbox" id="removeComments" checked/> Remove comments</label>
+    <label class="opt-check"><input type="checkbox" id="removeWhitespace" checked/> Remove whitespace</label>
+    <label class="opt-check"><input type="checkbox" id="preserveImportant"/> Preserve <code>/*!</code> comments</label>
+    <label class="opt-check"><input type="checkbox" id="removeEmpty" checked/> Remove empty rules</label>
+    <label class="opt-check"><input type="checkbox" id="shorthandColors" checked/> Shorten hex colors</label>
+  </div>
+
+  <div class="editor-layout">
+    <!-- Input -->
+    <div>
+      <label class="nb-label" style="margin-bottom:.5rem;">📝 Input CSS</label>
+      <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+        📂 Drop .css file here or click to upload
+        <input type="file" id="fileInput" accept=".css" style="display:none" onchange="loadFile(this)"/>
+      </div>
+      <textarea class="code-area" id="inputCSS" placeholder="Paste your CSS here or drop a .css file above...
+/* Example */
+.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.75rem;
+  background-color: #ffe066;
+  border: 2.5px solid #000000;
+  border-radius: 12px;
+  font-weight: 800;
+}" oninput="autoMinify()"></textarea>
+      <div class="action-row" style="margin-top:.75rem;">
+        <button class="nb-btn nb-btn-yellow" onclick="minifyCSS()" style="flex:1">⚡ Minify CSS</button>
+        <button class="nb-btn" onclick="clearAll()">🗑️ Clear</button>
+        <button class="nb-btn" onclick="loadSample()">📄 Sample</button>
+      </div>
+    </div>
+
+    <!-- Output -->
+    <div>
+      <label class="nb-label" style="margin-bottom:.5rem;">✅ Minified CSS Output</label>
+      <textarea class="code-area output-area" id="outputCSS" placeholder="Minified CSS will appear here..." readonly></textarea>
+      <div class="action-row" style="margin-top:.75rem;">
+        <button class="nb-btn nb-btn-mint" onclick="copyOutput()" style="flex:1">📋 Copy CSS</button>
+        <button class="nb-btn nb-btn-pink" onclick="downloadCSS()">💾 Download</button>
+        <button class="nb-btn" onclick="beautifyCSS()">✨ Beautify</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="copyToast" style="display:none;text-align:center;font-weight:800;color:#059669;font-size:.9rem;margin-top:.75rem;">✅ Copied to clipboard!</div>
 </div>
-<div style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
-<span style="font-size: 1.2rem;">
-      🛡️
-     </span>
-<span style="font-weight: 700;">
-      100% Client-Side Processing
-     </span>
+
+<!-- Stats -->
+<div class="stats-grid" id="statsGrid" style="display:none;">
+  <div class="stat-card"><span class="stat-val" id="origSize">—</span><span class="stat-lbl">Original Size</span></div>
+  <div class="stat-card"><span class="stat-val" id="minSize">—</span><span class="stat-lbl">Minified Size</span></div>
+  <div class="stat-card"><span class="stat-val" id="savedBytes">—</span><span class="stat-lbl">Bytes Saved</span></div>
+  <div class="stat-card"><span class="stat-val" id="savedPct">—</span><span class="stat-lbl">Reduction</span></div>
 </div>
-<div class="tool-main-card">
-<div class="minifier-controls" style="background: #f8fafc; border: 1px solid var(--border-color); margin-bottom: 2rem;">
-<button class="btn btn-primary" onclick="minifyCSS()" style="padding: 0.75rem 2rem; font-weight: 700; border-radius: 12px;">
-       🚀 Minify CSS
-      </button>
-<div style="flex-grow: 1;">
+
+<!-- Savings bar -->
+<div class="savings-bar-wrap" id="savingsBar">
+  <div class="nb-label" style="margin-bottom:.75rem;">Size Reduction</div>
+  <div class="savings-bar-track"><div class="savings-bar-fill" id="savingsFill" style="width:0%"></div></div>
+  <div class="savings-bar-text" id="savingsText"></div>
 </div>
-<button class="btn btn-secondary" onclick="copyText()" style="padding: 0.75rem 1.5rem; font-size: 0.9rem; font-weight: 700; border-radius: 12px;">
-       📋
-                        Copy
-      </button>
-<button class="btn btn-secondary" onclick="clearText()" style="padding: 0.75rem 1.5rem; font-size: 0.9rem; font-weight: 700; color: #ef4444; border-radius: 12px;">
-       🗑️
-                        Clear
-      </button>
-</div>
-<textarea id="cssInput" placeholder="Paste your CSS here..." style="min-height: 500px; border: 2px solid var(--border-color); border-radius: 12px; padding: 1.5rem; width: 100%;"></textarea>
-<div class="stats-info" id="statsInfo" style="display: none; background: white; border: 1px solid var(--border-color); margin-top: 2rem;">
-<span>
-       Original:
-       <span id="originalSize" style="color: var(--primary-color);">
-        0
-       </span>
-       B
-      </span>
-<span>
-       Minified:
-       <span id="minifiedSize" style="color: var(--secondary-color);">
-        0
-       </span>
-       B
-      </span>
-<span>
-       Savings:
-       <span class="saving-badge" id="savingsPercent" style="background: #dcfce7; color: #166534; padding: 0.4rem 0.8rem; border-radius: 8px;">
-        0%
-       </span>
-</span>
-</div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the Css Minifier?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use Css Minifier — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Paste CSS Code – Add your full stylesheet into the input area.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Paste CSS Code – Add your full stylesheet into the input area.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       View Size Reduction – See how much smaller your CSS became.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Copy Output – Replace your original stylesheet with the minified version.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        Removes unnecessary whitespace, line breaks, and comments.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        Optimizes color codes and shorthand properties automatically.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        Significant reduction in CSS file size for faster page loads.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Real-time compression statistics to track your savings.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        Browser-level processing keeps your proprietary code private.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the Css Minifier?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Front-end Devs
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Optimize production assets for better Lighthouse scores.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For WordPress Users
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Minify custom CSS snippets to keep site performance high.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For UI Designers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Quickly clean up exported CSS from design tools like Figma.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 Css Minifier vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does CSS minification change how my website looks?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No. Minification only removes whitespace, comments, and redundant characters. Visual output and behavior are completely unchanged.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       How much does CSS minification reduce file size?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Typically 20–50% reduction, depending on how much whitespace and comment content exists in your original CSS.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Should I minify CSS for my website?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — minified CSS reduces page load time, improves Google PageSpeed Insights scores, and contributes to better Core Web Vitals.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can it handle CSS with variables and animations?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — supports CSS custom properties (variables), keyframe animations, flexbox, grid, pseudo-elements, and all modern CSS features.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is it safe to use minified CSS in production?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — always test the minified output locally before deploying. If something breaks, check for any unusual CSS edge cases.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I un-minify or beautify CSS?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — use a CSS formatter/beautifier (available in developer tools) to expand minified CSS back into readable format.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this Css Minifier free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, the Css Minifier is 100% free with no hidden charges or premium subscriptions.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my data safe?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Do I need to sign up?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No registration or account creation is required to use any of our tools.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        CSS Minifier
-       </strong>
-       is an essential powerhouse in any developer's toolkit. From debugging API responses to generating unique identifiers, this tool automates the repetitive parts of coding so you can focus on building great software. It handles complex data structures with ease, providing clean, standardized outputs that integrate perfectly into your existing workflow.
-      </p>
-<p style="margin-top:1rem;">
-       For developers, data integrity and confidentiality are critical. Whether you're formatting JSON with sensitive keys or decoding JWTs containing user data, our CSS Minifier ensures your strings are never transmitted over the network. By performing all logic within the browser, we eliminate the risk of man-in-the-middle attacks or server-side logging of your private development data.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="json-formatter">
-<div class="tool-icon">
-        ✨
-       </div>
-<div class="tool-title">
-        JSON Formatter
-       </div>
-<div class="tool-desc">
-        Best online JSON beautifier and validator to clean, minify, and verify
-                            JSON structures.
-       </div>
-</a>
-<a class="tool-card" href="xml-formatter">
-<div class="tool-icon">
-        🛠️
-       </div>
-<div class="tool-title">
-        XML Formatter
-       </div>
-<div class="tool-desc">
-        Beautify, format, or minify XML code for better readability and
-                            debugging.
-       </div>
-</a>
-<a class="tool-card" href="sql-formatter">
-<div class="tool-icon">
-        🛠️
-       </div>
-<div class="tool-title">
-        SQL Formatter
-       </div>
-<div class="tool-desc">
-        Beautify, minify, and format SQL queries online for better readability
-                            and cleaner code.
-       </div>
-</a>
-<a class="tool-card" href="text-compare-tool">
-<div class="tool-icon">
-        ⚖️
-       </div>
-<div class="tool-title">
-        Text Compare
-       </div>
-<div class="tool-desc">
-        Compare two texts and highlight differences.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
+
+<!-- SEO Content -->
+<div class="seo-section">
+  <h2>How to Minify CSS for Faster Websites</h2>
+  <div class="step-item"><div class="step-num">1</div><div><strong>Paste or upload CSS</strong> — Paste your CSS directly into the editor or drag and drop a .css file. You can also click the upload area to browse files.</div></div>
+  <div class="step-item"><div class="step-num">2</div><div><strong>Choose options</strong> — Select what to remove: whitespace, comments, empty rules. Toggle on/off to match your needs.</div></div>
+  <div class="step-item"><div class="step-num">3</div><div><strong>Minify instantly</strong> — Click Minify CSS (or it minifies automatically as you type) to get the compressed output.</div></div>
+  <div class="step-item"><div class="step-num">4</div><div><strong>Copy or download</strong> — Copy the minified CSS to clipboard or download it as a .min.css file ready for production.</div></div>
+
+  <h2 style="margin-top:2rem;">Why CSS Minification Improves SEO &amp; Performance</h2>
+  <p>CSS minification reduces your stylesheet's file size by removing characters that are only needed for human readability — whitespace, line breaks, comments, and verbose formatting. Smaller CSS files transfer faster, parse faster, and render faster — directly improving Google Core Web Vitals scores including First Contentful Paint (FCP) and Largest Contentful Paint (LCP).</p>
+  <p>Google's PageSpeed Insights flags unminified CSS as an optimization opportunity. Minifying your stylesheets is one of the quickest wins for improving your website's performance score and technical SEO.</p>
+
+  <h2 style="margin-top:2rem;">Frequently Asked Questions</h2>
+  <details><summary>Does minifying CSS break my website?</summary><p>No. CSS minification only removes whitespace, comments, and unnecessary characters. The CSS rules and properties remain completely unchanged. Your website will look and function identically.</p></details>
+  <details><summary>What's the difference between minification and compression?</summary><p>Minification removes unnecessary characters from the source code. Compression (like gzip or Brotli) compresses the file at the HTTP level. Both can be used together — minify first, then enable server-side compression for maximum reduction.</p></details>
+  <details><summary>How much can CSS minification reduce file size?</summary><p>Typical results are 20–60% reduction depending on how many comments and how much whitespace is in the original. For heavily commented frameworks like Bootstrap, reductions can exceed 60%.</p></details>
+  <details><summary>Should I use .min.css in production?</summary><p>Yes. Always serve minified CSS in production. Keep your unminified source files in version control for development and debugging. Use the minified version in your HTML.</p></details>
+  <details><summary>Can I minify inline CSS as well?</summary><p>Yes, you can paste any valid CSS into this tool — whether it's a full stylesheet or just inline style values — and it will be minified correctly.</p></details>
+
+  <h2 style="margin-top:2rem;">Related Tools</h2>
+  <div class="tools-grid">
+    <a href="/css-gradient-generator" class="tool-card-mini"><div class="icon">🎨</div><div class="name">CSS Gradient</div></a>
+    <a href="/css-formatter" class="tool-card-mini"><div class="icon">📐</div><div class="name">CSS Formatter</div></a>
+    <a href="/html-minifier" class="tool-card-mini"><div class="icon">🗜️</div><div class="name">HTML Minifier</div></a>
+    <a href="/js-minifier" class="tool-card-mini"><div class="icon">⚡</div><div class="name">JS Minifier</div></a>
+  </div>
+  <p style="text-align:center;font-size:.82rem;color:#888;margin-top:2rem;font-weight:600;">⚡ All minification happens in your browser. Your CSS code is never uploaded or stored.</p>
+</div><div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+
+    <a href="/css-gradient-generator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🎨</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">CSS Gradient</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Create CSS gradients</div>
+    </a>
+    <a href="/json-formatter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">{ }</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">JSON Formatter</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Format JSON</div>
+    </a>
+    <a href="/markdown-to-html" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">📑</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Markdown to HTML</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Convert markdown</div>
+    </a>
+    </div>
+  </div>
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+
 <script>
-   const textarea = document.getElementById('cssInput');
-        const statsInfo = document.getElementById('statsInfo');
-        const originalSizeSpan = document.getElementById('originalSize');
-        const minifiedSizeSpan = document.getElementById('minifiedSize');
-        const savingsPercentSpan = document.getElementById('savingsPercent');
+let autoMinifyTimer;
 
-        function showError(msg) {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = '⚠️ ' + msg;
-                errDiv.style.display = 'flex';
-            } else {
-                errDiv.style.display = 'none';
-                errDiv.textContent = '';
-            }
-        }
+function autoMinify() {
+  clearTimeout(autoMinifyTimer);
+  autoMinifyTimer = setTimeout(minifyCSS, 400);
+}
 
-        function minifyCSS() {
-            showError('');
-            const original = textarea.value;
-            if (!original.trim()) {
-                showError('Please enter some CSS code to minify.');
-                return;
-            }
+function minifyCSS() {
+  let css = document.getElementById('inputCSS').value;
+  if (!css.trim()) return;
 
-            const originalSize = new Blob([original]).size;
+  const removeComments = document.getElementById('removeComments').checked;
+  const removeWhitespace = document.getElementById('removeWhitespace').checked;
+  const preserveImportant = document.getElementById('preserveImportant').checked;
+  const removeEmpty = document.getElementById('removeEmpty').checked;
+  const shorthandColors = document.getElementById('shorthandColors').checked;
 
-            // 1MB limit check
-            if (originalSize > 1024 * 1024) {
-                showError('Input size exceeds 1MB. Please compress smaller files to prevent browser lag.');
-                return;
-            }
+  let result = css;
 
-            try {
-                // Simple but effective regex-based minification
-                let minified = original
-                    .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
-                    .replace(/\s+/g, ' ')             // Collapse all whitespace to single space
-                    .replace(/\s*([{};:>+])\s*/g, '$1') // Remove spaces around delimiters
-                    .replace(/;}/g, '}')              // Remove trailing semicolon in blocks
-                    .trim();
+  // Preserve important comments if needed
+  const important = [];
+  if (preserveImportant) {
+    result = result.replace(/\/\*![\s\S]*?\*\//g, m => { important.push(m); return `__IMPORTANT_${important.length-1}__`; });
+  }
 
-                const minifiedSize = new Blob([minified]).size;
-                const savings = originalSize > 0 ? Math.round(((originalSize - minifiedSize) / originalSize) * 100) : 0;
+  // Remove comments
+  if (removeComments) {
+    result = result.replace(/\/\*[\s\S]*?\*\//g, '');
+  }
 
-                textarea.value = minified;
+  if (removeWhitespace) {
+    result = result
+      .replace(/\s+/g, ' ')
+      .replace(/\s*{\s*/g, '{')
+      .replace(/\s*}\s*/g, '}')
+      .replace(/\s*:\s*/g, ':')
+      .replace(/\s*;\s*/g, ';')
+      .replace(/\s*,\s*/g, ',')
+      .replace(/\s*>\s*/g, '>')
+      .replace(/\s*~\s*/g, '~')
+      .replace(/\s*\+\s*/g, '+')
+      .replace(/;}/g, '}')
+      .trim();
+  }
 
-                originalSizeSpan.textContent = originalSize;
-                minifiedSizeSpan.textContent = minifiedSize;
-                savingsPercentSpan.textContent = savings + '%';
-                statsInfo.style.display = 'flex';
-            } catch (e) {
-                showError('An error occurred during minification: ' + e.message);
-            }
-        }
+  // Remove empty rules
+  if (removeEmpty) {
+    result = result.replace(/[^{}]+\{\s*\}/g, '');
+  }
 
-        function copyText() {
-            if (!textarea.value) return;
-            navigator.clipboard.writeText(textarea.value).then(() => {
-                const btn = document.querySelector('button[onclick="copyText()"]');
-                const old = btn.textContent; btn.textContent = 'Copied!';
-                setTimeout(() => btn.textContent = old, 1500);
-            });
-        }
+  // Shorten hex colors #aabbcc -> #abc
+  if (shorthandColors) {
+    result = result.replace(/#([0-9a-fA-F])\1([0-9a-fA-F])\2([0-9a-fA-F])\3(?![0-9a-fA-F])/g, '#$1$2$3');
+  }
 
-        function clearText() {
-            if (confirm('Clear input?')) {
-                textarea.value = '';
-                statsInfo.style.display = 'none';
-            }
-        }
+  // Restore important comments
+  if (preserveImportant) {
+    result = result.replace(/__IMPORTANT_(\d+)__/g, (_, i) => important[parseInt(i)]);
+  }
 
-        // Schema Data
-        const schemaData = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "CSS Minifier Online",
-            "description": "Free tool to compress and optimize CSS code for better website performance.",
-            "url": "https://worldoftools.in/css-minifier",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any"
-        };
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schemaData);
-        document.head.appendChild(script);
+  document.getElementById('outputCSS').value = result;
+  updateStats(css, result);
+}
 
-        // FAQ Schema
-        const faqData = {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [{
-                "@type": "Question",
-                "name": "How do I minify CSS online?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Simply paste your CSS code into the text area and click 'Minify CSS'. The tool will instantly remove comments and whitespace to reduce the file size."
-                }
-            }, {
-                "@type": "Question",
-                "name": "What does a CSS minifier do?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "It optimizes your CSS by removing unnecessary characters like comments, line breaks, and spaces without changing how the styles are rendered by the browser."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Is this CSS minifier secure?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Our tool runs entirely in your browser. Your code is never sent to our servers, ensuring your data remains private."
-                }
-            }]
-        };
-        const faqScript = document.createElement('script');
-        faqScript.type = "application/ld+json";
-        faqScript.text = JSON.stringify(faqData);
-        document.head.appendChild(faqScript);
+function updateStats(original, minified) {
+  const origBytes = new Blob([original]).size;
+  const minBytes = new Blob([minified]).size;
+  const saved = origBytes - minBytes;
+  const pct = origBytes > 0 ? ((saved / origBytes) * 100).toFixed(1) : 0;
 
-        // Breadcrumb Schema
-        const breadcrumbData = {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://worldoftools.in"
-            }, {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "CSS Minifier",
-                "item": "https://worldoftools.in/css-minifier"
-            }]
-        };
-        const bcScript = document.createElement('script');
-        bcScript.type = "application/ld+json";
-        bcScript.text = JSON.stringify(breadcrumbData);
-        document.head.appendChild(bcScript);
-  </script>
+  const fmt = b => b >= 1024 ? (b/1024).toFixed(1)+'KB' : b+'B';
+
+  document.getElementById('origSize').textContent = fmt(origBytes);
+  document.getElementById('minSize').textContent = fmt(minBytes);
+  document.getElementById('savedBytes').textContent = fmt(Math.max(0,saved));
+  document.getElementById('savedPct').textContent = pct + '%';
+  document.getElementById('statsGrid').style.display = 'grid';
+
+  const bar = document.getElementById('savingsBar');
+  bar.style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('savingsFill').style.width = pct + '%';
+    document.getElementById('savingsText').textContent = `Reduced by ${pct}% — saved ${fmt(Math.max(0,saved))}`;
+  }, 100);
+}
+
+function copyOutput() {
+  const val = document.getElementById('outputCSS').value;
+  if (!val) return;
+  navigator.clipboard.writeText(val).then(() => {
+    const t = document.getElementById('copyToast');
+    t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 2000);
+  });
+}
+
+function downloadCSS() {
+  const val = document.getElementById('outputCSS').value;
+  if (!val) return;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([val], {type:'text/css'}));
+  a.download = 'styles.min.css';
+  a.click();
+}
+
+function clearAll() {
+  document.getElementById('inputCSS').value = '';
+  document.getElementById('outputCSS').value = '';
+  document.getElementById('statsGrid').style.display = 'none';
+  document.getElementById('savingsBar').style.display = 'none';
+}
+
+function loadFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('inputCSS').value = e.target.result;
+    minifyCSS();
+  };
+  reader.readAsText(file);
+}
+
+function loadSample() {
+  document.getElementById('inputCSS').value = `/* ===================================
+   Main Stylesheet — My Website v2.1
+   Author: Developer
+   Last updated: 2024
+   =================================== */
+
+/* Reset styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography */
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #111111;
+  background-color: #fafaf8;
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* Button component */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  background-color: #ffe066;
+  border: 2.5px solid #000000;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 4px 4px 0 #000000;
+}
+
+/* Empty rule that should be removed */
+.empty {}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #000000;
+}`;
+  minifyCSS();
+}
+
+function beautifyCSS() {
+  const input = document.getElementById('inputCSS').value.trim();
+  if (!input) return;
+  // Simple beautifier
+  let result = input
+    .replace(/\s*{\s*/g, ' {\n  ')
+    .replace(/;\s*/g, ';\n  ')
+    .replace(/\s*}\s*/g, '\n}\n')
+    .replace(/\n\s*\n/g, '\n');
+  document.getElementById('outputCSS').value = result;
+}
+
+// Drag and drop
+const dz = document.getElementById('dropZone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+dz.addEventListener('drop', e => {
+  e.preventDefault(); dz.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file && file.name.endsWith('.css')) {
+    const reader = new FileReader();
+    reader.onload = ev => { document.getElementById('inputCSS').value = ev.target.result; minifyCSS(); };
+    reader.readAsText(file);
+  }
+});
+</script>
+
+<script defer src="/js/common.js?v=6.1"></script>
+<footer></footer>
 </body>
 </html>

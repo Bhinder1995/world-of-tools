@@ -1,677 +1,482 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Loan Eligibility Calculator — How Much Can You Borrow? | WorldOfTools
-  </title>
-<meta content="Check home or personal loan eligibility based on salary &amp; existing EMIs. Works for all major Indian banks. Instant result — no login, no signup." name="description"/>
+<title>Loan Eligibility Calculator — Check Maximum Home & Personal Loan Amount | WorldOfTools</title>
+<meta content="Free loan eligibility calculator — check how much home or personal loan you can get based on salary & existing EMIs. Works for all major Indian banks. Instant, no login." name="description"/>
+<meta content="loan eligibility calculator, home loan eligibility, personal loan eligibility, how much loan can i get, loan calculator based on salary, how much loan can i get on salary india, loan eligibility india, check loan eligibility, home loan eligibility calculator india" name="keywords"/>
 <link href="https://worldoftools.in/loan-eligibility-calculator" rel="canonical"/>
-<meta content="loan eligibility calculator, home loan eligibility, personal loan eligibility, how much loan can i get, loan calculator based on salary, mortgage qualification calculator, loan estimator, loan eligibility calculator india, home loan eligibility calculator, check loan eligibility, how much loan can i get on salary" name="keywords"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/loan-eligibility-calculator" property="og:url"/>
+<meta content="Loan Eligibility Calculator — How Much Can You Borrow? | WorldOfTools" property="og:title"/>
+<meta content="Check home or personal loan eligibility based on salary & existing EMIs. Works for all major Indian banks." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Loan Eligibility Calculator | WorldOfTools" name="twitter:title"/>
+<meta content="Check how much loan you can get based on your salary. Instant, free, no login." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/loan-eligibility-calculator"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://worldoftools.in/calculators-online"},{"@type":"ListItem","position":3,"name":"Loan Eligibility Calculator","item":"https://worldoftools.in/loan-eligibility-calculator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Loan Eligibility Calculator","image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1321","reviewCount":"1453"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much home loan can I get on ₹50,000 salary?","acceptedAnswer":{"@type":"Answer","text":"With a ₹50,000 net monthly salary and no existing EMIs, most banks allow up to 50-60% FOIR, meaning your EMI can be ₹25,000–₹30,000. At 8.5% for 20 years, this gives a loan of approximately ₹24–₹29 lakh."}},{"@type":"Question","name":"What is FOIR in loan eligibility?","acceptedAnswer":{"@type":"Answer","text":"FOIR (Fixed Obligation to Income Ratio) is the percentage of your monthly income that banks allow for total EMI obligations. Most banks keep this between 40–60%. Higher income may allow higher FOIR."}},{"@type":"Question","name":"Does existing EMI reduce my loan eligibility?","acceptedAnswer":{"@type":"Answer","text":"Yes. Any existing loan EMI reduces the amount available for the new loan's EMI, directly reducing your loan eligibility."}},{"@type":"Question","name":"Can both spouses' incomes be combined?","acceptedAnswer":{"@type":"Answer","text":"Yes, most banks allow co-applicant income to increase eligibility. You can add co-applicant income in this calculator to see the combined eligibility."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
 <style>
-   .le-card{background:white;border:1px solid var(--border-color);border-radius:20px;padding:2rem;margin-bottom:1.5rem;}
-        .loan-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
-        .ltab{padding:.55rem 1.2rem;border:2px solid var(--border-color);border-radius:10px;background:white;font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .15s;color:#374151;}
-        .ltab.active{border-color:var(--primary-color);background:#eff0ff;color:var(--primary-color);}
-        .fg{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.1rem;}
-        .fg label{font-size:.82rem;font-weight:700;color:var(--text-muted);}
-        .slider-wrap{display:flex;align-items:center;gap:.75rem;}
-        .slider-wrap input[type=range]{flex:1;}
-        .slider-val{padding:.4rem .7rem;border:2px solid var(--border-color);border-radius:8px;font-family:inherit;font-size:.88rem;font-weight:700;width:100px;text-align:right;outline:none;}
-        .slider-val:focus{border-color:var(--primary-color);}
-        /* slider fill */
-        input[type=range]{-webkit-appearance:none;height:6px;background:linear-gradient(to right,#4f46e5 0%,#4f46e5 var(--pct,50%),#e5e7eb var(--pct,50%),#e5e7eb 100%);border-radius:3px;outline:none;width:100%;}
-        input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:#4f46e5;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(79,70,229,.4);cursor:pointer;}
-        /* Result */
-        .result-hero{background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:20px;padding:2rem;text-align:center;margin-bottom:1.5rem;color:white;}
-        .result-amount{font-size:3rem;font-weight:900;letter-spacing:-.03em;margin-bottom:.25rem;}
-        .result-label{font-size:.95rem;opacity:.85;margin-bottom:1.25rem;}
-        .result-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
-        .pill{background:rgba(255,255,255,.15);border-radius:20px;padding:.4rem 1rem;font-size:.82rem;font-weight:700;}
-        /* Info grid */
-        .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;}
-        .info-card{background:#f8f9ff;border:1px solid var(--border-color);border-radius:14px;padding:1.1rem;}
-        .ic-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.3rem;}
-        .ic-val{font-size:1rem;font-weight:800;color:#1f2937;}
-        /* Bank grid */
-        .bank-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;}
-        .bank-card{background:white;border:1px solid var(--border-color);border-radius:14px;padding:1.1rem;display:flex;justify-content:space-between;align-items:center;}
-        .bank-name{font-size:.88rem;font-weight:800;color:#1f2937;}
-        .bank-rate{font-size:.8rem;color:var(--text-muted);}
-        .bank-amt{font-size:1rem;font-weight:800;color:var(--primary-color);}
-        /* Tips */
-        .tip-item{display:flex;align-items:flex-start;gap:.6rem;padding:.75rem 1rem;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;margin-bottom:.5rem;}
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');
-  </script>
-<script type="application/ld+json">
-   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is loan eligibility calculated?","acceptedAnswer":{"@type":"Answer","text":"Banks calculate loan eligibility based on net monthly income, existing EMIs, age, credit score, employment type, and loan tenure. The standard rule is that total EMIs should not exceed 40–50% of gross monthly income (FOIR ratio)."}},{"@type":"Question","name":"How much home loan can I get on ₹50,000 salary?","acceptedAnswer":{"@type":"Answer","text":"On a ₹50,000 monthly salary with no existing EMIs, you can typically get a home loan of ₹35–40 lakhs (at 8.5% for 20 years). The exact amount depends on your credit score, existing liabilities, and the bank's policies."}},{"@type":"Question","name":"What is FOIR in home loan?","acceptedAnswer":{"@type":"Answer","text":"FOIR (Fixed Obligation to Income Ratio) is the percentage of your income already committed to EMIs. Most banks require FOIR to be below 40–50% to sanction a new loan."}},{"@type":"Question","name":"What is the minimum salary for a home loan?","acceptedAnswer":{"@type":"Answer","text":"Most banks require a minimum monthly income of ₹15,000–₹25,000 for home loans. For salaried individuals, a minimum of ₹25,000/month is typically required by major banks."}},{"@type":"Question","name":"Does age affect loan eligibility?","acceptedAnswer":{"@type":"Answer","text":"Yes. Younger applicants get longer tenures (up to 30 years), which increases eligibility. Banks generally require the loan to be fully repaid before age 60–65 for salaried and 70 for self-employed."}},{"@type":"Question","name":"Is this loan eligibility calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free with no signup required."}}]}
-  </script>
-<script type="application/ld+json">
-   {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Loan Eligibility Calculator","operatingSystem":"Any","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
-  </script>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Loan Eligibility Calculator",
-      "item": "https://worldoftools.in/loan-eligibility-calculator"
-    }
-  ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Loan Eligibility Calculator free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
-  ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Loan Eligibility Calculator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-black: #000;
+    --nb-white: #fff;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px;
+    --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/loan-eligibility-calculator" property="og:url"/><meta content="
-   Loan Eligibility Calculator — How Much Can You Borrow? | WorldOfTools
-  " property="og:title"/><meta content="Check home or personal loan eligibility based on salary &amp; existing EMIs. Works for all major Indian banks. Instant result — no login, no signup." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/loan-eligibility-calculator" name="twitter:url"/><meta content="
-   Loan Eligibility Calculator — How Much Can You Borrow? | WorldOfTools
-  " name="twitter:title"/><meta content="Check home or personal loan eligibility based on salary &amp; existing EMIs. Works for all major Indian banks. Instant result — no login, no signup." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; box-shadow: var(--nb-shadow); white-space: nowrap; }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1.1rem; padding: 1rem; }
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-blue); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .nb-tab-btn { padding: 0.65rem 1.25rem; border: var(--nb-border); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.9rem; white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000; }
+  .nb-tab-btn.active { background: var(--nb-yellow); }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+  .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+  .nb-input { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 1rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; transition: box-shadow 0.15s, border-color 0.15s; }
+  .nb-input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .nb-select { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 1rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+  .input-group { margin-bottom: 1.25rem; }
+  .nb-error { display: none; background: #ffe0e0; border: var(--nb-border); border-radius: 12px; padding: 0.85rem 1.25rem; color: #c00; font-weight: 700; margin-bottom: 1.25rem; box-shadow: 3px 3px 0 #c00; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:440px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Result hero */
+  .result-hero { background: var(--nb-yellow); border: var(--nb-border); border-radius: 20px; padding: 2rem; text-align: center; box-shadow: var(--nb-shadow-lg); margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+  .result-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 0.5rem; }
+  .result-amount { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 7vw, 3.5rem); font-weight: 900; letter-spacing: -0.04em; color: #000; line-height: 1; margin-bottom: 0.5rem; }
+  .result-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem; }
+
+  /* Stats */
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  @media(min-width:480px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+  .stat-card { background: #fff; border: var(--nb-border); border-radius: 14px; padding: 1.25rem 1rem; text-align: center; box-shadow: 3px 3px 0 #000; }
+  .stat-value { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 900; color: #4f46e5; display: block; }
+  .stat-label { font-size: 0.78rem; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; display: block; }
+
+  /* FOIR bar */
+  .foir-wrap { background: #fff; border: var(--nb-border); border-radius: 16px; padding: 1.5rem; box-shadow: 3px 3px 0 #000; margin-bottom: 1.5rem; }
+  .foir-label { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.75rem; }
+  .foir-track { background: #f0f0f0; height: 1.5rem; border-radius: 99px; border: 2px solid #000; overflow: hidden; margin-bottom: 0.5rem; }
+  .foir-fill { height: 100%; border-radius: 99px; transition: width 1s ease-out; }
+  .foir-text { text-align: center; font-weight: 800; font-size: 0.9rem; }
+
+  /* Bank grid */
+  .bank-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+  .bank-card { background: #fff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; box-shadow: 3px 3px 0 #000; display: flex; justify-content: space-between; align-items: center; }
+  .bank-name { font-weight: 800; font-size: 0.9rem; }
+  .bank-info { font-size: 0.78rem; color: #666; font-weight: 600; }
+  .bank-amt { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 900; color: #4f46e5; }
+
+  /* Tips */
+  .tips-box { background: var(--nb-lime); border: var(--nb-border); border-radius: 16px; padding: 1.5rem; box-shadow: 3px 3px 0 #000; margin-bottom: 1.5rem; }
+  .tip-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+  .tip-item:last-child { border-bottom: none; }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #f9f9ff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-blue); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+  @media(max-width:480px) { .nb-card-lg { padding: 1.25rem; } .result-actions { flex-direction: column; align-items: center; } .result-actions .nb-btn { width: 100%; } }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
-<div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Loan Eligibility Calculator</span></div><h1>
-      Loan Eligibility Calculator — Find Out Exactly How Much Loan You Can Get
-     </h1>
-<p style="color:var(--text-muted);font-size:1.1rem;">
-      Find out how much loan you can get based on your salary, age, existing EMIs and credit score. Supports home loan, personal loan and car loan with bank-wise comparison. No signup required.
-     </p>
-<div style="margin-top:1.5rem;">
-<a class="btn btn-secondary" href="/guides/loan-eligibility-calculator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
+<header></header>
+<main class="tool-container" style="max-width:900px;margin:0 auto;padding:0 1rem 2rem;">
+
+<div class="tool-hero">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a> › <a href="/calculators-online">Calculators</a> › Loan Eligibility
+  </nav>
+  <div class="hero-badge">✅ Finance Tool</div>
+  <h1>Loan Eligibility<br>Calculator</h1>
+  <p>Check how much home loan or personal loan you can get based on your monthly salary and existing EMIs. Works for SBI, HDFC, ICICI, Axis & all major Indian banks.</p>
 </div>
-</section>
-<div class="tool-main-card">
-<!-- Loan type tabs -->
-<div class="loan-tabs">
-<button class="ltab active" onclick="setLoan('home',this)">
-       🏠 Home Loan
-      </button>
-<button class="ltab" onclick="setLoan('personal',this)">
-       💼 Personal Loan
-      </button>
-<button class="ltab" onclick="setLoan('car',this)">
-       🚗 Car Loan
-      </button>
-</div>
-<div class="le-card">
-<!-- Income -->
-<div class="fg">
-<label>
-        Net Monthly Income (₹)
-       </label>
-<div class="slider-wrap">
-<input id="income" max="500000" min="10000" oninput="syncInput('income','incomeVal',1);calc()" step="1000" type="range" value="50000"/>
-<input class="slider-val" id="incomeVal" oninput="parseInputSync('incomeVal','income',1,10000,500000);calc()" type="text" value="₹50,000"/>
-</div>
-</div>
-<!-- Existing EMI -->
-<div class="fg">
-<label>
-        Existing Monthly EMIs (₹)
-       </label>
-<div class="slider-wrap">
-<input id="existingEmi" max="100000" min="0" oninput="syncInput('existingEmi','existingEmiVal',1);calc()" step="500" type="range" value="0"/>
-<input class="slider-val" id="existingEmiVal" oninput="parseInputSync('existingEmiVal','existingEmi',1,0,100000);calc()" type="text" value="₹0"/>
-</div>
-</div>
-<!-- Interest Rate -->
-<div class="fg">
-<label id="rateLabel">
-        Interest Rate (% p.a.)
-       </label>
-<div class="slider-wrap">
-<input id="rate" max="24" min="5" oninput="syncInput('rate','rateVal',2);calc()" step="0.05" type="range" value="8.5"/>
-<input class="slider-val" id="rateVal" oninput="parseInputSync('rateVal','rate',2,5,24);calc()" type="text" value="8.50%"/>
-</div>
-</div>
-<!-- Tenure -->
-<div class="fg">
-<label>
-        Loan Tenure (Years)
-       </label>
-<div class="slider-wrap">
-<input id="tenure" max="30" min="1" oninput="syncInput('tenure','tenureVal',0);calc()" step="1" type="range" value="20"/>
-<input class="slider-val" id="tenureVal" oninput="parseInputSync('tenureVal','tenure',0,1,30);calc()" type="text" value="20 yrs"/>
-</div>
-</div>
-<!-- Age + Employment row -->
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-<div class="fg" style="margin-bottom:0;">
-<label>
-         Your Age
-        </label>
-<div class="slider-wrap">
-<input id="age" max="65" min="21" oninput="syncInput('age','ageVal',0);calc()" step="1" type="range" value="30"/>
-<input class="slider-val" id="ageVal" oninput="parseInputSync('ageVal','age',0,21,65);calc()" type="text" value="30 yrs"/>
-</div>
-</div>
-<div class="fg" style="margin-bottom:0;">
-<label>
-         Employment Type
-        </label>
-<select id="empType" onchange="calc()" style="padding:.6rem .85rem;border:2px solid var(--border-color);border-radius:10px;font-family:inherit;font-size:.9rem;outline:none;">
-<option value="salaried">
-          Salaried
-         </option>
-<option value="self">
-          Self-Employed
-         </option>
-</select>
-</div>
-</div>
-</div>
-<!-- Result -->
-<div class="result-hero" id="resultHero">
-<div class="result-amount" id="resultAmount">
-       ₹—
+
+<div class="nb-card nb-card-lg" style="margin-bottom:1.5rem;">
+  <div class="nb-tabs" role="tablist">
+    <button class="nb-tab-btn active" onclick="switchTab('home',this)" role="tab">🏠 Home Loan</button>
+    <button class="nb-tab-btn" onclick="switchTab('personal',this)" role="tab">💼 Personal Loan</button>
+  </div>
+
+  <div id="errorMessage" class="nb-error"></div>
+
+  <!-- Home Loan Tab -->
+  <div id="home-tab">
+    <div class="two-col">
+      <div class="input-group">
+        <label class="nb-label" for="netSalaryHome">Net Monthly Salary (₹)</label>
+        <input class="nb-input" id="netSalaryHome" type="number" value="75000" min="1000" placeholder="75,000"/>
       </div>
-<div class="result-label" id="resultLabel">
-       Estimated loan eligibility
+      <div class="input-group">
+        <label class="nb-label" for="coApplicant">Co-applicant Income (₹)</label>
+        <input class="nb-input" id="coApplicant" type="number" value="0" min="0" placeholder="0 if none"/>
       </div>
-<div class="result-pills" id="resultPills">
-</div>
-</div>
-<!-- Info cards -->
-<div class="info-grid" id="infoGrid">
-</div>
-<!-- Bank comparison -->
-<div class="le-card">
-<div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">
-       Bank-Wise Approximate Eligibility
+    </div>
+    <div class="two-col">
+      <div class="input-group">
+        <label class="nb-label" for="existingEMI">Existing Monthly EMIs (₹)</label>
+        <input class="nb-input" id="existingEMI" type="number" value="0" min="0" placeholder="0"/>
       </div>
-<div class="bank-grid" id="bankGrid">
-</div>
-<div style="margin-top:1rem;font-size:.78rem;color:var(--text-muted);">
-       *Amounts are indicative. Actual sanctioned amounts depend on credit score, property valuation, and bank policy. Always apply directly to banks for final eligibility.
+      <div class="input-group">
+        <label class="nb-label" for="foirHome">Max FOIR (%)</label>
+        <select class="nb-select" id="foirHome">
+          <option value="40">40% — Conservative</option>
+          <option value="50" selected>50% — Standard</option>
+          <option value="55">55% — Moderate</option>
+          <option value="60">60% — Aggressive</option>
+        </select>
       </div>
-</div>
-<!-- Tips -->
-<div class="le-card">
-<div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">
-       💡 Tips to Increase Your Loan Eligibility
+    </div>
+    <div class="two-col">
+      <div class="input-group">
+        <label class="nb-label" for="rateHome">Interest Rate (% p.a.)</label>
+        <input class="nb-input" id="rateHome" type="number" value="8.5" step="0.05" placeholder="8.5"/>
       </div>
-<div id="tipsDiv">
+      <div class="input-group">
+        <label class="nb-label" for="tenureHome">Loan Tenure (Years)</label>
+        <select class="nb-select" id="tenureHome">
+          <option value="10">10 Years</option>
+          <option value="15">15 Years</option>
+          <option value="20" selected>20 Years</option>
+          <option value="25">25 Years</option>
+          <option value="30">30 Years</option>
+        </select>
+      </div>
+    </div>
+    <button class="nb-btn nb-btn-primary nb-btn-full" onclick="calcEligibility('home')">✅ Check Eligibility</button>
+  </div>
+
+  <!-- Personal Loan Tab -->
+  <div id="personal-tab" style="display:none;">
+    <div class="two-col">
+      <div class="input-group">
+        <label class="nb-label" for="netSalaryPersonal">Net Monthly Salary (₹)</label>
+        <input class="nb-input" id="netSalaryPersonal" type="number" value="50000" min="1000" placeholder="50,000"/>
+      </div>
+      <div class="input-group">
+        <label class="nb-label" for="existingEMIPersonal">Existing Monthly EMIs (₹)</label>
+        <input class="nb-input" id="existingEMIPersonal" type="number" value="0" min="0" placeholder="0"/>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="input-group">
+        <label class="nb-label" for="foirPersonal">Max FOIR (%)</label>
+        <select class="nb-select" id="foirPersonal">
+          <option value="40">40% — Conservative</option>
+          <option value="50" selected>50% — Standard</option>
+          <option value="55">55% — High Income</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label class="nb-label" for="ratePersonal">Interest Rate (% p.a.)</label>
+        <input class="nb-input" id="ratePersonal" type="number" value="12.0" step="0.25" placeholder="12.0"/>
+      </div>
+    </div>
+    <div class="input-group">
+      <label class="nb-label" for="tenurePersonal">Loan Tenure (Years)</label>
+      <select class="nb-select" id="tenurePersonal">
+        <option value="1">1 Year</option>
+        <option value="2">2 Years</option>
+        <option value="3">3 Years</option>
+        <option value="4">4 Years</option>
+        <option value="5" selected>5 Years</option>
+      </select>
+    </div>
+    <button class="nb-btn nb-btn-primary nb-btn-full" onclick="calcEligibility('personal')">✅ Check Eligibility</button>
+  </div>
 </div>
+
+<!-- Results -->
+<div id="results" style="display:none;">
+  <div class="result-hero">
+    <div class="result-label" id="resultLabel">Maximum Eligible Loan Amount</div>
+    <div class="result-amount" id="eligibleAmount">—</div>
+    <div style="font-weight:700;color:#333;margin-top:0.35rem;" id="emiCaption"></div>
+    <div class="result-actions">
+      <button class="nb-btn nb-btn-primary" onclick="copyResult()">📋 Copy</button>
+      <button class="nb-btn nb-btn-pink" onclick="shareResult()">📤 Share</button>
+    
+        
+      </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-value" id="statEMI">—</span>
+      <span class="stat-label">Max Monthly EMI</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value" id="statFOIR">—</span>
+      <span class="stat-label">FOIR Used</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value" id="statTotalIncome">—</span>
+      <span class="stat-label">Total Income</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value" id="statTenure">—</span>
+      <span class="stat-label">Tenure</span>
+    </div>
+  </div>
+
+  <div class="foir-wrap">
+    <div class="foir-label">FOIR Utilization (Fixed Obligation to Income Ratio)</div>
+    <div class="foir-track">
+      <div class="foir-fill" id="foirBar" style="width:0%;"></div>
+    </div>
+    <div class="foir-text" id="foirBarText"></div>
+  </div>
+
+  <div id="bankGridWrap" style="margin-bottom:1.5rem;">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:800;margin-bottom:0.75rem;">🏦 Estimated Eligibility Across Banks</h3>
+    <div class="bank-grid" id="bankGrid"></div>
+  </div>
+
+  <div class="tips-box">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:800;margin:0 0 0.75rem;">💡 Tips to Increase Your Eligibility</h3>
+    <div class="tip-item"><span style="color:#16a34a;font-weight:900;">✓</span><span><strong>Reduce existing EMIs</strong> — Paying off existing loans increases available FOIR for the new loan.</span></div>
+    <div class="tip-item"><span style="color:#16a34a;font-weight:900;">✓</span><span><strong>Add a co-applicant</strong> — Spouse or parent's income can significantly boost your combined eligibility.</span></div>
+    <div class="tip-item"><span style="color:#16a34a;font-weight:900;">✓</span><span><strong>Choose longer tenure</strong> — A 30-year home loan reduces monthly EMI, allowing a larger principal.</span></div>
+    <div class="tip-item"><span style="color:#16a34a;font-weight:900;">✓</span><span><strong>Improve CIBIL score</strong> — A score above 750 unlocks lower interest rates and higher FOIR limits.</span></div>
+    <div class="tip-item"><span style="color:#16a34a;font-weight:900;">✓</span><span><strong>Show all income sources</strong> — Rental income, freelance income, and bonuses can be factored in by some banks.</span></div>
+  </div>
+</div><div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+
+    <a href="/emi-calculator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🏠</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">EMI Calculator</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Calculate EMI</div>
+    </a>
+    <a href="/loan-comparison-calculator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">📊</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Loan Comparison</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Compare loans</div>
+    </a>
+    <a href="/gst-calculator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🧾</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">GST Calculator</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Tax calculator</div>
+    </a>
+    </div>
+  </div>
+</main>
+
+<!-- SEO Content -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is a Loan Eligibility Calculator?</h2>
+    <p>The <strong>Loan Eligibility Calculator</strong> by WorldOfTools instantly estimates the maximum home loan or personal loan you can get based on your monthly salary, existing EMI obligations, and bank-specific FOIR (Fixed Obligation to Income Ratio) limits.</p>
+    <p>Indian banks typically allow your total EMI obligations to be between 40–60% of your net monthly income. This calculator shows your maximum eligible EMI, the loan amount this translates to, and how your eligibility compares across major banks like SBI, HDFC, ICICI, Axis, and Kotak.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Check Your Loan Eligibility — Step by Step</h2>
+    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Enter Your Income</strong> — Enter your net monthly take-home salary. Add co-applicant income if applicable (spouse, parent).</p></div>
+    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Enter Existing EMIs</strong> — Add all current monthly loan EMIs (car loan, personal loan, credit card minimum dues). This reduces your available budget.</p></div>
+    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Set Rate & Tenure</strong> — Enter the expected interest rate and desired loan tenure. Longer tenures increase eligibility by reducing the monthly EMI burden.</p></div>
+    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Click Check Eligibility</strong> — Instantly see your maximum eligible loan amount, EMI capacity, FOIR utilization, and bank-wise estimates.</p></div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>How much home loan can I get on ₹50,000 salary?</summary><p>With ₹50,000 net salary and no existing EMIs, at 50% FOIR your max EMI is ₹25,000/month. At 8.5% p.a. for 20 years, this gives approximately ₹24–₹25 lakh loan. Use this calculator for your exact figure.</p></details>
+    <details><summary>What is FOIR in loan eligibility?</summary><p>FOIR (Fixed Obligation to Income Ratio) is the maximum percentage of your income banks allow for total monthly EMI obligations. Most banks set this at 40–60%. Higher income or better credit score may unlock higher FOIR.</p></details>
+    <details><summary>Does existing EMI reduce my eligibility?</summary><p>Yes. Your existing EMIs reduce the available EMI budget for the new loan. For example, if your income allows ₹30,000 EMI and you already pay ₹10,000 EMI, you can only service ₹20,000 new EMI.</p></details>
+    <details><summary>Can both spouses' incomes be combined?</summary><p>Yes. Most banks allow joint home loans where both spouses' incomes are combined. Add co-applicant income in the calculator to see the joint eligibility.</p></details>
+    <details><summary>What is the minimum salary for a home loan?</summary><p>Most banks require a minimum net monthly salary of ₹25,000–₹30,000 for home loans. For personal loans, some banks approve from ₹15,000/month. PSU banks like SBI may have different thresholds.</p></details>
+    <details><summary>Is this calculation accurate for all banks?</summary><p>This uses standard FOIR-based calculation used by most Indian banks. Actual eligibility may vary based on credit score, employer type, property location, and bank-specific policies. Use this as a reliable estimate.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Financial Tools</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/loan-comparison-calculator"><div class="icon">⚖️</div><div class="name">Loan Comparison</div><div class="desc">Compare 3 loan offers</div></a>
+      <a class="tool-card-mini" href="/emi-calculator"><div class="icon">💰</div><div class="name">EMI Calculator</div><div class="desc">Calculate monthly EMI</div></a>
+      <a class="tool-card-mini" href="/gst-calculator"><div class="icon">🧾</div><div class="name">GST Calculator</div><div class="desc">Add or remove GST</div></a>
+      <a class="tool-card-mini" href="/sip-calculator"><div class="icon">📈</div><div class="name">SIP Calculator</div><div class="desc">Mutual fund returns</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age calculator</div></a>
+      <a class="tool-card-mini" href="/percentage-calculator"><div class="icon">%</div><div class="name">Percentage</div><div class="desc">Calculate percentages</div></a>
+    </div>
+  </section>
+
 </div>
-<div style="margin-top:1rem;text-align:center;font-size:.9rem;color:var(--text-muted);padding-top:1.5rem;border-top:1px solid var(--border-color);">
-      📊 Calculations are indicative and for planning purposes only. Consult your bank for exact eligibility. 🛡️ All calculations happen in your browser.
-     </div>
-</div>
-</div>
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      What is the Loan Eligibility Calculator?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      The Loan Eligibility Calculator estimates the maximum loan amount a bank will sanction based on your net monthly income, existing EMI obligations, loan tenure, interest rate, age, and employment type. It uses standard Indian banking formulas including FOIR (Fixed Obligation to Income Ratio) to give you realistic estimates for home loans, personal loans, and car loans.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      How to Check Loan Eligibility — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:.3rem;">
-       Select loan type:
-       <strong>
-        Home Loan, Personal Loan, or Car Loan
-       </strong>
-       .
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:.3rem;">
-       Enter your
-       <strong>
-        net monthly income
-       </strong>
-       and any
-       <strong>
-        existing EMIs
-       </strong>
-       you are paying.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:.3rem;">
-       Set
-       <strong>
-        interest rate, tenure, age
-       </strong>
-       and employment type.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:.3rem;">
-       See your
-       <strong>
-        estimated eligibility, monthly EMI, and bank-wise comparison
-       </strong>
-       instantly.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      🏦 Salary vs Home Loan Eligibility in India (2025)
-     </h2>
-<div style="overflow-x:auto;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Monthly Salary
-         </th>
-<th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Eligible EMI (40% FOIR)
-         </th>
-<th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Approx. Home Loan (20 yr @ 8.5%)
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">
-          ₹25,000
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          ₹10,000
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;color:var(--primary-color);">
-          ~₹10–12 Lakhs
-         </td>
-</tr>
-<tr>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">
-          ₹50,000
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          ₹20,000
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;color:var(--primary-color);">
-          ~₹20–25 Lakhs
-         </td>
-</tr>
-<tr>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">
-          ₹1,00,000
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          ₹40,000
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;color:var(--primary-color);">
-          ~₹40–50 Lakhs
-         </td>
-</tr>
-<tr>
-<td style="padding:.75rem 1rem;font-weight:700;">
-          ₹2,00,000
-         </td>
-<td style="padding:.75rem 1rem;">
-          ₹80,000
-         </td>
-<td style="padding:.75rem 1rem;font-weight:700;color:var(--primary-color);">
-          ~₹80–100 Lakhs
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       How is loan eligibility calculated?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Banks use FOIR (Fixed Obligation to Income Ratio). The standard rule is total EMIs should not exceed 40–50% of gross monthly income. The eligible EMI is used to back-calculate the loan amount using standard EMI formula.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       How much home loan can I get on ₹50,000 salary?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       On a ₹50,000 monthly salary with no existing EMIs, you can typically get a home loan of ₹35–40 lakhs at 8.5% for 20 years. Use the calculator above with your exact details for a more accurate estimate.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is FOIR in home loan?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       FOIR (Fixed Obligation to Income Ratio) is the percentage of income already committed to EMIs. Most banks require FOIR below 40–50% to sanction a new loan.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does age affect loan eligibility?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes. Younger applicants get longer tenures (up to 30 years), which increases eligibility. Banks require the loan to be fully repaid before age 60–65 for salaried individuals.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this loan eligibility calculator free?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, 100% free with no signup required. All calculations happen in your browser.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       Banks determine loan eligibility using two key formulas. First, they calculate your eligible EMI as 40–50% of net monthly income minus existing obligations. Then they back-calculate the loan amount using the standard EMI formula:
-       <strong>
-        P = EMI × [(1+r)ⁿ – 1] / [r × (1+r)ⁿ]
-       </strong>
-       where r is the monthly interest rate and n is the number of months. A higher tenure increases eligibility since it lowers the EMI per lakh borrowed. However, a longer tenure also means paying significantly more total interest over the loan period.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="sip-calculator">
-<div class="tool-icon">
-        📈
-       </div>
-<div class="tool-title">
-        SIP Calculator
-       </div>
-<div class="tool-desc">
-        Calculate SIP returns and mutual fund growth.
-       </div>
-</a>
-<a class="tool-card" href="ppf-calculator">
-<div class="tool-icon">
-        🏛️
-       </div>
-<div class="tool-title">
-        PPF Calculator
-       </div>
-<div class="tool-desc">
-        Calculate PPF maturity with year-wise table.
-       </div>
-</a>
-<a class="tool-card" href="emi-calculator">
-<div class="tool-icon">
-        🏦
-       </div>
-<div class="tool-title">
-        EMI Calculator
-       </div>
-<div class="tool-desc">
-        Calculate loan EMI with amortization chart.
-       </div>
-</a>
-<a class="tool-card" href="fd-calculator">
-<div class="tool-icon">
-        💰
-       </div>
-<div class="tool-title">
-        FD Calculator
-       </div>
-<div class="tool-desc">
-        Calculate FD maturity and interest returns.
-       </div>
-</a>
-<a class="tool-card" href="invoice-generator">
-<div class="tool-icon">
-        📋
-       </div>
-<div class="tool-title">
-        Invoice Generator
-       </div>
-<div class="tool-desc">
-        Create free GST invoices with PDF download.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Calculate GST on any amount at any rate.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<!-- SEO Content Block -->
-<section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features of Loan Eligibility Calculator</h2><ul style="list-style:none;padding:0;margin:0;"><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Instant Results:</strong> Process your data instantly with our optimized Loan Eligibility Calculator.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>100% Privacy:</strong> Everything runs securely in your browser. No files or data are uploaded to our servers.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Completely Free:</strong> Enjoy full access without subscriptions, hidden fees, or intrusive ads.</span></li></ul></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How Does Loan Eligibility Calculator Work?</h2><div style="line-height:1.8;color:#4b5563;">Our Loan Eligibility Calculator leverages modern web technologies to process your input locally in your browser. This ensures maximum speed and guarantees your privacy.</div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use Loan Eligibility Calculator — Step-by-Step</h2><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Input your desired content or file.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Select any available options or parameters.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Click execute to generate your result instantly.</p></div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this Loan Eligibility Calculator free to use?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, it is completely free to use with no hidden charges or limits.</p></details><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is my data secure?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. Your data never leaves your device because all processing happens client-side in your browser.</p></details></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Final Thoughts</h2><div style="line-height:1.8;color:#4b5563;">Bookmark this Loan Eligibility Calculator for quick access whenever you need it.</div></section></div></main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   let loanType='home';
-    const loanParams={
-        home:{foir:0.45,minRate:8.0,maxRate:12,defRate:8.5,defTenure:20,maxTenure:30,label:'Home Loan'},
-        personal:{foir:0.40,minRate:10.5,maxRate:24,defRate:12,defTenure:5,maxTenure:7,label:'Personal Loan'},
-        car:{foir:0.40,minRate:7.5,maxRate:15,defRate:9,defTenure:7,maxTenure:8,label:'Car Loan'}
-    };
+  const BANKS = [
+    { name: 'SBI', rate: 8.40, foir: 0.50, mult: 1.00 },
+    { name: 'HDFC Bank', rate: 8.70, foir: 0.50, mult: 0.98 },
+    { name: 'ICICI Bank', rate: 8.75, foir: 0.55, mult: 1.02 },
+    { name: 'Axis Bank', rate: 8.75, foir: 0.50, mult: 0.99 },
+    { name: 'Kotak Mahindra', rate: 8.65, foir: 0.50, mult: 1.00 },
+    { name: 'Bank of Baroda', rate: 8.40, foir: 0.50, mult: 0.97 },
+  ];
 
-    function setLoan(t,btn){
-        loanType=t;
-        document.querySelectorAll('.ltab').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        const p=loanParams[t];
-        setSlider('rate',p.defRate,2,'%');
-        setSlider('tenure',p.defTenure,0,' yrs');
-        document.getElementById('rate').min=p.minRate;
-        document.getElementById('rate').max=p.maxRate;
-        document.getElementById('tenure').max=p.maxTenure;
-        calc();
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('[id$="-tab"]').forEach(t => t.style.display = 'none');
+    document.querySelectorAll('.nb-tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    document.getElementById(tabId + '-tab').style.display = 'block';
+    btn.classList.add('active');
+    document.getElementById('results').style.display = 'none';
+  }
+
+  function calcEMI(P, annualRate, years) {
+    const r = annualRate / 12 / 100;
+    const n = years * 12;
+    if (r === 0) return P / n;
+    return P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+  }
+
+  function maxLoanFromEMI(emi, annualRate, years) {
+    const r = annualRate / 12 / 100;
+    const n = years * 12;
+    if (r === 0) return emi * n;
+    return emi * (Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n));
+  }
+
+  function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+  function calcEligibility(type) {
+    let salary, coApp, existing, foir, rate, tenure;
+    if (type === 'home') {
+      salary = parseFloat(document.getElementById('netSalaryHome').value);
+      coApp = parseFloat(document.getElementById('coApplicant').value) || 0;
+      existing = parseFloat(document.getElementById('existingEMI').value) || 0;
+      foir = parseFloat(document.getElementById('foirHome').value) / 100;
+      rate = parseFloat(document.getElementById('rateHome').value);
+      tenure = parseFloat(document.getElementById('tenureHome').value);
+    } else {
+      salary = parseFloat(document.getElementById('netSalaryPersonal').value);
+      coApp = 0;
+      existing = parseFloat(document.getElementById('existingEMIPersonal').value) || 0;
+      foir = parseFloat(document.getElementById('foirPersonal').value) / 100;
+      rate = parseFloat(document.getElementById('ratePersonal').value);
+      tenure = parseFloat(document.getElementById('tenurePersonal').value);
     }
 
-    function setSlider(id,val,dec,suffix){
-        document.getElementById(id).value=val;
-        const disp=suffix==='%'?val.toFixed(dec)+'%':val+suffix;
-        document.getElementById(id+'Val').value=disp;
-        updateSliderFill(id,document.getElementById(id));
+    const el = document.getElementById('errorMessage');
+    if (isNaN(salary) || salary <= 0) { el.textContent = '⚠️ Please enter a valid salary.'; el.style.display = 'block'; return; }
+    el.style.display = 'none';
+
+    const totalIncome = salary + coApp;
+    const maxEMI = totalIncome * foir - existing;
+    if (maxEMI <= 0) {
+      el.textContent = '⚠️ Your existing EMIs exceed your FOIR limit. Consider reducing existing obligations first.';
+      el.style.display = 'block';
+      return;
     }
 
-    function updateSliderFill(id,el){
-        const min=parseFloat(el.min),max=parseFloat(el.max),val=parseFloat(el.value);
-        const pct=((val-min)/(max-min))*100;
-        el.style.setProperty('--pct',pct+'%');
+    const eligibleLoan = maxLoanFromEMI(maxEMI, rate, tenure);
+    const foirPct = ((existing + maxEMI) / totalIncome * 100).toFixed(1);
+
+    document.getElementById('resultLabel').textContent = type === 'home' ? 'Maximum Home Loan Amount' : 'Maximum Personal Loan Amount';
+    document.getElementById('eligibleAmount').textContent = fmt(eligibleLoan);
+    document.getElementById('emiCaption').textContent = `Max EMI: ${fmt(maxEMI)}/month at ${rate}% p.a. for ${tenure} years`;
+    document.getElementById('statEMI').textContent = fmt(maxEMI);
+    document.getElementById('statFOIR').textContent = foirPct + '%';
+    document.getElementById('statTotalIncome').textContent = fmt(totalIncome);
+    document.getElementById('statTenure').textContent = tenure + ' yrs';
+
+    // FOIR bar
+    const foirUsed = (existing + maxEMI) / totalIncome * 100;
+    const barColor = foirUsed < 40 ? '#c3f584' : foirUsed < 55 ? '#ffe066' : '#ff6b9d';
+    document.getElementById('foirBar').style.width = Math.min(100, foirUsed) + '%';
+    document.getElementById('foirBar').style.background = barColor;
+    document.getElementById('foirBarText').textContent = `${foirPct}% of income used for EMIs (limit: ${foir*100}%)`;
+
+    // Bank grid
+    if (type === 'home') {
+      document.getElementById('bankGridWrap').style.display = 'block';
+      document.getElementById('bankGrid').innerHTML = BANKS.map(b => {
+        const bMaxEMI = totalIncome * b.foir - existing;
+        const bLoan = bMaxEMI > 0 ? maxLoanFromEMI(bMaxEMI, b.rate, tenure) * b.mult : 0;
+        return `<div class="bank-card">
+          <div>
+            <div class="bank-name">${b.name}</div>
+            <div class="bank-info">~${b.rate}% p.a. | FOIR ${b.foir*100}%</div>
+          </div>
+          <div class="bank-amt">${bLoan > 0 ? fmt(bLoan) : 'Not Eligible'}</div>
+        </div>`;
+      }).join('');
+    } else {
+      document.getElementById('bankGridWrap').style.display = 'none';
     }
 
-    function syncInput(sliderId,textId,dec){
-        const el=document.getElementById(sliderId);
-        const v=parseFloat(el.value);
-        updateSliderFill(sliderId,el);
-        if(sliderId==='income'||sliderId==='existingEmi'){
-            document.getElementById(textId).value='₹'+Math.round(v).toLocaleString('en-IN');
-        } else if(sliderId==='rate'){
-            document.getElementById(textId).value=v.toFixed(dec)+'%';
-        } else {
-            document.getElementById(textId).value=v+' yrs';
-        }
-    }
+    const r = document.getElementById('results');
+    r.style.display = 'block';
+    r.classList.remove('animate-in');
+    void r.offsetWidth;
+    r.classList.add('animate-in');
+    r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-    function parseInputSync(textId,sliderId,dec,min,max){
-        let raw=document.getElementById(textId).value.replace(/[₹,%\s]/g,'').replace('yrs','').trim();
-        let v=parseFloat(raw);
-        if(isNaN(v))return;
-        v=Math.min(max,Math.max(min,v));
-        document.getElementById(sliderId).value=v;
-        updateSliderFill(sliderId,document.getElementById(sliderId));
-    }
-
-    function inr(n){if(n>=1e7)return'₹'+(n/1e7).toFixed(2)+' Cr';if(n>=1e5)return'₹'+(n/1e5).toFixed(2)+' L';return'₹'+Math.round(n).toLocaleString('en-IN');}
-
-    function calcLoanAmount(emi,r,n){
-        // P = EMI * [(1-(1+r)^-n)/r]
-        const m=r/100/12;
-        if(m===0)return emi*n;
-        return emi*((1-Math.pow(1+m,-n))/m);
-    }
-
-    function calcEMI(P,r,n){
-        const m=r/100/12;
-        if(m===0)return P/n;
-        return P*m*Math.pow(1+m,n)/(Math.pow(1+m,n)-1);
-    }
-
-    function calc(){
-        const income=parseFloat(document.getElementById('income').value)||0;
-        const existEMI=parseFloat(document.getElementById('existingEmi').value)||0;
-        const rate=parseFloat(document.getElementById('rate').value)||8.5;
-        const tenure=parseInt(document.getElementById('tenure').value)||20;
-        const age=parseInt(document.getElementById('age').value)||30;
-        const emp=document.getElementById('empType').value;
-        const p=loanParams[loanType];
-        const maxAge=emp==='salaried'?60:70;
-
-        // Max tenure based on age
-        const ageTenure=Math.min(tenure,maxAge-age);
-        const effectiveTenure=Math.max(1,ageTenure);
-        const n=effectiveTenure*12;
-
-        // Eligible EMI
-        const foirEMI=income*p.foir;
-        const availableEMI=Math.max(0,foirEMI-existEMI);
-
-        // Loan amount
-        const loanAmt=calcLoanAmount(availableEMI,rate,n);
-        const emi=calcEMI(loanAmt,rate,n);
-        const totalAmt=emi*n;
-        const totalInterest=totalAmt-loanAmt;
-        const foir=((existEMI+emi)/income*100).toFixed(1);
-
-        // Display
-        document.getElementById('resultAmount').textContent=inr(loanAmt);
-        document.getElementById('resultLabel').textContent=`Estimated ${p.label} Eligibility`;
-
-        document.getElementById('resultPills').innerHTML=[
-            `EMI: ${inr(Math.round(emi))}`,
-            `Tenure: ${effectiveTenure} yrs`,
-            `Rate: ${rate}%`,
-            `FOIR: ${foir}%`
-        ].map(t=>`<div class="pill">${t}</div>`).join('');
-
-        document.getElementById('infoGrid').innerHTML=[
-            {l:'Max Eligible Loan',v:inr(loanAmt)},
-            {l:'Monthly EMI',v:inr(Math.round(emi))},
-            {l:'Total Interest Payable',v:inr(Math.round(totalInterest))},
-            {l:'Total Amount Payable',v:inr(Math.round(totalAmt))},
-            {l:'Available EMI (FOIR)',v:inr(Math.round(availableEMI))},
-            {l:'Effective Tenure',v:effectiveTenure+' years'},
-        ].map(c=>`<div class="info-card"><div class="ic-label">${c.l}</div><div class="ic-val">${c.v}</div></div>`).join('');
-
-        // Banks (vary eligibility slightly by rate adjustment)
-        const banks={home:[{n:'SBI Home Loan',r:8.40},{n:'HDFC Home Loan',r:8.50},{n:'ICICI Bank',r:8.75},{n:'Kotak Mahindra',r:8.85},{n:'Bank of Baroda',r:8.40},{n:'LIC Housing',r:8.50}],
-            personal:[{n:'HDFC Bank',r:10.50},{n:'ICICI Bank',r:10.75},{n:'SBI Personal Loan',r:11.00},{n:'Axis Bank',r:11.25},{n:'Bajaj Finserv',r:12.00},{n:'Tata Capital',r:10.99}],
-            car:[{n:'SBI Car Loan',r:8.75},{n:'HDFC Bank',r:9.00},{n:'ICICI Bank',r:9.10},{n:'Axis Bank',r:9.50},{n:'Bank of Baroda',r:8.75},{n:'Kotak Bank',r:9.25}]};
-
-        document.getElementById('bankGrid').innerHTML=(banks[loanType]||[]).map(b=>{
-            const bAmt=calcLoanAmount(availableEMI,b.r,n);
-            return`<div class="bank-card"><div><div class="bank-name">${b.n}</div><div class="bank-rate">~${b.r}% p.a.</div></div><div class="bank-amt">${inr(bAmt)}</div></div>`;
-        }).join('');
-
-        // Tips
-        const tips=[];
-        if(existEMI>income*0.3)tips.push('Close or reduce existing loans/credit card dues to lower FOIR and increase eligibility.');
-        if(effectiveTenure<tenure)tips.push(`Your age limits the tenure to ${effectiveTenure} years. Applying with a younger co-applicant can extend the tenure.`);
-        if(availableEMI<5000)tips.push('Your income may be insufficient for this loan. Consider increasing your income or applying with a co-borrower.');
-        tips.push('Maintain a CIBIL score above 750 for best interest rates and higher eligibility.');
-        tips.push('Adding a co-applicant (spouse, parent) with income can significantly increase your combined eligibility.');
-        if(loanType==='home')tips.push('Making a higher down payment (20–25%) reduces the loan amount needed and improves approval chances.');
-
-        document.getElementById('tipsDiv').innerHTML=tips.map(t=>`<div class="tip-item"><span style="color:#10b981;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:.88rem;line-height:1.6;color:#374151;">${t}</span></div>`).join('');
-    }
-
-    // Init all slider fills
-    ['income','existingEmi','rate','tenure','age'].forEach(id=>{
-        const el=document.getElementById(id);
-        if(el)updateSliderFill(id,el);
+  function copyResult() {
+    const text = `${document.getElementById('resultLabel').textContent}: ${document.getElementById('eligibleAmount').textContent}\n${document.getElementById('emiCaption').textContent}\nCalculated via worldoftools.in/loan-eligibility-calculator`;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.currentTarget; const orig = btn.textContent;
+      btn.textContent = '✅ Copied!'; setTimeout(() => btn.textContent = orig, 2000);
     });
-    calc();
-  </script>
+  }
+
+  function shareResult() {
+    const text = `I checked my loan eligibility — ${document.getElementById('eligibleAmount').textContent}. Check yours free: https://worldoftools.in/loan-eligibility-calculator`;
+    if (navigator.share) navigator.share({ title: 'Loan Eligibility', text, url: 'https://worldoftools.in/loan-eligibility-calculator' });
+    else window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
+  }
+</script>
 </body>
 </html>

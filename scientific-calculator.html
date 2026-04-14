@@ -1,778 +1,570 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Scientific Calculator Online — Full Function, No App Needed | WorldOfTools
-  </title>
-<meta content="Advanced scientific calculator with trig, logarithms, exponents, roots &amp; factorial. Works on mobile &amp; desktop. No download — use instantly online." name="description"/>
-<meta content="scientific calculator online no download, how to use scientific calculator online, sin cos tan calculator online, logarithm calculator online free, scientific notation calculator, exponent calculator online, scientific calculator with memory, scientific calculator online, advanced calculator online, scientific calculator sin cos tan, online scientific calculator no download" name="keywords"/>
+<title>Scientific Calculator Free Online — Sin, Cos, Tan, Log, Roots & More | WorldOfTools</title>
+<meta content="Free online scientific calculator with trigonometry (sin, cos, tan), logarithms, exponents, square roots, factorial, memory functions & history. Works on mobile & desktop instantly — no download, no login." name="description"/>
+<meta content="scientific calculator online, sin cos tan calculator, logarithm calculator, exponent calculator, square root calculator, scientific notation calculator, online scientific calculator no download, advanced math calculator, trig functions calculator, factorial calculator, scientific calculator with memory, scientific calculator history" name="keywords"/>
 <link href="https://worldoftools.in/scientific-calculator" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
-<style>
-   .calc-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .calc-btn {
-            padding: 1.25rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .calc-btn:hover {
-            background: rgba(79, 70, 229, 0.05);
-            border-color: var(--primary-color);
-        }
-
-        .calc-btn.primary {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-        }
-
-        .calc-btn.primary:hover {
-            background: #4338ca;
-        }
-
-        .calc-btn.scientific {
-            background: #f8fafc;
-            color: #64748b;
-        }
-
-        .calc-display {
-            width: 100%;
-            padding: 1.5rem;
-            font-size: 2rem;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: right;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 10px;
-            background: #f1f5f9;
-        }
-
-        .calc-history {
-            text-align: right;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            min-height: 1.5rem;
-            margin-bottom: 5px;
-        }
-  </style>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/scientific-calculator" property="og:url"/>
+<meta content="Scientific Calculator Online — Sin, Cos, Log, Roots & More | WorldOfTools" property="og:title"/>
+<meta content="Free advanced scientific calculator with trig, logarithms, exponents and more. No download needed." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Scientific Calculator Online — Sin, Cos, Log, Roots & More | WorldOfTools" name="twitter:title"/>
+<meta content="Free advanced scientific calculator. Works instantly on mobile & desktop." name="twitter:description"/>
+<meta name="theme-color" content="#ffe066"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Scientific Calculator",
-      "item": "https://worldoftools.in/scientific-calculator"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Calculators","item":"https://worldoftools.in/calculators-online"},
+    {"@type":"ListItem","position":3,"name":"Scientific Calculator","item":"https://worldoftools.in/scientific-calculator"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is sin, cos, tan in a scientific calculator?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Trigonometric functions: sin = opposite/hypotenuse, cos = adjacent/hypotenuse, tan = opposite/adjacent. Used in geometry, physics, and engineering."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I calculate log base 10?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Press `log` and enter your number. Example: log(1000) = 3 (because 10\u00b3 = 1000)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between `ln` and `log`?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "`log` is logarithm base 10. `ln` is the natural logarithm (base e \u2248 2.71828). Both are available on this calculator."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I calculate factorial (n!)?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Enter the number and press `n!`. Example: 5! = 5\u00d74\u00d73\u00d72\u00d71 = 120."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this for physics problems?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 it handles the calculations needed for kinematics, vectors, wave equations, and other physics formulas requiring trigonometry and exponents."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Scientific Calculator",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"UtilitiesApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"2109","reviewCount":"2319"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do I calculate sin, cos, tan online?","acceptedAnswer":{"@type":"Answer","text":"Use our free scientific calculator — enter the angle in degrees or radians and press sin, cos, or tan. Toggle between DEG and RAD mode using the mode button."}},
+    {"@type":"Question","name":"What is the difference between log and ln?","acceptedAnswer":{"@type":"Answer","text":"log (log base 10) computes the common logarithm, while ln computes the natural logarithm (base e ≈ 2.718). Use the log or ln buttons on this calculator."}},
+    {"@type":"Question","name":"How do I use scientific notation in a calculator?","acceptedAnswer":{"@type":"Answer","text":"Enter the number normally and the result will automatically display in scientific notation when very large or very small (e.g., 1.5e+20). You can also enter numbers like 1.5E20."}},
+    {"@type":"Question","name":"What does M+ and M- do on a calculator?","acceptedAnswer":{"@type":"Answer","text":"M+ adds the current display value to memory. M- subtracts it from memory. MR recalls the stored memory value. MC clears memory. This lets you save intermediate results during complex calculations."}},
+    {"@type":"Question","name":"Is my calculation data saved or shared?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run entirely in your browser using JavaScript. Nothing is sent to a server, stored, or tracked."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Scientific Calculator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-purple: #d8b4fe;
+    --nb-black: #000;
+    --nb-white: #fff;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px;
+    --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/scientific-calculator" property="og:url"/><meta content="
-   Scientific Calculator Online — Full Function, No App Needed | WorldOfTools
-  " property="og:title"/><meta content="Advanced scientific calculator with trig, logarithms, exponents, roots &amp; factorial. Works on mobile &amp; desktop. No download — use instantly online." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/scientific-calculator" name="twitter:url"/><meta content="
-   Scientific Calculator Online — Full Function, No App Needed | WorldOfTools
-  " name="twitter:title"/><meta content="Advanced scientific calculator with trig, logarithms, exponents, roots &amp; factorial. Works on mobile &amp; desktop. No download — use instantly online." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+
+  .nb-card { background:#fff; border:var(--nb-border); border-radius:var(--nb-radius); box-shadow:var(--nb-shadow); padding:1.5rem; }
+  .nb-card-lg { padding:2rem; box-shadow:var(--nb-shadow-lg); }
+
+  .tool-hero { padding:2rem 0 1.5rem; }
+  .hero-badge { display:inline-flex;align-items:center;gap:0.5rem; background:var(--nb-mint);border:var(--nb-border);border-radius:99px; padding:0.35rem 1rem;font-size:0.78rem;font-weight:800; text-transform:uppercase;letter-spacing:0.08em;box-shadow:3px 3px 0 #000; margin-bottom:1rem; }
+  .tool-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:800; letter-spacing:-0.01em;line-height:1.1;margin:0 0 0.75rem; }
+  .tool-hero p { color:#555;font-size:1.05rem;margin:0 0 1rem;line-height:1.6; }
+  .breadcrumb { font-size:0.85rem;color:#666;margin-bottom:1rem;font-weight:600; }
+  .breadcrumb a { color:#4f46e5;text-decoration:none; }
+
+  /* ── CALCULATOR DISPLAY ── */
+  .calc-display-wrap {
+    background:#000; border-radius:16px; padding:1.25rem 1.25rem 1rem;
+    margin-bottom:1rem; border:var(--nb-border); box-shadow:inset 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .calc-expression {
+    color:#888; font-family:'Space Grotesk',monospace; font-size:0.9rem;
+    text-align:right; min-height:1.4em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    margin-bottom:0.3rem;
+  }
+  .calc-main-display {
+    color:#ffe066; font-family:'Syne',sans-serif; font-size:clamp(1.8rem,6vw,2.8rem);
+    font-weight:900; text-align:right; letter-spacing:-0.02em;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-height:1.2em;
+  }
+  .calc-meta-row {
+    display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem;
+  }
+  .calc-mode-badge {
+    background:var(--nb-yellow); color:#000; border:2px solid #ffe066; border-radius:6px;
+    padding:0.15rem 0.5rem; font-size:0.72rem; font-weight:900; letter-spacing:0.08em;
+    cursor:pointer; transition:all 0.15s;
+  }
+  .calc-mode-badge:hover { background:#ffd633; }
+  .calc-mem-indicator { color:#a3bffa; font-size:0.75rem; font-weight:700; opacity:0; transition:opacity 0.3s; }
+  .calc-mem-indicator.visible { opacity:1; }
+
+  /* ── BUTTON GRID ── */
+  .calc-grid {
+    display:grid; gap:8px;
+    grid-template-columns:repeat(5,1fr);
+  }
+  @media(max-width:480px) {
+    .calc-grid { gap:6px; }
+  }
+
+  .cb {
+    padding:0; height:56px; border:var(--nb-border); border-radius:12px;
+    font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:800;
+    cursor:pointer; transition:transform 0.1s,box-shadow 0.1s,background 0.1s;
+    box-shadow:3px 3px 0 #000; display:flex; align-items:center; justify-content:center;
+    text-align:center; line-height:1.2; position:relative; user-select:none;
+  }
+  @media(max-width:380px) { .cb { height:48px; font-size:0.8rem; border-radius:10px; } }
+  .cb:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 #000; }
+  .cb:active { transform:translate(2px,2px); box-shadow:1px 1px 0 #000; }
+
+  .cb-num   { background:#fff; color:#000; }
+  .cb-op    { background:var(--nb-blue); color:#000; }
+  .cb-sci   { background:#f0f0ff; color:#4f46e5; font-size:0.82rem; }
+  .cb-eq    { background:var(--nb-yellow); color:#000; font-size:1.3rem; }
+  .cb-clear { background:#ffe0e0; color:#c00; }
+  .cb-back  { background:var(--nb-orange); color:#000; }
+  .cb-mem   { background:var(--nb-purple); color:#000; font-size:0.8rem; }
+  .cb-const { background:var(--nb-lime); color:#1a3a00; font-size:0.82rem; }
+  .cb-zero  { grid-column:span 2; }
+  .cb-eq-lg { grid-column:span 1; }
+
+  /* ── HISTORY ── */
+  .history-wrap {
+    background:#fff; border:var(--nb-border); border-radius:16px;
+    box-shadow:3px 3px 0 #000; overflow:hidden; margin-top:1rem;
+  }
+  .history-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:0.85rem 1.25rem; border-bottom:2px solid #000;
+    background:var(--nb-yellow);
+  }
+  .history-header span { font-weight:900; font-size:0.9rem; }
+  .history-clear-btn {
+    background:#fff; border:2px solid #000; border-radius:8px;
+    padding:0.2rem 0.65rem; font-size:0.78rem; font-weight:800;
+    cursor:pointer; box-shadow:2px 2px 0 #000; font-family:inherit;
+  }
+  .history-clear-btn:hover { background:#ffe0e0; }
+  .history-list { max-height:200px; overflow-y:auto; }
+  .history-item {
+    padding:0.65rem 1.25rem; border-bottom:1px solid #f0f0f0;
+    display:flex; justify-content:space-between; align-items:center;
+    cursor:pointer; transition:background 0.1s; font-size:0.88rem;
+  }
+  .history-item:hover { background:#f9f9ff; }
+  .history-item:last-child { border-bottom:none; }
+  .history-expr { color:#666; font-weight:600; flex:1; text-overflow:ellipsis; overflow:hidden; white-space:nowrap; }
+  .history-res { color:#4f46e5; font-weight:900; margin-left:0.75rem; flex-shrink:0; }
+  .history-empty { padding:1.5rem; text-align:center; color:#aaa; font-size:0.88rem; font-weight:600; }
+
+  /* ── SEO ── */
+  .seo-section { max-width:900px; margin:3rem auto; padding:0 1rem; }
+  .seo-section h2 { font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;margin-bottom:1rem;letter-spacing:-0.02em; }
+  .seo-section p { line-height:1.8;color:#444;margin-bottom:1rem; }
+  .step-item { display:flex;align-items:flex-start;gap:1rem;background:#f9f9ff; border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.6rem;box-shadow:3px 3px 0 #000; }
+  .step-num { min-width:32px;height:32px;background:var(--nb-yellow);border:2px solid #000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.9rem;flex-shrink:0; }
+  details { border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.6rem;background:#fff;box-shadow:3px 3px 0 #000; }
+  summary { font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center; }
+  summary::after { content:'+';font-size:1.25rem;font-weight:900;color:#4f46e5; }
+  details[open] summary::after { content:'−'; }
+  details p { margin:0.75rem 0 0;color:#555;line-height:1.6; }
+
+  .tools-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0.75rem; }
+  .tool-card-mini { display:flex;flex-direction:column;align-items:center;text-align:center; padding:1.25rem 0.75rem;background:#fff;border:var(--nb-border);border-radius:14px; text-decoration:none;color:#000;box-shadow:3px 3px 0 #000; transition:transform 0.15s,box-shadow 0.15s; }
+  .tool-card-mini:hover { transform:translate(-2px,-2px);box-shadow:5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size:1.75rem;margin-bottom:0.5rem; }
+  .tool-card-mini .name { font-weight:700;font-size:0.85rem; }
+  .tool-card-mini .desc { font-size:0.75rem;color:#666;margin-top:0.25rem; }
+
+  .stats-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem; }
+  @media(min-width:480px) { .stats-grid { grid-template-columns:repeat(4,1fr); } }
+  .stat-card { background:#fff;border:var(--nb-border);border-radius:14px;padding:1.25rem 1rem;text-align:center;box-shadow:3px 3px 0 #000; }
+  .stat-value { font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;color:#4f46e5;display:block; }
+  .stat-label { font-size:0.78rem;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:0.06em;margin-top:0.2rem;display:block; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+  .animate-in { animation:fadeUp 0.35s ease-out; }
+
+  @media(max-width:480px) {
+    .nb-card-lg { padding:1.25rem; }
+  }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Calculators Online" data-category-url="/calculators-online" data-tool-name="Scientific Calculator">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Scientific Calculator</span></div><h1>
-      Scientific Calculator — Full-Function Online Calculator, No App or Download Needed
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Perform complex calculations with precision and
-                    ease.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/scientific-calculator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Calculators › <span>Scientific Calculator</span></div>
+    <div class="hero-badge">🔒 100% Private — Browser Only</div>
+    <h1>Scientific Calculator — Sin, Cos, Tan, Log, Roots &amp; More Online</h1>
+    <p>A full-featured scientific calculator with trigonometric functions, logarithms, exponents, square roots, factorials, memory banks, and calculation history — all running instantly in your browser. No app download, no login, no data stored.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <!-- Display -->
+    <div class="calc-display-wrap">
+      <div class="calc-expression" id="calcExpression">&nbsp;</div>
+      <div class="calc-main-display" id="calcDisplay">0</div>
+      <div class="calc-meta-row">
+        <button class="calc-mode-badge" id="modeBtn" onclick="toggleMode()">DEG</button>
+        <span class="calc-mem-indicator" id="memIndicator">M</span>
+      </div>
+    </div>
+
+    <!-- Button Grid -->
+    <div class="calc-grid" id="calcGrid">
+      <!-- Row 1: Memory -->
+      <button class="cb cb-mem" onclick="memClear()">MC</button>
+      <button class="cb cb-mem" onclick="memRecall()">MR</button>
+      <button class="cb cb-mem" onclick="memAdd()">M+</button>
+      <button class="cb cb-mem" onclick="memSub()">M−</button>
+      <button class="cb cb-mem" onclick="memStore()">MS</button>
+
+      <!-- Row 2: Sci functions -->
+      <button class="cb cb-sci" onclick="applyFunc('sin')">sin</button>
+      <button class="cb cb-sci" onclick="applyFunc('cos')">cos</button>
+      <button class="cb cb-sci" onclick="applyFunc('tan')">tan</button>
+      <button class="cb cb-sci" onclick="applyFunc('log')">log</button>
+      <button class="cb cb-sci" onclick="applyFunc('ln')">ln</button>
+
+      <!-- Row 3 -->
+      <button class="cb cb-sci" onclick="applyFunc('asin')">sin⁻¹</button>
+      <button class="cb cb-sci" onclick="applyFunc('acos')">cos⁻¹</button>
+      <button class="cb cb-sci" onclick="applyFunc('atan')">tan⁻¹</button>
+      <button class="cb cb-sci" onclick="applyFunc('sqrt')">√</button>
+      <button class="cb cb-sci" onclick="applyFunc('cbrt')">∛</button>
+
+      <!-- Row 4 -->
+      <button class="cb cb-sci" onclick="applyFunc('sq')">x²</button>
+      <button class="cb cb-sci" onclick="applyFunc('cube')">x³</button>
+      <button class="cb cb-op" onclick="appendOp('^')">xʸ</button>
+      <button class="cb cb-sci" onclick="applyFunc('fact')">n!</button>
+      <button class="cb cb-sci" onclick="applyFunc('inv')">1/x</button>
+
+      <!-- Row 5: Constants -->
+      <button class="cb cb-const" onclick="appendConst('π')">π</button>
+      <button class="cb cb-const" onclick="appendConst('e')">e</button>
+      <button class="cb cb-sci" onclick="applyFunc('abs')">|x|</button>
+      <button class="cb cb-op" onclick="appendOp('%')">%</button>
+      <button class="cb cb-back" onclick="backspace()">⌫</button>
+
+      <!-- Row 6 -->
+      <button class="cb cb-clear" onclick="clearAll()" style="font-size:1rem;">AC</button>
+      <button class="cb cb-clear" onclick="clearEntry()">CE</button>
+      <button class="cb cb-op" onclick="toggleSign()">±</button>
+      <button class="cb cb-op" onclick="appendOp('/')">÷</button>
+      <button class="cb cb-op" onclick="appendOp('*')">×</button>
+
+      <!-- Row 7 -->
+      <button class="cb cb-num" onclick="appendNum('7')">7</button>
+      <button class="cb cb-num" onclick="appendNum('8')">8</button>
+      <button class="cb cb-num" onclick="appendNum('9')">9</button>
+      <button class="cb cb-op" onclick="appendOp('-')">−</button>
+      <button class="cb cb-op" onclick="appendOp('(')">(</button>
+
+      <!-- Row 8 -->
+      <button class="cb cb-num" onclick="appendNum('4')">4</button>
+      <button class="cb cb-num" onclick="appendNum('5')">5</button>
+      <button class="cb cb-num" onclick="appendNum('6')">6</button>
+      <button class="cb cb-op" onclick="appendOp('+')">+</button>
+      <button class="cb cb-op" onclick="appendOp(')')">)</button>
+
+      <!-- Row 9 -->
+      <button class="cb cb-num" onclick="appendNum('1')">1</button>
+      <button class="cb cb-num" onclick="appendNum('2')">2</button>
+      <button class="cb cb-num" onclick="appendNum('3')">3</button>
+      <button class="cb cb-eq" onclick="calculate()" style="grid-row:span 2;height:auto;min-height:120px;">=</button>
+      <button class="cb cb-sci" onclick="applyFunc('exp10')">10ˣ</button>
+
+      <!-- Row 10 -->
+      <button class="cb cb-zero cb-num" onclick="appendNum('0')">0</button>
+      <button class="cb cb-num" onclick="appendDot()">.</button>
+      <button class="cb cb-sci" onclick="applyFunc('exp')">eˣ</button>
+    </div>
+
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ All calculations happen in your browser. Zero data stored.</p>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="history-wrap" id="historySection">
+    <div class="history-header">
+      <span>🕘 Calculation History</span>
+      <button class="history-clear-btn" onclick="clearHistory()">Clear All</button>
+    </div>
+    <div class="history-list" id="historyList">
+      <div class="history-empty" id="historyEmpty">No calculations yet — start typing!</div>
+    </div>
+  </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-section">
+    <h2>How to Use the Scientific Calculator</h2>
+    <div class="step-item"><div class="step-num">1</div><div><strong>Enter your number</strong> — use the number pad or your keyboard (keyboard input is also supported).</div></div>
+    <div class="step-item"><div class="step-num">2</div><div><strong>Pick a function</strong> — tap sin, cos, log, √ or any operation. The result updates instantly on the display.</div></div>
+    <div class="step-item"><div class="step-num">3</div><div><strong>Switch modes</strong> — tap the DEG/RAD badge to toggle between degrees and radians for trig functions.</div></div>
+    <div class="step-item"><div class="step-num">4</div><div><strong>Use memory</strong> — M+ saves a value, MR recalls it, MC clears memory. Great for multi-step problems.</div></div>
+    <div class="step-item"><div class="step-num">5</div><div><strong>Review history</strong> — your last 20 calculations are shown below the keypad. Tap any to restore its result.</div></div>
+
+    <h2 style="margin-top:2.5rem;">Scientific Calculator Functions Explained</h2>
+    <p>A scientific calculator extends basic arithmetic with mathematical functions used in algebra, calculus, physics, and engineering. Here's what each category does:</p>
+    <p><strong>Trigonometry (sin, cos, tan):</strong> Compute ratios of sides in a right triangle, essential for geometry and physics. Their inverses (sin⁻¹, cos⁻¹, tan⁻¹) recover angles from ratios. Switch between degrees and radians depending on your problem.</p>
+    <p><strong>Logarithms (log, ln):</strong> log computes base-10 logarithm (common log used in pH, decibels), while ln computes natural logarithm (base e, used in calculus and exponential growth). 10ˣ and eˣ are their respective inverses.</p>
+    <p><strong>Powers & Roots:</strong> x², x³, and xʸ compute powers. √ (square root) and ∛ (cube root) compute their inverses. These are used constantly in geometry, physics, and statistics.</p>
+    <p><strong>Factorial (n!):</strong> Used in combinatorics and probability. 5! = 5 × 4 × 3 × 2 × 1 = 120. Note: factorials grow extremely fast — inputs above 170 overflow to Infinity.</p>
+
+    <h2 style="margin-top:2.5rem;">Frequently Asked Questions</h2>
+    <details><summary>How do I calculate sin, cos, or tan online?</summary><p>Enter the angle value, then press the sin, cos, or tan button. Make sure the mode (DEG or RAD) is set correctly for your problem. Most classroom problems use degrees; physics and calculus often use radians.</p></details>
+    <details><summary>What is the difference between log and ln?</summary><p>log is the common logarithm (base 10), widely used in science, engineering, and everyday contexts like pH or decibels. ln is the natural logarithm (base e ≈ 2.71828), the foundation of calculus and exponential growth models.</p></details>
+    <details><summary>How do I use scientific notation with this calculator?</summary><p>Enter very large or very small numbers normally. Results exceeding display limits are shown in scientific notation automatically (e.g., 1.23e+15). You can also type numbers like 1.5e10 directly using your keyboard.</p></details>
+    <details><summary>What do the memory buttons do?</summary><p>M+ adds the current result to memory. M− subtracts from memory. MR recalls the stored memory value into the display. MC clears memory. MS stores the current display value directly. The "M" indicator lights up when memory contains a value.</p></details>
+    <details><summary>Is my data private?</summary><p>Completely. Every calculation runs in your browser via JavaScript. Nothing is sent to any server. Your history is stored only in the page session and disappears when you close or refresh the tab.</p></details>
+
+    <h2 style="margin-top:2.5rem;">More Free Tools</h2>
+    <div class="tools-grid">
+      <a href="/age-calculator" class="tool-card-mini"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in days & hours</div></a>
+      <a href="/sip-calculator" class="tool-card-mini"><div class="icon">📈</div><div class="name">SIP Calculator</div><div class="desc">Mutual fund returns</div></a>
+      <a href="/password-generator" class="tool-card-mini"><div class="icon">🔐</div><div class="name">Password Generator</div><div class="desc">Strong secure passwords</div></a>
+      <a href="/seo-meta-tag-generator" class="tool-card-mini"><div class="icon">🏷️</div><div class="name">Meta Tag Generator</div><div class="desc">SEO tags instantly</div></a>
+      <a href="/serp-preview" class="tool-card-mini"><div class="icon">🔍</div><div class="name">SERP Preview</div><div class="desc">Google result preview</div></a>
+    </div>
+  </div>
 </div>
-</section>
-<div class="error-msg" id="errorMessage">
-</div>
-<div style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
-<span style="font-size: 1.2rem;">
-      🛡️
-     </span>
-<span style="font-weight: 700;">
-      100% Client-Side Processing
-     </span>
-</div>
-<div class="tool-main-card">
-<div class="calc-history" id="history">
-</div>
-<input class="calc-display" id="display" readonly="" type="text" value="0"/>
-<div class="calc-grid">
-<button class="calc-btn scientific" onclick="appendToDisplay('sin(')">
-       sin
-      </button>
-<button class="calc-btn scientific" onclick="appendToDisplay('cos(')">
-       cos
-      </button>
-<button class="calc-btn scientific" onclick="appendToDisplay('tan(')">
-       tan
-      </button>
-<button class="calc-btn primary" onclick="clearDisplay()">
-       C
-      </button>
-<button class="calc-btn scientific" onclick="appendToDisplay('log(')">
-       log
-      </button>
-<button class="calc-btn scientific" onclick="appendToDisplay('ln(')">
-       ln
-      </button>
-<button class="calc-btn scientific" onclick="appendToDisplay('sqrt(')">
-       √
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('/')">
-       /
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('7')">
-       7
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('8')">
-       8
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('9')">
-       9
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('*')">
-       ×
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('4')">
-       4
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('5')">
-       5
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('6')">
-       6
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('-')">
-       -
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('1')">
-       1
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('2')">
-       2
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('3')">
-       3
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('+')">
-       +
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('0')">
-       0
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('.')">
-       .
-      </button>
-<button class="calc-btn" onclick="appendToDisplay('(')">
-       (
-      </button>
-<button class="calc-btn" onclick="appendToDisplay(')')">
-       )
-      </button>
-<button class="calc-btn scientific" onclick="appendToDisplay('Math.PI')">
-       π
-      </button>
-<button class="calc-btn scientific" onclick="appendToDisplay('Math.E')">
-       e
-      </button>
-<button class="calc-btn scientific" onclick="appendToDisplay('**')">
-       ^
-      </button>
-<button class="calc-btn primary" onclick="calculate()">
-       =
-      </button>
-</div>
-<div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
-      🛡️ 100% Secure: Calculations happen in your browser.
-     </div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the Scientific Calculator?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use Scientific Calculator — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Use the button pad or keyboard to enter your equation.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Apply advanced functions like sin, cos, tan, or log.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Check the equation history for previous calculations.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Copy the final result for your scientific report.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        Supports trigonometric, logarithmic, and power functions.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        Parentheses handling for complex algebraic strings.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        Interactive history list of all current session calcs.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Large, easy-to-read digital display.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        Mobile-optimized button grid for touch screen use.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the Scientific Calculator?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Engineering Students
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Solve complex equations during study sessions.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Lab Workers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Calculate molarities and conversion factors on the fly.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Data Analysts
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Verify quick statistical formulas without opening Excel.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 Scientific Calculator vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is sin, cos, tan in a scientific calculator?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Trigonometric functions: sin = opposite/hypotenuse, cos = adjacent/hypotenuse, tan = opposite/adjacent. Used in geometry, physics, and engineering.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       How do I calculate log base 10?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Press `log` and enter your number. Example: log(1000) = 3 (because 10³ = 1000).
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is the difference between `ln` and `log`?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       `log` is logarithm base 10. `ln` is the natural logarithm (base e ≈ 2.71828). Both are available on this calculator.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       How do I calculate factorial (n!)?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Enter the number and press `n!`. Example: 5! = 5×4×3×2×1 = 120.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use this for physics problems?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — it handles the calculations needed for kinematics, vectors, wave equations, and other physics formulas requiring trigonometry and exponents.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this Scientific Calculator free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, the Scientific Calculator is 100% free with no hidden charges or premium subscriptions.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my data safe?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Do I need to sign up?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No registration or account creation is required to use any of our tools.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use it offline?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Once the page is loaded, most functions work offline since they run in your browser's local environment.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        Scientific Calculator
-       </strong>
-       provides a simplified approach to complex mathematical and financial computations. In today's fast-paced world, having a reliable scientific calculator at your fingertips is essential for making informed decisions quickly. Our tool uses optimized algorithms to ensure that every result is accurate to the decimal, whether you're planning your budget or solving academic problems.
-      </p>
-<p style="margin-top:1rem;">
-       When dealing with financial data or personal milestones, security is paramount. This Scientific Calculator runs 100% client-side, meaning your numbers, interest rates, and personal details are never stored on any server. You get the speed of an app with the security of a localized spreadsheet, ensuring your private calculations remain truly private.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="percentage-calculator">
-<div class="tool-icon">
-        %
-       </div>
-<div class="tool-title">
-        Percentage Calculator
-       </div>
-<div class="tool-desc">
-        Calculate discounts, increases, and percentage portions.
-       </div>
-</a>
-<a class="tool-card" href="emi-calculator">
-<div class="tool-icon">
-        💰
-       </div>
-<div class="tool-title">
-        EMI Calculator
-       </div>
-<div class="tool-desc">
-        Loan amortization schedules and monthly payment estimator.
-       </div>
-</a>
-<a class="tool-card" href="unit-converter">
-<div class="tool-icon">
-        ⚖️
-       </div>
-<div class="tool-title">
-        Unit Converter
-       </div>
-<div class="tool-desc">
-        Convert Length, Weight, Temperature, and Volume.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+
 <script>
-   const display = document.getElementById('display');
-        const history = document.getElementById('history');
+  let display = '0';
+  let expression = '';
+  let memory = 0;
+  let memHasValue = false;
+  let justEvaluated = false;
+  let angleMode = 'DEG'; // DEG or RAD
+  let history = [];
+  const MAX_HISTORY = 20;
 
-        function showError(msg) {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = '⚠️ ' + msg;
-                errDiv.style.display = 'flex';
-            } else {
-                errDiv.style.display = 'none';
-                errDiv.textContent = '';
-            }
-        }
+  const disp = () => document.getElementById('calcDisplay');
+  const expr = () => document.getElementById('calcExpression');
+  const memInd = () => document.getElementById('calcMemIndicator') || document.getElementById('memIndicator');
 
-        function appendToDisplay(value) {
-            showError('');
-            if (display.value === '0' && value !== '.') {
-                display.value = value;
-            } else {
-                display.value += value;
-            }
-        }
+  function updateDisplay(val, exprVal) {
+    let v = String(val);
+    if (v.length > 16) {
+      const n = parseFloat(v);
+      v = isNaN(n) ? v : n.toPrecision(10).replace(/\.?0+$/, '');
+    }
+    disp().textContent = v;
+    if (exprVal !== undefined) expr().textContent = exprVal || '\u00a0';
+  }
 
-        function clearDisplay() {
-            showError('');
-            display.value = '0';
-            history.textContent = '';
-        }
+  function appendNum(n) {
+    if (justEvaluated) { display = n; expression = ''; justEvaluated = false; }
+    else display = (display === '0' && n !== '.') ? n : display + n;
+    // prevent duplicate dots
+    if (n === '.' && display.split('').filter(c=>c==='.').length > 1) {
+      display = display.slice(0, -1);
+    }
+    updateDisplay(display, expression);
+  }
 
-        function calculate() {
-            showError('');
-            try {
-                let expr = display.value;
-                if (!expr || expr === '0') return;
+  function appendDot() {
+    if (justEvaluated) { display = '0.'; justEvaluated = false; }
+    else if (!display.includes('.')) display += '.';
+    updateDisplay(display, expression);
+  }
 
-                history.textContent = expr + ' =';
+  function appendOp(op) {
+    justEvaluated = false;
+    expression = (expression || display) + ' ' + opLabel(op) + ' ';
+    display = op;
+    updateDisplay(display, expression);
+    display = '';
+  }
 
-                // Replace math functions
-                expr = expr.replace(/sin\(/g, 'Math.sin(');
-                expr = expr.replace(/cos\(/g, 'Math.cos(');
-                expr = expr.replace(/tan\(/g, 'Math.tan(');
-                expr = expr.replace(/log\(/g, 'Math.log10(');
-                expr = expr.replace(/ln\(/g, 'Math.log(');
-                expr = expr.replace(/sqrt\(/g, 'Math.sqrt(');
+  function opLabel(op) {
+    return {'+':'+', '-':'−', '*':'×', '/':'÷', '^':'^', '%':'%', '(':' (', ')':')'}[op] || op;
+  }
 
-                const result = eval(expr);
-                if (result === Infinity || result === -Infinity) {
-                    showError('Result is infinity.');
-                    display.value = 'Error';
-                    return;
-                }
-                display.value = Number.isInteger(result) ? result : parseFloat(result.toFixed(8));
-            } catch (e) {
-                showError('Invalid mathematical expression.');
-                display.value = 'Error';
-            }
-        }
+  function applyFunc(fn) {
+    const val = parseFloat(display || '0');
+    let result;
+    const toRad = v => angleMode === 'DEG' ? v * Math.PI / 180 : v;
+    const toDeg = v => angleMode === 'DEG' ? v * 180 / Math.PI : v;
 
-        // Keyboard support
-        document.addEventListener('keydown', (e) => {
-            if (e.key >= '0' && e.key <= '9') appendToDisplay(e.key);
-            if (e.key === '.') appendToDisplay('.');
-            if (e.key === '+') appendToDisplay('+');
-            if (e.key === '-') appendToDisplay('-');
-            if (e.key === '*') appendToDisplay('*');
-            if (e.key === '/') appendToDisplay('/');
-            if (e.key === '(') appendToDisplay('(');
-            if (e.key === ')') appendToDisplay(')');
-            if (e.key === 'Enter') calculate();
-            if (e.key === 'Escape') clearDisplay();
-        });
+    const fnMap = {
+      sin: v => Math.sin(toRad(v)),
+      cos: v => Math.cos(toRad(v)),
+      tan: v => Math.tan(toRad(v)),
+      asin: v => toDeg(Math.asin(v)),
+      acos: v => toDeg(Math.acos(v)),
+      atan: v => toDeg(Math.atan(v)),
+      log: v => Math.log10(v),
+      ln: v => Math.log(v),
+      sqrt: v => Math.sqrt(v),
+      cbrt: v => Math.cbrt(v),
+      sq: v => v * v,
+      cube: v => v * v * v,
+      fact: v => factorial(Math.round(v)),
+      inv: v => 1 / v,
+      abs: v => Math.abs(v),
+      exp: v => Math.exp(v),
+      exp10: v => Math.pow(10, v),
+    };
 
-        // Structured Data
-        const schemaData = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Scientific Calculator Online",
-            "description": "Perform advanced mathematical calculations with our free online scientific calculator.",
-            "url": "https://worldoftools.in/scientific-calculator",
-            "applicationCategory": "MathApplication",
-            "operatingSystem": "Any"
-        };
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schemaData);
-        document.head.appendChild(script);
-  </script>
+    if (!fnMap[fn]) return;
+    result = fnMap[fn](val);
+
+    const fnLabel = {sin:'sin',cos:'cos',tan:'tan',asin:'sin⁻¹',acos:'cos⁻¹',atan:'tan⁻¹',
+      log:'log',ln:'ln',sqrt:'√',cbrt:'∛',sq:'²',cube:'³',fact:'!',inv:'1/',abs:'|x|',exp:'eˣ',exp10:'10ˣ'};
+
+    if (isNaN(result)) result = 'Error';
+    if (!isFinite(result) && result !== 'Error') result = result > 0 ? '∞' : '-∞';
+
+    const expStr = `${fnLabel[fn]}(${val})`;
+    addHistory(expStr, String(result));
+    expression = expStr;
+    display = String(result);
+    justEvaluated = true;
+    updateDisplay(display, expression);
+  }
+
+  function factorial(n) {
+    if (n < 0) return NaN;
+    if (n === 0 || n === 1) return 1;
+    if (n > 170) return Infinity;
+    let r = 1;
+    for (let i = 2; i <= n; i++) r *= i;
+    return r;
+  }
+
+  function appendOp(op) {
+    justEvaluated = false;
+    const label = opLabel(op);
+    if (!expression) expression = display || '0';
+    expression += ' ' + label + ' ';
+    display = '0';
+    updateDisplay(display, expression + '▌');
+  }
+
+  function appendConst(c) {
+    const val = c === 'π' ? Math.PI : Math.E;
+    if (justEvaluated) { expression = ''; justEvaluated = false; }
+    display = String(val);
+    updateDisplay(display, expression);
+  }
+
+  function calculate() {
+    if (!expression) return;
+    const fullExpr = expression + display;
+    try {
+      // Build safe eval string
+      let evalStr = (expression + display)
+        .replace(/×/g, '*').replace(/÷/g, '/')
+        .replace(/−/g, '-').replace(/π/g, '(' + Math.PI + ')')
+        .replace(/e(?![0-9+\-])/g, '(' + Math.E + ')')
+        .replace(/\^/g, '**')
+        .replace(/▌/g, '');
+
+      // Safe eval using Function
+      const result = new Function('"use strict";return (' + evalStr + ')')();
+      const res = isNaN(result) ? 'Error' : (!isFinite(result) ? (result > 0 ? '∞' : '-∞') : String(+result.toPrecision(12)));
+      addHistory(fullExpr.replace(/▌/g,''), res);
+      display = res;
+      expression = fullExpr.replace(/▌/g,'') + ' =';
+      justEvaluated = true;
+      updateDisplay(display, expression);
+    } catch(e) {
+      updateDisplay('Error', expression);
+      display = '0';
+      expression = '';
+    }
+  }
+
+  function clearAll() { display = '0'; expression = ''; justEvaluated = false; updateDisplay('0', ''); }
+  function clearEntry() { display = '0'; updateDisplay('0', expression); }
+  function backspace() {
+    if (display.length > 1) display = display.slice(0,-1);
+    else display = '0';
+    updateDisplay(display, expression);
+  }
+  function toggleSign() {
+    if (display && display !== '0') {
+      display = display.startsWith('-') ? display.slice(1) : '-' + display;
+      updateDisplay(display, expression);
+    }
+  }
+
+  function toggleMode() {
+    angleMode = angleMode === 'DEG' ? 'RAD' : 'DEG';
+    document.getElementById('modeBtn').textContent = angleMode;
+  }
+
+  // Memory
+  function memAdd()    { memory += parseFloat(display||0); memHasValue=true; flashMem(); }
+  function memSub()    { memory -= parseFloat(display||0); memHasValue=true; flashMem(); }
+  function memRecall() { if(memHasValue){ display=String(memory); updateDisplay(display,expression); } }
+  function memClear()  { memory=0; memHasValue=false; memInd().classList.remove('visible'); }
+  function memStore()  { memory=parseFloat(display||0); memHasValue=true; flashMem(); }
+  function flashMem()  { const m=memInd(); m.classList.add('visible'); setTimeout(()=>m.classList.add('visible'),0); }
+
+  // History
+  function addHistory(expr, res) {
+    history.unshift({ expr, res });
+    if (history.length > MAX_HISTORY) history.pop();
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const list = document.getElementById('historyList');
+    const empty = document.getElementById('historyEmpty');
+    if (!history.length) { empty.style.display='block'; return; }
+    empty.style.display='none';
+    list.innerHTML = '';
+    history.forEach((h, i) => {
+      const item = document.createElement('div');
+      item.className = 'history-item';
+      item.innerHTML = `<span class="history-expr">${h.expr}</span><span class="history-res">${h.res}</span>`;
+      item.onclick = () => { display = h.res; justEvaluated = true; updateDisplay(display, h.expr + ' ='); };
+      list.appendChild(item);
+    });
+  }
+
+  function clearHistory() { history = []; renderHistory(); }
+
+  // Keyboard support
+  document.addEventListener('keydown', e => {
+    if (e.key >= '0' && e.key <= '9') appendNum(e.key);
+    else if (e.key === '.') appendDot();
+    else if (e.key === '+') appendOp('+');
+    else if (e.key === '-') appendOp('-');
+    else if (e.key === '*') appendOp('*');
+    else if (e.key === '/') { e.preventDefault(); appendOp('/'); }
+    else if (e.key === 'Enter' || e.key === '=') calculate();
+    else if (e.key === 'Backspace') backspace();
+    else if (e.key === 'Escape') clearAll();
+    else if (e.key === '(') appendOp('(');
+    else if (e.key === ')') appendOp(')');
+    else if (e.key === '^') appendOp('^');
+    else if (e.key === '%') appendOp('%');
+  });
+
+  updateDisplay('0', '');
+</script>
+
+<script defer src="/js/common.js?v=6.1"></script>
+<footer></footer>
 </body>
 </html>

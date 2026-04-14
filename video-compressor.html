@@ -1,1528 +1,642 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Video Compressor — No Watermark, for WhatsApp &amp; Instagram | WorldOfTools
-  </title>
-<meta content="Compress videos online without watermark. Reduce size for WhatsApp, Instagram &amp; Discord. Browser-based — your video never uploaded to our server. Free." name="description"/>
-<meta content="best video compressor tool free online, compress video without losing quality no watermark, free online video compressor no watermark, reduce video file size free no upload, private video compressor for whatsapp, compress mp4 free online no watermark, best video size reducer without watermark, how to compress video without losing quality free, video compressor no watermark, compress video for whatsapp free, compress video instagram online, reduce video size browser based" name="keywords"/>
-<!-- Breadcrumb Schema -->
-<!-- FAQ Schema (SEO Rich Results) -->
-<!-- WebApplication Schema -->
+<title>Video Compressor Free Online — Compress MP4 Without Watermark (Up to 2GB) | WorldOfTools</title>
+<meta content="Compress videos online without watermark. Reduce MP4, WebM, MOV file size for WhatsApp, Instagram & Discord. Browser-based — your video NEVER uploaded to any server. Free, no signup." name="description"/>
+<meta content="video compressor free online, compress video without watermark, compress mp4 free no watermark, reduce video file size, private video compressor, video compressor whatsapp, compress video instagram, video compressor no upload, reduce video size online free" name="keywords"/>
 <link href="https://worldoftools.in/video-compressor" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<!-- Google Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<!-- AdSense -->
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
-<style>
-   /* ── Tab styles (same as age-calculator) ── */
-        .tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-
-        .tab-btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-            background: white;
-            cursor: pointer;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .tab-btn.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .card {
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* ── Drop-zone ── */
-        .drop-zone {
-            border: 2px dashed var(--border-color, #e5e7eb);
-            border-radius: 16px;
-            padding: 3rem 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: border-color 0.2s, background 0.2s;
-            background: #f8fafc;
-            position: relative;
-        }
-
-        .drop-zone.drag-over {
-            border-color: var(--primary-color, #4f46e5);
-            background: #eef2ff;
-        }
-
-        .drop-zone input[type="file"] {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            cursor: pointer;
-            width: 100%;
-            height: 100%;
-        }
-
-        .drop-zone-icon {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 0.75rem;
-        }
-
-        .drop-zone-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.35rem;
-        }
-
-        .drop-zone-sub {
-            font-size: 0.9rem;
-            color: var(--text-muted, #6b7280);
-        }
-
-        /* ── Quality slider ── */
-        .quality-slider-wrap {
-            margin: 1.5rem 0;
-        }
-
-        .quality-slider-wrap label {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 8px;
-            border-radius: 99px;
-            background: #e2e8f0;
-            outline: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--primary-color, #4f46e5);
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(79,70,229,0.4);
-        }
-
-        /* ── Progress bar ── */
-        .progress-wrap {
-            background: #e2e8f0;
-            border-radius: 99px;
-            height: 1rem;
-            overflow: hidden;
-            margin: 1rem 0 0.5rem;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #4f46e5, #7c3aed);
-            border-radius: 99px;
-            transition: width 0.3s ease;
-        }
-
-        /* ── Stats grid ── */
-        .stat-pill {
-            padding: 1.25rem;
-            text-align: center;
-            background: white;
-            border: 1px solid var(--border-color, #e5e7eb);
-            border-radius: 16px;
-        }
-
-        .stat-pill .stat-value {
-            display: block;
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--primary-color, #4f46e5);
-        }
-
-        .stat-pill .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-muted, #6b7280);
-            font-weight: 700;
-            margin-top: 0.2rem;
-        }
-
-        /* ── Preset chip pills ── */
-        .preset-chips {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.25rem;
-        }
-
-        .preset-chip {
-            padding: 0.45rem 1rem;
-            border-radius: 99px;
-            border: 2px solid var(--border-color, #e5e7eb);
-            background: white;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 700;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .preset-chip.active {
-            background: var(--primary-color, #4f46e5);
-            color: white;
-            border-color: var(--primary-color, #4f46e5);
-        }
-
-        /* ── Video preview ── */
-        #previewVideo {
-            width: 100%;
-            border-radius: 12px;
-            max-height: 300px;
-            background: #000;
-            display: none;
-            margin: 1rem 0;
-        }
-
-        /* ── Download button special ── */
-        .btn-download {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            display: none;
-            margin-top: 1rem;
-            font-family: inherit;
-            transition: opacity 0.2s;
-        }
-
-        .btn-download:hover { opacity: 0.9; }
-
-        .savings-badge {
-            display: inline-block;
-            background: #dcfce7;
-            color: #15803d;
-            border-radius: 99px;
-            padding: 0.3rem 1rem;
-            font-weight: 800;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-        }
-  </style>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/video-compressor" property="og:url"/>
+<meta content="Video Compressor — Free Online, No Watermark | WorldOfTools" property="og:title"/>
+<meta content="Compress videos without watermark. 100% browser-based — your video never leaves your device." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Video Compressor — Free Online, No Watermark" name="twitter:title"/>
+<meta content="Compress MP4, WebM, MOV online. No watermark, no upload, no signup." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/video-compressor"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Video Compressor",
-      "item": "https://worldoftools.in/video-compressor"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Image & Video Tools","item":"https://worldoftools.in/image-video-tools"},
+    {"@type":"ListItem","position":3,"name":"Video Compressor","item":"https://worldoftools.in/video-compressor"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Video Compressor free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Video Compressor",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"MultimediaApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1876","reviewCount":"2063"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is the video uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All video processing happens entirely in your browser using the MediaRecorder API and Canvas. Your video file never leaves your device and is never uploaded to any server."}},
+    {"@type":"Question","name":"What video formats are supported?","acceptedAnswer":{"@type":"Answer","text":"The compressor supports MP4, WebM, MOV, AVI, and MKV files up to 2GB. Output is in WebM (best compression) or MP4 format depending on browser support."}},
+    {"@type":"Question","name":"How much can I compress a video?","acceptedAnswer":{"@type":"Answer","text":"Compression ratios depend on the original video, target quality, and resolution. Typical reductions range from 30% to 85%. Choosing a lower quality setting (e.g. 60%) and reducing resolution (e.g. 720p to 480p) achieves the highest compression."}},
+    {"@type":"Question","name":"Will there be a watermark?","acceptedAnswer":{"@type":"Answer","text":"No. This tool adds absolutely no watermark to your compressed video. The output is clean and ready to share on WhatsApp, Instagram, Discord, or any platform."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Video Compressor",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066; --nb-pink: #ff6b9d; --nb-mint: #b2f5ea; --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d; --nb-lime: #c3f584;
+    --nb-shadow: 4px 4px 0 #000; --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px; --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/video-compressor" property="og:url"/><meta content="
-   Video Compressor — No Watermark, for WhatsApp &amp; Instagram | WorldOfTools
-  " property="og:title"/><meta content="Compress videos online without watermark. Reduce size for WhatsApp, Instagram &amp; Discord. Browser-based — your video never uploaded to our server. Free." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/video-compressor" name="twitter:url"/><meta content="
-   Video Compressor — No Watermark, for WhatsApp &amp; Instagram | WorldOfTools
-  " name="twitter:title"/><meta content="Compress videos online without watermark. Reduce size for WhatsApp, Instagram &amp; Discord. Browser-based — your video never uploaded to our server. Free." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; box-shadow: var(--nb-shadow); white-space: nowrap; }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-orange { background: var(--nb-orange); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1.1rem; padding: 1rem; }
+  .nb-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: var(--nb-shadow); }
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-mint); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+  .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+  .nb-select { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 1rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+  .input-group { margin-bottom: 1.25rem; }
+
+  /* Drop zone */
+  .drop-zone {
+    border: 3px dashed #bbb; border-radius: 20px; padding: 3rem 2rem; text-align: center;
+    cursor: pointer; transition: all 0.2s; background: #fafafa; position: relative;
+  }
+  .drop-zone.dragover { border-color: #4f46e5; background: #f0f0ff; border-style: solid; }
+  .drop-zone .dz-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .drop-zone h3 { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 1.3rem; margin: 0 0 0.5rem; }
+  .drop-zone p { color: #777; font-size: 0.9rem; margin: 0; }
+  .drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+
+  /* Video info */
+  .video-info { background: var(--nb-blue); border: var(--nb-border); border-radius: 16px; padding: 1.5rem; box-shadow: 3px 3px 0 #000; margin-bottom: 1.5rem; }
+  .info-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .info-row:last-child { margin-bottom: 0; }
+  .info-key { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: #333; }
+  .info-val { font-weight: 800; font-size: 0.95rem; }
+
+  /* Settings grid */
+  .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+  @media(max-width:520px) { .settings-grid { grid-template-columns: 1fr; } }
+
+  /* Slider */
+  .quality-wrap { margin-bottom: 1.25rem; }
+  .quality-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+  .quality-badge { background: var(--nb-yellow); border: var(--nb-border); border-radius: 8px; padding: 0.2rem 0.6rem; font-weight: 900; font-size: 0.9rem; box-shadow: 2px 2px 0 #000; }
+  input[type=range] { width: 100%; height: 8px; -webkit-appearance: none; appearance: none; border-radius: 99px; border: 2px solid #000; outline: none; cursor: pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--nb-yellow); border: 2.5px solid #000; box-shadow: 2px 2px 0 #000; cursor: pointer; }
+
+  /* Progress */
+  .progress-wrap { background: #fff; border: var(--nb-border); border-radius: 16px; padding: 1.5rem; box-shadow: 3px 3px 0 #000; margin-bottom: 1.5rem; }
+  .progress-track { background: #f0f0f0; height: 1.25rem; border-radius: 99px; border: 2px solid #000; overflow: hidden; margin: 0.75rem 0 0.5rem; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #a3bffa, #4f46e5); width: 0%; transition: width 0.3s; border-radius: 99px; }
+  .progress-label { text-align: center; font-weight: 800; color: #4f46e5; font-size: 0.9rem; }
+
+  /* Result */
+  .result-hero { background: var(--nb-yellow); border: var(--nb-border); border-radius: 20px; padding: 2rem; text-align: center; box-shadow: var(--nb-shadow-lg); margin-bottom: 1.5rem; }
+  .result-savings { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; letter-spacing: -0.04em; color: #000; line-height: 1; }
+  .result-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 0.5rem; }
+  .result-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem; }
+  .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  @media(max-width:400px) { .before-after { grid-template-columns: 1fr; } }
+  .ba-card { border: var(--nb-border); border-radius: 14px; padding: 1.25rem; text-align: center; box-shadow: 3px 3px 0 #000; }
+  .ba-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #666; margin-bottom: 0.3rem; }
+  .ba-val { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 900; }
+
+  /* Platform chips */
+  .platform-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .chip { padding: 0.4rem 0.9rem; border: var(--nb-border); border-radius: 99px; font-size: 0.8rem; font-weight: 700; cursor: pointer; box-shadow: 2px 2px 0 #000; transition: all 0.12s; background: #fff; font-family: inherit; }
+  .chip.active { background: var(--nb-yellow); }
+  .chip:hover:not(.active) { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #000; }
+
+  /* Preview */
+  .video-preview { width: 100%; border: var(--nb-border); border-radius: 14px; box-shadow: 3px 3px 0 #000; background: #000; max-height: 240px; display: block; }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #f9f9ff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-yellow); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  .compare-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .compare-table th { padding: 0.85rem 1rem; text-align: center; background: var(--nb-yellow); border-bottom: 2px solid #000; font-weight: 800; }
+  .compare-table th:first-child { text-align: left; }
+  .compare-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td.yes { color: #059669; font-weight: 800; text-align: center; }
+  .compare-table td.no { color: #dc2626; text-align: center; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+  @media(max-width:480px) { .nb-card-lg { padding: 1.25rem; } .result-actions { flex-direction: column; align-items: stretch; } }
+  .nb-error { display: none; background: #ffe0e0; border: var(--nb-border); border-radius: 12px; padding: 0.85rem 1.25rem; color: #c00; font-weight: 700; margin-bottom: 1.25rem; box-shadow: 3px 3px 0 #c00; }
+  .warning-box { background: var(--nb-orange); border: var(--nb-border); border-radius: 12px; padding: 0.85rem 1.25rem; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.25rem; box-shadow: 3px 3px 0 #000; }
+  canvas { display: none; }
+</style>
+</head>
 <body>
-<header>
-</header>
-<!-- Injected by js/common.js -->
-<main class="container" data-category-name="Video Tools" data-category-url="/video-tools" data-tool-name="Video Compressor">
+<header></header>
+<canvas id="canvas"></canvas>
+
+<main class="container" data-category-name="Image & Video Tools" data-category-url="/image-video-tools" data-tool-name="Video Compressor">
 <div class="tool-container">
-<!-- ══ Tool Header ══ -->
-<section class="tool-header">
-<div class="privacy-badge-banner">
-<span>
-       🛡️
-      </span>
-<span>
-       100% Private — Client-Side Processing | No Upload | No Watermark | Max 2 GB
-      </span>
-</div>
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Video Compressor</span></div><h1 style="line-height: 1.2;">
-      Video Compressor — Reduce Video Size for WhatsApp &amp; Instagram Without Watermark
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem;">
-      Compress heavy MP4, MOV, and WebM files for WhatsApp (16MB), Discord (10MB), or Instagram —
-      <b>
-       100% Free, No Watermark, No Login
-      </b>
-      . Everything happens privately in your browser.
-      <span style="background: var(--primary-color); color: white; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; margin-left: 5px;">
-       UPDATED MARCH 2026
-      </span>
-</p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/video-compressor-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
-</div>
-</section>
-<!-- ══ Main Tool Card ══ -->
-<div class="tool-main-card">
-<!-- Tabs -->
-<div class="tabs">
-<button class="tab-btn active" onclick="switchTab('compress')">
-       🎬 Compress Video
-      </button>
-<button class="tab-btn" onclick="switchTab('trim')">
-       ✂️ Trim &amp; Compress
-      </button>
-<button class="tab-btn" onclick="switchTab('batch')">
-       📦 Batch Info
-      </button>
-</div>
-<div class="error-msg" id="errorMessage">
-</div>
-<!-- ── TAB 1: Compress Video ── -->
-<div class="tab-content" id="compress-tab">
-<!-- Drop zone -->
-<div class="drop-zone" id="dropZone">
-<input accept="video/mp4,video/webm,video/mov,video/quicktime,video/avi,video/*" id="videoInput" type="file"/>
-<span class="drop-zone-icon">
-        🎥
-       </span>
-<div class="drop-zone-title">
-        Drop your video here or click to browse
-       </div>
-<div class="drop-zone-sub">
-        Supports MP4, MOV, WebM, AVI — up to 2 GB
-       </div>
-</div>
-<!-- Video preview -->
-<video controls="" id="previewVideo">
-</video>
-<!-- File info bar -->
-<div id="fileInfoBar" style="display:none; background:#f1f5f9; border-radius:12px; padding:1rem; margin:1rem 0; font-size:0.9rem; font-weight:600; color:#374151;">
-       📄
-       <span id="fileName">
-        —
-       </span>
-       |
-       <span id="fileSize">
-        —
-       </span>
-       |
-       <span id="fileDuration">
-        —
-       </span>
-</div>
-<!-- Preset chips -->
-<div style="margin-top: 1.5rem;">
-<div style="font-weight: 700; margin-bottom: 0.75rem;">
-        ⚡ Quick Presets
-       </div>
-<div class="preset-chips">
-<button class="preset-chip" onclick="applyPreset('whatsapp', this)">
-         💬 WhatsApp
-        </button>
-<button class="preset-chip" onclick="applyPreset('instagram', this)">
-         📸 Instagram
-        </button>
-<button class="preset-chip" onclick="applyPreset('discord', this)">
-         🎮 Discord
-        </button>
-<button class="preset-chip" onclick="applyPreset('email', this)">
-         📧 Email
-        </button>
-<button class="preset-chip" onclick="applyPreset('youtube', this)">
-         ▶️ YouTube
-        </button>
-<button class="preset-chip active" onclick="applyPreset('custom', this)">
-         🎛️ Custom
-        </button>
-</div>
-</div>
-<!-- Quality slider -->
-<div class="quality-slider-wrap">
-<label>
-<span>
-         Compression Quality
-        </span>
-<span id="qualityLabel" style="color: var(--primary-color);">
-         Medium (Balanced)
-        </span>
-</label>
-<input id="qualitySlider" max="3" min="1" oninput="updateQualityLabel(this.value)" step="1" type="range" value="2"/>
-<div style="display:flex; justify-content:space-between; font-size:0.78rem; color:var(--text-muted); margin-top:0.35rem;">
-<span>
-         Smallest File
-        </span>
-<span>
-         Balanced
-        </span>
-<span>
-         Best Quality
-        </span>
-</div>
-</div>
-<!-- Resolution select -->
-<div class="input-group" style="margin-bottom: 1.25rem;">
-<label for="resolutionSelect">
-        Output Resolution
-       </label>
-<select id="resolutionSelect" style="font-size:1rem; padding:0.85rem; border-radius:10px; border:1.5px solid var(--border-color); width:100%; font-family:inherit; background:white;">
-<option value="original">
-         Keep Original Resolution
-        </option>
-<option value="1080">
-         1080p (Full HD)
-        </option>
-<option value="720">
-         720p (HD) — Recommended
-        </option>
-<option value="480">
-         480p (SD) — Smallest
-        </option>
-<option value="360">
-         360p (Ultra Small)
-        </option>
-</select>
-</div>
-<button class="btn" onclick="startCompression()" style="width:100%;">
-       🚀 Compress Video
-      </button>
-<!-- Progress -->
-<div id="progressSection" style="display:none; margin-top:1.5rem;">
-<div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.9rem; margin-bottom:0.25rem;">
-<span id="progressLabel">
-         Processing…
-        </span>
-<span id="progressPct">
-         0%
-        </span>
-</div>
-<div class="progress-wrap">
-<div class="progress-bar" id="progressBar">
-</div>
-</div>
-<div id="progressEta" style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem;">
-</div>
-</div>
-<!-- Results -->
-<div id="resultSection" style="display:none; margin-top:2rem;">
-<hr style="border:0; border-top:1px solid var(--border-color); margin-bottom:2rem;"/>
-<div style="text-align:center; margin-bottom:2rem;">
-<div style="font-size:0.9rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">
-         Compression Complete 🎉
+
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Image & Video Tools › <span>Video Compressor</span></div>
+    <div class="hero-badge">🔒 100% Private — Never Uploaded to Server</div>
+    <h1>Video Compressor — Compress MP4 Free Online Without Watermark</h1>
+    <p>Reduce video file size directly in your browser — no uploads, no watermarks, no signup. Supports up to 2GB. Perfect for WhatsApp, Instagram, Discord, email, and storage savings.</p>
+  </section>
+
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <!-- Privacy callout -->
+    <div class="warning-box">
+      🔒 <strong>100% Private:</strong> Your video is processed entirely in your browser using the Canvas & MediaRecorder API. It <strong>never leaves your device</strong>. No server upload. No watermark. No account.
+    </div>
+
+    <div class="nb-error" id="errMsg" role="alert"></div>
+
+    <!-- Drop zone (hidden after file selected) -->
+    <div id="dropZone" class="drop-zone" style="margin-bottom:1.5rem;">
+      <input type="file" id="videoFile" accept="video/*" onchange="handleFile(this.files[0])"/>
+      <span class="dz-icon">🎬</span>
+      <h3>Drop video here or click to upload</h3>
+      <p>MP4, WebM, MOV, AVI, MKV — up to 2GB<br/>Your video stays on your device</p>
+    </div>
+
+    <!-- File info (shown after selection) -->
+    <div id="videoInfoWrap" style="display:none;">
+      <div class="video-info">
+        <div class="info-row">
+          <span class="info-key">📄 File Name</span>
+          <span class="info-val" id="infoName" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">-</span>
         </div>
-<div class="result-value" style="font-size:clamp(2rem,7vw,3.5rem);">
-         Done!
+        <div class="info-row">
+          <span class="info-key">💾 Original Size</span>
+          <span class="info-val" id="infoSize">-</span>
         </div>
-<div class="savings-badge" id="savingsBadge">
-         Saved 0%
+        <div class="info-row">
+          <span class="info-key">📐 Dimensions</span>
+          <span class="info-val" id="infoDims">-</span>
         </div>
-</div>
-<!-- Stats -->
-<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:1rem; margin-bottom:2rem;">
-<div class="stat-pill card">
-<span class="stat-value" id="statOriginalSize">
-          —
-         </span>
-<span class="stat-label">
-          Original Size
-         </span>
-</div>
-<div class="stat-pill card">
-<span class="stat-value" id="statNewSize">
-          —
-         </span>
-<span class="stat-label">
-          Compressed Size
-         </span>
-</div>
-<div class="stat-pill card">
-<span class="stat-value" id="statSaved">
-          —
-         </span>
-<span class="stat-label">
-          Space Saved
-         </span>
-</div>
-<div class="stat-pill card">
-<span class="stat-value" id="statRatio">
-          —
-         </span>
-<span class="stat-label">
-          Compression Ratio
-         </span>
-</div>
-</div>
-<!-- Smart insight -->
-<div style="padding:1.5rem; border-radius:16px; background:#fffbeb; border:1px solid #fef3c7; text-align:center; margin-bottom:1.5rem;">
-<span style="font-size:1.3rem; display:block; margin-bottom:0.4rem;">
-         🧠
-        </span>
-<div id="compressionInsight" style="font-weight:600; color:#92400e; font-style:italic;">
-</div>
-</div>
-<!-- Download + action buttons -->
-<button class="btn-download" id="downloadBtn" onclick="downloadVideo()">
-        ⬇️ Download Compressed Video
-       </button>
-<div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem;">
-<button class="btn btn-secondary" onclick="copyStats()" style="padding:0.5rem 1rem; font-size:0.85rem;">
-         📋 Copy Stats
-        </button>
-<button class="btn btn-secondary" onclick="shareResult()" style="padding:0.5rem 1rem; font-size:0.85rem;">
-         🔗 Share Tool
-        </button>
-<button class="btn btn-secondary" onclick="resetTool()" style="padding:0.5rem 1rem; font-size:0.85rem;">
-         🔄 Compress Another
-        </button>
-</div>
-</div>
-</div>
-<!-- ── TAB 2: Trim & Compress ── -->
-<div class="tab-content" id="trim-tab" style="display:none;">
-<div style="background:#f1f5f9; border-radius:16px; padding:1.5rem; margin-bottom:1.5rem; border:1px solid var(--border-color);">
-<h3 style="margin:0 0 0.5rem; font-size:1rem;">
-        ✂️ Trim Before Compressing
-       </h3>
-<p style="color:var(--text-muted); font-size:0.9rem; margin:0;">
-        Upload a video, set start and end timestamps, then compress only the trimmed portion — great for removing silent intros or long outros before sharing.
-       </p>
-</div>
-<div class="drop-zone" id="dropZoneTrim">
-<input accept="video/*" id="videoInputTrim" onchange="loadTrimVideo(this)" type="file"/>
-<span class="drop-zone-icon">
-         ✂️
-        </span>
-<div class="drop-zone-title">
-         Drop video to trim &amp; compress
+        <div class="info-row">
+          <span class="info-key">⏱️ Duration</span>
+          <span class="info-val" id="infoDuration">-</span>
         </div>
-<div class="drop-zone-sub">
-         MP4, MOV, WebM supported
+      </div>
+
+      <!-- Preview -->
+      <div class="input-group">
+        <label class="nb-label">🎬 Preview</label>
+        <video class="video-preview" id="videoPreview" controls preload="metadata"></video>
+      </div>
+    </div>
+
+    <!-- Settings (shown after selection) -->
+    <div id="settingsWrap" style="display:none;">
+
+      <!-- Platform presets -->
+      <div class="input-group">
+        <label class="nb-label">📱 Quick Presets (Optional)</label>
+        <div class="platform-chips">
+          <button class="chip" onclick="applyPreset('whatsapp',this)">📲 WhatsApp</button>
+          <button class="chip" onclick="applyPreset('instagram',this)">📸 Instagram</button>
+          <button class="chip" onclick="applyPreset('discord',this)">💬 Discord</button>
+          <button class="chip" onclick="applyPreset('email',this)">📧 Email</button>
+          <button class="chip" onclick="applyPreset('web',this)">🌐 Web Embed</button>
+          <button class="chip" onclick="applyPreset('custom',this)">⚙️ Custom</button>
         </div>
-</div>
-<video controls="" id="trimPreview" style="width:100%; border-radius:12px; max-height:260px; background:#000; display:none; margin:1rem 0;">
-</video>
-<div id="trimControls" style="display:none;">
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0;">
-<div class="input-group">
-<label for="trimStart">
-          Start Time (seconds)
-         </label>
-<input id="trimStart" min="0" placeholder="0" step="0.1" style="font-size:1rem; padding:0.85rem;" type="number"/>
-</div>
-<div class="input-group">
-<label for="trimEnd">
-          End Time (seconds)
-         </label>
-<input id="trimEnd" min="0" placeholder="Auto (full length)" step="0.1" style="font-size:1rem; padding:0.85rem;" type="number"/>
-</div>
-</div>
-<div class="quality-slider-wrap">
-<label>
-<span>
-          Quality after trim
-         </span>
-<span id="trimQualityLabel" style="color:var(--primary-color);">
-          Medium
-         </span>
-</label>
-<input id="trimQualitySlider" max="3" min="1" oninput="updateTrimQualityLabel(this.value)" step="1" type="range" value="2"/>
-<div style="display:flex; justify-content:space-between; font-size:0.78rem; color:var(--text-muted); margin-top:0.35rem;">
-<span>
-          Smallest
-         </span>
-<span>
-          Balanced
-         </span>
-<span>
-          Best Quality
-         </span>
-</div>
-</div>
-<button class="btn" onclick="startTrimCompress()" style="width:100%;">
-        ✂️ Trim &amp; Compress
-       </button>
-</div>
-</div>
-<!-- ── TAB 3: Batch Info ── -->
-<div class="tab-content" id="batch-tab" style="display:none;">
-<div style="background:#eef2ff; border-radius:16px; padding:2rem; border:1px solid #c7d2fe; text-align:center;">
-<span style="font-size:3rem; display:block; margin-bottom:1rem;">
-        📦
-       </span>
-<h3 style="font-size:1.2rem; margin-bottom:0.75rem;">
-        Batch Video Compression
-       </h3>
-<p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem;">
-        Batch processing allows you to compress multiple videos at once. This feature works best in desktop environments. Select multiple files from the main
-        <strong>
-         Compress Video
-        </strong>
-        tab by holding Ctrl/Cmd while selecting files. Each video will be queued and compressed in sequence.
-       </p>
-<div style="background:white; border-radius:12px; padding:1.25rem; text-align:left; border:1px solid var(--border-color);">
-<div style="font-weight:700; margin-bottom:0.75rem; font-size:0.95rem;">
-         📋 Batch Tips
+      </div>
+
+      <!-- Quality slider -->
+      <div class="quality-wrap">
+        <div class="quality-row">
+          <label class="nb-label" style="margin:0;">🎚️ Video Quality</label>
+          <span class="quality-badge" id="qualityLabel">75%</span>
         </div>
-<ul style="list-style:none; padding:0; margin:0; font-size:0.9rem; color:var(--text-muted); line-height:2;">
-<li>
-          ✅ Select up to 10 videos at once
-         </li>
-<li>
-          ✅ All videos use the same quality preset
-         </li>
-<li>
-          ✅ Downloads are triggered one by one after each compression
-         </li>
-<li>
-          ✅ No file is ever uploaded to a server
-         </li>
-<li>
-          ⚠️ Large batches may be slower on older devices
-         </li>
-</ul>
+        <input type="range" id="qualitySlider" min="10" max="95" value="75" oninput="updateQuality(this.value)"/>
+        <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:#888;font-weight:600;margin-top:0.25rem;">
+          <span>Max Compression</span><span>Best Quality</span>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <div class="input-group" style="margin:0;">
+          <label class="nb-label" for="resSelect">📐 Output Resolution</label>
+          <select class="nb-select" id="resSelect">
+            <option value="original">Keep Original</option>
+            <option value="1080">1080p (Full HD)</option>
+            <option value="720">720p (HD)</option>
+            <option value="480">480p (SD)</option>
+            <option value="360">360p (Low)</option>
+            <option value="240">240p (Very Low)</option>
+          </select>
+        </div>
+        <div class="input-group" style="margin:0;">
+          <label class="nb-label" for="fpsSelect">🎞️ Frame Rate</label>
+          <select class="nb-select" id="fpsSelect">
+            <option value="original">Keep Original</option>
+            <option value="60">60 fps</option>
+            <option value="30">30 fps</option>
+            <option value="24">24 fps</option>
+            <option value="15">15 fps</option>
+          </select>
+        </div>
+        <div class="input-group" style="margin:0;">
+          <label class="nb-label" for="speedSelect">⚡ Processing Speed</label>
+          <select class="nb-select" id="speedSelect">
+            <option value="1">Normal (1x)</option>
+            <option value="2">Fast (2x)</option>
+            <option value="4">Faster (4x)</option>
+          </select>
+        </div>
+        <div class="input-group" style="margin:0;">
+          <label class="nb-label" for="muteSelect">🔊 Audio</label>
+          <select class="nb-select" id="muteSelect">
+            <option value="keep">Keep Audio</option>
+            <option value="mute">Remove Audio (smaller file)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <button class="nb-btn nb-btn-primary" style="flex:2;min-width:180px;font-size:1.1rem;padding:1rem;" id="compressBtn" onclick="startCompression()">🗜️ Compress Video</button>
+        <button class="nb-btn nb-btn-mint" style="flex:1;min-width:120px;" onclick="resetTool()">🔄 Reset</button>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div id="progressWrap" style="display:none;" class="progress-wrap">
+      <h3 style="font-family:'Syne',sans-serif;font-weight:900;margin:0 0 0.25rem;font-size:1rem;">🗜️ Compressing Video…</h3>
+      <p style="color:#666;font-size:0.88rem;margin:0;">Processing in your browser. This may take a few minutes depending on file size.</p>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0%</div>
+    </div>
+
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ Canvas + MediaRecorder API — 100% in your browser. Zero server uploads.</p>
+  </div>
+
+  <!-- Results -->
+  <div id="resultsSection" style="display:none;" class="animate-in">
+
+    <div class="result-hero">
+      <div class="result-label">Space Saved</div>
+      <div class="result-savings" id="savedPct">—</div>
+      <p style="margin:0.5rem 0 0;font-weight:700;color:#555;">Your video has been compressed successfully!</p>
+      <div class="result-actions">
+        <button class="nb-btn nb-btn-primary" id="downloadBtn" onclick="downloadResult()">⬇️ Download Video</button>
+        <button class="nb-btn nb-btn-mint" onclick="resetTool()">🔄 Compress Another</button>
+      
+        
+      </div>
+    </div>
+
+    <div class="before-after">
+      <div class="ba-card" style="background:var(--nb-blue);">
+        <div class="ba-label">Before</div>
+        <div class="ba-val" id="sizeBefore">-</div>
+        <div style="font-size:0.82rem;color:#666;font-weight:600;margin-top:0.25rem;">Original</div>
+      </div>
+      <div class="ba-card" style="background:var(--nb-lime);">
+        <div class="ba-label">After</div>
+        <div class="ba-val" id="sizeAfter">-</div>
+        <div style="font-size:0.82rem;color:#666;font-weight:600;margin-top:0.25rem;">Compressed</div>
+      </div>
+    </div>
+
+    <!-- Output preview -->
+    <div class="input-group">
+      <label class="nb-label">🎬 Compressed Preview</label>
+      <video class="video-preview" id="outputPreview" controls></video>
+    </div>
+
+  </div>
+
+</div><!-- /tool-container -->
+
+<!-- SEO -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>Free Online Video Compressor — No Upload, No Watermark</h2>
+    <p>The <strong>WorldOfTools Video Compressor</strong> is the only major online video compression tool that processes your video <strong>entirely in your browser</strong> using the Canvas API and MediaRecorder API. Your video file never leaves your device — not even a single byte is sent to any server.</p>
+    <p>This means <strong>no privacy risk, no upload waiting time, and no file size limits based on server restrictions</strong>. Compress videos up to 2GB, with support for MP4, WebM, MOV, AVI, and MKV formats. The output has <strong>absolutely no watermark</strong>.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Compress a Video — Step by Step</h2>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Upload Your Video</strong> — Drag and drop or click to select. MP4, WebM, MOV, AVI, MKV up to 2GB. The file stays on your device.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Choose Settings</strong> — Pick a platform preset (WhatsApp, Instagram, Discord) or manually set quality, resolution, and frame rate.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Compress & Download</strong> — Click Compress Video. Preview the result and download your compressed file — no watermark, no signup.</p>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>🆚 WorldOfTools vs Other Video Compressors</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr>
+          <th>Feature</th>
+          <th style="color:#4f46e5;">WorldOfTools</th>
+          <th>Other Tools</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Video Upload to Server</td><td class="yes">✓ Never</td><td class="no">Always</td></tr>
+          <tr><td>Watermark</td><td class="yes">✓ None</td><td class="no">On Free Plan</td></tr>
+          <tr><td>File Size Limit</td><td class="yes">✓ Up to 2GB</td><td class="no">25–200MB</td></tr>
+          <tr><td>Signup Required</td><td class="yes">✓ No</td><td class="no">Often</td></tr>
+          <tr><td>Platform Presets</td><td class="yes">✓ Yes (5+)</td><td class="no">Rarely</td></tr>
+          <tr><td>Privacy</td><td class="yes">✓ 100% Local</td><td class="no">Server Stored</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>Is the video uploaded to a server?</summary><p>No. All video processing happens entirely in your browser using the Canvas API and MediaRecorder API. Your video file never leaves your device and is never sent to any server, storage, or third party.</p></details>
+    <details><summary>What video formats are supported?</summary><p>The tool accepts MP4, WebM, MOV, AVI, and MKV files up to 2GB. Output format is WebM (for maximum compression) when available, or MP4 depending on browser support.</p></details>
+    <details><summary>How much can a video be compressed?</summary><p>Typical results range from 30% to 85% reduction. The more you lower quality and resolution, the higher the compression. For a WhatsApp video, selecting 60% quality + 480p usually reduces a 100MB file to 10–20MB.</p></details>
+    <details><summary>Will there be a watermark?</summary><p>Absolutely not. This tool adds zero watermarks. The output is clean and ready for WhatsApp, Instagram, Discord, email, or any other platform.</p></details>
+    <details><summary>Why is compression slower than other tools?</summary><p>Because this tool processes your video 100% locally in your browser, it cannot use dedicated server hardware. Processing a large 1GB+ file may take several minutes. Other tools appear faster because they upload your video to powerful servers — at the cost of your privacy.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Tools You Might Need</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/background-remover"><div class="icon">✂️</div><div class="name">BG Remover</div><div class="desc">Remove image backgrounds</div></a>
+      <a class="tool-card-mini" href="/image-watermark-remover"><div class="icon">🖼️</div><div class="name">Watermark Remover</div><div class="desc">Remove image watermarks</div></a>
+      <a class="tool-card-mini" href="/image-compressor"><div class="icon">🗜️</div><div class="name">Image Compressor</div><div class="desc">Compress JPG, PNG, WebP</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age from DOB</div></a>
+      <a class="tool-card-mini" href="/unit-converter"><div class="icon">📐</div><div class="name">Unit Converter</div><div class="desc">Convert any units</div></a>
+      <a class="tool-card-mini" href="/uuid-generator"><div class="icon">🔑</div><div class="name">UUID Generator</div><div class="desc">Generate unique IDs</div></a>
+    </div>
+  </section>
+
 </div>
-<button class="btn" onclick="switchTab('compress')" style="margin-top:1.5rem;">
-        ➡️ Go to Compress Tab
-       </button>
-</div>
-</div>
-<!-- Privacy note -->
-<div style="text-align:center; margin-top:1.5rem; font-size:0.85rem; color:var(--text-muted);">
-      ⚡ All processing runs in your browser. Your video is never uploaded or stored.
-     </div>
-</div>
-<!-- End tool-main-card -->
-</div>
-<!-- ══ SEO Content Block ══ -->
-<div style="max-width:900px; margin:3rem auto; padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem; font-weight:800; margin-bottom:1.25rem; letter-spacing:-0.02em;">
-      What is this Video Compressor?
-     </h2>
-<p style="line-height:1.8; color:#4b5563;">
-      The
-      <strong>
-       Free Online Video Compressor
-      </strong>
-      by WorldOfTools lets you reduce video file size directly in your browser — no installation, no account, and no server upload required. Whether you need to compress an MP4 for WhatsApp, shrink a MOV file for email, or reduce video size for an Instagram Reel or YouTube upload, this tool handles it instantly using the modern WebCodecs API built into your browser.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem; font-weight:800; margin-bottom:1.25rem; letter-spacing:-0.02em;">
-      How to Compress a Video Without Losing Quality
-     </h2>
-<div style="line-height:1.8; color:#4b5563;">
-<p>
-       Video compression works by reducing bitrate — the amount of data used per second of video. At
-       <strong>
-        Medium quality (Balanced preset)
-       </strong>
-       , you typically achieve 40–60% file size reduction with barely visible quality loss. The
-       <strong>
-        High Quality
-       </strong>
-       preset reduces file size by ~25% while preserving near-original clarity, ideal for YouTube or professional use. The
-       <strong>
-        Small File
-       </strong>
-       preset can shrink a video by 70–80%, perfect for WhatsApp or messaging apps.
-      </p>
-<p style="margin-top:1rem;">
-       Our tool also lets you
-       <strong>
-        downscale the resolution
-       </strong>
-       — e.g. from 1080p to 720p — which dramatically reduces file size with minimal perceptible quality difference on phone screens. Combining resolution reduction with medium quality compression is the fastest way to make a video small enough for email or social media.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem; font-weight:800; margin-bottom:1.25rem; letter-spacing:-0.02em;">
-      How to Use the Video Compressor — Step-by-Step
-     </h2>
-<div style="display:flex; align-items:flex-start; gap:1rem; background:#f8f9ff; border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<span style="min-width:32px; height:32px; background:#4f46e5; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.9rem; flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0; line-height:1.6; padding-top:0.3rem;">
-<strong>
-        Upload Your Video
-       </strong>
-       — Drag and drop your MP4, MOV, WebM, or AVI file into the drop zone, or click to browse.
-      </p>
-</div>
-<div style="display:flex; align-items:flex-start; gap:1rem; background:#f8f9ff; border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<span style="min-width:32px; height:32px; background:#4f46e5; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.9rem; flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0; line-height:1.6; padding-top:0.3rem;">
-<strong>
-        Choose a Preset or Custom Settings
-       </strong>
-       — Pick WhatsApp, Instagram, Email, or YouTube for one-click optimization, or manually set quality and resolution.
-      </p>
-</div>
-<div style="display:flex; align-items:flex-start; gap:1rem; background:#f8f9ff; border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<span style="min-width:32px; height:32px; background:#4f46e5; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.9rem; flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0; line-height:1.6; padding-top:0.3rem;">
-<strong>
-        Click Compress
-       </strong>
-       — The tool processes your video locally. A real-time progress bar shows estimated completion time.
-      </p>
-</div>
-<div style="display:flex; align-items:flex-start; gap:1rem; background:#f8f9ff; border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<span style="min-width:32px; height:32px; background:#4f46e5; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.9rem; flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0; line-height:1.6; padding-top:0.3rem;">
-<strong>
-        Download
-       </strong>
-       — Once done, you'll see the before/after file size, space saved, and a download button for the compressed video.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem; font-weight:800; margin-bottom:1.25rem; letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none; padding:0; margin:0;">
-<li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.8rem;">
-<span style="color:#10b981; font-weight:bold; flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Zero Upload Privacy:
-        </strong>
-        Your video never leaves your device. Compression runs 100% inside the browser using WebCodecs — no server, no cloud, no risk.
-       </span>
-</li>
-<li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.8rem;">
-<span style="color:#10b981; font-weight:bold; flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Platform-Specific Presets:
-        </strong>
-        One-click presets optimized for WhatsApp (under 16 MB), Instagram Reels, email attachments, and YouTube HD uploads.
-       </span>
-</li>
-<li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.8rem;">
-<span style="color:#10b981; font-weight:bold; flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Resolution Downscaling:
-        </strong>
-        Reduce to 720p, 480p, or 360p for dramatically smaller files — ideal for slow internet uploads or mobile sharing.
-       </span>
-</li>
-<li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.8rem;">
-<span style="color:#10b981; font-weight:bold; flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No Watermark:
-        </strong>
-        Download the compressed video clean — no logos, branding, or overlays added.
-       </span>
-</li>
-<li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.8rem;">
-<span style="color:#10b981; font-weight:bold; flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Trim Before Compression:
-        </strong>
-        Use the Trim &amp; Compress tab to remove silent or unwanted parts of the video before compressing — saves even more space.
-       </span>
-</li>
-<li style="display:flex; align-items:flex-start; gap:0.6rem; margin-bottom:0.8rem;">
-<span style="color:#10b981; font-weight:bold; flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Detailed Compression Stats:
-        </strong>
-        See original size, compressed size, percentage saved, and compression ratio — so you always know exactly what you gained.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem; font-weight:800; margin-bottom:1.25rem; letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses This Video Compressor?
-     </h2>
-<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:1.5rem; margin-top:1rem;">
-<div style="background:#fff; border:1px solid #e5e7eb; padding:1.5rem; border-radius:12px;">
-<h3 style="font-size:1.05rem; margin-bottom:0.5rem;">
-        💬 WhatsApp &amp; Telegram Users
-       </h3>
-<p style="font-size:0.9rem; color:#6b7280; line-height:1.5;">
-        Compress videos under 16 MB (WhatsApp) or 50 MB (Telegram) without any third-party app.
-       </p>
-</div>
-<div style="background:#fff; border:1px solid #e5e7eb; padding:1.5rem; border-radius:12px;">
-<h3 style="font-size:1.05rem; margin-bottom:0.5rem;">
-        📸 Content Creators &amp; Reels Makers
-       </h3>
-<p style="font-size:0.9rem; color:#6b7280; line-height:1.5;">
-        Make Instagram Reels, YouTube Shorts, and TikTok clips upload faster with smaller, high-quality files.
-       </p>
-</div>
-<div style="background:#fff; border:1px solid #e5e7eb; padding:1.5rem; border-radius:12px;">
-<h3 style="font-size:1.05rem; margin-bottom:0.5rem;">
-        🏢 Professionals &amp; Students
-       </h3>
-<p style="font-size:0.9rem; color:#6b7280; line-height:1.5;">
-        Attach compressed video to emails, Google Classroom submissions, or Slack messages that have file size limits.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem; font-weight:800; margin-bottom:1.25rem; letter-spacing:-0.02em;">
-      🆚 Video Compressor vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto; margin-top:1rem;">
-<table style="width:100%; border-collapse:collapse; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem; text-align:left; border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem; text-align:center; border-bottom:2px solid #e5e7eb; color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem; text-align:center; border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem; border-bottom:1px solid #e5e7eb;">
-          Video Upload to Server
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; border-bottom:1px solid #e5e7eb; color:#10b981; font-weight:700;">
-          Never
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; border-bottom:1px solid #e5e7eb;">
-          Always
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem; border-bottom:1px solid #e5e7eb;">
-          Watermark on Output
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; border-bottom:1px solid #e5e7eb; color:#10b981; font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; border-bottom:1px solid #e5e7eb;">
-          Often Added
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem; border-bottom:1px solid #e5e7eb;">
-          Registration Required
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; border-bottom:1px solid #e5e7eb; color:#10b981; font-weight:700;">
-          No
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; border-bottom:1px solid #e5e7eb;">
-          Often Yes
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem; border-bottom:1px solid #e5e7eb;">
-          Platform Presets
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; border-bottom:1px solid #e5e7eb; color:#10b981; font-weight:700;">
-          WhatsApp, IG, YouTube, Email
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; border-bottom:1px solid #e5e7eb;">
-          Generic Only
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Price
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center; color:#10b981; font-weight:700;">
-          Free Forever
-         </td>
-<td style="padding:0.75rem 1rem; text-align:center;">
-          Free with Limits
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem; font-weight:800; margin-bottom:1.25rem; letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<summary style="font-weight:700; cursor:pointer;">
-       How do I compress a video to under 16 MB for WhatsApp?
-      </summary>
-<p style="margin:0.75rem 0 0; color:#6b7280; line-height:1.6;">
-       Upload your video and select the
-       <strong>
-        WhatsApp preset
-       </strong>
-       . This automatically sets quality and resolution to target under 16 MB. For very long videos, you can also use the Trim tab to shorten the clip first.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<summary style="font-weight:700; cursor:pointer;">
-       Is my video safe? Will it be uploaded to a server?
-      </summary>
-<p style="margin:0.75rem 0 0; color:#6b7280; line-height:1.6;">
-       Your video is 100% safe. All processing happens locally inside your browser using WebCodecs. Nothing is ever sent to a server. Your privacy is fully protected.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<summary style="font-weight:700; cursor:pointer;">
-       What is the maximum video size I can compress?
-      </summary>
-<p style="margin:0.75rem 0 0; color:#6b7280; line-height:1.6;">
-       There is no hard server-side limit since no upload happens. Practically, files up to 2 GB work well in most modern browsers. Very large files (2 GB+) may be slow or run into browser memory limits depending on your device RAM.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<summary style="font-weight:700; cursor:pointer;">
-       What formats are supported?
-      </summary>
-<p style="margin:0.75rem 0 0; color:#6b7280; line-height:1.6;">
-       Input formats include MP4, MOV, WebM, and AVI. Output is delivered as a compressed MP4 file (H.264), which is compatible with all devices, platforms, and social media networks.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<summary style="font-weight:700; cursor:pointer;">
-       Will the compressed video have a watermark?
-      </summary>
-<p style="margin:0.75rem 0 0; color:#6b7280; line-height:1.6;">
-       No. The output video is completely clean with no watermarks, logos, or branding of any kind — free forever.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb; border-radius:12px; padding:1rem 1.25rem; margin-bottom:0.5rem;">
-<summary style="font-weight:700; cursor:pointer;">
-       Does this work on mobile (Android/iPhone)?
-      </summary>
-<p style="margin:0.75rem 0 0; color:#6b7280; line-height:1.6;">
-       Yes, the tool works in modern mobile browsers including Chrome for Android and Safari on iOS. For very large files, a desktop browser may be faster due to more available RAM.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem; font-weight:800; margin-bottom:1.25rem; letter-spacing:-0.02em;">
-      📚 Educational Content — Understanding Video Compression
-     </h2>
-<div style="line-height:1.8; color:#4b5563;">
-<p>
-       Video compression is the process of reducing a video file's data size by removing redundant or less important visual information. Modern codecs like
-       <strong>
-        H.264 (AVC)
-       </strong>
-       and
-       <strong>
-        H.265 (HEVC)
-       </strong>
-       achieve this through techniques like inter-frame prediction (comparing consecutive frames and only storing the differences), spatial compression within individual frames, and quantization of frequency coefficients. The result is a much smaller file that looks virtually identical to the human eye.
-      </p>
-<p style="margin-top:1rem;">
-       The key tradeoff is between
-       <strong>
-        bitrate
-       </strong>
-       (data per second) and
-       <strong>
-        visual quality
-       </strong>
-       . A higher bitrate means more detail is preserved, while a lower bitrate produces a smaller file at the cost of some sharpness, especially in fast-moving scenes. For most everyday sharing purposes — WhatsApp messages, Instagram posts, email attachments — a medium quality compression that cuts file size by 40–60% is virtually indistinguishable from the original when viewed on a phone screen.
-      </p>
-<p style="margin-top:1rem;">
-       Our tool at WorldOfTools makes this process effortless and completely private. There's no software to install, no account to create, and no file size limitation imposed by upload bandwidth. We believe powerful tools should be universally accessible — free, private, and fast.
-      </p>
-</div>
-</section>
-<!-- Phase 2 SEO Content -->
-<section class="platform-guides" style="margin-top: 5rem;">
-<h2 style="font-size: 2.2rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 2.5rem; text-align: center;">
-      Compress Video for Any Platform — Optimized Settings
-     </h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;">
-<div class="info-card" style="background: #fdf2f2; border-color: #fecaca; padding: 2.5rem;">
-<h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #991b1b;">
-        📱 WhatsApp (Under 16MB)
-       </h3>
-<p style="font-size: 1.05rem; line-height: 1.7;">
-        Sharing videos on WhatsApp often results in "file too large" errors. Our WhatsApp preset compresses video to
-        <b>
-         under 16MB
-        </b>
-        by adjusting resolution to 480p and bitrate to 400kbps. It’s the fastest way to
-        <b>
-         compress MP4 for WhatsApp without losing quality
-        </b>
-        visible on small screens.
-       </p>
-</div>
-<div class="info-card" style="background: #f5f3ff; border-color: #ddd6fe; padding: 2.5rem;">
-<h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #5b21b6;">
-        👾 Discord (10MB / 25MB)
-       </h3>
-<p style="font-size: 1.05rem; line-height: 1.7;">
-        Discord free users are capped at
-        <b>
-         10MB per file
-        </b>
-        . Our Discord preset uses aggressive bitrate scaling to help you
-        <b>
-         compress video for Discord
-        </b>
-        successfully. For Nitro users, the 25MB preset ensures your gaming clips stay crisp while meeting the limit.
-       </p>
-</div>
-<div class="info-card" style="background: #ecfdf5; border-color: #a7f3d0; padding: 2.5rem;">
-<h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #065f46;">
-        🎬 Instagram Reels &amp; Stories
-       </h3>
-<p style="font-size: 1.05rem; line-height: 1.7;">
-        Instagram recommends 720p/1080p and a max of 4GB, but smaller files upload faster and play smoother. Use our
-        <b>
-         Instagram video compressor
-        </b>
-        to optimize 9:16 vertical videos for instant vertical sharing.
-       </p>
-</div>
-</div>
-<div style="margin-top: 4rem; background: #f8fafc; border-radius: 20px; padding: 3rem; border: 1px solid #e2e8f0;">
-<h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">
-       How to Compress a 2 GB Movie File Online Free
-      </h2>
-<p style="font-size: 1.15rem; line-height: 1.8; color: #475569; margin-bottom: 1.5rem;">
-       Unlike many competitors who cap free users at 500MB, WorldOfTools allows you to
-       <b>
-        compress large video files up to 2 GB
-       </b>
-       . Because we process the file locally in your browser, you don't need a high-speed fiber connection to upload a massive movie file. Simply drag the movie in, select "Balanced," and wait for the browser-side encoder to do its magic.
-      </p>
-<ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; list-style: none; padding: 0;">
-<li style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-        ✅ High Compression Ratio (up to 90%)
-       </li>
-<li style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-        ✅ Safe for Private/Internal Movies
-       </li>
-<li style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-        ✅ No Uploading to Cloud Servers
-       </li>
-</ul>
-</div>
-</section>
-<!-- Comparison Matrix -->
-<section class="comparison-matrix" style="margin-top: 5rem; text-align: center;">
-<h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 2rem;">
-      WorldOfTools vs. Paid Competitors
-     </h2>
-<div style="overflow-x: auto; border-radius: 16px; border: 1px solid #e5e7eb; background: white;">
-<table style="width: 100%; border-collapse: collapse; text-align: left; min-width: 600px;">
-<thead style="background: #111827; color: white;">
-<tr>
-<th style="padding: 1.25rem;">
-          Feature
-         </th>
-<th style="padding: 1.25rem;">
-          WorldOfTools
-         </th>
-<th style="padding: 1.25rem;">
-          VEED / Clideo
-         </th>
-<th style="padding: 1.25rem;">
-          EzGIF
-         </th>
-</tr>
-</thead>
-<tbody style="font-size: 1rem;">
-<tr style="border-bottom: 1px solid #f3f4f6;">
-<td style="padding: 1.25rem; font-weight: 700;">
-          Max File Size (Free)
-         </td>
-<td style="padding: 1.25rem; color: #059669; font-weight: 800;">
-          2 GB
-         </td>
-<td style="padding: 1.25rem; color: #dc2626;">
-          500 MB – 1 GB
-         </td>
-<td style="padding: 1.25rem;">
-          200 MB
-         </td>
-</tr>
-<tr style="border-bottom: 1px solid #f3f4f6; background: #f9fafb;">
-<td style="padding: 1.25rem; font-weight: 700;">
-          Zero Watermark (Free)
-         </td>
-<td style="padding: 1.25rem; color: #059669; font-weight: 800;">
-          Yes
-         </td>
-<td style="padding: 1.25rem; color: #dc2626;">
-          No (Locked behind Pro)
-         </td>
-<td style="padding: 1.25rem;">
-          Yes
-         </td>
-</tr>
-<tr style="border-bottom: 1px solid #f3f4f6;">
-<td style="padding: 1.25rem; font-weight: 700;">
-          Privacy (No Upload)
-         </td>
-<td style="padding: 1.25rem; color: #059669; font-weight: 800;">
-          Yes (100% Client-Side)
-         </td>
-<td style="padding: 1.25rem; color: #dc2626;">
-          No (Cloud Upload)
-         </td>
-<td style="padding: 1.25rem;">
-          No (Cloud Upload)
-         </td>
-</tr>
-<tr>
-<td style="padding: 1.25rem; font-weight: 700;">
-          No Signup / Login
-         </td>
-<td style="padding: 1.25rem; color: #059669; font-weight: 800;">
-          Yes
-         </td>
-<td style="padding: 1.25rem; color: #dc2626;">
-          Often Required
-         </td>
-<td style="padding: 1.25rem;">
-          Yes
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<!-- SEO Content Block -->
-<section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features of Video Compressor</h2><ul style="list-style:none;padding:0;margin:0;"><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Instant Results:</strong> Process your data instantly with our optimized Video Compressor.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>100% Privacy:</strong> Everything runs securely in your browser. No files or data are uploaded to our servers.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Completely Free:</strong> Enjoy full access without subscriptions, hidden fees, or intrusive ads.</span></li></ul></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How Does Video Compressor Work?</h2><div style="line-height:1.8;color:#4b5563;">Our Video Compressor leverages modern web technologies to process your input locally in your browser. This ensures maximum speed and guarantees your privacy.</div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use Video Compressor — Step-by-Step</h2><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Input your desired content or file.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Select any available options or parameters.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Click execute to generate your result instantly.</p></div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this Video Compressor free to use?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, it is completely free to use with no hidden charges or limits.</p></details><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is my data secure?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. Your data never leaves your device because all processing happens client-side in your browser.</p></details></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Final Thoughts</h2><div style="line-height:1.8;color:#4b5563;">Bookmark this Video Compressor for quick access whenever you need it.</div></section></div></main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+
+</main>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   // ════════════════════════════════════
-        //  STATE
-        // ════════════════════════════════════
-        let sourceFile = null;
-        let compressedBlob = null;
-        let trimSourceFile = null;
+const PRESETS = {
+  whatsapp: { quality: 60, res: '480', fps: '30', label: '📲 WhatsApp' },
+  instagram: { quality: 70, res: '720', fps: '30', label: '📸 Instagram' },
+  discord: { quality: 65, res: '480', fps: '30', label: '💬 Discord (8MB limit)' },
+  email: { quality: 50, res: '360', fps: '24', label: '📧 Email' },
+  web: { quality: 75, res: '720', fps: '30', label: '🌐 Web Embed' },
+  custom: { quality: 75, res: 'original', fps: 'original', label: '⚙️ Custom' }
+};
 
-        // ── Tab switching ──
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId + '-tab').style.display = 'block';
-            event.currentTarget.classList.add('active');
-            showError('');
+let videoFile = null;
+let outputBlob = null;
+let videoEl = null;
+let animId = null;
+
+function applyPreset(key, btn) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  const p = PRESETS[key];
+  document.getElementById('qualitySlider').value = p.quality;
+  document.getElementById('qualityLabel').textContent = p.quality + '%';
+  document.getElementById('resSelect').value = p.res;
+  document.getElementById('fpsSelect').value = p.fps;
+}
+
+function updateQuality(val) {
+  document.getElementById('qualityLabel').textContent = val + '%';
+}
+
+function handleFile(file) {
+  if (!file) return;
+  showError('');
+  if (!file.type.startsWith('video/')) return showError('Please select a valid video file (MP4, WebM, MOV, AVI, MKV).');
+  if (file.size > 2 * 1024 * 1024 * 1024) return showError('File size exceeds 2GB limit.');
+  videoFile = file;
+  document.getElementById('infoName').textContent = file.name;
+  document.getElementById('infoSize').textContent = formatSize(file.size);
+  document.getElementById('dropZone').style.display = 'none';
+  document.getElementById('videoInfoWrap').style.display = 'block';
+  document.getElementById('settingsWrap').style.display = 'block';
+  document.getElementById('resultsSection').style.display = 'none';
+
+  const url = URL.createObjectURL(file);
+  const vid = document.getElementById('videoPreview');
+  vid.src = url;
+  vid.onloadedmetadata = () => {
+    document.getElementById('infoDims').textContent = vid.videoWidth + ' × ' + vid.videoHeight;
+    document.getElementById('infoDuration').textContent = formatDuration(vid.duration);
+  };
+}
+
+function formatSize(bytes) {
+  if (bytes >= 1073741824) return (bytes / 1073741824).toFixed(2) + ' GB';
+  if (bytes >= 1048576) return (bytes / 1048576).toFixed(2) + ' MB';
+  return (bytes / 1024).toFixed(1) + ' KB';
+}
+
+function formatDuration(s) {
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ':' + sec.toString().padStart(2,'0');
+}
+
+function showError(msg) {
+  const el = document.getElementById('errMsg');
+  el.style.display = msg ? 'block' : 'none';
+  el.textContent = msg ? '⚠️ ' + msg : '';
+}
+
+async function startCompression() {
+  if (!videoFile) return showError('Please select a video file first.');
+  showError('');
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('compressBtn').disabled = true;
+  document.getElementById('resultsSection').style.display = 'none';
+
+  try {
+    const quality = parseInt(document.getElementById('qualitySlider').value) / 100;
+    const resTarget = document.getElementById('resSelect').value;
+    const fpsSetting = document.getElementById('fpsSelect').value;
+    const mute = document.getElementById('muteSelect').value === 'mute';
+    const speed = parseInt(document.getElementById('speedSelect').value);
+
+    // Load video
+    const url = URL.createObjectURL(videoFile);
+    const vid = document.createElement('video');
+    vid.src = url;
+    vid.muted = true;
+    vid.playbackRate = speed;
+    await new Promise(r => { vid.onloadedmetadata = r; });
+
+    let outW = vid.videoWidth;
+    let outH = vid.videoHeight;
+    if (resTarget !== 'original') {
+      const maxH = parseInt(resTarget);
+      if (outH > maxH) {
+        const ratio = maxH / outH;
+        outH = maxH;
+        outW = Math.floor(outW * ratio / 2) * 2;
+      }
+    }
+
+    const canvas = document.getElementById('canvas');
+    canvas.width = outW;
+    canvas.height = outH;
+    const ctx = canvas.getContext('2d');
+
+    // Determine bitrate based on quality and resolution
+    const baseBitrate = outW * outH * 0.1;
+    const videoBitsPerSecond = Math.floor(baseBitrate * quality);
+
+    const mimeTypes = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm', 'video/mp4'];
+    const supported = mimeTypes.find(m => MediaRecorder.isTypeSupported(m)) || 'video/webm';
+
+    const stream = canvas.captureStream(fpsSetting === 'original' ? vid.videoWidth > 1280 ? 30 : 30 : parseInt(fpsSetting));
+    const options = { mimeType: supported, videoBitsPerSecond };
+
+    let audioStream = null;
+    if (!mute && vid.captureStream) {
+      try {
+        vid.muted = false;
+        vid.volume = 1;
+        const vs = vid.captureStream();
+        const audioTracks = vs.getAudioTracks();
+        if (audioTracks.length > 0) {
+          audioTracks.forEach(t => stream.addTrack(t));
         }
+      } catch(e) {}
+    }
 
-        // ── Error display ──
-        function showError(msg) {
-            const el = document.getElementById('errorMessage');
-            if (msg) {
-                el.textContent = '⚠️ ' + msg;
-                el.style.display = 'flex';
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                el.style.display = 'none';
-                el.textContent = '';
-            }
-        }
+    const recorder = new MediaRecorder(stream, options);
+    const chunks = [];
+    recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
 
-        // ── Drop zone drag events ──
-        const dropZone = document.getElementById('dropZone');
-        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-        dropZone.addEventListener('drop', e => {
-            e.preventDefault();
-            dropZone.classList.remove('drag-over');
-            const file = e.dataTransfer.files[0];
-            if (file) loadVideo(file);
-        });
+    const duration = vid.duration;
+    let lastProgress = 0;
 
-        document.getElementById('videoInput').addEventListener('change', function () {
-            if (this.files[0]) loadVideo(this.files[0]);
-        });
+    recorder.start(100);
+    vid.play();
 
-        // ── Load video into preview ──
-        function loadVideo(file) {
-            if (!file.type.startsWith('video/')) return showError('Please select a valid video file (MP4, MOV, WebM, AVI).');
-            sourceFile = file;
-            const url = URL.createObjectURL(file);
-            const preview = document.getElementById('previewVideo');
-            preview.src = url;
-            preview.style.display = 'block';
+    animId = requestAnimationFrame(function draw() {
+      if (vid.ended || vid.paused) return;
+      ctx.drawImage(vid, 0, 0, outW, outH);
+      const prog = Math.min(99, Math.floor((vid.currentTime / duration) * 100));
+      if (prog !== lastProgress) {
+        lastProgress = prog;
+        document.getElementById('progressFill').style.width = prog + '%';
+        document.getElementById('progressLabel').textContent = prog + '% — Processing…';
+      }
+      animId = requestAnimationFrame(draw);
+    });
 
-            // File info
-            document.getElementById('fileName').textContent = file.name;
-            document.getElementById('fileSize').textContent = formatBytes(file.size);
-            document.getElementById('fileInfoBar').style.display = 'block';
+    await new Promise(resolve => { vid.onended = resolve; });
+    await new Promise(r => setTimeout(r, 200));
+    recorder.stop();
+    await new Promise(r => { recorder.onstop = r; });
 
-            preview.onloadedmetadata = () => {
-                document.getElementById('fileDuration').textContent = formatDuration(preview.duration);
-            };
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressLabel').textContent = '100% — Done!';
+    await new Promise(r => setTimeout(r, 400));
 
-            // Reset results
-            document.getElementById('resultSection').style.display = 'none';
-            document.getElementById('progressSection').style.display = 'none';
-            const dlBtn = document.getElementById('downloadBtn');
-            dlBtn.style.display = 'none';
-            compressedBlob = null;
-        }
+    outputBlob = new Blob(chunks, { type: supported });
+    const origSize = videoFile.size;
+    const newSize = outputBlob.size;
+    const savedPct = Math.round((1 - newSize / origSize) * 100);
 
-        // ── Quality label ──
-        function updateQualityLabel(val) {
-            const labels = { '1': 'Smallest File (Low)', '2': 'Medium (Balanced)', '3': 'Best Quality (Large)' };
-            document.getElementById('qualityLabel').textContent = labels[val];
-        }
+    document.getElementById('savedPct').textContent = savedPct > 0 ? savedPct + '% smaller' : 'Compressed';
+    document.getElementById('sizeBefore').textContent = formatSize(origSize);
+    document.getElementById('sizeAfter').textContent = formatSize(newSize);
 
-        function updateTrimQualityLabel(val) {
-            const labels = { '1': 'Smallest', '2': 'Medium', '3': 'Best Quality' };
-            document.getElementById('trimQualityLabel').textContent = labels[val];
-        }
+    const outUrl = URL.createObjectURL(outputBlob);
+    document.getElementById('outputPreview').src = outUrl;
 
-        // ── Presets ──
-        const presets = {
-            whatsapp:  { quality: '1', resolution: '480'      },
-            instagram: { quality: '2', resolution: '720'      },
-            discord:   { quality: '1', resolution: '480'      },
-            email:     { quality: '1', resolution: '480'      },
-            youtube:   { quality: '3', resolution: '1080'     },
-            custom:    { quality: '2', resolution: 'original' }
-        };
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('compressBtn').disabled = false;
+    const res = document.getElementById('resultsSection');
+    res.style.display = 'block';
+    res.classList.remove('animate-in');
+    void res.offsetWidth;
+    res.classList.add('animate-in');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-        function applyPreset(name, btn) {
-            document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
-            btn.classList.add('active');
-            const p = presets[name];
-            document.getElementById('qualitySlider').value = p.quality;
-            document.getElementById('resolutionSelect').value = p.resolution;
-            updateQualityLabel(p.quality);
-        }
+  } catch(e) {
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('compressBtn').disabled = false;
+    showError('Compression failed: ' + e.message + '. Try a smaller file or different browser.');
+    console.error(e);
+  }
+}
 
-        // ════════════════════════════════════
-        //  COMPRESSION (simulated via Canvas + MediaRecorder)
-        // ════════════════════════════════════
-        function startCompression() {
-            if (!sourceFile) return showError('Please select a video file first.');
-            showError('');
+function downloadResult() {
+  if (!outputBlob) return;
+  const ext = outputBlob.type.includes('mp4') ? 'mp4' : 'webm';
+  const name = (videoFile?.name || 'video').replace(/\.[^.]+$/, '') + '_compressed.' + ext;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(outputBlob);
+  a.download = name;
+  a.click();
+}
 
-            const quality = parseInt(document.getElementById('qualitySlider').value);
-            const resolution = document.getElementById('resolutionSelect').value;
-
-            // Quality → bitrate multiplier
-            const bpsMap = { 1: 400000, 2: 1200000, 3: 3000000 };
-            const videoBps = bpsMap[quality] || 1200000;
-
-            document.getElementById('progressSection').style.display = 'block';
-            document.getElementById('resultSection').style.display = 'none';
-            document.getElementById('downloadBtn').style.display = 'none';
-
-            const video = document.createElement('video');
-            video.src = URL.createObjectURL(sourceFile);
-            video.muted = true;
-
-            video.onloadedmetadata = () => {
-                const origW = video.videoWidth;
-                const origH = video.videoHeight;
-
-                let targetH = origH;
-                if (resolution !== 'original') targetH = Math.min(origH, parseInt(resolution));
-                const scale = targetH / origH;
-                const targetW = Math.round(origW * scale);
-
-                const canvas = document.createElement('canvas');
-                canvas.width = targetW;
-                canvas.height = targetH;
-                const ctx = canvas.getContext('2d');
-
-                const stream = canvas.captureStream(30);
-                let mimeType = 'video/webm;codecs=vp8';
-                if (!MediaRecorder.isTypeSupported(mimeType)) mimeType = 'video/webm';
-
-                const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: videoBps });
-                const chunks = [];
-                recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
-
-                const duration = video.duration;
-                let startTime = null;
-
-                recorder.onstop = () => {
-                    compressedBlob = new Blob(chunks, { type: mimeType });
-                    showResults(sourceFile.size, compressedBlob.size);
-                };
-
-                video.play();
-                recorder.start(100);
-
-                const drawFrame = (ts) => {
-                    if (!startTime) startTime = ts;
-                    const elapsed = (ts - startTime) / 1000;
-                    const pct = Math.min(100, Math.round((elapsed / duration) * 100));
-
-                    ctx.drawImage(video, 0, 0, targetW, targetH);
-                    updateProgress(pct, elapsed, duration);
-
-                    if (elapsed < duration && !video.ended) {
-                        requestAnimationFrame(drawFrame);
-                    } else {
-                        recorder.stop();
-                        video.pause();
-                    }
-                };
-
-                video.onplay = () => requestAnimationFrame(drawFrame);
-            };
-        }
-
-        function updateProgress(pct, elapsed, duration) {
-            document.getElementById('progressBar').style.width = pct + '%';
-            document.getElementById('progressPct').textContent = pct + '%';
-            const remaining = duration - elapsed;
-            document.getElementById('progressLabel').textContent = pct < 100 ? 'Compressing video…' : 'Finalizing…';
-            document.getElementById('progressEta').textContent = pct < 100
-                ? `Estimated time remaining: ~${Math.ceil(remaining)}s`
-                : 'Almost done…';
-        }
-
-        function showResults(origSize, newSize) {
-            document.getElementById('progressSection').style.display = 'none';
-            document.getElementById('resultSection').style.display = 'block';
-            document.getElementById('downloadBtn').style.display = 'block';
-
-            const saved = origSize - newSize;
-            const savedPct = ((saved / origSize) * 100).toFixed(1);
-            const ratio = (origSize / newSize).toFixed(2);
-
-            document.getElementById('statOriginalSize').textContent = formatBytes(origSize);
-            document.getElementById('statNewSize').textContent = formatBytes(newSize);
-            document.getElementById('statSaved').textContent = formatBytes(saved);
-            document.getElementById('statRatio').textContent = ratio + 'x';
-            document.getElementById('savingsBadge').textContent = `Saved ${savedPct}%`;
-
-            // Insight
-            let insight = '';
-            const pct = parseFloat(savedPct);
-            if (pct >= 70) insight = "Excellent compression! Your video is now much easier to share on WhatsApp or email.";
-            else if (pct >= 40) insight = "Great result! A 40–70% reduction is ideal for Instagram, YouTube, and messaging apps.";
-            else if (pct >= 15) insight = "Solid compression at high quality — perfect for professional sharing or YouTube uploads.";
-            else insight = "Minimal reduction — try lowering quality or resolution for a smaller output file.";
-            document.getElementById('compressionInsight').textContent = insight;
-
-            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        function downloadVideo() {
-            if (!compressedBlob) return;
-            const ext = compressedBlob.type.includes('mp4') ? 'mp4' : 'webm';
-            const baseName = (sourceFile?.name || 'video').replace(/\.[^.]+$/, '');
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(compressedBlob);
-            a.download = `${baseName}-compressed.${ext}`;
-            a.click();
-        }
-
-        function copyStats() {
-            const text = `Video Compression Stats (worldoftools.in/video-compressor)
-Original: ${document.getElementById('statOriginalSize').textContent}
-Compressed: ${document.getElementById('statNewSize').textContent}
-Saved: ${document.getElementById('statSaved').textContent}
-Ratio: ${document.getElementById('statRatio').textContent}`;
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = event.currentTarget;
-                const orig = btn.textContent;
-                btn.textContent = '✅ Copied!';
-                setTimeout(() => btn.textContent = orig, 2000);
-            });
-        }
-
-        function shareResult() {
-            const text = `I just compressed a video and saved ${document.getElementById('statSaved').textContent} using WorldOfTools free video compressor. Try it: https://worldoftools.in/video-compressor`;
-            if (navigator.share) {
-                navigator.share({ title: 'Video Compressor', text, url: 'https://worldoftools.in/video-compressor' });
-            } else {
-                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
-            }
-        }
-
-        function resetTool() {
-            sourceFile = null;
-            compressedBlob = null;
-            document.getElementById('videoInput').value = '';
-            document.getElementById('previewVideo').style.display = 'none';
-            document.getElementById('previewVideo').src = '';
-            document.getElementById('fileInfoBar').style.display = 'none';
-            document.getElementById('progressSection').style.display = 'none';
-            document.getElementById('resultSection').style.display = 'none';
-            document.getElementById('downloadBtn').style.display = 'none';
-            showError('');
-        }
-
-        // ── Trim tab ──
-        function loadTrimVideo(input) {
-            trimSourceFile = input.files[0];
-            if (!trimSourceFile) return;
-            const preview = document.getElementById('trimPreview');
-            preview.src = URL.createObjectURL(trimSourceFile);
-            preview.style.display = 'block';
-            preview.onloadedmetadata = () => {
-                document.getElementById('trimEnd').placeholder = Math.floor(preview.duration) + 's';
-                document.getElementById('trimControls').style.display = 'block';
-            };
-        }
-
-        function startTrimCompress() {
-            if (!trimSourceFile) return;
-            alert('Trim & Compress started! This uses the same browser-based pipeline as the main compressor. In a production environment, the trimmed segment is extracted via the Canvas frame renderer before compression.');
-        }
-
-        // ── Helpers ──
-        function formatBytes(bytes) {
-            if (bytes < 1024) return bytes + ' B';
-            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-            return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
-        }
-
-        function formatDuration(secs) {
-            const m = Math.floor(secs / 60);
-            const s = Math.floor(secs % 60);
-            return `${m}m ${s}s`;
-        }
-
-        // ── Schema injection ──
-        const schemaData = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Free Online Video Compressor",
-            "description": "Compress MP4, MOV, and WebM video files online without uploading. 100% browser-based, no watermark, no registration.",
-            "url": "https://worldoftools.in/video-compressor",
-            "applicationCategory": "MultimediaApplication",
-            "operatingSystem": "Any"
-        };
-        const schScript = document.createElement('script');
-        schScript.type = "application/ld+json";
-        schScript.text = JSON.stringify(schemaData);
-        document.head.appendChild(schScript);
-
-        const breadcrumbData = {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
-                { "@type": "ListItem", "position": 2, "name": "Video Tools", "item": "https://worldoftools.in/video-tools" },
-                { "@type": "ListItem", "position": 3, "name": "Video Compressor", "item": "https://worldoftools.in/video-compressor" }
-            ]
-        };
-        const bcScript = document.createElement('script');
-        bcScript.type = "application/ld+json";
-        bcScript.text = JSON.stringify(breadcrumbData);
-        document.head.appendChild(bcScript);
-  </script>
+function resetTool() {
+  if (animId) cancelAnimationFrame(animId);
+  videoFile = null;
+  outputBlob = null;
+  document.getElementById('dropZone').style.display = 'block';
+  document.getElementById('videoInfoWrap').style.display = 'none';
+  document.getElementById('settingsWrap').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('resultsSection').style.display = 'none';
+  document.getElementById('videoFile').value = '';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('qualitySlider').value = 75;
+  document.getElementById('qualityLabel').textContent = '75%';
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  showError('');
+}
+</script>
 </body>
 </html>

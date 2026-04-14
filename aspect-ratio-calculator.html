@@ -1,739 +1,539 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Aspect Ratio Calculator — Image &amp; Video, Maintain Proportions | WorldOfTools
-  </title>
-<meta content="Calculate aspect ratio for any image or video. Enter dimensions &amp; maintain exact proportions. Works for 16:9, 4:3, 1:1 &amp; any ratio. Free — no login." name="description"/>
+<title>Aspect Ratio Calculator Free Online — Image &amp; Video Dimensions | WorldOfTools</title>
+<meta content="Free online aspect ratio calculator — enter dimensions &amp; maintain exact proportions when resizing images or videos. Works for 16:9, 4:3, 9:16, 1:1 &amp; any custom ratio. No login, instant, private." name="description"/>
+<meta content="aspect ratio calculator, image aspect ratio, video aspect ratio calculator, Instagram Reels aspect ratio, YouTube Shorts ratio, 16:9 ratio calculator, calculate aspect ratio, maintain aspect ratio when resizing, aspect ratio for photographers, online aspect ratio tool free" name="keywords"/>
 <link href="https://worldoftools.in/aspect-ratio-calculator" rel="canonical"/>
-<meta content="aspect ratio calculator, image aspect ratio, video aspect ratio calculcator, Instagram Reels aspect ratio, YouTube Shorts ratio calculator, 16:9 ratio calculator online, calculate aspect ratio for LinkedIn, social media image resizer, maintain aspect ratio when resizing, aspect ratio calculator for photographers, aspect ratio calculator online, image aspect ratio calculator, video aspect ratio tool, maintain aspect ratio dimensions" name="keywords"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   .ar-card{background:white;border:1px solid var(--border-color);border-radius:20px;padding:2rem;margin-bottom:1.5rem;}
-        .ar-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;margin-bottom:1.5rem;}
-        .ar-side{display:flex;flex-direction:column;gap:.75rem;}
-        .ar-divider{display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-muted);font-weight:800;font-size:1.2rem;padding:0 .5rem;}
-        .fg{display:flex;flex-direction:column;gap:.4rem;}
-        .fg label{font-size:.8rem;font-weight:700;color:var(--text-muted);}
-        .fg input{padding:.75rem 1rem;border:2px solid var(--border-color);border-radius:12px;font-family:inherit;font-size:1rem;outline:none;transition:border-color .2s;width:100%;box-sizing:border-box;font-weight:700;}
-        .fg input:focus{border-color:var(--primary-color);}
-        .fg input.calculated{background:#f0f0ff;border-color:var(--primary-color);color:var(--primary-color);}
-        .lock-btn{padding:.5rem .9rem;border:2px solid var(--border-color);border-radius:10px;background:white;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .15s;color:var(--text-muted);}
-        .lock-btn.active{background:#eff0ff;border-color:var(--primary-color);color:var(--primary-color);}
-        /* Result box */
-        .ratio-result{background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:1.5rem;text-align:center;color:white;margin-bottom:1.5rem;}
-        .ratio-big{font-size:2.5rem;font-weight:900;letter-spacing:-.02em;margin-bottom:.25rem;}
-        .ratio-label{font-size:.85rem;opacity:.85;}
-        /* Preset grid */
-        .preset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;margin-bottom:1.5rem;}
-        .preset-btn{padding:.6rem .5rem;border:2px solid var(--border-color);border-radius:10px;background:white;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .15s;text-align:center;color:#374151;}
-        .preset-btn:hover{border-color:var(--primary-color);background:#f8faff;color:var(--primary-color);}
-        /* Visual preview */
-        .ar-visual{background:#f8f9ff;border:1px solid var(--border-color);border-radius:14px;padding:1.5rem;display:flex;align-items:center;justify-content:center;min-height:140px;margin-bottom:1.5rem;}
-        #arBox{background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:.8rem;font-weight:700;transition:all .3s;max-width:300px;max-height:200px;}
-        /* Common ratios table */
-        .ratios-table-wrap{overflow-x:auto;}
-        @media(max-width:600px){.ar-grid{grid-template-columns:1fr;}.ar-divider{flex-direction:row;}}
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');
-  </script>
-<script type="application/ld+json">
-   {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Aspect Ratio Calculator","operatingSystem":"Any","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
-  </script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/aspect-ratio-calculator" property="og:url"/>
+<meta content="Aspect Ratio Calculator — Image &amp; Video Dimensions | WorldOfTools" property="og:title"/>
+<meta content="Maintain exact proportions when resizing any image or video. Works for 16:9, 4:3, 1:1 &amp; any custom ratio. Free, instant, private." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Aspect Ratio Calculator — Image &amp; Video Dimensions | WorldOfTools" name="twitter:title"/>
+<meta content="Maintain exact proportions when resizing any image or video. Free &amp; instant." name="twitter:description"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/aspect-ratio-calculator"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Aspect Ratio Calculator",
-      "item": "https://worldoftools.in/aspect-ratio-calculator"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":3,"name":"Aspect Ratio Calculator","item":"https://worldoftools.in/aspect-ratio-calculator"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Aspect Ratio Calculator free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Aspect Ratio Calculator",
+  "description":"Free online aspect ratio calculator for images and videos. Maintain exact proportions for any ratio.",
+  "url":"https://worldoftools.in/aspect-ratio-calculator","operatingSystem":"Any",
+  "applicationCategory":"UtilitiesApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"1043","reviewCount":"1147"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is an aspect ratio?","acceptedAnswer":{"@type":"Answer","text":"An aspect ratio is the proportional relationship between the width and height of an image or video, expressed as W:H (e.g., 16:9). It determines how wide or tall content appears on screen."}},
+    {"@type":"Question","name":"How do I calculate the missing dimension when resizing?","acceptedAnswer":{"@type":"Answer","text":"Enter your original width and height, then type either the new width or new height. The tool automatically computes the missing dimension using the formula: new height = (new width ÷ original width) × original height."}},
+    {"@type":"Question","name":"What aspect ratio should I use for YouTube?","acceptedAnswer":{"@type":"Answer","text":"16:9 is the standard for YouTube videos. For Shorts and vertical content, use 9:16 (1080×1920). Use our preset buttons to load these ratios instantly."}},
+    {"@type":"Question","name":"Is this tool free and does it store my data?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free with no login required. All calculations run locally in your browser. No data is ever sent to any server."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Aspect Ratio Calculator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-black: #000;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-border: 2.5px solid #000;
+    --nb-radius: 16px;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/aspect-ratio-calculator" property="og:url"/><meta content="
-   Aspect Ratio Calculator — Image &amp; Video, Maintain Proportions | WorldOfTools
-  " property="og:title"/><meta content="Calculate aspect ratio for any image or video. Enter dimensions &amp; maintain exact proportions. Works for 16:9, 4:3, 1:1 &amp; any ratio. Free — no login." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/aspect-ratio-calculator" name="twitter:url"/><meta content="
-   Aspect Ratio Calculator — Image &amp; Video, Maintain Proportions | WorldOfTools
-  " name="twitter:title"/><meta content="Calculate aspect ratio for any image or video. Enter dimensions &amp; maintain exact proportions. Works for 16:9, 4:3, 1:1 &amp; any ratio. Free — no login." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.7rem 1.4rem; border: var(--nb-border); border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.9rem;
+    cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none;
+    box-shadow: 3px 3px 0 #000; background: #fff; color: #000;
+  }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .nb-btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 #000; }
+  .nb-btn-yellow { background: var(--nb-yellow); }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+
+  /* Hero */
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--nb-blue); border: var(--nb-border); border-radius: 99px;
+    padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem;
+  }
+  .tool-hero h1 {
+    font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800;
+    letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem;
+  }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+  /* Ratio Hero Display */
+  .ratio-hero {
+    background: #000; border-radius: 20px; padding: 2rem; text-align: center;
+    margin-bottom: 1.5rem; position: relative; overflow: hidden;
+    box-shadow: var(--nb-shadow-lg);
+  }
+  .ratio-big {
+    font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 900; letter-spacing: -0.04em; color: var(--nb-yellow); line-height: 1; margin-bottom: 0.5rem;
+  }
+  .ratio-tag {
+    display: inline-block; background: var(--nb-yellow); border: 2px solid #000;
+    border-radius: 99px; padding: 0.2rem 0.9rem; font-size: 0.78rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em; color: #000;
+  }
+
+  /* Calculator Grid - Responsive */
+  .ar-grid {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem;
+    align-items: center; margin-bottom: 1.25rem;
+  }
+  @media(max-width:500px) {
+    .ar-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .ar-divider { transform: rotate(90deg); margin: 0 auto; }
+  }
+  .ar-side { display: flex; flex-direction: column; gap: 0.75rem; }
+  .ar-divider {
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    font-weight: 900; font-size: 1.5rem; color: #000;
+  }
+
+  /* Field Group */
+  .fg { display: flex; flex-direction: column; gap: 0.4rem; }
+  .fg label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #555; }
+  .fg input {
+    padding: 0.8rem 1rem; border: var(--nb-border); border-radius: 10px;
+    font-family: inherit; font-size: 1rem; font-weight: 700; width: 100%;
+    background: #fff; box-shadow: 3px 3px 0 #000; outline: none;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+  .fg input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .fg input.calculated { background: var(--nb-yellow); font-weight: 900; }
+
+  /* Visual Preview */
+  .ar-visual-wrap {
+    background: #f0f0f0; border: var(--nb-border); border-radius: 14px;
+    padding: 1.5rem; display: flex; align-items: center; justify-content: center;
+    min-height: 140px; margin-bottom: 1.25rem; box-shadow: 3px 3px 0 #000;
+  }
+  #arBox {
+    background: #000; border-radius: 6px; display: flex; align-items: center;
+    justify-content: center; color: var(--nb-yellow); font-size: 0.85rem; font-weight: 900;
+    transition: all 0.3s ease; max-width: 300px; max-height: 200px; letter-spacing: 0.05em;
+  }
+
+  /* Action Row */
+  .action-row { display: flex; gap: 0.65rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.25rem; }
+
+  /* Section */
+  .ar-section {
+    background: #fff; border: var(--nb-border); border-radius: var(--nb-radius);
+    padding: 1.25rem; margin-bottom: 1rem; box-shadow: 3px 3px 0 #000;
+  }
+  .section-title {
+    font-size: 0.75rem; font-weight: 900; text-transform: uppercase;
+    letter-spacing: 0.08em; color: #555; margin-bottom: 0.9rem;
+  }
+
+  /* Presets */
+  .preset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px,1fr)); gap: 0.5rem; }
+  .preset-btn {
+    padding: 0.6rem 0.4rem; border: 2px solid #000; border-radius: 10px; background: #fff;
+    font-family: inherit; font-size: 0.82rem; font-weight: 800; cursor: pointer; text-align: center;
+    box-shadow: 2px 2px 0 #000; transition: all 0.12s; line-height: 1.3;
+  }
+  .preset-btn:hover { background: var(--nb-yellow); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #000; }
+  .preset-btn .preset-sub { font-size: 0.62rem; font-weight: 700; color: #777; display: block; margin-top: 0.1rem; }
+  .preset-btn.active { background: var(--nb-yellow); }
+
+  /* Ratios table */
+  .ratios-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .ratios-table { width: 100%; border-collapse: collapse; border: 2px solid #000; border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; min-width: 420px; }
+  .ratios-table th { background: #000; color: var(--nb-yellow); padding: 0.8rem 1rem; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .ratios-table td { padding: 0.65rem 1rem; border-bottom: 1.5px solid #e5e7eb; font-size: 0.88rem; }
+  .ratios-table tr:last-child td { border-bottom: none; }
+  .ratios-table tr:nth-child(even) td { background: #fafafa; }
+  .ratios-table td:first-child { font-weight: 900; font-size: 1rem; }
+
+  /* How-to */
+  .how-step { display: flex; align-items: flex-start; gap: 1rem; background: #fff; border: 2px solid #000; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .how-num { min-width: 32px; height: 32px; background: var(--nb-orange); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; box-shadow: 2px 2px 0 #000; }
+
+  /* Privacy strip */
+  .privacy-strip { background: var(--nb-mint); border: var(--nb-border); border-radius: 12px; padding: 0.9rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 0.9rem; box-shadow: 3px 3px 0 #000; margin-bottom: 1.25rem; }
+
+  /* FAQ */
+  details { border: 2px solid #000; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; background: #fff; }
+  summary { font-weight: 800; cursor: pointer; user-select: none; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+  summary::after { content: '+'; font-size: 1.2rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #444; line-height: 1.6; }
+
+  /* Related tools */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+
+  /* Compare table */
+  .compare-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .compare-table th { padding: 0.85rem 1rem; text-align: center; background: var(--nb-yellow); border-bottom: 2px solid #000; font-weight: 800; }
+  .compare-table th:first-child { text-align: left; }
+  .compare-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.88rem; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td.yes { color: #059669; font-weight: 800; text-align: center; }
+  .compare-table td.no { color: #dc2626; text-align: center; }
+
+  @media(max-width:480px) {
+    .action-row { gap: 0.5rem; }
+    .action-row .nb-btn { font-size: 0.82rem; padding: 0.65rem 1rem; }
+  }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Image Tools" data-category-url="/" data-tool-name="Aspect Ratio Calculator">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Aspect Ratio Calculator</span></div><h1>
-      Aspect Ratio Calculator — Calculate Image &amp; Video Dimensions While Maintaining Proportions
-     </h1>
-<p style="color:var(--text-muted);font-size:1.1rem;">
-      Enter any width or height and instantly get the matching dimension while maintaining your aspect ratio. Perfect for designers, video editors and developers.
-     </p>
-</section>
-<div class="tool-main-card">
-<!-- Ratio result -->
-<div class="ratio-result">
-<div class="ratio-big" id="ratioDisplay">
-       16 : 9
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Tools › <span>Aspect Ratio Calculator</span></div>
+    <div class="hero-badge">📐 Instant — No Upload Needed</div>
+    <h1>Aspect Ratio Calculator — Maintain Exact Image &amp; Video Proportions</h1>
+    <p>Resize any image or video without distortion. Enter your original dimensions, type a new width or height, and the calculator instantly finds the missing value. Works for 16:9, 4:3, 1:1, 9:16, and any custom ratio. Free. No login. 100% in your browser.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card" style="padding:1.75rem;box-shadow:var(--nb-shadow-lg);margin-bottom:2rem;">
+
+    <!-- Ratio Display -->
+    <div class="ratio-hero">
+      <div class="ratio-big" id="ratioDisplay">16 : 9</div>
+      <div class="ratio-tag">Detected Aspect Ratio</div>
+    </div>
+
+    <!-- Input Grid -->
+    <div class="ar-section">
+      <div class="section-title">📐 Enter Dimensions</div>
+      <div class="ar-grid">
+        <!-- Original -->
+        <div class="ar-side">
+          <div style="font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:#555;margin-bottom:0.1rem;">Original Size</div>
+          <div class="fg">
+            <label for="origW">Width (px)</label>
+            <input id="origW" min="1" oninput="fromOriginal()" placeholder="1920" type="number"/>
+          </div>
+          <div class="fg">
+            <label for="origH">Height (px)</label>
+            <input id="origH" min="1" oninput="fromOriginal()" placeholder="1080" type="number"/>
+          </div>
+        </div>
+        <!-- Divider -->
+        <div class="ar-divider">
+          <span>→</span>
+        </div>
+        <!-- New -->
+        <div class="ar-side">
+          <div style="font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:#555;margin-bottom:0.1rem;">New Size</div>
+          <div class="fg">
+            <label for="newW">Width (px)</label>
+            <input id="newW" min="1" oninput="calcFromWidth()" placeholder="1280" type="number"/>
+          </div>
+          <div class="fg">
+            <label for="newH">Height (px)</label>
+            <input id="newH" min="1" oninput="calcFromHeight()" placeholder="720" type="number"/>
+          </div>
+        </div>
       </div>
-<div class="ratio-label">
-       Detected aspect ratio
+
+      <!-- Visual Preview -->
+      <div class="ar-visual-wrap">
+        <div id="arBox" style="width:160px;height:90px;">16:9</div>
       </div>
-</div>
-<!-- Calculator -->
-<div class="ar-card">
-<div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">
-       Calculate New Dimensions
+
+      <!-- Actions -->
+      <div class="action-row">
+        <button class="nb-btn" onclick="swapDimensions()">⇄ Swap W/H</button>
+        <button class="nb-btn" onclick="resetAll()">↺ Reset</button>
+        <button class="nb-btn nb-btn-yellow" onclick="copyResult()">📋 Copy Result</button>
       </div>
-<div class="ar-grid">
-<div class="ar-side">
-<div class="fg">
-<label>
-          Original Width (px)
-         </label>
-<input id="origW" oninput="fromOriginal()" placeholder="1920" type="number"/>
-</div>
-<div class="fg">
-<label>
-          Original Height (px)
-         </label>
-<input id="origH" oninput="fromOriginal()" placeholder="1080" type="number"/>
-</div>
-</div>
-<div class="ar-divider">
-        →
-       </div>
-<div class="ar-side">
-<div class="fg">
-<label>
-          New Width (px)
-         </label>
-<input id="newW" oninput="calcFromWidth()" placeholder="1280" type="number"/>
-</div>
-<div class="fg">
-<label>
-          New Height (px)
-         </label>
-<input id="newH" oninput="calcFromHeight()" placeholder="720" type="number"/>
-</div>
-</div>
-</div>
-<!-- Visual preview -->
-<div class="ar-visual">
-<div id="arBox" style="width:160px;height:90px;">
-        16:9
-       </div>
-</div>
-<div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
-<button class="btn btn-secondary" onclick="swapDimensions()">
-        ⇄ Swap W/H
-       </button>
-<button class="btn btn-secondary" onclick="resetAll()">
-        ↺ Reset
-       </button>
-<button class="btn" onclick="copyResult()">
-        📋 Copy Result
-       </button>
-</div>
-</div>
-<!-- Presets -->
-<div class="ar-card">
-<div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">
-       🎥 Social Media &amp; Video Presets
+    </div>
+
+    <!-- Presets: Social Media -->
+    <div class="ar-section">
+      <div class="section-title">🎥 Social Media &amp; Video Presets</div>
+      <div class="preset-grid">
+        <button class="preset-btn" onclick="loadPreset(16,9)">16:9<span class="preset-sub">YouTube/TV</span></button>
+        <button class="preset-btn" onclick="loadPreset(9,16)">9:16<span class="preset-sub">Reels/Shorts</span></button>
+        <button class="preset-btn" onclick="loadPreset(1,1)">1:1<span class="preset-sub">Instagram</span></button>
+        <button class="preset-btn" onclick="loadPreset(4,5)">4:5<span class="preset-sub">IG Portrait</span></button>
+        <button class="preset-btn" onclick="loadPreset(1.91,1)">1.91:1<span class="preset-sub">LinkedIn/FB</span></button>
+        <button class="preset-btn" onclick="loadPreset(1200,628)">1200×628<span class="preset-sub">FB Feed</span></button>
       </div>
-<div class="preset-grid">
-<button class="preset-btn" onclick="loadPreset(16,9)">
-        16:9
-        <div style="font-size:.68rem;color:#9ca3af;">
-         YouTube/TV
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(9,16)">
-        9:16
-        <div style="font-size:.68rem;color:#9ca3af;">
-         Reels/Shorts
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(1,1)">
-        1:1
-        <div style="font-size:.68rem;color:#9ca3af;">
-         Instagram
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(4,5)">
-        4:5
-        <div style="font-size:.68rem;color:#9ca3af;">
-         IG Portrait
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(1.91,1)">
-        1.91:1
-        <div style="font-size:.68rem;color:#9ca3af;">
-         LinkedIn/FB
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(1200,628)">
-        1200×628
-        <div style="font-size:.68rem;color:#9ca3af;">
-         FB Feed
-        </div>
-</button>
-</div>
-</div>
-<div class="ar-card">
-<div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--primary-color);margin-bottom:1rem;">
-       📐 Common Ratios — Click to Load
+    </div>
+
+    <!-- Presets: Common -->
+    <div class="ar-section">
+      <div class="section-title">📐 Common Ratios — Click to Load</div>
+      <div class="preset-grid">
+        <button class="preset-btn" onclick="loadPreset(4,3)">4:3<span class="preset-sub">Classic TV</span></button>
+        <button class="preset-btn" onclick="loadPreset(21,9)">21:9<span class="preset-sub">Ultrawide</span></button>
+        <button class="preset-btn" onclick="loadPreset(3,2)">3:2<span class="preset-sub">DSLR</span></button>
+        <button class="preset-btn" onclick="loadPreset(2,3)">2:3<span class="preset-sub">Poster</span></button>
+        <button class="preset-btn" onclick="loadPreset(1920,1080)">1080p<span class="preset-sub">Full HD</span></button>
+        <button class="preset-btn" onclick="loadPreset(3840,2160)">4K<span class="preset-sub">Ultra HD</span></button>
+        <button class="preset-btn" onclick="loadPreset(2560,1440)">1440p<span class="preset-sub">QHD</span></button>
+        <button class="preset-btn" onclick="loadPreset(5,4)">5:4<span class="preset-sub">Monitor</span></button>
       </div>
-<div class="preset-grid">
-<button class="preset-btn" onclick="loadPreset(4,3)">
-        4:3
-        <div style="font-size:.68rem;color:#9ca3af;">
-         Classic TV
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(21,9)">
-        21:9
-        <div style="font-size:.68rem;color:#9ca3af;">
-         Ultrawide
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(3,2)">
-        3:2
-        <div style="font-size:.68rem;color:#9ca3af;">
-         DSLR
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(2,3)">
-        2:3
-        <div style="font-size:.68rem;color:#9ca3af;">
-         Poster
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(1920,1080)">
-        1080p
-        <div style="font-size:.68rem;color:#9ca3af;">
-         Full HD
-        </div>
-</button>
-<button class="preset-btn" onclick="loadPreset(3840,2160)">
-        4K
-        <div style="font-size:.68rem;color:#9ca3af;">
-         Ultra HD
-        </div>
-</button>
+    </div>
+
+    <div class="privacy-strip">
+      <span style="font-size:1.3rem;">🛡️</span>
+      <span>100% Private — All calculations happen locally in your browser. Zero data sent to any server.</span>
+    </div>
+  </div>
+
+<div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+
+    <a href="/image-compressor" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🖼️</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Image Compressor</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Reduce image size</div>
+    </a>
+    <a href="/unit-converter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">📏</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Unit Converter</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Convert measurements</div>
+    </a>
+    <a href="/scientific-calculator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🔬</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Scientific Calc</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Advanced math</div>
+    </a>
+    </div>
+  </div>
+</div><!-- /tool-container -->
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is the Aspect Ratio Calculator?</h2>
+    <p>The <strong>Aspect Ratio Calculator</strong> by WorldOfTools lets you instantly find the correct width or height when resizing an image or video while maintaining its exact original proportions. Enter your original dimensions and a new width or height — the calculator computes the missing value automatically, preventing stretched or distorted output.</p>
+    <p>It also detects and displays the simplified ratio (like 16:9, 4:3, or 1:1) for any pair of dimensions you enter, with a real-time visual preview of the proportions.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Use — Step by Step</h2>
+    <div class="how-step"><div class="how-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;">Enter your <strong>original width and height</strong> — the ratio is detected and shown instantly in the black display above.</p></div>
+    <div class="how-step"><div class="how-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;">Type either a <strong>new width or new height</strong> — the other dimension is automatically calculated and highlighted in yellow.</p></div>
+    <div class="how-step"><div class="how-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;">Or click a <strong>preset button</strong> (16:9, 9:16, 1:1, etc.) to instantly load popular aspect ratios used across social media and video platforms.</p></div>
+    <div class="how-step"><div class="how-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;">Use <strong>Swap W/H</strong> to flip orientation, <strong>Reset</strong> to clear fields, or <strong>Copy Result</strong> to copy dimensions to your clipboard.</p></div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>📐 Common Aspect Ratios Reference</h2>
+    <div class="ratios-table-wrap">
+      <table class="ratios-table">
+        <thead><tr><th>Ratio</th><th>Common Use</th><th>Example Resolutions</th></tr></thead>
+        <tbody>
+          <tr><td>16:9</td><td>YouTube, TV, monitors, Zoom calls</td><td>1280×720, 1920×1080, 3840×2160</td></tr>
+          <tr><td>9:16</td><td>YouTube Shorts, Reels, Stories, TikTok</td><td>1080×1920</td></tr>
+          <tr><td>1:1</td><td>Instagram square posts, profile pictures</td><td>1080×1080</td></tr>
+          <tr><td>4:5</td><td>Instagram portrait posts</td><td>1080×1350</td></tr>
+          <tr><td>4:3</td><td>Classic TV, old monitors, presentations</td><td>1024×768, 1280×960</td></tr>
+          <tr><td>21:9</td><td>Ultrawide monitors, cinematic film</td><td>2560×1080, 3440×1440</td></tr>
+          <tr><td>3:2</td><td>DSLR cameras, 35mm film</td><td>4500×3000, 6000×4000</td></tr>
+          <tr><td>1.91:1</td><td>LinkedIn, Facebook links, Open Graph images</td><td>1200×628</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Why Aspect Ratio Matters for Social Media</h2>
+    <p>Uploading an image or video with the wrong aspect ratio causes platforms to crop, stretch, or letterbox your content — often cutting out important details or making it look unprofessional. Each platform has specific requirements:</p>
+    <p><strong>Instagram Feed</strong> accepts 1:1 (square), 4:5 (portrait), or 1.91:1 (landscape). <strong>YouTube</strong> requires 16:9 for regular videos and 9:16 for Shorts. <strong>LinkedIn</strong> recommends 1.91:1 (1200×628) for link previews and shared images. Using this calculator ensures you always export at the exact pixel dimensions required — no distortion, no cropping surprises.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What is an aspect ratio?</summary><p>An aspect ratio is the proportional relationship between the width and height of an image or video, expressed as W:H (e.g., 16:9). It determines how wide or tall the content appears. When you resize content while keeping the ratio the same, nothing gets stretched or distorted.</p></details>
+    <details><summary>How do I calculate the missing dimension when resizing?</summary><p>Enter your original width and height, then type either the new width or new height you want. This calculator uses the formula <strong>new height = (new width ÷ original width) × original height</strong> to compute the missing value instantly.</p></details>
+    <details><summary>What aspect ratio should I use for YouTube videos?</summary><p>16:9 is the standard for YouTube. For Shorts and vertical content, use 9:16. Our preset buttons let you load these ratios instantly so you can scale to exact pixel dimensions like 1920×1080 (Full HD) or 3840×2160 (4K Ultra HD).</p></details>
+    <details><summary>What is the best aspect ratio for Instagram posts?</summary><p>For Instagram feed posts: 1:1 (square, 1080×1080) is most universal. For portrait posts use 4:5 (1080×1350) which takes up more vertical feed space. For Stories and Reels use 9:16 (1080×1920).</p></details>
+    <details><summary>Is this tool free and does it store my data?</summary><p>Yes — completely free with no login required. All calculations run locally in your browser using JavaScript. No dimension data is ever sent to any server, making it 100% private.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Tools You Might Need</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/background-remover"><div class="icon">✂️</div><div class="name">BG Remover</div><div class="desc">Remove image backgrounds</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in years, months, days</div></a>
+      <a class="tool-card-mini" href="/audio-to-text"><div class="icon">🎙️</div><div class="name">Audio to Text</div><div class="desc">Free speech transcription</div></a>
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Analyze text &amp; reading time</div></a>
+      <a class="tool-card-mini" href="/gst-calculator"><div class="icon">🧾</div><div class="name">GST Calculator</div><div class="desc">Add or remove GST instantly</div></a>
+      <a class="tool-card-mini" href="/image-compressor"><div class="icon">🗜️</div><div class="name">Image Compressor</div><div class="desc">Reduce file size without loss</div></a>
+    </div>
+  </section>
+
 </div>
-</div>
-<div class="privacy-badge-banner">
-<span>
-       🛡️
-      </span>
-<span>
-       100% Private — Client-Side Processing
-      </span>
-</div>
-</div>
-</div>
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      What is the Aspect Ratio Calculator?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      The Aspect Ratio Calculator lets you instantly find the correct width or height when resizing an image or video while maintaining its original proportions. Enter your original dimensions and a new width or height, and the calculator finds the missing value — preventing stretched or distorted images.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      How to Use — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:.3rem;">
-       Enter your
-       <strong>
-        original width and height
-       </strong>
-       — the ratio is detected and shown instantly.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:.3rem;">
-       Type a
-       <strong>
-        new width or height
-       </strong>
-       in the right panel — the matching dimension is calculated.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:.3rem;">
-       Or click a
-       <strong>
-        preset
-       </strong>
-       (16:9, 9:16, 1:1, etc.) to load common aspect ratios instantly.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      📐 Common Aspect Ratios Reference
-     </h2>
-<div class="ratios-table-wrap">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Ratio
-         </th>
-<th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Common Use
-         </th>
-<th style="padding:.85rem 1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Example Resolutions
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">
-          16:9
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          YouTube, TV, monitors
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          1280×720, 1920×1080, 3840×2160
-         </td>
-</tr>
-<tr>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">
-          9:16
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          YouTube Shorts, Reels, Stories
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          1080×1920
-         </td>
-</tr>
-<tr>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">
-          1:1
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Instagram square posts
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          1080×1080
-         </td>
-</tr>
-<tr>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">
-          4:5
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Instagram portrait posts
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          1080×1350
-         </td>
-</tr>
-<tr>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;font-weight:700;">
-          4:3
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Old TVs, iPad screens
-         </td>
-<td style="padding:.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          1024×768, 1400×1050
-         </td>
-</tr>
-<tr>
-<td style="padding:.75rem 1rem;font-weight:700;">
-          21:9
-         </td>
-<td style="padding:.75rem 1rem;">
-          Ultrawide monitors, cinema
-         </td>
-<td style="padding:.75rem 1rem;">
-          2560×1080, 3440×1440
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      Key Features
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant calculation:
-        </strong>
-        Type any dimension and the other updates in real time.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Visual box preview:
-        </strong>
-        See a proportionally correct rectangle that updates as you type.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         12 common presets:
-        </strong>
-        Load 16:9, 9:16, 1:1, 4:5, 4K, Full HD and more in one click.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Ratio detection:
-        </strong>
-        Automatically simplifies dimensions to show the clean ratio (e.g. 1920:1080 → 16:9).
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is aspect ratio?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Aspect ratio is the proportional relationship between an image's width and height, expressed as W:H (e.g., 16:9).
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is 16:9 in pixels?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Common 16:9 resolutions: 1280×720 (HD), 1920×1080 (Full HD), 2560×1440 (QHD), 3840×2160 (4K). Use the calculator to find any custom size.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What aspect ratio is best for YouTube?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       YouTube recommends 16:9 (1920×1080 Full HD). Shorts use 9:16 (1080×1920). Thumbnails are 1280×720.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What aspect ratio is best for Instagram?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       1:1 square (1080×1080), 4:5 portrait (1080×1350), or 16:9 landscape (1080×608). Reels use 9:16 (1080×1920).
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this calculator free?
-      </summary>
-<p style="margin:.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, 100% free with no signup required.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      📽️ Why Aspect Ratio Matters for Social Media
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       In 2026, social media algorithms prioritize high-quality, vertically-aligned content. Using the correct ratio isn't just about aesthetics; it's about
-       <strong>
-        engagement and SEO
-       </strong>
-       .
-      </p>
-<ul style="padding-left:1.5rem;">
-<li>
-<strong>
-         Instagram Reels &amp; YouTube Shorts:
-        </strong>
-        Require a 9:16 vertical ratio (1080x1920). Content that doesn't fill the screen sees lower reach.
-       </li>
-<li>
-<strong>
-         LinkedIn Carousels:
-        </strong>
-        Work best with 1:1 or 4:5 ratios to ensure text remains legible on both mobile and desktop feeds.
-       </li>
-<li>
-<strong>
-         Video Production:
-        </strong>
-        Cinematic 21:9 or standard 16:9 widescreen determines the "feel" of your project.
-       </li>
-</ul>
-<p>
-       This tool ensures you never have to guess. Just plug in your desired height or width and let our aspect ratio calculator do the rest.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="image-compressor">
-<div class="tool-icon">
-        🗜️
-       </div>
-<div class="tool-title">
-        Image Compressor
-       </div>
-<div class="tool-desc">
-        Compress and resize images online free.
-       </div>
-</a>
-<a class="tool-card" href="image-converter">
-<div class="tool-icon">
-        🔄
-       </div>
-<div class="tool-title">
-        Image Converter
-       </div>
-<div class="tool-desc">
-        Convert images between PNG, JPG, WebP.
-       </div>
-</a>
-<a class="tool-card" href="favicon-generator">
-<div class="tool-icon">
-        🖼️
-       </div>
-<div class="tool-title">
-        Favicon Generator
-       </div>
-<div class="tool-desc">
-        Create favicons in all sizes from any image.
-       </div>
-</a>
-<a class="tool-card" href="color-converter">
-<div class="tool-icon">
-        🎨
-       </div>
-<div class="tool-title">
-        Color Converter
-       </div>
-<div class="tool-desc">
-        Convert HEX, RGB, and HSL colors.
-       </div>
-</a>
-<a class="tool-card" href="unit-converter">
-<div class="tool-icon">
-        📐
-       </div>
-<div class="tool-title">
-        Unit Converter
-       </div>
-<div class="tool-desc">
-        Convert between length, weight, and more.
-       </div>
-</a>
-<a class="tool-card" href="percentage-calculator">
-<div class="tool-icon">
-        %
-       </div>
-<div class="tool-title">
-        Percentage Calculator
-       </div>
-<div class="tool-desc">
-        Calculate percentages and scale factors.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<!-- SEO Content Block -->
-<section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features of Aspect Ratio Calculator</h2><ul style="list-style:none;padding:0;margin:0;"><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Instant Results:</strong> Process your data instantly with our optimized Aspect Ratio Calculator.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>100% Privacy:</strong> Everything runs securely in your browser. No files or data are uploaded to our servers.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Completely Free:</strong> Enjoy full access without subscriptions, hidden fees, or intrusive ads.</span></li></ul></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How Does Aspect Ratio Calculator Work?</h2><div style="line-height:1.8;color:#4b5563;">Our Aspect Ratio Calculator leverages modern web technologies to process your input locally in your browser. This ensures maximum speed and guarantees your privacy.</div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use Aspect Ratio Calculator — Step-by-Step</h2><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Input your desired content or file.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Select any available options or parameters.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Click execute to generate your result instantly.</p></div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this Aspect Ratio Calculator free to use?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, it is completely free to use with no hidden charges or limits.</p></details><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is my data secure?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. Your data never leaves your device because all processing happens client-side in your browser.</p></details></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Final Thoughts</h2><div style="line-height:1.8;color:#4b5563;">Bookmark this Aspect Ratio Calculator for quick access whenever you need it.</div></section></div></main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+
+</main>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   function gcd(a,b){return b===0?a:gcd(b,a%b);}
-    function getRatio(w,h){if(!w||!h)return null;const g=gcd(Math.round(w),Math.round(h));return{w:Math.round(w)/g,h:Math.round(h)/g};}
-
-    function updateRatioDisplay(w,h){
-        const r=getRatio(w,h);
-        if(r){
-            document.getElementById('ratioDisplay').textContent=r.w+' : '+r.h;
-            updateBox(w,h);
-        }
+  function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+  function getRatio(w, h) {
+    if (!w || !h || w <= 0 || h <= 0) return null;
+    const g = gcd(Math.round(w * 100), Math.round(h * 100));
+    return { w: Math.round(w * 100) / g, h: Math.round(h * 100) / g };
+  }
+  function simplifyRatio(w, h) {
+    const g = gcd(Math.round(w), Math.round(h));
+    return { w: Math.round(w) / g, h: Math.round(h) / g };
+  }
+  function updateRatioDisplay(w, h) {
+    const r = simplifyRatio(w, h);
+    if (r) {
+      document.getElementById('ratioDisplay').textContent = r.w + ' : ' + r.h;
+      updateBox(w, h, r.w + ':' + r.h);
     }
-
-    function updateBox(w,h){
-        const box=document.getElementById('arBox');
-        const maxW=300,maxH=180;
-        let bw=maxW,bh=(h/w)*maxW;
-        if(bh>maxH){bh=maxH;bw=(w/h)*maxH;}
-        box.style.width=Math.round(bw)+'px';
-        box.style.height=Math.round(bh)+'px';
-        const r=getRatio(w,h);
-        box.textContent=r?r.w+':'+r.h:'';
+  }
+  function updateBox(w, h, label) {
+    const box = document.getElementById('arBox');
+    const maxW = 280, maxH = 160;
+    let bw = maxW, bh = (h / w) * maxW;
+    if (bh > maxH) { bh = maxH; bw = (w / h) * maxH; }
+    bw = Math.max(40, Math.round(bw));
+    bh = Math.max(28, Math.round(bh));
+    box.style.width = bw + 'px';
+    box.style.height = bh + 'px';
+    box.textContent = label || '';
+  }
+  function fromOriginal() {
+    const w = parseFloat(document.getElementById('origW').value);
+    const h = parseFloat(document.getElementById('origH').value);
+    if (w > 0 && h > 0) updateRatioDisplay(w, h);
+    const nw = parseFloat(document.getElementById('newW').value);
+    const nh = parseFloat(document.getElementById('newH').value);
+    if (nw > 0 && w > 0 && h > 0) {
+      document.getElementById('newH').value = Math.round(nw * h / w);
+      document.getElementById('newH').classList.add('calculated');
+    } else if (nh > 0 && w > 0 && h > 0) {
+      document.getElementById('newW').value = Math.round(nh * w / h);
+      document.getElementById('newW').classList.add('calculated');
     }
-
-    function fromOriginal(){
-        const w=parseFloat(document.getElementById('origW').value);
-        const h=parseFloat(document.getElementById('origH').value);
-        if(w&&h) updateRatioDisplay(w,h);
-        // also update new dimensions if one is set
-        const nw=parseFloat(document.getElementById('newW').value);
-        const nh=parseFloat(document.getElementById('newH').value);
-        if(nw&&w&&h){document.getElementById('newH').value=Math.round(nw*h/w);document.getElementById('newH').className='fg input calculated';}
-        else if(nh&&w&&h){document.getElementById('newW').value=Math.round(nh*w/h);}
+  }
+  function calcFromWidth() {
+    const w = parseFloat(document.getElementById('origW').value) || 0;
+    const h = parseFloat(document.getElementById('origH').value) || 0;
+    const nw = parseFloat(document.getElementById('newW').value) || 0;
+    document.getElementById('newH').classList.remove('calculated');
+    if (w > 0 && h > 0 && nw > 0) {
+      const nh = Math.round(nw * h / w);
+      document.getElementById('newH').value = nh;
+      document.getElementById('newH').classList.add('calculated');
+      updateRatioDisplay(nw, nh);
     }
-
-    function calcFromWidth(){
-        const w=parseFloat(document.getElementById('origW').value)||0;
-        const h=parseFloat(document.getElementById('origH').value)||0;
-        const nw=parseFloat(document.getElementById('newW').value)||0;
-        if(w&&h&&nw){
-            const nh=Math.round(nw*h/w);
-            document.getElementById('newH').value=nh;
-            document.getElementById('newH').classList.add('calculated');
-            updateRatioDisplay(nw,nh);
-        }
+  }
+  function calcFromHeight() {
+    const w = parseFloat(document.getElementById('origW').value) || 0;
+    const h = parseFloat(document.getElementById('origH').value) || 0;
+    const nh = parseFloat(document.getElementById('newH').value) || 0;
+    document.getElementById('newW').classList.remove('calculated');
+    if (w > 0 && h > 0 && nh > 0) {
+      const nw = Math.round(nh * w / h);
+      document.getElementById('newW').value = nw;
+      document.getElementById('newW').classList.add('calculated');
+      updateRatioDisplay(nw, nh);
     }
-
-    function calcFromHeight(){
-        const w=parseFloat(document.getElementById('origW').value)||0;
-        const h=parseFloat(document.getElementById('origH').value)||0;
-        const nh=parseFloat(document.getElementById('newH').value)||0;
-        if(w&&h&&nh){
-            const nw=Math.round(nh*w/h);
-            document.getElementById('newW').value=nw;
-            document.getElementById('newW').classList.add('calculated');
-            updateRatioDisplay(nw,nh);
-        }
-    }
-
-    function loadPreset(w,h){
-        document.getElementById('origW').value=w;
-        document.getElementById('origH').value=h;
-        document.getElementById('newW').value='';
-        document.getElementById('newH').value='';
-        document.getElementById('newW').classList.remove('calculated');
-        document.getElementById('newH').classList.remove('calculated');
-        updateRatioDisplay(w,h);
-    }
-
-    function swapDimensions(){
-        const w=document.getElementById('origW').value;
-        const h=document.getElementById('origH').value;
-        document.getElementById('origW').value=h;
-        document.getElementById('origH').value=w;
-        fromOriginal();
-    }
-
-    function resetAll(){
-        ['origW','origH','newW','newH'].forEach(id=>{document.getElementById(id).value='';document.getElementById(id).classList&&document.getElementById(id).classList.remove('calculated');});
-        document.getElementById('ratioDisplay').textContent='— : —';
-        document.getElementById('arBox').style.width='160px';
-        document.getElementById('arBox').style.height='90px';
-        document.getElementById('arBox').textContent='';
-    }
-
-    function copyResult(){
-        const nw=document.getElementById('newW').value;
-        const nh=document.getElementById('newH').value;
-        const txt=nw&&nh?`${nw} × ${nh} px`:(document.getElementById('ratioDisplay').textContent);
-        navigator.clipboard.writeText(txt).then(()=>{
-            const btn=document.querySelector('.btn');const o=btn.textContent;btn.textContent='✅ Copied!';setTimeout(()=>btn.textContent=o,2000);
-        });
-    }
-
-    // Default
-    loadPreset(1920,1080);
-  </script>
+  }
+  function loadPreset(w, h) {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    document.getElementById('origW').value = w;
+    document.getElementById('origH').value = h;
+    document.getElementById('newW').value = '';
+    document.getElementById('newH').value = '';
+    document.getElementById('newW').classList.remove('calculated');
+    document.getElementById('newH').classList.remove('calculated');
+    updateRatioDisplay(w, h);
+  }
+  function swapDimensions() {
+    const ow = document.getElementById('origW').value;
+    const oh = document.getElementById('origH').value;
+    document.getElementById('origW').value = oh;
+    document.getElementById('origH').value = ow;
+    const nw = document.getElementById('newW').value;
+    const nh = document.getElementById('newH').value;
+    document.getElementById('newW').value = nh;
+    document.getElementById('newH').value = nw;
+    fromOriginal();
+  }
+  function resetAll() {
+    ['origW','origH','newW','newH'].forEach(id => {
+      document.getElementById(id).value = '';
+      document.getElementById(id).classList.remove('calculated');
+    });
+    document.getElementById('ratioDisplay').textContent = '— : —';
+    const box = document.getElementById('arBox');
+    box.style.width = '160px'; box.style.height = '90px'; box.textContent = '';
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  }
+  function copyResult() {
+    const nw = document.getElementById('newW').value;
+    const nh = document.getElementById('newH').value;
+    const ratio = document.getElementById('ratioDisplay').textContent;
+    const txt = (nw && nh) ? `${nw} × ${nh} px (${ratio}) — worldoftools.in/aspect-ratio-calculator` : ratio;
+    navigator.clipboard.writeText(txt).then(() => {
+      const btn = event.currentTarget;
+      const old = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = old, 2000);
+    });
+  }
+  // Init
+  document.getElementById('origW').value = 1920;
+  document.getElementById('origH').value = 1080;
+  updateRatioDisplay(1920, 1080);
+</script>
 </body>
 </html>

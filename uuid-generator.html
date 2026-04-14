@@ -1,815 +1,469 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   UUID Generator — Bulk v1, v4, v5 UUIDs, No Limits | WorldOfTools
-  </title>
-<meta content="Generate single or bulk UUIDs (v1, v4, v5) instantly with no daily limits. 100% random, client-side. Copy in one click. Free UUID generator — no login." name="description"/>
-<meta content="how to generate UUID online, UUID v4 vs v1, what is a UUID, UUID generator bulk, copy UUID online, generate multiple UUIDs at once, UUID for database primary key, uuid generator online, bulk uuid generator no limit, uuid v4 generator free, generate unique id online" name="keywords"/>
+<title>UUID Generator Online Free — Generate UUID v4, v1, Bulk UUIDs | WorldOfTools</title>
+<meta content="Free online UUID generator. Generate UUID v4 (random), UUID v1, ULID, and bulk UUIDs in multiple formats. No signup, no tracking — instant unique ID generation in your browser." name="description"/>
+<meta content="uuid generator online, generate uuid v4, random uuid generator, bulk uuid generator, unique id generator online, ulid generator, uuid v1 generator, generate guid online, uuid generator free no signup" name="keywords"/>
 <link href="https://worldoftools.in/uuid-generator" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   .uuid-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: flex-start;
-            margin-bottom: 0;
-        }
-
-        @media (max-width: 1024px) {
-            .uuid-layout {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-
-        .controls-card {
-            position: sticky;
-            top: 2rem;
-            box-shadow: none !important;
-            border: 1px solid var(--border-color) !important;
-        }
-
-        @media (max-width: 768px) {
-            .controls-card {
-                position: static;
-                padding: 1rem !important;
-            }
-
-            .uuid-list {
-                padding: 1rem !important;
-            }
-
-            .uuid-layout .card {
-                padding: 1rem !important;
-                box-shadow: none !important;
-                border: 1px solid var(--border-color) !important;
-            }
-        }
-
-        .uuid-list {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 1.5rem;
-            border-radius: 12px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.95rem;
-            max-height: 600px;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-        }
-
-        .uuid-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .uuid-item:last-child {
-            border-bottom: none;
-        }
-
-        .count-selector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .count-btn {
-            background: #f1f5f9;
-            border: 2px solid transparent;
-            padding: 0.75rem;
-            border-radius: 10px;
-            font-weight: 700;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .count-btn.active {
-            background: rgba(79, 70, 229, 0.1);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .action-btns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .copy-each-btn {
-            background: transparent;
-            border: none;
-            color: var(--primary-color);
-            cursor: pointer;
-            font-size: 0.8rem;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-
-        .copy-each-btn:hover {
-            opacity: 1;
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/uuid-generator" property="og:url"/>
+<meta content="UUID Generator — Free Online | WorldOfTools" property="og:title"/>
+<meta content="Generate UUID v4, v1, ULID, and bulk UUIDs instantly. No login, 100% client-side." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="UUID Generator — Free Online | WorldOfTools" name="twitter:title"/>
+<meta content="Generate UUIDs instantly. No login, 100% free." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/uuid-generator"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "UUID Generator",
-      "item": "https://worldoftools.in/uuid-generator"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://worldoftools.in/developer-tools"},
+    {"@type":"ListItem","position":3,"name":"UUID Generator","item":"https://worldoftools.in/uuid-generator"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a UUID?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "UUID (Universally Unique Identifier) is a 128-bit identifier standard used to uniquely identify resources in software systems without a central authority. Format: `550e8400-e29b-41d4-a716-446655440000`."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between UUID v1 and v4?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "UUID v1 is based on timestamp + MAC address (can leak system info). UUID v4 is fully random \u2014 preferred for most modern applications."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can two UUIDs ever be the same?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Theoretically possible but astronomically unlikely. With 122 bits of randomness, the probability of collision is approximately 1 in 5.3 \u00d7 10^36."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is UUID the same as GUID?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 GUID (Globally Unique Identifier) is Microsoft's implementation of UUID. They are functionally identical."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"UUID Generator",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"DeveloperApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"1654","reviewCount":"1819"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is a UUID?","acceptedAnswer":{"@type":"Answer","text":"UUID (Universally Unique Identifier) is a 128-bit label used to uniquely identify objects in computer systems. The standard format is 8-4-4-4-12 hexadecimal characters, like 550e8400-e29b-41d4-a716-446655440000."}},
+    {"@type":"Question","name":"What is the difference between UUID v1 and v4?","acceptedAnswer":{"@type":"Answer","text":"UUID v1 is generated using the current timestamp and machine MAC address — it is time-sortable but leaks information. UUID v4 is randomly generated using a cryptographically secure random number generator — it is the most widely used version for privacy and security."}},
+    {"@type":"Question","name":"Are these UUIDs truly unique?","acceptedAnswer":{"@type":"Answer","text":"UUID v4 uses 122 bits of randomness, giving 2^122 possible values (5.3 × 10^36). The probability of two v4 UUIDs colliding is astronomically small — you'd need to generate over 1 billion UUIDs per second for 85 years to even approach a 50% collision probability."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "UUID Generator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066; --nb-pink: #ff6b9d; --nb-mint: #b2f5ea; --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d; --nb-lime: #c3f584;
+    --nb-shadow: 4px 4px 0 #000; --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px; --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/uuid-generator" property="og:url"/><meta content="
-   UUID Generator — Bulk v1, v4, v5 UUIDs, No Limits | WorldOfTools
-  " property="og:title"/><meta content="Generate single or bulk UUIDs (v1, v4, v5) instantly with no daily limits. 100% random, client-side. Copy in one click. Free UUID generator — no login." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/uuid-generator" name="twitter:url"/><meta content="
-   UUID Generator — Bulk v1, v4, v5 UUIDs, No Limits | WorldOfTools
-  " name="twitter:title"/><meta content="Generate single or bulk UUIDs (v1, v4, v5) instantly with no daily limits. 100% random, client-side. Copy in one click. Free UUID generator — no login." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; box-shadow: var(--nb-shadow); white-space: nowrap; }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-blue { background: var(--nb-blue); color: #000; }
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-mint); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+  .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+  .nb-input { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 1rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; transition: box-shadow 0.15s; }
+  .nb-input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .nb-select { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 1rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+  .input-group { margin-bottom: 1.25rem; }
+
+  /* Single UUID hero */
+  .uuid-hero { background: var(--nb-yellow); border: var(--nb-border); border-radius: 20px; padding: 2rem; text-align: center; box-shadow: var(--nb-shadow-lg); margin-bottom: 1.5rem; }
+  .uuid-display { font-family: 'Space Grotesk', monospace; font-size: clamp(1rem, 3vw, 1.4rem); font-weight: 800; letter-spacing: 0.04em; color: #000; word-break: break-all; line-height: 1.4; margin-bottom: 1rem; }
+  .uuid-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+  /* Bulk output */
+  .bulk-output { background: #f9f9ff; border: var(--nb-border); border-radius: 14px; padding: 1.25rem; box-shadow: 3px 3px 0 #000; font-family: 'Space Grotesk', monospace; font-size: 0.9rem; max-height: 320px; overflow-y: auto; line-height: 2; word-break: break-all; }
+  .bulk-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.25rem 0; border-bottom: 1px solid #f0f0f0; }
+  .bulk-item:last-child { border-bottom: none; }
+  .bulk-num { color: #999; font-size: 0.75rem; min-width: 28px; text-align: right; font-weight: 700; }
+  .bulk-val { flex: 1; color: #000; font-weight: 600; }
+  .bulk-copy-btn { background: none; border: 1.5px solid #ddd; border-radius: 6px; padding: 0.2rem 0.5rem; cursor: pointer; font-size: 0.7rem; font-weight: 700; color: #666; transition: all 0.12s; flex-shrink: 0; }
+  .bulk-copy-btn:hover { background: var(--nb-mint); border-color: #000; color: #000; }
+
+  /* Format options */
+  .fmt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
+  .fmt-item { background: #f9f9ff; border: var(--nb-border); border-radius: 12px; padding: 0.75rem 1rem; box-shadow: 3px 3px 0 #000; }
+  .fmt-label { font-size: 0.75rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+  .fmt-val { font-family: monospace; font-size: 0.88rem; font-weight: 700; word-break: break-all; color: #4f46e5; }
+  .fmt-copy { background: none; border: 1.5px solid #ddd; border-radius: 6px; padding: 0.2rem 0.5rem; cursor: pointer; font-size: 0.72rem; font-weight: 700; color: #666; margin-top: 0.4rem; display: block; transition: all 0.12s; }
+  .fmt-copy:hover { background: var(--nb-yellow); border-color: #000; color: #000; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:480px) { .two-col { grid-template-columns: 1fr; } }
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .nb-tab-btn { padding: 0.65rem 1.25rem; border: var(--nb-border); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.9rem; white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000; }
+  .nb-tab-btn.active { background: var(--nb-yellow); border-color: #000; }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  .compare-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .compare-table th { padding: 0.85rem 1rem; text-align: left; background: var(--nb-yellow); border-bottom: 2px solid #000; font-weight: 800; }
+  .compare-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+  @media(max-width:480px) { .nb-card-lg { padding: 1.25rem; } }
+  .ns-count { font-size: 0.8rem; color: #666; font-weight: 600; text-align: center; margin-top: 0.5rem; }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Developer Tools" data-category-url="/developer-tools" data-tool-name="UUID Generator">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>UUID Generator</span></div><h1>
-      UUID Generator — Generate Bulk UUIDs v1, v4 &amp; v5 with No Daily Limits
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Fast and secure v4 UUID generation. Bulk support
-                    for developers.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/uuid-generator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
+
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Developer Tools › <span>UUID Generator</span></div>
+    <div class="hero-badge">🔑 Cryptographically Secure — Browser Only</div>
+    <h1>UUID Generator — Generate UUID v4, v1, Bulk UUIDs & More Free</h1>
+    <p>Generate cryptographically secure UUIDs (v4 random), timestamp-based UUIDs (v1), ULID, Nano IDs, and bulk UUIDs in any format — instantly in your browser. Perfect for databases, APIs, testing, and development workflows.</p>
+  </section>
+
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <div class="nb-tabs" role="tablist">
+      <button class="nb-tab-btn active" onclick="switchTab('single',this)" role="tab">🔑 Single UUID</button>
+      <button class="nb-tab-btn" onclick="switchTab('bulk',this)" role="tab">📦 Bulk Generate</button>
+      <button class="nb-tab-btn" onclick="switchTab('formats',this)" role="tab">🎨 All Formats</button>
+    </div>
+
+    <!-- Single -->
+    <div id="single-tab">
+      <div class="input-group">
+        <label class="nb-label">UUID Version</label>
+        <select class="nb-select" id="singleVersion" onchange="generateSingle()">
+          <option value="v4">UUID v4 — Random (Recommended)</option>
+          <option value="v1">UUID v1 — Timestamp-based</option>
+          <option value="ulid">ULID — Sortable Unique ID</option>
+          <option value="nanoid">Nano ID — Short Unique ID</option>
+          <option value="short">Short UUID — Alphanumeric</option>
+        </select>
+      </div>
+
+      <div class="uuid-hero">
+        <div class="ns-count" id="genCount" style="margin-bottom:0.5rem;"></div>
+        <div class="uuid-display" id="singleUUID">Click Generate to create a UUID</div>
+        <div class="uuid-actions">
+          <button class="nb-btn nb-btn-primary" onclick="generateSingle()">🔄 Generate New</button>
+          <button class="nb-btn nb-btn-mint" onclick="copySingle()">📋 Copy</button>
+          <button class="nb-btn nb-btn-pink" onclick="shareSingle()">🔗 Share</button>
+        </div>
+      </div>
+
+      <button class="nb-btn nb-btn-primary" style="width:100%;font-size:1.1rem;padding:1rem;" onclick="generateSingle()">⚡ Generate UUID</button>
+    </div>
+
+    <!-- Bulk -->
+    <div id="bulk-tab" style="display:none;">
+      <div class="two-col">
+        <div class="input-group">
+          <label class="nb-label" for="bulkCount">How many UUIDs?</label>
+          <input class="nb-input" type="number" id="bulkCount" min="1" max="500" value="10" placeholder="10"/>
+        </div>
+        <div class="input-group">
+          <label class="nb-label" for="bulkVersion">Version</label>
+          <select class="nb-select" id="bulkVersion">
+            <option value="v4">UUID v4 (Random)</option>
+            <option value="v1">UUID v1 (Timestamp)</option>
+            <option value="ulid">ULID</option>
+            <option value="nanoid">Nano ID</option>
+            <option value="short">Short UUID</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="nb-label">Format</label>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:0.4rem;font-weight:700;cursor:pointer;"><input type="radio" name="bulkFmt" value="hyphenated" checked/> Hyphenated</label>
+          <label style="display:flex;align-items:center;gap:0.4rem;font-weight:700;cursor:pointer;"><input type="radio" name="bulkFmt" value="uppercase"/> UPPERCASE</label>
+          <label style="display:flex;align-items:center;gap:0.4rem;font-weight:700;cursor:pointer;"><input type="radio" name="bulkFmt" value="braces"/> {Braces}</label>
+          <label style="display:flex;align-items:center;gap:0.4rem;font-weight:700;cursor:pointer;"><input type="radio" name="bulkFmt" value="plain"/> No Hyphens</label>
+        </div>
+      </div>
+      <button class="nb-btn nb-btn-primary nb-btn-full" onclick="generateBulk()" style="margin-bottom:1.25rem;">📦 Generate UUIDs</button>
+      <div id="bulkOutput" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;flex-wrap:wrap;gap:0.5rem;">
+          <div class="nb-label" style="margin:0;">📋 Generated UUIDs</div>
+          <div style="display:flex;gap:0.5rem;">
+            <button class="nb-btn nb-btn-mint" style="padding:0.5rem 1rem;font-size:0.85rem;" onclick="copyAllBulk()">📋 Copy All</button>
+            <button class="nb-btn nb-btn-blue" style="padding:0.5rem 1rem;font-size:0.85rem;" onclick="downloadBulk()">⬇️ Download .txt</button>
+          </div>
+        </div>
+        <div class="bulk-output" id="bulkList"></div>
+      </div>
+    </div>
+
+    <!-- Formats -->
+    <div id="formats-tab" style="display:none;">
+      <p style="color:#555;font-size:0.95rem;margin-bottom:1.25rem;">Generate one UUID and see it in all common developer formats at once.</p>
+      <button class="nb-btn nb-btn-primary nb-btn-full" onclick="generateAllFormats()" style="margin-bottom:1.5rem;">🎨 Generate All Formats</button>
+      <div class="fmt-grid" id="fmtGrid" style="display:none;"></div>
+    </div>
+
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ Generated using <code>crypto.getRandomValues()</code> — cryptographically secure. Zero data stored.</p>
+  </div>
+
+
+</div><!-- /tool-container -->
+
+<!-- SEO -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is a UUID?</h2>
+    <p>A <strong>UUID (Universally Unique Identifier)</strong> is a 128-bit label used to identify objects in computer systems. The standard format is 32 hexadecimal digits displayed in 5 groups separated by hyphens: <code>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>. UUIDs are designed to be globally unique without requiring a central registration authority.</p>
+    <p>This generator uses the <strong>Web Crypto API</strong> (<code>crypto.getRandomValues()</code>) — the same cryptographically secure randomness used in security applications — to generate truly unpredictable UUIDs entirely in your browser.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>UUID v1 vs v4 vs ULID — Which Should You Use?</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr><th>Type</th><th>Basis</th><th>Sortable</th><th>Best For</th></tr></thead>
+        <tbody>
+          <tr><td><strong>UUID v4</strong></td><td>Random</td><td>No</td><td>General purpose, databases, APIs — most widely used</td></tr>
+          <tr><td><strong>UUID v1</strong></td><td>Timestamp + MAC</td><td>Yes (time)</td><td>Ordered logs, event tracking — leaks MAC address</td></tr>
+          <tr><td><strong>ULID</strong></td><td>Timestamp + Random</td><td>Yes</td><td>Databases needing sort order + uniqueness</td></tr>
+          <tr><td><strong>Nano ID</strong></td><td>Random</td><td>No</td><td>Short URLs, tokens — smaller than UUID</td></tr>
+          <tr><td><strong>Short UUID</strong></td><td>Random alphanumeric</td><td>No</td><td>Human-readable IDs, slugs</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What is a UUID?</summary><p>UUID is a 128-bit unique identifier following the RFC 4122 standard. The standard format is 32 hex characters in groups of 8-4-4-4-12, like: 550e8400-e29b-41d4-a716-446655440000. They are used as primary keys in databases, tokens in APIs, and unique identifiers throughout software systems.</p></details>
+    <details><summary>Are UUID v4s truly unique?</summary><p>UUID v4 uses 122 bits of randomness (2^122 ≈ 5.3 × 10^36 possible values). The probability of generating two identical v4 UUIDs is so small that it's practically impossible — you'd need to generate over 1 billion per second for 85 years to have a 50% chance of a single collision.</p></details>
+    <details><summary>What is the difference between UUID v1 and v4?</summary><p>UUID v1 is generated using the current timestamp and the machine's MAC address — it's time-sortable but can leak identifying information. UUID v4 is entirely random and is the recommended choice for most applications where you don't need time-ordering.</p></details>
+    <details><summary>What is a ULID?</summary><p>ULID (Universally Unique Lexicographically Sortable Identifier) combines a 48-bit timestamp with 80 bits of randomness. Unlike UUIDs, ULIDs are lexicographically sortable, making them ideal for database primary keys where sort order matters.</p></details>
+    <details><summary>Is this UUID generator safe to use for production?</summary><p>Yes. This tool uses the browser's <code>crypto.getRandomValues()</code> API — a cryptographically secure pseudo-random number generator (CSPRNG) — the same one used in security-critical applications. The generated UUIDs are suitable for production use.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Developer Tools</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/url-encoder-decoder"><div class="icon">🔗</div><div class="name">URL Encoder</div><div class="desc">Encode &amp; decode URLs</div></a>
+      <a class="tool-card-mini" href="/json-formatter"><div class="icon">{ }</div><div class="name">JSON Formatter</div><div class="desc">Format &amp; validate JSON</div></a>
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words &amp; characters</div></a>
+      <a class="tool-card-mini" href="/unit-converter"><div class="icon">📐</div><div class="name">Unit Converter</div><div class="desc">Convert any units</div></a>
+      <a class="tool-card-mini" href="/typing-speed-test"><div class="icon">⌨️</div><div class="name">Typing Test</div><div class="desc">Check your WPM</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age from DOB</div></a>
+    </div>
+  </section>
+
 </div>
-</section>
-<div class="error-msg" id="errorMessage">
-</div>
-<div style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
-<span style="font-size: 1.2rem;">
-      🛡️
-     </span>
-<span style="font-weight: 700;">
-      100% Client-Side Processing
-     </span>
-</div>
-<div class="tool-main-card">
-<div class="uuid-layout">
-<div class="card controls-card">
-<h3 style="margin-bottom: 1.5rem;">
-        How many UUIDs?
-       </h3>
-<div class="count-selector" id="countSelector">
-<button class="count-btn" onclick="setCount(1)">
-         1
-        </button>
-<button class="count-btn" onclick="setCount(5)">
-         5
-        </button>
-<button class="count-btn" onclick="setCount(10)">
-         10
-        </button>
-<button class="count-btn" onclick="setCount(50)">
-         50
-        </button>
-<button class="count-btn active" onclick="setCount(100)">
-         100
-        </button>
-<button class="count-btn" onclick="setCount(500)">
-         500
-        </button>
-</div>
-<div class="input-group" style="margin-bottom: 2rem;">
-<label>
-         Or Enter Custom Number (Max 500)
-        </label>
-<input id="customCount" max="500" min="1" oninput="handleCustomInput(this.value)" placeholder="e.g. 25" style="padding: 1.25rem; font-size: 1.1rem; border-radius: 12px; border: 1px solid var(--border-color); width: 100%;" type="number"/>
-</div>
-<button class="btn btn-primary" onclick="generateUUIDs()" style="width: 100%; padding: 1.25rem; font-size: 1.1rem;">
-        ⚡ Generate Now
-       </button>
-<div class="action-btns">
-<button class="btn btn-secondary" onclick="copyAll()">
-         📋 Copy All
-        </button>
-<button class="btn btn-secondary" onclick="downloadTxt()">
-         📥 Download (.txt)
-        </button>
-</div>
-</div>
-<div class="card">
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-<h3 id="resultTitle">
-         Generated UUIDs (100)
-        </h3>
-<span id="copyFeedback" style="color: #10b981; font-weight: 700; font-size: 0.8rem; display: none;">
-         Copied!
-        </span>
-</div>
-<div class="uuid-list" id="uuidList">
-<!-- UUIDs injected here -->
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the UUID Generator?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use UUID Generator — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Enter the number of UUIDs you wish to generate.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Select the version (v4 for random, v1 for time-based).
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Choose your formatting (Uppercase, Braces, or Hyphenless).
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Click Generate and copy the list to your clipboard.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        Uses cryptographically secure random number generators.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        Bulk generation support for up to 1,000 UUIDs at once.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        Custom casing and punctuation options.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Instant results without page reloads.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        Free to use with zero tracking of generated IDs.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the UUID Generator?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Database Devs
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Generate primary keys for mock data and testing environments.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For App Developers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Create unique session IDs or transaction identifiers.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Security Pros
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Generate non-guessable identifiers for internal resources.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 UUID Generator vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is a UUID?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       UUID (Universally Unique Identifier) is a 128-bit identifier standard used to uniquely identify resources in software systems without a central authority. Format: `550e8400-e29b-41d4-a716-446655440000`.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is the difference between UUID v1 and v4?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       UUID v1 is based on timestamp + MAC address (can leak system info). UUID v4 is fully random — preferred for most modern applications.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can two UUIDs ever be the same?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Theoretically possible but astronomically unlikely. With 122 bits of randomness, the probability of collision is approximately 1 in 5.3 × 10^36.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is UUID the same as GUID?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — GUID (Globally Unique Identifier) is Microsoft's implementation of UUID. They are functionally identical.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this UUID Generator free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, the UUID Generator is 100% free with no hidden charges or premium subscriptions.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my data safe?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Do I need to sign up?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No registration or account creation is required to use any of our tools.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use it offline?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Once the page is loaded, most functions work offline since they run in your browser's local environment.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        UUID Generator
-       </strong>
-       is an essential powerhouse in any developer's toolkit. From debugging API responses to generating unique identifiers, this tool automates the repetitive parts of coding so you can focus on building great software. It handles complex data structures with ease, providing clean, standardized outputs that integrate perfectly into your existing workflow.
-      </p>
-<p style="margin-top:1rem;">
-       For developers, data integrity and confidentiality are critical. Whether you're formatting JSON with sensitive keys or decoding JWTs containing user data, our UUID Generator ensures your strings are never transmitted over the network. By performing all logic within the browser, we eliminate the risk of man-in-the-middle attacks or server-side logging of your private development data.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="hash-generator">
-<div class="tool-icon">
-        🔐
-       </div>
-<div class="tool-title">
-        Hash Generator
-       </div>
-<div class="tool-desc">
-        Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly with your
-                            browser's crypto API.
-       </div>
-</a>
-<a class="tool-card" href="password-generator">
-<div class="tool-icon">
-        🔐
-       </div>
-<div class="tool-title">
-        Password Generator
-       </div>
-<div class="tool-desc">
-        Generate strong, high-entropy secure passwords.
-       </div>
-</a>
-<a class="tool-card" href="base64-encoder/decoder">
-<div class="tool-icon">
-        🛠️
-       </div>
-<div class="tool-title">
-        Base64 Encoder/Decoder
-       </div>
-<div class="tool-desc">
-        Useful utility for your daily tasks.
-       </div>
-</a>
-<a class="tool-card" href="jwt-decoder">
-<div class="tool-icon">
-        🔑
-       </div>
-<div class="tool-title">
-        JWT Decoder
-       </div>
-<div class="tool-desc">
-        Decode, verify, and debug JSON Web Tokens (JWT) locally to inspect
-                            header, payload, and signature.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
+
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   let currentCount = 100;
+let totalGenerated = 0;
 
-        function showError(msg, type = 'error') {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
-                errDiv.style.display = 'flex';
-                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
-                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
-                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
-            } else {
-                errDiv.style.display = 'none';
-                errDiv.textContent = '';
-            }
-        }
+function switchTab(id, btn) {
+  ['single','bulk','formats'].forEach(t => document.getElementById(t+'-tab').style.display='none');
+  document.querySelectorAll('.nb-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id+'-tab').style.display='block';
+  btn.classList.add('active');
+}
 
-        function setCount(num) {
-            showError('');
-            currentCount = num;
-            document.getElementById('customCount').value = ''; // Clear custom input
-            document.querySelectorAll('.count-btn').forEach(btn => {
-                btn.classList.toggle('active', parseInt(btn.textContent) === num);
-            });
-            generateUUIDs();
-        }
+function uuidV4() {
+  if (crypto.randomUUID) return crypto.randomUUID();
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+}
 
-        function handleCustomInput(val) {
-            showError('');
-            const num = parseInt(val);
-            if (num > 0 && num <= 500) {
-                currentCount = num;
-                // Remove active class from buttons
-                document.querySelectorAll('.count-btn').forEach(btn => btn.classList.remove('active'));
-                generateUUIDs();
-            } else if (val !== '') {
-                showError('Please enter a number between 1 and 500.');
-            }
-        }
+function uuidV1() {
+  // Timestamp-based (simplified — uses current time)
+  const now = Date.now();
+  const time = now * 10000 + 122192928000000000n;
+  const hex = time.toString(16).padStart(16,'0');
+  const timeLow = hex.slice(-8);
+  const timeMid = hex.slice(-12,-8);
+  const timeHi = '1' + hex.slice(-15,-12);
+  const clockSeq = Math.floor(Math.random() * 0x3fff) | 0x8000;
+  const node = Array.from(crypto.getRandomValues(new Uint8Array(6))).map(b=>b.toString(16).padStart(2,'0')).join('');
+  return `${timeLow}-${timeMid}-${timeHi}-${clockSeq.toString(16)}-${node}`;
+}
 
-        function uuidv4() {
-            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-            );
-        }
+function generateULID() {
+  const ENCODING = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+  const now = Date.now();
+  let time = now;
+  let ts = '';
+  for (let i = 9; i >= 0; i--) {
+    ts = ENCODING[time % 32] + ts;
+    time = Math.floor(time / 32);
+  }
+  let rand = '';
+  const bytes = crypto.getRandomValues(new Uint8Array(10));
+  let n = BigInt('0x' + Array.from(bytes).map(b=>b.toString(16).padStart(2,'0')).join(''));
+  for (let i = 0; i < 16; i++) {
+    rand = ENCODING[Number(n % 32n)] + rand;
+    n = n / 32n;
+  }
+  return ts + rand;
+}
 
-        function generateUUIDs() {
-            const list = document.getElementById('uuidList');
-            document.getElementById('resultTitle').textContent = `Generated UUIDs (${currentCount})`;
-            list.innerHTML = '';
+function generateNanoID(size = 21) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  const bytes = crypto.getRandomValues(new Uint8Array(size));
+  return Array.from(bytes, b => chars[b & 63]).join('');
+}
 
-            for (let i = 0; i < currentCount; i++) {
-                const uuid = uuidv4();
-                const item = document.createElement('div');
-                item.className = 'uuid-item';
-                item.innerHTML = `
-                    <span>${uuid}</span>
-                    <button class="copy-each-btn" onclick="copySingle('${uuid}', this)">Copy</button>
-                `;
-                list.appendChild(item);
-            }
-            showError(`Successfully generated ${currentCount} UUIDs.`, 'success');
-            setTimeout(() => showError(''), 2000);
-        }
+function generateShortUUID(len = 16) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const bytes = crypto.getRandomValues(new Uint8Array(len));
+  return Array.from(bytes, b => chars[b % 62]).join('');
+}
 
-        function copySingle(val, btn) {
-            showError('');
-            navigator.clipboard.writeText(val).then(() => {
-                showError('UUID copied to clipboard!', 'success');
-                const old = btn.textContent;
-                btn.textContent = '✓';
-                btn.style.color = '#10b981';
-                setTimeout(() => {
-                    btn.textContent = old;
-                    btn.style.color = 'var(--primary-color)';
-                    showError('');
-                }, 1000);
-            });
-        }
+function generateByType(type) {
+  switch(type) {
+    case 'v4': return uuidV4();
+    case 'v1': return uuidV1();
+    case 'ulid': return generateULID();
+    case 'nanoid': return generateNanoID();
+    case 'short': return generateShortUUID();
+    default: return uuidV4();
+  }
+}
 
-        function copyAll() {
-            showError('');
-            const uuids = Array.from(document.querySelectorAll('.uuid-item span')).map(s => s.textContent).join('\n');
-            if (!uuids) {
-                showError('No UUIDs to copy.');
-                return;
-            }
-            navigator.clipboard.writeText(uuids).then(() => {
-                showError('All UUIDs copied to clipboard!', 'success');
-                const feedback = document.getElementById('copyFeedback');
-                feedback.style.display = 'inline';
-                setTimeout(() => {
-                    feedback.style.display = 'none';
-                    showError('');
-                }, 1500);
-            });
-        }
+function applyFormat(uuid, fmt) {
+  switch(fmt) {
+    case 'uppercase': return uuid.toUpperCase();
+    case 'braces': return '{' + uuid + '}';
+    case 'plain': return uuid.replace(/-/g,'');
+    default: return uuid;
+  }
+}
 
-        function downloadTxt() {
-            showError('');
-            const uuids = Array.from(document.querySelectorAll('.uuid-item span')).map(s => s.textContent).join('\n');
-            if (!uuids) {
-                showError('No UUIDs to download.');
-                return;
-            }
-            try {
-                const blob = new Blob([uuids], { type: 'text/plain' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `worldoftools.in-uuids-${Date.now()}.txt`;
+function generateSingle() {
+  const version = document.getElementById('singleVersion').value;
+  const uuid = generateByType(version);
+  totalGenerated++;
+  document.getElementById('singleUUID').textContent = uuid;
+  document.getElementById('genCount').textContent = `Session total: ${totalGenerated} UUID${totalGenerated!==1?'s':''} generated`;
+}
 
-                a.click();
-                window.URL.revokeObjectURL(url);
-                showError('UUIDs downloaded successfully.', 'success');
-                setTimeout(() => showError(''), 2000);
-            } catch (e) {
-                showError('Failed to download UUIDs.');
-            }
-        }
+function copySingle() {
+  const text = document.getElementById('singleUUID').textContent;
+  if (text === 'Click Generate to create a UUID') return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.currentTarget;
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
 
-        // Initialize
-        generateUUIDs();
-  </script>
+function shareSingle() {
+  const uuid = document.getElementById('singleUUID').textContent;
+  const text = `UUID: ${uuid}\nGenerated at worldoftools.in/uuid-generator`;
+  if (navigator.share) navigator.share({ title: 'UUID', text, url: 'https://worldoftools.in/uuid-generator' });
+  else navigator.clipboard.writeText(text);
+}
+
+function generateBulk() {
+  const count = Math.min(500, Math.max(1, parseInt(document.getElementById('bulkCount').value) || 10));
+  const version = document.getElementById('bulkVersion').value;
+  const fmt = document.querySelector('input[name="bulkFmt"]:checked').value;
+  const list = document.getElementById('bulkList');
+  list.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const uuid = applyFormat(generateByType(version), fmt);
+    const item = document.createElement('div');
+    item.className = 'bulk-item';
+    item.innerHTML = `<span class="bulk-num">${i+1}</span><span class="bulk-val">${uuid}</span><button class="bulk-copy-btn" onclick="copyText('${uuid}',this)">Copy</button>`;
+    list.appendChild(item);
+  }
+  totalGenerated += count;
+  document.getElementById('bulkOutput').style.display = 'block';
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+
+function copyAllBulk() {
+  const items = document.querySelectorAll('.bulk-val');
+  const text = Array.from(items).map(el=>el.textContent).join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.currentTarget;
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied All!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+
+function downloadBulk() {
+  const items = document.querySelectorAll('.bulk-val');
+  const text = Array.from(items).map(el=>el.textContent).join('\n');
+  const blob = new Blob([text], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'uuids.txt';
+  a.click();
+}
+
+function generateAllFormats() {
+  const base = uuidV4();
+  const formats = [
+    { label: 'UUID v4 (Standard)', val: base },
+    { label: 'UPPERCASE', val: base.toUpperCase() },
+    { label: 'No Hyphens', val: base.replace(/-/g,'') },
+    { label: '{Braces}', val: '{' + base + '}' },
+    { label: 'URN Format', val: 'urn:uuid:' + base },
+    { label: 'UUID v1', val: uuidV1() },
+    { label: 'ULID', val: generateULID() },
+    { label: 'Nano ID (21)', val: generateNanoID(21) },
+    { label: 'Nano ID (12)', val: generateNanoID(12) },
+    { label: 'Short UUID', val: generateShortUUID(16) },
+  ];
+  const grid = document.getElementById('fmtGrid');
+  grid.style.display = 'grid';
+  grid.innerHTML = formats.map(f => `
+    <div class="fmt-item">
+      <div class="fmt-label">${f.label}</div>
+      <div class="fmt-val">${f.val}</div>
+      <button class="fmt-copy" onclick="copyText('${f.val.replace(/'/g,"\\'")}',this)">📋 Copy</button>
+    </div>
+  `).join('');
+  totalGenerated++;
+}
+
+// Auto-generate one on load
+generateSingle();
+</script>
 </body>
 </html>

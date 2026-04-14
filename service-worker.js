@@ -1,4 +1,4 @@
-const CACHE_NAME = 'worldoftools-v135';
+const CACHE_NAME = 'worldoftools-v147';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -31,7 +31,7 @@ const ASSETS_TO_CACHE = [
     '/privacy',
     '/terms',
     '/seo-meta-tag-generator',
-    '/link-shortener',
+    
     '/gst-calculator',
     '/json-formatter',
     '/text-compare-tool',
@@ -236,7 +236,7 @@ self.addEventListener('fetch', (event) => {
                 })
                 .catch(() => {
                     // If network fails, try cache
-                    return caches.match(event.request).then(res => addSecurityHeaders(res));
+                    return caches.match(event.request, {ignoreSearch: true}).then(res => addSecurityHeaders(res));
                 })
         );
         return;
@@ -244,7 +244,7 @@ self.addEventListener('fetch', (event) => {
 
     // Cache-first strategy for static assets (CSS, JS, Images, Fonts)
     event.respondWith(
-        caches.match(event.request)
+        caches.match(event.request, {ignoreSearch: true})
             .then((response) => {
                 if (response) {
                     return addSecurityHeaders(response);

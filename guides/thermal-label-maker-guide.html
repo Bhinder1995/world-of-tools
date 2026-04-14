@@ -40,12 +40,12 @@
         .step-item::before { 
             counter-increment: step-counter; content: counter(step-counter); 
             position: absolute; left: 0; top: 0; 
-            width: 3rem; height: 3rem; background: #4f46e5; color: white; 
+            width: 3rem; height: 3rem; background: #4f46e5; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); font-size: 1.1rem; letter-spacing: 0.02em; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
             font-weight: 800; font-size: 1.2rem;
         }
         
-        .back-to-tool { display: inline-flex; align-items: center; gap: 0.5rem; background: #0f172a; color: white; padding: 0.85rem 1.5rem; border-radius: 12px; font-weight: 700; text-decoration: none; margin-top: 2rem; transition: background 0.2s; }
+        .back-to-tool { display: inline-flex; align-items: center; gap: 0.5rem; background: #0f172a; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); font-size: 1.1rem; letter-spacing: 0.02em; padding: 0.85rem 1.5rem; border-radius: 12px; font-weight: 700; text-decoration: none; margin-top: 2rem; transition: background 0.2s; }
         .back-to-tool:hover { background: #1e293b; }
         
         .faq-item { border-bottom: 1px solid #e2e8f0; padding: 1.5rem 0; }
@@ -53,6 +53,96 @@
         .faq-q { font-weight: 800; font-size: 1.1rem; color: #0f172a; margin-bottom: 0.5rem; }
         .faq-a { color: #64748b; }
     </style>
+<style>
+    /* Neo-Brutalism Overrides for Guides */
+    body {
+        background-color: var(--bg-color);
+        font-family: 'Lexend', 'Inter', sans-serif;
+    }
+    .guide-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 3rem 2rem;
+        background: #ffffff;
+        border: 3px solid #111827;
+        box-shadow: 8px 8px 0px #111827;
+        border-radius: var(--nb-radius-lg, 12px);
+        line-height: 1.8;
+        color: #111827;
+    }
+    .guide-header h1 {
+        font-family: 'Space Grotesk', 'Lexend', sans-serif;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        color: #111827;
+    }
+    .guide-content h2, .guide-content h3 {
+        font-family: 'Space Grotesk', 'Lexend', sans-serif;
+        font-weight: 800;
+        color: #111827;
+    }
+    .guide-badge {
+        background: var(--nb-lavender, #e9ddff);
+        color: #111827;
+        border: 2.5px solid #111827;
+        box-shadow: 3px 3px 0 #111827;
+        border-radius: 999px;
+        font-weight: 800;
+        padding: 0.5rem 1.25rem;
+    }
+    .back-btn {
+        background: var(--nb-yellow, #fef08a);
+        color: #111827;
+        border: 3px solid #111827;
+        box-shadow: 5px 5px 0 #111827;
+        border-radius: 999px;
+        font-weight: 850;
+        text-shadow: none;
+        transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .back-btn:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 8px 8px 0 #111827;
+    }
+    .info-card {
+        background: var(--nb-mint, #dcfce7);
+        border: 3px solid #111827;
+        box-shadow: 5px 5px 0 #111827;
+        border-radius: var(--nb-radius, 8px);
+        padding: 2rem;
+        color: #111827;
+    }
+    .faq-item {
+        border-bottom: 2px dashed #111827;
+    }
+    .faq-question {
+        font-weight: 800;
+        font-family: 'Space Grotesk', sans-serif;
+    }
+    .guide-content table {
+        border: 3px solid #111827;
+        box-shadow: 4px 4px 0 #111827;
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .guide-content th {
+        background: var(--nb-pink, #fce7f3);
+        border: 2px solid #111827;
+        font-weight: 800;
+        padding: 1rem;
+    }
+    .guide-content td {
+        border: 2px solid #111827;
+        padding: 1rem;
+    }
+    .guide-content pre, .guide-content code {
+        background: #f1f5f9;
+        border: 2px solid #111827;
+        border-radius: 6px;
+        font-family: monospace;
+    }
+</style>
 </head>
 <body>
     <header></header>
@@ -62,7 +152,7 @@
             <span class="guide-badge">Expert Tutorial</span>
             <h1>The Ultimate Guide to Thermal Label Printing</h1>
             <p style="font-size: 1.25rem; color: #64748b; max-width: 700px; margin: 0 auto;">Everything you need to know about designing, formatting, and printing high-quality shipping labels and barcodes like a pro.</p>
-            <a href="/thermal-label-maker" class="back-to-tool">🚀 Open Label Maker Tool</a>
+            <a href="/thermal-label-maker.html" class="back-to-tool">🚀 Open Label Maker Tool</a>
         </div>
         
         <div class="toc">
@@ -99,7 +189,7 @@
             <div class="label-steps">
                 <div class="step-item">
                     <h3>Design Your Label</h3>
-                    <p>Use our <a href="/thermal-label-maker">Thermal Label Maker</a> to enter the sender and recipient details. Ensure the "Recipient" field is clear and uses a bold font for the name. This helps delivery drivers and scanning equipment identify the package quickly.</p>
+                    <p>Use our <a href="/thermal-label-maker.html">Thermal Label Maker</a> to enter the sender and recipient details. Ensure the "Recipient" field is clear and uses a bold font for the name. This helps delivery drivers and scanning equipment identify the package quickly.</p>
                 </div>
                 <div class="step-item">
                     <h3>Export to PDF</h3>
@@ -196,7 +286,7 @@
             
             <div style="text-align: center; margin-top: 5rem; padding-top: 3rem; border-top: 1px solid #e2e8f0;">
                 <p style="font-weight: 800; font-size: 1.2rem; margin-bottom: 1.5rem;">Ready to create your first label?</p>
-                <a href="/thermal-label-maker" style="display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 1.25rem 2.5rem; border-radius: 16px; font-weight: 800; font-size: 1.1rem; text-decoration: none; box-shadow: 0 10px 30px rgba(79,70,229,0.3); transition: transform 0.2s;">
+                <a href="/thermal-label-maker.html" style="display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); font-size: 1.1rem; letter-spacing: 0.02em; padding: 1.25rem 2.5rem; border-radius: 16px; font-weight: 800; font-size: 1.1rem; text-decoration: none; box-shadow: 0 10px 30px rgba(79,70,229,0.3); transition: transform 0.2s;">
                     ✨ Start Designing Now
                 </a>
             </div>

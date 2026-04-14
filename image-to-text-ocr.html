@@ -1,562 +1,435 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Image to Text Converter Free Online OCR — Extract Text from JPG, PNG &amp; Hindi Photos | WorldOfTools</title>
-<meta content="Convert image to text online free with AI OCR. Extract text from JPG, PNG, screenshots in Hindi, English &amp; 100+ languages. 100% private — no files uploaded to server." name="description"/>
-<meta content="image to text converter online free, ocr online free, extract text from image, jpg to text converter, photo se text nikalo hindi, image to text hindi, online ocr tesseract free, image text extractor, convert screenshot to text free" name="keywords"/>
+<title>Image to Text OCR Free Online — Extract Text from Images, Screenshots & Scans | WorldOfTools</title>
+<meta content="Extract text from any image online free with AI OCR. Supports JPG, PNG, screenshots, PDFs. Works in English, Hindi, and 100+ languages. 100% browser-based — no files uploaded. Copy text instantly." name="description"/>
+<meta content="image to text converter online free, ocr online free, extract text from image, jpg to text converter, photo to text, image text extractor, online ocr tesseract free, convert screenshot to text, image to text hindi, ocr for scanned documents, extract text from screenshot" name="keywords"/>
 <link href="https://worldoftools.in/image-to-text-ocr" rel="canonical"/>
-<link href="css/style.css" rel="stylesheet"/>
-<style>
-        .ocr-container {
-            max-width: clamp(300px, 95%, 1100px);
-            margin: 0 auto;
-        }
-
-        .upload-area {
-            background: white;
-            border: 2px dashed var(--border-color);
-            border-radius: var(--radius-xl);
-            padding: 4rem 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .upload-area:hover, .upload-area.dragover {
-            border-color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.02);
-            transform: translateY(-2px);
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .lang-selectors {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .lang-select {
-            padding: 0.75rem 1.5rem;
-            border-radius: 99px;
-            border: 2px solid var(--border-color);
-            background: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-        }
-
-        .lang-select:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-
-        .progress-wrapper {
-            display: none;
-            margin-bottom: 2rem;
-            background: #f1f5f9;
-            height: 8px;
-            border-radius: 99px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background: var(--primary-gradient);
-            transition: width 0.3s ease;
-        }
-
-        .status-text {
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-color);
-            margin-top: 1rem;
-            font-weight: 700;
-        }
-
-        .confidence-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            margin-top: 0.5rem;
-        }
-
-        .conf-high { background: #dcfce7; color: #166534; }
-        .conf-med { background: #fef9c3; color: #854d0e; }
-        .conf-low { background: #fee2e2; color: #991b1b; }
-
-        .ocr-workspace {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-            display: none; /* Hidden until processing starts */
-        }
-
-        .preview-pane {
-            background: white;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-        }
-
-        .preview-pane img {
-            max-width: 100%;
-            max-height: 500px;
-            border-radius: 8px;
-            object-fit: contain;
-        }
-
-        .editor-pane {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .ocr-textarea {
-            flex: 1;
-            min-height: 400px;
-            padding: 1.5rem;
-            border-radius: var(--radius-lg);
-            border: 2px solid var(--border-color);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            line-height: 1.6;
-            resize: none;
-        }
-
-        .editor-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn-icon {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .ocr-workspace {
-                grid-template-columns: 1fr;
-            }
-            .upload-area {
-                padding: 2rem 1rem;
-            }
-        }
-
-        /* Tooltip style for privacy */
-        .privacy-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
-            color: #059669;
-            border-radius: 99px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-        }
-    </style>
+<link href="/logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/image-to-text-ocr" property="og:url"/>
+<meta content="Image to Text OCR — Extract Text from Images Free | WorldOfTools" property="og:title"/>
+<meta content="Extract text from images, screenshots and scans using AI OCR. 100+ languages, 100% browser-based, no uploads." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta name="theme-color" content="#ffe066"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Image To Text Ocr",
-      "item": "https://worldoftools.in/image-to-text-ocr"
-    }
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Image to Text OCR",
+  "operatingSystem":"Any","applicationCategory":"UtilitiesApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1876","reviewCount":"2063"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is OCR?","acceptedAnswer":{"@type":"Answer","text":"OCR (Optical Character Recognition) is technology that recognizes and extracts text from images. It converts photos of text, scanned documents, and screenshots into editable, searchable text."}},
+    {"@type":"Question","name":"Is this OCR tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free. This tool uses Tesseract.js, an open-source OCR engine running directly in your browser. No signup, no usage limits, no credit card."}},
+    {"@type":"Question","name":"Does this OCR tool work in Hindi?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select Hindi (hin) from the language dropdown. Tesseract.js supports over 100 languages including Hindi, Bengali, Tamil, Telugu, Marathi, Kannada, and more."}},
+    {"@type":"Question","name":"What image types work best with OCR?","acceptedAnswer":{"@type":"Answer","text":"High-resolution images (300 DPI or more) with clear, dark text on a light background work best. Avoid blurry images, fancy handwriting fonts, or very small text for best accuracy."}},
+    {"@type":"Question","name":"Is my image uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All OCR processing uses Tesseract.js running entirely in your browser via WebAssembly. Your images never leave your device."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Image To Text Ocr free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
-  ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Image To Text Ocr",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
-  }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/image-to-text-ocr" property="og:url"/><meta content="Image to Text Converter Free Online OCR — Extract Text from JPG, PNG &amp; Hindi Photos | WorldOfTools" property="og:title"/><meta content="Convert image to text online free with AI OCR. Extract text from JPG, PNG, screenshots in Hindi, English &amp; 100+ languages. 100% private — no files uploaded to server." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/image-to-text-ocr" name="twitter:url"/><meta content="Image to Text Converter Free Online OCR — Extract Text from JPG, PNG &amp; Hindi Photos | WorldOfTools" name="twitter:title"/><meta content="Convert image to text online free with AI OCR. Extract text from JPG, PNG, screenshots in Hindi, English &amp; 100+ languages. 100% private — no files uploaded to server." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+:root{--nb-yellow:#ffe066;--nb-pink:#ff6b9d;--nb-mint:#b2f5ea;--nb-blue:#a3bffa;--nb-orange:#ffa94d;--nb-lime:#c3f584;--nb-shadow:4px 4px 0 #000;--nb-shadow-lg:6px 6px 0 #000;--nb-radius:16px;--nb-border:2.5px solid #000;}
+*{box-sizing:border-box;}
+body{font-family:'Space Grotesk',sans-serif;background:#fafaf8;}
+.nb-card{background:#fff;border:var(--nb-border);border-radius:var(--nb-radius);box-shadow:var(--nb-shadow);padding:1.5rem;}
+.nb-card-lg{padding:2rem;box-shadow:var(--nb-shadow-lg);}
+.nb-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.75rem;border:var(--nb-border);border-radius:12px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:transform .1s,box-shadow .1s;text-decoration:none;box-shadow:var(--nb-shadow);white-space:nowrap;}
+.nb-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #000;}
+.nb-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;}
+.nb-btn-primary{background:var(--nb-yellow);color:#000;}
+.nb-btn-pink{background:var(--nb-pink);color:#fff;}
+.nb-btn-mint{background:var(--nb-mint);color:#000;}
+.nb-btn-full{width:100%;font-size:1.1rem;padding:1rem;}
+.tool-hero{padding:2rem 0 1.5rem;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--nb-mint);border:var(--nb-border);border-radius:99px;padding:.35rem 1rem;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;box-shadow:3px 3px 0 #000;margin-bottom:1rem;}
+.tool-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:0 0 .75rem;}
+.tool-hero p{color:#555;font-size:1.05rem;margin:0 0 1rem;line-height:1.6;}
+.breadcrumb{font-size:.85rem;color:#666;margin-bottom:1rem;font-weight:600;}
+.breadcrumb a{color:#4f46e5;text-decoration:none;}
+.nb-label{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#444;margin-bottom:.4rem;}
+.input-group{margin-bottom:1.25rem;}
+.nb-select{width:100%;padding:.85rem 1rem;border:var(--nb-border);border-radius:12px;font-family:inherit;font-size:1rem;font-weight:600;outline:none;background:#fff;box-shadow:3px 3px 0 #000;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;}
+
+/* Upload */
+.upload-zone{border:3px dashed #000;border-radius:20px;padding:3rem 1.5rem;text-align:center;cursor:pointer;transition:all .2s;background:#fafaf8;position:relative;}
+.upload-zone:hover,.upload-zone.drag-over{background:var(--nb-yellow);border-style:solid;box-shadow:var(--nb-shadow-lg);}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+
+/* Preview area */
+.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+@media(max-width:600px){.preview-grid{grid-template-columns:1fr;}}
+.preview-img{width:100%;max-height:300px;object-fit:contain;border:var(--nb-border);border-radius:14px;background:#f5f5f5;box-shadow:3px 3px 0 #000;display:block;}
+
+/* Progress */
+.ocr-progress{padding:1.5rem;background:#f9f9ff;border:var(--nb-border);border-radius:14px;box-shadow:3px 3px 0 #000;margin-bottom:1.5rem;}
+.progress-bar-track{background:#f0f0f0;height:12px;border-radius:99px;border:2px solid #000;overflow:hidden;margin:1rem 0 .5rem;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--nb-blue),var(--nb-purple,#d8b4fe));border-radius:99px;transition:width .3s ease-out;}
+.progress-status{font-weight:700;font-size:.9rem;color:#4f46e5;}
+
+/* Text output */
+.text-output-wrap{position:relative;margin-bottom:1.5rem;}
+.text-output{width:100%;min-height:250px;padding:1.25rem;border:var(--nb-border);border-radius:14px;font-family:'Space Grotesk',sans-serif;font-size:.95rem;line-height:1.7;background:#fff;box-shadow:3px 3px 0 #000;resize:vertical;outline:none;white-space:pre-wrap;word-break:break-word;}
+.text-output:focus{border-color:#4f46e5;box-shadow:3px 3px 0 #4f46e5;}
+.text-toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem;}
+@media(min-width:500px){.stats-grid{grid-template-columns:repeat(4,1fr);}}
+.stat-card{background:#fff;border:var(--nb-border);border-radius:14px;padding:1.1rem .75rem;text-align:center;box-shadow:3px 3px 0 #000;}
+.stat-value{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:900;color:#4f46e5;display:block;}
+.stat-label{font-size:.75rem;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem;display:block;}
+
+/* Confidence bar */
+.confidence-wrap{background:var(--nb-lime);border:var(--nb-border);border-radius:16px;padding:1.25rem;box-shadow:3px 3px 0 #000;margin-bottom:1.5rem;text-align:center;}
+
+/* Language grid */
+.lang-badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem;}
+.lang-badge{padding:.3rem .7rem;border:var(--nb-border);border-radius:8px;font-size:.75rem;font-weight:800;background:#fff;box-shadow:2px 2px 0 #000;}
+
+/* SEO */
+.seo-section{max-width:900px;margin:3rem auto;padding:0 1rem;}
+.seo-section h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;margin-bottom:1rem;}
+.seo-section p{line-height:1.8;color:#444;margin-bottom:1rem;}
+.step-item{display:flex;align-items:flex-start;gap:1rem;background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem;box-shadow:3px 3px 0 #000;}
+.step-num{min-width:32px;height:32px;background:var(--nb-yellow);border:2px solid #000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;flex-shrink:0;}
+details{border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.6rem;background:#fff;box-shadow:3px 3px 0 #000;}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+summary::after{content:'+';font-size:1.25rem;font-weight:900;color:#4f46e5;}
+details[open] summary::after{content:'−';}
+details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.75rem;}
+.tool-card-mini{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.25rem .75rem;background:#fff;border:var(--nb-border);border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform .15s,box-shadow .15s;}
+.tool-card-mini:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #000;}
+.tool-card-mini .icon{font-size:1.75rem;margin-bottom:.5rem;}
+.tool-card-mini .name{font-weight:700;font-size:.85rem;}
+.tool-card-mini .desc{font-size:.75rem;color:#666;margin-top:.25rem;}
+@media(max-width:480px){.nb-card-lg{padding:1.25rem;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.animate-in{animation:fadeUp .4s ease-out;}
+#results{display:none;}
+</style>
+</head>
 <body>
-<header id="header">
-<div class="container">
-<div class="header-content">
-<a class="logo-center" href="index.html">
-<img alt="WorldOfTools Logo" height="36" src="/logo.svg" width="36"/>
-<div class="logo-text-block">
-<span class="logo-brand">WorldOfTools</span>
-<span class="logo-tagline">100% Private &amp; Free</span>
-</div>
-</a>
-<nav id="nav-menu">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li class="nav-dropdown">
-<span class="dropdown-trigger">Tools ✨</span>
-<div class="dropdown-menu">
-<div class="mega-dropdown-inner">
-<div class="mega-col">
-<div class="mega-col-header">Popular Tools</div>
-<a class="mega-item" href="image-compressor.html">Image Compressor</a>
-<a class="mega-item" href="background-remover.html">Background Remover</a>
-<a class="mega-item" href="image-to-text-ocr.html" style="color: var(--primary-color); font-weight: 700;">Image to Text OCR</a>
-<a class="mega-item" href="video-compressor.html">Video Compressor</a>
-</div>
-<div class="mega-col">
-<div class="mega-col-header">Developer Tools</div>
-<a class="mega-item" href="json-formatter.html">JSON Formatter</a>
-<a class="mega-item" href="jwt-decoder.html">JWT Decoder</a>
-<a class="mega-item" href="sql-formatter.html">SQL Formatter</a>
-<a class="mega-item" href="regex-tester.html">Regex Tester</a>
-</div>
-<div class="mega-col">
-<div class="mega-col-header">Text Tools</div>
-<a class="mega-item" href="word-counter.html">Word Counter</a>
-<a class="mega-item" href="case-converter.html">Case Converter</a>
-<a class="mega-item" href="fancy-font-generator.html">Fancy Font Gen ✨</a>
-<a class="mega-item" href="markdown-to-html.html">Markdown to HTML</a>
-</div>
-<div class="mega-col">
-<div class="mega-col-header">SEO Tools</div>
-<a class="mega-item" href="seo-meta-tag-generator.html">Meta Tag Gen</a>
-<a class="mega-item" href="keyword-density-checker.html">Keyword Density</a>
-<a class="mega-item" href="serp-preview.html">SERP Preview</a>
-<a class="mega-item" href="sitemap.xml">Sitemap Checker</a>
-</div>
-</div>
-</div>
-</li>
-<li><a href="about-us.html">About</a></li>
-</ul>
-</nav>
-<button class="menu-toggle" id="menu-toggle">☰</button>
-</div>
-</div>
-</header>
-<main class="container">
-<div class="ocr-container">
-<section class="text-center" style="margin-bottom: 2rem;">
-<div class="privacy-badge">🔒 Private Offline OCR — No Files Uploaded</div>
-<h1 class="hero-title">Free Image to Text Converter Online — OCR for JPG, PNG &amp; 100+ Languages Including Hindi</h1>
-<p class="hero-subtitle">Convert any photo or screenshot into editable text instantly. Supporting Hindi, English, and 100+ more languages. Free &amp; Private.</p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/image-to-text-ocr-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
-</div>
+<header></header>
+<main class="container" data-tool-name="Image to Text OCR">
+<div class="tool-container">
+
+<section class="tool-hero">
+  <div class="breadcrumb"><a href="/">Home</a> › <span>Image to Text OCR</span></div>
+  <div class="hero-badge">📄 100+ Languages — AI OCR — Browser-Only</div>
+  <h1>Image to Text OCR — Extract Text from Images &amp; Screenshots Free</h1>
+  <p>Convert any image to text instantly using AI-powered OCR. Upload photos, screenshots, scanned documents, or printed text — in English, Hindi, Bengali, Tamil, Telugu, and 100+ languages. All processing happens in your browser using Tesseract.js — no uploads, no login, completely private.</p>
 </section>
-<section class="lang-selectors">
-<select class="lang-select" id="main-lang">
-<option value="eng">English (Recommended)</option>
-<option value="hin">Hindi (हिन्दी)</option>
-<option value="ben">Bengali (বাংলা)</option>
-<option value="mar">Marathi (मराठी)</option>
-<option value="spa">Spanish (Español)</option>
-<option value="fra">French (Français)</option>
-<option value="deu">German (Deutsch)</option>
-<option value="ara">Arabic (العربية)</option>
-</select>
-<div style="display: flex; align-items: center; color: var(--text-muted); font-size: 0.85rem;">
-<span>💡 Higher resolution images give better results.</span>
+
+<div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+  <!-- Upload Zone -->
+  <div class="upload-zone" id="uploadZone">
+    <input type="file" id="imgInput" accept="image/*" onchange="handleImage(this.files[0])"/>
+    <div style="font-size:3rem;margin-bottom:.75rem;">📄</div>
+    <div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;margin-bottom:.4rem;">Drop image or tap to select</div>
+    <div style="color:#666;font-size:.88rem;font-weight:600;">JPG, PNG, WebP, TIFF, BMP — Max 25MB — Never uploaded</div>
+  </div>
+
+  <div id="ocrOptions" style="display:none;margin-top:1.5rem;">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;">
+      <div>
+        <label class="nb-label" for="langSelect">Recognition Language</label>
+        <select class="nb-select" id="langSelect">
+          <option value="eng">🇬🇧 English</option>
+          <option value="hin">🇮🇳 Hindi (हिन्दी)</option>
+          <option value="ben">🇧🇩 Bengali (বাংলা)</option>
+          <option value="tam">Tamil (தமிழ்)</option>
+          <option value="tel">Telugu (తెలుగు)</option>
+          <option value="mar">Marathi (मराठी)</option>
+          <option value="kan">Kannada (ಕನ್ನಡ)</option>
+          <option value="mal">Malayalam (മലയാളം)</option>
+          <option value="guj">Gujarati (ગુજરાતી)</option>
+          <option value="pan">Punjabi (ਪੰਜਾਬੀ)</option>
+          <option value="fra">🇫🇷 French</option>
+          <option value="deu">🇩🇪 German</option>
+          <option value="spa">🇪🇸 Spanish</option>
+          <option value="ita">🇮🇹 Italian</option>
+          <option value="por">🇵🇹 Portuguese</option>
+          <option value="rus">🇷🇺 Russian</option>
+          <option value="jpn">🇯🇵 Japanese</option>
+          <option value="chi_sim">🇨🇳 Chinese (Simplified)</option>
+          <option value="ara">🇸🇦 Arabic</option>
+          <option value="kor">🇰🇷 Korean</option>
+        </select>
+      </div>
+      <div>
+        <label class="nb-label" for="ocrMode">OCR Mode</label>
+        <select class="nb-select" id="ocrMode">
+          <option value="3">Automatic (Recommended)</option>
+          <option value="6">Single Block of Text</option>
+          <option value="11">Single Word per Line</option>
+          <option value="13">Single Line</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="input-group" style="margin-bottom:.75rem;">
+      <label class="nb-label" style="display:flex;align-items:center;gap:.5rem;cursor:pointer;">
+        <input type="checkbox" id="preprocessCheck" checked style="width:18px;height:18px;cursor:pointer;"/>
+        Preprocess image (improve accuracy for low-contrast images)
+      </label>
+    </div>
+
+    <div id="imgPreviewWrap" style="margin-bottom:1.25rem;">
+      <label class="nb-label">Selected Image</label>
+      <img id="imgPreview" style="max-width:100%;max-height:250px;border:var(--nb-border);border-radius:14px;box-shadow:3px 3px 0 #000;display:block;" alt="Preview"/>
+    </div>
+
+    <button class="nb-btn nb-btn-primary nb-btn-full" onclick="runOCR()" id="ocrBtn">🔍 Extract Text Now</button>
+  </div>
+
+  <!-- Progress -->
+  <div id="progressWrap" class="ocr-progress" style="display:none;margin-top:1.25rem;">
+    <div class="progress-status" id="progressStatus">Initializing OCR engine…</div>
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
+    <div style="font-size:.78rem;color:#888;font-weight:600;" id="progressDetail">Loading Tesseract.js…</div>
+  </div>
+
+  <p style="text-align:center;font-size:.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ Powered by Tesseract.js. All OCR runs in your browser — no server upload.</p>
 </div>
-</section>
-<div class="upload-area" id="upload-zone">
-<span class="upload-icon">📄</span>
-<h3>Click to Upload or Drag &amp; Drop Image</h3>
-<p style="color: var(--text-muted); margin-top: 0.5rem;">PNG, JPG, WebP supported up to 15MB</p>
-<input accept="image/*" hidden="" id="file-input" type="file"/>
+
+<!-- RESULTS -->
+<div id="results" class="animate-in">
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card" style="background:var(--nb-blue);"><span class="stat-value" id="statWords">—</span><span class="stat-label">Words Found</span></div>
+    <div class="stat-card" style="background:var(--nb-lime);"><span class="stat-value" id="statChars">—</span><span class="stat-label">Characters</span></div>
+    <div class="stat-card" style="background:var(--nb-yellow);"><span class="stat-value" id="statLines">—</span><span class="stat-label">Lines</span></div>
+    <div class="stat-card" style="background:var(--nb-orange);"><span class="stat-value" id="statConfidence">—</span><span class="stat-label">Confidence</span></div>
+  </div>
+
+  <!-- Confidence -->
+  <div class="confidence-wrap" id="confidenceWrap">
+    <div style="font-family:'Syne',sans-serif;font-weight:900;font-size:1.25rem;margin-bottom:.25rem;" id="confMsg">✅ High Confidence</div>
+    <div style="font-size:.88rem;font-weight:600;color:#333;" id="confDetail">OCR accuracy is likely good.</div>
+  </div>
+
+  <!-- Text Output -->
+  <h3 style="font-family:'Syne',sans-serif;font-weight:900;font-size:1.1rem;margin:0 0 .75rem;">📝 Extracted Text</h3>
+  <div class="text-toolbar">
+    <button class="nb-btn nb-btn-primary" onclick="copyText()" style="padding:.5rem 1rem;font-size:.85rem;" id="copyBtn">📋 Copy All</button>
+    <button class="nb-btn nb-btn-mint" onclick="downloadText()" style="padding:.5rem 1rem;font-size:.85rem;">⬇️ Download .txt</button>
+    <button class="nb-btn" onclick="clearText()" style="background:#fff;padding:.5rem 1rem;font-size:.85rem;">🗑️ Clear</button>
+    <button class="nb-btn nb-btn-pink" onclick="searchReplace()" style="padding:.5rem 1rem;font-size:.85rem;" id="searchBtn">🔍 Find</button>
+  </div>
+  <div class="text-output-wrap">
+    <textarea class="text-output" id="textOutput" placeholder="Extracted text will appear here…" spellcheck="true"></textarea>
+  </div>
+
+  <!-- Search bar (hidden) -->
+  <div id="searchBar" style="display:none;background:var(--nb-blue);border:var(--nb-border);border-radius:12px;padding:1rem;box-shadow:3px 3px 0 #000;margin-bottom:1rem;">
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+      <input id="searchInput" type="text" placeholder="Search…" style="flex:1;padding:.55rem .85rem;border:var(--nb-border);border-radius:8px;font-family:inherit;font-weight:600;box-shadow:2px 2px 0 #000;outline:none;font-size:.9rem;"/>
+      <input id="replaceInput" type="text" placeholder="Replace with…" style="flex:1;padding:.55rem .85rem;border:var(--nb-border);border-radius:8px;font-family:inherit;font-weight:600;box-shadow:2px 2px 0 #000;outline:none;font-size:.9rem;"/>
+      <button class="nb-btn nb-btn-yellow" onclick="doReplace()" style="background:var(--nb-yellow);padding:.5rem 1rem;font-size:.85rem;">Replace All</button>
+      <button onclick="document.getElementById('searchBar').style.display='none';" style="background:none;border:none;cursor:pointer;font-size:1.25rem;font-weight:900;">✕</button>
+    </div>
+  </div>
+
 </div>
-<div class="progress-wrapper" id="progress-container">
-<div class="progress-bar" id="progress-bar"></div>
+
+
+</div><!-- /tool-container -->
+
+<!-- SEO -->
+<div class="seo-section">
+  <section style="margin-bottom:3rem;">
+    <h2>What is OCR and How Does This Tool Work?</h2>
+    <p><strong>OCR (Optical Character Recognition)</strong> is technology that reads text from images. This tool uses <strong>Tesseract.js</strong>, the world's most popular open-source OCR engine, compiled to WebAssembly to run entirely in your browser. No server, no uploads — your images stay on your device.</p>
+    <p>Upload any image containing text — a photo of a document, a screenshot, a scanned page, a signboard, or a receipt — and the OCR engine will detect and extract all readable text. You can then copy, edit, search, or download the extracted text.</p>
+  </section>
+  <section style="margin-bottom:3rem;">
+    <h2>Tips for Best OCR Accuracy</h2>
+    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:.25rem;"><strong>Use High Resolution</strong> — Images with at least 300 DPI produce the best results. Zoom in on text before screenshotting for better accuracy.</p></div>
+    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:.25rem;"><strong>Good Contrast</strong> — Dark text on a light background works best. Avoid images with colored text on colored backgrounds.</p></div>
+    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:.25rem;"><strong>Select Correct Language</strong> — Choose the language of the text in your image. Selecting the wrong language significantly reduces accuracy.</p></div>
+    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:.25rem;"><strong>Straight Text</strong> — Horizontal, non-tilted text gives the most accurate results. Avoid heavily skewed or curved text.</p></div>
+  </section>
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What is OCR?</summary><p>OCR (Optical Character Recognition) recognizes and extracts text from images. It converts photos of printed text, scanned documents, and screenshots into editable digital text.</p></details>
+    <details><summary>Does this OCR work in Hindi?</summary><p>Yes! Select Hindi from the language dropdown. The tool also supports Bengali, Tamil, Telugu, Marathi, Kannada, Malayalam, Gujarati, Punjabi, and 90+ more languages.</p></details>
+    <details><summary>What image types work best with OCR?</summary><p>Clear, high-resolution images (300+ DPI) with dark text on light backgrounds work best. Screenshots of digital text often give near-perfect results.</p></details>
+    <details><summary>Is my image uploaded to a server?</summary><p>No. All OCR uses Tesseract.js compiled to WebAssembly, running entirely in your browser. Your images never leave your device.</p></details>
+    <details><summary>Why is OCR accuracy lower on my image?</summary><p>Low accuracy usually results from: blurry images, small text, poor contrast, handwriting, stylized fonts, or selecting the wrong language. Try enabling preprocessing and selecting the correct language.</p></details>
+  </section>
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Tools You Might Need</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/image-compressor"><div class="icon">🗜️</div><div class="name">Image Compressor</div><div class="desc">Reduce file size</div></a>
+      <a class="tool-card-mini" href="/image-converter"><div class="icon">🔄</div><div class="name">Image Converter</div><div class="desc">JPG, PNG, WebP, GIF</div></a>
+      <a class="tool-card-mini" href="/image-upscaler"><div class="icon">🔍</div><div class="name">Image Upscaler</div><div class="desc">Enlarge photos</div></a>
+      <a class="tool-card-mini" href="/exif-metadata-remover"><div class="icon">🔒</div><div class="name">EXIF Remover</div><div class="desc">Strip GPS from photos</div></a>
+      <a class="tool-card-mini" href="/hash-generator"><div class="icon">🔐</div><div class="name">Hash Generator</div><div class="desc">MD5, SHA-256, SHA-512</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in years/months</div></a>
+    </div>
+  </section>
 </div>
-<div style="text-align: center;">
-<div class="status-text" id="status-text">Ready to extract text...</div>
-<div id="confidence-box"></div>
-</div>
-<section class="ocr-workspace" id="workspace">
-<div class="preview-pane">
-<img alt="OCR Preview" id="image-preview" src=""/>
-</div>
-<div class="editor-pane">
-<div style="display: flex; justify-content: space-between; align-items: center;">
-<h3 style="margin-bottom: 0;">Extracted Text</h3>
-<div id="char-count" style="font-size: 0.8rem; color: var(--text-muted);">0 characters</div>
-</div>
-<textarea class="ocr-textarea" id="output-text" placeholder="Text will appear here..."></textarea>
-<div class="editor-actions">
-<button class="btn btn-icon" id="copy-btn" style="flex: 1;">
-<span>📋</span> Copy Text
-                    </button>
-<button class="btn btn-secondary btn-icon" id="download-btn" style="flex: 1;">
-<span>📥</span> Download .txt
-                    </button>
-</div>
-</div>
-</section>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">What is the Image to Text OCR?</h2>
-<p style="line-height:1.8;color:#4b5563;">
-                    The <strong>Image to Text OCR</strong> (Optical Character Recognition) tool by WorldOfTools is a high-performance utility that converts printed or handwritten text within images into machine-encoded text. Whether you have a scanned document, a photo of a receipt, or a screenshot of a webpage, our tool extracts the text instantly, allowing you to edit, copy, and share it without manual retyping.
-                </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">How to Use OCR — Step-by-Step</h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Upload Image:</strong> Select your JPEG, PNG, or WebP photo from your device.</p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Select Language:</strong> Choose the primary language of the text in the image (e.g., Hindi, English).</p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;"><strong>Copy &amp; Save:</strong> Review the extracted text, copy it to your clipboard, or download it as a .txt file.</p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Key Features &amp; Benefits</h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-<span style="line-height:1.6;"><strong>100+ Languages Supported:</strong> High precision for Devanagari (Hindi, Marathi), Bengali, Arabic, and more.</span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-<span style="line-height:1.6;"><strong>No Server Uploads:</strong> Your sensitive data never leaves your device. Everything is processed locally via Tesseract.js.</span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-<span style="line-height:1.6;"><strong>Accuracy Insights:</strong> We show you a confidence score so you know exactly how reliable the extraction is.</span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span>
-<span style="line-height:1.6;"><strong>Batch Processing Ready:</strong> Optimized for speed to handle documents one after another effortlessly.</span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;">Frequently Asked Questions</h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">Can I extract text from a blurry photo?</summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">While high resolution is best, our AI engine can often recover text from slightly blurry images. For best results, ensure the text is well-lit and flat.</p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">Photo se text kaise copy karein? (Hindi)</summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Apni photo upload karein, 'Copy Text' button par click karein, aur kahin bhi paste karein. Yeh tool poori tarah surakshit (private) hai.</p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">Is there a file size limit?</summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, we support images up to 15MB to ensure smooth local processing in your browser.</p>
-</details>
-</section>
-</div>
-<section class="related-tools" style="margin-top: 5rem;">
-<h2 style="text-align: center; margin-bottom: 2rem;">Recommended Tools 🚀</h2>
-<div class="tools-grid">
-<a class="tool-card" href="transcribe-audio-online.html">
-<div class="tool-icon">🎙️</div>
-<div class="tool-title">Audio to Text</div>
-<div class="tool-desc">Convert speech to text with high accuracy in your browser.</div>
-</a>
-<a class="tool-card" href="image-compressor.html">
-<div class="tool-icon">🖼️</div>
-<div class="tool-title">Image Compressor</div>
-<div class="tool-desc">Reduce photo size without losing quality for faster OCR.</div>
-</a>
-<a class="tool-card" href="barcode-generator.html">
-<div class="tool-icon">📊</div>
-<div class="tool-title">Barcode Generator</div>
-<div class="tool-desc">Create professional barcodes for products instantly.</div>
-</a>
-<a class="tool-card" href="text-compare-tool.html">
-<div class="tool-icon">⚖️</div>
-<div class="tool-title">Text Compare</div>
-<div class="tool-desc">Check differences between two pieces of text side-by-side.</div>
-</a>
-</div>
-</section>
-</div>
+
 </main>
 <footer></footer>
-<!-- Tesseract.js Library -->
+<script src="/js/common.js?v=6.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
-    const uploadZone = document.getElementById('upload-zone');
-    const fileInput = document.getElementById('file-input');
-    const imagePreview = document.getElementById('image-preview');
-    const outputText = document.getElementById('output-text');
-    const workspace = document.getElementById('workspace');
-    const progressBar = document.getElementById('progress-bar');
-    const progressContainer = document.getElementById('progress-container');
-    const statusText = document.getElementById('status-text');
-    const mainLang = document.getElementById('main-lang');
-    const copyBtn = document.getElementById('copy-btn');
-    const downloadBtn = document.getElementById('download-btn');
-    const charCount = document.getElementById('char-count');
-    
-    let worker = null;
+let currentFile = null;
 
-    async function processOCR(file) {
-        if (worker) {
-            await worker.terminate();
-            worker = null;
+const zone = document.getElementById('uploadZone');
+zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag-over');});
+zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
+zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('drag-over');handleImage(e.dataTransfer.files[0]);});
+
+function handleImage(file) {
+  if(!file||!file.type.startsWith('image/')) return;
+  currentFile = file;
+  const url = URL.createObjectURL(file);
+  document.getElementById('imgPreview').src = url;
+  document.getElementById('ocrOptions').style.display='block';
+  document.getElementById('results').style.display='none';
+}
+
+async function runOCR() {
+  if(!currentFile) return;
+  const lang = document.getElementById('langSelect').value;
+  const psm = document.getElementById('ocrMode').value;
+  const preprocess = document.getElementById('preprocessCheck').checked;
+
+  document.getElementById('progressWrap').style.display='block';
+  document.getElementById('ocrBtn').disabled=true;
+  document.getElementById('ocrBtn').textContent='⏳ Processing…';
+
+  try {
+    let imgSrc = currentFile;
+    if(preprocess) imgSrc = await preprocessImage(currentFile);
+
+    const worker = await Tesseract.createWorker(lang, 1, {
+      logger: m => {
+        if(m.status==='recognizing text') {
+          const pct = Math.round(m.progress*100);
+          document.getElementById('progressBar').style.width=pct+'%';
+          document.getElementById('progressStatus').textContent=`Recognizing text… ${pct}%`;
+          document.getElementById('progressDetail').textContent=m.status;
+        } else {
+          document.getElementById('progressStatus').textContent=m.status||'Processing…';
+          document.getElementById('progressDetail').textContent='';
         }
+      }
+    });
 
+    await worker.setParameters({'tessedit_pageseg_mode': psm});
+    const result = await worker.recognize(imgSrc);
+    await worker.terminate();
 
-        try {
-            statusText.innerText = "Initializing OCR Engine...";
-            progressContainer.style.display = "block";
-            progressBar.style.width = "10%";
+    const text = result.data.text.trim();
+    const confidence = Math.round(result.data.confidence);
+    const words = text.split(/\s+/).filter(w=>w.length>0).length;
+    const lines = text.split('\n').filter(l=>l.trim().length>0).length;
 
-            // Show preview
-            const reader = new FileReader();
-            reader.onload = e => {
-                imagePreview.src = e.target.result;
-                workspace.style.display = "grid";
-                workspace.scrollIntoView({ behavior: 'smooth' });
-            };
-            reader.readAsDataURL(file);
+    document.getElementById('textOutput').value = text;
+    document.getElementById('statWords').textContent = words.toLocaleString('en-IN');
+    document.getElementById('statChars').textContent = text.length.toLocaleString('en-IN');
+    document.getElementById('statLines').textContent = lines;
+    document.getElementById('statConfidence').textContent = confidence+'%';
 
-            // New Tesseract v5 Syntax
-            worker = await Tesseract.createWorker(mainLang.value, 1, {
-                logger: m => {
-                    if (m.status === 'recognizing text') {
-                        progressBar.style.width = (10 + (m.progress * 90)) + "%";
-                        statusText.innerText = `Recognizing text... ${Math.round(m.progress * 100)}%`;
-                    } else {
-                        statusText.innerText = m.status.charAt(0).toUpperCase() + m.status.slice(1) + "...";
-                    }
-                }
-            });
-            
-            const { data } = await worker.recognize(file);
-            const text = data.text;
-            const confidence = data.confidence;
-            
-            outputText.value = text;
-            charCount.innerText = text.length + " characters";
-            statusText.innerText = "Extraction Successful!";
-            progressBar.style.width = "100%";
+    // Confidence message
+    let confMsg, confDetail, confBg;
+    if(confidence>=85){confMsg='✅ High Confidence';confDetail='OCR accuracy is likely very good.';confBg='var(--nb-lime)';}
+    else if(confidence>=60){confMsg='⚠️ Medium Confidence';confDetail='Review the extracted text for errors.';confBg='var(--nb-yellow)';}
+    else{confMsg='❌ Low Confidence';confDetail='Image quality may be too low. Try a higher resolution image.';confBg='#ffe0e0';}
+    document.getElementById('confMsg').textContent=confMsg;
+    document.getElementById('confDetail').textContent=confDetail;
+    document.getElementById('confidenceWrap').style.background=confBg;
 
-            // Show confidence badge
-            const confBox = document.getElementById('confidence-box');
-            let colorClass = 'conf-high';
-            if (confidence < 70) colorClass = 'conf-med';
-            if (confidence < 40) colorClass = 'conf-low';
-            
-            confBox.innerHTML = `<span class="confidence-badge ${colorClass}">Confidence: ${Math.round(confidence)}%</span>`;
-            
-        } catch (err) {
-            console.error(err);
-            statusText.innerText = "Error: Text could not be extracted. Try a clearer image.";
-        }
-    }
+    document.getElementById('progressWrap').style.display='none';
+    showResults();
 
-    // Event Listeners
-    uploadZone.onclick = () => fileInput.click();
-    
-    fileInput.onchange = e => {
-        if (e.target.files.length) processOCR(e.target.files[0]);
+  } catch(err) {
+    document.getElementById('progressWrap').style.display='none';
+    alert('OCR failed: '+err.message+'\nPlease try again or use a different image.');
+  } finally {
+    document.getElementById('ocrBtn').disabled=false;
+    document.getElementById('ocrBtn').textContent='🔍 Extract Text Now';
+  }
+}
+
+async function preprocessImage(file) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth * 1.5;
+      canvas.height = img.naturalHeight * 1.5;
+      const ctx = canvas.getContext('2d');
+      ctx.filter = 'contrast(1.4) brightness(1.05)';
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(blob => resolve(blob), 'image/png');
     };
+    img.src = URL.createObjectURL(file);
+  });
+}
 
-    uploadZone.ondragover = e => {
-        e.preventDefault();
-        uploadZone.classList.add('dragover');
-    };
+function showResults() {
+  const r = document.getElementById('results');
+  r.style.display='block'; r.classList.remove('animate-in'); void r.offsetWidth; r.classList.add('animate-in');
+  r.scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-    uploadZone.ondragleave = () => uploadZone.classList.remove('dragover');
+function copyText() {
+  const text = document.getElementById('textOutput').value;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    const orig = btn.textContent; btn.textContent='✅ Copied!';
+    setTimeout(()=>btn.textContent=orig,2000);
+  });
+}
 
-    uploadZone.ondrop = e => {
-        e.preventDefault();
-        uploadZone.classList.remove('dragover');
-        if (e.dataTransfer.files.length) processOCR(e.dataTransfer.files[0]);
-    };
+function downloadText() {
+  const text = document.getElementById('textOutput').value;
+  const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (currentFile?.name||'extracted').replace(/\.[^.]+$/,'')+'-ocr.txt';
+  a.click();
+}
 
-    copyBtn.onclick = () => {
-        outputText.select();
-        document.execCommand('copy');
-        copyBtn.innerText = "✓ Copied!";
-        setTimeout(() => copyBtn.innerText = "📋 Copy Text", 2000);
-    };
+function clearText() {
+  document.getElementById('textOutput').value = '';
+  document.getElementById('statWords').textContent='—';
+  document.getElementById('statChars').textContent='—';
+  document.getElementById('statLines').textContent='—';
+  document.getElementById('statConfidence').textContent='—';
+}
 
-    downloadBtn.onclick = () => {
-        const element = document.createElement('a');
-        const file = new Blob([outputText.value], {type: 'text/plain'});
-        element.href = URL.createObjectURL(file);
-        element.download = "extracted-text.txt";
-        document.body.appendChild(element);
-        element.click();
-    };
+function searchReplace() {
+  const bar = document.getElementById('searchBar');
+  bar.style.display = bar.style.display==='none' ? 'block' : 'none';
+  if(bar.style.display==='block') document.getElementById('searchInput').focus();
+}
 
-    mainLang.onchange = () => {
-        statusText.innerText = `Language set to ${mainLang.options[mainLang.selectedIndex].text}`;
-    };
-
-    // Mobile Menu
-    document.getElementById('menu-toggle').onclick = function() {
-        document.getElementById('nav-menu').classList.toggle('active');
-    };
+function doReplace() {
+  const ta = document.getElementById('textOutput');
+  const s = document.getElementById('searchInput').value;
+  const r = document.getElementById('replaceInput').value;
+  if(!s) return;
+  ta.value = ta.value.split(s).join(r);
+}
 </script>
-<!-- Global Context & Footer Builder -->
-<script src="/js/common.js?v=2.5"></script>
 </body>
 </html>

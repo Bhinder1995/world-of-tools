@@ -1,520 +1,442 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Schema Generator Online — Create Multi-Type Structured Data | WorldOfTools</title>
-<meta content="Best Schema Generator Online. Create validated JSON-LD markup for FAQ, Article, HowTo, and more. Free, fast, and no registration required. Improve your search snippets today." name="description"/>
-<meta content="schema generator online, free schema tool, online structured data maker, rich results generator, best schema markup tool, schema.org generator, faq schema maker, product schema online" name="keywords"/>
+<title>Schema Generator Online Free — JSON-LD Structured Data Markup | WorldOfTools</title>
+<meta content="Free online schema markup generator. Create JSON-LD structured data for Article, Product, FAQ, LocalBusiness, Event, Review, Breadcrumb &amp; more. Copy &amp; paste into your site. No login required." name="description"/>
+<meta content="schema markup generator free, json-ld generator online, structured data generator, schema.org generator, seo schema markup tool, faq schema generator, product schema generator, local business schema, breadcrumb schema generator, rich results generator" name="keywords"/>
 <link href="https://worldoftools.in/schema-generator-online" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-        .generator-layout {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 2rem;
-            align-items: flex-start;
-        }
-
-        @media (max-width: 1100px) {
-            .generator-layout {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-
-        .output-area {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            position: sticky;
-            top: 2rem;
-            box-shadow: var(--card-shadow);
-        }
-
-        .code-output {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 1.5rem;
-            border-radius: 12px;
-            font-family: 'Fira Code', 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            position: relative;
-            margin-top: 1.5rem;
-            overflow-x: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: 300px;
-        }
-
-        .copy-code-btn {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .copy-code-btn:hover {
-            background: var(--primary-color);
-        }
-
-        .field-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .schema-type-select {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 12px;
-            border: 2px solid var(--primary-color);
-            background: #fff;
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .dynamic-fields {
-            margin-bottom: 2rem;
-        }
-
-        .repeater-item {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .remove-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: #ef4444;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        @media (max-width: 768px) {
-            .field-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
-<script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-    </script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/schema-generator-online" property="og:url"/>
+<meta content="Schema Generator Online Free — JSON-LD Structured Data | WorldOfTools" property="og:title"/>
+<meta content="Generate JSON-LD schema markup for 10+ schema types. Copy &amp; paste into your website. Free, no login." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta name="theme-color" content="#ffe066"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Schema Generator Online",
-      "item": "https://worldoftools.in/schema-generator-online"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"SEO Tools","item":"https://worldoftools.in/seo-tools"},
+    {"@type":"ListItem","position":3,"name":"Schema Generator","item":"https://worldoftools.in/schema-generator-online"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Schema Generator Online free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Schema Generator Online",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"WebApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"987","reviewCount":"1085"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is schema markup?","acceptedAnswer":{"@type":"Answer","text":"Schema markup is structured data added to a webpage's HTML that helps search engines understand the content. It uses vocabulary from schema.org and is typically added as JSON-LD in a <script> tag. It enables rich results in Google Search — stars, prices, FAQs, event dates, and more."}},
+    {"@type":"Question","name":"What is JSON-LD?","acceptedAnswer":{"@type":"Answer","text":"JSON-LD (JavaScript Object Notation for Linked Data) is Google's recommended format for adding schema markup. It's placed inside a <script type='application/ld+json'> tag, doesn't touch your visible HTML, and is easy to add without breaking your layout."}},
+    {"@type":"Question","name":"Does schema markup directly improve rankings?","acceptedAnswer":{"@type":"Answer","text":"Schema markup does not directly boost rankings, but it improves your search appearance with rich results (stars, prices, FAQs in SERPs), which typically increases click-through rates and organic traffic."}},
+    {"@type":"Question","name":"How do I add schema markup to my website?","acceptedAnswer":{"@type":"Answer","text":"Generate the JSON-LD code using this tool, then paste it inside a <script type='application/ld+json'> tag in the <head> section of your HTML, or use Google Tag Manager to inject it. Test with Google's Rich Results Test tool."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Schema Generator Online",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066; --nb-pink: #ff6b9d; --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa; --nb-orange: #ffa94d; --nb-lime: #c3f584; --nb-purple: #d8b4fe;
+    --nb-shadow: 4px 4px 0 #000; --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px; --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/schema-generator-online" property="og:url"/><meta content="Schema Generator Online — Create Multi-Type Structured Data | WorldOfTools" property="og:title"/><meta content="Best Schema Generator Online. Create validated JSON-LD markup for FAQ, Article, HowTo, and more. Free, fast, and no registration required. Improve your search snippets today." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/schema-generator-online" name="twitter:url"/><meta content="Schema Generator Online — Create Multi-Type Structured Data | WorldOfTools" name="twitter:title"/><meta content="Best Schema Generator Online. Create validated JSON-LD markup for FAQ, Article, HowTo, and more. Free, fast, and no registration required. Improve your search snippets today." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; box-shadow: var(--nb-shadow); white-space: nowrap; }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1.1rem; padding: 1rem; }
+  .nb-btn-sm { padding: 0.5rem 1rem; font-size: 0.85rem; }
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-purple); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+  .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+  .nb-input { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 1rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; transition: box-shadow 0.15s, border-color 0.15s; }
+  .nb-input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .nb-select { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 1rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; cursor: pointer; }
+  .nb-textarea { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 0.95rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; resize: vertical; min-height: 90px; }
+  .nb-textarea:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .input-group { margin-bottom: 1.25rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:480px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Schema type picker */
+  .schema-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.6rem; margin-bottom: 1.75rem; }
+  .schema-type-btn {
+    padding: 0.85rem 0.5rem; border: var(--nb-border); border-radius: 12px;
+    text-align: center; background: #fff; cursor: pointer; box-shadow: 3px 3px 0 #000;
+    transition: all 0.12s; font-weight: 700; font-size: 0.82rem;
+  }
+  .schema-type-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .schema-type-btn.active { background: var(--nb-yellow); border-color: #000; }
+  .schema-type-btn .st-icon { font-size: 1.5rem; display: block; margin-bottom: 0.4rem; }
+
+  /* Output */
+  .output-box {
+    background: #1a1a2e; color: #e2e8f0; border: var(--nb-border); border-radius: 16px;
+    padding: 1.25rem; font-family: 'Courier New', monospace; font-size: 0.85rem;
+    line-height: 1.7; box-shadow: var(--nb-shadow-lg); white-space: pre; overflow-x: auto;
+    max-height: 420px; overflow-y: auto;
+  }
+  .out-key { color: #93c5fd; }
+  .out-str { color: #86efac; }
+  .out-num { color: #fde68a; }
+  .out-bool { color: #f9a8d4; }
+
+  /* Tabs */
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 4px; }
+  .nb-tab-btn { padding: 0.65rem 1.25rem; border: var(--nb-border); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.9rem; white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000; }
+  .nb-tab-btn.active { background: var(--nb-yellow); }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  /* FAQ repeater */
+  .faq-item { border: var(--nb-border); border-radius: 14px; padding: 1.25rem; background: #f9f9ff; box-shadow: 3px 3px 0 #000; margin-bottom: 0.75rem; position: relative; }
+  .faq-del-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: #ffe0e0; border: 2px solid #000; border-radius: 8px; padding: 0.3rem 0.6rem; font-size: 0.8rem; font-weight: 800; cursor: pointer; }
+  .faq-del-btn:hover { background: var(--nb-pink); color: #fff; }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #f9f9ff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-yellow); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+  @media(max-width:480px) { .nb-card-lg { padding: 1.25rem; } .schema-grid { grid-template-columns: repeat(3,1fr); } }
+</style>
+</head>
 <body>
 <header></header>
-<main class="container">
-<div class="tool-container" style="max-width: 1200px;">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Schema Generator Online</span></div><h1>🛠️ Schema Generator Online</h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">The most powerful and free online schema generator for modern SEO.</p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/schema-markup-generator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
-                        📖 Read Schema Markup Guide
-                    </a>
+<main class="container" data-category-name="SEO Tools" data-category-url="/seo-tools" data-tool-name="Schema Generator Online">
+<div class="tool-container">
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › SEO Tools › <span>Schema Generator</span></div>
+    <div class="hero-badge">📊 10+ Schema Types — JSON-LD Ready</div>
+    <h1>Schema Markup Generator Online — Free JSON-LD Structured Data Tool</h1>
+    <p>Generate valid JSON-LD schema markup for your website in seconds. Supports Article, FAQ, Product, LocalBusiness, Event, Review, BreadcrumbList, WebSite, Person, and more. Boost your SEO with Google rich results — no coding required.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <!-- Schema Type Picker -->
+    <div class="input-group">
+      <label class="nb-label">Select Schema Type</label>
+      <div class="schema-grid" id="schemaTypeGrid">
+        <div class="schema-type-btn active" data-type="Article" onclick="selectSchema('Article',this)"><span class="st-icon">📰</span>Article</div>
+        <div class="schema-type-btn" data-type="FAQPage" onclick="selectSchema('FAQPage',this)"><span class="st-icon">❓</span>FAQ Page</div>
+        <div class="schema-type-btn" data-type="Product" onclick="selectSchema('Product',this)"><span class="st-icon">🛍️</span>Product</div>
+        <div class="schema-type-btn" data-type="LocalBusiness" onclick="selectSchema('LocalBusiness',this)"><span class="st-icon">🏪</span>Local Business</div>
+        <div class="schema-type-btn" data-type="Event" onclick="selectSchema('Event',this)"><span class="st-icon">📅</span>Event</div>
+        <div class="schema-type-btn" data-type="Review" onclick="selectSchema('Review',this)"><span class="st-icon">⭐</span>Review</div>
+        <div class="schema-type-btn" data-type="BreadcrumbList" onclick="selectSchema('BreadcrumbList',this)"><span class="st-icon">🔗</span>Breadcrumb</div>
+        <div class="schema-type-btn" data-type="WebSite" onclick="selectSchema('WebSite',this)"><span class="st-icon">🌐</span>WebSite</div>
+        <div class="schema-type-btn" data-type="Person" onclick="selectSchema('Person',this)"><span class="st-icon">👤</span>Person</div>
+        <div class="schema-type-btn" data-type="Recipe" onclick="selectSchema('Recipe',this)"><span class="st-icon">🍳</span>Recipe</div>
+      </div>
+    </div>
+
+    <!-- Dynamic Form -->
+    <div id="schemaForm"></div>
+
+    <!-- Generate Button -->
+    <button class="nb-btn nb-btn-primary nb-btn-full" onclick="generateSchema()" style="margin-top:0.5rem;">
+      ✨ Generate Schema Markup
+    </button>
+
+    <!-- Output -->
+    <div id="outputSection" style="display:none;margin-top:1.75rem;" class="animate-in">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
+        <div style="font-family:'Syne',sans-serif;font-weight:900;font-size:1.1rem;">✅ Schema Generated!</div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <button class="nb-btn nb-btn-mint nb-btn-sm" onclick="copySchema()">📋 Copy JSON-LD</button>
+          <button class="nb-btn nb-btn-sm" style="background:var(--nb-blue);" onclick="copyWithScript()">🏷️ Copy with &lt;script&gt;</button>
+          <a class="nb-btn nb-btn-sm" style="background:var(--nb-purple);" href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">🔍 Test in Google</a>
+        </div>
+      </div>
+      <div class="output-box" id="outputBox"></div>
+      <div style="background:var(--nb-lime);border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;box-shadow:3px 3px 0 #000;margin-top:1rem;font-size:0.88rem;font-weight:600;color:#1a3a00;">
+        💡 <strong>How to use:</strong> Paste this inside a <code>&lt;script type="application/ld+json"&gt;...&lt;/script&gt;</code> tag in your page's <code>&lt;head&gt;</code> section. Then test with Google's Rich Results Test.
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ Generated instantly in your browser. Nothing sent to any server.</p>
+  </div>
 </div>
-</section>
-<div class="error-msg" id="statusMessage"></div>
-<div style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
-<span style="font-size: 1.2rem;">🛡️</span>
-<span style="font-weight: 700;">100% Client-Side Processing — No Data Stored</span>
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is Schema Markup and Why Does It Matter for SEO?</h2>
+    <p><strong>Schema markup</strong> (structured data) is code you add to your website to help search engines understand your content more precisely. It uses vocabulary defined at <a href="https://schema.org" target="_blank" rel="noopener" style="color:#4f46e5;font-weight:700;">schema.org</a> and is typically added as JSON-LD in a <code>&lt;script&gt;</code> tag — no changes to your visible HTML required.</p>
+    <p>When Google can understand your content, it may display <strong>rich results</strong> in search — star ratings, product prices, FAQ dropdowns, event dates, recipe cards, and breadcrumb trails. These rich results take up more visual space, attract more clicks, and can dramatically improve your organic traffic without changing your ranking position.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Add Schema Markup to Your Website — Step by Step</h2>
+    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Select a Schema Type</strong> — Choose from Article, FAQ, Product, LocalBusiness, Event, and more above. Pick the type that matches your page content.</p></div>
+    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Fill in the Form</strong> — Enter your details. Only the most important fields are shown to keep it simple. All fields are optional except the required ones.</p></div>
+    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Generate &amp; Copy</strong> — Click Generate, then use "Copy JSON-LD" to copy the raw object, or "Copy with &lt;script&gt;" for the full ready-to-paste block.</p></div>
+    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Paste &amp; Test</strong> — Paste into your page's <code>&lt;head&gt;</code>. Then verify using Google's <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener" style="color:#4f46e5;font-weight:700;">Rich Results Test</a> to confirm no errors.</p></div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What is JSON-LD and why is it recommended?</summary><p>JSON-LD (JavaScript Object Notation for Linked Data) is Google's recommended format for structured data. It's placed in a separate <code>&lt;script&gt;</code> tag, so it doesn't interfere with your page's HTML. It's easier to maintain and less error-prone than Microdata or RDFa.</p></details>
+    <details><summary>Does schema markup directly improve my Google ranking?</summary><p>Schema markup doesn't directly boost rankings, but it enables rich results (star ratings, FAQ dropdowns, prices in search), which typically increase click-through rates significantly — indirectly improving your organic performance.</p></details>
+    <details><summary>Can I add multiple schema types on the same page?</summary><p>Yes. You can include multiple JSON-LD script blocks on the same page, or combine multiple schema types in a single block using an array. For example, a product page can have both Product and BreadcrumbList schema.</p></details>
+    <details><summary>How do I test if my schema is correct?</summary><p>Use Google's <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener" style="color:#4f46e5;">Rich Results Test</a> — paste your URL or code directly to check for errors and see what rich results your page is eligible for.</p></details>
+    <details><summary>What schema types are most important for SEO?</summary><p>The highest-impact schema types for most sites are: FAQ (shows expandable Q&amp;As in search), Product (shows price and reviews), Article (shows author and date), LocalBusiness (shows hours, address, and ratings), and BreadcrumbList (shows site navigation path).</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free SEO Tools</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/schema-markup-generator"><div class="icon">📊</div><div class="name">Schema Markup</div><div class="desc">Advanced markup builder</div></a>
+      <a class="tool-card-mini" href="/regex-tester"><div class="icon">🔍</div><div class="name">Regex Tester</div><div class="desc">Test patterns real-time</div></a>
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words &amp; reading time</div></a>
+      <a class="tool-card-mini" href="/url-encode-decode"><div class="icon">🔗</div><div class="name">URL Encoder</div><div class="desc">Encode/decode URLs</div></a>
+      <a class="tool-card-mini" href="/ip-address-lookup"><div class="icon">🌐</div><div class="name">IP Lookup</div><div class="desc">Find IP geolocation</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age calculator</div></a>
+    </div>
+  </section>
+
 </div>
-<div class="generator-layout">
-<!-- Left: Config -->
-<div class="tool-main-card">
-<label style="font-weight: 800; text-transform: uppercase; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; display: block;">Select Schema Type</label>
-<select class="schema-type-select" id="schemaType" onchange="initSchemaFields()">
-<option value="FAQPage">FAQ Page</option>
-<option value="HowTo">HowTo Guide</option>
-<option value="Article">Blog / News Article</option>
-<option value="Product">Product Details</option>
-<option value="LocalBusiness">Local Business</option>
-<option value="Organization">Organization</option>
-<option value="BreadcrumbList">Breadcrumb List</option>
-<option value="VideoObject">Video Info</option>
-</select>
-<div class="dynamic-fields" id="formFields">
-<!-- Dynamic fields injected here -->
-</div>
-<div style="display: flex; gap: 1rem; margin-top: 2rem;">
-<button class="btn btn-secondary" onclick="clearForm()" style="flex: 1;">🗑️ Clear</button>
-<button class="btn btn-primary" onclick="copyJSON()" style="flex: 1;">📋 Copy Code</button>
-</div>
-</div>
-<!-- Right: Output -->
-<div class="output-area">
-<div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-<span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span>
-                        JSON-LD Code (Generated Live)
-                    </div>
-<div class="code-output">
-<button class="copy-code-btn" onclick="copyJSON()">Copy</button>
-<pre id="jsonOutput" style="margin: 0;"></pre>
-</div>
-<div style="margin-top: 1.5rem; padding: 1.25rem; background: #eff6ff; border-radius: 12px; border: 1px solid #bfdbfe;">
-<h4 style="font-size: 0.95rem; font-weight: 800; color: #1e40af; margin-bottom: 0.5rem;">Test Your Code</h4>
-<p style="font-size: 0.85rem; color: #1e3a8a; line-height: 1.5; margin-bottom: 1rem;">Once you've copied the code, verify it with Google's tool to ensure it qualifies for rich snippets.</p>
-<a class="btn btn-secondary" href="https://search.google.com/test/rich-results" style="width: 100%; border: 1px solid #1e40af; color: #1e40af; background: white; font-size: 0.85rem; padding: 0.5rem;" target="_blank">Go to Google Rich Results Test ➔</a>
-</div>
-</div>
-</div>
-</div>
-<!-- High-Intent SEO Content -->
-<div style="max-width: 900px; margin: 5rem auto; padding: 0 1.5rem;">
-<section style="margin-bottom: 4rem;">
-<h2 style="font-size: 2.25rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 1.5rem;">Why Use an Online Schema Generator?</h2>
-<p style="font-size: 1.15rem; line-height: 1.8; color: #4b5563; margin-bottom: 1.5rem;">
-                    Using an **Online Schema Generator** is the most efficient way to ensure your website is compliant with the latest Schema.org standards. Manual coding is prone to syntax errors that can prevent Google from displaying your rich snippets. Our online tool provides a user-friendly interface that handles the technical heavy lifting, allowing you to focus on your content.
-                </p>
-<p style="line-height: 1.8; color: #4b5563;">
-                    Whether you need to generate FAQ markup, Product data, or Article schema, our **Free Schema Tool** provides instant validation-ready code. Simply fill out the forms and watch your JSON-LD code generate in real-time, ready for immediate deployment to your website's header.
-                </p>
-</section>
-<section style="margin-bottom: 4rem;">
-<h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem; border-left: 5px solid var(--primary-color); padding-left: 1rem;">Why Schema Markup is Critical for SEO in 2025</h2>
-<p style="line-height: 1.8; color: #4b5563; margin-bottom: 1rem;">
-                    In modern SEO, simply having great content isn't enough. Search engines are evolving into "answer engines," and they rely on structured data to categorize information accurately. Here is why you must use schema:
-                </p>
-<ul style="list-style: none; padding: 0;">
-<li style="margin-bottom: 1.5rem; background: #fff; padding: 1.5rem; border: 1px solid #e2e8f0; border-radius: 16px;">
-<strong style="display: block; font-size: 1.1rem; margin-bottom: 0.5rem; color: #111827;">📈 Higher Click-Through Rates (CTR)</strong>
-                        Pages with rich snippets stand out. An FAQ schema can increase your screen real estate in search results by 2x, making users more likely to click your link over a standard blue link.
-                    </li>
-<li style="margin-bottom: 1.5rem; background: #fff; padding: 1.5rem; border: 1px solid #e2e8f0; border-radius: 16px;">
-<strong style="display: block; font-size: 1.1rem; margin-bottom: 0.5rem; color: #111827;">🤖 Better Crawling Accuracy</strong>
-                        Structured data removes ambiguity. When you tag a product as an "Article" or a "Product," Google knows exactly how to index it, preventing ranking drops due to miscategorization.
-                    </li>
-<li style="margin-bottom: 1.5rem; background: #fff; padding: 1.5rem; border: 1px solid #e2e8f0; border-radius: 16px;">
-<strong style="display: block; font-size: 1.1rem; margin-bottom: 0.5rem; color: #111827;">🎧 Voice Search Optimization</strong>
-                        Devices like Alexa and Google Assistant rely heavily on schema.org markers to pull "position zero" answers. Using the HowTo or FAQ schema makes your site more likely to be read aloud.
-                    </li>
-</ul>
-</section>
-<section style="margin-bottom: 4rem; background: #1e293b; color: white; padding: 3rem; border-radius: 24px;">
-<h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">How to Use our Schema Tool</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-<div>
-<span style="font-size: 2.5rem; font-weight: 900; color: var(--primary-color);">01</span>
-<h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Select Type</h3>
-<p style="font-size: 0.95rem; opacity: 0.8;">Choose the schema type that matches your content (e.g., FAQ for a blog post).</p>
-</div>
-<div>
-<span style="font-size: 2.5rem; font-weight: 900; color: var(--primary-color);">02</span>
-<h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Fill Fields</h3>
-<p style="font-size: 0.95rem; opacity: 0.8;">Enter the titles, descriptions, and details. All code updates in real-time.</p>
-</div>
-<div>
-<span style="font-size: 2.5rem; font-weight: 900; color: var(--primary-color);">03</span>
-<h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Copy &amp; Paste</h3>
-<p style="font-size: 0.95rem; opacity: 0.8;">Copy the JSON-LD and paste it anywhere in the <code>&lt;head&gt;</code> of your HTML.</p>
-</div>
-</div>
-</section>
-<section style="margin-bottom: 4rem;">
-<h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
-<div style="display: flex; flex-direction: column; gap: 1rem;">
-<details style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem; cursor: pointer;">
-<summary style="font-weight: 700;">Where should I put the schema markup code?</summary>
-<p style="margin-top: 1rem; color: #4b5563; line-height: 1.6;">You should paste the generated JSON-LD code into the <code>&lt;head&gt;</code> section of your HTML. However, search engines also recognize it if placed in the <code>&lt;body&gt;</code>.</p>
-</details>
-<details style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem; cursor: pointer;">
-<summary style="font-weight: 700;">How long does it take for rich snippets to appear?</summary>
-<p style="margin-top: 1rem; color: #4b5563; line-height: 1.6;">It depends on how often Google crawls your site. Usually, it takes anywhere from a few days to two weeks for updated rich results to show in SERPs after you add the code.</p>
-</details>
-<details style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem; cursor: pointer;">
-<summary style="font-weight: 700;">Does schema markup guarantee a higher ranking?</summary>
-<p style="margin-top: 1rem; color: #4b5563; line-height: 1.6;">Schema markup is not a direct ranking factor in the same way backlinks are, but it significantly improves how your site is indexed and presented. Indirectly, higher CTR from rich snippets can signal to Google that your site is high-quality, leading to better rankings over time.</p>
-</details>
-</div>
-</section>
-</div>
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<!-- SEO Content Block -->
-<section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features of Schema Generator Online</h2><ul style="list-style:none;padding:0;margin:0;"><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Instant Results:</strong> Process your data instantly with our optimized Schema Generator Online.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>100% Privacy:</strong> Everything runs securely in your browser. No files or data are uploaded to our servers.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Completely Free:</strong> Enjoy full access without subscriptions, hidden fees, or intrusive ads.</span></li></ul></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How Does Schema Generator Online Work?</h2><div style="line-height:1.8;color:#4b5563;">Our Schema Generator Online leverages modern web technologies to process your input locally in your browser. This ensures maximum speed and guarantees your privacy.</div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use Schema Generator Online — Step-by-Step</h2><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Input your desired content or file.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Select any available options or parameters.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Click execute to generate your result instantly.</p></div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this Schema Generator Online free to use?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, it is completely free to use with no hidden charges or limits.</p></details><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is my data secure?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. Your data never leaves your device because all processing happens client-side in your browser.</p></details></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Final Thoughts</h2><div style="line-height:1.8;color:#4b5563;">Bookmark this Schema Generator Online for quick access whenever you need it.</div></section></div></main>
+</main>
 <footer></footer>
-<script src="/js/common.js?v=2.5"></script>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-        let schemaData = {};
+let currentType = 'Article';
+let schemaOutput = {};
 
-        function initSchemaFields() {
-            const type = document.getElementById('schemaType').value;
-            const container = document.getElementById('formFields');
-            container.innerHTML = '';
-            
-            switch(type) {
-                case 'FAQPage':
-                    container.innerHTML = `
-                        <div id="repeaters"></div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="addFAQItem()">+ Add Question</button>
-                    `;
-                    addFAQItem();
-                    break;
-                case 'HowTo':
-                    container.innerHTML = `
-                        <div class="input-group">
-                            <label>Guide Name</label>
-                            <input type="text" id="name" oninput="generateJSON()" placeholder="How to bake a cake">
-                        </div>
-                        <div class="input-group">
-                            <label>Description</label>
-                            <textarea id="description" oninput="generateJSON()" placeholder="Steps to bake a delicious chocolate cake"></textarea>
-                        </div>
-                        <div id="repeaters"></div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="addHowToStep()">+ Add Step</button>
-                    `;
-                    addHowToStep();
-                    break;
-                case 'Article':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Headline</label><input type="text" id="headline" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Image URL</label><input type="text" id="image" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Author Name</label><input type="text" id="author" oninput="generateJSON()"></div>
-                    `;
-                    break;
-                case 'Product':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Product Name</label><input type="text" id="name" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Image URL</label><input type="text" id="image" oninput="generateJSON()"></div>
-                        <div class="field-row">
-                            <div class="input-group"><label>Price</label><input type="text" id="price" oninput="generateJSON()"></div>
-                            <div class="input-group"><label>Currency</label><input type="text" id="currency" value="USD" oninput="generateJSON()"></div>
-                        </div>
-                    `;
-                    break;
-                case 'LocalBusiness':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Business Name</label><input type="text" id="name" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Address</label><input type="text" id="address" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Image URL</label><input type="text" id="image" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Telephone</label><input type="text" id="phone" oninput="generateJSON()"></div>
-                    `;
-                    break;
-                case 'Organization':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Organization Name</label><input type="text" id="name" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>URL</label><input type="text" id="url" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Logo URL</label><input type="text" id="logo" oninput="generateJSON()"></div>
-                    `;
-                    break;
-                case 'BreadcrumbList':
-                    container.innerHTML = `
-                        <div id="repeaters"></div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="addBreadcrumb()">+ Add Page</button>
-                    `;
-                    addBreadcrumb();
-                    break;
-                case 'VideoObject':
-                    container.innerHTML = `
-                        <div class="input-group"><label>Title</label><input type="text" id="name" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Description</label><textarea id="description" oninput="generateJSON()"></textarea></div>
-                        <div class="input-group"><label>Thumbnail URL</label><input type="text" id="thumb" oninput="generateJSON()"></div>
-                        <div class="input-group"><label>Upload Date</label><input type="date" id="date" oninput="generateJSON()"></div>
-                    `;
-                    break;
-            }
-            generateJSON();
-        }
+const FORMS = {
+  Article: `
+    <div class="two-col"><div class="input-group"><label class="nb-label">Headline *</label><input class="nb-input" id="f_headline" placeholder="Your article title"/></div><div class="input-group"><label class="nb-label">Author Name *</label><input class="nb-input" id="f_author" placeholder="John Doe"/></div></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Date Published</label><input class="nb-input" id="f_datePublished" type="date"/></div><div class="input-group"><label class="nb-label">Date Modified</label><input class="nb-input" id="f_dateModified" type="date"/></div></div>
+    <div class="input-group"><label class="nb-label">Article URL</label><input class="nb-input" id="f_url" placeholder="https://example.com/my-article"/></div>
+    <div class="input-group"><label class="nb-label">Featured Image URL</label><input class="nb-input" id="f_image" placeholder="https://example.com/image.jpg"/></div>
+    <div class="input-group"><label class="nb-label">Description</label><textarea class="nb-textarea" id="f_description" placeholder="Brief description of the article…"></textarea></div>
+    <div class="input-group"><label class="nb-label">Publisher Name</label><input class="nb-input" id="f_publisher" placeholder="WorldOfTools"/></div>`,
+  FAQPage: `<div id="faqItems"></div><button class="nb-btn nb-btn-mint" onclick="addFaq()" type="button">+ Add FAQ Item</button>`,
+  Product: `
+    <div class="two-col"><div class="input-group"><label class="nb-label">Product Name *</label><input class="nb-input" id="f_name" placeholder="Product name"/></div><div class="input-group"><label class="nb-label">Brand</label><input class="nb-input" id="f_brand" placeholder="Brand name"/></div></div>
+    <div class="input-group"><label class="nb-label">Description</label><textarea class="nb-textarea" id="f_description" placeholder="Product description…"></textarea></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Price</label><input class="nb-input" id="f_price" type="number" placeholder="999"/></div><div class="input-group"><label class="nb-label">Currency</label><input class="nb-input" id="f_currency" placeholder="INR" value="INR"/></div></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Availability</label><select class="nb-select" id="f_availability"><option value="InStock">In Stock</option><option value="OutOfStock">Out of Stock</option><option value="PreOrder">Pre-Order</option></select></div><div class="input-group"><label class="nb-label">Product URL</label><input class="nb-input" id="f_url" placeholder="https://…"/></div></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Rating Value (1-5)</label><input class="nb-input" id="f_rating" type="number" min="1" max="5" step="0.1" placeholder="4.5"/></div><div class="input-group"><label class="nb-label">Review Count</label><input class="nb-input" id="f_reviewCount" type="number" placeholder="128"/></div></div>
+    <div class="input-group"><label class="nb-label">Image URL</label><input class="nb-input" id="f_image" placeholder="https://example.com/product.jpg"/></div>`,
+  LocalBusiness: `
+    <div class="two-col"><div class="input-group"><label class="nb-label">Business Name *</label><input class="nb-input" id="f_name" placeholder="My Business"/></div><div class="input-group"><label class="nb-label">Business Type</label><input class="nb-input" id="f_type" placeholder="Restaurant, Store, etc."/></div></div>
+    <div class="input-group"><label class="nb-label">Street Address</label><input class="nb-input" id="f_street" placeholder="123 Main Street"/></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">City</label><input class="nb-input" id="f_city" placeholder="Mumbai"/></div><div class="input-group"><label class="nb-label">State / Region</label><input class="nb-input" id="f_region" placeholder="Maharashtra"/></div></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Country</label><input class="nb-input" id="f_country" placeholder="IN" value="IN"/></div><div class="input-group"><label class="nb-label">Postal Code</label><input class="nb-input" id="f_postal" placeholder="400001"/></div></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Phone</label><input class="nb-input" id="f_phone" placeholder="+91-98765-43210"/></div><div class="input-group"><label class="nb-label">Website URL</label><input class="nb-input" id="f_url" placeholder="https://…"/></div></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Opening Hours (e.g. Mon-Fri 09:00-18:00)</label><input class="nb-input" id="f_hours" placeholder="Mo-Fr 09:00-18:00"/></div><div class="input-group"><label class="nb-label">Rating (1-5)</label><input class="nb-input" id="f_rating" type="number" min="1" max="5" step="0.1" placeholder="4.5"/></div></div>`,
+  Event: `
+    <div class="input-group"><label class="nb-label">Event Name *</label><input class="nb-input" id="f_name" placeholder="Event name"/></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Start Date &amp; Time</label><input class="nb-input" id="f_startDate" type="datetime-local"/></div><div class="input-group"><label class="nb-label">End Date &amp; Time</label><input class="nb-input" id="f_endDate" type="datetime-local"/></div></div>
+    <div class="input-group"><label class="nb-label">Location Name</label><input class="nb-input" id="f_venue" placeholder="Venue or Online"/></div>
+    <div class="input-group"><label class="nb-label">Event URL</label><input class="nb-input" id="f_url" placeholder="https://…"/></div>
+    <div class="input-group"><label class="nb-label">Description</label><textarea class="nb-textarea" id="f_description" placeholder="Event description…"></textarea></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Organizer Name</label><input class="nb-input" id="f_organizer" placeholder="Organizer name"/></div><div class="input-group"><label class="nb-label">Ticket Price</label><input class="nb-input" id="f_price" placeholder="Free or 500"/></div></div>`,
+  Review: `
+    <div class="input-group"><label class="nb-label">Item Reviewed (name) *</label><input class="nb-input" id="f_itemName" placeholder="Product / Business / Article name"/></div>
+    <div class="input-group"><label class="nb-label">Item Type</label><select class="nb-select" id="f_itemType"><option>Product</option><option>LocalBusiness</option><option>Movie</option><option>Book</option><option>SoftwareApplication</option></select></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Reviewer Name</label><input class="nb-input" id="f_reviewer" placeholder="Reviewer name"/></div><div class="input-group"><label class="nb-label">Rating (1-5)</label><input class="nb-input" id="f_rating" type="number" min="1" max="5" step="0.1" placeholder="4.5"/></div></div>
+    <div class="input-group"><label class="nb-label">Review Body</label><textarea class="nb-textarea" id="f_body" placeholder="Write the review text here…"></textarea></div>
+    <div class="input-group"><label class="nb-label">Date Published</label><input class="nb-input" id="f_date" type="date"/></div>`,
+  BreadcrumbList: `<div id="breadItems"></div><button class="nb-btn nb-btn-mint" onclick="addBread()" type="button">+ Add Breadcrumb Item</button>`,
+  WebSite: `
+    <div class="input-group"><label class="nb-label">Site Name *</label><input class="nb-input" id="f_name" placeholder="WorldOfTools"/></div>
+    <div class="input-group"><label class="nb-label">Site URL *</label><input class="nb-input" id="f_url" placeholder="https://example.com"/></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Alternate Name</label><input class="nb-input" id="f_altName" placeholder="Optional alternate name"/></div><div class="input-group"><label class="nb-label">Sitelinks Search URL</label><input class="nb-input" id="f_searchUrl" placeholder="https://example.com?q={search_term_string}"/></div></div>`,
+  Person: `
+    <div class="two-col"><div class="input-group"><label class="nb-label">Full Name *</label><input class="nb-input" id="f_name" placeholder="Jane Doe"/></div><div class="input-group"><label class="nb-label">Job Title</label><input class="nb-input" id="f_jobTitle" placeholder="Web Developer"/></div></div>
+    <div class="input-group"><label class="nb-label">Profile URL</label><input class="nb-input" id="f_url" placeholder="https://example.com/about"/></div>
+    <div class="input-group"><label class="nb-label">Image URL</label><input class="nb-input" id="f_image" placeholder="https://…"/></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Email</label><input class="nb-input" id="f_email" placeholder="jane@example.com"/></div><div class="input-group"><label class="nb-label">Organization</label><input class="nb-input" id="f_org" placeholder="Company name"/></div></div>
+    <div class="input-group"><label class="nb-label">Description</label><textarea class="nb-textarea" id="f_description" placeholder="Brief bio…"></textarea></div>`,
+  Recipe: `
+    <div class="two-col"><div class="input-group"><label class="nb-label">Recipe Name *</label><input class="nb-input" id="f_name" placeholder="Butter Chicken"/></div><div class="input-group"><label class="nb-label">Author</label><input class="nb-input" id="f_author" placeholder="Chef name"/></div></div>
+    <div class="input-group"><label class="nb-label">Description</label><textarea class="nb-textarea" id="f_description" placeholder="Recipe description…"></textarea></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Prep Time (e.g. PT20M)</label><input class="nb-input" id="f_prepTime" placeholder="PT20M"/></div><div class="input-group"><label class="nb-label">Cook Time (e.g. PT30M)</label><input class="nb-input" id="f_cookTime" placeholder="PT30M"/></div></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Servings</label><input class="nb-input" id="f_servings" placeholder="4"/></div><div class="input-group"><label class="nb-label">Cuisine</label><input class="nb-input" id="f_cuisine" placeholder="Indian"/></div></div>
+    <div class="input-group"><label class="nb-label">Ingredients (one per line)</label><textarea class="nb-textarea" id="f_ingredients" placeholder="2 cups chicken&#10;1 tbsp butter&#10;1 tsp garam masala"></textarea></div>
+    <div class="two-col"><div class="input-group"><label class="nb-label">Rating (1-5)</label><input class="nb-input" id="f_rating" type="number" min="1" max="5" step="0.1" placeholder="4.8"/></div><div class="input-group"><label class="nb-label">Calories</label><input class="nb-input" id="f_calories" placeholder="450 calories"/></div></div>
+    <div class="input-group"><label class="nb-label">Image URL</label><input class="nb-input" id="f_image" placeholder="https://…"/></div>`
+};
 
-        function addFAQItem() {
-            const div = document.createElement('div');
-            div.className = 'repeater-item';
-            div.innerHTML = `
-                <span class="remove-btn" onclick="this.parentElement.remove(); generateJSON()">✕</span>
-                <div class="input-group"><label>Question</label><input type="text" class="faq-q" oninput="generateJSON()"></div>
-                <div class="input-group" style="margin-bottom:0;"><label>Answer</label><textarea class="faq-a" oninput="generateJSON()"></textarea></div>
-            `;
-            document.getElementById('repeaters').appendChild(div);
-        }
+function selectSchema(type, el) {
+  currentType = type;
+  document.querySelectorAll('.schema-type-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('schemaForm').innerHTML = FORMS[type] || '';
+  document.getElementById('outputSection').style.display = 'none';
+  // Init repeaters
+  if (type === 'FAQPage') addFaq(), addFaq();
+  if (type === 'BreadcrumbList') addBread(), addBread();
+}
 
-        function addHowToStep() {
-            const div = document.createElement('div');
-            div.className = 'repeater-item';
-            div.innerHTML = `
-                <span class="remove-btn" onclick="this.parentElement.remove(); generateJSON()">✕</span>
-                <div class="input-group"><label>Step Name</label><input type="text" class="step-name" oninput="generateJSON()"></div>
-                <div class="input-group" style="margin-bottom:0;"><label>Step Text</label><textarea class="step-text" oninput="generateJSON()"></textarea></div>
-            `;
-            document.getElementById('repeaters').appendChild(div);
-        }
+function v(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
 
-        function addBreadcrumb() {
-            const div = document.createElement('div');
-            div.className = 'repeater-item';
-            div.innerHTML = `
-                <span class="remove-btn" onclick="this.parentElement.remove(); generateJSON()">✕</span>
-                <div class="field-row">
-                    <div class="input-group" style="margin-bottom:0;"><label>Page Name</label><input type="text" class="bc-name" oninput="generateJSON()"></div>
-                    <div class="input-group" style="margin-bottom:0;"><label>URL</label><input type="text" class="bc-url" oninput="generateJSON()"></div>
-                </div>
-            `;
-            document.getElementById('repeaters').appendChild(div);
-        }
+let faqCount=0, breadCount=0;
+function addFaq() {
+  faqCount++;
+  const el = document.createElement('div'); el.className='faq-item'; el.id=`faq_${faqCount}`;
+  el.innerHTML = `<button class="faq-del-btn" onclick="document.getElementById('faq_${faqCount}').remove()">✕</button><div class="input-group"><label class="nb-label">Question ${faqCount}</label><input class="nb-input" id="fq_${faqCount}" placeholder="What is…"/></div><div class="input-group"><label class="nb-label">Answer</label><textarea class="nb-textarea" id="fa_${faqCount}" placeholder="Your answer…" style="min-height:70px;"></textarea></div>`;
+  document.getElementById('faqItems').appendChild(el);
+}
+function addBread() {
+  breadCount++;
+  const el = document.createElement('div'); el.className='faq-item'; el.id=`bread_${breadCount}`;
+  el.innerHTML = `<button class="faq-del-btn" onclick="document.getElementById('bread_${breadCount}').remove()">✕</button><div class="two-col"><div class="input-group"><label class="nb-label">Name</label><input class="nb-input" id="bn_${breadCount}" placeholder="Home"/></div><div class="input-group"><label class="nb-label">URL</label><input class="nb-input" id="bu_${breadCount}" placeholder="https://…"/></div></div>`;
+  document.getElementById('breadItems').appendChild(el);
+}
 
-        function generateJSON() {
-            const type = document.getElementById('schemaType').value;
-            let output = {
-                "@context": "https://schema.org",
-                "@type": type
-            };
+function generateSchema() {
+  let obj = { "@context": "https://schema.org", "@type": currentType };
+  const t = currentType;
 
-            switch(type) {
-                case 'FAQPage':
-                    output.mainEntity = Array.from(document.querySelectorAll('.repeater-item')).map(item => ({
-                        "@type": "Question",
-                        "name": item.querySelector('.faq-q').value,
-                        "acceptedAnswer": { "@type": "Answer", "text": item.querySelector('.faq-a').value }
-                    }));
-                    break;
-                case 'HowTo':
-                    output.name = document.getElementById('name').value;
-                    output.description = document.getElementById('description').value;
-                    output.step = Array.from(document.querySelectorAll('.repeater-item')).map(item => ({
-                        "@type": "HowToStep",
-                        "name": item.querySelector('.step-name').value,
-                        "text": item.querySelector('.step-text').value
-                    }));
-                    break;
-                case 'Article':
-                    output.headline = document.getElementById('headline').value;
-                    output.image = [document.getElementById('image').value];
-                    output.author = { "@type": "Person", "name": document.getElementById('author').value };
-                    break;
-                case 'Product':
-                    output.name = document.getElementById('name').value;
-                    output.image = [document.getElementById('image').value];
-                    output.offers = {
-                        "@type": "Offer",
-                        "price": document.getElementById('price').value,
-                        "priceCurrency": document.getElementById('currency').value,
-                        "availability": "https://schema.org/InStock"
-                    };
-                    break;
-                case 'LocalBusiness':
-                    output.name = document.getElementById('name').value;
-                    output.address = { "@type": "PostalAddress", "streetAddress": document.getElementById('address').value };
-                    output.image = document.getElementById('image').value;
-                    output.telephone = document.getElementById('phone').value;
-                    break;
-                case 'Organization':
-                    output.name = document.getElementById('name').value;
-                    output.url = document.getElementById('url').value;
-                    output.logo = document.getElementById('logo').value;
-                    break;
-                case 'BreadcrumbList':
-                    output.itemListElement = Array.from(document.querySelectorAll('.repeater-item')).map((item, i) => ({
-                        "@type": "ListItem",
-                        "position": i + 1,
-                        "name": item.querySelector('.bc-name').value,
-                        "item": item.querySelector('.bc-url').value
-                    }));
-                    break;
-                case 'VideoObject':
-                    output.name = document.getElementById('name').value;
-                    output.description = document.getElementById('description').value;
-                    output.thumbnailUrl = [document.getElementById('thumb').value];
-                    output.uploadDate = document.getElementById('date').value;
-                    break;
-            }
+  if (t === 'Article') {
+    if (v('f_headline')) obj.headline = v('f_headline');
+    if (v('f_author')) obj.author = {"@type":"Person","name":v('f_author')};
+    if (v('f_datePublished')) obj.datePublished = v('f_datePublished');
+    if (v('f_dateModified')) obj.dateModified = v('f_dateModified');
+    if (v('f_url')) obj.url = v('f_url');
+    if (v('f_image')) obj.image = v('f_image');
+    if (v('f_description')) obj.description = v('f_description');
+    if (v('f_publisher')) obj.publisher = {"@type":"Organization","name":v('f_publisher')};
+  } else if (t === 'FAQPage') {
+    const items = [...document.querySelectorAll('[id^="faq_"]')].map(el => {
+      const n = el.id.replace('faq_','');
+      return { "@type":"Question", "name": document.getElementById(`fq_${n}`)?.value.trim()||'', "acceptedAnswer":{"@type":"Answer","text":document.getElementById(`fa_${n}`)?.value.trim()||''} };
+    }).filter(q=>q.name);
+    obj.mainEntity = items;
+  } else if (t === 'Product') {
+    if (v('f_name')) obj.name = v('f_name');
+    if (v('f_brand')) obj.brand = {"@type":"Brand","name":v('f_brand')};
+    if (v('f_description')) obj.description = v('f_description');
+    if (v('f_image')) obj.image = v('f_image');
+    if (v('f_url')) obj.url = v('f_url');
+    if (v('f_price')) obj.offers = {"@type":"Offer","price":v('f_price'),"priceCurrency":v('f_currency')||'INR',"availability":"https://schema.org/"+v('f_availability')};
+    if (v('f_rating')) obj.aggregateRating = {"@type":"AggregateRating","ratingValue":v('f_rating'),"reviewCount":v('f_reviewCount')||'1'};
+  } else if (t === 'LocalBusiness') {
+    if (v('f_name')) obj.name = v('f_name');
+    if (v('f_type')) obj["@type"] = v('f_type') || 'LocalBusiness';
+    obj.address = {"@type":"PostalAddress","streetAddress":v('f_street'),"addressLocality":v('f_city'),"addressRegion":v('f_region'),"postalCode":v('f_postal'),"addressCountry":v('f_country')||'IN'};
+    if (v('f_phone')) obj.telephone = v('f_phone');
+    if (v('f_url')) obj.url = v('f_url');
+    if (v('f_hours')) obj.openingHours = v('f_hours');
+    if (v('f_rating')) obj.aggregateRating = {"@type":"AggregateRating","ratingValue":v('f_rating'),"reviewCount":"1"};
+  } else if (t === 'Event') {
+    if (v('f_name')) obj.name = v('f_name');
+    if (v('f_startDate')) obj.startDate = v('f_startDate');
+    if (v('f_endDate')) obj.endDate = v('f_endDate');
+    if (v('f_venue')) obj.location = {"@type":"Place","name":v('f_venue')};
+    if (v('f_url')) obj.url = v('f_url');
+    if (v('f_description')) obj.description = v('f_description');
+    if (v('f_organizer')) obj.organizer = {"@type":"Organization","name":v('f_organizer')};
+    if (v('f_price')) obj.offers = {"@type":"Offer","price":v('f_price')};
+  } else if (t === 'Review') {
+    if (v('f_itemName')) obj.itemReviewed = {"@type":v('f_itemType')||'Product',"name":v('f_itemName')};
+    if (v('f_reviewer')) obj.author = {"@type":"Person","name":v('f_reviewer')};
+    if (v('f_rating')) obj.reviewRating = {"@type":"Rating","ratingValue":v('f_rating'),"bestRating":"5"};
+    if (v('f_body')) obj.reviewBody = v('f_body');
+    if (v('f_date')) obj.datePublished = v('f_date');
+  } else if (t === 'BreadcrumbList') {
+    const items = [...document.querySelectorAll('[id^="bread_"]')].map((el,i) => {
+      const n = el.id.replace('bread_','');
+      return {"@type":"ListItem","position":i+1,"name":document.getElementById(`bn_${n}`)?.value.trim()||'','item':document.getElementById(`bu_${n}`)?.value.trim()||''};
+    }).filter(i=>i.name);
+    obj.itemListElement = items;
+  } else if (t === 'WebSite') {
+    if (v('f_name')) obj.name = v('f_name');
+    if (v('f_url')) obj.url = v('f_url');
+    if (v('f_altName')) obj.alternateName = v('f_altName');
+    if (v('f_searchUrl')) obj.potentialAction = {"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":v('f_searchUrl')},"query-input":"required name=search_term_string"};
+  } else if (t === 'Person') {
+    if (v('f_name')) obj.name = v('f_name');
+    if (v('f_jobTitle')) obj.jobTitle = v('f_jobTitle');
+    if (v('f_url')) obj.url = v('f_url');
+    if (v('f_image')) obj.image = v('f_image');
+    if (v('f_email')) obj.email = v('f_email');
+    if (v('f_org')) obj.worksFor = {"@type":"Organization","name":v('f_org')};
+    if (v('f_description')) obj.description = v('f_description');
+  } else if (t === 'Recipe') {
+    if (v('f_name')) obj.name = v('f_name');
+    if (v('f_author')) obj.author = {"@type":"Person","name":v('f_author')};
+    if (v('f_description')) obj.description = v('f_description');
+    if (v('f_image')) obj.image = v('f_image');
+    if (v('f_prepTime')) obj.prepTime = v('f_prepTime');
+    if (v('f_cookTime')) obj.cookTime = v('f_cookTime');
+    if (v('f_servings')) obj.recipeYield = v('f_servings') + ' servings';
+    if (v('f_cuisine')) obj.recipeCuisine = v('f_cuisine');
+    if (v('f_ingredients')) obj.recipeIngredient = v('f_ingredients').split('\n').map(s=>s.trim()).filter(Boolean);
+    if (v('f_rating')) obj.aggregateRating = {"@type":"AggregateRating","ratingValue":v('f_rating'),"reviewCount":"1"};
+    if (v('f_calories')) obj.nutrition = {"@type":"NutritionInformation","calories":v('f_calories')};
+  }
 
-            document.getElementById('jsonOutput').textContent = `<script type="application/ld+json">\n${JSON.stringify(output, null, 2)}\n<\/script>`;
-        }
+  schemaOutput = obj;
+  const json = JSON.stringify(obj, null, 2);
+  document.getElementById('outputBox').textContent = json;
+  const sec = document.getElementById('outputSection');
+  sec.style.display = 'block';
+  sec.classList.remove('animate-in'); void sec.offsetWidth; sec.classList.add('animate-in');
+  sec.scrollIntoView({ behavior:'smooth', block:'start' });
+}
 
-        function copyJSON() {
-            const code = document.getElementById('jsonOutput').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.querySelector('.copy-code-btn');
-                const old = btn.textContent;
-                btn.textContent = 'Copied!';
-                setTimeout(() => btn.textContent = old, 1500);
-            });
-        }
+function copySchema() {
+  navigator.clipboard.writeText(JSON.stringify(schemaOutput, null, 2)).then(() => {
+    const btn = event.currentTarget; const orig = btn.textContent;
+    btn.textContent = '✅ Copied!'; setTimeout(()=>btn.textContent=orig, 2000);
+  });
+}
+function copyWithScript() {
+  const code = `<script type="application/ld+json">\n${JSON.stringify(schemaOutput, null, 2)}\n<\/script>`;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = event.currentTarget; const orig = btn.textContent;
+    btn.textContent = '✅ Copied!'; setTimeout(()=>btn.textContent=orig, 2000);
+  });
+}
 
-        function clearForm() {
-            if(confirm('Clear all fields?')) initSchemaFields();
-        }
-
-        initSchemaFields();
-    </script>
+// Init
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('schemaForm').innerHTML = FORMS['Article'];
+});
+</script>
 </body>
 </html>

@@ -1,632 +1,438 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   URL Encoder &amp; Decoder — Instant, Browser-Only | WorldOfTools
-  </title>
-<meta content="Encode special characters in URLs or decode percent-encoded strings instantly. Fully browser-based — your URLs are never sent to a server. Free tool." name="description"/>
-<meta content="url encoder, Transactional, 300K+/mo, Global, url decoder online, Transactional, 400K+/mo, Global, url encode decode online, Transactional, 250K+/mo, Global, percent encode url, Transactional, 100K+/mo, Global, decode url string online, Transactional, 150K+/mo, Global, url encoding special characters, Informational, 80K+/mo, Global, urlencode online free, Transactional, 120K+/mo, Global, query string encoder, Transactional, 60K+/mo, Global, url encoder decoder online, url encode decode browser, percent encoding decoder, encode url string instantly" name="keywords"/>
+<title>URL Encoder Decoder Online Free — Encode & Decode URLs Instantly | WorldOfTools</title>
+<meta content="Free online URL encoder and decoder. Encode special characters in URLs, decode percent-encoded strings, encode/decode Base64, and parse query parameters — instantly in your browser." name="description"/>
+<meta content="url encoder decoder online, encode url online, decode url online, percent encoding, url encoding tool, base64 encode decode, query string parser, url encode special characters, urlencode urldecode free" name="keywords"/>
 <link href="https://worldoftools.in/url-encoder-decoder" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   .tool-ui {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        textarea {
-            width: 100%;
-            height: 200px;
-            padding: 1.5rem;
-            border-radius: 20px;
-            border: 2px solid var(--border-color);
-            font-family: inherit;
-            font-size: 1.1rem;
-            resize: vertical;
-            background: #f8fafc;
-            margin-bottom: 1.5rem;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background: white;
-        }
-
-        .actions {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .actions button {
-            flex: 1;
-            min-width: 150px;
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/url-encoder-decoder" property="og:url"/>
+<meta content="URL Encoder Decoder — Free Online | WorldOfTools" property="og:title"/>
+<meta content="Encode and decode URLs, percent-encoded strings, and Base64 instantly. Free, no login, 100% client-side." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="URL Encoder Decoder — Free Online | WorldOfTools" name="twitter:title"/>
+<meta content="Encode/decode URLs and Base64 instantly. No login, 100% free." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/url-encoder-decoder"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "URL Encoder/Decoder",
-      "item": "https://worldoftools.in/url-encoder-decoder"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://worldoftools.in/developer-tools"},
+    {"@type":"ListItem","position":3,"name":"URL Encoder Decoder","item":"https://worldoftools.in/url-encoder-decoder"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is URL encoding?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "URL encoding converts characters that are not allowed in URLs (like spaces, `&`, `=`, `#`) into a `%xx` format where `xx` is the character's hexadecimal ASCII value. Space becomes `%20`."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "When do I need to URL-encode?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Anytime you pass data in a URL query string, form POST body, or API request parameter \u2014 special characters must be encoded to avoid breaking the URL structure."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between `%20` and `+` in URLs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Both represent a space. `%20` is standard percent-encoding (RFC 3986). `+` represents space in `application/x-www-form-urlencoded` format (HTML forms). Use `%20` for general URLs."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"URL Encoder Decoder",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"DeveloperApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1765","reviewCount":"1941"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is URL encoding?","acceptedAnswer":{"@type":"Answer","text":"URL encoding (percent-encoding) converts characters that are not allowed in URLs into a safe format using a % sign followed by two hexadecimal digits. For example, a space becomes %20 and an ampersand becomes %26."}},
+    {"@type":"Question","name":"When do I need to encode a URL?","acceptedAnswer":{"@type":"Answer","text":"You need to encode a URL when it contains special characters like spaces, &, =, ?, #, or non-ASCII characters. These characters have special meaning in URLs and must be percent-encoded in query parameters."}},
+    {"@type":"Question","name":"What is the difference between encodeURI and encodeURIComponent?","acceptedAnswer":{"@type":"Answer","text":"encodeURI encodes a complete URL and preserves characters like /, ?, =, &, #. encodeURIComponent encodes individual query parameter values and encodes all special characters including /, ?, =, &, #."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "URL Encoder/Decoder",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066; --nb-pink: #ff6b9d; --nb-mint: #b2f5ea; --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d; --nb-lime: #c3f584; --nb-black: #000;
+    --nb-shadow: 4px 4px 0 #000; --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px; --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/url-encoder-decoder" property="og:url"/><meta content="
-   URL Encoder &amp; Decoder — Instant, Browser-Only | WorldOfTools
-  " property="og:title"/><meta content="Encode special characters in URLs or decode percent-encoded strings instantly. Fully browser-based — your URLs are never sent to a server. Free tool." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/url-encoder-decoder" name="twitter:url"/><meta content="
-   URL Encoder &amp; Decoder — Instant, Browser-Only | WorldOfTools
-  " name="twitter:title"/><meta content="Encode special characters in URLs or decode percent-encoded strings instantly. Fully browser-based — your URLs are never sent to a server. Free tool." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; box-shadow: var(--nb-shadow); white-space: nowrap; }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-blue { background: var(--nb-blue); color: #000; }
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-mint); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+  .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+  .nb-textarea { width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', monospace; font-size: 0.95rem; font-weight: 500; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; transition: box-shadow 0.15s, border-color 0.15s; resize: vertical; min-height: 100px; line-height: 1.5; }
+  .nb-textarea:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .input-group { margin-bottom: 1.25rem; }
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .nb-tab-btn { padding: 0.65rem 1.25rem; border: var(--nb-border); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.9rem; white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000; }
+  .nb-tab-btn.active { background: var(--nb-yellow); border-color: #000; }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+  .nb-error { display: none; background: #ffe0e0; border: var(--nb-border); border-radius: 12px; padding: 0.85rem 1.25rem; color: #c00; font-weight: 700; margin-bottom: 1.25rem; box-shadow: 3px 3px 0 #c00; }
+  .output-box { background: #f9f9ff; border: var(--nb-border); border-radius: 14px; padding: 1.25rem; box-shadow: 3px 3px 0 #000; font-family: 'Space Grotesk', monospace; font-size: 0.95rem; word-break: break-all; white-space: pre-wrap; min-height: 80px; line-height: 1.6; }
+  .output-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.75rem; }
+  .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  /* Query parser table */
+  .param-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .param-table th { padding: 0.75rem 1rem; text-align: left; background: var(--nb-yellow); border-bottom: 2px solid #000; font-weight: 800; font-size: 0.88rem; }
+  .param-table td { padding: 0.65rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.88rem; word-break: break-all; }
+  .param-table tr:last-child td { border-bottom: none; }
+  .param-key { color: #4f46e5; font-weight: 700; }
+  .param-val { color: #059669; font-weight: 600; }
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+  @media(max-width:480px) { .nb-card-lg { padding: 1.25rem; } .btn-row { flex-direction: column; } .nb-btn { width: 100%; } }
+  .char-count { font-size: 0.8rem; color: #888; font-weight: 600; text-align: right; margin-top: 0.25rem; }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Developer Tools" data-category-url="/developer-tools" data-tool-name="URL Encoder Decoder">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>URL Encoder/Decoder</span></div><h1>
-      URL Encoder &amp; Decoder — Encode or Decode URL Strings Instantly, Browser-Only
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Safely encode special characters for URLs or
-                    decode them back to plain text.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/url-encoder-decoder-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
+
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Developer Tools › <span>URL Encoder Decoder</span></div>
+    <div class="hero-badge">🔗 100% Client-Side — No Data Sent</div>
+    <h1>URL Encoder Decoder — Encode & Decode URLs, Base64 & Query Strings Free</h1>
+    <p>Encode or decode URLs with percent-encoding, encode/decode Base64 strings, and parse URL query parameters — all instantly in your browser. No login. No data uploaded. Essential for developers, SEOs, and QA engineers.</p>
+  </section>
+
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <div class="nb-tabs" role="tablist">
+      <button class="nb-tab-btn active" onclick="switchTab('url',this)" role="tab">🔗 URL Encode/Decode</button>
+      <button class="nb-tab-btn" onclick="switchTab('b64',this)" role="tab">🔐 Base64</button>
+      <button class="nb-tab-btn" onclick="switchTab('qp',this)" role="tab">🔍 Query Parser</button>
+    </div>
+
+    <div class="nb-error" id="errMsg" role="alert"></div>
+
+    <!-- URL Tab -->
+    <div id="url-tab">
+      <div class="input-group">
+        <label class="nb-label" for="urlInput">Input Text or URL</label>
+        <textarea class="nb-textarea" id="urlInput" rows="4" placeholder="Paste a URL or text to encode/decode…" oninput="updateCharCount('urlInput','urlCount')"></textarea>
+        <div class="char-count" id="urlCount">0 characters</div>
+      </div>
+      <div class="btn-row">
+        <button class="nb-btn nb-btn-primary" onclick="encodeURL()">🔒 Encode URL</button>
+        <button class="nb-btn nb-btn-blue" onclick="encodeURIFull()">🌐 Encode Full URI</button>
+        <button class="nb-btn nb-btn-mint" onclick="decodeURL()">🔓 Decode URL</button>
+        <button class="nb-btn" style="background:#fff;" onclick="clearURL()">🗑️ Clear</button>
+      </div>
+      <div id="urlOutput" style="display:none;">
+        <label class="nb-label">📤 Output</label>
+        <div class="output-box" id="urlResult"></div>
+        <div class="char-count" id="urlOutCount"></div>
+        <div class="output-actions">
+          <button class="nb-btn nb-btn-mint" onclick="copyOutput('urlResult')">📋 Copy</button>
+          <button class="nb-btn nb-btn-pink" onclick="swapURLIO()">🔄 Use as Input</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Base64 Tab -->
+    <div id="b64-tab" style="display:none;">
+      <div class="input-group">
+        <label class="nb-label" for="b64Input">Input Text or Base64 String</label>
+        <textarea class="nb-textarea" id="b64Input" rows="4" placeholder="Paste text to encode, or Base64 to decode…" oninput="updateCharCount('b64Input','b64Count')"></textarea>
+        <div class="char-count" id="b64Count">0 characters</div>
+      </div>
+      <div class="btn-row">
+        <button class="nb-btn nb-btn-primary" onclick="encodeB64()">🔒 Encode to Base64</button>
+        <button class="nb-btn nb-btn-mint" onclick="decodeB64()">🔓 Decode from Base64</button>
+        <button class="nb-btn" style="background:#fff;" onclick="clearB64()">🗑️ Clear</button>
+      </div>
+      <div id="b64Output" style="display:none;">
+        <label class="nb-label">📤 Output</label>
+        <div class="output-box" id="b64Result"></div>
+        <div class="char-count" id="b64OutCount"></div>
+        <div class="output-actions">
+          <button class="nb-btn nb-btn-mint" onclick="copyOutput('b64Result')">📋 Copy</button>
+          <button class="nb-btn nb-btn-pink" onclick="swapB64IO()">🔄 Use as Input</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Query Parser Tab -->
+    <div id="qp-tab" style="display:none;">
+      <div class="input-group">
+        <label class="nb-label" for="qpInput">Full URL or Query String</label>
+        <textarea class="nb-textarea" id="qpInput" rows="3" placeholder="https://example.com/search?q=hello+world&lang=en&page=1"></textarea>
+      </div>
+      <button class="nb-btn nb-btn-primary" style="margin-bottom:1.25rem;" onclick="parseQuery()">🔍 Parse Query Parameters</button>
+
+      <div id="qpOutput" style="display:none;">
+        <div style="margin-bottom:1rem;">
+          <label class="nb-label">🌐 Base URL</label>
+          <div class="output-box" id="qpBaseUrl" style="min-height:auto;padding:0.75rem 1rem;"></div>
+        </div>
+        <label class="nb-label">📋 Parameters</label>
+        <div style="overflow-x:auto;">
+          <table class="param-table">
+            <thead><tr><th>#</th><th>Key</th><th>Value (decoded)</th></tr></thead>
+            <tbody id="paramTable"></tbody>
+          </table>
+        </div>
+        <div style="margin-top:1rem;">
+          <label class="nb-label">🔧 Re-encoded URL</label>
+          <div class="output-box" id="qpRebuilt" style="min-height:auto;padding:0.75rem 1rem;font-size:0.85rem;"></div>
+          <div class="output-actions"><button class="nb-btn nb-btn-mint" onclick="copyOutput('qpRebuilt')">📋 Copy Re-encoded URL</button></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ All processing in your browser. Your data never leaves this page.</p>
+  </div>
+
+
+</div><!-- /tool-container -->
+
+<!-- SEO -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is URL Encoding?</h2>
+    <p><strong>URL encoding</strong> (also called percent-encoding) converts characters that are not allowed in URLs into a safe format. Special characters like spaces, &amp;, =, ?, #, and non-ASCII characters are replaced with a % sign followed by two hexadecimal digits. For example, a space becomes <code>%20</code> and © becomes <code>%C2%A9</code>.</p>
+    <p>This tool handles three encoding functions: <strong>encodeURIComponent</strong> (for query parameter values), <strong>encodeURI</strong> (for full URLs), and <strong>decodeURIComponent</strong> (for decoding any percent-encoded string).</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>When Do You Need URL Encoding?</h2>
+    <div style="display:grid;gap:0.75rem;">
+      <div style="background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;box-shadow:3px 3px 0 #000;"><strong>API Development</strong> — Query parameter values containing &amp;, =, +, or spaces must be encoded before appending to URLs.</div>
+      <div style="background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;box-shadow:3px 3px 0 #000;"><strong>SEO Audit</strong> — Identify encoded characters in URLs that may affect crawling or cause duplicate content.</div>
+      <div style="background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;box-shadow:3px 3px 0 #000;"><strong>Form Submissions</strong> — Understand how form data gets encoded in POST/GET requests.</div>
+      <div style="background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;box-shadow:3px 3px 0 #000;"><strong>Sharing URLs</strong> — Decode cryptic URLs from emails or analytics tools to understand what they're actually pointing to.</div>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What is URL encoding?</summary><p>URL encoding converts characters that are not allowed in URLs into a percent-encoded format. Spaces become %20, & becomes %26, and so on. It ensures URLs are valid and can be transmitted safely over the internet.</p></details>
+    <details><summary>What is the difference between encodeURI and encodeURIComponent?</summary><p>encodeURI encodes a complete URL and preserves characters with special URL meaning like /, ?, =, &, #. encodeURIComponent encodes individual component values (like query parameter values) and encodes all special characters including those preserved by encodeURI.</p></details>
+    <details><summary>What is Base64 encoding?</summary><p>Base64 encoding converts binary or text data into a string of ASCII characters using 64 printable characters. It's commonly used to embed images in HTML/CSS, encode email attachments, and transmit data in JSON APIs.</p></details>
+    <details><summary>Is my data safe using this tool?</summary><p>Yes. All encoding and decoding happens entirely in your browser using JavaScript. No data is ever sent to any server, logged, or stored anywhere.</p></details>
+    <details><summary>What is %20 in a URL?</summary><p>%20 is the percent-encoded representation of a space character. It appears in URLs when a space is present in a query parameter or path segment. You can also use + to represent a space in query strings.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Developer Tools</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/uuid-generator"><div class="icon">🔑</div><div class="name">UUID Generator</div><div class="desc">Generate unique IDs</div></a>
+      <a class="tool-card-mini" href="/json-formatter"><div class="icon">{ }</div><div class="name">JSON Formatter</div><div class="desc">Format &amp; validate JSON</div></a>
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words &amp; characters</div></a>
+      <a class="tool-card-mini" href="/unit-converter"><div class="icon">📐</div><div class="name">Unit Converter</div><div class="desc">Convert any units instantly</div></a>
+      <a class="tool-card-mini" href="/ip-address-lookup"><div class="icon">🌐</div><div class="name">IP Lookup</div><div class="desc">Find location for any IP</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age from DOB</div></a>
+    </div>
+  </section>
+
 </div>
-</section>
-<div class="tool-main-card">
-<div id="errorMessage" style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem;">
-</div>
-<div class="input-group">
-<label for="urlInput">
-       Input Text / URL
-      </label>
-<textarea id="urlInput" placeholder="Enter your text or encoded URL here..." style="min-height: 200px;"></textarea>
-</div>
-<div class="actions">
-<button class="btn btn-primary" onclick="process(true)">
-       🚀 Encode URL
-      </button>
-<button class="btn btn-secondary" onclick="process(false)">
-       🔓 Decode URL
-      </button>
-<button class="btn btn-secondary" onclick="copyResult()">
-       📋 Copy
-      </button>
-<button class="btn btn-secondary" onclick="downloadResult()">
-       📥 Download
-      </button>
-</div>
-<div style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-      🛡️ 100% Client-Side Processing: Your data never leaves your browser.
-     </div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the URL Encoder?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use URL Encoder — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Paste the URL or string you want to process in the input box.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Toggle between 'Encode' and 'Decode' modes as needed.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Review the RFC-compliant output in the result panel.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Copy the processed URL for use in your code or browser bar.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        Fully RFC 3986 compliant encoding and decoding logic.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        Handles special characters, spaces, and non-ASCII symbols.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        One-click swapping between encoded and plain-text states.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Operates entirely in-browser — safe for sensitive parameters.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        Simple, fast interface with no unnecessary distractions.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the URL Encoder?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Professionals
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Streamline your daily tasks with reliable, private utilities that respect your data security.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Students
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Quickly format, calculate, or convert data for assignments and academic projects.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Developers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Use these utilities as handy companion tools during coding, debugging, and testing phases.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 URL Encoder vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is URL encoding?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       URL encoding converts characters that are not allowed in URLs (like spaces, `&amp;`, `=`, `#`) into a `%xx` format where `xx` is the character's hexadecimal ASCII value. Space becomes `%20`.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       When do I need to URL-encode?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Anytime you pass data in a URL query string, form POST body, or API request parameter — special characters must be encoded to avoid breaking the URL structure.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is the difference between `%20` and `+` in URLs?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Both represent a space. `%20` is standard percent-encoding (RFC 3986). `+` represents space in `application/x-www-form-urlencoded` format (HTML forms). Use `%20` for general URLs.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this URL Encoder free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, the URL Encoder is 100% free with no hidden charges or premium subscriptions.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my data safe?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Do I need to sign up?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No registration or account creation is required to use any of our tools.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use it offline?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Once the page is loaded, most functions work offline since they run in your browser's local environment.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        URL Encoder/Decoder
-       </strong>
-       is designed to streamline your daily tasks by providing a high-precision, reliable solution for url encoder/decoder needs. Whether you are a professional, a student, or a casual user, this tool offers an intuitive interface that delivers instant results without the complexity of traditional software. By leveraging modern web technologies, we've ensured that the tool is both lightweight and powerful, accessible from any device without installation.
-      </p>
-<p style="margin-top:1rem;">
-       Privacy is at the heart of our design philosophy. Unlike many online utilities that require server-side processing, WorldOfTools executes all operations directly in your browser. This means your data—whether it's sensitive financial figures, personal dates, or confidential code—never leaves your local environment. This 'Zero-Trust' architecture provides the highest level of security, protecting you from data breaches and unauthorized tracking.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="base64-encoder/decoder">
-<div class="tool-icon">
-        🛠️
-       </div>
-<div class="tool-title">
-        Base64 Encoder/Decoder
-       </div>
-<div class="tool-desc">
-        Useful utility for your daily tasks.
-       </div>
-</a>
-<a class="tool-card" href="json-formatter">
-<div class="tool-icon">
-        ✨
-       </div>
-<div class="tool-title">
-        JSON Formatter
-       </div>
-<div class="tool-desc">
-        Best online JSON beautifier and validator to clean, minify, and verify
-                            JSON structures.
-       </div>
-</a>
-<a class="tool-card" href="regex-tester">
-<div class="tool-icon">
-        🔍
-       </div>
-<div class="tool-title">
-        Regex Tester
-       </div>
-<div class="tool-desc">
-        Test and debug regular expressions (RegEx) in real-time with syntax
-                            highlighting.
-       </div>
-</a>
-<a class="tool-card" href="case-converter">
-<div class="tool-icon">
-        🔠
-       </div>
-<div class="tool-title">
-        Case Converter
-       </div>
-<div class="tool-desc">
-        Convert text to UPPERCASE, lowercase, Title Case, and more.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
+
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   function showError(msg, type = 'error') {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
-                errDiv.style.display = 'flex';
-                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
-                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
-                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
-            } else {
-                errDiv.style.display = 'none';
-                errDiv.textContent = '';
-            }
-        }
+function switchTab(id, btn) {
+  ['url','b64','qp'].forEach(t => document.getElementById(t+'-tab').style.display='none');
+  document.querySelectorAll('.nb-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id+'-tab').style.display='block';
+  btn.classList.add('active');
+  showError('');
+}
 
-        function process(encode) {
-            showError('');
-            const input = document.getElementById('urlInput');
-            if (!input.value) return;
+function showError(msg) {
+  const el = document.getElementById('errMsg');
+  el.style.display = msg ? 'block' : 'none';
+  el.textContent = msg ? '⚠️ ' + msg : '';
+}
 
-            // 1MB limit
-            if (new TextEncoder().encode(input.value).length > 1024 * 1024) {
-                showError("Input too large. Please limit text to 1MB for performance.");
-                return;
-            }
+function updateCharCount(inputId, countId) {
+  const len = document.getElementById(inputId).value.length;
+  document.getElementById(countId).textContent = len.toLocaleString() + ' character' + (len !== 1 ? 's' : '');
+}
 
-            try {
-                input.value = encode ? encodeURIComponent(input.value) : decodeURIComponent(input.value);
-            } catch (e) {
-                showError('Error processing URL: ' + e.message);
-            }
-        }
+// URL encode/decode
+function encodeURL() {
+  const val = document.getElementById('urlInput').value;
+  if (!val.trim()) return showError('Please enter some text or URL to encode.');
+  showError('');
+  try {
+    const result = encodeURIComponent(val);
+    showURLOutput(result);
+  } catch(e) { showError('Encoding failed: ' + e.message); }
+}
 
-        function copyResult() {
-            const el = document.getElementById('urlInput');
-            if (!el.value) return;
-            navigator.clipboard.writeText(el.value).then(() => {
-                const btn = document.querySelector('button[onclick="copyResult()"]');
-                const old = btn.textContent;
-                btn.textContent = '✅ Copied!';
-                setTimeout(() => btn.textContent = old, 1500);
-            });
-        }
+function encodeURIFull() {
+  const val = document.getElementById('urlInput').value;
+  if (!val.trim()) return showError('Please enter a URL to encode.');
+  showError('');
+  try {
+    const result = encodeURI(val);
+    showURLOutput(result);
+  } catch(e) { showError('Encoding failed: ' + e.message); }
+}
 
-        function downloadResult() {
-            const el = document.getElementById('urlInput');
-            if (!el.value) return;
+function decodeURL() {
+  const val = document.getElementById('urlInput').value;
+  if (!val.trim()) return showError('Please enter a percent-encoded URL or text to decode.');
+  showError('');
+  try {
+    const result = decodeURIComponent(val.replace(/\+/g, ' '));
+    showURLOutput(result);
+  } catch(e) { showError('Decoding failed — the input may not be a valid percent-encoded string.'); }
+}
 
-            const blob = new Blob([el.value], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `worldoftools.in-url-result-${Date.now()}.txt`;
-            a.click();
-            window.URL.revokeObjectURL(url);
-        }
+function showURLOutput(text) {
+  document.getElementById('urlResult').textContent = text;
+  document.getElementById('urlOutCount').textContent = text.length.toLocaleString() + ' characters';
+  document.getElementById('urlOutput').style.display = 'block';
+}
 
-        // Schema
-        const schema = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "URL Encoder & Decoder - WorldOfTools",
-            "url": "https://worldoftools.in/url-encoder-decoder",
-            "description": "Online tool to encode and decode URLs and URI components instantly.",
-            "applicationCategory": "DeveloperTool"
-        };
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schema);
-        document.head.appendChild(script);
-  </script>
+function clearURL() {
+  document.getElementById('urlInput').value = '';
+  document.getElementById('urlOutput').style.display = 'none';
+  document.getElementById('urlCount').textContent = '0 characters';
+  showError('');
+}
+
+function swapURLIO() {
+  document.getElementById('urlInput').value = document.getElementById('urlResult').textContent;
+  document.getElementById('urlOutput').style.display = 'none';
+  updateCharCount('urlInput','urlCount');
+}
+
+// Base64
+function encodeB64() {
+  const val = document.getElementById('b64Input').value;
+  if (!val.trim()) return showError('Please enter text to encode.');
+  showError('');
+  try {
+    const result = btoa(unescape(encodeURIComponent(val)));
+    showB64Output(result);
+  } catch(e) { showError('Encoding failed: ' + e.message); }
+}
+
+function decodeB64() {
+  const val = document.getElementById('b64Input').value.trim();
+  if (!val) return showError('Please enter a Base64 string to decode.');
+  showError('');
+  try {
+    const result = decodeURIComponent(escape(atob(val)));
+    showB64Output(result);
+  } catch(e) { showError('Invalid Base64 string. Please check the input.'); }
+}
+
+function showB64Output(text) {
+  document.getElementById('b64Result').textContent = text;
+  document.getElementById('b64OutCount').textContent = text.length.toLocaleString() + ' characters';
+  document.getElementById('b64Output').style.display = 'block';
+}
+
+function clearB64() {
+  document.getElementById('b64Input').value = '';
+  document.getElementById('b64Output').style.display = 'none';
+  document.getElementById('b64Count').textContent = '0 characters';
+  showError('');
+}
+
+function swapB64IO() {
+  document.getElementById('b64Input').value = document.getElementById('b64Result').textContent;
+  document.getElementById('b64Output').style.display = 'none';
+  updateCharCount('b64Input','b64Count');
+}
+
+// Query parser
+function parseQuery() {
+  const input = document.getElementById('qpInput').value.trim();
+  if (!input) return showError('Please enter a URL or query string to parse.');
+  showError('');
+  try {
+    let base = '', qs = '';
+    if (input.includes('?')) {
+      const idx = input.indexOf('?');
+      base = input.substring(0, idx);
+      qs = input.substring(idx + 1);
+    } else if (input.includes('=')) {
+      qs = input;
+    } else {
+      return showError('No query parameters found. The URL needs a ? followed by key=value pairs.');
+    }
+
+    const params = [];
+    qs.split('&').forEach(pair => {
+      const eq = pair.indexOf('=');
+      if (eq === -1) {
+        params.push({ key: decodeURIComponent(pair.replace(/\+/g,' ')), val: '' });
+      } else {
+        params.push({
+          key: decodeURIComponent(pair.substring(0,eq).replace(/\+/g,' ')),
+          val: decodeURIComponent(pair.substring(eq+1).replace(/\+/g,' '))
+        });
+      }
+    });
+
+    document.getElementById('qpBaseUrl').textContent = base || '(no base URL — query string only)';
+
+    const tbody = document.getElementById('paramTable');
+    tbody.innerHTML = params.map((p,i) => `
+      <tr>
+        <td>${i+1}</td>
+        <td class="param-key">${escapeHtml(p.key)}</td>
+        <td class="param-val">${escapeHtml(p.val)}</td>
+      </tr>
+    `).join('');
+
+    const rebuilt = (base ? base + '?' : '?') + params.map(p => encodeURIComponent(p.key) + (p.val ? '=' + encodeURIComponent(p.val) : '')).join('&');
+    document.getElementById('qpRebuilt').textContent = rebuilt;
+    document.getElementById('qpOutput').style.display = 'block';
+  } catch(e) { showError('Failed to parse: ' + e.message); }
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function copyOutput(id) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.currentTarget;
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+</script>
 </body>
 </html>

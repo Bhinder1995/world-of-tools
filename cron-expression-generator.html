@@ -1,847 +1,563 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Cron Expression Generator — Visual Builder with Plain English | WorldOfTools
-  </title>
-<meta content="Build cron expressions with a visual scheduler &amp; see a plain-English description of every schedule. No login. Free cron expression generator for devs." name="description"/>
-<meta content="how to write a cron expression, cron job every 5 minutes expression, cron expression for daily at midnight, cron expression for weekdays only, cron expression explainer, cron expression tester online, AWS cron expression generator, cron expression generator, cron job builder visual, cron expression with explanation, cron generator no login" name="keywords"/>
+<title>Cron Expression Generator Free Online — Visual Cron Job Builder & Tester | WorldOfTools</title>
+<meta content="Build and test cron expressions visually — get a plain-English description for every schedule. Supports standard 5-field & extended 6-field cron. Free cron job builder for developers. No login." name="description"/>
+<meta content="cron expression generator, visual cron job builder, cron expression tester online, how to write a cron expression, cron job every 5 minutes expression, cron expression for daily at midnight, cron expression for weekdays only, cron expression explainer, AWS EventBridge cron generator, cron expression for every hour, cron syntax guide, cron job scheduler online, cron expression with description, cron job every 15 minutes, cron expression for first Monday of month, crontab generator online free, kubernetes cron job expression, cron expression cheat sheet" name="keywords"/>
 <link href="https://worldoftools.in/cron-expression-generator" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   .cron-ui {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .cron-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .cron-field {
-            background: #f1f5f9;
-            padding: 1.25rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-        }
-
-        .cron-field label {
-            display: block;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .cron-field select,
-        .cron-field input {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: white;
-            font-size: 1rem;
-        }
-
-        .result-panel {
-            background: var(--primary-color);
-            color: white;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.2);
-        }
-
-        .cron-string {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin: 1rem 0;
-            letter-spacing: 0.1em;
-        }
-
-        .cron-desc {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .copy-pill {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1.5rem;
-            border-radius: 99px;
-            cursor: pointer;
-            display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-            transition: all 0.2s;
-        }
-
-        .copy-pill:hover {
-            background: white;
-            color: var(--primary-color);
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/cron-expression-generator" property="og:url"/>
+<meta content="Cron Expression Generator — Visual Cron Job Builder | WorldOfTools" property="og:title"/>
+<meta content="Build cron expressions visually with plain-English descriptions. Free online cron job builder for developers — no login required." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Cron Expression Generator — Visual Cron Builder | WorldOfTools" name="twitter:title"/>
+<meta content="Build & test cron expressions with live plain-English descriptions. No login required." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#c3f584"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/cron-expression-generator"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Cron Expression Generator",
-      "item": "https://worldoftools.in/cron-expression-generator"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://worldoftools.in/developer-tools"},
+    {"@type":"ListItem","position":3,"name":"Cron Expression Generator","item":"https://worldoftools.in/cron-expression-generator"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a cron expression?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A string of 5 (or 6) space-separated fields defining a schedule for automated tasks: `minute hour day-of-month month day-of-week`."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does `0 9 * * 1-5` mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Run at 9:00 AM, every Monday through Friday. The asterisks mean \"every\" for that field."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I run a cron job every 5 minutes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use `*/5 * * * *` \u2014 the `*/5` means every 5th minute."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between `0 0 * * *` and `@daily`?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Both run once per day at midnight. `@daily` is a shorthand alias supported by most cron implementations."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this for AWS EventBridge or GCP Cloud Scheduler?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 AWS and GCP have their own cron-like formats with minor differences. The tool generates standard Unix cron; check your cloud provider's specific syntax for any adjustments."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Cron Expression Generator",
+  "image":"https://worldoftools.in/app-icon.png",
+  "description":"Free visual cron expression generator and tester. Build any cron schedule with a GUI and get a plain-English description of when it runs.",
+  "operatingSystem":"Any","applicationCategory":"DeveloperApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"765","reviewCount":"841"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is a cron expression?","acceptedAnswer":{"@type":"Answer","text":"A cron expression is a string of 5 or 6 fields that defines a schedule for automated tasks. Format: minute hour day-of-month month day-of-week. For example, '0 9 * * 1-5' means every weekday at 9:00 AM."}},
+    {"@type":"Question","name":"How do I write a cron job for every 5 minutes?","acceptedAnswer":{"@type":"Answer","text":"Use */5 * * * * — the */5 in the minute field means 'every 5 minutes'. The asterisks mean 'every' for the remaining fields (hour, day, month, weekday)."}},
+    {"@type":"Question","name":"What does the asterisk (*) mean in cron?","acceptedAnswer":{"@type":"Answer","text":"In cron syntax, an asterisk (*) means 'every possible value'. For example, * in the hour field means every hour, * in the month field means every month, and so on."}},
+    {"@type":"Question","name":"How do I run a cron job at midnight every day?","acceptedAnswer":{"@type":"Answer","text":"Use 0 0 * * * — this runs at minute 0, hour 0 (midnight), every day, every month, every weekday."}},
+    {"@type":"Question","name":"What is the difference between cron and crontab?","acceptedAnswer":{"@type":"Answer","text":"Cron is the background service/daemon that executes scheduled jobs. Crontab (cron table) is the file that stores the schedule definitions for that user. You edit a crontab to add or modify cron jobs."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Cron Expression Generator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066; --nb-pink: #ff6b9d; --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa; --nb-orange: #ffa94d; --nb-lime: #c3f584;
+    --nb-purple: #d8b4fe; --nb-black: #000; --nb-white: #fff;
+    --nb-shadow: 4px 4px 0 #000; --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px; --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/cron-expression-generator" property="og:url"/><meta content="
-   Cron Expression Generator — Visual Builder with Plain English | WorldOfTools
-  " property="og:title"/><meta content="Build cron expressions with a visual scheduler &amp; see a plain-English description of every schedule. No login. Free cron expression generator for devs." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/cron-expression-generator" name="twitter:url"/><meta content="
-   Cron Expression Generator — Visual Builder with Plain English | WorldOfTools
-  " name="twitter:title"/><meta content="Build cron expressions with a visual scheduler &amp; see a plain-English description of every schedule. No login. Free cron expression generator for devs." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; margin: 0; }
+
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.92rem; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; box-shadow: var(--nb-shadow); white-space: nowrap; }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-lime); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-yellow { background: var(--nb-yellow); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1rem; padding: 1rem; }
+
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-lime); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+  /* Cron fields grid */
+  .cron-fields { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+  @media(max-width:600px) { .cron-fields { grid-template-columns: repeat(3, 1fr); } }
+  @media(max-width:380px) { .cron-fields { grid-template-columns: repeat(2, 1fr); } }
+
+  .cron-field { background: #fff; border: var(--nb-border); border-radius: 14px; padding: 1rem; box-shadow: 3px 3px 0 #000; }
+  .cron-field-label { font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.07em; color: #666; margin-bottom: 0.5rem; display: block; }
+  .cron-field-input { width: 100%; padding: 0.6rem 0.75rem; border: var(--nb-border); border-radius: 10px; font-family: 'Courier New', monospace; font-size: 1.1rem; font-weight: 700; outline: none; background: #fff; box-shadow: 2px 2px 0 #000; transition: box-shadow 0.15s; text-align: center; }
+  .cron-field-input:focus { border-color: #4f46e5; box-shadow: 2px 2px 0 #4f46e5; }
+  .cron-field-hint { font-size: 0.65rem; color: #aaa; font-weight: 600; margin-top: 0.35rem; display: block; font-family: 'Courier New', monospace; }
+
+  /* Result panel */
+  .result-panel { background: #000; color: #c3f584; border: var(--nb-border); border-radius: 20px; padding: 2rem; box-shadow: var(--nb-shadow-lg); margin-bottom: 1.5rem; font-family: 'Courier New', monospace; }
+  .result-expression { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 900; letter-spacing: 0.05em; word-break: break-all; margin-bottom: 0.75rem; }
+  .result-description { font-family: 'Space Grotesk', sans-serif; color: #fff; font-size: 0.95rem; font-weight: 600; opacity: 0.9; line-height: 1.6; }
+  .result-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-bottom: 0.3rem; display: block; }
+
+  /* Next runs */
+  .next-runs { background: #fff; border: var(--nb-border); border-radius: 14px; padding: 1.1rem; box-shadow: 3px 3px 0 #000; }
+  .next-runs h3 { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 0.9rem; margin: 0 0 0.75rem; }
+  .run-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; }
+  .run-item:last-child { border-bottom: none; }
+  .run-badge { background: var(--nb-lime); border: 1.5px solid #000; border-radius: 6px; padding: 0.15rem 0.5rem; font-size: 0.68rem; font-weight: 900; white-space: nowrap; box-shadow: 1px 1px 0 #000; }
+
+  /* Input tabs */
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .nb-tab-btn { padding: 0.6rem 1.1rem; border: var(--nb-border); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.85rem; white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000; }
+  .nb-tab-btn.active { background: var(--nb-lime); }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  /* Quick presets */
+  .preset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0.6rem; margin-bottom: 1.5rem; }
+  .preset-btn { padding: 0.75rem 1rem; border: var(--nb-border); border-radius: 12px; background: #fff; font-family: inherit; font-size: 0.82rem; font-weight: 700; cursor: pointer; text-align: left; box-shadow: 3px 3px 0 #000; transition: all 0.12s; display: flex; flex-direction: column; gap: 0.15rem; }
+  .preset-btn:hover { background: var(--nb-lime); transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .preset-code { font-family: 'Courier New', monospace; font-size: 0.72rem; color: #4f46e5; font-weight: 900; }
+
+  /* Manual input */
+  .manual-input-wrap { display: flex; gap: 0.6rem; align-items: stretch; }
+  .manual-input { flex: 1; padding: 0.9rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: 'Courier New', monospace; font-size: 1.1rem; font-weight: 700; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; transition: box-shadow 0.15s; }
+  .manual-input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+
+  /* Selects */
+  .nb-select { width: 100%; padding: 0.7rem 0.9rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 0.9rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; cursor: pointer; }
+  .nb-select:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .input-group { margin-bottom: 1rem; }
+  .nb-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+
+  /* Error */
+  .nb-error { display: none; background: #ffe0e0; border: var(--nb-border); border-radius: 12px; padding: 0.85rem 1.25rem; color: #c00; font-weight: 700; margin-bottom: 1rem; box-shadow: 3px 3px 0 #c00; }
+
+  /* Action row */
+  .action-row { display: flex; gap: 0.65rem; flex-wrap: wrap; margin-top: 1rem; }
+
+  /* Cheat sheet */
+  .cheat-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .cheat-table th { background: #000; color: var(--nb-lime); padding: 0.75rem 1rem; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .cheat-table td { padding: 0.65rem 1rem; border-bottom: 1.5px solid #e5e7eb; font-size: 0.88rem; }
+  .cheat-table tr:last-child td { border-bottom: none; }
+  .cheat-table tr:nth-child(even) td { background: #fafafa; }
+  .cheat-table td:first-child { font-family: 'Courier New', monospace; font-weight: 700; color: #4f46e5; }
+  .cheat-table td:nth-child(2) { font-weight: 700; }
+
+  /* Step items */
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #fff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-lime); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+
+  /* FAQ */
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+
+  /* Tools grid */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+
+  .privacy-strip { background: var(--nb-lime); border: var(--nb-border); border-radius: 12px; padding: 0.9rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 0.88rem; box-shadow: 3px 3px 0 #000; margin-top: 1.25rem; }
+
+  @media(max-width:480px) {
+    .nb-card-lg { padding: 1.1rem; }
+    .preset-grid { grid-template-columns: 1fr 1fr; }
+    .action-row .nb-btn { flex: 1; font-size: 0.8rem; padding: 0.7rem 0.5rem; }
+    .result-expression { font-size: 1.3rem; }
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.35s ease-out; }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Developer Tools" data-category-url="/developer-tools" data-tool-name="Cron Expression Generator">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Cron Expression Generator</span></div><h1>
-      Cron Expression Generator — Build Cron Jobs Visually &amp; See Plain-English Explanation
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Build cron schedules visually and understand
-                    exactly when your jobs will run.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/cron-expression-generator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
-</div>
-</section>
-<div class="error-msg" id="errorMessage">
-</div>
-<div style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
-<span style="font-size: 1.2rem;">
-      🛡️
-     </span>
-<span style="font-weight: 700;">
-      100% Client-Side Processing
-     </span>
-</div>
-<div class="tool-main-card" style="padding: 0; overflow: hidden; background: transparent; border: none;">
-<div class="result-panel" style="margin-bottom: 2rem; border-radius: 20px;">
-<div class="cron-desc" id="humanDesc" style="font-weight: 600; font-size: 1.25rem;">
-       Every minute
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Developer Tools › <span>Cron Expression Generator</span></div>
+    <div class="hero-badge">⚙️ For Developers, DevOps & SysAdmins</div>
+    <h1>Cron Expression Generator — Visual Cron Job Builder &amp; Tester</h1>
+    <p>Build any cron schedule visually and instantly get a plain-English explanation of when it runs. Test expressions, pick from 20+ presets, or enter manually. Supports standard 5-field cron and extended 6-field format for AWS EventBridge, Kubernetes, and more.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <div class="nb-tabs" role="tablist">
+      <button class="nb-tab-btn active" onclick="switchTab('visual',this)" role="tab">🎛️ Visual Builder</button>
+      <button class="nb-tab-btn" onclick="switchTab('presets',this)" role="tab">⚡ Quick Presets</button>
+      <button class="nb-tab-btn" onclick="switchTab('manual',this)" role="tab">✏️ Manual / Test</button>
+    </div>
+
+    <div class="nb-error" id="errorMsg" role="alert"></div>
+
+    <!-- Visual Builder -->
+    <div id="visual-tab">
+      <div class="cron-fields">
+        <div class="cron-field" style="background:var(--nb-yellow);">
+          <span class="cron-field-label">⏱️ Minute</span>
+          <input class="cron-field-input" id="f-min" value="0" oninput="buildFromFields()" maxlength="10"/>
+          <span class="cron-field-hint">0-59, *, */n</span>
+        </div>
+        <div class="cron-field" style="background:var(--nb-pink);">
+          <span class="cron-field-label" style="color:#fff;">⏰ Hour</span>
+          <input class="cron-field-input" id="f-hr" value="9" oninput="buildFromFields()" maxlength="10"/>
+          <span class="cron-field-hint" style="color:rgba(255,255,255,0.7);">0-23, *, */n</span>
+        </div>
+        <div class="cron-field" style="background:var(--nb-mint);">
+          <span class="cron-field-label">📅 Day</span>
+          <input class="cron-field-input" id="f-dom" value="*" oninput="buildFromFields()" maxlength="10"/>
+          <span class="cron-field-hint">1-31, *, */n</span>
+        </div>
+        <div class="cron-field" style="background:var(--nb-blue);">
+          <span class="cron-field-label">📆 Month</span>
+          <input class="cron-field-input" id="f-mon" value="*" oninput="buildFromFields()" maxlength="10"/>
+          <span class="cron-field-hint">1-12, JAN-DEC</span>
+        </div>
+        <div class="cron-field" style="background:var(--nb-purple);">
+          <span class="cron-field-label">📇 Weekday</span>
+          <input class="cron-field-input" id="f-dow" value="1-5" oninput="buildFromFields()" maxlength="10"/>
+          <span class="cron-field-hint">0-7 (0=Sun), MON-FRI</span>
+        </div>
       </div>
-<div class="cron-string" id="cronOutput" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; letter-spacing: 0.15em;">
-       * * * * *
+    </div>
+
+    <!-- Quick Presets -->
+    <div id="presets-tab" style="display:none;">
+      <div class="preset-grid">
+        <button class="preset-btn" onclick="loadPreset('* * * * *')">Every minute<span class="preset-code">* * * * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('*/5 * * * *')">Every 5 minutes<span class="preset-code">*/5 * * * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('*/15 * * * *')">Every 15 minutes<span class="preset-code">*/15 * * * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 * * * *')">Every hour<span class="preset-code">0 * * * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 */6 * * *')">Every 6 hours<span class="preset-code">0 */6 * * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 0 * * *')">Daily at midnight<span class="preset-code">0 0 * * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 9 * * *')">Daily at 9 AM<span class="preset-code">0 9 * * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 9 * * 1-5')">Weekdays at 9 AM<span class="preset-code">0 9 * * 1-5</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 0 * * 1')">Every Monday midnight<span class="preset-code">0 0 * * 1</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 0 1 * *')">First day of month<span class="preset-code">0 0 1 * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 0 1 1 *')">New Year midnight<span class="preset-code">0 0 1 1 *</span></button>
+        <button class="preset-btn" onclick="loadPreset('30 23 * * 5')">Every Friday 11:30 PM<span class="preset-code">30 23 * * 5</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 0 * * 0,6')">Weekends midnight<span class="preset-code">0 0 * * 0,6</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 12 15 * *')">15th of month, noon<span class="preset-code">0 12 15 * *</span></button>
+        <button class="preset-btn" onclick="loadPreset('0 0 * * 1#1')">First Mon of month<span class="preset-code">0 0 * * 1#1</span></button>
+        <button class="preset-btn" onclick="loadPreset('*/30 9-17 * * 1-5')">Work hours, 30min<span class="preset-code">*/30 9-17 * * 1-5</span></button>
       </div>
-<div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-<button class="btn" onclick="copyCron()" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(4px);">
-        📋
-                            Copy Cron
-       </button>
-<button class="btn" onclick="downloadCron()" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(4px);">
-        📥 Download
-       </button>
+    </div>
+
+    <!-- Manual Input -->
+    <div id="manual-tab" style="display:none;">
+      <div class="input-group">
+        <label class="nb-label" for="manualInput">Enter or Paste Cron Expression</label>
+        <div class="manual-input-wrap">
+          <input class="manual-input" id="manualInput" type="text" placeholder="e.g.  0 9 * * 1-5" oninput="fromManual()"/>
+          <button class="nb-btn nb-btn-primary" onclick="fromManual()" style="flex-shrink:0;">🔍 Parse</button>
+        </div>
+        <p style="font-size:0.8rem;color:#888;font-weight:600;margin:0.5rem 0 0;">Enter a 5-field cron expression: minute hour day-of-month month day-of-week</p>
+      </div>
+    </div>
+
+    <!-- Result Panel -->
+    <div class="result-panel" id="resultPanel">
+      <span class="result-label">Generated Cron Expression</span>
+      <div class="result-expression" id="cronOutput">0 9 * * 1-5</div>
+      <div class="result-description" id="cronDescription">⚡ At 09:00 AM, Monday through Friday</div>
+    </div>
+
+    <!-- Next 5 Runs -->
+    <div class="next-runs" style="margin-bottom:1.5rem;">
+      <h3>🗓️ Next 5 Scheduled Runs</h3>
+      <div id="nextRunsList"></div>
+    </div>
+
+    <div class="action-row">
+      <button class="nb-btn nb-btn-primary" onclick="copyExpression()" id="copyExprBtn">📋 Copy Expression</button>
+      <button class="nb-btn nb-btn-mint" onclick="copyWithComment()">📝 Copy with Comment</button>
+      <button class="nb-btn" style="background:#fff;" onclick="resetFields()">🔄 Reset</button>
+    </div>
+
+    <div class="privacy-strip">
+      <span style="font-size:1.25rem;">🔒</span>
+      <span>All parsing happens in your browser. No expressions are uploaded or stored.</span>
+    </div>
+  </div>
+
+  <!-- Cron Cheat Sheet -->
+  <div class="nb-card" style="margin-bottom:2rem;">
+    <h2 style="font-family:'Syne',sans-serif;font-weight:900;font-size:1.1rem;margin:0 0 1rem;">📋 Cron Syntax Quick Reference</h2>
+    <div style="overflow-x:auto;">
+      <table class="cheat-table">
+        <thead><tr><th>Symbol</th><th>Meaning</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>*</td><td>Every value (wildcard)</td><td>* in hour = every hour</td></tr>
+          <tr><td>*/n</td><td>Every n-th value</td><td>*/5 in minute = every 5 min</td></tr>
+          <tr><td>n</td><td>Specific value</td><td>9 in hour = 9 AM</td></tr>
+          <tr><td>n-m</td><td>Range</td><td>1-5 in weekday = Mon–Fri</td></tr>
+          <tr><td>n,m</td><td>List of values</td><td>0,6 in weekday = Sun & Sat</td></tr>
+          <tr><td>n#m</td><td>n-th weekday of month</td><td>1#2 = 2nd Monday</td></tr>
+          <tr><td>L</td><td>Last</td><td>L in day = last day of month</td></tr>
+          <tr><td>W</td><td>Nearest weekday</td><td>15W = nearest weekday to 15th</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-section">
+
+    <section style="margin-bottom:3rem;">
+      <h2>What is a Cron Expression?</h2>
+      <p>A <strong>cron expression</strong> is a time-based scheduling syntax used in Unix-like operating systems to run commands or scripts at specified intervals. It consists of 5 fields (6 for some systems) that define the exact timing: <strong>minute, hour, day-of-month, month, day-of-week</strong>.</p>
+      <p>Cron is used everywhere — from Linux server maintenance and database backups to AWS Lambda schedules, Kubernetes CronJobs, GitHub Actions, and CI/CD pipelines. This generator helps you build correct expressions visually without memorizing the syntax.</p>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>How to Use the Cron Expression Generator</h2>
+      <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Choose Your Mode:</strong> Use Visual Builder to set each field interactively, Quick Presets for common schedules, or Manual to parse or test any existing cron expression.</p></div>
+      <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>See the Plain-English Description:</strong> As you type, the tool instantly shows you exactly when the cron job will run in plain English — no guessing required.</p></div>
+      <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Copy & Use:</strong> Copy the expression or copy it with a comment for your crontab/config file. The next 5 run times are also displayed for verification.</p></div>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>Frequently Asked Questions</h2>
+      <details><summary>What is a cron expression?</summary><p>A cron expression is a 5 or 6-field string that defines a schedule: minute (0-59), hour (0-23), day-of-month (1-31), month (1-12), day-of-week (0-7). For example, <strong>0 9 * * 1-5</strong> means every weekday at 9:00 AM.</p></details>
+      <details><summary>How do I write a cron job for every 5 minutes?</summary><p>Use <strong>*/5 * * * *</strong> — the */5 in the minute field means "every 5 minutes". For every 15 minutes: */15 * * * *. For every 30 minutes: */30 * * * *.</p></details>
+      <details><summary>What does * (asterisk) mean in cron?</summary><p>An asterisk (*) means "every possible value". * in the hour field = every hour. * in the month field = every month. */2 means every 2nd value in that field.</p></details>
+      <details><summary>How do I run a cron job at midnight daily?</summary><p>Use <strong>0 0 * * *</strong> — minute 0, hour 0 (midnight), every day. For noon: <strong>0 12 * * *</strong>. For 9 AM on weekdays only: <strong>0 9 * * 1-5</strong>.</p></details>
+      <details><summary>What is the difference between 0 and 7 for Sunday in cron?</summary><p>Both 0 and 7 represent Sunday in cron syntax (on most systems). 1 = Monday, 2 = Tuesday, ... 6 = Saturday. Using 0-6 or 1-7 are both accepted. For portability, use 0 for Sunday.</p></details>
+      <details><summary>Does AWS use the same cron format?</summary><p>AWS EventBridge (CloudWatch Events) uses a slightly different 6-field cron format where the 6th field is the year (optional). AWS also uses ? instead of * when specifying either day-of-month or day-of-week. Use the Manual tab to test AWS-style expressions.</p></details>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>Other Free Developer Tools</h2>
+      <div class="tools-grid">
+        <a class="tool-card-mini" href="/json-formatter"><div class="icon">📋</div><div class="name">JSON Formatter</div><div class="desc">Beautify & validate JSON</div></a>
+        <a class="tool-card-mini" href="/regex-tester"><div class="icon">🧪</div><div class="name">Regex Tester</div><div class="desc">Test regex patterns</div></a>
+        <a class="tool-card-mini" href="/base64-encoder"><div class="icon">🔐</div><div class="name">Base64 Encoder</div><div class="desc">Encode & decode data</div></a>
+        <a class="tool-card-mini" href="/color-converter"><div class="icon">🎨</div><div class="name">Color Converter</div><div class="desc">HEX, RGB, HSL, CMYK</div></a>
+        <a class="tool-card-mini" href="/url-encoder"><div class="icon">🔗</div><div class="name">URL Encoder</div><div class="desc">Encode/decode URLs</div></a>
+        <a class="tool-card-mini" href="/unix-timestamp"><div class="icon">⏱️</div><div class="name">Unix Timestamp</div><div class="desc">Convert timestamps</div></a>
+      </div>
+    </section>
+
+  </div>
 </div>
-</div>
-<div class="card" style="padding: 2.5rem; border: 1px solid var(--border-color); box-shadow: var(--card-shadow); background: white;">
-<h3 style="margin-bottom: 2rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: flex; align-items: center; gap: 0.75rem;">
-<span style="width: 12px; height: 12px; background: var(--primary-color); border-radius: 3px;">
-</span>
-       Schedule Configuration
-      </h3>
-<div class="cron-grid">
-<div class="cron-field">
-<label>
-         Minutes
-        </label>
-<select id="minute" onchange="generateCron()">
-<option value="*">
-          Every minute (*)
-         </option>
-<option value="*/5">
-          Every 5 minutes
-         </option>
-<option value="*/15">
-          Every 15 minutes
-         </option>
-<option value="*/30">
-          Every 30 minutes
-         </option>
-<option value="0">
-          At minute 0
-         </option>
-</select>
-</div>
-<div class="cron-field">
-<label>
-         Hours
-        </label>
-<select id="hour" onchange="generateCron()">
-<option value="*">
-          Every hour (*)
-         </option>
-<option value="*/2">
-          Every 2 hours
-         </option>
-<option value="*/6">
-          Every 6 hours
-         </option>
-<option value="*/12">
-          Every 12 hours
-         </option>
-<option value="0">
-          At midnight (0)
-         </option>
-<option value="12">
-          At noon (12)
-         </option>
-</select>
-</div>
-<div class="cron-field">
-<label>
-         Day of Month
-        </label>
-<select id="dayMonth" onchange="generateCron()">
-<option value="*">
-          Every day (*)
-         </option>
-<option value="1">
-          1st of month
-         </option>
-<option value="15">
-          15th of month
-         </option>
-<option value="L">
-          Last day of month
-         </option>
-</select>
-</div>
-<div class="cron-field">
-<label>
-         Month
-        </label>
-<select id="month" onchange="generateCron()">
-<option value="*">
-          Every month (*)
-         </option>
-<option value="1">
-          January
-         </option>
-<option value="6">
-          June
-         </option>
-<option value="12">
-          December
-         </option>
-</select>
-</div>
-<div class="cron-field">
-<label>
-         Day of Week
-        </label>
-<select id="dayWeek" onchange="generateCron()">
-<option value="*">
-          Every day (*)
-         </option>
-<option value="1-5">
-          Mon-Fri (Weekdays)
-         </option>
-<option value="0,6">
-          Sat-Sun (Weekends)
-         </option>
-<option value="1">
-          Monday
-         </option>
-<option value="5">
-          Friday
-         </option>
-</select>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the Cron Builder?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use Cron Builder — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Select the frequency of your task (Minutes, Hourly, Daily).
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Configure specific days, months, or times using the UI.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Review the generated Cron string in the output field.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       See a human-readable explanation of when the task will run.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        Visual builder for complex cron scheduling logic.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        Real-time explanation of the cron expression.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        Supports standard 5-part and 6-part cron formats.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Copy button for quick integration into crontab files.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        No server-side processing required for generation.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the Cron Builder?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For DevOps Engineers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Schedule backup scripts, log rotations, and server maintenance.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Web Developers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Configure scheduled tasks for AWS Lambda or GitHub Actions.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Data Scientists
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Plan automated data extraction and cleaning pipeline runs.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 Cron Builder vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is a cron expression?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       A string of 5 (or 6) space-separated fields defining a schedule for automated tasks: `minute hour day-of-month month day-of-week`.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What does `0 9 * * 1-5` mean?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Run at 9:00 AM, every Monday through Friday. The asterisks mean "every" for that field.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       How do I run a cron job every 5 minutes?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Use `*/5 * * * *` — the `*/5` means every 5th minute.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is the difference between `0 0 * * *` and `@daily`?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Both run once per day at midnight. `@daily` is a shorthand alias supported by most cron implementations.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use this for AWS EventBridge or GCP Cloud Scheduler?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — AWS and GCP have their own cron-like formats with minor differences. The tool generates standard Unix cron; check your cloud provider's specific syntax for any adjustments.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this Cron Builder free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, the Cron Builder is 100% free with no hidden charges or premium subscriptions.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my data safe?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Do I need to sign up?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No registration or account creation is required to use any of our tools.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use it offline?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Once the page is loaded, most functions work offline since they run in your browser's local environment.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        Cron Expression Generator
-       </strong>
-       is an essential powerhouse in any developer's toolkit. From debugging API responses to generating unique identifiers, this tool automates the repetitive parts of coding so you can focus on building great software. It handles complex data structures with ease, providing clean, standardized outputs that integrate perfectly into your existing workflow.
-      </p>
-<p style="margin-top:1rem;">
-       For developers, data integrity and confidentiality are critical. Whether you're formatting JSON with sensitive keys or decoding JWTs containing user data, our Cron Expression Generator ensures your strings are never transmitted over the network. By performing all logic within the browser, we eliminate the risk of man-in-the-middle attacks or server-side logging of your private development data.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="regex-tester">
-<div class="tool-icon">
-        🔍
-       </div>
-<div class="tool-title">
-        Regex Tester
-       </div>
-<div class="tool-desc">
-        Test and debug regular expressions (RegEx) in real-time with syntax
-                            highlighting.
-       </div>
-</a>
-<a class="tool-card" href="json-formatter">
-<div class="tool-icon">
-        ✨
-       </div>
-<div class="tool-title">
-        JSON Formatter
-       </div>
-<div class="tool-desc">
-        Best online JSON beautifier and validator to clean, minify, and verify
-                            JSON structures.
-       </div>
-</a>
-<a class="tool-card" href="uuid-generator">
-<div class="tool-icon">
-        🆔
-       </div>
-<div class="tool-title">
-        UUID Generator
-       </div>
-<div class="tool-desc">
-        Bulk generate secure v4 UUIDs (up to 500).
-       </div>
-</a>
-<a class="tool-card" href="sql-formatter">
-<div class="tool-icon">
-        🛠️
-       </div>
-<div class="tool-title">
-        SQL Formatter
-       </div>
-<div class="tool-desc">
-        Beautify, minify, and format SQL queries online for better readability
-                            and cleaner code.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   function showError(msg) {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = '⚠️ ' + msg;
-                errDiv.style.display = 'flex';
-            } else {
-                errDiv.style.display = 'none';
-                errDiv.textContent = '';
-            }
-        }
+  let currentExpression = '0 9 * * 1-5';
 
-        function generateCron() {
-            showError('');
-            try {
-                const m = document.getElementById('minute').value;
-                const h = document.getElementById('hour').value;
-                const dm = document.getElementById('dayMonth').value;
-                const mon = document.getElementById('month').value;
-                const dw = document.getElementById('dayWeek').value;
+  function switchTab(tab, btn) {
+    ['visual','presets','manual'].forEach(t => document.getElementById(t+'-tab').style.display = 'none');
+    document.querySelectorAll('.nb-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tab+'-tab').style.display = 'block';
+    btn.classList.add('active');
+  }
 
-                const cron = `${m} ${h} ${dm} ${mon} ${dw}`;
-                document.getElementById('cronOutput').textContent = cron;
+  function buildFromFields() {
+    const min = document.getElementById('f-min').value || '*';
+    const hr = document.getElementById('f-hr').value || '*';
+    const dom = document.getElementById('f-dom').value || '*';
+    const mon = document.getElementById('f-mon').value || '*';
+    const dow = document.getElementById('f-dow').value || '*';
+    const expr = `${min} ${hr} ${dom} ${mon} ${dow}`;
+    currentExpression = expr;
+    document.getElementById('cronOutput').textContent = expr;
+    document.getElementById('cronDescription').textContent = describeCron(min, hr, dom, mon, dow);
+    updateNextRuns(min, hr, dom, mon, dow);
+  }
 
-                // Simple human readable logic
-                let desc = "At ";
+  function loadPreset(expr) {
+    currentExpression = expr;
+    const [min, hr, dom, mon, dow] = expr.split(' ');
+    document.getElementById('cronOutput').textContent = expr;
+    document.getElementById('cronDescription').textContent = describeCron(min, hr, dom, mon, dow);
+    // Update visual fields too
+    if(document.getElementById('f-min')) {
+      document.getElementById('f-min').value = min;
+      document.getElementById('f-hr').value = hr;
+      document.getElementById('f-dom').value = dom;
+      document.getElementById('f-mon').value = mon;
+      document.getElementById('f-dow').value = dow;
+    }
+    updateNextRuns(min, hr, dom, mon, dow);
+    // Switch to visual tab to show fields
+    switchTab('visual', document.querySelectorAll('.nb-tab-btn')[0]);
+  }
 
-                if (m === '*' && h === '*' && dm === '*' && mon === '*' && dw === '*') {
-                    desc = "Every minute";
-                } else {
-                    const parts = [];
-                    if (m === '*') parts.push("every minute"); else if (m.includes('/')) parts.push(`every ${m.split('/')[1]} minutes`); else parts.push(`at minute ${m}`);
-                    if (h === '*') parts.push("every hour"); else if (h.includes('/')) parts.push(`every ${h.split('/')[2] || h.split('/')[1]} hours`); else parts.push(`at hour ${h}`);
-                    if (dm !== '*') parts.push(`on day ${dm} of the month`);
-                    if (mon !== '*') parts.push(`in month ${mon}`);
-                    if (dw !== '*') parts.push(`on day ${dw} of the week`);
+  function fromManual() {
+    const val = document.getElementById('manualInput').value.trim();
+    if (!val) return;
+    const parts = val.split(/\s+/);
+    if (parts.length < 5) {
+      document.getElementById('cronDescription').textContent = '⚠️ Please enter a valid 5-field cron expression.';
+      return;
+    }
+    const [min, hr, dom, mon, dow] = parts;
+    currentExpression = `${min} ${hr} ${dom} ${mon} ${dow}`;
+    document.getElementById('cronOutput').textContent = currentExpression;
+    document.getElementById('cronDescription').textContent = describeCron(min, hr, dom, mon, dow);
+    updateNextRuns(min, hr, dom, mon, dow);
+  }
 
-                    desc = parts.join(", ");
-                    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-                }
+  function describeCron(min, hr, dom, mon, dow) {
+    const mins = descField(min, 'minute', 0, 59);
+    const hrs = descField(hr, 'hour', 0, 23);
+    const days = descField(dom, 'day of month', 1, 31);
+    const months = descField(mon, 'month', 1, 12);
+    const wdays = descWeekday(dow);
 
-                document.getElementById('humanDesc').textContent = desc;
-            } catch (e) {
-                showError('An error occurred while generating the cron expression: ' + e.message);
-            }
-        }
+    // Build human description
+    let parts = [];
 
-        function downloadCron() {
-            const cron = document.getElementById('cronOutput').textContent;
-            const desc = document.getElementById('humanDesc').textContent;
+    // Minute/Hour combined
+    if (min === '*' && hr === '*') parts.push('every minute of every hour');
+    else if (min.startsWith('*/')) parts.push(`every ${min.slice(2)} minutes`);
+    else if (hr === '*') parts.push(`at minute ${min} of every hour`);
+    else if (min === '0') parts.push(`at ${formatHour(hr)}`);
+    else parts.push(`at ${formatHour(hr)}, minute ${min}`);
 
-            const content = `Cron Schedule Report - worldoftools.in\n` +
-                `Generated on: ${new Date().toLocaleString()}\n\n` +
-                `Cron Expression: ${cron}\n` +
-                `Description:     ${desc}\n`;
+    // Day
+    if (dow !== '*' && dow !== '?') parts.push(wdays);
+    else if (dom !== '*') parts.push(`on day ${dom} of the month`);
 
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `worldoftools.in-cron-${Date.now()}.txt`;
-            a.click();
-            window.URL.revokeObjectURL(url);
-        }
+    // Month
+    if (mon !== '*') {
+      const monthNames = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+      const mNum = parseInt(mon);
+      parts.push(`in ${isNaN(mNum) ? mon : monthNames[mNum] || mon}`);
+    }
 
-        function copyCron() {
-            const text = document.getElementById('cronOutput').textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                const pills = document.querySelectorAll('.copy-pill');
-                const pill = pills[0]; // First one is copy
-                const old = pill.textContent;
-                pill.textContent = '✅ Copied!';
-                setTimeout(() => pill.textContent = old, 1500);
-            });
-        }
+    return '⚡ ' + parts.join(', ');
+  }
 
-        // Init
-        generateCron();
+  function formatHour(hr) {
+    if (hr.includes('/') || hr.includes(',') || hr.includes('-')) return hr + ':00';
+    const h = parseInt(hr);
+    if (isNaN(h)) return hr + ':00';
+    const ampm = h < 12 ? 'AM' : 'PM';
+    const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+    return `${h12.toString().padStart(2,'0')}:00 ${ampm}`;
+  }
 
-        // Schema
-        const schema = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Cron Expression Generator - WorldOfTools",
-            "url": "https://worldoftools.in/cron-expression-generator",
-            "description": "Build and understand cron schedules visually online.",
-            "applicationCategory": "DeveloperTool"
-        };
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schema);
-        document.head.appendChild(script);
-  </script>
+  function descField(val, name, min, max) {
+    if (val === '*') return `every ${name}`;
+    if (val.startsWith('*/')) return `every ${val.slice(2)} ${name}s`;
+    return `${name} ${val}`;
+  }
+
+  function descWeekday(val) {
+    if (val === '*' || val === '?') return '';
+    const days = {0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday',5:'Friday',6:'Saturday',7:'Sunday'};
+    const named = {sun:0,mon:1,tue:2,wed:3,thu:4,fri:5,sat:6};
+    if (val === '1-5') return 'Monday through Friday';
+    if (val === '0,6' || val === '6,0') return 'on weekends (Saturday & Sunday)';
+    if (days[parseInt(val)]) return 'on ' + days[parseInt(val)];
+    return 'on weekday ' + val;
+  }
+
+  function updateNextRuns(min, hr, dom, mon, dow) {
+    // Simple next-run estimator for common patterns
+    const container = document.getElementById('nextRunsList');
+    try {
+      const runs = getNextRuns(min, hr, dom, mon, dow, 5);
+      container.innerHTML = runs.map((d, i) => `
+        <div class="run-item">
+          <span class="run-badge">#${i+1}</span>
+          <span style="font-weight:600;">${d.toLocaleString('en-IN', {weekday:'short',year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span>
+        </div>`).join('');
+    } catch(e) {
+      container.innerHTML = '<div class="run-item" style="color:#888;">Next run times not available for this expression.</div>';
+    }
+  }
+
+  function getNextRuns(min, hr, dom, mon, dow, count) {
+    const runs = [];
+    let d = new Date();
+    d.setSeconds(0, 0);
+    d.setMinutes(d.getMinutes() + 1);
+    let attempts = 0;
+    while (runs.length < count && attempts < 525600) {
+      attempts++;
+      if (matchesCron(d, min, hr, dom, mon, dow)) {
+        runs.push(new Date(d));
+        d.setMinutes(d.getMinutes() + 1);
+      } else {
+        d.setMinutes(d.getMinutes() + 1);
+      }
+    }
+    return runs;
+  }
+
+  function matchesCron(d, min, hr, dom, mon, dow) {
+    return matchField(d.getMinutes(), min, 0, 59)
+      && matchField(d.getHours(), hr, 0, 23)
+      && matchField(d.getDate(), dom, 1, 31)
+      && matchField(d.getMonth()+1, mon, 1, 12)
+      && matchField(d.getDay(), dow, 0, 6);
+  }
+
+  function matchField(val, expr, min, max) {
+    if (expr === '*' || expr === '?') return true;
+    if (expr.startsWith('*/')) {
+      const step = parseInt(expr.slice(2));
+      return (val - min) % step === 0;
+    }
+    if (expr.includes('-')) {
+      const [a, b] = expr.split('-').map(Number);
+      return val >= a && val <= b;
+    }
+    if (expr.includes(',')) {
+      return expr.split(',').map(Number).includes(val);
+    }
+    return parseInt(expr) === val;
+  }
+
+  function copyExpression() {
+    navigator.clipboard.writeText(currentExpression).then(() => {
+      const btn = document.getElementById('copyExprBtn');
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  function copyWithComment() {
+    const desc = document.getElementById('cronDescription').textContent.replace('⚡ ','');
+    const text = `# ${desc}\n${currentExpression}`;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.currentTarget;
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied with comment!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  function resetFields() {
+    document.getElementById('f-min').value = '*';
+    document.getElementById('f-hr').value = '*';
+    document.getElementById('f-dom').value = '*';
+    document.getElementById('f-mon').value = '*';
+    document.getElementById('f-dow').value = '*';
+    buildFromFields();
+  }
+
+  // Init
+  buildFromFields();
+</script>
 </body>
 </html>

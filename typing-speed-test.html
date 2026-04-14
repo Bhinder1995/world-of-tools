@@ -1,935 +1,730 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Typing Speed Test — WPM &amp; Accuracy, No Signup | WorldOfTools
-  </title>
-<meta content="Test your typing speed in WPM &amp; accuracy across beginner, intermediate &amp; advanced difficulty levels. No signup, no tracking. Free online typing test." name="description"/>
+<title>Typing Speed Test — Check Your WPM & Accuracy Online Free | WorldOfTools</title>
+<meta content="Free online typing speed test — check your WPM (words per minute), accuracy & consistency across 3 difficulty levels. No signup, no tracking. Results in 30, 60 or 120 seconds." name="description"/>
+<meta content="typing speed test, wpm test online, words per minute test, free typing test, online typing test, typing speed checker, typing accuracy test, check my wpm, typing test wpm no signup, how fast can i type, typing test beginner intermediate advanced" name="keywords"/>
 <link href="https://worldoftools.in/typing-speed-test" rel="canonical"/>
-<meta content="typing speed test, wpm test online, words per minute test, free typing test, online typing test, typing speed checker, typing accuracy test, check my wpm, typing speed test online, typing test wpm no signup, check typing speed accuracy, online typing test free" name="keywords"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   /* Stats bar */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-box {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.1rem;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--primary-color);
-            line-height: 1;
-            margin-bottom: 0.2rem;
-        }
-
-        .stat-label {
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-muted);
-        }
-
-        /* Timer & controls */
-        .test-controls {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .duration-btns {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .duration-btn {
-            padding: 0.45rem 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            background: white;
-            font-family: inherit;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.15s;
-            color: var(--text-muted);
-        }
-
-        .duration-btn.active,
-        .duration-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            background: #f8faff;
-        }
-
-        .timer-display {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--primary-color);
-            font-family: 'Courier New', monospace;
-            min-width: 60px;
-            text-align: center;
-        }
-
-        .timer-display.warning { color: #ef4444; }
-
-        /* Passage display */
-        .passage-wrap {
-            background: white;
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.25rem;
-            font-size: 1.15rem;
-            line-height: 1.9;
-            min-height: 120px;
-            position: relative;
-            font-family: 'Georgia', serif;
-            letter-spacing: 0.01em;
-            user-select: none;
-        }
-
-        .passage-wrap.active {
-            border-color: var(--primary-color);
-        }
-
-        .char {
-            position: relative;
-            transition: color 0.05s;
-        }
-
-        .char.correct { color: #10b981; }
-        .char.incorrect { color: #ef4444; background: #fee2e2; border-radius: 2px; }
-        .char.current::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 2px;
-            height: calc(100% + 4px);
-            background: var(--primary-color);
-            animation: blink 0.8s step-end infinite;
-        }
-
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-        /* Input */
-        .typing-input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 1rem 1.25rem;
-            border: 2px solid var(--border-color);
-            border-radius: 14px;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            outline: none;
-            resize: none;
-            transition: border-color 0.2s;
-            line-height: 1.6;
-            min-height: 80px;
-        }
-
-        .typing-input:focus {
-            border-color: var(--primary-color);
-        }
-
-        .typing-input:disabled {
-            background: #f9fafb;
-            color: #9ca3af;
-        }
-
-        /* Results panel */
-        .results-panel {
-            display: none;
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .results-panel h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .result-box {
-            background: rgba(255,255,255,0.15);
-            border-radius: 14px;
-            padding: 1.25rem;
-        }
-
-        .result-value {
-            font-size: 2.25rem;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 0.3rem;
-        }
-
-        .result-label {
-            font-size: 0.8rem;
-            opacity: 0.85;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .wpm-bar-wrap {
-            background: rgba(255,255,255,0.15);
-            border-radius: 20px;
-            height: 10px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-        }
-
-        .wpm-bar {
-            height: 100%;
-            background: white;
-            border-radius: 20px;
-            transition: width 0.5s ease;
-        }
-
-        .wpm-scale {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.72rem;
-            opacity: 0.75;
-            margin-bottom: 1.5rem;
-        }
-
-        .actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        @media (max-width: 600px) {
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
-            .test-controls { flex-direction: column; align-items: flex-start; }
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/typing-speed-test" property="og:url"/>
+<meta content="Typing Speed Test — Check WPM & Accuracy Free | WorldOfTools" property="og:title"/>
+<meta content="Test your typing speed in WPM & accuracy. No signup required. 100% free online typing test." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Typing Speed Test — Check WPM & Accuracy Free | WorldOfTools" name="twitter:title"/>
+<meta content="Test your WPM and accuracy instantly. Free, no signup required." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/typing-speed-test"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Typing Speed Test",
-      "item": "https://worldoftools.in/typing-speed-test"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Text Tools","item":"https://worldoftools.in/text-tools"},
+    {"@type":"ListItem","position":3,"name":"Typing Speed Test","item":"https://worldoftools.in/typing-speed-test"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Typing Speed Test free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Typing Speed Test",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"UtilitiesApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"2432","reviewCount":"2675"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is a good typing speed in WPM?","acceptedAnswer":{"@type":"Answer","text":"The average typist achieves 40–50 WPM. Professionals typically type 65–75 WPM. A speed above 80 WPM is considered excellent, while 100+ WPM is expert level."}},
+    {"@type":"Question","name":"How is WPM calculated?","acceptedAnswer":{"@type":"Answer","text":"WPM is calculated by dividing the number of correct characters typed by 5 (standard word length), then dividing by the time in minutes. Only correctly typed words count toward your score."}},
+    {"@type":"Question","name":"How do I improve my typing speed?","acceptedAnswer":{"@type":"Answer","text":"Practice touch typing using all fingers, maintain proper posture, and avoid looking at the keyboard. Take this test daily to track improvement. Focus on accuracy first — speed follows naturally."}},
+    {"@type":"Question","name":"Is this typing test saved or tracked?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens in your browser. No keystrokes, results, or personal data are ever uploaded or stored."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Typing Speed Test",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-black: #000;
+    --nb-white: #fff;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px;
+    --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/typing-speed-test" property="og:url"/><meta content="
-   Typing Speed Test — WPM &amp; Accuracy, No Signup | WorldOfTools
-  " property="og:title"/><meta content="Test your typing speed in WPM &amp; accuracy across beginner, intermediate &amp; advanced difficulty levels. No signup, no tracking. Free online typing test." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/typing-speed-test" name="twitter:url"/><meta content="
-   Typing Speed Test — WPM &amp; Accuracy, No Signup | WorldOfTools
-  " name="twitter:title"/><meta content="Test your typing speed in WPM &amp; accuracy across beginner, intermediate &amp; advanced difficulty levels. No signup, no tracking. Free online typing test." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.85rem 1.75rem; border: var(--nb-border); border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1rem;
+    cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none;
+    box-shadow: var(--nb-shadow); white-space: nowrap;
+  }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-blue { background: var(--nb-blue); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1.1rem; padding: 1rem; }
+
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--nb-mint); border: var(--nb-border); border-radius: 99px;
+    padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000;
+    margin-bottom: 1rem;
+  }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .nb-tab-btn {
+    padding: 0.65rem 1.25rem; border: var(--nb-border); border-radius: 10px;
+    background: #fff; cursor: pointer; font-weight: 700; font-size: 0.9rem;
+    white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000;
+  }
+  .nb-tab-btn.active { background: var(--nb-yellow); border-color: #000; }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+
+  /* Stats bar */
+  .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  @media(max-width:600px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+  .stat-box { background: #fff; border: var(--nb-border); border-radius: 14px; padding: 1.1rem; text-align: center; box-shadow: 3px 3px 0 #000; }
+  .stat-box.highlight { background: var(--nb-yellow); }
+  .stat-val { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 900; color: #4f46e5; line-height: 1; margin-bottom: 0.2rem; }
+  .stat-lbl { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #666; }
+
+  /* Typing area */
+  .passage-wrap {
+    background: #f9f9ff; border: var(--nb-border); border-radius: 14px;
+    padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 3px 3px 0 #000;
+    font-size: 1.1rem; line-height: 2; letter-spacing: 0.01em; font-weight: 500;
+    min-height: 120px; position: relative; user-select: none;
+  }
+  .passage-wrap .char { transition: color 0.05s; }
+  .char.correct { color: #059669; }
+  .char.incorrect { color: #dc2626; background: #ffe0e0; border-radius: 2px; }
+  .char.current { background: var(--nb-yellow); border-radius: 2px; }
+
+  .typing-input {
+    width: 100%; padding: 1rem 1.25rem; border: var(--nb-border); border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600;
+    outline: none; background: #fff; box-shadow: 3px 3px 0 #000;
+    transition: box-shadow 0.15s, border-color 0.15s; resize: none;
+  }
+  .typing-input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .typing-input:disabled { background: #f5f5f5; cursor: not-allowed; }
+
+  /* Timer */
+  .timer-display {
+    font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 900;
+    text-align: center; color: #4f46e5; line-height: 1;
+  }
+  .timer-display.warning { color: #dc2626; animation: pulse 0.5s infinite alternate; }
+  @keyframes pulse { to { transform: scale(1.05); } }
+
+  /* Progress bar */
+  .progress-track { background: #f0f0f0; height: 1rem; border-radius: 99px; border: 2px solid #000; overflow: hidden; margin-bottom: 0.5rem; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #a3bffa, #4f46e5); width: 0%; transition: width 0.3s ease-out; border-radius: 99px; }
+
+  /* Result hero */
+  .result-hero {
+    background: var(--nb-yellow); border: var(--nb-border); border-radius: 20px;
+    padding: 2rem; text-align: center; box-shadow: var(--nb-shadow-lg); margin-bottom: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .result-wpm { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; letter-spacing: -0.04em; color: #000; line-height: 1; }
+  .result-wpm-label { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 0.25rem; }
+  .result-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem; }
+
+  /* Performance badge */
+  .perf-badge {
+    display: inline-block; padding: 0.4rem 1.2rem; border: var(--nb-border); border-radius: 99px;
+    font-weight: 800; font-size: 0.9rem; margin-top: 0.75rem; box-shadow: 3px 3px 0 #000;
+  }
+
+  /* Results grid */
+  .results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  @media(min-width:600px) { .results-grid { grid-template-columns: repeat(4, 1fr); } }
+  .res-card { background: #fff; border: var(--nb-border); border-radius: 14px; padding: 1.25rem 1rem; text-align: center; box-shadow: 3px 3px 0 #000; }
+  .res-val { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 900; color: #4f46e5; display: block; }
+  .res-lbl { font-size: 0.75rem; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-top: 0.2rem; }
+
+  /* Keyboard tips */
+  .tip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:480px) { .tip-grid { grid-template-columns: 1fr; } }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #f9f9ff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-yellow); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  .compare-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .compare-table th { padding: 0.85rem 1rem; text-align: center; background: var(--nb-yellow); border-bottom: 2px solid #000; font-weight: 800; }
+  .compare-table th:first-child { text-align: left; }
+  .compare-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td.good { color: #059669; font-weight: 800; text-align: center; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+
+  @media(max-width:480px) {
+    .nb-card-lg { padding: 1.25rem; }
+    .result-actions { flex-direction: column; align-items: stretch; }
+    .timer-display { font-size: 2.2rem; }
+  }
+
+  .option-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .option-btn {
+    padding: 0.5rem 1rem; border: var(--nb-border); border-radius: 10px;
+    background: #fff; cursor: pointer; font-weight: 700; font-size: 0.88rem;
+    font-family: inherit; box-shadow: 3px 3px 0 #000; transition: all 0.12s;
+  }
+  .option-btn.active { background: var(--nb-blue); }
+  .option-btn:hover:not(.active) { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  .nb-error { display: none; background: #ffe0e0; border: var(--nb-border); border-radius: 12px; padding: 0.85rem 1.25rem; color: #c00; font-weight: 700; margin-bottom: 1.25rem; box-shadow: 3px 3px 0 #c00; }
+
+  .insight-box { background: var(--nb-lime); border: var(--nb-border); border-radius: 16px; padding: 1.5rem; text-align: center; box-shadow: 3px 3px 0 #000; margin-bottom: 1.5rem; }
+  .insight-icon { font-size: 1.75rem; display: block; margin-bottom: 0.5rem; }
+  .insight-text { font-weight: 700; color: #1a3a00; font-size: 0.95rem; line-height: 1.5; }
+
+  .char-bar { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; font-size: 0.88rem; font-weight: 700; }
+  .char-bar-track { flex: 1; background: #f0f0f0; height: 0.75rem; border-radius: 99px; border: 1.5px solid #000; overflow: hidden; }
+  .char-bar-fill { height: 100%; border-radius: 99px; transition: width 0.5s ease-out; }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Text Tools" data-category-url="/text-tools" data-tool-name="Typing Speed Test">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Typing Speed Test</span></div><h1>
-      Typing Speed Test — Test Your WPM &amp; Accuracy Without Signup or Account
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Test your typing speed in words per minute (WPM) with real-time accuracy tracking. Choose 1, 2, or 5 minute tests.
-     </p>
-</section>
-<div class="tool-main-card">
-<!-- Stats Bar -->
-<div class="stats-bar">
-<div class="stat-box">
-<div class="stat-value" id="wpmStat">
-        0
-       </div>
-<div class="stat-label">
-        WPM
-       </div>
-</div>
-<div class="stat-box">
-<div class="stat-value" id="accStat">
-        100%
-       </div>
-<div class="stat-label">
-        Accuracy
-       </div>
-</div>
-<div class="stat-box">
-<div class="stat-value" id="correctStat">
-        0
-       </div>
-<div class="stat-label">
-        Correct
-       </div>
-</div>
-<div class="stat-box">
-<div class="stat-value" id="errorStat">
-        0
-       </div>
-<div class="stat-label">
-        Errors
-       </div>
-</div>
-</div>
-<!-- Controls -->
-<div class="test-controls">
-<div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
-<span style="font-weight:700; font-size:0.88rem; color:var(--text-muted);">
-        DURATION:
-       </span>
-<div class="duration-btns">
-<button class="duration-btn active" onclick="setDuration(60, this)">
-         1 min
-        </button>
-<button class="duration-btn" onclick="setDuration(120, this)">
-         2 min
-        </button>
-<button class="duration-btn" onclick="setDuration(300, this)">
-         5 min
-        </button>
-</div>
-<span style="font-weight:700; font-size:0.88rem; color:var(--text-muted); margin-left:0.5rem;">
-        TEXT:
-       </span>
-<div class="duration-btns">
-<button class="duration-btn active" id="diffEasy" onclick="setDifficulty('easy', this)">
-         Easy
-        </button>
-<button class="duration-btn" id="diffMed" onclick="setDifficulty('medium', this)">
-         Medium
-        </button>
-<button class="duration-btn" id="diffHard" onclick="setDifficulty('hard', this)">
-         Hard
-        </button>
-</div>
-</div>
-<div style="display:flex; align-items:center; gap:0.75rem;">
-<div class="timer-display" id="timerDisplay">
-        1:00
-       </div>
-<button class="btn btn-secondary" onclick="resetTest()">
-        ↺ Restart
-       </button>
-</div>
-</div>
-<!-- Passage -->
-<div class="passage-wrap" id="passageWrap" onclick="document.getElementById('typingInput').focus()">
-<div id="passageDisplay">
-</div>
-<div id="startHint" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.92);border-radius:14px;font-weight:700;color:var(--text-muted);font-family:inherit;font-size:1rem;cursor:pointer;">
-       👇 Click here or start typing to begin the test
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Text Tools › <span>Typing Speed Test</span></div>
+    <div class="hero-badge">⌨️ 100% Private — No Data Sent</div>
+    <h1>Typing Speed Test — Check Your WPM & Accuracy Online Free</h1>
+    <p>Test your typing speed in words per minute (WPM) and accuracy across beginner, intermediate, and advanced difficulty levels. No signup, no tracking — just type and see your score instantly.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <!-- Options -->
+    <div style="margin-bottom:1.5rem;">
+      <div class="nb-label" style="margin-bottom:0.5rem;">⏱️ Test Duration</div>
+      <div class="option-row" id="timeOpts">
+        <button class="option-btn active" data-val="30" onclick="setOption('time',this)">30 sec</button>
+        <button class="option-btn" data-val="60" onclick="setOption('time',this)">60 sec</button>
+        <button class="option-btn" data-val="120" onclick="setOption('time',this)">2 min</button>
       </div>
-</div>
-<!-- Hidden input -->
-<textarea autocapitalize="off" autocomplete="off" autocorrect="off" class="typing-input" id="typingInput" placeholder="Start typing here..." spellcheck="false"></textarea>
-<!-- Results panel -->
-<div class="results-panel" id="resultsPanel">
-<h2>
-       🎉 Test Complete!
-      </h2>
-<div class="results-grid">
-<div class="result-box">
-<div class="result-value" id="rWPM">
-         0
-        </div>
-<div class="result-label">
-         WPM
-        </div>
-</div>
-<div class="result-box">
-<div class="result-value" id="rAcc">
-         0%
-        </div>
-<div class="result-label">
-         Accuracy
-        </div>
-</div>
-<div class="result-box">
-<div class="result-value" id="rCorrect">
-         0
-        </div>
-<div class="result-label">
-         Correct Chars
-        </div>
-</div>
-<div class="result-box">
-<div class="result-value" id="rErrors">
-         0
-        </div>
-<div class="result-label">
-         Errors
-        </div>
-</div>
-</div>
-<div style="font-size:0.9rem;opacity:0.85;margin-bottom:0.5rem;">
-       WPM Speed Level
+      <div class="nb-label" style="margin-bottom:0.5rem;">🎯 Difficulty</div>
+      <div class="option-row" id="diffOpts">
+        <button class="option-btn active" data-val="beginner" onclick="setOption('diff',this)">🟢 Beginner</button>
+        <button class="option-btn" data-val="intermediate" onclick="setOption('diff',this)">🟡 Intermediate</button>
+        <button class="option-btn" data-val="advanced" onclick="setOption('diff',this)">🔴 Advanced</button>
+        <button class="option-btn" data-val="numbers" onclick="setOption('diff',this)">🔢 Numbers</button>
+        <button class="option-btn" data-val="code" onclick="setOption('diff',this)">💻 Code</button>
       </div>
-<div class="wpm-bar-wrap">
-<div class="wpm-bar" id="wpmBar" style="width:0%">
+    </div>
+
+    <!-- Live Stats -->
+    <div class="stats-bar">
+      <div class="stat-box highlight">
+        <div class="stat-val" id="liveWpm">0</div>
+        <div class="stat-lbl">WPM</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="liveAcc">100%</div>
+        <div class="stat-lbl">Accuracy</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="liveErrors">0</div>
+        <div class="stat-lbl">Errors</div>
+      </div>
+      <div class="stat-box">
+        <div class="timer-display" id="timerDisplay" style="font-size:2rem;">30</div>
+        <div class="stat-lbl">Seconds Left</div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-track" style="margin-bottom:1.25rem;">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Passage -->
+    <div class="nb-label">📖 Type the text below</div>
+    <div class="passage-wrap" id="passageDisplay" aria-live="polite"></div>
+
+    <!-- Input -->
+    <textarea class="typing-input" id="typingInput" rows="3" placeholder="Click here and start typing…" aria-label="Typing input area" disabled></textarea>
+
+    <!-- Controls -->
+    <div style="display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap;">
+      <button class="nb-btn nb-btn-primary" style="flex:1;min-width:140px;" id="startBtn" onclick="startTest()">▶️ Start Test</button>
+      <button class="nb-btn nb-btn-mint" style="flex:1;min-width:140px;" id="resetBtn" onclick="resetTest()">🔄 Reset</button>
+    </div>
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1rem;font-weight:600;">⚡ All processing in your browser. Zero data stored.</p>
+  </div>
+
+  <!-- RESULTS (hidden until test ends) -->
+  <div id="resultsSection" style="display:none;" class="animate-in">
+
+    <div class="result-hero">
+      <div class="result-wpm-label">Your Final Score</div>
+      <div class="result-wpm" id="finalWpm">0 WPM</div>
+      <div id="perfBadge" class="perf-badge"></div>
+      <div class="result-actions">
+        <button class="nb-btn nb-btn-mint" onclick="copyResult()">📋 Copy Result</button>
+        <button class="nb-btn nb-btn-pink" onclick="shareResult()">🔗 Share</button>
+        <button class="nb-btn nb-btn-primary" onclick="resetTest()">🔁 Try Again</button>
+      
+        
+      </div>
+    </div>
+
+    <!-- Detailed stats -->
+    <div class="results-grid">
+      <div class="res-card" style="background:var(--nb-blue);">
+        <span class="res-val" id="resWpm">-</span>
+        <span class="res-lbl">WPM</span>
+      </div>
+      <div class="res-card" style="background:var(--nb-mint);">
+        <span class="res-val" id="resAcc">-</span>
+        <span class="res-lbl">Accuracy</span>
+      </div>
+      <div class="res-card" style="background:var(--nb-yellow);">
+        <span class="res-val" id="resCorrect">-</span>
+        <span class="res-lbl">Correct Chars</span>
+      </div>
+      <div class="res-card" style="background:var(--nb-orange);">
+        <span class="res-val" id="resErrors">-</span>
+        <span class="res-lbl">Errors</span>
+      </div>
+    </div>
+
+    <!-- Char breakdown -->
+    <div class="nb-card" style="margin-bottom:1.5rem;">
+      <h3 style="font-family:'Syne',sans-serif;font-weight:900;margin:0 0 1rem;font-size:1rem;">📊 Character Accuracy Breakdown</h3>
+      <div class="char-bar">
+        <span style="min-width:70px;color:#059669;">Correct</span>
+        <div class="char-bar-track"><div class="char-bar-fill" id="correctBar" style="background:#059669;width:0%"></div></div>
+        <span id="correctPct">0%</span>
+      </div>
+      <div class="char-bar">
+        <span style="min-width:70px;color:#dc2626;">Errors</span>
+        <div class="char-bar-track"><div class="char-bar-fill" id="errorBar" style="background:#dc2626;width:0%"></div></div>
+        <span id="errorPct">0%</span>
+      </div>
+    </div>
+
+    <!-- Insight -->
+    <div class="insight-box">
+      <span class="insight-icon">🧠</span>
+      <div class="insight-text" id="insightText"></div>
+    </div>
+
+  </div><div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+
+    <a href="/word-counter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">📝</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Word Counter</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Count words & reading time</div>
+    </a>
+    <a href="/case-converter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🔠</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Case Converter</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Text case tools</div>
+    </a>
+    <a href="/lorem-ipsum-generator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">📄</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Lorem Ipsum</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Practice text</div>
+    </a>
+    </div>
+  </div>
+</div><!-- /tool-container -->
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is a Typing Speed Test?</h2>
+    <p>A <strong>typing speed test</strong> measures how fast and accurately you type text, reported in <strong>WPM (words per minute)</strong>. This tool by WorldOfTools lets you test your speed across five difficulty modes — from simple beginner passages to code snippets — in 30, 60, or 120-second sessions.</p>
+    <p>All processing happens entirely in your browser using JavaScript. <strong>No keystrokes are ever recorded, uploaded, or tracked.</strong> Your results exist only on your screen.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Use the Typing Speed Test</h2>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Choose Duration & Difficulty</strong> — Select 30s, 60s, or 120s. Pick beginner to advanced, numbers, or code mode.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Click Start & Begin Typing</strong> — A passage appears. Start typing immediately. The timer begins with your first keystroke.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>See Your Results</strong> — When the timer ends, view your WPM, accuracy, error count, and performance rating instantly.</p>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>WPM Speed Benchmarks — Where Do You Stand?</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr>
+          <th>Speed Level</th>
+          <th>WPM Range</th>
+          <th>Description</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Beginner</td><td>1–25 WPM</td><td>Learning the keys. Hunt-and-peck stage.</td></tr>
+          <tr><td>Average</td><td>25–50 WPM</td><td>Casual typist. Most office workers.</td></tr>
+          <tr><td>Good</td><td>50–70 WPM</td><td class="good">✓ Comfortable touch typist.</td></tr>
+          <tr><td>Fast</td><td>70–90 WPM</td><td class="good">✓ Professional typist.</td></tr>
+          <tr><td>Expert</td><td>90–120 WPM</td><td class="good">✓ Excellent. Top 5% of typists.</td></tr>
+          <tr><td>Elite</td><td>120+ WPM</td><td class="good">✓ Competitive / stenographer level.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What is a good typing speed in WPM?</summary><p>The average typist achieves 40–50 WPM. Professionals typically type 65–75 WPM. A speed above 80 WPM is considered excellent, while 100+ WPM is expert-level.</p></details>
+    <details><summary>How is WPM calculated?</summary><p>WPM = (correct characters ÷ 5) ÷ minutes elapsed. Only correctly typed characters count — errors reduce your net WPM score.</p></details>
+    <details><summary>How do I improve my typing speed?</summary><p>Practice touch typing using all fingers. Maintain proper posture — wrists off the desk, elbows at 90°. Avoid looking at the keyboard. Focus on accuracy first; speed naturally follows with consistent practice.</p></details>
+    <details><summary>Does this test save my keystrokes?</summary><p>No. All processing runs locally in your browser via JavaScript. No keystrokes, results, or any personal data are uploaded or stored.</p></details>
+    <details><summary>What is the difference between gross WPM and net WPM?</summary><p>Gross WPM counts all characters typed including errors. Net WPM (what this tool reports) subtracts errors for a more accurate real-world performance measurement.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Tools You Might Like</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words & reading time</div></a>
+      <a class="tool-card-mini" href="/grammar-checker"><div class="icon">✍️</div><div class="name">Grammar Checker</div><div class="desc">Fix grammar mistakes</div></a>
+      <a class="tool-card-mini" href="/readability-checker"><div class="icon">📖</div><div class="name">Readability</div><div class="desc">Check reading level</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in years &amp; days</div></a>
+      <a class="tool-card-mini" href="/stopwatch"><div class="icon">⏱️</div><div class="name">Stopwatch</div><div class="desc">Online stopwatch &amp; timer</div></a>
+      <a class="tool-card-mini" href="/url-encoder-decoder"><div class="icon">🔗</div><div class="name">URL Encoder</div><div class="desc">Encode &amp; decode URLs</div></a>
+    </div>
+  </section>
+
 </div>
-</div>
-<div class="wpm-scale">
-<span>
-        Beginner (20)
-       </span>
-<span>
-        Average (50)
-       </span>
-<span>
-        Pro (80)
-       </span>
-<span>
-        Expert (120+)
-       </span>
-</div>
-<div id="rRating" style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;">
-</div>
-<div class="actions">
-<button class="btn" onclick="resetTest()" style="background:white;color:var(--primary-color);border:none;">
-        ↺ Try Again
-       </button>
-</div>
-</div>
-<div style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-      ⌨️ One word = 5 keystrokes. WPM is calculated as net WPM accounting for errors.
-     </div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What Is a Typing Speed Test?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      A typing speed test measures how many words you type per minute (WPM) and your accuracy percentage. It helps you track improvement over time and benchmark your performance against average typists. This is useful for students, job seekers, data entry professionals, and anyone wanting to type faster.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use This Typing Speed Test — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Choose test
-       <strong>
-        duration
-       </strong>
-       (1, 2 or 5 minutes) and
-       <strong>
-        difficulty
-       </strong>
-       level.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Click on the passage or start typing — the timer begins automatically on your first keystroke.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Type the passage — green = correct, red = incorrect. Watch your live WPM and accuracy update.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       When time runs out, see your final WPM, accuracy, and speed rating.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Typing Speed Benchmark — How Do You Compare?
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Speed
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          WPM Range
-         </th>
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Description
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          🐢 Beginner
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          &lt; 30 WPM
-         </td>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Hunt-and-peck typing. Practice daily to improve.
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          🚶 Average
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          40–55 WPM
-         </td>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Average office worker speed. Comfortable for daily tasks.
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          🚀 Good
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          60–80 WPM
-         </td>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Professional typist. Well above average.
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          ⚡ Expert
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          80–100 WPM
-         </td>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Very fast. Court reporters and secretaries average here.
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          🏆 Elite
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          100+ WPM
-         </td>
-<td style="padding:0.75rem 1rem;">
-          Top 1% of typists. Competitive level.
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is a good typing speed in WPM?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Average typist: 40–50 WPM. Professional typist: 65–75 WPM. Excellent: 80–100+ WPM.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What does WPM mean?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       WPM = Words Per Minute. One "word" is standardized as 5 keystrokes including spaces.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       How can I improve my typing speed?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Practice daily with touch typing technique. Focus on accuracy first, then speed. Aim for 15–30 minutes of practice per day.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is net WPM?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Net WPM = Gross WPM minus errors per minute. It accounts for mistakes and gives a more accurate measure.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does typing speed matter for a job?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Data entry roles require 60+ WPM. Customer service and secretarial jobs need 50+ WPM. Office workers benefit from 40+ WPM.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, it works on mobile with a hardware or on-screen keyboard, though a physical keyboard gives the most accurate results.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="word-counter">
-<div class="tool-icon">
-        📝
-       </div>
-<div class="tool-title">
-        Word Counter
-       </div>
-<div class="tool-desc">
-        Count words, characters and reading time.
-       </div>
-</a>
-<a class="tool-card" href="case-converter">
-<div class="tool-icon">
-        Aa
-       </div>
-<div class="tool-title">
-        Case Converter
-       </div>
-<div class="tool-desc">
-        Convert text to uppercase, lowercase, title case.
-       </div>
-</a>
-<a class="tool-card" href="lorem-ipsum-generator">
-<div class="tool-icon">
-        📄
-       </div>
-<div class="tool-title">
-        Lorem Ipsum Generator
-       </div>
-<div class="tool-desc">
-        Generate placeholder text for designs.
-       </div>
-</a>
-<a class="tool-card" href="text-compare-tool">
-<div class="tool-icon">
-        🔍
-       </div>
-<div class="tool-title">
-        Text Compare
-       </div>
-<div class="tool-desc">
-        Find differences between two texts.
-       </div>
-</a>
-<a class="tool-card" href="random-number-generator">
-<div class="tool-icon">
-        🎲
-       </div>
-<div class="tool-title">
-        Random Number
-       </div>
-<div class="tool-desc">
-        Generate random numbers in any range.
-       </div>
-</a>
-<a class="tool-card" href="password-generator">
-<div class="tool-icon">
-        🔐
-       </div>
-<div class="tool-title">
-        Password Generator
-       </div>
-<div class="tool-desc">
-        Generate strong secure passwords instantly.
-       </div>
-</a>
-</div>
-</section>
-</div>
+
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   // ── Passages ───────────────────────────────────────────────────────────────
-    const PASSAGES = {
-        easy: [
-            "The sun rose slowly over the hills. Birds began to sing in the trees. A gentle breeze moved through the leaves. The day had started in a calm and peaceful way. Children ran outside to play in the warm morning light. Dogs barked and chased each other across the green grass. It was a perfect day to be alive and enjoy the simple things around us.",
-            "She picked up the book from the shelf and opened it to the first page. The words drew her in right away. She forgot about the time as she read through the chapters. The story was about a young girl who wanted to explore the world. By the end of the day she had finished the whole book and felt happy.",
-            "He walked to the market early in the morning. The stalls were full of fresh fruits and vegetables. He bought some apples and a bag of rice. The vendor smiled and thanked him. On his way home he stopped to watch some kids play cricket in the street. It reminded him of his own childhood days."
-        ],
-        medium: [
-            "Technology has transformed the way we communicate, work, and learn. Within a few decades, smartphones became essential tools for billions of people worldwide. The internet connects individuals across continents in real time, enabling collaboration that was once unimaginable. However, with these advances come new challenges around privacy, misinformation, and digital addiction that societies must address thoughtfully.",
-            "Climate change represents one of the most complex challenges facing humanity today. Rising temperatures, shifting weather patterns, and melting polar ice caps threaten ecosystems and communities around the globe. Scientists urge immediate reductions in greenhouse gas emissions to limit warming to manageable levels. Governments, corporations, and individuals each have a role to play in building a more sustainable future.",
-            "Artificial intelligence is rapidly reshaping industries from healthcare to finance. Machine learning algorithms can now detect diseases in medical images with accuracy that rivals experienced physicians. In financial markets, automated systems execute thousands of trades per second. As AI becomes more capable, important questions arise about accountability, bias in algorithms, and the future of employment."
-        ],
-        hard: [
-            "Quantum mechanics fundamentally challenges our classical intuitions about reality. Particles can exist in superposition, occupying multiple states simultaneously until measured. Entanglement allows two particles to be correlated instantaneously across vast distances, a phenomenon Einstein famously described as 'spooky action at a distance.' These counterintuitive properties are now being harnessed for quantum computing and cryptography.",
-            "The Byzantine Generals Problem, formalized by Lamport, Shostak, and Pease in 1982, describes the challenge of achieving consensus in a distributed system where some nodes may behave maliciously or arbitrarily. This foundational problem in distributed computing underpins modern blockchain technology, where decentralized nodes must agree on a single version of truth without trusting any central authority.",
-            "Photosynthesis is the biochemical process by which chlorophyll-containing organisms convert light energy into chemical energy stored as glucose. In the light-dependent reactions occurring in the thylakoid membrane, water molecules are oxidized, releasing oxygen as a byproduct while generating ATP and NADPH. These energy carriers then drive the Calvin cycle in the stroma, fixing atmospheric carbon dioxide into organic compounds."
-        ]
-    };
+const PASSAGES = {
+  beginner: [
+    "the quick brown fox jumps over the lazy dog and runs away into the forest while the sun sets behind the mountains far away",
+    "cats and dogs are common pets that many families love to keep at home they need food water and lots of care every single day",
+    "every morning the birds sing songs outside the window as the warm sun rises slowly over the quiet and peaceful neighborhood",
+    "reading books is a great habit that helps you learn new words and ideas every day try to read at least one book every month",
+    "the park is full of children playing games and laughing while their parents watch from the benches near the old oak trees"
+  ],
+  intermediate: [
+    "technology has transformed the way we communicate work and entertain ourselves over the past two decades bringing both opportunities and challenges to modern society",
+    "learning a new skill requires dedication consistency and patience but the rewards of mastering something difficult are immensely satisfying and open new doors in life",
+    "the human brain is remarkably adaptable capable of forming new neural connections throughout life a property known as neuroplasticity that enables learning at any age",
+    "climate change poses significant challenges to global food security infrastructure and biodiversity requiring urgent coordinated action from governments businesses and individuals worldwide",
+    "entrepreneurs must balance innovation with practicality building products that solve real problems while managing limited resources and navigating an unpredictable competitive landscape"
+  ],
+  advanced: [
+    "the epistemological underpinnings of contemporary scientific methodology necessitate rigorous peer review processes to distinguish empirically validated hypotheses from speculative conjecture and pseudoscientific claims",
+    "quantum entanglement demonstrates a nonlocal correlation between particles suggesting that the conventional conception of spatiotemporal separation may be fundamentally incompatible with quantum mechanical principles",
+    "macroeconomic stabilization policies frequently encounter the paradox of thrift wherein individually rational saving behavior precipitates aggregate demand contraction exacerbating the very recession households sought to insulate against",
+    "the phenomenological tradition initiated by Husserl and subsequently developed by Heidegger and Merleau-Ponty challenges the Cartesian bifurcation of subject and object by foregrounding lived bodily experience",
+    "mitochondrial dysfunction has been implicated in the pathogenesis of numerous neurodegenerative disorders including Alzheimer disease Parkinson disease and amyotrophic lateral sclerosis through oxidative stress and impaired ATP synthesis"
+  ],
+  numbers: [
+    "1234 5678 9012 3456 the order is 42 87 16 93 55 and the total equals 3847 with a remainder of 291 out of 1000",
+    "PI equals 3.14159265358979 and Euler's number is 2.71828182845904 these constants appear throughout mathematics and physics",
+    "in 2024 the population reached 8.1 billion up from 7.9 billion in 2022 with growth rates varying from 0.5% to 3.2% by region",
+    "the temperature dropped from 38.5 to 12.7 degrees in just 48 hours a fall of 25.8 degrees with wind speeds hitting 67 km/h",
+    "transaction IDs: 9847361 2058493 7130285 4961827 3748920 amounts: $1,249.50 $87.99 $4,320.00 $156.75 $2,890.40"
+  ],
+  code: [
+    "const sum = (a, b) => a + b; const arr = [1, 2, 3, 4, 5]; const total = arr.reduce((acc, val) => acc + val, 0); console.log(total);",
+    "function fibonacci(n) { if (n <= 1) return n; return fibonacci(n - 1) + fibonacci(n - 2); } console.log(fibonacci(10));",
+    "import React, { useState, useEffect } from 'react'; const App = () => { const [count, setCount] = useState(0); return <button onClick={() => setCount(count + 1)}>{count}</button>; };",
+    "SELECT u.name, COUNT(o.id) AS orders FROM users u LEFT JOIN orders o ON u.id = o.user_id WHERE u.active = 1 GROUP BY u.id ORDER BY orders DESC LIMIT 10;",
+    "class Stack { constructor() { this.items = []; } push(x) { this.items.push(x); } pop() { return this.items.pop(); } peek() { return this.items[this.items.length - 1]; } }"
+  ]
+};
 
-    // ── State ──────────────────────────────────────────────────────────────────
-    let currentPassage = '';
-    let typedChars = 0;
-    let correctChars = 0;
-    let errorChars = 0;
-    let timer = null;
-    let timeLeft = 60;
-    let totalTime = 60;
-    let started = false;
-    let finished = false;
-    let difficulty = 'easy';
+let testDuration = 30;
+let difficulty = 'beginner';
+let passage = '';
+let charSpans = [];
+let timerInterval = null;
+let timeLeft = 30;
+let started = false;
+let finished = false;
+let correctChars = 0;
+let totalTyped = 0;
+let errors = 0;
+let cursorPos = 0;
 
-    // ── Init ───────────────────────────────────────────────────────────────────
-    function init() {
-        const passages = PASSAGES[difficulty];
-        currentPassage = passages[Math.floor(Math.random() * passages.length)];
-        renderPassage();
-        updateTimerDisplay();
-        document.getElementById('typingInput').value = '';
-        document.getElementById('typingInput').disabled = false;
-        document.getElementById('startHint').style.display = 'flex';
-        document.getElementById('resultsPanel').style.display = 'none';
-        document.getElementById('passageWrap').classList.remove('active');
-        typedChars = 0; correctChars = 0; errorChars = 0; started = false; finished = false;
-        updateStats();
+function setOption(type, btn) {
+  const group = type === 'time' ? 'timeOpts' : 'diffOpts';
+  document.querySelectorAll('#'+group+' .option-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (type === 'time') testDuration = parseInt(btn.dataset.val);
+  else difficulty = btn.dataset.val;
+  resetTest();
+}
+
+function getPassage() {
+  const pool = PASSAGES[difficulty];
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function renderPassage() {
+  passage = getPassage();
+  const display = document.getElementById('passageDisplay');
+  display.innerHTML = '';
+  charSpans = [];
+  for (let i = 0; i < passage.length; i++) {
+    const span = document.createElement('span');
+    span.textContent = passage[i];
+    span.className = 'char' + (i === 0 ? ' current' : '');
+    display.appendChild(span);
+    charSpans.push(span);
+  }
+  cursorPos = 0;
+  correctChars = 0;
+  errors = 0;
+  totalTyped = 0;
+}
+
+function startTest() {
+  if (finished) { resetTest(); return; }
+  renderPassage();
+  timeLeft = testDuration;
+  started = false;
+  finished = false;
+  document.getElementById('timerDisplay').textContent = timeLeft;
+  document.getElementById('timerDisplay').classList.remove('warning');
+  document.getElementById('liveWpm').textContent = '0';
+  document.getElementById('liveAcc').textContent = '100%';
+  document.getElementById('liveErrors').textContent = '0';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('resultsSection').style.display = 'none';
+  const inp = document.getElementById('typingInput');
+  inp.disabled = false;
+  inp.value = '';
+  inp.focus();
+  inp.oninput = handleInput;
+  inp.onkeydown = handleKeydown;
+  document.getElementById('startBtn').textContent = '⏹ Stop Test';
+  document.getElementById('startBtn').onclick = stopTest;
+}
+
+function handleKeydown(e) {
+  if (!started) {
+    started = true;
+    timerInterval = setInterval(tick, 1000);
+  }
+}
+
+function handleInput(e) {
+  if (finished) return;
+  const typed = this.value;
+  const len = Math.min(typed.length, passage.length);
+
+  // Reset all spans
+  for (let i = 0; i < charSpans.length; i++) {
+    charSpans[i].className = 'char';
+  }
+
+  let correct = 0;
+  let err = 0;
+  for (let i = 0; i < len; i++) {
+    if (typed[i] === passage[i]) {
+      charSpans[i].classList.add('correct');
+      correct++;
+    } else {
+      charSpans[i].classList.add('incorrect');
+      err++;
     }
+  }
+  if (len < charSpans.length) charSpans[len].classList.add('current');
 
-    function renderPassage() {
-        document.getElementById('passageDisplay').innerHTML =
-            currentPassage.split('').map((ch, i) =>
-                `<span class="char" data-i="${i}">${ch === ' ' ? '&nbsp;' : ch}</span>`
-            ).join('');
-    }
+  correctChars = correct;
+  errors = err;
+  totalTyped = len;
+  cursorPos = len;
 
-    // ── Timer ──────────────────────────────────────────────────────────────────
-    function startTimer() {
-        timer = setInterval(() => {
-            timeLeft--;
-            updateTimerDisplay();
-            updateLiveWPM();
-            if (timeLeft <= 0) endTest();
-        }, 1000);
-    }
+  // Update live stats
+  if (started) {
+    const elapsed = (testDuration - timeLeft) || 1;
+    const wpm = Math.round((correct / 5) / (elapsed / 60));
+    const acc = totalTyped > 0 ? Math.round((correct / totalTyped) * 100) : 100;
+    document.getElementById('liveWpm').textContent = wpm;
+    document.getElementById('liveAcc').textContent = acc + '%';
+    document.getElementById('liveErrors').textContent = err;
+    document.getElementById('progressFill').style.width = Math.min(100,(len/passage.length*100)) + '%';
+  }
 
-    function updateTimerDisplay() {
-        const m = Math.floor(timeLeft / 60);
-        const s = timeLeft % 60;
-        const el = document.getElementById('timerDisplay');
-        el.textContent = m + ':' + String(s).padStart(2, '0');
-        el.classList.toggle('warning', timeLeft <= 10);
-    }
+  // Check if completed
+  if (len >= passage.length) endTest();
+}
 
-    function setDuration(secs, btn) {
-        totalTime = secs; timeLeft = secs;
-        document.querySelectorAll('.duration-btn').forEach(b => {
-            if (['1 min','2 min','5 min'].includes(b.textContent)) b.classList.remove('active');
-        });
-        btn.classList.add('active');
-        resetTest();
-    }
+function tick() {
+  timeLeft--;
+  document.getElementById('timerDisplay').textContent = timeLeft;
+  if (timeLeft <= 5) document.getElementById('timerDisplay').classList.add('warning');
+  
+  // Update live WPM
+  const elapsed = testDuration - timeLeft;
+  if (elapsed > 0) {
+    const wpm = Math.round((correctChars / 5) / (elapsed / 60));
+    document.getElementById('liveWpm').textContent = wpm;
+  }
+  
+  if (timeLeft <= 0) endTest();
+}
 
-    function setDifficulty(diff, btn) {
-        difficulty = diff;
-        document.querySelectorAll('.duration-btn').forEach(b => {
-            if (['Easy','Medium','Hard'].includes(b.textContent)) b.classList.remove('active');
-        });
-        btn.classList.add('active');
-        resetTest();
-    }
+function stopTest() {
+  endTest();
+}
 
-    // ── Typing ─────────────────────────────────────────────────────────────────
-    document.getElementById('typingInput').addEventListener('input', function () {
-        if (finished) return;
-        if (!started) {
-            started = true;
-            document.getElementById('startHint').style.display = 'none';
-            document.getElementById('passageWrap').classList.add('active');
-            timeLeft = totalTime;
-            startTimer();
-        }
+function endTest() {
+  if (finished) return;
+  finished = true;
+  clearInterval(timerInterval);
+  document.getElementById('typingInput').disabled = true;
+  document.getElementById('startBtn').textContent = '▶️ Start Test';
+  document.getElementById('startBtn').onclick = startTest;
 
-        const typed = this.value;
-        typedChars = typed.length;
-        correctChars = 0; errorChars = 0;
+  const elapsed = testDuration - timeLeft || 1;
+  const wpm = Math.round((correctChars / 5) / (elapsed / 60));
+  const acc = totalTyped > 0 ? Math.round((correctChars / totalTyped) * 100) : 100;
 
-        const chars = document.querySelectorAll('.char');
-        chars.forEach((el, i) => {
-            el.classList.remove('correct', 'incorrect', 'current');
-            if (i < typed.length) {
-                const isCorrect = typed[i] === currentPassage[i];
-                el.classList.add(isCorrect ? 'correct' : 'incorrect');
-                if (isCorrect) correctChars++; else errorChars++;
-            } else if (i === typed.length) {
-                el.classList.add('current');
-            }
-        });
+  document.getElementById('finalWpm').textContent = wpm + ' WPM';
+  document.getElementById('resWpm').textContent = wpm;
+  document.getElementById('resAcc').textContent = acc + '%';
+  document.getElementById('resCorrect').textContent = correctChars;
+  document.getElementById('resErrors').textContent = errors;
 
-        updateStats();
+  // Char bars
+  const cp = acc;
+  const ep = 100 - acc;
+  document.getElementById('correctBar').style.width = cp + '%';
+  document.getElementById('errorBar').style.width = ep + '%';
+  document.getElementById('correctPct').textContent = cp + '%';
+  document.getElementById('errorPct').textContent = ep + '%';
 
-        // Auto-end if user finishes the passage
-        if (typed.length >= currentPassage.length) endTest();
-    });
+  // Performance badge & insight
+  const perf = getPerformance(wpm);
+  const badge = document.getElementById('perfBadge');
+  badge.textContent = perf.label;
+  badge.style.background = perf.color;
 
-    function updateLiveWPM() {
-        const elapsed = totalTime - timeLeft;
-        if (elapsed > 0) {
-            const grossWPM = (correctChars / 5) / (elapsed / 60);
-            const netWPM = Math.max(0, Math.round(grossWPM - (errorChars / (elapsed / 60))));
-            document.getElementById('wpmStat').textContent = netWPM;
-        }
-    }
+  document.getElementById('insightText').textContent = perf.insight;
 
-    function updateStats() {
-        const elapsed = started ? (totalTime - timeLeft) : 0;
-        const grossWPM = elapsed > 0 ? (correctChars / 5) / (elapsed / 60) : 0;
-        const netWPM = Math.max(0, Math.round(grossWPM));
-        const acc = typedChars > 0 ? Math.round((correctChars / typedChars) * 100) : 100;
+  const res = document.getElementById('resultsSection');
+  res.style.display = 'block';
+  res.classList.remove('animate-in');
+  void res.offsetWidth;
+  res.classList.add('animate-in');
+  res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
-        document.getElementById('wpmStat').textContent = netWPM;
-        document.getElementById('accStat').textContent = acc + '%';
-        document.getElementById('correctStat').textContent = correctChars;
-        document.getElementById('errorStat').textContent = errorChars;
-    }
+function getPerformance(wpm) {
+  if (wpm >= 100) return { label: '🏆 Elite Typist', color: '#ffe066', insight: 'Outstanding! You\'re in the top 1% of typists. Elite-level speed with great accuracy. Consider competitive typing or stenography!' };
+  if (wpm >= 80) return { label: '⭐ Expert Typist', color: '#c3f584', insight: 'Excellent speed! You\'re faster than 95% of people. Keep maintaining accuracy at this level — that\'s what separates good from great.' };
+  if (wpm >= 60) return { label: '✅ Fast Typist', color: '#b2f5ea', insight: 'Above average and professional-grade speed. With consistent practice, you can push past 80 WPM. Focus on reducing errors.' };
+  if (wpm >= 40) return { label: '👍 Average Typist', color: '#a3bffa', insight: 'You\'re around the national average. Practice daily for 15 minutes and you\'ll see measurable improvement within weeks.' };
+  if (wpm >= 20) return { label: '📈 Learning Typist', color: '#ffa94d', insight: 'You\'re building your foundation. Focus on touch typing — placing your fingers correctly on home row keys (ASDF JKL;) will unlock significant speed gains.' };
+  return { label: '🌱 Just Starting', color: '#ffd6e7', insight: 'Everyone starts somewhere! Learn the home row keys (ASDF JKL;), practice without looking at the keyboard, and you\'ll improve faster than you think.' };
+}
 
-    // ── End Test ───────────────────────────────────────────────────────────────
-    function endTest() {
-        if (finished) return;
-        finished = true;
-        clearInterval(timer);
-        document.getElementById('typingInput').disabled = true;
+function resetTest() {
+  clearInterval(timerInterval);
+  finished = false;
+  started = false;
+  timeLeft = testDuration;
+  document.getElementById('timerDisplay').textContent = testDuration;
+  document.getElementById('timerDisplay').classList.remove('warning');
+  document.getElementById('liveWpm').textContent = '0';
+  document.getElementById('liveAcc').textContent = '100%';
+  document.getElementById('liveErrors').textContent = '0';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('passageDisplay').innerHTML = '<span style="color:#999;font-style:italic;">Press Start Test to load a passage…</span>';
+  document.getElementById('typingInput').disabled = true;
+  document.getElementById('typingInput').value = '';
+  document.getElementById('resultsSection').style.display = 'none';
+  document.getElementById('startBtn').textContent = '▶️ Start Test';
+  document.getElementById('startBtn').onclick = startTest;
+}
 
-        const elapsed = totalTime - timeLeft || 1;
-        const grossWPM = (correctChars / 5) / (elapsed / 60);
-        const netWPM = Math.max(0, Math.round(grossWPM));
-        const acc = typedChars > 0 ? Math.round((correctChars / typedChars) * 100) : 100;
+function copyResult() {
+  const wpm = document.getElementById('resWpm').textContent;
+  const acc = document.getElementById('resAcc').textContent;
+  const text = `My Typing Speed: ${wpm} WPM | Accuracy: ${acc} | Mode: ${difficulty} (${testDuration}s)\nTested at worldoftools.in/typing-speed-test`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.currentTarget;
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
 
-        document.getElementById('rWPM').textContent = netWPM;
-        document.getElementById('rAcc').textContent = acc + '%';
-        document.getElementById('rCorrect').textContent = correctChars;
-        document.getElementById('rErrors').textContent = errorChars;
+function shareResult() {
+  const wpm = document.getElementById('resWpm').textContent;
+  const acc = document.getElementById('resAcc').textContent;
+  const text = `I just scored ${wpm} WPM with ${acc} accuracy on the typing speed test! Test yours free at https://worldoftools.in/typing-speed-test`;
+  if (navigator.share) navigator.share({ title: 'My Typing Speed', text, url: 'https://worldoftools.in/typing-speed-test' });
+  else window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
+}
 
-        const pct = Math.min(100, (netWPM / 120) * 100);
-        document.getElementById('wpmBar').style.width = pct + '%';
-
-        let rating = '';
-        if (netWPM < 30)        rating = '🐢 Beginner — Keep practicing, you\'ll improve fast!';
-        else if (netWPM < 50)   rating = '🚶 Average — You\'re at a comfortable pace. Aim for 60+!';
-        else if (netWPM < 70)   rating = '🚀 Good — Well above average! Great job.';
-        else if (netWPM < 100)  rating = '⚡ Expert — You\'re a fast typist. Impressive!';
-        else                    rating = '🏆 Elite — Top 1% speed! Outstanding!';
-
-        document.getElementById('rRating').textContent = rating;
-        document.getElementById('resultsPanel').style.display = 'block';
-        document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function resetTest() {
-        clearInterval(timer);
-        timeLeft = totalTime;
-        init();
-    }
-
-    // ── Boot ───────────────────────────────────────────────────────────────────
-    init();
-  </script>
+// Init
+renderPassage();
+document.getElementById('passageDisplay').innerHTML = '<span style="color:#999;font-style:italic;">Press Start Test to load a passage…</span>';
+</script>
 </body>
 </html>

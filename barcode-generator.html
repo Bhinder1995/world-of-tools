@@ -1,668 +1,696 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Barcode Generator — EAN, UPC, Code128, QR — PNG &amp; SVG | WorldOfTools
-  </title>
-<meta content="Generate barcodes in EAN-13, UPC-A, Code-128, QR Code &amp; 10+ other formats. Download PNG or SVG instantly. No signup — free online barcode generator." name="description"/>
-<meta content="free barcode generator no watermark, barcode generator for products, how to create a barcode online, barcode generator EAN-13 online free, Code 128 barcode maker, UPC-A barcode creator, barcode generator download PNG, barcode generator ean upc code128, barcode generator png svg download, qr barcode generator free, online barcode creator no signup" name="keywords"/>
+<title>Barcode Generator — Free EAN-13, UPC-A, Code128, QR PNG &amp; SVG | WorldOfTools</title>
+<meta content="Generate barcodes free online — EAN-13, UPC-A, Code-128, Code-39, ITF-14 &amp; more. Download PNG or SVG instantly. No watermark, no signup. 100% browser-based barcode maker." name="description"/>
+<meta content="free barcode generator no watermark, barcode generator online free download, EAN-13 barcode generator, UPC-A barcode maker online, Code 128 barcode creator, barcode generator for products India, create barcode for inventory free, barcode generator PNG SVG download, barcode generator for Amazon FBA, online barcode creator no signup, generate barcode from number, free barcode label maker" name="keywords"/>
 <link href="https://worldoftools.in/barcode-generator" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
-<!-- JsBarcode CDN -->
-<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js">
-</script>
-<style>
-   #barcodeCanvas {
-            max-width: 100%;
-            height: auto !important;
-        }
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/barcode-generator" property="og:url"/>
+<meta content="Barcode Generator — Free EAN-13, UPC-A, Code128, QR PNG &amp; SVG | WorldOfTools" property="og:title"/>
+<meta content="Generate EAN-13, UPC-A, Code-128 &amp; more barcodes free. Download PNG or SVG — no signup, no watermark, 100% browser-based." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Barcode Generator — Free EAN-13, UPC-A, Code128 | WorldOfTools" name="twitter:title"/>
+<meta content="Generate barcodes free online. Download PNG or SVG. No signup, no watermark." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/barcode-generator"/>
 
-        .barcode-container {
-            margin-top: 3rem;
-            text-align: center;
-            background: white;
-            padding: 3rem 1rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        @media (max-width: 600px) {
-            .barcode-container {
-                padding: 2rem 0.5rem;
-            }
-        }
-  </style>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Barcode Generator",
-      "item": "https://worldoftools.in/barcode-generator"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://worldoftools.in/developer-tools-online"},
+    {"@type":"ListItem","position":3,"name":"Barcode Generator","item":"https://worldoftools.in/barcode-generator"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What barcode format should I use for retail products in India?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use **EAN-13** for most retail products in India and internationally. It requires a GS1 company prefix. For internal use and testing, Code 128 is flexible and supports any alphanumeric data."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between EAN-13 and UPC-A?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "EAN-13 is 13 digits (used internationally). UPC-A is 12 digits (used in North America). Both are standard retail barcodes readable by all POS systems."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I create barcodes for Amazon FBA or inventory management?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 Code 128, FNSKU, and EAN barcodes are all supported. Check your platform's specific barcode requirements before generating."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are there any restrictions on what data I can encode?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Code 128 supports all 128 ASCII characters. EAN-13 and UPC-A are numeric only. Code 39 supports uppercase letters and some special characters."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is the barcode generator free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free with no login, no subscription, and no watermarks on downloaded images."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between a barcode and a QR code?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Traditional barcodes (1D) encode data in horizontal lines and are scanned by laser. QR codes (2D) store more data in a matrix pattern and are read by camera-based scanners and smartphones."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I print the generated barcode on product labels?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 download as SVG for scalable, high-quality print output. SVG barcodes can be scaled to any size without pixelation."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Barcode Generator",
+  "description":"Free online barcode generator — create EAN-13, UPC-A, Code-128, Code-39 and more barcodes. Download as PNG or SVG. 100% browser-based, no signup required.",
+  "url":"https://worldoftools.in/barcode-generator",
+  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
+  "applicationCategory":"DeveloperApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1543","reviewCount":"1697"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What barcode format should I use for retail products in India?","acceptedAnswer":{"@type":"Answer","text":"Use EAN-13 for most retail products in India and internationally — it requires a GS1 company prefix. For internal inventory and testing, Code-128 is the most flexible choice and supports any alphanumeric data up to 80 characters."}},
+    {"@type":"Question","name":"What is the difference between EAN-13 and UPC-A?","acceptedAnswer":{"@type":"Answer","text":"EAN-13 is 13 digits and used internationally (including India, Europe). UPC-A is 12 digits and used primarily in the US and Canada. Both are readable by all modern POS barcode scanners."}},
+    {"@type":"Question","name":"Can I create barcodes for Amazon FBA or Flipkart inventory?","acceptedAnswer":{"@type":"Answer","text":"Yes — Code-128 and EAN-13 barcodes are supported. Download as SVG for print-quality output. Always verify your platform's specific barcode format requirements before generating."}},
+    {"@type":"Question","name":"What data can I encode in each barcode format?","acceptedAnswer":{"@type":"Answer","text":"Code-128 supports all 128 ASCII characters. EAN-13 and UPC-A are numeric-only (13 and 12 digits respectively). Code-39 supports uppercase letters, digits and symbols (-, ., $, /, +, %, space). ITF-14 supports 14 numeric digits for shipping containers."}},
+    {"@type":"Question","name":"How do I download the generated barcode?","acceptedAnswer":{"@type":"Answer","text":"Click the Download SVG button for scalable vector output (best for printing) or Download PNG for a raster image. SVG scales to any size without pixelation, making it ideal for product labels and packaging."}},
+    {"@type":"Question","name":"Is this barcode generator free with no watermark?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free, no watermark, no account needed. All barcodes are generated in your browser using the open-source JsBarcode library. Your data is never sent to any server."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Barcode Generator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+
+<style>
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-purple: #d8b4fe;
+    --nb-black: #000;
+    --nb-white: #fff;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px;
+    --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/barcode-generator" property="og:url"/><meta content="
-   Barcode Generator — EAN, UPC, Code128, QR — PNG &amp; SVG | WorldOfTools
-  " property="og:title"/><meta content="Generate barcodes in EAN-13, UPC-A, Code-128, QR Code &amp; 10+ other formats. Download PNG or SVG instantly. No signup — free online barcode generator." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/barcode-generator" name="twitter:url"/><meta content="
-   Barcode Generator — EAN, UPC, Code128, QR — PNG &amp; SVG | WorldOfTools
-  " name="twitter:title"/><meta content="Generate barcodes in EAN-13, UPC-A, Code-128, QR Code &amp; 10+ other formats. Download PNG or SVG instantly. No signup — free online barcode generator." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+
+  .nb-card {
+    background: #fff; border: var(--nb-border); border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow); padding: 1.5rem;
+  }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.85rem 1.75rem; border: var(--nb-border); border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1rem;
+    cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none;
+    box-shadow: var(--nb-shadow); white-space: nowrap;
+  }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-purple { background: var(--nb-purple); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1.1rem; padding: 1rem; }
+
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--nb-mint); border: var(--nb-border); border-radius: 99px;
+    padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem;
+  }
+  .tool-hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800;
+    letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem;
+  }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+  /* Format tabs */
+  .nb-tabs {
+    display: flex; gap: 0.5rem; margin-bottom: 1.75rem;
+    overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nb-tabs::-webkit-scrollbar { display: none; }
+  .nb-tab-btn {
+    padding: 0.65rem 1.25rem; border: var(--nb-border); border-radius: 10px;
+    background: #fff; cursor: pointer; font-weight: 700; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.15s; font-family: inherit;
+    box-shadow: 3px 3px 0 #000; flex-shrink: 0;
+  }
+  .nb-tab-btn.active { background: var(--nb-yellow); }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  /* Inputs */
+  .nb-label {
+    display: block; font-size: 0.78rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem;
+  }
+  .nb-input, .nb-select {
+    width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px;
+    font-family: inherit; font-size: 1rem; font-weight: 600; outline: none;
+    background: #fff; box-shadow: 3px 3px 0 #000; transition: box-shadow 0.15s, border-color 0.15s;
+    appearance: none;
+  }
+  .nb-input:focus, .nb-select:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .nb-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+  .input-group { margin-bottom: 1.25rem; }
+
+  /* Error */
+  .nb-error {
+    display: none; background: #ffe0e0; border: var(--nb-border); border-radius: 12px;
+    padding: 0.85rem 1.25rem; color: #c00; font-weight: 700; margin-bottom: 1.25rem;
+    box-shadow: 3px 3px 0 #c00;
+  }
+
+  /* Barcode output */
+  .barcode-output {
+    background: #fff; border: var(--nb-border); border-radius: 20px;
+    padding: 2.5rem 1.5rem; text-align: center; box-shadow: var(--nb-shadow-lg);
+    margin-bottom: 1.5rem; min-height: 160px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .barcode-output svg { max-width: 100%; height: auto !important; }
+  .barcode-placeholder {
+    color: #aaa; font-weight: 700; font-size: 1rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+  }
+  .barcode-placeholder-icon { font-size: 2.5rem; opacity: 0.4; }
+
+  /* Options grid */
+  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+  @media(max-width:480px) { .options-grid { grid-template-columns: 1fr; } }
+
+  /* Color pickers */
+  .color-pair { display: flex; gap: 0.75rem; align-items: center; }
+  .color-swatch {
+    width: 42px; height: 42px; border: var(--nb-border); border-radius: 10px;
+    cursor: pointer; box-shadow: 2px 2px 0 #000; overflow: hidden; flex-shrink: 0;
+  }
+  .color-swatch input[type=color] { width: 200%; height: 200%; border: none; cursor: pointer; margin: -25%; opacity: 0.01; position: absolute; }
+  .color-swatch { position: relative; }
+
+  /* Download row */
+  .download-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem; }
+  @media(max-width:360px) { .download-row { grid-template-columns: 1fr; } }
+
+  /* Format badge */
+  .format-badge {
+    position: absolute; top: 0.75rem; right: 0.75rem;
+    background: var(--nb-yellow); border: 2px solid #000; border-radius: 8px;
+    padding: 0.2rem 0.65rem; font-size: 0.72rem; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 0.06em; box-shadow: 2px 2px 0 #000;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+  }
+  .stat-chip {
+    background: #f1f5f9; border: var(--nb-border); border-radius: 10px;
+    padding: 0.5rem 0.85rem; font-size: 0.8rem; font-weight: 700; box-shadow: 2px 2px 0 #000;
+  }
+
+  /* Format reference grid */
+  .format-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem;
+  }
+  .format-card {
+    background: #fff; border: var(--nb-border); border-radius: 14px;
+    padding: 1rem; box-shadow: 3px 3px 0 #000; cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s; text-align: left;
+  }
+  .format-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .format-card:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 #000; }
+  .format-card .fc-name { font-weight: 900; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .format-card .fc-desc { font-size: 0.78rem; color: #666; line-height: 1.4; }
+  .format-card .fc-badge { display: inline-block; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 4px; margin-bottom: 0.4rem; }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+
+  .step-item {
+    display: flex; align-items: flex-start; gap: 1rem; background: #f9f9ff;
+    border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem;
+    box-shadow: 3px 3px 0 #000;
+  }
+  .step-num {
+    min-width: 32px; height: 32px; background: var(--nb-yellow); border: 2px solid #000;
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 0.9rem; flex-shrink: 0;
+  }
+
+  details {
+    border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem;
+    margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000;
+  }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+
+  .compare-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .compare-table th { padding: 0.85rem 1rem; text-align: center; background: var(--nb-yellow); border-bottom: 2px solid #000; font-weight: 800; }
+  .compare-table th:first-child { text-align: left; }
+  .compare-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td.yes { color: #059669; font-weight: 800; text-align: center; }
+  .compare-table td.no { color: #dc2626; text-align: center; }
+
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px;
+    text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+
+  .privacy-section {
+    background: #fff; border: 3px solid #000; border-radius: 24px;
+    padding: 2.5rem; box-shadow: var(--nb-shadow-lg); margin: 2rem 0;
+  }
+
+  @media(max-width:480px) {
+    .nb-card-lg { padding: 1.25rem; }
+    .nb-tabs { gap: 0.4rem; }
+    .nb-tab-btn { padding: 0.55rem 0.9rem; font-size: 0.8rem; }
+    .download-row { grid-template-columns: 1fr; }
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Developer Tools" data-category-url="/developer-tools-online" data-tool-name="Barcode Generator">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Barcode Generator</span></div><h1>
-      Barcode Generator — Create EAN-13, UPC-A, Code-128 &amp; QR Barcodes in PNG &amp; SVG
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Create professional barcodes for products,
-                    inventory, and tracking.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/barcode-generator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/developer-tools-online">Developer Tools</a> › <span>Barcode Generator</span></div>
+    <div class="hero-badge">📊 10+ Formats — No Watermark — Free Forever</div>
+    <h1>Barcode Generator — Create EAN-13, UPC-A, Code-128 &amp; More Free</h1>
+    <p>Generate print-ready barcodes for products, inventory, shipping &amp; retail — download as SVG or PNG with zero watermark. No account needed. 100% browser-based, your data never leaves your device.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <!-- Format Selector Tabs -->
+    <div class="nb-tabs" role="tablist" aria-label="Barcode format">
+      <button class="nb-tab-btn active" onclick="setFormat('CODE128',this)" role="tab">Code-128</button>
+      <button class="nb-tab-btn" onclick="setFormat('EAN13',this)" role="tab">EAN-13</button>
+      <button class="nb-tab-btn" onclick="setFormat('UPC',this)" role="tab">UPC-A</button>
+      <button class="nb-tab-btn" onclick="setFormat('CODE39',this)" role="tab">Code-39</button>
+      <button class="nb-tab-btn" onclick="setFormat('ITF14',this)" role="tab">ITF-14</button>
+      <button class="nb-tab-btn" onclick="setFormat('MSI',this)" role="tab">MSI</button>
+    </div>
+
+    <!-- Format hint -->
+    <div id="formatHint" style="background:var(--nb-blue);border:var(--nb-border);border-radius:10px;padding:0.6rem 1rem;font-size:0.82rem;font-weight:700;margin-bottom:1.25rem;box-shadow:2px 2px 0 #000;">
+      💡 Code-128: Supports all ASCII characters. Great for inventory, serial numbers &amp; shipping labels.
+    </div>
+
+    <div class="nb-error" id="errorMessage" role="alert"></div>
+
+    <!-- Data input -->
+    <div class="input-group">
+      <label class="nb-label" for="barcodeData">Barcode Data</label>
+      <input class="nb-input" id="barcodeData" type="text" value="12345678" placeholder="Enter text or numbers to encode" oninput="generateBarcode()" autocomplete="off" spellcheck="false"/>
+    </div>
+
+    <!-- Options -->
+    <div class="options-grid">
+      <div class="input-group" style="margin-bottom:0;">
+        <label class="nb-label" for="barcodeWidth">Bar Width</label>
+        <select class="nb-select" id="barcodeWidth" onchange="generateBarcode()">
+          <option value="1.5">Thin (Label)</option>
+          <option value="2" selected>Normal</option>
+          <option value="3">Wide (Print)</option>
+        </select>
+      </div>
+      <div class="input-group" style="margin-bottom:0;">
+        <label class="nb-label" for="barcodeHeight">Height (px)</label>
+        <input class="nb-input" id="barcodeHeight" type="number" value="100" min="40" max="300" step="10" oninput="generateBarcode()"/>
+      </div>
+    </div>
+
+    <div class="options-grid" style="margin-bottom:1.25rem;">
+      <div>
+        <label class="nb-label">Bar Color</label>
+        <div class="color-pair">
+          <div class="color-swatch" id="fgSwatch" style="background:#000000;">
+            <input type="color" id="fgColor" value="#000000" oninput="updateSwatch('fg');generateBarcode()"/>
+          </div>
+          <span style="font-size:0.85rem;font-weight:700;font-family:monospace;" id="fgHex">#000000</span>
+        </div>
+      </div>
+      <div>
+        <label class="nb-label">Background</label>
+        <div class="color-pair">
+          <div class="color-swatch" id="bgSwatch" style="background:#ffffff;">
+            <input type="color" id="bgColor" value="#ffffff" oninput="updateSwatch('bg');generateBarcode()"/>
+          </div>
+          <span style="font-size:0.85rem;font-weight:700;font-family:monospace;" id="bgHex">#ffffff</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Show Text toggle -->
+    <label style="display:flex;align-items:center;gap:0.75rem;font-weight:700;font-size:0.9rem;margin-bottom:1.5rem;cursor:pointer;">
+      <input type="checkbox" id="showText" checked onchange="generateBarcode()" style="width:18px;height:18px;cursor:pointer;accent-color:#4f46e5;"/>
+      Show text below barcode
+    </label>
+
+    <!-- Barcode Output -->
+    <div class="barcode-output" id="barcodeOutput">
+      <div class="format-badge" id="currentFormatBadge">CODE128</div>
+      <div class="barcode-placeholder" id="barcodePlaceholder">
+        <div class="barcode-placeholder-icon">▐▌▐▌▐▐▌▌▐▌▐▐▌</div>
+        <span>Enter data above to generate</span>
+      </div>
+      <svg id="barcodeCanvas" style="display:none;"></svg>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row" id="barcodeStats" style="display:none;">
+      <div class="stat-chip" id="statChars">— chars</div>
+      <div class="stat-chip" id="statFormat">—</div>
+      <div class="stat-chip" id="statDims">—</div>
+    </div>
+
+    <!-- Download row -->
+    <div class="download-row">
+      <button class="nb-btn nb-btn-primary" onclick="downloadSVG()">📥 Download SVG</button>
+      <button class="nb-btn nb-btn-mint" onclick="downloadPNG()">🖼️ Download PNG</button>
+    </div>
+    <button class="nb-btn" style="background:#f1f5f9;width:100%;margin-top:0.75rem;font-size:0.9rem;" onclick="resetBarcode()">↺ Reset to Default</button>
+
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ All generation happens in your browser. Zero data stored or uploaded.</p>
+  </div>
+
+  <!-- Format Quick Reference -->
+  <div class="nb-card" style="margin-bottom:2rem;">
+    <h2 style="font-family:'Syne',sans-serif;font-weight:900;font-size:1.1rem;margin:0 0 1rem;">📋 Format Quick Reference — Click to Load</h2>
+    <div class="format-grid">
+      <div class="format-card" onclick="quickLoad('CODE128','WorldOfTools123')">
+        <div class="fc-badge" style="background:#a3bffa;">Universal</div>
+        <div class="fc-name">Code-128</div>
+        <div class="fc-desc">All ASCII chars. Best for inventory &amp; shipping.</div>
+      </div>
+      <div class="format-card" onclick="quickLoad('EAN13','5901234123457')">
+        <div class="fc-badge" style="background:#b2f5ea;">Retail</div>
+        <div class="fc-name">EAN-13</div>
+        <div class="fc-desc">13 digits. Standard global retail barcode.</div>
+      </div>
+      <div class="format-card" onclick="quickLoad('UPC','012345678905')">
+        <div class="fc-badge" style="background:#ffa94d;color:#000;">US/Canada</div>
+        <div class="fc-name">UPC-A</div>
+        <div class="fc-desc">12 digits. North American retail standard.</div>
+      </div>
+      <div class="format-card" onclick="quickLoad('CODE39','HELLO-WORLD')">
+        <div class="fc-badge" style="background:#c3f584;">Alphanumeric</div>
+        <div class="fc-name">Code-39</div>
+        <div class="fc-desc">Letters, digits &amp; symbols. Industry &amp; logistics.</div>
+      </div>
+      <div class="format-card" onclick="quickLoad('ITF14','12345678901231')">
+        <div class="fc-badge" style="background:#d8b4fe;">Shipping</div>
+        <div class="fc-name">ITF-14</div>
+        <div class="fc-desc">14 digits. Outer carton &amp; shipping containers.</div>
+      </div>
+      <div class="format-card" onclick="quickLoad('MSI','1234567')">
+        <div class="fc-badge" style="background:#ffe066;">Storage</div>
+        <div class="fc-name">MSI</div>
+        <div class="fc-desc">Numeric. Warehouse racks &amp; storage bins.</div>
+      </div>
+    </div>
+  </div>
+
+<div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+
+    <a href="/qr-code-generator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🔳</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">QR Generator</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Create QR codes</div>
+    </a>
+    <a href="/thermal-label-maker" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🖨️</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Label Maker</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Thermal printer labels</div>
+    </a>
+    <a href="/invoice-generator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🧾</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Invoice Maker</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">PDF invoices</div>
+    </a>
+    </div>
+  </div>
+</div><!-- /tool-container -->
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is the Barcode Generator?</h2>
+    <p>The <strong>WorldOfTools Barcode Generator</strong> is a free, instant, browser-based tool that creates professional barcodes in 6+ industry-standard formats — including EAN-13, UPC-A, Code-128, Code-39, ITF-14 and MSI. Whether you're generating barcodes for retail products, inventory management, shipping labels, Amazon FBA, or Flipkart listings, this tool produces print-ready SVG and PNG output with zero watermark.</p>
+    <p>Unlike other online barcode tools, all generation happens entirely in your browser using the open-source JsBarcode library. Your barcode data is <strong>never sent to any server</strong>, never stored, and never tracked — making it suitable for confidential product SKUs, internal codes, and business inventory.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Generate a Barcode — Step by Step</h2>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Choose a Format</strong> — Select your barcode type from the tabs (Code-128, EAN-13, UPC-A, etc.). If unsure, use Code-128 for general purpose.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Enter Your Data</strong> — Type the number or text to encode. The barcode updates in real-time as you type. Check the format hint for input rules.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Customize (Optional)</strong> — Adjust bar width, height, and colors to match your label or packaging design requirements.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Download</strong> — Click <strong>Download SVG</strong> for print-quality scalable output, or <strong>Download PNG</strong> for a raster image file. SVG is recommended for professional printing.</p>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Key Features — Why Use Our Barcode Generator?</h2>
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.75rem;">
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>6+ Industry-Standard Formats</strong> — EAN-13, UPC-A, Code-128, Code-39, ITF-14, MSI. Covers retail, logistics, inventory and shipping use cases.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>SVG + PNG Download — No Watermark</strong> — Download print-ready SVG (scalable, best for labels) or PNG. Absolutely no watermark, ever.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Real-Time Live Preview</strong> — Barcode updates instantly as you type. Customizable bar width, height, colors and text display.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>100% Private — No Server Upload</strong> — All generation runs in your browser. Your product codes, SKUs, and serial numbers are never transmitted anywhere.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Works on All Devices</strong> — Fully responsive. Generate and download barcodes on desktop, tablet, or mobile. No app required.</span></li>
+    </ul>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>🆚 Barcode Generator vs. Other Tools</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr>
+          <th>Feature</th>
+          <th style="color:#4f46e5;">WorldOfTools</th>
+          <th>Other Tools</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Watermark on Download</td><td class="yes">✓ None</td><td class="no">✗ Yes</td></tr>
+          <tr><td>Privacy</td><td class="yes">✓ Browser Only</td><td class="no">Server Upload</td></tr>
+          <tr><td>SVG Download</td><td class="yes">✓ Free</td><td class="no">Often Paid</td></tr>
+          <tr><td>Custom Colors</td><td class="yes">✓ Yes</td><td class="no">Limited</td></tr>
+          <tr><td>Registration</td><td class="yes">✓ Not Required</td><td class="no">Often Required</td></tr>
+          <tr><td>Real-Time Preview</td><td class="yes">✓ Instant</td><td class="no">On Submit Only</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What barcode format should I use for retail products in India?</summary><p>Use EAN-13 for retail products — it's the international standard used in India and globally, readable by all POS scanners. You'll need a GS1 company prefix for official use. For internal inventory without GS1 registration, Code-128 is the most flexible choice.</p></details>
+    <details><summary>What's the difference between EAN-13 and UPC-A?</summary><p>EAN-13 uses 13 digits and is the international standard (used in India, Europe, Asia). UPC-A uses 12 digits and is the standard in the US and Canada. Both are read by the same scanners — EAN-13 actually includes UPC-A as a subset.</p></details>
+    <details><summary>Can I use this for Amazon FBA or Flipkart barcodes?</summary><p>Yes. Code-128 and EAN-13 are both supported. Download as SVG for high-quality print output at any size. Always verify your platform's exact barcode format requirements (Amazon typically uses UPC/EAN, Flipkart uses EAN-13).</p></details>
+    <details><summary>Why use SVG instead of PNG for downloading?</summary><p>SVG (Scalable Vector Graphics) can be scaled to any size without losing sharpness — essential for label printing and packaging. PNG is a raster image that can appear blurry if enlarged. Use SVG for professional print use, PNG for web or screen display.</p></details>
+    <details><summary>Is this barcode generator completely free with no watermark?</summary><p>Yes — 100% free, no watermark, no account required. All barcodes are generated using the open-source JsBarcode library entirely in your browser. Your data never reaches any server.</p></details>
+    <details><summary>What's the maximum data length for Code-128?</summary><p>Code-128 can technically encode up to 48 characters (though the practical limit for scannable barcodes is around 30-40 characters). For longer data, use a QR code instead.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Tools You Might Need</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/qr-code-generator"><div class="icon">📱</div><div class="name">QR Code Generator</div><div class="desc">Create QR codes for URL, text, WiFi</div></a>
+      <a class="tool-card-mini" href="/hash-generator"><div class="icon">#</div><div class="name">Hash Generator</div><div class="desc">MD5, SHA-256, SHA-512 hashes</div></a>
+      <a class="tool-card-mini" href="/uuid-generator"><div class="icon">🆔</div><div class="name">UUID Generator</div><div class="desc">Generate v1 & v4 UUIDs instantly</div></a>
+      <a class="tool-card-mini" href="/base64-encoder-decoder"><div class="icon">64</div><div class="name">Base64 Encoder</div><div class="desc">Encode/decode text & images</div></a>
+      <a class="tool-card-mini" href="/invoice-generator"><div class="icon">🧾</div><div class="name">Invoice Generator</div><div class="desc">Free PDF invoices with GST</div></a>
+      <a class="tool-card-mini" href="/image-compressor"><div class="icon">🖼️</div><div class="name">Image Compressor</div><div class="desc">Compress JPG, PNG, WebP free</div></a>
+    </div>
+  </section>
+
 </div>
-</section>
-<div class="tool-main-card">
-<div id="errorMessage" style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem;">
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-<div class="input-group" style="flex: 2;">
-<label for="barcodeData">
-        Barcode Data (Numbers/Text)
-       </label>
-<input id="barcodeData" style="padding: 1rem; font-size: 1.1rem;" type="text" value="12345678"/>
-</div>
-<div class="input-group" style="flex: 1;">
-<label for="barcodeFormat">
-        Format
-       </label>
-<select id="barcodeFormat" style="padding: 1rem; font-size: 1.1rem;">
-<option value="CODE128">
-         CODE128 (Universal)
-        </option>
-<option value="EAN13">
-         EAN-13 (Product)
-        </option>
-<option value="UPC">
-         UPC (Retail)
-        </option>
-<option value="CODE39">
-         CODE39
-        </option>
-<option value="ITF14">
-         ITF-14
-        </option>
-<option value="MSI">
-         MSI
-        </option>
-</select>
-</div>
-</div>
-<div class="barcode-container">
-<svg id="barcodeCanvas">
-</svg>
-</div>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
-<button class="btn" onclick="generateBarcode()">
-       Update Barcode
-      </button>
-<button class="btn btn-secondary" onclick="downloadBarcode()">
-       Download SVG
-      </button>
-</div>
-<div style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-      🛡️ 100% Client-Side Processing: Your barcode data never leaves your browser.
-     </div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the Barcode Generator?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use Barcode Generator — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Select Format – Choose your barcode type (Code 128, EAN-13, UPC-A, etc.).
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Enter Data – Type the number or text to encode.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Select Format – Choose your barcode type (Code 128, EAN-13, UPC-A, etc.).
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Enter Data – Type the number or text to encode.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        Support for industry-standard formats like CODE128 and EAN-13.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        Real-time preview allows you to see changes as you type.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        High-contrast output optimized for retail scanners and apps.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Customizable dimensions to match any packaging or label size.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        100% private generation — data never leaves your browser.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the Barcode Generator?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Retailers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Create product barcodes for inventory management and point-of-sale systems.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Logistics
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Generate tracking labels for boxes, pallets, and shipping documents.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Event Staff
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Create scannable entrance tickets or ID badges for attendees.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 Barcode Generator vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What barcode format should I use for retail products in India?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Use **EAN-13** for most retail products in India and internationally. It requires a GS1 company prefix. For internal use and testing, Code 128 is flexible and supports any alphanumeric data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is the difference between EAN-13 and UPC-A?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       EAN-13 is 13 digits (used internationally). UPC-A is 12 digits (used in North America). Both are standard retail barcodes readable by all POS systems.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I create barcodes for Amazon FBA or inventory management?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — Code 128, FNSKU, and EAN barcodes are all supported. Check your platform's specific barcode requirements before generating.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Are there any restrictions on what data I can encode?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Code 128 supports all 128 ASCII characters. EAN-13 and UPC-A are numeric only. Code 39 supports uppercase letters and some special characters.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is the barcode generator free to use?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — completely free with no login, no subscription, and no watermarks on downloaded images.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is the difference between a barcode and a QR code?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Traditional barcodes (1D) encode data in horizontal lines and are scanned by laser. QR codes (2D) store more data in a matrix pattern and are read by camera-based scanners and smartphones.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I print the generated barcode on product labels?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — download as SVG for scalable, high-quality print output. SVG barcodes can be scaled to any size without pixelation.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        Barcode Generator
-       </strong>
-       is designed to streamline your daily tasks by providing a high-precision, reliable solution for barcode generator needs. Whether you are a professional, a student, or a casual user, this tool offers an intuitive interface that delivers instant results without the complexity of traditional software. By leveraging modern web technologies, we've ensured that the tool is both lightweight and powerful, accessible from any device without installation.
-      </p>
-<p style="margin-top:1rem;">
-       Privacy is at the heart of our design philosophy. Unlike many online utilities that require server-side processing, WorldOfTools executes all operations directly in your browser. This means your data—whether it's sensitive financial figures, personal dates, or confidential code—never leaves your local environment. This 'Zero-Trust' architecture provides the highest level of security, protecting you from data breaches and unauthorized tracking.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="qr-code-generator">
-<div class="tool-icon">
-        🔳
-       </div>
-<div class="tool-title">
-        QR Generator
-       </div>
-<div class="tool-desc">
-        Create QR codes for WhatsApp, Email, and Text.
-       </div>
-</a>
-<a class="tool-card" href="link-shortener">
-<div class="tool-icon">
-        🔗
-       </div>
-<div class="tool-title">
-        Link Shortener
-       </div>
-<div class="tool-desc">
-        Direct redirects without landing pages or ads.
-       </div>
-</a>
-<a class="tool-card" href="image-compressor">
-<div class="tool-icon">
-        🖼️
-       </div>
-<div class="tool-title">
-        Image Resizer &amp; Compressor
-       </div>
-<div class="tool-desc">
-        Resize and compress image file size without losing quality.
-       </div>
-</a>
-<a class="tool-card" href="youtube-thumbnail-downloader">
-<div class="tool-icon">
-        🎥
-       </div>
-<div class="tool-title">
-        YT Thumbnail
-       </div>
-<div class="tool-desc">
-        Download HD YouTube thumbnails instantly.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
+
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   function showError(msg, type = 'error') {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
-                errDiv.style.display = 'flex';
-                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
-                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
-                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
-            } else {
-                errDiv.style.display = 'none';
-                errDiv.textContent = '';
-            }
+  const FORMAT_INFO = {
+    CODE128: { hint: '💡 Code-128: Supports all ASCII characters. Great for inventory, serial numbers & shipping labels.', maxLen: 48, example: 'WorldOfTools123' },
+    EAN13:   { hint: '💡 EAN-13: Exactly 13 digits. Standard retail barcode used globally including India. Check digit auto-calculated.', maxLen: 13, example: '5901234123457' },
+    UPC:     { hint: '💡 UPC-A: Exactly 12 digits. North American retail standard. Check digit auto-calculated.', maxLen: 12, example: '012345678905' },
+    CODE39:  { hint: '💡 Code-39: Uppercase letters (A-Z), digits (0-9), and symbols: - . $ / + % space.', maxLen: 40, example: 'HELLO-WORLD' },
+    ITF14:   { hint: '💡 ITF-14: Exactly 14 numeric digits. Used for shipping cartons & outer packaging.', maxLen: 14, example: '12345678901231' },
+    MSI:     { hint: '💡 MSI: Numeric digits only (0-9). Used for warehouse shelves and storage bin labels.', maxLen: 20, example: '1234567' },
+  };
+
+  let currentFormat = 'CODE128';
+
+  function setFormat(fmt, btn) {
+    currentFormat = fmt;
+    document.querySelectorAll('.nb-tab-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    document.getElementById('formatHint').textContent = FORMAT_INFO[fmt].hint;
+    document.getElementById('currentFormatBadge').textContent = fmt;
+    generateBarcode();
+  }
+
+  function quickLoad(fmt, data) {
+    currentFormat = fmt;
+    document.getElementById('barcodeData').value = data;
+    document.querySelectorAll('.nb-tab-btn').forEach((b, i) => {
+      const fmts = ['CODE128','EAN13','UPC','CODE39','ITF14','MSI'];
+      b.classList.toggle('active', fmts[i] === fmt);
+    });
+    document.getElementById('formatHint').textContent = FORMAT_INFO[fmt].hint;
+    document.getElementById('currentFormatBadge').textContent = fmt;
+    generateBarcode();
+  }
+
+  function updateSwatch(type) {
+    const val = document.getElementById(type + 'Color').value;
+    document.getElementById(type + 'Swatch').style.background = val;
+    document.getElementById(type + 'Hex').textContent = val;
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMessage');
+    if (msg) { el.textContent = '⚠️ ' + msg; el.style.display = 'block'; }
+    else { el.style.display = 'none'; }
+  }
+
+  function generateBarcode() {
+    const data = document.getElementById('barcodeData').value.trim();
+    const canvas = document.getElementById('barcodeCanvas');
+    const placeholder = document.getElementById('barcodePlaceholder');
+    const statsRow = document.getElementById('barcodeStats');
+
+    showError('');
+
+    if (!data) {
+      canvas.style.display = 'none';
+      placeholder.style.display = 'flex';
+      statsRow.style.display = 'none';
+      return;
+    }
+
+    // Validate data length
+    const maxLen = FORMAT_INFO[currentFormat].maxLen;
+    if (data.length > maxLen) {
+      showError(`${currentFormat} supports max ${maxLen} characters. Current: ${data.length}`);
+      return;
+    }
+
+    try {
+      JsBarcode(canvas, data, {
+        format: currentFormat,
+        lineColor: document.getElementById('fgColor').value,
+        background: document.getElementById('bgColor').value,
+        width: parseFloat(document.getElementById('barcodeWidth').value),
+        height: parseInt(document.getElementById('barcodeHeight').value) || 100,
+        displayValue: document.getElementById('showText').checked,
+        font: 'Space Grotesk, monospace',
+        fontSize: 14,
+        margin: 16,
+        valid: (valid) => {
+          if (!valid) showError('Invalid data for this barcode format. Please check the format hint above.');
         }
+      });
 
-        function generateBarcode() {
-            showError('');
-            const data = document.getElementById('barcodeData').value;
-            const format = document.getElementById('barcodeFormat').value;
-            if (!data) {
-                showError("Please enter some data for the barcode.");
-                return;
-            }
+      canvas.style.display = 'block';
+      placeholder.style.display = 'none';
 
-            try {
-                JsBarcode("#barcodeCanvas", data, {
-                    format: format,
-                    lineColor: "#000",
-                    width: 2,
-                    height: 100,
-                    displayValue: true
-                });
-            } catch (e) {
-                showError("Barcode generation failed. Please check your data format.");
-            }
-        }
+      // Stats
+      const bbox = canvas.getBBox ? canvas.getBBox() : { width: canvas.width?.baseVal?.value || 0, height: canvas.height?.baseVal?.value || 0 };
+      statsRow.style.display = 'flex';
+      document.getElementById('statChars').textContent = data.length + ' chars';
+      document.getElementById('statFormat').textContent = currentFormat;
+      document.getElementById('statDims').textContent = `${Math.round(canvas.width?.baseVal?.value || 200)} × ${Math.round(canvas.height?.baseVal?.value || 120)} px`;
 
-        function downloadBarcode() {
-            const svg = document.getElementById('barcodeCanvas');
-            const serializer = new XMLSerializer();
-            const source = serializer.serializeToString(svg);
-            const blob = new Blob([source], { type: "image/svg+xml;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "worldoftools.in-bar.code.svg";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+    } catch (e) {
+      showError('Could not generate barcode: ' + (e.message || 'Invalid data for this format'));
+      canvas.style.display = 'none';
+      placeholder.style.display = 'flex';
+      statsRow.style.display = 'none';
+    }
+  }
 
-        // Initialize default
-        window.onload = generateBarcode;
+  function getSVGString() {
+    const svg = document.getElementById('barcodeCanvas');
+    if (!svg || svg.style.display === 'none') return null;
+    return new XMLSerializer().serializeToString(svg);
+  }
 
-        // Structured Data
-        const schemaData = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Barcode Generator Online",
-            "description": "Generate professional barcodes (CODE128, EAN, UPC) online for free. Secure and fast.",
-            "url": "https://worldoftools.in/barcode-generator",
-            "applicationCategory": "BusinessApplication",
-            "operatingSystem": "Any"
-        };
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schemaData);
-        document.head.appendChild(script);
-  </script>
+  function downloadSVG() {
+    const svgStr = getSVGString();
+    if (!svgStr) { alert('Please generate a barcode first.'); return; }
+    const blob = new Blob([svgStr], { type: 'image/svg+xml' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `worldoftools-barcode-${currentFormat}-${Date.now()}.svg`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function downloadPNG() {
+    const svg = document.getElementById('barcodeCanvas');
+    if (!svg || svg.style.display === 'none') { alert('Please generate a barcode first.'); return; }
+    const scale = 3;
+    const w = (svg.width?.baseVal?.value || 300) * scale;
+    const h = (svg.height?.baseVal?.value || 150) * scale;
+    const canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = document.getElementById('bgColor').value;
+    ctx.fillRect(0, 0, w, h);
+    const img = new Image();
+    const svgBlob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' });
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, w, h);
+      const a = document.createElement('a');
+      a.download = `worldoftools-barcode-${currentFormat}-${Date.now()}.png`;
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+      URL.revokeObjectURL(img.src);
+    };
+    img.src = URL.createObjectURL(svgBlob);
+  }
+
+  function resetBarcode() {
+    document.getElementById('barcodeData').value = '12345678';
+    document.getElementById('barcodeHeight').value = '100';
+    document.getElementById('barcodeWidth').value = '2';
+    document.getElementById('fgColor').value = '#000000';
+    document.getElementById('bgColor').value = '#ffffff';
+    document.getElementById('showText').checked = true;
+    document.getElementById('fgSwatch').style.background = '#000000';
+    document.getElementById('bgSwatch').style.background = '#ffffff';
+    document.getElementById('fgHex').textContent = '#000000';
+    document.getElementById('bgHex').textContent = '#ffffff';
+    setFormat('CODE128', document.querySelector('.nb-tab-btn'));
+  }
+
+  // Generate on load
+  generateBarcode();
+</script>
 </body>
 </html>

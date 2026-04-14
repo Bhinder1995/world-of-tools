@@ -1,825 +1,507 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Color Converter — HEX ↔ RGB ↔ HSL ↔ CMYK, Instant | WorldOfTools
-  </title>
-<meta content="Convert colours between HEX, RGB, RGBA, HSL, HSLA &amp; CMYK instantly. Colour picker included. No login — free online colour converter for designers &amp; devs." name="description"/>
-<meta content="convert HEX to RGB online, HEX to HSL converter, RGB to CMYK converter, color code converter free, what is HEX color code, how to convert RGB to HSL, CSS color format converter, color converter hex rgb hsl, hex to rgb converter, color code converter online" name="keywords"/>
+<title>Color Converter Free Online — HEX to RGB, HSL, CMYK, HSV Color Code Converter | WorldOfTools</title>
+<meta content="Free online color converter — convert HEX to RGB, RGB to HSL, CMYK, HSV instantly with a live visual color picker. CSS-ready output. No login, 100% browser-based color code converter tool." name="description"/>
+<meta content="convert HEX to RGB online, HEX to HSL converter, RGB to CMYK converter free, color code converter online, CSS color picker tool, HEX color code converter, what is HEX color code, how to convert RGB to HSL, color format converter tool, color converter hex rgb hsl cmyk, web color picker, CSS color values online, color to hex converter, HSV to RGB online, HTML color code generator, color value calculator" name="keywords"/>
 <link href="https://worldoftools.in/color-converter" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   .color-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: flex-start;
-        }
-
-        @media (max-width: 900px) {
-            .color-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .preview-box {
-            width: 100%;
-            height: 200px;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 2rem;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .preview-text {
-            font-weight: 800;
-            font-size: 1.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .color-inputs {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .input-with-btn {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .input-with-btn input {
-            flex: 1;
-        }
-
-        .color-picker-container {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        #colorPicker {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            width: 80px;
-            height: 80px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        #colorPicker::-webkit-color-swatch {
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        #colorPicker::-moz-color-swatch {
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .copy-tag {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/color-converter" property="og:url"/>
+<meta content="Color Converter — HEX to RGB, HSL, CMYK & More | WorldOfTools" property="og:title"/>
+<meta content="Convert HEX to RGB, HSL, CMYK, HSV instantly with live color preview. Free CSS color converter — no login required." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Color Converter — HEX to RGB, HSL, CMYK | WorldOfTools" name="twitter:title"/>
+<meta content="Free online color converter with live preview. No login required." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffa94d"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/color-converter"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Color Converter",
-      "item": "https://worldoftools.in/color-converter"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://worldoftools.in/developer-tools"},
+    {"@type":"ListItem","position":3,"name":"Color Converter","item":"https://worldoftools.in/color-converter"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the difference between HEX and RGB?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "HEX is a hexadecimal string representation used in CSS (e.g., `#FF5733`). RGB expresses the same color as decimal red, green, blue channels 0\u2013255 (e.g., `rgb(255, 87, 51)`). They represent the same colors differently."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "When should I use HSL?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "HSL (Hue, Saturation, Lightness) is ideal for creating color variations \u2014 adjust lightness to create tints/shades or saturation to create muted tones."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is CMYK used for?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "CMYK is used in print design (Cyan, Magenta, Yellow, Key/Black). Convert RGB/HEX to CMYK when preparing designs for professional printing."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is there a difference between HSL and HSB?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 HSL uses Lightness (0% = black, 100% = white), while HSB/HSV uses Brightness/Value (0% = black, 100% = full color). They're different color models despite similar names."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Color Converter",
+  "image":"https://worldoftools.in/app-icon.png",
+  "description":"Free online color converter. Convert HEX to RGB, RGB to HSL, CMYK and more instantly with visual color picker.",
+  "operatingSystem":"Any","applicationCategory":"UtilitiesApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1432","reviewCount":"1575"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do I convert HEX to RGB?","acceptedAnswer":{"@type":"Answer","text":"A HEX color like #FF6B9D splits into three 2-digit hex pairs: FF=255 (R), 6B=107 (G), 9D=157 (B). So #FF6B9D = rgb(255, 107, 157). Use this converter to do it instantly."}},
+    {"@type":"Question","name":"What is the difference between RGB and CMYK?","acceptedAnswer":{"@type":"Answer","text":"RGB (Red, Green, Blue) is an additive color model used for screens and digital displays. CMYK (Cyan, Magenta, Yellow, Black) is a subtractive color model used for print. Designers working for print need CMYK values."}},
+    {"@type":"Question","name":"What is HSL color format?","acceptedAnswer":{"@type":"Answer","text":"HSL stands for Hue, Saturation, Lightness. It's a more human-readable color format used in CSS. Hue is the color angle (0-360°), Saturation is color intensity (0-100%), and Lightness is how light or dark the color is (0-100%)."}},
+    {"@type":"Question","name":"Can I use this color converter for CSS?","acceptedAnswer":{"@type":"Answer","text":"Yes! This color converter outputs CSS-ready values for HEX, rgb(), rgba(), hsl(), and hsla() — just copy and paste directly into your CSS stylesheet."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Color Converter",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066; --nb-pink: #ff6b9d; --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa; --nb-orange: #ffa94d; --nb-lime: #c3f584;
+    --nb-purple: #d8b4fe; --nb-black: #000; --nb-white: #fff;
+    --nb-shadow: 4px 4px 0 #000; --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px; --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/color-converter" property="og:url"/><meta content="
-   Color Converter — HEX ↔ RGB ↔ HSL ↔ CMYK, Instant | WorldOfTools
-  " property="og:title"/><meta content="Convert colours between HEX, RGB, RGBA, HSL, HSLA &amp; CMYK instantly. Colour picker included. No login — free online colour converter for designers &amp; devs." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/color-converter" name="twitter:url"/><meta content="
-   Color Converter — HEX ↔ RGB ↔ HSL ↔ CMYK, Instant | WorldOfTools
-  " name="twitter:title"/><meta content="Convert colours between HEX, RGB, RGBA, HSL, HSLA &amp; CMYK instantly. Colour picker included. No login — free online colour converter for designers &amp; devs." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; margin: 0; }
+
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.25rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.88rem; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; box-shadow: var(--nb-shadow); white-space: nowrap; }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-orange { background: var(--nb-orange); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1rem; padding: 1rem; }
+
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-orange); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+  /* Color Layout */
+  .color-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: flex-start; }
+  @media(max-width:700px) { .color-layout { grid-template-columns: 1fr; } }
+
+  /* Preview Box */
+  .preview-box {
+    width: 100%; height: 200px; border-radius: 20px; border: var(--nb-border);
+    box-shadow: var(--nb-shadow-lg); display: flex; align-items: center; justify-content: center;
+    flex-direction: column; transition: background 0.3s; gap: 0.5rem; position: relative; overflow: hidden;
+  }
+  .preview-name { font-weight: 900; font-size: 1.1rem; font-family: 'Syne', sans-serif; mix-blend-mode: difference; filter: invert(1); }
+  .preview-hex { font-size: 0.9rem; font-weight: 700; opacity: 0.85; mix-blend-mode: difference; filter: invert(1); font-family: 'Courier New', monospace; }
+
+  /* Color Swatch History */
+  .swatch-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+  .swatch { width: 36px; height: 36px; border-radius: 8px; border: var(--nb-border); cursor: pointer; box-shadow: 2px 2px 0 #000; transition: transform 0.1s; flex-shrink: 0; }
+  .swatch:hover { transform: scale(1.15); }
+
+  /* Inputs */
+  .nb-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.35rem; }
+  .nb-input { width: 100%; padding: 0.75rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 0.95rem; font-weight: 600; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; transition: box-shadow 0.15s; }
+  .nb-input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .input-group { margin-bottom: 1rem; }
+
+  /* Color picker input */
+  .color-picker-wrap { position: relative; display: flex; gap: 0.5rem; align-items: stretch; }
+  input[type=color] { width: 52px; height: 52px; border: var(--nb-border); border-radius: 12px; padding: 4px; cursor: pointer; box-shadow: 3px 3px 0 #000; background: #fff; flex-shrink: 0; }
+  .color-picker-wrap .nb-input { flex: 1; font-family: 'Courier New', monospace; font-size: 1.1rem; font-weight: 700; }
+
+  /* Output cards */
+  .output-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+  .output-card {
+    background: #fff; border: var(--nb-border); border-radius: 14px; padding: 0.9rem 1rem;
+    box-shadow: 3px 3px 0 #000; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .output-label { font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; color: #666; min-width: 50px; }
+  .output-value { flex: 1; font-family: 'Courier New', monospace; font-size: 0.9rem; font-weight: 700; color: #1a1a1a; word-break: break-all; }
+  .copy-mini { background: var(--nb-mint); border: 1.5px solid #000; border-radius: 8px; padding: 0.3rem 0.65rem; font-size: 0.72rem; font-weight: 800; cursor: pointer; box-shadow: 2px 2px 0 #000; white-space: nowrap; transition: all 0.1s; }
+  .copy-mini:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #000; }
+  .copy-mini:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 #000; }
+
+  /* Tabs */
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .nb-tab-btn { padding: 0.6rem 1.1rem; border: var(--nb-border); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.85rem; white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000; }
+  .nb-tab-btn.active { background: var(--nb-orange); }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  /* RGB sliders */
+  .rgb-slider-wrap { display: flex; flex-direction: column; gap: 0.85rem; }
+  .slider-group label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+  input[type=range] { width: 100%; height: 8px; border-radius: 99px; outline: none; cursor: pointer; border: 1.5px solid #000; }
+  input[type=range].r-slider { accent-color: #ef4444; }
+  input[type=range].g-slider { accent-color: #22c55e; }
+  input[type=range].b-slider { accent-color: #3b82f6; }
+  input[type=range].a-slider { accent-color: #6b7280; }
+
+  /* Error */
+  .nb-error { display: none; background: #ffe0e0; border: var(--nb-border); border-radius: 12px; padding: 0.75rem 1.25rem; color: #c00; font-weight: 700; margin-bottom: 1rem; box-shadow: 3px 3px 0 #c00; }
+
+  /* Action row */
+  .action-row { display: flex; gap: 0.65rem; flex-wrap: wrap; margin-top: 1rem; }
+
+  /* Privacy strip */
+  .privacy-strip { background: var(--nb-lime); border: var(--nb-border); border-radius: 12px; padding: 0.9rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 0.88rem; box-shadow: 3px 3px 0 #000; margin-top: 1.25rem; }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #fff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-orange); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+
+  /* Palette generator */
+  .palette-row { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+  .palette-swatch { flex: 1; height: 60px; border-radius: 10px; border: var(--nb-border); box-shadow: 2px 2px 0 #000; cursor: pointer; transition: transform 0.1s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; }
+  .palette-swatch:hover { transform: scale(1.05); }
+  .palette-swatch span { font-size: 0.6rem; font-weight: 700; background: rgba(0,0,0,0.4); color: #fff; padding: 1px 4px; border-radius: 4px; }
+
+  @media(max-width:480px) {
+    .nb-card-lg { padding: 1.1rem; }
+    .action-row .nb-btn { flex: 1; font-size: 0.8rem; padding: 0.7rem 0.5rem; }
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.35s ease-out; }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Developer Tools" data-category-url="/developer-tools" data-tool-name="Color Converter">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Color Converter</span></div><h1>
-      Color Converter — Convert HEX, RGB, HSL, CMYK &amp; RGBA Instantly
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Professional color code conversion between HEX,
-                    RGB, and HSL.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/color-converter-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Developer Tools › <span>Color Converter</span></div>
+    <div class="hero-badge">🎨 CSS-Ready Output Formats</div>
+    <h1>Color Converter — HEX to RGB, HSL, CMYK &amp; More</h1>
+    <p>Instantly convert any color between HEX, RGB, RGBA, HSL, HSLA, HSV, and CMYK formats. Built for web developers, UI designers, and digital artists. Live color preview with palette generator included. 100% browser-based — no login required.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <div class="nb-tabs" role="tablist">
+      <button class="nb-tab-btn active" onclick="switchTab('hex',this)" role="tab">🔷 HEX Input</button>
+      <button class="nb-tab-btn" onclick="switchTab('rgb',this)" role="tab">🎛️ RGB Sliders</button>
+      <button class="nb-tab-btn" onclick="switchTab('picker',this)" role="tab">🖱️ Color Picker</button>
+    </div>
+
+    <div class="nb-error" id="errorMsg" role="alert"></div>
+
+    <div class="color-layout">
+      <!-- LEFT: Inputs -->
+      <div>
+        <!-- HEX Input Tab -->
+        <div id="hex-tab">
+          <div class="input-group">
+            <label class="nb-label" for="hexInput">HEX Color Code</label>
+            <div class="color-picker-wrap">
+              <input type="color" id="colorPickerHex" oninput="fromColorPicker()" value="#ffa94d" title="Pick a color"/>
+              <input class="nb-input" id="hexInput" type="text" placeholder="#FF6B9D or FF6B9D" maxlength="9" oninput="fromHex()" value="#ffa94d"/>
+            </div>
+          </div>
+          <button class="nb-btn nb-btn-primary nb-btn-full" onclick="fromHex()">🎨 Convert Color</button>
+        </div>
+
+        <!-- RGB Sliders Tab -->
+        <div id="rgb-tab" style="display:none;">
+          <div class="rgb-slider-wrap">
+            <div class="slider-group">
+              <label><span>🔴 Red</span><span id="rVal">255</span></label>
+              <input type="range" class="r-slider" id="rSlider" min="0" max="255" value="255" oninput="fromRGB()"/>
+            </div>
+            <div class="slider-group">
+              <label><span>🟢 Green</span><span id="gVal">107</span></label>
+              <input type="range" class="g-slider" id="gSlider" min="0" max="255" value="107" oninput="fromRGB()"/>
+            </div>
+            <div class="slider-group">
+              <label><span>🔵 Blue</span><span id="bVal">157</span></label>
+              <input type="range" class="b-slider" id="bSlider" min="0" max="255" value="157" oninput="fromRGB()"/>
+            </div>
+            <div class="slider-group">
+              <label><span>⚪ Alpha</span><span id="aVal">100%</span></label>
+              <input type="range" class="a-slider" id="aSlider" min="0" max="100" value="100" oninput="fromRGB()"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Picker Tab -->
+        <div id="picker-tab" style="display:none;">
+          <div class="input-group">
+            <label class="nb-label">Visual Color Picker</label>
+            <input type="color" id="colorPickerMain" oninput="fromColorPickerMain()" value="#ffa94d" style="width:100%;height:100px;border:var(--nb-border);border-radius:14px;padding:6px;cursor:pointer;box-shadow:var(--nb-shadow);"/>
+          </div>
+          <p style="font-size:0.82rem;color:#888;font-weight:600;margin:0;">Click to open the browser color picker and choose any color.</p>
+        </div>
+
+        <!-- Swatches history -->
+        <div style="margin-top:1.25rem;">
+          <span style="font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#666;">Recent Colors</span>
+          <div class="swatch-row" id="swatchRow">
+            <div class="swatch" style="background:#ffa94d;" onclick="loadColor('#ffa94d')" title="#ffa94d"></div>
+            <div class="swatch" style="background:#ff6b9d;" onclick="loadColor('#ff6b9d')" title="#ff6b9d"></div>
+            <div class="swatch" style="background:#a3bffa;" onclick="loadColor('#a3bffa')" title="#a3bffa"></div>
+            <div class="swatch" style="background:#c3f584;" onclick="loadColor('#c3f584')" title="#c3f584"></div>
+            <div class="swatch" style="background:#ffe066;" onclick="loadColor('#ffe066')" title="#ffe066"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Preview + Outputs -->
+      <div>
+        <div class="preview-box" id="previewBox" style="background:#ffa94d;">
+          <div class="preview-name" id="previewName">Sample Color</div>
+          <div class="preview-hex" id="previewHex">#FFA94D</div>
+        </div>
+
+        <!-- Palette -->
+        <div style="margin-bottom:0.75rem;">
+          <span style="font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#666;">Auto Palette</span>
+          <div class="palette-row" id="paletteRow"></div>
+        </div>
+
+        <!-- Outputs -->
+        <div class="output-grid" id="outputGrid">
+          <div class="output-card"><span class="output-label">HEX</span><span class="output-value" id="outHex">#FFA94D</span><button class="copy-mini" onclick="copyVal('outHex')">Copy</button></div>
+          <div class="output-card"><span class="output-label">RGB</span><span class="output-value" id="outRGB">rgb(255, 169, 77)</span><button class="copy-mini" onclick="copyVal('outRGB')">Copy</button></div>
+          <div class="output-card"><span class="output-label">RGBA</span><span class="output-value" id="outRGBA">rgba(255, 169, 77, 1)</span><button class="copy-mini" onclick="copyVal('outRGBA')">Copy</button></div>
+          <div class="output-card"><span class="output-label">HSL</span><span class="output-value" id="outHSL">hsl(33, 100%, 65%)</span><button class="copy-mini" onclick="copyVal('outHSL')">Copy</button></div>
+          <div class="output-card"><span class="output-label">HSLA</span><span class="output-value" id="outHSLA">hsla(33, 100%, 65%, 1)</span><button class="copy-mini" onclick="copyVal('outHSLA')">Copy</button></div>
+          <div class="output-card"><span class="output-label">HSV</span><span class="output-value" id="outHSV">hsv(33°, 70%, 100%)</span><button class="copy-mini" onclick="copyVal('outHSV')">Copy</button></div>
+          <div class="output-card"><span class="output-label">CMYK</span><span class="output-value" id="outCMYK">cmyk(0%, 34%, 70%, 0%)</span><button class="copy-mini" onclick="copyVal('outCMYK')">Copy</button></div>
+          <div class="output-card"><span class="output-label">CSS Var</span><span class="output-value" id="outCSSVar">--color: #FFA94D</span><button class="copy-mini" onclick="copyVal('outCSSVar')">Copy</button></div>
+        </div>
+
+        <div class="action-row">
+          <button class="nb-btn nb-btn-primary" onclick="copyAllFormats()">📋 Copy All</button>
+          <button class="nb-btn nb-btn-mint" onclick="randomColor()">🎲 Random Color</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="privacy-strip">
+      <span style="font-size:1.25rem;">🔒</span>
+      <span>All conversions happen in your browser. Your colors are never uploaded or stored.</span>
+    </div>
+  </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-section">
+
+    <section style="margin-bottom:3rem;">
+      <h2>What is a Color Converter?</h2>
+      <p>A <strong>color converter</strong> translates a color value from one format to another. Web designers and developers often need to switch between <strong>HEX</strong> (used in CSS/HTML), <strong>RGB</strong> (screens and JavaScript), <strong>HSL</strong> (human-readable for CSS), and <strong>CMYK</strong> (print design). This tool converts all formats simultaneously with a live visual preview.</p>
+      <p>WorldOfTools Color Converter also generates complementary color palettes, outputs CSS-ready values, and supports alpha transparency via RGBA and HSLA — everything a modern frontend developer or designer needs.</p>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>How to Use the Color Converter</h2>
+      <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Choose Your Input Method:</strong> Enter a HEX code directly, use the RGB sliders to adjust values, or click the Color Picker for a visual selection interface.</p></div>
+      <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>See Instant Results:</strong> All color format outputs update live — HEX, RGB, RGBA, HSL, HSLA, HSV, CMYK, and CSS variable format appear instantly.</p></div>
+      <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Copy What You Need:</strong> Use individual Copy buttons next to each format, or "Copy All" to get every format at once. Click the auto palette to explore complementary tones.</p></div>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>Frequently Asked Questions</h2>
+      <details><summary>How do I convert HEX to RGB?</summary><p>A HEX color like #FF6B9D splits into three 2-digit hex pairs: FF=255 (R), 6B=107 (G), 9D=157 (B). So #FF6B9D = rgb(255, 107, 157). This converter does it instantly — just paste your HEX code.</p></details>
+      <details><summary>What is the difference between RGB and CMYK?</summary><p>RGB (Red, Green, Blue) is an additive model used for digital screens. CMYK (Cyan, Magenta, Yellow, Black) is a subtractive model used for print. If you're designing for print, you need CMYK values — this converter provides both.</p></details>
+      <details><summary>What is HSL color format used for?</summary><p>HSL (Hue, Saturation, Lightness) is a CSS-friendly color format that's more intuitive for humans. You can easily adjust brightness by changing Lightness, or create color variations by tweaking Saturation — without memorizing hex codes.</p></details>
+      <details><summary>Can I get CSS-ready color values from this tool?</summary><p>Yes! Every output format — rgb(), rgba(), hsl(), hsla(), and HEX — is formatted exactly as CSS expects it. Just click Copy and paste directly into your stylesheet.</p></details>
+      <details><summary>What is RGBA and when should I use it?</summary><p>RGBA adds an Alpha channel (opacity) to RGB. Use rgba() in CSS when you want a semi-transparent color. For example, rgba(255, 107, 157, 0.5) is 50% transparent pink. Use the Alpha slider in RGB mode to set transparency.</p></details>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>Other Free Developer Tools</h2>
+      <div class="tools-grid">
+        <a class="tool-card-mini" href="/base64-encoder"><div class="icon">🔐</div><div class="name">Base64 Encoder</div><div class="desc">Encode & decode data</div></a>
+        <a class="tool-card-mini" href="/json-formatter"><div class="icon">📋</div><div class="name">JSON Formatter</div><div class="desc">Beautify & validate JSON</div></a>
+        <a class="tool-card-mini" href="/url-encoder"><div class="icon">🔗</div><div class="name">URL Encoder</div><div class="desc">Encode/decode URLs</div></a>
+        <a class="tool-card-mini" href="/css-minifier"><div class="icon">⚡</div><div class="name">CSS Minifier</div><div class="desc">Minify CSS code</div></a>
+        <a class="tool-card-mini" href="/hash-generator"><div class="icon">🔑</div><div class="name">Hash Generator</div><div class="desc">MD5, SHA-256 & more</div></a>
+        <a class="tool-card-mini" href="/regex-tester"><div class="icon">🧪</div><div class="name">Regex Tester</div><div class="desc">Test regex patterns</div></a>
+      </div>
+    </section>
+
+  </div>
 </div>
-</section>
-<div class="error-msg" id="errorMessage">
-</div>
-<div class="tool-main-card">
-<div class="color-layout" style="margin-bottom: 0;">
-<div class="card" style="box-shadow: none; border: 1px solid var(--border-color);">
-<div class="color-picker-container">
-<label style="display: block; margin-bottom: 1rem; color: var(--text-muted); font-weight: 600;">
-         Pick
-                                a Color
-        </label>
-<input id="colorPicker" oninput="updateFromPicker(this.value)" type="color" value="#4f46e5"/>
-</div>
-<div class="color-inputs">
-<div class="input-group">
-<label>
-          HEX Code
-         </label>
-<div class="input-with-btn">
-<input id="hexInput" oninput="updateFromHex(this.value)" placeholder="#000000" style="border-radius: 12px 0 0 12px;" type="text"/>
-<button class="btn btn-primary" onclick="copyValue('hexInput')" style="padding: 0.5rem 1.25rem; border-radius: 0 12px 12px 0; font-weight: 700;">
-           Copy
-          </button>
-</div>
-</div>
-<div class="input-group">
-<label>
-          RGB Code
-         </label>
-<div class="input-with-btn">
-<input id="rgbInput" oninput="updateFromRgb(this.value)" placeholder="rgb(0, 0, 0)" style="border-radius: 12px 0 0 12px;" type="text"/>
-<button class="btn btn-primary" onclick="copyValue('rgbInput')" style="padding: 0.5rem 1.25rem; border-radius: 0 12px 12px 0; font-weight: 700;">
-           Copy
-          </button>
-</div>
-</div>
-<div class="input-group">
-<label>
-          HSL Code
-         </label>
-<div class="input-with-btn">
-<input id="hslInput" oninput="updateFromHsl(this.value)" placeholder="hsl(0, 0%, 0%)" style="border-radius: 12px 0 0 12px;" type="text"/>
-<button class="btn btn-primary" onclick="copyValue('hslInput')" style="padding: 0.5rem 1.25rem; border-radius: 0 12px 12px 0; font-weight: 700;">
-           Copy
-          </button>
-</div>
-</div>
-</div>
-</div>
-<div>
-<div class="preview-box" id="previewBox" style="background-color: #4f46e5; border: 1px solid var(--border-color); box-shadow: var(--card-shadow);">
-<span class="preview-text" id="previewText" style="color: white; font-family: var(--font-heading);">
-         #4f46e5
-        </span>
-</div>
-<div class="card" style="box-shadow: none; border: 1px solid var(--border-color);">
-<h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">
-         Quick Palette
-        </h3>
-<div id="palette" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem;">
-<!-- Palette injected by JS -->
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the Color Converter?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use Color Converter — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Enter your color code in any format (HEX, RGB, HSL).
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Visualize the color in the live preview box.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Select the target format you need to convert to.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Copy the generated color code for your stylesheet.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        Instant conversion between HEX, RGB, HSL, and CMYK.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        Alpha channel (opacity) support for RGBA and HSLA.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        Contrast ratio checker for accessibility (WCAG).
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Generates matching color palettes (Complementary, Triadic).
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        Zero server calls — fast and private processing.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the Color Converter?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Web Designers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Convert brand colors for use in CSS and Figma.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For UI Developers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Ensure color accessibility for high-contrast interfaces.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Artists
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Translate digital colors for print (CMYK) environments.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 Color Converter vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is the difference between HEX and RGB?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       HEX is a hexadecimal string representation used in CSS (e.g., `#FF5733`). RGB expresses the same color as decimal red, green, blue channels 0–255 (e.g., `rgb(255, 87, 51)`). They represent the same colors differently.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       When should I use HSL?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       HSL (Hue, Saturation, Lightness) is ideal for creating color variations — adjust lightness to create tints/shades or saturation to create muted tones.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       What is CMYK used for?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       CMYK is used in print design (Cyan, Magenta, Yellow, Key/Black). Convert RGB/HEX to CMYK when preparing designs for professional printing.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is there a difference between HSL and HSB?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — HSL uses Lightness (0% = black, 100% = white), while HSB/HSV uses Brightness/Value (0% = black, 100% = full color). They're different color models despite similar names.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this Color Converter free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, the Color Converter is 100% free with no hidden charges or premium subscriptions.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my data safe?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Do I need to sign up?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No registration or account creation is required to use any of our tools.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use it offline?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Once the page is loaded, most functions work offline since they run in your browser's local environment.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        Color Converter
-       </strong>
-       is designed to streamline your daily tasks by providing a high-precision, reliable solution for color converter needs. Whether you are a professional, a student, or a casual user, this tool offers an intuitive interface that delivers instant results without the complexity of traditional software. By leveraging modern web technologies, we've ensured that the tool is both lightweight and powerful, accessible from any device without installation.
-      </p>
-<p style="margin-top:1rem;">
-       Privacy is at the heart of our design philosophy. Unlike many online utilities that require server-side processing, WorldOfTools executes all operations directly in your browser. This means your data—whether it's sensitive financial figures, personal dates, or confidential code—never leaves your local environment. This 'Zero-Trust' architecture provides the highest level of security, protecting you from data breaches and unauthorized tracking.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="image-compressor">
-<div class="tool-icon">
-        🖼️
-       </div>
-<div class="tool-title">
-        Image Resizer &amp; Compressor
-       </div>
-<div class="tool-desc">
-        Resize and compress image file size without losing quality.
-       </div>
-</a>
-<a class="tool-card" href="css-minifier">
-<div class="tool-icon">
-        🛠️
-       </div>
-<div class="tool-title">
-        Css Minifier
-       </div>
-<div class="tool-desc">
-        Useful utility for your daily tasks.
-       </div>
-</a>
-<a class="tool-card" href="qr-code-generator">
-<div class="tool-icon">
-        🔳
-       </div>
-<div class="tool-title">
-        QR Generator
-       </div>
-<div class="tool-desc">
-        Create QR codes for WhatsApp, Email, and Text.
-       </div>
-</a>
-<a class="tool-card" href="seo-meta-tag-generator">
-<div class="tool-icon">
-        🏷️
-       </div>
-<div class="tool-title">
-        Meta Tag Generator
-       </div>
-<div class="tool-desc">
-        Create SEO tags with live search results preview.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   const hexInput = document.getElementById('hexInput');
-        const rgbInput = document.getElementById('rgbInput');
-        const hslInput = document.getElementById('hslInput');
-        const colorPicker = document.getElementById('colorPicker');
-        const previewBox = document.getElementById('previewBox');
-        const previewText = document.getElementById('previewText');
-        const palette = document.getElementById('palette');
+  let currentAlpha = 1;
 
-        function hexToRgb(hex) {
-            let r = 0, g = 0, b = 0;
-            if (hex.length == 4) {
-                r = parseInt(hex[1] + hex[1], 16);
-                g = parseInt(hex[2] + hex[2], 16);
-                b = parseInt(hex[3] + hex[3], 16);
-            } else if (hex.length == 7) {
-                r = parseInt(hex.substring(1, 3), 16);
-                g = parseInt(hex.substring(3, 5), 16);
-                b = parseInt(hex.substring(5, 7), 16);
-            }
-            return [r, g, b];
-        }
+  function switchTab(tab, btn) {
+    ['hex','rgb','picker'].forEach(t => document.getElementById(t+'-tab').style.display = 'none');
+    document.querySelectorAll('.nb-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tab+'-tab').style.display = 'block';
+    btn.classList.add('active');
+  }
 
-        function rgbToHex(r, g, b) {
-            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-        }
+  function fromHex() {
+    let hex = document.getElementById('hexInput').value.trim().replace(/^#/,'');
+    if (hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
+    if (!/^[0-9a-fA-F]{6}$/.test(hex)) return;
+    const r = parseInt(hex.slice(0,2),16), g = parseInt(hex.slice(2,4),16), b = parseInt(hex.slice(4,6),16);
+    document.getElementById('colorPickerHex').value = '#'+hex;
+    updateAll(r, g, b, currentAlpha, '#'+hex.toUpperCase());
+  }
 
-        function rgbToHsl(r, g, b) {
-            r /= 255; g /= 255; b /= 255;
-            const max = Math.max(r, g, b), min = Math.min(r, g, b);
-            let h, s, l = (max + min) / 2;
+  function fromColorPicker() {
+    const hex = document.getElementById('colorPickerHex').value;
+    document.getElementById('hexInput').value = hex;
+    fromHex();
+  }
 
-            if (max == min) {
-                h = s = 0;
-            } else {
-                const d = max - min;
-                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-                switch (max) {
-                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-                    case g: h = (b - r) / d + 2; break;
-                    case b: h = (r - g) / d + 4; break;
-                }
-                h /= 6;
-            }
-            return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
-        }
+  function fromColorPickerMain() {
+    const hex = document.getElementById('colorPickerMain').value;
+    document.getElementById('hexInput').value = hex;
+    loadColor(hex);
+  }
 
-        function getContrastYIQ(hexcolor) {
-            const [r, g, b] = hexToRgb(hexcolor);
-            const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-            return (yiq >= 128) ? 'black' : 'white';
-        }
+  function fromRGB() {
+    const r = parseInt(document.getElementById('rSlider').value);
+    const g = parseInt(document.getElementById('gSlider').value);
+    const b = parseInt(document.getElementById('bSlider').value);
+    const a = parseInt(document.getElementById('aSlider').value) / 100;
+    currentAlpha = a;
+    document.getElementById('rVal').textContent = r;
+    document.getElementById('gVal').textContent = g;
+    document.getElementById('bVal').textContent = b;
+    document.getElementById('aVal').textContent = Math.round(a*100) + '%';
+    const hex = '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0').toUpperCase()).join('');
+    updateAll(r, g, b, a, hex);
+  }
 
-        function showError(msg) {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = '⚠️ ' + msg;
-                errDiv.style.display = 'flex';
-            } else {
-                errDiv.style.display = 'none';
-                errDiv.textContent = '';
-            }
-        }
+  function loadColor(hex) {
+    document.getElementById('hexInput').value = hex;
+    document.getElementById('colorPickerHex').value = hex;
+    fromHex();
+  }
 
-        function updateAll(hex) {
-            showError('');
-            const [r, g, b] = hexToRgb(hex);
-            const [h, s, l] = rgbToHsl(r, g, b);
+  function updateAll(r, g, b, a, hex) {
+    // HSL
+    const rf=r/255, gf=g/255, bf=b/255;
+    const max=Math.max(rf,gf,bf), min=Math.min(rf,gf,bf), l=(max+min)/2;
+    let h=0, s=0;
+    if(max!==min){
+      const d=max-min; s=l>0.5?d/(2-max-min):d/(max+min);
+      switch(max){case rf:h=((gf-bf)/d+(gf<bf?6:0))/6;break;case gf:h=((bf-rf)/d+2)/6;break;case bf:h=((rf-gf)/d+4)/6;break;}
+    }
+    const hDeg=Math.round(h*360), sPct=Math.round(s*100), lPct=Math.round(l*100);
 
-            hexInput.value = hex.toUpperCase();
-            rgbInput.value = `rgb(${r}, ${g}, ${b})`;
-            hslInput.value = `hsl(${h}, ${s}%, ${l}%)`;
-            colorPicker.value = hex;
+    // HSV
+    const vPct=Math.round(max*100), svPct=max===0?0:Math.round((max-min)/max*100);
 
-            previewBox.style.backgroundColor = hex;
-            previewText.textContent = hex.toUpperCase();
-            previewText.style.color = getContrastYIQ(hex);
-        }
+    // CMYK
+    const k=1-max;
+    const c=max===0?0:Math.round((1-rf-k)/(1-k)*100);
+    const m2=max===0?0:Math.round((1-gf-k)/(1-k)*100);
+    const y=max===0?0:Math.round((1-bf-k)/(1-k)*100);
+    const kPct=Math.round(k*100);
 
-        function updateFromPicker(val) { updateAll(val); }
-        function updateFromHex(val) {
-            if (/^#?([0-9A-F]{3}){1,2}$/i.test(val)) {
-                const hex = val.startsWith('#') ? val : '#' + val;
-                updateAll(hex);
-            } else if (val.length >= 3) {
-                showError('Invalid HEX format. Use #abc or #aabbcc.');
-            }
-        }
-        function updateFromRgb(val) {
-            const match = val.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
-            if (match) {
-                const r = parseInt(match[1]), g = parseInt(match[2]), b = parseInt(match[3]);
-                if (r <= 255 && g <= 255 && b <= 255) {
-                    updateAll(rgbToHex(r, g, b));
-                } else {
-                    showError('RGB values must be between 0 and 255.');
-                }
-            }
-        }
+    // Update outputs
+    document.getElementById('outHex').textContent = hex;
+    document.getElementById('outRGB').textContent = `rgb(${r}, ${g}, ${b})`;
+    document.getElementById('outRGBA').textContent = `rgba(${r}, ${g}, ${b}, ${a})`;
+    document.getElementById('outHSL').textContent = `hsl(${hDeg}, ${sPct}%, ${lPct}%)`;
+    document.getElementById('outHSLA').textContent = `hsla(${hDeg}, ${sPct}%, ${lPct}%, ${a})`;
+    document.getElementById('outHSV').textContent = `hsv(${hDeg}°, ${svPct}%, ${vPct}%)`;
+    document.getElementById('outCMYK').textContent = `cmyk(${c}%, ${m2}%, ${y}%, ${kPct}%)`;
+    document.getElementById('outCSSVar').textContent = `--color: ${hex};`;
 
-        function updateFromHsl(val) {
-            const match = val.match(/hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/);
-            if (match) {
-                const h = parseInt(match[1]), s = parseInt(match[2]), l = parseInt(match[3]);
-                if (h <= 360 && s <= 100 && l <= 100) {
-                    // Simple HSL to RGB conversion for updateAll
-                    const r = hslToRgb(h / 360, s / 100, l / 100)[0];
-                    const g = hslToRgb(h / 360, s / 100, l / 100)[1];
-                    const b = hslToRgb(h / 360, s / 100, l / 100)[2];
-                    updateAll(rgbToHex(r, g, b));
-                } else {
-                    showError('HSL values out of range (H: 0-360, S/L: 0-100%).');
-                }
-            }
-        }
+    // Update preview
+    const previewBg = `rgba(${r},${g},${b},${a})`;
+    document.getElementById('previewBox').style.background = previewBg;
+    document.getElementById('previewHex').textContent = hex;
 
-        function hslToRgb(h, s, l) {
-            let r, g, b;
-            if (s === 0) {
-                r = g = b = l; // achromatic
-            } else {
-                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                const p = 2 * l - q;
-                r = hue2rgb(p, q, h + 1 / 3);
-                g = hue2rgb(p, q, h);
-                b = hue2rgb(p, q, h - 1 / 3);
-            }
-            return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
-        }
+    // Palette
+    updatePalette(hDeg, sPct, lPct);
+    addSwatch(hex);
+  }
 
-        function hue2rgb(p, q, t) {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1 / 6) return p + (q - p) * 6 * t;
-            if (t < 1 / 2) return q;
-            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-            return p;
-        }
+  function updatePalette(h, s, l) {
+    const shades = [
+      {l: Math.min(95, l+30), label: 'Tint'},
+      {l: Math.min(85, l+15), label: 'Light'},
+      {l, label: 'Base'},
+      {l: Math.max(15, l-15), label: 'Dark'},
+      {l: Math.max(5, l-30), label: 'Shade'},
+    ];
+    document.getElementById('paletteRow').innerHTML = shades.map(({l: pl, label}) => {
+      const hex = hslToHex(h, s, pl);
+      return `<div class="palette-swatch" style="background:${hex};" onclick="loadColor('${hex}')" title="${label}: ${hex}"><span>${label}</span></div>`;
+    }).join('');
+  }
 
-        function copyValue(id) {
-            const el = document.getElementById(id);
-            navigator.clipboard.writeText(el.value).then(() => {
-                const btn = el.nextElementSibling;
-                const old = btn.textContent; btn.textContent = 'Copied!';
-                setTimeout(() => btn.textContent = old, 1500);
-            });
-        }
+  function hslToHex(h, s, l) {
+    const a = s/100, b = l/100;
+    const f = n => { const k=(n+h/30)%12; const color=b-a*Math.min(b,1-b)*Math.max(-1,Math.min(k-3,9-k,1)); return Math.round(255*color).toString(16).padStart(2,'0').toUpperCase(); };
+    return `#${f(0)}${f(8)}${f(4)}`;
+  }
 
-        // Generate Palette
-        const presetColors = ['#4f46e5', '#ef4444', '#10b981', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4', '#22c55e', '#f97316'];
-        presetColors.forEach(c => {
-            const div = document.createElement('div');
-            div.style.backgroundColor = c;
-            div.style.height = '40px';
-            div.style.borderRadius = '8px';
-            div.style.cursor = 'pointer';
-            div.style.border = '1px solid rgba(0,0,0,0.1)';
-            div.onclick = () => updateAll(c);
-            palette.appendChild(div);
-        });
+  let swatchHistory = [];
+  function addSwatch(hex) {
+    if (swatchHistory.includes(hex)) return;
+    swatchHistory.unshift(hex);
+    if (swatchHistory.length > 8) swatchHistory.pop();
+    document.getElementById('swatchRow').innerHTML = swatchHistory.map(h =>
+      `<div class="swatch" style="background:${h};" onclick="loadColor('${h}')" title="${h}"></div>`
+    ).join('');
+  }
 
-        updateAll('#4f46e5');
-  </script>
+  function copyVal(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.currentTarget;
+      btn.textContent = '✅';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+  }
+
+  function copyAllFormats() {
+    const ids = ['outHex','outRGB','outRGBA','outHSL','outHSLA','outHSV','outCMYK','outCSSVar'];
+    const text = ids.map(id => document.getElementById(id).textContent).join('\n');
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.currentTarget;
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied All!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  function randomColor() {
+    const r = Math.floor(Math.random()*256);
+    const g = Math.floor(Math.random()*256);
+    const b = Math.floor(Math.random()*256);
+    const hex = '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0').toUpperCase()).join('');
+    document.getElementById('hexInput').value = hex;
+    document.getElementById('colorPickerHex').value = hex;
+    fromHex();
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    if (msg) { el.textContent = '⚠️ '+msg; el.style.display='block'; }
+    else { el.style.display='none'; }
+  }
+
+  // Init
+  fromHex();
+</script>
 </body>
 </html>

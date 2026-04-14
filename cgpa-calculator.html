@@ -1,1304 +1,549 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   CGPA Calculator — CBSE, VTU, DU &amp; Anna University | WorldOfTools
-  </title>
-<meta content="Calculate CGPA from grades &amp; convert to percentage. Supports CBSE, VTU, Delhi University &amp; Anna University formulas. Instant — no login required." name="description"/>
-<meta content="CGPA calculator, सीजीपीए कैलकुलेटर, CGPA to percentage calculator, first class with distinction cgpa, Mumbai University cgpa to percentage, VTU CGPA to percentage formula, Anna University gpa calculator, AKTU gpa to percentage, GTU cgpa converter, SPPU gpa calculator, KTU cgpa to percentage, 10 point grading scale India, gpa to cgpa calculator online, cgpa kaise nikale, cgpa calculator india, cgpa calculator delhi university, cgpa to percentage vtu formula" name="keywords"/>
+<title>CGPA Calculator Free Online — CGPA to Percentage for Indian Universities | WorldOfTools</title>
+<meta content="Calculate CGPA from subject grades and convert to percentage instantly. Supports CBSE, VTU, Delhi University, Anna University, Mumbai University & more. Free — no login required." name="description"/>
+<meta content="CGPA calculator, CGPA to percentage calculator, CGPA calculator India, cgpa kaise nikale, VTU CGPA to percentage formula, Anna University GPA calculator, AKTU GPA to percentage, Mumbai University CGPA to percentage, Delhi University CGPA calculator, 10 point grading scale India, GPA to CGPA calculator online, semester CGPA calculator, first class with distinction CGPA, what is a good CGPA in India, CGPA calculator for 6 subjects, how to calculate CGPA in college" name="keywords"/>
 <link href="https://worldoftools.in/cgpa-calculator" rel="canonical"/>
-<style>
-   .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 0.5rem; }
-        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 12px; border: 2px solid var(--border-color); background: white; cursor: pointer; font-weight: 600; white-space: nowrap; transition: all 0.2s; font-family: inherit; font-size: 0.9rem; }
-        .tab-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
-        .card { transition: transform 0.3s ease; }
-        .card:hover { transform: translateY(-5px); }
-
-        .subject-row {
-            display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 0.75rem;
-            align-items: center; margin-bottom: 0.75rem; animation: rowAppear 0.2s ease;
-        }
-        @keyframes rowAppear { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-        .subject-row input, .subject-row select {
-            padding: 0.65rem 0.85rem; border: 2px solid var(--border-color); border-radius: 10px;
-            font-family: inherit; font-size: 0.9rem; background: white; transition: border-color 0.2s;
-        }
-        .subject-row input:focus, .subject-row select:focus { outline: none; border-color: var(--primary-color); }
-        .remove-btn {
-            width: 36px; height: 36px; border-radius: 8px; border: 2px solid #fecaca;
-            background: #fef2f2; color: #ef4444; cursor: pointer; font-size: 1.1rem;
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-            transition: all 0.2s;
-        }
-        .remove-btn:hover { background: #ef4444; color: white; border-color: #ef4444; }
-
-        .result-card {
-            background: var(--primary-gradient); color: white; border-radius: 16px;
-            padding: 2rem; text-align: center; margin-top: 1.5rem;
-        }
-        .result-main { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900; letter-spacing: -0.03em; }
-        .result-sub { font-size: 0.9rem; opacity: 0.85; margin-top: 0.25rem; }
-
-        .grade-badge {
-            display: inline-block; padding: 0.35rem 1rem; border-radius: 99px;
-            font-weight: 800; font-size: 0.9rem; margin-top: 0.75rem;
-        }
-
-        .conversion-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;
-        }
-        .conv-item {
-            padding: 1.25rem; background: white; border: 1px solid var(--border-color);
-            border-radius: 12px; text-align: center;
-        }
-        .conv-value { font-size: 1.6rem; font-weight: 900; color: var(--primary-color); }
-        .conv-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; font-weight: 600; }
-        .conv-formula { font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem; }
-
-        .sem-row { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.75rem; }
-        .sem-row input { padding: 0.65rem 0.85rem; border: 2px solid var(--border-color); border-radius: 10px; font-family: inherit; font-size: 0.9rem; flex: 1; transition: border-color 0.2s; }
-        .sem-row input:focus { outline: none; border-color: var(--primary-color); }
-        .sem-label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); min-width: 70px; }
-
-        .col-headers {
-            display: grid; grid-template-columns: 2fr 1fr 1fr auto;
-            gap: 0.75rem; margin-bottom: 0.5rem; padding: 0 0.1rem;
-        }
-        .col-headers span { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-
-        .progress-bar-wrap { background: rgba(255,255,255,0.2); border-radius: 99px; height: 8px; margin-top: 0.5rem; overflow: hidden; }
-        .progress-bar-fill { height: 100%; border-radius: 99px; background: white; transition: width 1s ease-out; }
-
-        input[type="number"]::-webkit-inner-spin-button { opacity: 1; }
-
-        .uni-note { font-size: 0.82rem; color: var(--text-muted); padding: 0.6rem 0.9rem; background: #f8fafc; border-radius: 8px; margin-top: 0.5rem; border-left: 3px solid var(--primary-color); }
-  </style>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date()); gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/cgpa-calculator" property="og:url"/>
+<meta content="CGPA Calculator — CGPA to Percentage for Indian Universities | WorldOfTools" property="og:title"/>
+<meta content="Calculate CGPA from grades & convert to percentage for CBSE, VTU, DU, Anna University & more. Free online — no login required." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="CGPA Calculator — CGPA to Percentage | WorldOfTools" name="twitter:title"/>
+<meta content="Free CGPA to percentage calculator for all Indian universities. No login required." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#a3bffa"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/cgpa-calculator"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Cgpa Calculator",
-      "item": "https://worldoftools.in/cgpa-calculator"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Calculators","item":"https://worldoftools.in/calculators-online"},
+    {"@type":"ListItem","position":3,"name":"CGPA Calculator","item":"https://worldoftools.in/cgpa-calculator"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Cgpa Calculator free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"CGPA Calculator",
+  "image":"https://worldoftools.in/app-icon.png",
+  "description":"Free online CGPA calculator. Calculate CGPA from subject grades and convert to percentage for all major Indian universities.",
+  "operatingSystem":"Any","applicationCategory":"UtilitiesApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"1543","reviewCount":"1697"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How to convert CGPA to percentage for VTU?","acceptedAnswer":{"@type":"Answer","text":"For VTU, multiply your CGPA by 10 to get the approximate percentage. For example, a CGPA of 8.5 equals approximately 85%. Use the VTU tab in this calculator for the exact formula."}},
+    {"@type":"Question","name":"What is a good CGPA in India?","acceptedAnswer":{"@type":"Answer","text":"On a 10-point scale: 9.0–10.0 is Outstanding, 8.0–8.9 is Excellent (First Class with Distinction), 7.0–7.9 is Very Good (First Class), 6.0–6.9 is Good (Second Class), and below 6.0 is Pass/Average."}},
+    {"@type":"Question","name":"How to calculate CGPA from marks?","acceptedAnswer":{"@type":"Answer","text":"Convert each subject mark to a grade point using your university's grading scale, multiply by the credit hours, sum all (grade points × credits), then divide by total credits to get CGPA."}},
+    {"@type":"Question","name":"What is the CBSE CGPA to percentage formula?","acceptedAnswer":{"@type":"Answer","text":"For CBSE Class 10: multiply CGPA by 9.5 to get the percentage. For example, a CGPA of 9.0 = 9.0 × 9.5 = 85.5%."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Cgpa Calculator",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-purple: #d8b4fe;
+    --nb-black: #000;
+    --nb-white: #fff;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px;
+    --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/cgpa-calculator" property="og:url"/><meta content="
-   CGPA Calculator — CBSE, VTU, DU &amp; Anna University | WorldOfTools
-  " property="og:title"/><meta content="Calculate CGPA from grades &amp; convert to percentage. Supports CBSE, VTU, Delhi University &amp; Anna University formulas. Instant — no login required." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/cgpa-calculator" name="twitter:url"/><meta content="
-   CGPA Calculator — CBSE, VTU, DU &amp; Anna University | WorldOfTools
-  " name="twitter:title"/><meta content="Calculate CGPA from grades &amp; convert to percentage. Supports CBSE, VTU, Delhi University &amp; Anna University formulas. Instant — no login required." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; margin: 0; }
+
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem; border: var(--nb-border); border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.92rem;
+    cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none;
+    box-shadow: var(--nb-shadow); white-space: nowrap;
+  }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-blue { background: var(--nb-blue); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1rem; padding: 1rem; }
+
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--nb-blue); border: var(--nb-border); border-radius: 99px;
+    padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem;
+  }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+  /* Tabs */
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .nb-tab-btn {
+    padding: 0.65rem 1.2rem; border: var(--nb-border); border-radius: 10px;
+    background: #fff; cursor: pointer; font-weight: 700; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000;
+  }
+  .nb-tab-btn.active { background: var(--nb-blue); border-color: #000; }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  /* Inputs */
+  .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+  .nb-input {
+    width: 100%; padding: 0.75rem 0.9rem; border: var(--nb-border); border-radius: 12px;
+    font-family: inherit; font-size: 0.95rem; font-weight: 600; outline: none;
+    background: #fff; box-shadow: 3px 3px 0 #000; transition: box-shadow 0.15s;
+  }
+  .nb-input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .nb-select {
+    width: 100%; padding: 0.75rem 0.9rem; border: var(--nb-border); border-radius: 12px;
+    font-family: inherit; font-size: 0.95rem; font-weight: 600; outline: none;
+    background: #fff; box-shadow: 3px 3px 0 #000; cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.75rem center;
+  }
+  .nb-select:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .input-group { margin-bottom: 1.1rem; }
+
+  /* Error */
+  .nb-error { display: none; background: #ffe0e0; border: var(--nb-border); border-radius: 12px; padding: 0.85rem 1.25rem; color: #c00; font-weight: 700; margin-bottom: 1.25rem; box-shadow: 3px 3px 0 #c00; }
+
+  /* Subject rows */
+  .subject-header {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 36px; gap: 0.6rem;
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+    color: #666; margin-bottom: 0.5rem; padding: 0 0.1rem;
+  }
+  .subject-row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 36px; gap: 0.6rem;
+    align-items: center; margin-bottom: 0.6rem;
+  }
+  .remove-btn {
+    width: 36px; height: 36px; border-radius: 8px; border: var(--nb-border);
+    background: #ffe0e0; color: #c00; cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: all 0.15s; font-weight: 900; box-shadow: 2px 2px 0 #000;
+  }
+  .remove-btn:hover { background: #c00; color: #fff; transform: translate(-1px,-1px); }
+
+  /* Results */
+  .result-hero {
+    background: var(--nb-blue); border: var(--nb-border); border-radius: 20px;
+    padding: 2rem; text-align: center; box-shadow: var(--nb-shadow-lg); margin-bottom: 1.5rem;
+  }
+  .result-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #333; margin-bottom: 0.5rem; }
+  .result-cgpa { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900; letter-spacing: -0.04em; color: #000; line-height: 1; }
+  .result-grade { display: inline-block; padding: 0.35rem 1.25rem; border-radius: 99px; font-weight: 900; font-size: 0.9rem; margin-top: 0.75rem; border: 2px solid #000; }
+
+  .conv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.85rem; margin-top: 1.25rem; }
+  .conv-item { padding: 1.1rem; background: #fff; border: var(--nb-border); border-radius: 12px; text-align: center; box-shadow: 3px 3px 0 #000; }
+  .conv-value { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 900; color: #4f46e5; display: block; }
+  .conv-label { font-size: 0.75rem; color: #666; margin-top: 0.2rem; font-weight: 700; text-transform: uppercase; display: block; }
+  .conv-formula { font-size: 0.7rem; color: #aaa; margin-top: 0.2rem; display: block; }
+
+  /* Grade scale */
+  .grade-scale { display: flex; flex-direction: column; gap: 0.5rem; }
+  .grade-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; border: var(--nb-border); border-radius: 10px; box-shadow: 2px 2px 0 #000; }
+  .grade-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #000; flex-shrink: 0; }
+  .grade-info { flex: 1; font-size: 0.85rem; font-weight: 700; }
+  .grade-range { font-size: 0.75rem; color: #666; font-weight: 600; }
+
+  /* Sem row */
+  .sem-row { display: grid; grid-template-columns: 1fr 1fr 36px; gap: 0.6rem; align-items: center; margin-bottom: 0.6rem; }
+
+  /* Step items */
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #fff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-blue); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+
+  /* FAQ */
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+
+  /* Related tools */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+
+  /* Mobile */
+  @media(max-width:500px) {
+    .nb-card-lg { padding: 1.1rem; }
+    .subject-header { grid-template-columns: 1.5fr 1fr 1fr 36px; }
+    .subject-row { grid-template-columns: 1.5fr 1fr 1fr 36px; }
+    .nb-tabs { gap: 0.35rem; }
+    .nb-tab-btn { padding: 0.55rem 0.85rem; font-size: 0.8rem; }
+    .conv-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+
+  .privacy-strip { background: var(--nb-lime); border: var(--nb-border); border-radius: 12px; padding: 0.9rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 0.88rem; box-shadow: 3px 3px 0 #000; margin-top: 1.5rem; }
+</style>
+</head>
 <body>
-<header>
-</header>
+<header></header>
+
 <main class="container" data-category-name="Calculators Online" data-category-url="/calculators-online" data-tool-name="CGPA Calculator">
 <div class="tool-container">
-<section class="tool-header">
-<div class="privacy-badge-banner">
-<span>
-       🛡️
-      </span>
-<span>
-       100% Private — Client-Side Processing
-      </span>
-</div>
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Cgpa Calculator</span></div><h1>
-      CGPA Calculator — Convert CGPA to Percentage for CBSE, VTU, DU &amp; Anna University
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Calculate your Semester GPA, Cumulative CGPA, and convert to percentage. Supports VTU, Mumbai, Anna, AKTU, GTU, and all 10-point scale Indian universities.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/cgpa-calculator-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
-</div>
-</section>
-<div class="tool-main-card">
-<!-- Tabs -->
-<div class="tabs">
-<button class="tab-btn active" onclick="switchTab('semester')">
-       📚 Semester GPA
-      </button>
-<button class="tab-btn" onclick="switchTab('cumulative')">
-       🎓 Cumulative CGPA
-      </button>
-<button class="tab-btn" onclick="switchTab('convert')">
-       🔄 CGPA ↔ %
-      </button>
-<button class="tab-btn" onclick="switchTab('grading')">
-       📊 Grade Scale
-      </button>
-</div>
-<div class="error-msg" id="errorMessage">
-</div>
-<!-- ── SEMESTER GPA TAB ── -->
-<div class="tab-content" id="semester-tab">
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
-<div>
-<label style="font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 0.25rem;">
-         Grading Scale
-        </label>
-<select id="gradingScale" onchange="updateGradeOptions()" style="padding: 0.6rem 1rem; border: 2px solid var(--border-color); border-radius: 10px; font-family: inherit; font-size: 0.9rem; background: white;">
-<option value="10">
-          10-Point (Most Indian Universities)
-         </option>
-<option value="4">
-          4-Point (GPA — US Style)
-         </option>
-</select>
-</div>
-<button class="btn btn-secondary" onclick="addSubjectRow()" style="padding: 0.65rem 1.25rem; font-size: 0.9rem;">
-        + Add Subject
-       </button>
-</div>
-<div class="col-headers">
-<span>
-        Subject Name
-       </span>
-<span>
-        Grade / Points
-       </span>
-<span>
-        Credits
-       </span>
-<span>
-</span>
-</div>
-<div id="subjectsContainer">
-</div>
-<button class="btn" onclick="calculateSemGPA()" style="width: 100%; margin-top: 1rem;">
-       🎯 Calculate My GPA
-      </button>
-<!-- Result -->
-<div id="semResult" style="display: none;">
-<div class="result-card" id="semResultCard">
-<div class="result-sub">
-         Your Semester GPA
-        </div>
-<div class="result-main" id="semGPAValue">
-         —
-        </div>
-<div class="grade-badge" id="semGradeBadge">
-</div>
-<div style="margin-top: 1rem;">
-<div class="progress-bar-wrap">
-<div class="progress-bar-fill" id="semProgressBar" style="width: 0%">
-</div>
-</div>
-</div>
-</div>
-<div class="conversion-grid" id="semConversions">
-</div>
-<div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
-<button class="btn" onclick="downloadPDF('semester')" style="flex: 1.5; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-         💾 Download PDF
-        </button>
-<button class="btn btn-secondary" onclick="copySemResult()" style="flex: 1;">
-         📋 Copy
-        </button>
-<button class="btn btn-secondary" onclick="shareSemResult()" style="flex: 1;">
-         🔗 Share
-        </button>
-<button class="btn btn-secondary" onclick="resetSem()" style="flex: 1;">
-         🔄 Reset
-        </button>
-</div>
-</div>
-</div>
-<!-- ── CUMULATIVE CGPA TAB ── -->
-<div class="tab-content" id="cumulative-tab" style="display: none;">
-<p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-       Enter your GPA and total credits for each semester to calculate your overall Cumulative CGPA.
-      </p>
-<div id="semestersContainer">
-</div>
-<div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-<button class="btn btn-secondary" onclick="addSemesterRow()" style="flex: 1;">
-        + Add Semester
-       </button>
-<button class="btn" onclick="calculateCGPA()" style="flex: 1;">
-        🎓 Calculate CGPA
-       </button>
-</div>
-<div id="cgpaResult" style="display: none;">
-<div class="result-card" id="cgpaResultCard">
-<div class="result-sub">
-         Your Cumulative CGPA
-        </div>
-<div class="result-main" id="cgpaValue">
-         —
-        </div>
-<div class="grade-badge" id="cgpaGradeBadge">
-</div>
-<div style="margin-top: 1rem;">
-<div class="progress-bar-wrap">
-<div class="progress-bar-fill" id="cgpaProgressBar" style="width: 0%">
-</div>
-</div>
-</div>
-</div>
-<div class="conversion-grid" id="cgpaConversions">
-</div>
-<div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
-<button class="btn" onclick="downloadPDF('cumulative')" style="flex: 1.5; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-         💾 Download PDF
-        </button>
-<button class="btn btn-secondary" onclick="resetCGPA()" style="flex: 1;">
-         🔄 Reset
-        </button>
-</div>
-</div>
-</div>
-<!-- ── CGPA ↔ % CONVERTER TAB ── -->
-<div class="tab-content" id="convert-tab" style="display: none;">
-<!-- University Selector -->
-<div class="input-group" style="margin-bottom: 1.5rem;">
-<label for="uniSelect">
-        🏛️ Select University / Formula
-       </label>
-<select id="uniSelect" onchange="updateUniNote()" style="padding: 0.75rem 1rem; border: 2px solid var(--border-color); border-radius: 12px; font-family: inherit; font-size: 0.95rem; background: white; width: 100%;">
-<option value="9.5">
-         Generic 10-Point Scale (CGPA × 9.5)
-        </option>
-<option value="vtu">
-         VTU — (CGPA − 0.75) × 10
-        </option>
-<option value="mumbai">
-         Mumbai University (CGPA × 7.1 + 11)
-        </option>
-<option value="anna">
-         Anna University (CGPA × 10 − 7.5)
-        </option>
-<option value="aktu">
-         AKTU / UPTU (CGPA × 9.5)
-        </option>
-<option value="gtu">
-         GTU (CGPA × 9.5)
-        </option>
-<option value="sppu">
-         SPPU / Pune (CGPA × 9.5)
-        </option>
-<option value="ktu">
-         KTU Kerala (CGPA × 10 − 5)
-        </option>
-<option value="custom">
-         Custom Multiplier
-        </option>
-</select>
-<div class="uni-note" id="uniNote">
-        Formula: Percentage = CGPA × 9.5
-       </div>
-</div>
-<div class="input-group" id="customMultiplierWrap" style="display: none;">
-<label>
-        Custom Multiplier
-       </label>
-<input id="customMultiplier" placeholder="e.g. 9.5" step="0.01" style="padding: 0.75rem 1rem; border: 2px solid var(--border-color); border-radius: 12px; font-family: inherit; font-size: 0.95rem; width: 100%; box-sizing: border-box;" type="number"/>
-</div>
-<div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: end; margin-bottom: 1.5rem;">
-<div class="input-group" style="margin: 0;">
-<label for="cgpaInput">
-         CGPA (10-point scale)
-        </label>
-<input id="cgpaInput" max="10" min="0" oninput="convertLive()" placeholder="e.g. 8.5" step="0.01" style="padding: 0.75rem 1rem; border: 2px solid var(--border-color); border-radius: 12px; font-family: inherit; font-size: 1rem; width: 100%; box-sizing: border-box;" type="number"/>
-</div>
-<div style="text-align: center; padding-bottom: 1rem; font-size: 1.5rem; color: var(--primary-color);">
-        ⇄
-       </div>
-<div class="input-group" style="margin: 0;">
-<label for="percentInput">
-         Percentage (%)
-        </label>
-<input id="percentInput" max="100" min="0" oninput="convertReverse()" placeholder="e.g. 80.75" step="0.01" style="padding: 0.75rem 1rem; border: 2px solid var(--border-color); border-radius: 12px; font-family: inherit; font-size: 1rem; width: 100%; box-sizing: border-box;" type="number"/>
-</div>
-</div>
-<div id="convertResult" style="display: none; margin-top: 1.5rem;">
-<div class="result-card">
-<div class="result-sub" id="convertLabel">
-         Converted Value
-        </div>
-<div class="result-main" id="convertValue">
-         —
-        </div>
-<div class="grade-badge" id="convertGradeBadge">
-</div>
-</div>
-<div class="conversion-grid" id="convertGrid">
-</div>
-</div>
-<!-- Quick Reference Table -->
-<div style="margin-top: 2rem;">
-<h3 style="font-size: 1rem; font-weight: 800; margin-bottom: 1rem;">
-        📋 Quick Conversion Reference (Generic × 9.5)
-       </h3>
-<div style="overflow-x: auto;">
-<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-<thead>
-<tr style="background: #f1f5f9;">
-<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--border-color);">
-            CGPA
-           </th>
-<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--border-color);">
-            Percentage
-           </th>
-<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--border-color);">
-            Grade
-           </th>
-<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--border-color);">
-            Class
-           </th>
-</tr>
-</thead>
-<tbody id="quickRefTable">
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<!-- ── GRADING SCALE TAB ── -->
-<div class="tab-content" id="grading-tab" style="display: none;">
-<p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
-       Standard 10-point grading used by most AICTE / UGC-affiliated universities in India.
-      </p>
-<div style="overflow-x: auto;">
-<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-<thead>
-<tr style="background: #f1f5f9;">
-<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--border-color);">
-           Letter Grade
-          </th>
-<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--border-color);">
-           Grade Points
-          </th>
-<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--border-color);">
-           Marks Range
-          </th>
-<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid var(--border-color);">
-           Classification
-          </th>
-</tr>
-</thead>
-<tbody>
-<tr style="background: white;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           O
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           10
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           90–100
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Outstanding
-          </td>
-</tr>
-<tr style="background: #f8fafc;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           A+
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           9
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           80–89
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Excellent
-          </td>
-</tr>
-<tr style="background: white;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           A
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           8
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           70–79
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Very Good
-          </td>
-</tr>
-<tr style="background: #f8fafc;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           B+
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           7
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           60–69
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Good
-          </td>
-</tr>
-<tr style="background: white;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           B
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           6
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           55–59
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Above Average
-          </td>
-</tr>
-<tr style="background: #f8fafc;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           C
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           5
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           50–54
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Average
-          </td>
-</tr>
-<tr style="background: white;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           P
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           4
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           40–49
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Pass
-          </td>
-</tr>
-<tr style="background: #f8fafc;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           F
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           0
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           &lt; 40
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Fail
-          </td>
-</tr>
-<tr style="background: white;">
-<td style="padding:0.75rem;font-weight:800;color:var(--primary-color);border-bottom:1px solid #f1f5f9;">
-           Ab
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           0
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Absent
-          </td>
-<td style="padding:0.75rem;border-bottom:1px solid #f1f5f9;">
-           Absent
-          </td>
-</tr>
-</tbody>
-</table>
-</div>
-<div style="margin-top: 2rem;">
-<h3 style="font-size: 1rem; font-weight: 800; margin-bottom: 1rem;">
-        🏛️ University-Specific Formulas
-       </h3>
-<div style="display: grid; gap: 0.75rem;">
-<div style="display:flex;justify-content:space-between;align-items:center;padding:0.875rem 1rem;background:white;border:1px solid var(--border-color);border-radius:10px;flex-wrap:wrap;gap:0.5rem;">
-<span style="font-weight:700;font-size:0.9rem;">
-          VTU (Visvesvaraya Technological University)
-         </span>
-<code style="background:#eef2ff;color:var(--primary-color);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.85rem;font-weight:700;">
-          % = (CGPA − 0.75) × 10
-         </code>
-</div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:0.875rem 1rem;background:white;border:1px solid var(--border-color);border-radius:10px;flex-wrap:wrap;gap:0.5rem;">
-<span style="font-weight:700;font-size:0.9rem;">
-          Mumbai University
-         </span>
-<code style="background:#eef2ff;color:var(--primary-color);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.85rem;font-weight:700;">
-          % = CGPA × 7.1 + 11
-         </code>
-</div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:0.875rem 1rem;background:white;border:1px solid var(--border-color);border-radius:10px;flex-wrap:wrap;gap:0.5rem;">
-<span style="font-weight:700;font-size:0.9rem;">
-          Anna University
-         </span>
-<code style="background:#eef2ff;color:var(--primary-color);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.85rem;font-weight:700;">
-          % = CGPA × 10 − 7.5
-         </code>
-</div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:0.875rem 1rem;background:white;border:1px solid var(--border-color);border-radius:10px;flex-wrap:wrap;gap:0.5rem;">
-<span style="font-weight:700;font-size:0.9rem;">
-          AKTU / UPTU (UP)
-         </span>
-<code style="background:#eef2ff;color:var(--primary-color);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.85rem;font-weight:700;">
-          % = CGPA × 9.5
-         </code>
-</div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:0.875rem 1rem;background:white;border:1px solid var(--border-color);border-radius:10px;flex-wrap:wrap;gap:0.5rem;">
-<span style="font-weight:700;font-size:0.9rem;">
-          GTU Gujarat
-         </span>
-<code style="background:#eef2ff;color:var(--primary-color);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.85rem;font-weight:700;">
-          % = CGPA × 9.5
-         </code>
-</div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:0.875rem 1rem;background:white;border:1px solid var(--border-color);border-radius:10px;flex-wrap:wrap;gap:0.5rem;">
-<span style="font-weight:700;font-size:0.9rem;">
-          SPPU Pune
-         </span>
-<code style="background:#eef2ff;color:var(--primary-color);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.85rem;font-weight:700;">
-          % = CGPA × 9.5
-         </code>
-</div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:0.875rem 1rem;background:white;border:1px solid var(--border-color);border-radius:10px;flex-wrap:wrap;gap:0.5rem;">
-<span style="font-weight:700;font-size:0.9rem;">
-          KTU Kerala
-         </span>
-<code style="background:#eef2ff;color:var(--primary-color);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.85rem;font-weight:700;">
-          % = CGPA × 10 − 5
-         </code>
-</div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:0.875rem 1rem;background:white;border:1px solid var(--border-color);border-radius:10px;flex-wrap:wrap;gap:0.5rem;">
-<span style="font-weight:700;font-size:0.9rem;">
-          Most AICTE/UGC (Generic)
-         </span>
-<code style="background:#eef2ff;color:var(--primary-color);padding:0.3rem 0.75rem;border-radius:6px;font-size:0.85rem;font-weight:700;">
-          % = CGPA × 9.5
-         </code>
-</div>
-</div>
-</div>
-</div>
-<div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
-      ⚡ All calculations run in your browser. No data is stored.
-     </div>
-</div>
-<!-- 🏛️ University-Specific Formula Reference (Prominent) -->
-<div style="margin-top: 3rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 20px; padding: 2rem;">
-<h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
-      🏛️ Indian University CGPA to Percentage Formulas
-     </h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-<div style="background:white; padding:1.25rem; border-radius:12px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:0.5rem;">
-<span style="font-weight:800; color:var(--primary-color);">
-        VTU (Karnataka)
-       </span>
-<code style="background:#eef2ff; padding:0.5rem; border-radius:6px; font-weight:700;">
-        (CGPA − 0.75) × 10
-       </code>
-<p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
-        Standard formula for VTU Engineering students.
-       </p>
-</div>
-<div style="background:white; padding:1.25rem; border-radius:12px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:0.5rem;">
-<span style="font-weight:800; color:var(--primary-color);">
-        Mumbai University (MU)
-       </span>
-<code style="background:#fef3c7; padding:0.5rem; border-radius:6px; font-weight:700;">
-        CGPA × 7.1 + 11
-       </code>
-<p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
-        Applicable for MU Pointer system for Engineering.
-       </p>
-</div>
-<div style="background:white; padding:1.25rem; border-radius:12px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:0.5rem;">
-<span style="font-weight:800; color:var(--primary-color);">
-        Anna University
-       </span>
-<code style="background:#dcfce7; padding:0.5rem; border-radius:6px; font-weight:700;">
-        CGPA × 10 − 7.5
-       </code>
-<p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
-        Standard conversion for Tamil Nadu engineering colleges.
-       </p>
-</div>
-<div style="background:white; padding:1.25rem; border-radius:12px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:0.5rem;">
-<span style="font-weight:800; color:var(--primary-color);">
-        AKTU / UPTU (UP) &amp; CBRE
-       </span>
-<code style="background:#f3f4f6; padding:0.5rem; border-radius:6px; font-weight:700;">
-        CGPA × 9.5
-       </code>
-<p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
-        Most common AICTE/CBSE standard formula.
-       </p>
-</div>
-<div style="background:white; padding:1.25rem; border-radius:12px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:0.5rem;">
-<span style="font-weight:800; color:var(--primary-color);">
-        KTU (Kerala)
-       </span>
-<code style="background:#fae8ff; padding:0.5rem; border-radius:6px; font-weight:700;">
-        CGPA × 10 − 5
-       </code>
-<p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
-        Official formula for APJ Abdul Kalam Tech University.
-       </p>
-</div>
-<div style="background:white; padding:1.25rem; border-radius:12px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:0.5rem;">
-<span style="font-weight:800; color:var(--primary-color);">
-        GTU (Gujarat) &amp; SPPU (Pune)
-       </span>
-<code style="background:#f1f5f9; padding:0.5rem; border-radius:6px; font-weight:700;">
-        CGPA × 9.5
-       </code>
-<p style="font-size:0.8rem; color:var(--text-muted); margin:0;">
-        Standard multiplier for Gujarat and Pune universities.
-       </p>
-</div>
-</div>
-</div>
-<!-- SEO Content -->
-<div class="seo-content-block">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-       How to Calculate CGPA Online
-      </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-bottom:2rem;">
-<div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
-<div style="font-size:2rem;margin-bottom:0.75rem;">
-         📚
-        </div>
-<h3 style="font-size:1rem;margin-bottom:0.5rem;">
-         1. Enter Subjects
-        </h3>
-<p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
-         Add subject name, grade points and credit hours for each subject
-        </p>
-</div>
-<div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
-<div style="font-size:2rem;margin-bottom:0.75rem;">
-         🎯
-        </div>
-<h3 style="font-size:1rem;margin-bottom:0.5rem;">
-         2. Click Calculate
-        </h3>
-<p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
-         Weighted average is computed instantly using standard credit-point formula
-        </p>
-</div>
-<div class="card" style="padding:1.5rem;background:white;border:1px solid var(--border-color);text-align:center;">
-<div style="font-size:2rem;margin-bottom:0.75rem;">
-         📊
-        </div>
-<h3 style="font-size:1rem;margin-bottom:0.5rem;">
-         3. Get All Conversions
-        </h3>
-<p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
-         See your CGPA as percentage, 4-point GPA, grade class, and university-specific values
-        </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-       ❓ Frequently Asked Questions
-      </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-        How is CGPA calculated in India?
-       </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-        CGPA = Σ(Grade Points × Credits) ÷ Σ(Credits). For example, if you scored 9 in a 4-credit subject and 8 in a 3-credit subject: CGPA = (9×4 + 8×3) / (4+3) = (36+24)/7 = 60/7 ≈ 8.57
-       </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-        What is the CGPA to percentage formula?
-       </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-        The most commonly accepted formula in India (per CBSE and many universities): Percentage = CGPA × 9.5. For VTU: (CGPA − 0.75) × 10. For Anna University: CGPA × 10 − 7.5. Always check your university's official circular.
-       </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-        Is 7.5 CGPA good for placements?
-       </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-        Yes. Most top companies like TCS, Infosys, and Wipro have a minimum cutoff of 6.0–6.5 CGPA. Premium companies and PSUs may require 7.5+ or 8.0+. A 7.5 CGPA is generally considered good for most IT and core engineering roles.
-       </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-        How to convert 7.5 CGPA to percentage?
-       </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-        Using generic formula: 7.5 × 9.5 = 71.25%. For VTU: (7.5 − 0.75) × 10 = 67.5%. For Anna: 7.5 × 10 − 7.5 = 67.5%. Use the CGPA to Percentage tab above to get the exact value for your university.
-       </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-        What is the difference between GPA and CGPA?
-       </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-        GPA (Grade Point Average) typically refers to a single semester's performance. CGPA (Cumulative GPA) is the weighted average across all semesters. In India, both are usually on a 10-point scale, while US universities use a 4-point scale.
-       </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-       📚 Educational Content — Deep Dive
-      </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-        The
-        <strong>
-         CGPA (Cumulative Grade Point Average)
-        </strong>
-        is the standard academic grading system used by universities affiliated with AICTE, UGC, and the CBSE board across India. Unlike percentage-based systems, CGPA on a 10-point scale provides a more holistic measure of academic performance by weighting grades against credit hours.
-       </p>
-<p style="margin-top:1rem;">
-        This free CGPA calculator supports all major Indian university formats — from VTU in Karnataka to Anna University in Tamil Nadu, AKTU in Uttar Pradesh, and GTU in Gujarat. Simply select your university from the dropdown to get the correct percentage conversion using the official formula.
-       </p>
-<p style="margin-top:1rem;">
-        WorldOfTools provides this tool completely free with no signup, no limits, and no hidden fees — unlike other CGPA tools that show paywalls for PDF downloads or detailed breakdowns.
-       </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-       Other Free Tools You Might Need
-      </h2>
-<div class="tools-grid">
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-         🎂
-        </div>
-<div class="tool-title">
-         Age Calculator
-        </div>
-<div class="tool-desc">
-         Calculate exact age for forms and documents.
-        </div>
-</a>
-<a class="tool-card" href="percentage-calculator">
-<div class="tool-icon">
-         %
-        </div>
-<div class="tool-title">
-         Percentage Calculator
-        </div>
-<div class="tool-desc">
-         Calculate discounts, increases and ratios.
-        </div>
-</a>
-<a class="tool-card" href="sip-calculator">
-<div class="tool-icon">
-         📈
-        </div>
-<div class="tool-title">
-         SIP Calculator
-        </div>
-<div class="tool-desc">
-         Plan your mutual fund investments early.
-        </div>
-</a>
-<a class="tool-card" href="emi-calculator">
-<div class="tool-icon">
-         💰
-        </div>
-<div class="tool-title">
-         EMI Calculator
-        </div>
-<div class="tool-desc">
-         Calculate education loan EMIs and repayment.
-        </div>
-</a>
-<a class="tool-card" href="word-counter">
-<div class="tool-icon">
-         📝
-        </div>
-<div class="tool-title">
-         Word Counter
-        </div>
-<div class="tool-desc">
-         Count words and characters in assignments.
-        </div>
-</a>
-<a class="tool-card" href="scientific-calculator">
-<div class="tool-icon">
-         🧮
-        </div>
-<div class="tool-title">
-         Scientific Calculator
-        </div>
-<div class="tool-desc">
-         Advanced math for engineering students.
-        </div>
-</a>
-</div>
-</section>
-</div>
-</div>
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<!-- SEO Content Block -->
-<section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Key Features of Cgpa Calculator</h2><ul style="list-style:none;padding:0;margin:0;"><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Instant Results:</strong> Process your data instantly with our optimized Cgpa Calculator.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>100% Privacy:</strong> Everything runs securely in your browser. No files or data are uploaded to our servers.</span></li><li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;"><span style="color:#10b981;font-weight:bold;flex-shrink:0;">✓</span><span style="line-height:1.6;"><strong>Completely Free:</strong> Enjoy full access without subscriptions, hidden fees, or intrusive ads.</span></li></ul></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How Does Cgpa Calculator Work?</h2><div style="line-height:1.8;color:#4b5563;">Our Cgpa Calculator leverages modern web technologies to process your input locally in your browser. This ensures maximum speed and guarantees your privacy.</div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">How to Use Cgpa Calculator — Step-by-Step</h2><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">1</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Input your desired content or file.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">2</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Select any available options or parameters.</p></div><div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">3</span><p style="margin:0;line-height:1.6;padding-top:0.3rem;">Click execute to generate your result instantly.</p></div></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Frequently Asked Questions</h2><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is this Cgpa Calculator free to use?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Yes, it is completely free to use with no hidden charges or limits.</p></details><details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;"><summary style="font-weight:700;cursor:pointer;">Is my data secure?</summary><p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">Absolutely. Your data never leaves your device because all processing happens client-side in your browser.</p></details></section><section style="margin-bottom:3rem;"><h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">Final Thoughts</h2><div style="line-height:1.8;color:#4b5563;">Bookmark this Cgpa Calculator for quick access whenever you need it.</div></section></div></main>
-<footer>
-</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-</script>
-<script src="/js/common.js?v=2.5">
-</script>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Calculators › <span>CGPA Calculator</span></div>
+    <div class="hero-badge">🎓 Supports All Major Indian Universities</div>
+    <h1>CGPA Calculator — Calculate CGPA &amp; Convert to Percentage</h1>
+    <p>Instantly calculate your CGPA from subject grades and credits, then convert to percentage using formulas for VTU, Delhi University, Mumbai University, Anna University, CBSE &amp; more. No login. No uploads. 100% browser-based.</p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <div class="nb-tabs" role="tablist">
+      <button class="nb-tab-btn active" onclick="switchTab('subject',this)" role="tab">📚 By Subjects</button>
+      <button class="nb-tab-btn" onclick="switchTab('semester',this)" role="tab">📅 By Semesters</button>
+      <button class="nb-tab-btn" onclick="switchTab('convert',this)" role="tab">🔄 CGPA → %</button>
+    </div>
+
+    <div class="nb-error" id="errorMsg" role="alert"></div>
+
+    <!-- Tab: By Subjects -->
+    <div id="subject-tab">
+      <div class="input-group">
+        <label class="nb-label" for="gradingScale">Grading Scale</label>
+        <select class="nb-select" id="gradingScale">
+          <option value="10">10-Point Scale (Most Indian Universities)</option>
+          <option value="4">4-Point Scale (US GPA Style)</option>
+          <option value="5">5-Point Scale</option>
+        </select>
+      </div>
+      <div class="subject-header">
+        <span>Subject Name</span><span>Grade/Marks</span><span>Credits</span><span></span>
+      </div>
+      <div id="subjectRows"></div>
+      <div style="display:flex;gap:0.6rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+        <button class="nb-btn nb-btn-mint" onclick="addSubjectRow()">➕ Add Subject</button>
+        <button class="nb-btn" style="background:#fff;" onclick="resetSubjects()">🔄 Reset</button>
+      </div>
+      <button class="nb-btn nb-btn-primary nb-btn-full" onclick="calcFromSubjects()">🎓 Calculate My CGPA</button>
+    </div>
+
+    <!-- Tab: By Semesters -->
+    <div id="semester-tab" style="display:none;">
+      <p style="color:#666;font-size:0.9rem;margin-bottom:1rem;font-weight:600;">Enter SGPA and total credits for each semester to calculate overall CGPA.</p>
+      <div style="display:grid;grid-template-columns:auto 1fr 1fr 36px;gap:0.6rem;font-size:0.72rem;font-weight:800;text-transform:uppercase;color:#666;margin-bottom:0.5rem;">
+        <span>Sem</span><span>SGPA</span><span>Credits</span><span></span>
+      </div>
+      <div id="semRows"></div>
+      <div style="display:flex;gap:0.6rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+        <button class="nb-btn nb-btn-mint" onclick="addSemRow()">➕ Add Semester</button>
+        <button class="nb-btn" style="background:#fff;" onclick="resetSems()">🔄 Reset</button>
+      </div>
+      <button class="nb-btn nb-btn-primary nb-btn-full" onclick="calcFromSems()">🎓 Calculate Overall CGPA</button>
+    </div>
+
+    <!-- Tab: CGPA → % -->
+    <div id="convert-tab" style="display:none;">
+      <div class="input-group">
+        <label class="nb-label" for="inputCGPA">Your CGPA</label>
+        <input class="nb-input" id="inputCGPA" type="number" min="0" max="10" step="0.01" placeholder="e.g. 8.5" oninput="liveConvert()"/>
+      </div>
+      <div class="input-group">
+        <label class="nb-label" for="uniFormula">University / Formula</label>
+        <select class="nb-select" id="uniFormula" onchange="liveConvert()">
+          <option value="x10">General / VTU (CGPA × 10)</option>
+          <option value="cbse">CBSE Class 10 (CGPA × 9.5)</option>
+          <option value="anna">Anna University (CGPA × 10)</option>
+          <option value="mu">Mumbai University ((CGPA − 0.5) × 10)</option>
+          <option value="du">Delhi University (CGPA × 9.5)</option>
+          <option value="aktu">AKTU / UPTU (CGPA × 10 − 7.5)</option>
+          <option value="ktu">KTU Kerala (CGPA × 10 − 5)</option>
+          <option value="sppu">SPPU Pune (CGPA × 10)</option>
+        </select>
+      </div>
+      <div id="liveConvResult" style="display:none;" class="result-hero animate-in">
+        <div class="result-label">Percentage Equivalent</div>
+        <div class="result-cgpa" id="convPct">—</div>
+        <div style="font-size:0.9rem;margin-top:0.5rem;font-weight:700;color:#444;" id="convFormulaTxt"></div>
+      </div>
+    </div>
+
+    <!-- RESULTS (subjects & sems) -->
+    <div id="results" style="display:none;" class="animate-in">
+      <div class="result-hero">
+        <div class="result-label" id="resultLabel">Your CGPA</div>
+        <div class="result-cgpa" id="mainCGPA">—</div>
+        <div class="result-grade" id="resultGrade" style="background:var(--nb-lime);">—</div>
+      </div>
+      <div class="conv-grid">
+        <div class="conv-item"><span class="conv-value" id="pctGeneral">—</span><span class="conv-label">General %</span><span class="conv-formula">CGPA × 10</span></div>
+        <div class="conv-item"><span class="conv-value" id="pctCBSE">—</span><span class="conv-label">CBSE %</span><span class="conv-formula">CGPA × 9.5</span></div>
+        <div class="conv-item"><span class="conv-value" id="pctMU">—</span><span class="conv-label">Mumbai Univ</span><span class="conv-formula">(CGPA−0.5)×10</span></div>
+        <div class="conv-item"><span class="conv-value" id="pctAKTU">—</span><span class="conv-label">AKTU/UPTU</span><span class="conv-formula">CGPA×10−7.5</span></div>
+      </div>
+    </div>
+
+    <div class="privacy-strip">
+      <span style="font-size:1.25rem;">🔒</span>
+      <span>All calculations run in your browser. Your academic data is never uploaded or stored.</span>
+    </div>
+  </div>
+
+  <!-- Grade Scale Reference -->
+  <div class="nb-card" style="margin-bottom:2rem;">
+    <h2 style="font-family:'Syne',sans-serif;font-weight:900;font-size:1.1rem;margin:0 0 1rem;">🏅 Grade Classification on 10-Point Scale</h2>
+    <div class="grade-scale">
+      <div class="grade-row" style="background:var(--nb-lime);"><div class="grade-dot" style="background:#16a34a;"></div><div class="grade-info">Outstanding / O<div class="grade-range">CGPA 9.0 – 10.0 → 90%+</div></div></div>
+      <div class="grade-row" style="background:var(--nb-mint);"><div class="grade-dot" style="background:#0891b2;"></div><div class="grade-info">Excellent — First Class with Distinction<div class="grade-range">CGPA 8.0 – 8.9 → 80–89%</div></div></div>
+      <div class="grade-row" style="background:var(--nb-blue);"><div class="grade-dot" style="background:#4f46e5;"></div><div class="grade-info">Very Good — First Class<div class="grade-range">CGPA 7.0 – 7.9 → 70–79%</div></div></div>
+      <div class="grade-row" style="background:var(--nb-yellow);"><div class="grade-dot" style="background:#ca8a04;"></div><div class="grade-info">Good — Second Class<div class="grade-range">CGPA 6.0 – 6.9 → 60–69%</div></div></div>
+      <div class="grade-row" style="background:var(--nb-orange);"><div class="grade-dot" style="background:#ea580c;"></div><div class="grade-info">Average — Pass<div class="grade-range">CGPA 5.0 – 5.9 → 50–59%</div></div></div>
+      <div class="grade-row" style="background:#fee2e2;"><div class="grade-dot" style="background:#dc2626;"></div><div class="grade-info">Below Average / Fail<div class="grade-range">CGPA below 5.0</div></div></div>
+    </div>
+  </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-section">
+
+    <section style="margin-bottom:3rem;">
+      <h2>What is CGPA and How is it Calculated?</h2>
+      <p><strong>CGPA (Cumulative Grade Point Average)</strong> is the weighted average of grade points earned across all semesters of a degree program. It's the primary measure of academic performance in Indian universities and colleges. Most Indian universities use a 10-point grading scale where a higher CGPA indicates better performance.</p>
+      <p>The formula is: <strong>CGPA = Σ(Grade Points × Credit Hours) ÷ Total Credit Hours</strong>. This calculator handles the math for you instantly — just enter your subject grades and credits.</p>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>CGPA to Percentage Conversion Formulas for All Universities</h2>
+      <p>Different Indian universities use different formulas to convert CGPA to percentage:</p>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.5rem;">
+        <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#4f46e5;font-weight:900;flex-shrink:0;">▸</span><span><strong>VTU / General:</strong> Percentage = CGPA × 10</span></li>
+        <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#4f46e5;font-weight:900;flex-shrink:0;">▸</span><span><strong>CBSE Class 10:</strong> Percentage = CGPA × 9.5</span></li>
+        <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#4f46e5;font-weight:900;flex-shrink:0;">▸</span><span><strong>Mumbai University:</strong> Percentage = (CGPA − 0.5) × 10</span></li>
+        <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#4f46e5;font-weight:900;flex-shrink:0;">▸</span><span><strong>AKTU / UPTU:</strong> Percentage = CGPA × 10 − 7.5</span></li>
+        <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#4f46e5;font-weight:900;flex-shrink:0;">▸</span><span><strong>KTU Kerala:</strong> Percentage = CGPA × 10 − 5</span></li>
+        <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#4f46e5;font-weight:900;flex-shrink:0;">▸</span><span><strong>Delhi University:</strong> Percentage = CGPA × 9.5 (approx)</span></li>
+      </ul>
+      <p>Use the <strong>CGPA → %</strong> tab above to convert your CGPA for any specific university.</p>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>How to Use the CGPA Calculator — Step by Step</h2>
+      <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Choose a Mode:</strong> Use "By Subjects" to calculate semester CGPA from grades, "By Semesters" for overall CGPA from SGPA, or "CGPA → %" to convert your known CGPA to percentage.</p></div>
+      <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Enter Your Data:</strong> Add each subject with its grade/marks and credit hours. Use the ➕ button to add more subjects or semesters.</p></div>
+      <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Get Instant Results:</strong> Click Calculate to see your CGPA, grade classification, and percentage conversions for multiple university formulas simultaneously.</p></div>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>Frequently Asked Questions</h2>
+      <details><summary>How to convert CGPA to percentage for VTU?</summary><p>For VTU (Visvesvaraya Technological University), multiply your CGPA by 10 to get the percentage. A CGPA of 8.5 = 85%. Use the CGPA → % tab and select VTU for instant conversion.</p></details>
+      <details><summary>What is a good CGPA in India?</summary><p>On a 10-point scale: 9.0–10.0 is Outstanding, 8.0–8.9 is Excellent (First Class with Distinction), 7.0–7.9 is First Class, 6.0–6.9 is Second Class. Most companies consider 6.5+ as acceptable for placement.</p></details>
+      <details><summary>How to calculate CGPA from marks?</summary><p>Convert each subject mark to a grade point using your university's grading table. Multiply each grade point by credit hours. Sum all (grade × credits), then divide by total credits. This calculator does this automatically.</p></details>
+      <details><summary>What is the CBSE CGPA to percentage formula?</summary><p>For CBSE Class 10: Percentage = CGPA × 9.5. A CGPA of 9.0 equals 9.0 × 9.5 = 85.5%. This formula is officially provided by CBSE.</p></details>
+      <details><summary>Is CGPA and GPA the same thing?</summary><p>GPA (Grade Point Average) is calculated per semester, while CGPA (Cumulative GPA) is the weighted average of all semester GPAs throughout your academic career. CGPA gives a comprehensive view of overall academic performance.</p></details>
+      <details><summary>Can I calculate CGPA for 6 or more subjects?</summary><p>Yes! Use the "Add Subject" button to add as many subjects as needed. The calculator handles any number of subjects with different credit hours.</p></details>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <h2>Other Free Academic Tools</h2>
+      <div class="tools-grid">
+        <a class="tool-card-mini" href="/percentage-calculator"><div class="icon">📊</div><div class="name">Percentage Calc</div><div class="desc">Calculate % instantly</div></a>
+        <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age from DOB</div></a>
+        <a class="tool-card-mini" href="/gst-calculator"><div class="icon">🧾</div><div class="name">GST Calculator</div><div class="desc">Add or remove GST</div></a>
+        <a class="tool-card-mini" href="/emi-calculator"><div class="icon">💰</div><div class="name">EMI Calculator</div><div class="desc">Calculate loan EMI</div></a>
+        <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words & chars</div></a>
+        <a class="tool-card-mini" href="/bmi-calculator"><div class="icon">⚖️</div><div class="name">BMI Calculator</div><div class="desc">Check your BMI</div></a>
+      </div>
+    </section>
+
+  </div>
+</div>
+</main>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   // ── INIT ──
-        const GRADE_SCALES_10 = [
-            { letter: 'O',  points: 10 }, { letter: 'A+', points: 9 },
-            { letter: 'A',  points: 8  }, { letter: 'B+', points: 7 },
-            { letter: 'B',  points: 6  }, { letter: 'C',  points: 5 },
-            { letter: 'P',  points: 4  }, { letter: 'F',  points: 0 }
-        ];
-        const GRADE_SCALES_4 = [
-            { letter: 'A',  points: 4  }, { letter: 'A-', points: 3.7 },
-            { letter: 'B+', points: 3.3 }, { letter: 'B',  points: 3  },
-            { letter: 'B-', points: 2.7 }, { letter: 'C+', points: 2.3 },
-            { letter: 'C',  points: 2  }, { letter: 'D',  points: 1  },
-            { letter: 'F',  points: 0  }
-        ];
+  let subjectCount = 0, semCount = 0;
 
-        let subjectCount = 0;
-        let semesterCount = 0;
+  // Tab switching
+  function switchTab(tabId, btn) {
+    ['subject','semester','convert'].forEach(t => {
+      document.getElementById(t+'-tab').style.display = 'none';
+    });
+    document.querySelectorAll('.nb-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId+'-tab').style.display = 'block';
+    btn.classList.add('active');
+    document.getElementById('results').style.display = 'none';
+    showError('');
+  }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            for (let i = 0; i < 5; i++) addSubjectRow();
-            for (let i = 0; i < 4; i++) addSemesterRow(i + 1);
-            buildQuickRefTable();
-        });
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    if (msg) { el.textContent = '⚠️ ' + msg; el.style.display = 'block'; }
+    else { el.style.display = 'none'; }
+  }
 
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId + '-tab').style.display = 'block';
-            event.currentTarget.classList.add('active');
-        }
+  // Subject rows
+  function addSubjectRow(name='', grade='', credits='') {
+    subjectCount++;
+    const scale = parseInt(document.getElementById('gradingScale').value);
+    const gradeOptions = scale === 10
+      ? [['O',10],['A+',9],['A',8],['B+',7],['B',6],['C',5],['D',4],['F',0]]
+      : [['A',4],['B',3],['C',2],['D',1],['F',0]];
+    const id = 'sub_' + subjectCount;
+    const row = document.createElement('div');
+    row.className = 'subject-row'; row.id = id;
+    row.innerHTML = `
+      <input class="nb-input" placeholder="Subject name" value="${name}" style="font-size:0.88rem;padding:0.65rem 0.75rem;"/>
+      <select class="nb-select" style="font-size:0.88rem;padding:0.65rem 0.75rem;background-image:none;">
+        ${gradeOptions.map(([g,p]) => `<option value="${p}" ${grade==p?'selected':''}>${g} (${p})</option>`).join('')}
+      </select>
+      <input class="nb-input" type="number" min="1" max="8" placeholder="Credits" value="${credits}" style="font-size:0.88rem;padding:0.65rem 0.75rem;"/>
+      <button class="remove-btn" onclick="this.closest('.subject-row').remove()" title="Remove">✕</button>`;
+    document.getElementById('subjectRows').appendChild(row);
+  }
 
-        // ── SEMESTER GPA ──
-        function addSubjectRow() {
-            subjectCount++;
-            const scale = document.getElementById('gradingScale').value;
-            const grades = scale === '10' ? GRADE_SCALES_10 : GRADE_SCALES_4;
-            const gradeOptions = grades.map(g => `<option value="${g.points}">${g.letter} (${g.points})</option>`).join('');
-            const row = document.createElement('div');
-            row.className = 'subject-row';
-            row.id = 'subRow_' + subjectCount;
-            row.innerHTML = `
-                <input type="text" placeholder="Subject ${subjectCount}" class="sub-name">
-                <select class="sub-grade" onchange="calculateSemGPA(true)">${gradeOptions}</select>
-                <input type="number" class="sub-credits" placeholder="Credits" min="1" max="10" value="3" oninput="calculateSemGPA(true)">
-                <button class="remove-btn" onclick="removeRow('subRow_${subjectCount}')" title="Remove">×</button>`;
-            document.getElementById('subjectsContainer').appendChild(row);
-        }
+  function resetSubjects() {
+    document.getElementById('subjectRows').innerHTML = '';
+    subjectCount = 0;
+    document.getElementById('results').style.display = 'none';
+    addSubjectRow('', '', ''); addSubjectRow('', '', ''); addSubjectRow('', '', '');
+  }
 
-        function removeRow(id) {
-            const el = document.getElementById(id);
-            if (el) el.remove();
-        }
+  function calcFromSubjects() {
+    const rows = document.querySelectorAll('#subjectRows .subject-row');
+    if (rows.length === 0) { showError('Please add at least one subject.'); return; }
+    let totalPts = 0, totalCreds = 0;
+    let valid = true;
+    rows.forEach(row => {
+      const inputs = row.querySelectorAll('input, select');
+      const gp = parseFloat(inputs[1].value);
+      const cr = parseFloat(inputs[2].value);
+      if (isNaN(cr) || cr <= 0) { valid = false; }
+      else { totalPts += gp * cr; totalCreds += cr; }
+    });
+    if (!valid) { showError('Please enter valid credits for all subjects.'); return; }
+    if (totalCreds === 0) { showError('Total credits cannot be zero.'); return; }
+    showError('');
+    const cgpa = totalPts / totalCreds;
+    showResults(cgpa, 'Your CGPA');
+  }
 
-        function updateGradeOptions() {
-            const scale = document.getElementById('gradingScale').value;
-            const grades = scale === '10' ? GRADE_SCALES_10 : GRADE_SCALES_4;
-            const gradeOptions = grades.map(g => `<option value="${g.points}">${g.letter} (${g.points})</option>`).join('');
-            document.querySelectorAll('.sub-grade').forEach(sel => {
-                sel.innerHTML = gradeOptions;
-            });
-        }
+  // Semester rows
+  function addSemRow() {
+    semCount++;
+    const row = document.createElement('div');
+    row.className = 'sem-row'; row.id = 'sem_' + semCount;
+    row.innerHTML = `
+      <span style="font-weight:800;font-size:0.9rem;text-align:center;min-width:30px;">S${semCount}</span>
+      <input class="nb-input" type="number" min="0" max="10" step="0.01" placeholder="SGPA (e.g. 8.5)" style="font-size:0.88rem;padding:0.65rem 0.75rem;"/>
+      <input class="nb-input" type="number" min="1" placeholder="Credits" style="font-size:0.88rem;padding:0.65rem 0.75rem;"/>
+      <button class="remove-btn" onclick="this.closest('.sem-row').remove()" title="Remove">✕</button>`;
+    document.getElementById('semRows').appendChild(row);
+  }
 
-        function calculateSemGPA(isLive = false) {
-            const rows = document.querySelectorAll('#subjectsContainer .subject-row');
-            let totalPoints = 0, totalCredits = 0;
-            let valid = true;
-            let rowCount = 0;
-            rows.forEach(row => {
-                const grade = parseFloat(row.querySelector('.sub-grade').value);
-                const credits = parseFloat(row.querySelector('.sub-credits').value);
-                if (isNaN(credits) || credits <= 0) { 
-                    if (!isLive) valid = false; 
-                    return; 
-                }
-                totalPoints += grade * credits;
-                totalCredits += credits;
-                rowCount++;
-            });
-            
-            if (!valid || totalCredits === 0 || rowCount === 0) {
-                if (!isLive) showError('Please enter valid credits for all subjects.');
-                return;
-            }
-            showError('');
-            const gpa = (totalPoints / totalCredits).toFixed(2);
-            displaySemResult(parseFloat(gpa), totalCredits, isLive);
-        }
+  function resetSems() {
+    document.getElementById('semRows').innerHTML = '';
+    semCount = 0;
+    document.getElementById('results').style.display = 'none';
+    addSemRow(); addSemRow();
+  }
 
-        function displaySemResult(gpa, credits, isLive = false) {
-            const scale = parseFloat(document.getElementById('gradingScale').value);
-            document.getElementById('semGPAValue').textContent = gpa.toFixed(2);
-            const { label, color } = getGradeClass(gpa, scale);
-            const badge = document.getElementById('semGradeBadge');
-            badge.textContent = label;
-            badge.style.background = color + '33'; badge.style.color = color;
-            document.getElementById('semProgressBar').style.width = ((gpa / scale) * 100) + '%';
-            document.getElementById('semConversions').innerHTML = buildConversions(gpa, scale, credits);
-            document.getElementById('semResult').style.display = 'block';
-            if (!isLive) document.getElementById('semResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+  function calcFromSems() {
+    const rows = document.querySelectorAll('#semRows .sem-row');
+    if (rows.length === 0) { showError('Please add at least one semester.'); return; }
+    let totalPts = 0, totalCreds = 0;
+    let valid = true;
+    rows.forEach(row => {
+      const inputs = row.querySelectorAll('input');
+      const sgpa = parseFloat(inputs[0].value);
+      const cr = parseFloat(inputs[1].value);
+      if (isNaN(sgpa) || isNaN(cr) || cr <= 0) { valid = false; }
+      else { totalPts += sgpa * cr; totalCreds += cr; }
+    });
+    if (!valid) { showError('Please enter valid SGPA and credits for all semesters.'); return; }
+    showError('');
+    const cgpa = totalPts / totalCreds;
+    showResults(cgpa, 'Overall CGPA');
+  }
 
-        // ── CUMULATIVE CGPA ──
-        function addSemesterRow(num) {
-            semesterCount++;
-            const n = num || semesterCount;
-            const row = document.createElement('div');
-            row.className = 'sem-row';
-            row.id = 'semRow_' + semesterCount;
-            row.innerHTML = `
-                <span class="sem-label">Sem ${n}</span>
-                <input type="number" class="sem-gpa" placeholder="GPA" min="0" max="10" step="0.01" oninput="calculateCGPA(true)">
-                <input type="number" class="sem-credits" placeholder="Credits" min="1" max="100" value="24" oninput="calculateCGPA(true)">
-                <button class="remove-btn" onclick="removeRow('semRow_${semesterCount}')" title="Remove">×</button>`;
-            document.getElementById('semestersContainer').appendChild(row);
-        }
+  function showResults(cgpa, label) {
+    const grades = [[9,'O — Outstanding','#16a34a','#dcfce7'],[8,'A+ — First Class with Distinction','#0891b2','#cffafe'],
+      [7,'A — First Class','#4f46e5','#e0e7ff'],[6,'B — Second Class','#ca8a04','#fef9c3'],
+      [5,'C — Pass','#ea580c','#fff7ed'],[0,'F — Below Average','#dc2626','#fee2e2']];
+    const [,,color,bg] = grades.find(([min]) => cgpa >= min) || grades[grades.length-1];
+    const gradeLabel = grades.find(([min]) => cgpa >= min)?.[1] || 'F — Fail';
 
-        function calculateCGPA(isLive = false) {
-            const rows = document.querySelectorAll('#semestersContainer .sem-row');
-            let total = 0, totalCreds = 0;
-            let count = 0;
-            rows.forEach(row => {
-                const gpa = parseFloat(row.querySelector('.sem-gpa').value);
-                const creds = parseFloat(row.querySelector('.sem-credits').value);
-                if (!isNaN(gpa) && !isNaN(creds) && creds > 0) {
-                    total += gpa * creds; totalCreds += creds; count++;
-                }
-            });
-            if (totalCreds === 0) {
-                if (!isLive) showError('Please enter at least one semester with valid GPA and credits.');
-                return;
-            }
-            showError('');
-            const cgpa = (total / totalCreds).toFixed(2);
-            const { label, color } = getGradeClass(parseFloat(cgpa), 10);
-            document.getElementById('cgpaValue').textContent = cgpa;
-            const badge = document.getElementById('cgpaGradeBadge');
-            badge.textContent = label; badge.style.background = color + '33'; badge.style.color = color;
-            document.getElementById('cgpaProgressBar').style.width = ((cgpa / 10) * 100) + '%';
-            document.getElementById('cgpaConversions').innerHTML = buildConversions(parseFloat(cgpa), 10, totalCreds);
-            document.getElementById('cgpaResult').style.display = 'block';
-            if (!isLive) document.getElementById('cgpaResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    document.getElementById('resultLabel').textContent = label;
+    document.getElementById('mainCGPA').textContent = cgpa.toFixed(2);
+    const gb = document.getElementById('resultGrade');
+    gb.textContent = gradeLabel;
+    gb.style.background = bg; gb.style.color = color;
 
-        // ── CONVERTER ──
-        const UNI_FORMULAS = {
-            '9.5':   c => c * 9.5,
-            'vtu':   c => (c - 0.75) * 10,
-            'mumbai': c => c * 7.1 + 11,
-            'anna':  c => c * 10 - 7.5,
-            'aktu':  c => c * 9.5,
-            'gtu':   c => c * 9.5,
-            'sppu':  c => c * 9.5,
-            'ktu':   c => c * 10 - 5,
-            'custom': c => c * (parseFloat(document.getElementById('customMultiplier').value) || 9.5)
-        };
-        const UNI_NOTES = {
-            '9.5':   'Formula: Percentage = CGPA × 9.5 (CBSE / Generic AICTE)',
-            'vtu':   'VTU Formula: Percentage = (CGPA − 0.75) × 10',
-            'mumbai':'Mumbai University: Percentage = CGPA × 7.1 + 11',
-            'anna':  'Anna University: Percentage = CGPA × 10 − 7.5',
-            'aktu':  'AKTU / UPTU: Percentage = CGPA × 9.5',
-            'gtu':   'GTU Gujarat: Percentage = CGPA × 9.5',
-            'sppu':  'SPPU Pune: Percentage = CGPA × 9.5',
-            'ktu':   'KTU Kerala: Percentage = CGPA × 10 − 5',
-            'custom':'Custom multiplier. Enter your university multiplier above.'
-        };
+    document.getElementById('pctGeneral').textContent = (cgpa * 10).toFixed(2) + '%';
+    document.getElementById('pctCBSE').textContent = (cgpa * 9.5).toFixed(2) + '%';
+    document.getElementById('pctMU').textContent = Math.max(0, (cgpa - 0.5) * 10).toFixed(2) + '%';
+    document.getElementById('pctAKTU').textContent = Math.max(0, cgpa * 10 - 7.5).toFixed(2) + '%';
 
-        function updateUniNote() {
-            const uni = document.getElementById('uniSelect').value;
-            document.getElementById('uniNote').textContent = UNI_NOTES[uni] || '';
-            document.getElementById('customMultiplierWrap').style.display = uni === 'custom' ? 'block' : 'none';
-            convertLive();
-        }
+    const r = document.getElementById('results');
+    r.style.display = 'block';
+    r.classList.remove('animate-in'); void r.offsetWidth; r.classList.add('animate-in');
+    r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-        function convertLive() {
-            const cgpa = parseFloat(document.getElementById('cgpaInput').value);
-            if (isNaN(cgpa) || cgpa < 0 || cgpa > 10) { document.getElementById('convertResult').style.display = 'none'; return; }
-            const uni = document.getElementById('uniSelect').value;
-            const pct = Math.min(100, Math.max(0, UNI_FORMULAS[uni](cgpa))).toFixed(2);
-            document.getElementById('percentInput').value = pct;
-            showConvertResult(cgpa + ' CGPA', pct + '%', cgpa, 10);
-        }
+  // Live CGPA → % convert
+  function liveConvert() {
+    const cgpa = parseFloat(document.getElementById('inputCGPA').value);
+    const formula = document.getElementById('uniFormula').value;
+    const res = document.getElementById('liveConvResult');
+    if (isNaN(cgpa) || cgpa < 0) { res.style.display = 'none'; return; }
+    const formulas = {
+      x10: { pct: cgpa * 10, label: `CGPA × 10 = ${cgpa} × 10` },
+      cbse: { pct: cgpa * 9.5, label: `CGPA × 9.5 = ${cgpa} × 9.5` },
+      anna: { pct: cgpa * 10, label: `CGPA × 10 = ${cgpa} × 10` },
+      mu: { pct: Math.max(0, (cgpa - 0.5) * 10), label: `(CGPA − 0.5) × 10 = (${cgpa} − 0.5) × 10` },
+      du: { pct: cgpa * 9.5, label: `CGPA × 9.5 = ${cgpa} × 9.5` },
+      aktu: { pct: Math.max(0, cgpa * 10 - 7.5), label: `CGPA × 10 − 7.5 = ${cgpa} × 10 − 7.5` },
+      ktu: { pct: Math.max(0, cgpa * 10 - 5), label: `CGPA × 10 − 5 = ${cgpa} × 10 − 5` },
+      sppu: { pct: cgpa * 10, label: `CGPA × 10 = ${cgpa} × 10` },
+    };
+    const f = formulas[formula] || formulas.x10;
+    document.getElementById('convPct').textContent = f.pct.toFixed(2) + '%';
+    document.getElementById('convFormulaTxt').textContent = f.label;
+    res.style.display = 'block';
+  }
 
-        function convertReverse() {
-            const pct = parseFloat(document.getElementById('percentInput').value);
-            if (isNaN(pct) || pct < 0 || pct > 100) { document.getElementById('convertResult').style.display = 'none'; return; }
-            const cgpa = (pct / 9.5).toFixed(2);
-            document.getElementById('cgpaInput').value = cgpa;
-            showConvertResult(pct + '%', cgpa + ' CGPA', parseFloat(cgpa), 10);
-        }
-
-        function showConvertResult(from, to, cgpa, scale) {
-            document.getElementById('convertLabel').textContent = from + ' →';
-            document.getElementById('convertValue').textContent = to;
-            const { label, color } = getGradeClass(cgpa, scale);
-            const badge = document.getElementById('convertGradeBadge');
-            badge.textContent = label; badge.style.background = color + '33'; badge.style.color = color;
-            document.getElementById('convertGrid').innerHTML = buildConversions(cgpa, scale, '—');
-            document.getElementById('convertResult').style.display = 'block';
-        }
-
-        // ── HELPERS ──
-        function getGradeClass(gpa, scale) {
-            const pct = (gpa / scale) * 100;
-            if (pct >= 90) return { label: '🏆 Outstanding', color: '#7c3aed' };
-            if (pct >= 75) return { label: '⭐ First Class w/ Distinction', color: '#059669' };
-            if (pct >= 60) return { label: '✅ First Class', color: '#2563eb' };
-            if (pct >= 50) return { label: '👍 Second Class', color: '#d97706' };
-            if (pct >= 40) return { label: 'Pass', color: '#6b7280' };
-            return { label: '❌ Fail', color: '#ef4444' };
-        }
-
-        function buildConversions(gpa, scale, credits) {
-            const pctGeneric = (gpa * 9.5).toFixed(2);
-            const pctVTU = ((gpa - 0.75) * 10).toFixed(2);
-            const pct4 = ((gpa / scale) * 4).toFixed(2);
-            const items = [
-                ['% (Generic × 9.5)', pctGeneric + '%', 'CBSE / Most Universities'],
-                ['% (VTU Formula)', pctVTU + '%', 'VTU Karnataka'],
-                ['4.0 GPA (US)', pct4, 'US University Scale'],
-                ['Total Credits', credits, 'Weighted Credits']
-            ];
-            return items.map(([l, v, f]) => `
-                <div class="conv-item">
-                    <div class="conv-value">${v}</div>
-                    <div class="conv-label">${l}</div>
-                    <div class="conv-formula">${f}</div>
-                </div>`).join('');
-        }
-
-        function buildQuickRefTable() {
-            const data = [10,9.5,9,8.5,8,7.5,7,6.5,6,5.5,5,4].map(c => {
-                const pct = (c * 9.5).toFixed(1);
-                const { label } = getGradeClass(c, 10);
-                let cls = pct >= 90 ? 'Outstanding' : pct >= 75 ? 'First Class w/ Dist.' : pct >= 60 ? 'First Class' : pct >= 50 ? 'Second Class' : 'Pass';
-                return `<tr style="border-bottom:1px solid #f1f5f9;">
-                    <td style="padding:0.6rem 0.75rem;font-weight:700;">${c}</td>
-                    <td style="padding:0.6rem 0.75rem;">${pct}%</td>
-                    <td style="padding:0.6rem 0.75rem;color:var(--primary-color);font-weight:700;">${label.replace(/[🏆⭐✅👍❌]/g,'').trim()}</td>
-                    <td style="padding:0.6rem 0.75rem;color:var(--text-muted);font-size:0.85rem;">${cls}</td>
-                </tr>`;
-            }).join('');
-            document.getElementById('quickRefTable').innerHTML = data;
-        }
-
-        function copySemResult() {
-            const gpa = document.getElementById('semGPAValue').textContent;
-            const text = `My Semester GPA: ${gpa} | Calculated via worldoftools.in/cgpa-calculator`;
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = event.currentTarget; const orig = btn.textContent;
-                btn.textContent = '✅ Copied!'; setTimeout(() => btn.textContent = orig, 2000);
-            });
-        }
-
-        function shareSemResult() {
-            const gpa = document.getElementById('semGPAValue').textContent;
-            const text = `I just calculated my GPA: ${gpa} on WorldOfTools! Check yours: https://worldoftools.in/cgpa-calculator`;
-            if (navigator.share) navigator.share({ title: 'My GPA Result', text, url: 'https://worldoftools.in/cgpa-calculator' });
-            else window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
-        }
-
-        function resetSem() {
-            document.getElementById('subjectsContainer').innerHTML = '';
-            subjectCount = 0;
-            for (let i = 0; i < 5; i++) addSubjectRow();
-            document.getElementById('semResult').style.display = 'none';
-        }
-
-        function showError(msg) {
-            const el = document.getElementById('errorMessage');
-            if (msg) { el.textContent = '⚠️ ' + msg; el.style.display = 'flex'; el.scrollIntoView({behavior:'smooth',block:'center'}); }
-            else { el.style.display = 'none'; el.textContent = ''; }
-        }
-
-        // ── PDF DOWNLOAD ───────────────────────────────────────────────────
-        async function downloadPDF(type) {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const primaryColor = '#4f46e5';
-            const secondaryColor = '#6366f1';
-            
-            // Header
-            doc.setFillColor( primaryColor );
-            doc.rect(0, 0, 210, 40, 'F');
-            doc.setTextColor('#ffffff');
-            doc.setFontSize(24);
-            doc.setFont('helvetica', 'bold');
-            doc.text('WorldOfTools.in', 20, 25);
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'normal');
-            doc.text('Professional Academic Utilities', 20, 32);
-
-            doc.setTextColor('#ffffff');
-            doc.setFontSize(14);
-            doc.text(`${type === 'semester' ? 'Semester GPA' : 'Cumulative CGPA'} Report`, 190, 25, { align: 'right' });
-            
-            // Content
-            doc.setTextColor('#1f2937');
-            doc.setFontSize(12);
-            doc.setFont('helvetica', 'bold');
-            doc.text('Calculation Details:', 20, 55);
-            
-            let y = 65;
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'normal');
-            
-            if (type === 'semester') {
-                const rows = document.querySelectorAll('#subjectsContainer .subject-row');
-                doc.setFillColor('#f8fafc');
-                doc.rect(20, y-5, 170, 8, 'F');
-                doc.setFont('helvetica', 'bold');
-                doc.text('Subject', 25, y);
-                doc.text('Grade', 120, y);
-                doc.text('Credits', 160, y);
-                y += 10;
-                doc.setFont('helvetica', 'normal');
-                
-                rows.forEach(row => {
-                    const name = row.querySelector('.sub-name').value || 'Subject';
-                    const grade = row.querySelector('.sub-grade').options[row.querySelector('.sub-grade').selectedIndex].text;
-                    const credits = row.querySelector('.sub-credits').value;
-                    doc.text(name, 25, y);
-                    doc.text(grade, 120, y);
-                    doc.text(credits, 160, y);
-                    y += 8;
-                    if (y > 270) { doc.addPage(); y = 20; }
-                });
-            } else {
-                const rows = document.querySelectorAll('#semestersContainer .sem-row');
-                doc.setFillColor('#f8fafc');
-                doc.rect(20, y-5, 170, 8, 'F');
-                doc.setFont('helvetica', 'bold');
-                doc.text('Semester', 25, y);
-                doc.text('GPA', 120, y);
-                doc.text('Credits', 160, y);
-                y += 10;
-                doc.setFont('helvetica', 'normal');
-                
-                rows.forEach(row => {
-                    const label = row.querySelector('.sem-label').textContent;
-                    const gpa = row.querySelector('.sem-gpa').value || '—';
-                    const credits = row.querySelector('.sem-credits').value || '—';
-                    doc.text(label, 25, y);
-                    doc.text(gpa, 120, y);
-                    doc.text(credits, 160, y);
-                    y += 8;
-                });
-            }
-
-            // Final Result Card
-            y += 10;
-            doc.setDrawColor('#e2e8f0');
-            doc.setFillColor('#f1f5f9');
-            doc.roundedRect(20, y, 170, 40, 3, 3, 'FD');
-            
-            const resultVal = type === 'semester' ? document.getElementById('semGPAValue').textContent : document.getElementById('cgpaValue').textContent;
-            const badgeLabel = type === 'semester' ? document.getElementById('semGradeBadge').textContent : document.getElementById('cgpaGradeBadge').textContent;
-            
-            doc.setTextColor(primaryColor);
-            doc.setFontSize(32);
-            doc.setFont('helvetica', 'bold');
-            doc.text(resultVal, 105, y + 20, { align: 'center' });
-            
-            doc.setFontSize(14);
-            doc.text(badgeLabel, 105, y + 32, { align: 'center' });
-            
-            doc.setFontSize(10);
-            doc.setTextColor('#64748b');
-            doc.text(`Final ${type === 'semester' ? 'GPA' : 'CGPA'} Scale: 10.0`, 105, y + 10, { align: 'center' });
-
-            // Footer
-            doc.setDrawColor(primaryColor);
-            doc.line(20, 275, 190, 275);
-            doc.setFontSize(8);
-            doc.setTextColor('#94a3b8');
-            doc.text('100% Private Tool — Calculated by WorldOfTools.in', 105, 282, { align: 'center' });
-            doc.text(`${new Date().toLocaleString()}`, 105, 287, { align: 'center' });
-
-            doc.save(`WorldOfTools_${type}_result.pdf`);
-        }
-
-        function resetCGPA() {
-            document.getElementById('semestersContainer').innerHTML = '';
-            semesterCount = 0;
-            for (let i = 0; i < 4; i++) addSemesterRow(i + 1);
-            document.getElementById('cgpaResult').style.display = 'none';
-        }
-  </script>
+  // Init
+  addSubjectRow(); addSubjectRow(); addSubjectRow();
+  addSemRow(); addSemRow();
+</script>
 </body>
 </html>

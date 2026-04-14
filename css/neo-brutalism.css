@@ -1,0 +1,751 @@
+/* ══════════════════════════════════════════════════════════════ */
+/*  WorldOfTools — Cute Playful Neo-Brutalist Design System v4   */
+/* ══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
+
+:root {
+    /* ── v5 Playful Palette (High Fidelity) ── */
+    --nb-yellow: #ffe066;
+    --nb-pink:   #ff6b9d;
+    --nb-mint:   #b2f5ea;
+    --nb-blue:   #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime:   #c3f584;
+    --nb-black:  #000000;
+    --nb-white:  #ffffff;
+
+    /* ── Legacy Mappings (for backward compatibility) ── */
+    --nb-lavender:   #e9ddff;
+    --nb-amber:      #fff0b3;
+    --nb-rose:       #ffd6e0;
+    --nb-sky:        #bfecff;
+    --nb-peach:      #ffdcb5;
+    --nb-lilac:      #f3d0ff;
+
+    /* ── Typography ── */
+    --font-heading: 'Syne', sans-serif;
+    --font-body:    'Space Grotesk', sans-serif;
+    --nb-letter-spacing: normal;
+    --nb-line-height: 1.5;
+    --nb-body-weight: 500;
+
+    /* ── Borders & Shadows ── */
+    --nb-border: 2.5px solid #000;
+    --nb-border-thick: 3px solid #000;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-shadow-xl: 10px 10px 0 #000;
+    --nb-radius: 16px;
+    --nb-radius-lg: 24px;
+}
+
+/* ═══════════════════════════════════════════════
+   CUTE TOOL CARD — Unified Golden Standard
+   ═══════════════════════════════════════════════ */
+.tool-card {
+    background: #ffffff;
+    border: var(--nb-border);
+    border-radius: var(--nb-radius) !important;
+    padding: 1.5rem !important;
+    box-shadow: var(--nb-shadow);
+    transition: transform 0.1s, box-shadow 0.1s;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    text-decoration: none !important;
+    color: #111 !important;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.tool-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--nb-shadow-lg);
+}
+
+/* ── Emoji/Icon Badge ── */
+.tool-icon {
+    font-size: 1.8rem !important;
+    width: 56px !important;
+    height: 56px !important;
+    background: rgba(255,255,255,0.75) !important;
+    border: var(--nb-border) !important;
+    border-radius: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 1rem !important;
+    box-shadow: 3px 3px 0px 0px #000 !important;
+    transition: transform 0.2s ease, rotate 0.2s ease;
+    flex-shrink: 0;
+}
+
+.tool-card:hover .tool-icon {
+    transform: rotate(-5deg) scale(1.08);
+}
+
+/* ── Card Title ── */
+.tool-title {
+    font-family: var(--font-body);
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    color: #111 !important;
+    margin-bottom: 0.4rem !important;
+    text-transform: none !important;
+    letter-spacing: normal;
+    line-height: 1.25;
+}
+
+/* ── Card Description ── */
+.tool-desc {
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    color: #444 !important;
+    line-height: 1.45 !important;
+    margin-bottom: 0.85rem !important;
+    flex: 1;
+}
+
+/* ── Tool Tag Badge (bottom) ── */
+.tool-tag {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    padding: 0.28rem 0.75rem !important;
+    border: 2px solid #000 !important;
+    border-radius: 999px !important;
+    font-size: 0.68rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+    width: fit-content !important;
+    margin-top: auto !important;
+    box-shadow: 2px 2px 0px #000 !important;
+}
+
+/* Tag colour variants */
+.tag-primary { background: var(--nb-lavender) !important; }
+.tag-success  { background: var(--nb-mint)    !important; }
+.tag-warning  { background: var(--nb-amber)   !important; }
+.tag-error    { background: var(--nb-rose)    !important; }
+.tag-sky      { background: var(--nb-sky)     !important; }
+.tag-peach    { background: var(--nb-peach)   !important; }
+
+/* ── Colorful Card Variants by accent ── */
+.tool-card.card-lavender { background: var(--card-lavender-bg) !important; }
+.tool-card.card-mint     { background: var(--card-mint-bg)     !important; }
+.tool-card.card-amber    { background: var(--card-amber-bg)    !important; }
+.tool-card.card-rose     { background: var(--card-rose-bg)     !important; }
+.tool-card.card-sky      { background: var(--card-sky-bg)      !important; }
+.tool-card.card-peach    { background: var(--card-peach-bg)    !important; }
+.tool-card.card-lime     { background: var(--card-lime-bg)     !important; }
+.tool-card.card-lilac    { background: var(--card-lilac-bg)    !important; }
+
+/* Legacy class mappings → new accents */
+.tool-card.calc   { background: var(--card-mint-bg)     !important; }
+.tool-card.seo    { background: var(--card-lavender-bg) !important; }
+.tool-card.dev    { background: var(--card-amber-bg)    !important; }
+.tool-card.img    { background: var(--card-sky-bg)      !important; }
+.tool-card.purple { background: var(--card-lilac-bg)    !important; }
+.tool-card.yellow { background: var(--card-amber-bg)    !important; }
+.tool-card.pink   { background: var(--card-rose-bg)     !important; }
+.tool-card.blue   { background: var(--card-sky-bg)      !important; }
+
+/* ── Legacy: icon-wrapper inside tool-card ── */
+.tool-card .icon-wrapper {
+    width: 56px;
+    height: 56px;
+    background: rgba(255,255,255,0.75);
+    border: var(--nb-border);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: 3px 3px 0px #000;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.tool-card:hover .icon-wrapper {
+    transform: rotate(-5deg) scale(1.08);
+}
+
+.tool-card .icon-wrapper .material-symbols-outlined {
+    font-size: 2rem;
+}
+
+.tool-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0 0 0.4rem;
+    letter-spacing: normal;
+    color: #111;
+    text-transform: none;
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: var(--nb-body-weight);
+    line-height: var(--nb-line-height);
+    color: #111;
+    background-color: var(--nb-bg);
+    overflow-x: hidden;
+}
+
+.tool-card p {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #444;
+    line-height: 1.45;
+    margin: 0 0 0.75rem;
+    flex: 1;
+}
+
+/* ── Launch Button (used by some cards) ── */
+.tool-card .launch-btn {
+    margin-top: auto;
+    background: #000;
+    color: #fff;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    border: 2px solid #000;
+    font-weight: 800;
+    font-size: 0.82rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.35);
+}
+
+.tool-card:hover .launch-btn {
+    background: #fff;
+    color: #000;
+    box-shadow: 3px 3px 0px #000;
+}
+
+/* ═══════════════════════════════════════════════
+   TOOLS GRID
+   ═══════════════════════════════════════════════ */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* ═══════════════════════════════════════════════
+   POPULAR CARDS (hero strip)
+   ═══════════════════════════════════════════════ */
+.pop-strip {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.25rem;
+    padding: 1rem 0 2rem;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.pop-strip::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+.pop-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    border: var(--nb-border-thick);
+    border-radius: 1.5rem;
+    box-shadow: var(--nb-shadow-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.2s ease;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.pop-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: var(--nb-shadow-md);
+}
+
+/* ── Popular Card Inner Elements ── */
+.pc-ico {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #000;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 3px 3px 0 #000;
+    flex-shrink: 0;
+}
+
+.pc-name {
+    font-weight: 900;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #000;
+}
+
+.pc-badge {
+    font-size: 0.6rem;
+    background: #000;
+    color: #fff;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.pc-desc {
+    font-size: 0.8rem;
+    color: #4b5563;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* ═══════════════════════════════════════════════
+   CATEGORY SECTION HEADERS
+   ═══════════════════════════════════════════════ */
+.section-label-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #fff;
+    border: var(--nb-border);
+    border-radius: 999px;
+    padding: 0.3rem 1rem;
+    font-size: 0.72rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    box-shadow: var(--nb-shadow-sm);
+    margin-bottom: 1rem;
+}
+
+/* ═══════════════════════════════════════════════
+   CATEGORY CHIPS
+   ═══════════════════════════════════════════════ */
+.category-chip {
+    padding: 0.6rem 1.35rem;
+    border-radius: 999px;
+    border: var(--nb-border);
+    font-weight: 800;
+    font-size: 0.85rem;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.18s ease;
+    box-shadow: 3px 3px 0px #000;
+    user-select: none;
+}
+
+.category-chip:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #000;
+}
+
+.category-chip.active {
+    background: var(--primary-color, #6d3bd7);
+    color: #fff;
+    box-shadow: 4px 4px 0px #000;
+}
+
+/* ═══════════════════════════════════════════════
+   FORM & INPUT STANDARD
+   ═══════════════════════════════════════════════ */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+input[type="url"],
+select,
+textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: var(--nb-border) !important;
+    border-radius: 1rem !important;
+    background: #fff !important;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-body) !important;
+    transition: all 0.2s ease;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.08) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    border-color: var(--primary-color, #6d3bd7) !important;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1) !important;
+    transform: translate(-1px, -1px);
+}
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════ */
+.btn {
+    border: var(--nb-border) !important;
+    border-radius: 999px !important;
+    box-shadow: var(--nb-shadow-sm) !important;
+    font-weight: 800 !important;
+    transition: all 0.18s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.btn:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: var(--nb-shadow-md) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   INDIVIDUAL TOOL PAGE — Tool Container
+   ═══════════════════════════════════════════════ */
+.tool-container {
+    max-width: 1100px;
+    margin: 0.5rem auto 6rem;
+    padding: 0 1.5rem;
+}
+
+/* Finalizing global resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.tool-main-card {
+    background: #fff;
+    border: var(--nb-border);
+    border-radius: 2rem;
+    box-shadow: var(--nb-shadow-lg);
+    padding: 2.5rem;
+    margin-top: 2rem;
+}
+
+/* ═══════════════════════════════════════════════
+   RESULT CARD HERO
+   ═══════════════════════════════════════════════ */
+.result-card-hero {
+    background: var(--nb-lavender);
+    border: var(--nb-border-thick);
+    border-radius: 2rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--nb-shadow-xl);
+    position: relative;
+    overflow: hidden;
+    margin-top: 3rem;
+}
+
+.result-card-hero #mainAge,
+.result-card-hero .main-value {
+    font-size: clamp(3rem, 12vw, 6rem);
+    font-weight: 950;
+    line-height: 1;
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    text-shadow: 4px 4px 0px rgba(0,0,0,0.18);
+    margin: 1rem 0;
+}
+
+/* ═══════════════════════════════════════════════
+   NAV PILLS / TABS
+   ═══════════════════════════════════════════════ */
+.tabs-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.tab-pill {
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    border: var(--nb-border);
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 3px 3px 0px #000;
+    transition: all 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tab-pill.active {
+    background: var(--primary-color, #6d3bd7);
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #000;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════ */
+footer {
+    background: var(--surface-container, #f2f4f6) !important;
+    color: var(--text-color, #191c1e) !important;
+    border-top: 2px solid var(--border-color, #191c1e) !important;
+}
+
+.footer-chip:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px 0px #000 !important;
+}
+
+/* ═══════════════════════════════════════════════
+   PREMIUM TOOL WORKSPACE
+   ═══════════════════════════════════════════════ */
+.tool-workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.tool-pane-card {
+    background: #ffffff;
+    border: var(--nb-border);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: var(--nb-shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 400px;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 12px;
+    border: 2px solid #eee;
+    object-fit: contain;
+}
+
+@media (max-width: 900px) {
+    .tool-workspace-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   MATERIAL SYMBOLS
+   ═══════════════════════════════════════════════ */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 640px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .tool-card {
+        padding: 1.25rem 1.1rem !important;
+        min-height: 170px;
+    }
+
+    .tool-icon {
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 1.5rem !important;
+    }
+
+    .tool-title {
+        font-size: 0.92rem !important;
+    }
+
+    .tool-desc {
+        font-size: 0.76rem !important;
+    }
+}
+
+/* ── SEO & Trust Sections ── */
+.seo-trust-section {
+    padding: 3.5rem 1.5rem 0.5rem;
+    background: #fff;
+    border-top: var(--nb-border);
+}
+
+.comparison-card {
+    background: #fff;
+    border: var(--nb-border-thick);
+    border-radius: 2rem;
+    padding: 2.5rem;
+    box-shadow: 8px 8px 0 #000;
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.comp-table-wrap {
+    overflow-x: auto;
+    margin-top: 2rem;
+}
+
+.comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+}
+
+.comp-table th {
+    text-align: left;
+    padding: 1rem;
+    background: var(--nb-yellow);
+    border: var(--nb-border);
+    font-family: var(--font-heading);
+    font-weight: 950;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.comp-table td {
+    padding: 1.25rem 1rem;
+    border: var(--nb-border);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.comp-table tr:nth-child(even) { background: #f9f9f9; }
+
+.check-yes { color: #059669; font-weight: 900; }
+.check-no { color: #dc2626; font-weight: 900; }
+
+.seo-copy-wrap {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    line-height: 1.8;
+}
+
+.seo-copy-wrap p {
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL TYPOGRAPHY FIX — v6.1
+   Fixes: oversized h1, stretched Syne, text-transform uppercase
+   ══════════════════════════════════════════════════════════════ */
+
+/* Tool page H1 — normalised size, no all-caps, not stretched */
+.tool-hero h1,
+.tool-container h1 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: clamp(1.3rem, 3.5vw, 1.9rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.01em !important;
+    line-height: 1.25 !important;
+    text-transform: none !important;
+    color: #111;
+    margin-bottom: 0.65rem;
+}
+
+/* Tool hero breadcrumb */
+.breadcrumb { font-size: 0.82rem; color: #666; margin-bottom: 0.65rem; font-weight: 600; }
+.breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+/* Tool hero paragraph — keep readable */
+.tool-hero p { font-size: 0.95rem; color: #555; line-height: 1.65; margin: 0 0 0.75rem; }
+
+/* Hero badge on tool pages */
+.hero-badge {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    font-weight: 800 !important;
+    padding: 0.35rem 1rem !important;
+}
+
+/* Section headings inside SEO / info blocks */
+.seo-section h2,
+.tool-container h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #111;
+    line-height: 1.3;
+    margin: 2rem 0 0.85rem;
+    text-transform: none;
+}
+
+/* Remove uppercase that makes Syne look stretched */
+h1, h2, h3, h4 {
+    text-transform: none;
+}
+
+/* Homepage hero - slightly reduced but still impactful */
+.hero-h1 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: clamp(2rem, 5.5vw, 3.25rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.1 !important;
+    text-transform: none !important;
+}
+
+/* Section headers on homepage and category pages */
+.sec-h2 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: clamp(1.4rem, 3.5vw, 2rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.02em !important;
+    text-transform: none !important;
+    line-height: 1.15 !important;
+}
+
+/* Navbar site name */
+.nav-logo-name {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* Stats section numbers */
+.stat-num {
+    font-family: 'Space Grotesk', sans-serif !important;
+    letter-spacing: -0.04em !important;
+}
+
+/* Tool card title on homepage */
+.tool-card .tool-name,
+.tool-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* Pop-card names */
+.pop-card .pc-name {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+}
+
+/* Footer section titles */
+.footer-col-title {
+    font-family: 'Space Grotesk', sans-serif !important;
+    letter-spacing: 0.04em !important;
+}
+
+

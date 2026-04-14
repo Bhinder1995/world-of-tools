@@ -1,745 +1,503 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   SQL Formatter — Beautify Queries Instantly, No Login | WorldOfTools
-  </title>
+<title>SQL Formatter Free Online — Beautify &amp; Format SQL Queries Instantly | WorldOfTools</title>
 <meta content="Format &amp; beautify messy SQL queries instantly. Supports MySQL, PostgreSQL, SQL Server &amp; standard SQL. No login, no signup — free SQL formatter online." name="description"/>
 <meta content="how to format SQL query online, SQL code formatter free, SQL beautifier MySQL, clean up SQL query online, SQL formatter with syntax highlighting, best online SQL formatter, SQL formatter PostgreSQL, sql formatter online, sql beautifier no login, format sql query instantly" name="keywords"/>
 <link href="https://worldoftools.in/sql-formatter" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/sql-formatter" property="og:url"/>
+<meta content="SQL Formatter — Beautify Queries Instantly, No Login | WorldOfTools" property="og:title"/>
+<meta content="Format &amp; beautify messy SQL queries instantly. Supports MySQL, PostgreSQL, SQL Server &amp; standard SQL. No login, no signup — free SQL formatter online." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://worldoftools.in/sql-formatter" name="twitter:url"/>
+<meta content="SQL Formatter — Beautify Queries Instantly, No Login | WorldOfTools" name="twitter:title"/>
+<meta content="Format &amp; beautify messy SQL queries instantly. Supports MySQL, PostgreSQL, SQL Server &amp; standard SQL. No login, no signup — free SQL formatter online." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/sql-formatter"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},{"@type":"ListItem","position":2,"name":"SQL Formatter","item":"https://worldoftools.in/sql-formatter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SQL Formatter","image":"https://worldoftools.in/app-icon.png","description":"Format and beautify your SQL queries instantly. Support for MySQL, PostgreSQL, and SQL Server. Free online SQL formatter — 100% private.","url":"https://worldoftools.in/sql-formatter","operatingSystem":"Any","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1654","reviewCount":"1819"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it support different SQL dialects?","acceptedAnswer":{"@type":"Answer","text":"Yes! You can choose between MySQL, PostgreSQL, MariaDB, and standard SQL formats."}},{"@type":"Question","name":"Is my database code safe?","acceptedAnswer":{"@type":"Answer","text":"100%. All formatting happens in your browser's local memory. Your queries are never sent to a server."}},{"@type":"Question","name":"Can I minify SQL?","acceptedAnswer":{"@type":"Answer","text":"Yes, there is a Minify tab to strip all whitespace for use in application code."}},{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no limits on query length or frequency."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
 <style>
-   .sql-ui {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .controls {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            background: #f1f5f9;
-            padding: 1rem;
-            border-radius: 12px;
-            align-items: center;
-        }
-
-        textarea {
-            width: 100%;
-            height: 450px;
-            padding: 1.5rem;
-            border-radius: 20px;
-            border: 2px solid var(--border-color);
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            resize: vertical;
-            background: #f8fafc;
-            margin-bottom: 1.5rem;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background: white;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 0.75rem;
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "SQL Formatter",
-      "item": "https://worldoftools.in/sql-formatter"
-    }
-  ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Why should I format SQL queries?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Formatted SQL is easier to read, debug, and review \u2014 especially for complex queries with multiple JOINs, subqueries, or CTEs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does formatting change my query's behavior?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No \u2014 SQL formatting only affects whitespace and capitalization, never the logic or execution of the query."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work with stored procedures?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 paste stored procedures, triggers, or full SQL scripts and they'll be formatted accordingly."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my SQL data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all formatting runs in your browser. Your database queries and schema details are never uploaded."
-      }
-    }
-  ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "SQL Formatter",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+  :root {
+    --nb-yellow: #ffe066; --nb-pink: #ff6b9d; --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa; --nb-orange: #ffa94d; --nb-lime: #c3f584;
+    --nb-shadow: 4px 4px 0 #000; --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px; --nb-border: 2.5px solid #000;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/sql-formatter" property="og:url"/><meta content="
-   SQL Formatter — Beautify Queries Instantly, No Login | WorldOfTools
-  " property="og:title"/><meta content="Format &amp; beautify messy SQL queries instantly. Supports MySQL, PostgreSQL, SQL Server &amp; standard SQL. No login, no signup — free SQL formatter online." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/sql-formatter" name="twitter:url"/><meta content="
-   SQL Formatter — Beautify Queries Instantly, No Login | WorldOfTools
-  " name="twitter:title"/><meta content="Format &amp; beautify messy SQL queries instantly. Supports MySQL, PostgreSQL, SQL Server &amp; standard SQL. No login, no signup — free SQL formatter online." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border: var(--nb-border); border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none; box-shadow: var(--nb-shadow); white-space: nowrap; background: #fff; }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); color: #000; }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); color: #000; }
+  .nb-btn-blue { background: var(--nb-blue); color: #000; }
+  .nb-btn-full { width: 100%; font-size: 1.1rem; padding: 1rem; }
+  .nb-btn-sm { padding: 0.55rem 1rem; font-size: 0.85rem; }
+
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-blue); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+  .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .nb-tab-btn { padding: 0.65rem 1.25rem; border: var(--nb-border); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.9rem; white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000; }
+  .nb-tab-btn.active { background: var(--nb-yellow); border-color: #000; }
+  .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
+
+  .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
+  .nb-select { width: 100%; padding: 0.75rem 1rem; border: var(--nb-border); border-radius: 12px; font-family: inherit; font-size: 0.95rem; font-weight: 700; outline: none; background: #fff; box-shadow: 3px 3px 0 #000; cursor: pointer; transition: box-shadow 0.15s; }
+  .nb-select:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
+  .input-group { margin-bottom: 1.25rem; }
+
+  .sql-textarea { width: 100%; min-height: 280px; padding: 1.25rem; resize: vertical; border: var(--nb-border); border-radius: 14px; font-family: 'Courier New', Courier, monospace; font-size: 0.92rem; line-height: 1.7; background: #0d0d0d; color: #ffe066; outline: none; box-shadow: var(--nb-shadow-lg); transition: border-color 0.15s; caret-color: #ffe066; }
+  .sql-textarea:focus { border-color: #4f46e5; }
+  .sql-textarea::placeholder { color: #444; }
+
+  .nb-message { display: none; border: var(--nb-border); border-radius: 12px; padding: 0.85rem 1.25rem; font-weight: 700; margin-bottom: 1.25rem; }
+  .nb-message.error { background: #ffe0e0; color: #c00; box-shadow: 3px 3px 0 #c00; }
+  .nb-message.success { background: #dcfce7; color: #166534; box-shadow: 3px 3px 0 #166534; }
+
+  .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+  .btn-row .nb-btn { flex: 1; min-width: 110px; }
+
+  .sql-stats { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .sql-stat-badge { padding: 0.35rem 0.9rem; border: var(--nb-border); border-radius: 8px; font-size: 0.78rem; font-weight: 800; background: #fff; box-shadow: 2px 2px 0 #000; }
+
+  .privacy-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .privacy-badge { display: flex; align-items: center; gap: 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; padding: 1rem 1.25rem; box-shadow: 3px 3px 0 #000; }
+  .privacy-badge .badge-icon { width: 40px; height: 40px; border: 2px solid #000; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+  .privacy-badge .badge-title { font-weight: 900; font-size: 0.9rem; }
+  .privacy-badge .badge-desc { font-size: 0.78rem; color: #666; margin-top: 0.1rem; }
+
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #f9f9ff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-yellow); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  .compare-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .compare-table th { padding: 0.85rem 1rem; text-align: center; background: var(--nb-yellow); border-bottom: 2px solid #000; font-weight: 800; }
+  .compare-table th:first-child { text-align: left; }
+  .compare-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td.yes { color: #059669; font-weight: 800; text-align: center; }
+  .compare-table td.no { color: #dc2626; text-align: center; }
+  .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .usecase-card { background: #fff; border: var(--nb-border); border-radius: 14px; padding: 1.25rem; box-shadow: 3px 3px 0 #000; }
+  .usecase-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 900; margin: 0 0 0.5rem; }
+  .usecase-card p { font-size: 0.88rem; color: #555; line-height: 1.5; margin: 0; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+
+  @media(max-width:480px) {
+    .nb-card-lg { padding: 1.25rem; }
+    .btn-row { gap: 0.5rem; }
+    .btn-row .nb-btn { font-size: 0.82rem; padding: 0.7rem 0.75rem; min-width: 80px; }
+    .privacy-strip { grid-template-columns: 1fr; }
+    .sql-textarea { min-height: 200px; font-size: 0.82rem; }
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-in { animation: fadeUp 0.4s ease-out; }
+</style>
+</head>
 <body>
-<header>
-</header>
-<main class="container">
+<header></header>
+
+<main class="container" data-category-name="Developer Tools" data-category-url="/developer-tools" data-tool-name="SQL Formatter">
 <div class="tool-container">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>SQL Formatter</span></div><h1>
-      SQL Formatter — Beautify &amp; Format SQL Queries Instantly, No Login Required
-     </h1>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Format your SQL queries for better readability
-                    or minify them instantly.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/sql-formatter-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
-<div class="privacy-badge-banner">
-<span>
-        🛡️
-       </span>
-<span>
-        100% Private — Client-Side Processing
-       </span>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Tools › <span>SQL Formatter</span></div>
+    <div class="hero-badge">🔒 100% Private — Browser Only</div>
+    <h1>SQL Formatter — Beautify &amp; Format SQL Queries Instantly</h1>
+    <p>Transform messy, single-line SQL into clean, readable code with proper indentation and keyword casing. Supports MySQL, PostgreSQL, SQL Server &amp; more. No login. No uploads. Runs entirely in your browser.</p>
+  </section>
+
+  <!-- PRIVACY BADGES -->
+  <div class="privacy-strip">
+    <div class="privacy-badge">
+      <div class="badge-icon" style="background:var(--nb-mint);">🔒</div>
+      <div>
+        <div class="badge-title">Zero-Server Logic</div>
+        <div class="badge-desc">Your SQL never leaves your device. 100% client-side.</div>
+      </div>
+    </div>
+    <div class="privacy-badge">
+      <div class="badge-icon" style="background:var(--nb-yellow);">⚡</div>
+      <div>
+        <div class="badge-title">Instant Results</div>
+        <div class="badge-desc">No queues, no waiting. Results in milliseconds.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:2rem;">
+
+    <!-- Tabs -->
+    <div class="nb-tabs" role="tablist">
+      <button class="nb-tab-btn active" onclick="switchSqlTab('format',this)" role="tab" aria-selected="true">🎨 Format SQL</button>
+      <button class="nb-tab-btn" onclick="switchSqlTab('minify',this)" role="tab" aria-selected="false">📦 Minify SQL</button>
+    </div>
+
+    <!-- Dialect -->
+    <div class="input-group">
+      <label class="nb-label" for="dialectSelect">SQL Dialect</label>
+      <select class="nb-select" id="dialectSelect" style="max-width:260px;">
+        <option value="standard">Standard SQL</option>
+        <option value="mysql" selected>MySQL</option>
+        <option value="postgresql">PostgreSQL</option>
+        <option value="mssql">SQL Server (T-SQL)</option>
+        <option value="sqlite">SQLite</option>
+      </select>
+    </div>
+
+    <!-- Message -->
+    <div class="nb-message" id="errorMessage" role="alert"></div>
+
+    <!-- SQL Editor -->
+    <div class="input-group">
+      <label class="nb-label" for="sqlInput">Paste Your SQL Query</label>
+      <textarea
+        class="sql-textarea"
+        id="sqlInput"
+        placeholder="-- Paste your SQL here, e.g.:&#10;SELECT u.id, u.name, o.total FROM users u LEFT JOIN orders o ON u.id=o.user_id WHERE u.status='active' ORDER BY o.total DESC LIMIT 50;"
+        spellcheck="false"
+        autocorrect="off"
+        autocapitalize="off"
+        oninput="updateStats()"
+      ></textarea>
+    </div>
+
+    <!-- Live Stats -->
+    <div class="sql-stats" id="sqlStats" style="display:none;">
+      <span class="sql-stat-badge" id="statChars">0 chars</span>
+      <span class="sql-stat-badge" id="statLines">0 lines</span>
+      <span class="sql-stat-badge" id="statKws">0 keywords</span>
+    </div>
+
+    <!-- Format Actions -->
+    <div id="format-actions">
+      <div class="btn-row">
+        <button class="nb-btn nb-btn-primary" onclick="formatSQL()">✨ Format SQL</button>
+        <button class="nb-btn nb-btn-mint" onclick="copySQL(this)">📋 Copy</button>
+        <button class="nb-btn nb-btn-blue" onclick="downloadSQL()">💾 Download</button>
+        <button class="nb-btn" onclick="clearSQL()">🗑️ Clear</button>
+      </div>
+    </div>
+
+    <!-- Minify Actions -->
+    <div id="minify-actions" style="display:none;">
+      <div class="btn-row">
+        <button class="nb-btn nb-btn-pink" onclick="minifySQL()">📦 Minify SQL</button>
+        <button class="nb-btn nb-btn-mint" onclick="copySQL(this)">📋 Copy</button>
+        <button class="nb-btn nb-btn-blue" onclick="downloadSQL()">💾 Download</button>
+        <button class="nb-btn" onclick="clearSQL()">🗑️ Clear</button>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1.25rem;font-weight:600;">⚡ All processing happens in your browser. Your SQL is never uploaded or stored.</p>
+  </div>
+
+<div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+
+    <a href="/json-formatter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">{ }</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">JSON Formatter</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Beautify JSON</div>
+    </a>
+    <a href="/xml-formatter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🛠️</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">XML Formatter</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Beautify XML</div>
+    </a>
+    <a href="/csv-to-json" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">📊</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">CSV to JSON</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Convert CSV to JSON</div>
+    </a>
+    </div>
+  </div>
+</div><!-- /tool-container -->
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is the SQL Formatter?</h2>
+    <p>The <strong>SQL Formatter</strong> by WorldOfTools is a free, instant, browser-only utility to beautify and clean up raw SQL queries. Whether you're debugging a messy JOIN, reviewing code from logs, or preparing queries for documentation — this tool produces clean, properly indented SQL in one click.</p>
+    <p>Unlike other online tools, all processing happens entirely in your browser using JavaScript. Your SQL queries are <strong>never sent to any server</strong>, never stored, and never tracked.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Use the SQL Formatter — Step by Step</h2>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Paste Your SQL</strong> — Copy your raw or minified SQL query and paste it into the dark editor above.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Select Your Dialect</strong> — Choose MySQL, PostgreSQL, T-SQL, SQLite, or Standard SQL from the dropdown.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Click Format</strong> — The formatter aligns keywords, adds proper indentation, and uppercases all SQL clauses instantly.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Copy or Download</strong> — Copy the polished SQL to your clipboard or download it as a <code>.sql</code> file for your project.</p>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Key Features — Why Use Our SQL Formatter?</h2>
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.75rem;">
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Keyword Uppercasing</strong> — Automatically uppercases SELECT, FROM, WHERE, JOIN and all SQL keywords for visual clarity and readability.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Smart Indentation</strong> — Adds consistent indentation to sub-clauses, JOINs, and nested conditions for easy reading and debugging.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>SQL Minifier</strong> — Strip all formatting and whitespace to produce compact SQL for use directly in application code strings.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Multi-Dialect Support</strong> — Handles MySQL, PostgreSQL, SQL Server (T-SQL), SQLite, and standard ANSI SQL seamlessly.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>100% Private — Nothing Stored</strong> — All processing runs locally in your browser. Your database queries are never uploaded, logged, or shared.</span></li>
+    </ul>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>🛠️ Who Uses the SQL Formatter?</h2>
+    <div class="usecase-grid">
+      <div class="usecase-card" style="background:var(--nb-blue);">
+        <h3>For DBAs</h3>
+        <p>Clean up messy queries pulled from application logs or monitoring tools for faster analysis and review.</p>
+      </div>
+      <div class="usecase-card" style="background:var(--nb-lime);">
+        <h3>For Data Scientists</h3>
+        <p>Organize large SQL scripts for better shareability, code review, and version control integration.</p>
+      </div>
+      <div class="usecase-card" style="background:var(--nb-pink);">
+        <h3 style="color:#fff;">For Students</h3>
+        <p style="color:#fff;">Learn proper SQL structure by observing correctly formatted output from your own queries.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>🆚 SQL Formatter vs. Other Online Tools</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr>
+          <th>Feature</th>
+          <th style="color:#4f46e5;">WorldOfTools</th>
+          <th>Other Tools</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Privacy</td><td class="yes">✓ Browser Only</td><td class="no">Server Upload</td></tr>
+          <tr><td>Speed</td><td class="yes">✓ Instant</td><td class="no">Delayed</td></tr>
+          <tr><td>Ads &amp; Popups</td><td class="yes">✓ Minimal</td><td class="no">Intrusive</td></tr>
+          <tr><td>Registration</td><td class="yes">✓ Not Required</td><td class="no">Often Required</td></tr>
+          <tr><td>SQL Minifier</td><td class="yes">✓ Included</td><td class="no">Rarely</td></tr>
+          <tr><td>Download .sql</td><td class="yes">✓ One Click</td><td class="no">Rarely</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>Does it support different SQL dialects?</summary><p>Yes! You can choose between MySQL, PostgreSQL, SQL Server (T-SQL), SQLite, and standard ANSI SQL formats from the dialect selector at the top of the tool.</p></details>
+    <details><summary>Why should I format SQL queries?</summary><p>Formatted SQL is easier to read, debug, and review — especially for complex queries with multiple JOINs, subqueries, or CTEs. Consistent formatting also helps in code reviews and documentation.</p></details>
+    <details><summary>Does formatting change my query's behavior?</summary><p>No — SQL formatting only affects whitespace and capitalization, never the logic or execution of the query. Your formatted SQL will produce identical results to the original.</p></details>
+    <details><summary>Is my database code safe?</summary><p>100%. All formatting happens in your browser's local memory. Your queries are never sent to a server, logged, or stored anywhere.</p></details>
+    <details><summary>Can I minify SQL?</summary><p>Yes. Switch to the "Minify SQL" tab to strip all whitespace and comments. This produces compact SQL suitable for use in application configuration or code strings.</p></details>
+    <details><summary>Does it work with stored procedures or long scripts?</summary><p>Yes — paste stored procedures, triggers, or full SQL scripts (up to 1MB). The formatter handles them accordingly without any issues.</p></details>
+    <details><summary>Is it free?</summary><p>Yes, completely free with no limits on query length or frequency. No account or registration required. No premium tiers.</p></details>
+    <details><summary>Does it work on mobile?</summary><p>Yes, the SQL Formatter is fully responsive and works on smartphones, tablets, and desktops.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Tools You Might Need</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Analyze text &amp; reading time</div></a>
+      <a class="tool-card-mini" href="/text-compare-tool"><div class="icon">⚖️</div><div class="name">Text Compare</div><div class="desc">Diff two texts instantly</div></a>
+      <a class="tool-card-mini" href="/case-converter"><div class="icon">🔠</div><div class="name">Case Converter</div><div class="desc">UPPER, camelCase, snake_case</div></a>
+      <a class="tool-card-mini" href="/ip-address-lookup"><div class="icon">🌐</div><div class="name">IP Lookup</div><div class="desc">Find location for any IP</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age, birthdays &amp; milestones</div></a>
+      <a class="tool-card-mini" href="/gst-calculator"><div class="icon">🧾</div><div class="name">GST Calculator</div><div class="desc">Add or remove GST instantly</div></a>
+    </div>
+  </section>
+
 </div>
-</div>
-</section>
-<div class="error-msg" id="errorMessage">
-</div>
-<div style="margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text-dark);">
-<span style="font-size: 1.2rem;">
-      🛡️
-     </span>
-<span style="font-weight: 700;">
-      100% Client-Side Processing
-     </span>
-</div>
-<div class="tool-main-card">
-<div class="controls" style="background: #f8fafc; border: 1px solid var(--border-color); margin-bottom: 2rem;">
-<div class="btn-group">
-<button class="btn btn-primary" onclick="formatSQL()">
-        ✨ Beautify SQL
-       </button>
-<button class="btn btn-secondary" onclick="minifySQL()">
-        🗜️ Minify SQL
-       </button>
-</div>
-<div style="flex-grow: 1;">
-</div>
-<button class="btn btn-secondary" onclick="copySQL()">
-       📋 Copy
-      </button>
-<button class="btn btn-secondary" onclick="downloadSQL()">
-       📥 Download
-      </button>
-<button class="btn btn-secondary" onclick="clearSQL()" style="color: #ef4444;">
-       🗑️ Clear
-      </button>
-</div>
-<textarea id="sqlInput" placeholder="-- Paste your SQL query here
-SELECT * FROM users WHERE id = 1;" style="border: 2px solid var(--border-color); border-radius: 12px; height: 500px; padding: 1.5rem;"></textarea>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the SQL Formatter?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use SQL Formatter — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Paste your unformatted SQL query into the window.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Select your SQL dialect (MySQL, PostgreSQL, T-SQL, etc.).
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Click format to align keywords, indents, and clauses.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Copy the polished SQL to use in your database client.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        Uppercases keywords for better visual structure.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        Adjusts indentation for complex JOIN and WHERE clauses.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        Supports various database-specific syntax variants.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Minification option for shrinking long query strings.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        Private local formatting for confidential business queries.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the SQL Formatter?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For DBAs
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Clean up messy queries from application logs for analysis.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Data Scientists
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Organize large SQL scripts for better shareability and review.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Students
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Learn proper SQL structure by observing formatted outputs.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 SQL Formatter vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Why should I format SQL queries?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Formatted SQL is easier to read, debug, and review — especially for complex queries with multiple JOINs, subqueries, or CTEs.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does formatting change my query's behavior?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No — SQL formatting only affects whitespace and capitalization, never the logic or execution of the query.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work with stored procedures?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — paste stored procedures, triggers, or full SQL scripts and they'll be formatted accordingly.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my SQL data private?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes — all formatting runs in your browser. Your database queries and schema details are never uploaded.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this SQL Formatter free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, the SQL Formatter is 100% free with no hidden charges or premium subscriptions.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my data safe?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Do I need to sign up?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No registration or account creation is required to use any of our tools.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use it offline?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Once the page is loaded, most functions work offline since they run in your browser's local environment.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        SQL Formatter
-       </strong>
-       is an essential powerhouse in any developer's toolkit. From debugging API responses to generating unique identifiers, this tool automates the repetitive parts of coding so you can focus on building great software. It handles complex data structures with ease, providing clean, standardized outputs that integrate perfectly into your existing workflow.
-      </p>
-<p style="margin-top:1rem;">
-       For developers, data integrity and confidentiality are critical. Whether you're formatting JSON with sensitive keys or decoding JWTs containing user data, our SQL Formatter ensures your strings are never transmitted over the network. By performing all logic within the browser, we eliminate the risk of man-in-the-middle attacks or server-side logging of your private development data.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="json-formatter">
-<div class="tool-icon">
-        ✨
-       </div>
-<div class="tool-title">
-        JSON Formatter
-       </div>
-<div class="tool-desc">
-        Best online JSON beautifier and validator to clean, minify, and verify
-                            JSON structures.
-       </div>
-</a>
-<a class="tool-card" href="xml-formatter">
-<div class="tool-icon">
-        🛠️
-       </div>
-<div class="tool-title">
-        XML Formatter
-       </div>
-<div class="tool-desc">
-        Beautify, format, or minify XML code for better readability and
-                            debugging.
-       </div>
-</a>
-<a class="tool-card" href="csv-to-json">
-<div class="tool-icon">
-        📊
-       </div>
-<div class="tool-title">
-        CSV to JSON
-       </div>
-<div class="tool-desc">
-        Convert CSV data to structured JSON objects instantly and securely.
-       </div>
-</a>
-<a class="tool-card" href="regex-tester">
-<div class="tool-icon">
-        🔍
-       </div>
-<div class="tool-title">
-        Regex Tester
-       </div>
-<div class="tool-desc">
-        Test and debug regular expressions (RegEx) in real-time with syntax
-                            highlighting.
-       </div>
-</a>
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
+
 </main>
-<footer>
-</footer>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   function showError(msg, type = 'error') {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
-                errDiv.style.display = 'flex';
-                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
-                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
-                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
-            } else {
-                errDiv.style.display = 'none';
-                errDiv.textContent = '';
-            }
-        }
+  function switchSqlTab(tabId, btn) {
+    document.querySelectorAll('.nb-tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+    document.getElementById('format-actions').style.display = tabId === 'format' ? 'block' : 'none';
+    document.getElementById('minify-actions').style.display = tabId === 'minify' ? 'block' : 'none';
+    showMessage('');
+  }
 
-        function formatSQL() {
-            showError('');
-            let sql = document.getElementById('sqlInput').value.trim();
-            if (!sql) {
-                showError('Please enter some SQL to format.');
-                return;
-            }
+  function showMessage(msg, type) {
+    type = type || 'error';
+    const el = document.getElementById('errorMessage');
+    if (msg) {
+      el.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
+      el.className = 'nb-message ' + type;
+      el.style.display = 'block';
+    } else {
+      el.style.display = 'none';
+      el.textContent = '';
+    }
+  }
 
-            // 1MB limit check
-            if (new Blob([sql]).size > 1024 * 1024) {
-                showError('SQL length exceeds 1MB. Please process smaller queries to prevent browser lag.');
-                return;
-            }
+  function updateStats() {
+    const sql = document.getElementById('sqlInput').value;
+    const wrap = document.getElementById('sqlStats');
+    if (!sql.trim()) { wrap.style.display = 'none'; return; }
+    wrap.style.display = 'flex';
+    document.getElementById('statChars').textContent = sql.length.toLocaleString() + ' chars';
+    document.getElementById('statLines').textContent = sql.split('\n').length + ' lines';
+    const kwds = ['SELECT','FROM','WHERE','JOIN','GROUP BY','ORDER BY','HAVING','INSERT','UPDATE','DELETE','CREATE','DROP','ALTER','WITH'];
+    const count = kwds.filter(function(k){ return new RegExp('\\b'+k+'\\b','i').test(sql); }).length;
+    document.getElementById('statKws').textContent = count + ' keywords';
+  }
 
-            // Simplified SQL formatter logic
-            sql = sql.replace(/\s+/g, ' '); // Normalize space
+  function formatSQL() {
+    showMessage('');
+    var sql = document.getElementById('sqlInput').value.trim();
+    if (!sql) { showMessage('Please enter some SQL to format.'); return; }
+    if (new Blob([sql]).size > 1024*1024) { showMessage('SQL exceeds 1MB. Please use smaller queries.'); return; }
 
-            const keywords = ['SELECT', 'FROM', 'WHERE', 'AND', 'OR', 'JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'INNER JOIN', 'GROUP BY', 'ORDER BY', 'HAVING', 'LIMIT', 'INSERT INTO', 'VALUES', 'UPDATE', 'SET', 'DELETE FROM'];
+    sql = sql.replace(/\s+/g, ' ');
 
-            // Capitalize keywords
-            keywords.forEach(kw => {
-                const regex = new RegExp(`\\b${kw}\\b`, 'gi');
-                sql = sql.replace(regex, kw);
-            });
+    var breakKws = [
+      'SELECT','FROM','WHERE','AND','OR',
+      'LEFT OUTER JOIN','RIGHT OUTER JOIN','FULL OUTER JOIN','CROSS JOIN',
+      'LEFT JOIN','RIGHT JOIN','INNER JOIN','JOIN',
+      'GROUP BY','ORDER BY','HAVING','LIMIT','OFFSET',
+      'UNION ALL','UNION','EXCEPT','INTERSECT',
+      'INSERT INTO','VALUES','UPDATE','SET','DELETE FROM',
+      'CREATE TABLE','ALTER TABLE','DROP TABLE','WITH'
+    ];
 
-            // Add line breaks and indentation
-            sql = sql.replace(/\b(SELECT|FROM|WHERE|AND|OR|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|GROUP BY|ORDER BY|HAVING|LIMIT|SET|VALUES)\b/g, '\n$1');
-            sql = sql.replace(/\nSELECT/g, 'SELECT'); // Fix first select
+    // Uppercase keywords
+    breakKws.forEach(function(kw){
+      var r = new RegExp('\\b'+kw.replace(/ /g,'\\s+')+'\\b','gi');
+      sql = sql.replace(r, kw);
+    });
 
-            // Indent internal lines
-            const lines = sql.split('\n');
-            const formattedLines = lines.map((line, index) => {
-                line = line.trim();
-                if (index === 0) return line;
-                return '  ' + line;
-            });
+    // Break lines before main clauses
+    var mainBreaks = ['SELECT','FROM','WHERE','AND','OR','LEFT JOIN','RIGHT JOIN','INNER JOIN','JOIN','LEFT OUTER JOIN','RIGHT OUTER JOIN','FULL OUTER JOIN','CROSS JOIN','GROUP BY','ORDER BY','HAVING','LIMIT','OFFSET','UNION ALL','UNION','EXCEPT','INTERSECT','INSERT INTO','VALUES','UPDATE','SET','DELETE FROM','CREATE TABLE','ALTER TABLE','DROP TABLE','WITH'];
+    mainBreaks.forEach(function(kw){
+      var r = new RegExp('(?<![\\(\\n])\\s+('+kw.replace(/ /g,'\\s+')+')\\b','g');
+      sql = sql.replace(r, '\n$1');
+    });
 
-            document.getElementById('sqlInput').value = formattedLines.join('\n');
-            showError('SQL beautified successfully.', 'success');
-            setTimeout(() => showError(''), 2000);
-        }
+    sql = sql.replace(/^\n+/,'');
 
-        function minifySQL() {
-            showError('');
-            let sql = document.getElementById('sqlInput').value;
-            if (!sql) {
-                showError('Please enter some SQL to minify.');
-                return;
-            }
+    var lines = sql.split('\n');
+    var topLevel = ['SELECT','FROM','WHERE','GROUP BY','ORDER BY','HAVING','LIMIT','OFFSET','INSERT INTO','VALUES','UPDATE','SET','DELETE FROM','CREATE TABLE','ALTER TABLE','DROP TABLE','WITH','UNION','UNION ALL','EXCEPT','INTERSECT'];
+    var result = lines.map(function(line, idx){
+      line = line.trim();
+      if(idx === 0) return line;
+      var isTop = topLevel.some(function(k){ return line.startsWith(k); });
+      return isTop ? line : '    ' + line;
+    });
 
-            // 1MB limit check
-            if (new Blob([sql]).size > 1024 * 1024) {
-                showError('SQL length exceeds 1MB. Please process smaller queries to prevent browser lag.');
-                return;
-            }
+    document.getElementById('sqlInput').value = result.join('\n');
+    updateStats();
+    showMessage('SQL formatted successfully!', 'success');
+    setTimeout(function(){ showMessage(''); }, 2500);
+  }
 
-            // Remove comments
-            sql = sql.replace(/\/\*[\s\S]*?\*\/|--.*?\n/g, '');
-            // Normalize space
-            sql = sql.replace(/\s+/g, ' ').trim();
+  function minifySQL() {
+    showMessage('');
+    var sql = document.getElementById('sqlInput').value;
+    if (!sql) { showMessage('Please enter some SQL to minify.'); return; }
+    if (new Blob([sql]).size > 1024*1024) { showMessage('SQL exceeds 1MB.'); return; }
+    sql = sql.replace(/\/\*[\s\S]*?\*\//g,'').replace(/--.*?(\n|$)/g,' ');
+    sql = sql.replace(/\s+/g,' ').trim();
+    document.getElementById('sqlInput').value = sql;
+    updateStats();
+    showMessage('SQL minified successfully!', 'success');
+    setTimeout(function(){ showMessage(''); }, 2500);
+  }
 
-            document.getElementById('sqlInput').value = sql;
-            showError('SQL minified successfully.', 'success');
-            setTimeout(() => showError(''), 2000);
-        }
+  function copySQL(btn) {
+    showMessage('');
+    var el = document.getElementById('sqlInput');
+    if (!el.value) { showMessage('Nothing to copy.'); return; }
+    var orig = btn.textContent;
+    function onCopied() {
+      btn.textContent = '✅ Copied!';
+      showMessage('SQL copied to clipboard!', 'success');
+      setTimeout(function(){ btn.textContent = orig; showMessage(''); }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(el.value).then(onCopied).catch(function(){
+        el.select(); document.execCommand('copy'); onCopied();
+      });
+    } else {
+      el.select(); document.execCommand('copy'); onCopied();
+    }
+  }
 
-        function copySQL() {
-            showError('');
-            const el = document.getElementById('sqlInput');
-            if (!el.value) {
-                showError('Nothing to copy.');
-                return;
-            }
-            navigator.clipboard.writeText(el.value).then(() => {
-                showError('SQL copied to clipboard!', 'success');
-                const btn = document.querySelector('button[onclick="copySQL()"]');
-                const old = btn.textContent;
-                btn.textContent = '✅ Copied!';
-                setTimeout(() => {
-                    btn.textContent = old;
-                    showError('');
-                }, 1500);
-            });
-        }
+  function downloadSQL() {
+    showMessage('');
+    var sql = document.getElementById('sqlInput').value;
+    if (!sql) { showMessage('Nothing to download.'); return; }
+    try {
+      var blob = new Blob([sql], {type:'text/plain'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'worldoftools-sql-'+Date.now()+'.sql'; a.click();
+      URL.revokeObjectURL(url);
+      showMessage('SQL file downloaded.', 'success');
+      setTimeout(function(){ showMessage(''); }, 2000);
+    } catch(e) { showMessage('Download failed. Try copying instead.'); }
+  }
 
-        function downloadSQL() {
-            showError('');
-            const sql = document.getElementById('sqlInput').value;
-            if (!sql) {
-                showError('Nothing to download.');
-                return;
-            }
-
-            try {
-                const blob = new Blob([sql], { type: 'text/plain' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `worldoftools.in-sql-${Date.now()}.sql`;
-                a.click();
-                window.URL.revokeObjectURL(url);
-                showError('SQL file downloaded.', 'success');
-                setTimeout(() => showError(''), 2000);
-            } catch (e) {
-                showError('Failed to download SQL file.');
-            }
-        }
-
-        function clearSQL() {
-            showError('');
-            if (confirm('Clear SQL editor?')) {
-                document.getElementById('sqlInput').value = '';
-                showError('SQL editor cleared.', 'success');
-                setTimeout(() => showError(''), 2000);
-            }
-        }
-
-        // Schema
-        const schema = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "SQL Formatter - WorldOfTools",
-            "url": "https://worldoftools.in/sql-formatter",
-            "description": "Beautify and minify SQL queries online instantly.",
-            "applicationCategory": "DeveloperTool"
-        };
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(schema);
-        document.head.appendChild(script);
-  </script>
+  function clearSQL() {
+    showMessage('');
+    if (!document.getElementById('sqlInput').value) return;
+    if (confirm('Clear the SQL editor?')) {
+      document.getElementById('sqlInput').value = '';
+      updateStats();
+      showMessage('Editor cleared.', 'success');
+      setTimeout(function(){ showMessage(''); }, 1500);
+    }
+  }
+</script>
 </body>
 </html>

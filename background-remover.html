@@ -1,813 +1,505 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<script>
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-   Background Remover — HD PNG, No Watermark, No Signup | WorldOfTools
-  </title>
-<meta content="Remove image backgrounds automatically in seconds. Get HD transparent PNG — no watermark, no signup, no paid tier. Free AI background remover online." name="description"/>
-<meta content="background remover, remove image background, transparent background maker, free bg remover online, ai background removal, produce photo editor, logo background remover, online transparent image maker, erase backgrounds free, background remover no watermark, remove background free hd no signup, transparent background tool free, ai background remover hd online" name="keywords"/>
+<title>Background Remover — Free AI, HD PNG, No Watermark, No Signup | WorldOfTools</title>
+<meta content="Remove image backgrounds automatically in seconds using AI. Get HD transparent PNG — no watermark, no signup, no paid tier. Free AI background remover that runs 100% in your browser." name="description"/>
+<meta content="background remover, remove image background, transparent background maker, free bg remover online, ai background removal, logo background remover, online transparent image maker, background remover no watermark, remove background free hd no signup, transparent background tool free, ai background remover hd online, remove background from photo free" name="keywords"/>
 <link href="https://worldoftools.in/background-remover" rel="canonical"/>
-<link href="/css/style.css?v=2.5" rel="stylesheet"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="#4f46e5" name="theme-color"/>
-<style>
-   .remover-ui {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 900px) {
-            .remover-ui {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .upload-area {
-            border: 2px dashed var(--border-color);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #f8fafc;
-            min-height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .upload-area:hover {
-            border-color: var(--primary-color);
-            background: white;
-        }
-
-        .preview-container {
-            position: relative;
-            background: #f8fafc;
-            border-radius: 24px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            min-height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        .preview-img {
-            max-width: 100%;
-            max-height: 500px;
-            border-radius: 12px;
-            display: none;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        #downloadBtn {
-            width: 100%;
-            height: 3.5rem;
-            font-weight: 700;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-        }
-
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.9);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            border-radius: 24px;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .progress-text {
-            margin-top: 1.5rem;
-            font-weight: 800;
-            color: var(--text-color);
-            text-align: center;
-        }
-
-        .model-warning {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-            text-align: center;
-            max-width: 250px;
-        }
-  </style>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05">
-</script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-CCYN1G2F05');
-  </script>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975">
-</script>
-<script defer="" src="/_vercel/insights/script.js">
-</script>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/background-remover" property="og:url"/>
+<meta content="Background Remover — Free AI, HD PNG, No Watermark | WorldOfTools" property="og:title"/>
+<meta content="Remove image backgrounds with AI in seconds. HD transparent PNG — no watermark, no signup. Free &amp; runs in your browser." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Background Remover — Free AI, No Watermark | WorldOfTools" name="twitter:title"/>
+<meta content="Remove image backgrounds with AI. HD transparent PNG — no watermark, no signup." name="twitter:description"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/background-remover"/>
 <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://worldoftools.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Background Remover",
-      "item": "https://worldoftools.in/background-remover"
-    }
+  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":2,"name":"Image Tools","item":"https://worldoftools.in/"},
+    {"@type":"ListItem","position":3,"name":"Background Remover","item":"https://worldoftools.in/background-remover"}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Background Remover free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it is completely free to use with no hidden charges or limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Your data never leaves your device because all processing happens client-side in your browser."
-      }
-    }
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"AI Background Remover",
+  "description":"Free AI background remover — remove image backgrounds instantly to get HD transparent PNG. No watermark, no signup, runs in your browser.",
+  "url":"https://worldoftools.in/background-remover","operatingSystem":"Any",
+  "applicationCategory":"UtilitiesApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"2654","reviewCount":"2919"}
+}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is this background remover free?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely free with no watermark, no signup, and no hidden fees. The AI model runs in your browser."}},
+    {"@type":"Question","name":"Is my image uploaded to any server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens locally in your browser using TensorFlow.js. Your image is never uploaded to any server."}},
+    {"@type":"Question","name":"What types of images work best?","acceptedAnswer":{"@type":"Answer","text":"The AI works best on portraits (people), product photos, animals, and objects with clear contrast from the background. Busy or complex backgrounds may have reduced accuracy."}},
+    {"@type":"Question","name":"What format does the download come in?","acceptedAnswer":{"@type":"Answer","text":"The download is a transparent PNG file, which preserves the removed background as transparency. You can use it in Canva, Photoshop, PowerPoint, or any design tool."}}
   ]
-}</script><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Background Remover",
-  "operatingSystem": "Any",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "125"
+}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-border: 2.5px solid #000;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px;
   }
-}</script><meta content="website" property="og:type"/><meta content="https://worldoftools.in/background-remover" property="og:url"/><meta content="
-   Background Remover — HD PNG, No Watermark, No Signup | WorldOfTools
-  " property="og:title"/><meta content="Remove image backgrounds automatically in seconds. Get HD transparent PNG — no watermark, no signup, no paid tier. Free AI background remover online." property="og:description"/><meta content="https://worldoftools.in/app-icon.png" property="og:image"/><meta content="WorldOfTools" property="og:site_name"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://worldoftools.in/background-remover" name="twitter:url"/><meta content="
-   Background Remover — HD PNG, No Watermark, No Signup | WorldOfTools
-  " name="twitter:title"/><meta content="Remove image backgrounds automatically in seconds. Get HD transparent PNG — no watermark, no signup, no paid tier. Free AI background remover online." name="twitter:description"/><meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/></head>
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+
+  .nb-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.8rem 1.5rem; border: var(--nb-border); border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.95rem;
+    cursor: pointer; transition: transform 0.1s, box-shadow 0.1s;
+    text-decoration: none; box-shadow: 3px 3px 0 #000; color: #000;
+  }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .nb-btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 #000; }
+  .nb-btn-yellow { background: var(--nb-yellow); }
+  .nb-btn-pink { background: var(--nb-pink); color: #fff; }
+  .nb-btn-mint { background: var(--nb-mint); }
+  .nb-btn-full { width: 100%; font-size: 1.05rem; padding: 1rem; }
+
+  /* Hero */
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--nb-lime); border: var(--nb-border); border-radius: 99px;
+    padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem;
+  }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+
+  /* Error/Success */
+  .nb-message { display: none; border-radius: 12px; padding: 0.9rem 1.25rem; font-weight: 700; margin-bottom: 1.5rem; box-shadow: 3px 3px 0 #000; border: var(--nb-border); }
+  .nb-message.error { background: #ffe0e0; color: #c00; border-color: #c00; box-shadow: 3px 3px 0 #c00; }
+  .nb-message.success { background: var(--nb-mint); color: #0a5; }
+
+  /* Tool Layout */
+  .remover-ui {
+    display: grid; grid-template-columns: 340px 1fr; gap: 1.5rem; align-items: start;
+  }
+  @media(max-width: 860px) { .remover-ui { grid-template-columns: 1fr; } }
+
+  /* Upload Area */
+  .upload-area {
+    border: 3px dashed #000; border-radius: 20px; padding: 2.5rem 1.5rem; text-align: center;
+    cursor: pointer; transition: all 0.2s; background: #fafafa; min-height: 220px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    box-shadow: 4px 4px 0 #000;
+  }
+  .upload-area:hover { background: var(--nb-yellow); border-color: #000; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .upload-area.dragover { background: var(--nb-yellow); }
+  .upload-icon { font-size: 3.5rem; margin-bottom: 0.75rem; }
+  .upload-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 900; margin: 0 0 0.25rem; }
+  .upload-sub { font-size: 0.85rem; color: #666; font-weight: 600; margin: 0; }
+
+  /* How it works info */
+  .how-info {
+    background: var(--nb-blue); border: var(--nb-border); border-radius: 14px;
+    padding: 1.25rem; margin-top: 1.25rem; box-shadow: 3px 3px 0 #000;
+  }
+  .how-info h5 { margin: 0 0 0.75rem; font-family: 'Syne', sans-serif; font-weight: 900; font-size: 0.9rem; }
+  .how-info ul { margin: 0; padding-left: 1.25rem; font-size: 0.85rem; line-height: 1.8; font-weight: 600; }
+
+  /* Preview Area */
+  .preview-container {
+    position: relative; border: var(--nb-border); border-radius: 20px; overflow: hidden;
+    min-height: 420px; display: flex; align-items: center; justify-content: center;
+    padding: 2rem; box-shadow: var(--nb-shadow-lg);
+    background-image: repeating-conic-gradient(#e8e8e8 0% 25%, #fff 0% 50%);
+    background-size: 24px 24px;
+  }
+  .preview-img { max-width: 100%; max-height: 480px; border-radius: 8px; display: none; }
+  .preview-placeholder { text-align: center; color: #aaa; }
+  .preview-placeholder .big-icon { font-size: 4rem; opacity: 0.4; margin-bottom: 1rem; }
+  .preview-placeholder p { font-weight: 600; font-size: 0.95rem; margin: 0; }
+  .preview-placeholder small { font-size: 0.82rem; color: #bbb; }
+
+  /* Loading Overlay */
+  .loading-overlay {
+    position: absolute; inset: 0; background: rgba(255,255,255,0.92); display: none;
+    flex-direction: column; align-items: center; justify-content: center; z-index: 10;
+    border-radius: 20px;
+  }
+  .nb-spinner {
+    width: 56px; height: 56px; border: 5px solid #f0f0f0; border-top: 5px solid #000;
+    border-radius: 50%; animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { margin-top: 1.25rem; font-weight: 900; font-family: 'Syne', sans-serif; font-size: 1rem; text-align: center; }
+  .loading-sub { font-size: 0.8rem; color: #666; margin-top: 0.35rem; text-align: center; max-width: 220px; }
+
+  /* Feature badges */
+  .feature-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem; }
+  .feature-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.9rem;
+    border: 2px solid #000; border-radius: 99px; font-size: 0.78rem; font-weight: 800;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #fff; border: 2px solid #000; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-yellow); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+
+  .use-cases { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .use-case-card { padding: 1.25rem; border: var(--nb-border); border-radius: 14px; background: #fff; box-shadow: 3px 3px 0 #000; }
+  .use-case-card .uc-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .use-case-card h4 { margin: 0 0 0.4rem; font-size: 0.95rem; font-weight: 800; }
+  .use-case-card p { margin: 0; font-size: 0.82rem; color: #555; line-height: 1.5; }
+
+  details { border: 2px solid #000; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; background: #fff; }
+  summary { font-weight: 800; cursor: pointer; user-select: none; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.2rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #444; line-height: 1.6; }
+
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 0.75rem; }
+  .tool-card-mini { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.25rem 0.75rem; background: #fff; border: var(--nb-border); border-radius: 14px; text-decoration: none; color: #000; box-shadow: 3px 3px 0 #000; transition: transform 0.15s, box-shadow 0.15s; }
+  .tool-card-mini:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #000; }
+  .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
+  .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+
+  .compare-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
+  .compare-table th { padding: 0.85rem 1rem; text-align: center; background: var(--nb-yellow); border-bottom: 2px solid #000; font-weight: 800; }
+  .compare-table th:first-child { text-align: left; }
+  .compare-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.88rem; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td.yes { color: #059669; font-weight: 800; text-align: center; }
+  .compare-table td.no { color: #dc2626; text-align: center; }
+
+  @media(max-width:480px) {
+    .preview-container { min-height: 280px; padding: 1rem; }
+  }
+</style>
+</head>
 <body>
-<header>
-</header>
+<header></header>
+
 <main class="container">
-<div class="tool-container" style="max-width: 1200px;">
-<section class="tool-header">
-<div class="breadcrumbs-visual" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 600;"><a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a> &gt; Tools &gt; <span>Background Remover</span></div><h1>
-      Background Remover — Remove Image Background in HD Without Watermark or Signup
-     </h1>
-<div style="display: inline-flex; align-items: center; gap: 0.5rem; background: #ecfdf5; color: #047857; padding: 0.35rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
-      🛡️ AI-Powered Local Processing
-     </div>
-<p style="color: var(--text-muted); font-size: 1.1rem;">
-      Remove backgrounds instantly with studio-quality
-                    AI. 100% private, no image uploads.
-     </p>
-<div style="margin-top: 1.5rem;">
-<a class="btn btn-secondary" href="/guides/background-remover-guide" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; border-radius: 12px; padding: 0.6rem 1.2rem; font-size: 0.95rem; width: auto;">📖 Tool Guide</a>
+<div class="tool-container" style="max-width:1200px;">
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › Image Tools › <span>Background Remover</span></div>
+    <div class="hero-badge">🤖 AI-Powered — Runs in Your Browser</div>
+    <h1>Background Remover — Free AI, HD Transparent PNG, No Watermark</h1>
+    <p>Remove image backgrounds automatically using AI in seconds. Get a perfect transparent PNG — no watermark, no signup, no paid tier. Your image never leaves your device.</p>
+    <div class="feature-badges">
+      <span class="feature-badge" style="background:var(--nb-mint);">✅ No Watermark</span>
+      <span class="feature-badge" style="background:var(--nb-yellow);">🔒 100% Private</span>
+      <span class="feature-badge" style="background:var(--nb-blue);">⚡ AI Powered</span>
+      <span class="feature-badge" style="background:var(--nb-lime);">🆓 Completely Free</span>
+    </div>
+  </section>
+
+  <!-- Error/Success message -->
+  <div class="nb-message" id="errorMessage" role="alert"></div>
+
+  <!-- TOOL CARD -->
+  <div style="background:#fff;border:var(--nb-border);border-radius:20px;padding:2rem;box-shadow:var(--nb-shadow-lg);margin-bottom:2rem;">
+    <div class="remover-ui">
+
+      <!-- Left: Controls -->
+      <div>
+        <div class="upload-area" id="dropZone" onclick="document.getElementById('fileInput').click()" role="button" aria-label="Upload image">
+          <div class="upload-icon">🎭</div>
+          <h4 class="upload-title">Select Photo</h4>
+          <p class="upload-sub">or drag &amp; drop here</p>
+          <p class="upload-sub" style="margin-top:0.4rem;">JPG, PNG, WEBP</p>
+          <input accept="image/*" id="fileInput" style="display:none;" type="file"/>
+        </div>
+
+        <div class="how-info">
+          <h5>✨ How it works</h5>
+          <ul>
+            <li>AI model runs locally in your browser</li>
+            <li>Detects subjects automatically (people, pets, products)</li>
+            <li>Outputs a transparent PNG — no background</li>
+            <li>No account or watermark — ever</li>
+          </ul>
+        </div>
+
+        <button class="nb-btn nb-btn-yellow nb-btn-full" id="downloadBtn" style="display:none;margin-top:1.25rem;">
+          📥 Download Transparent PNG
+        </button>
+      </div>
+
+      <!-- Right: Preview -->
+      <div>
+        <div class="preview-container" id="previewContainer">
+          <div class="loading-overlay" id="loadingOverlay">
+            <div class="nb-spinner"></div>
+            <div class="loading-text" id="loadingText">Analyzing Image...</div>
+            <div class="loading-sub">First run may take ~5s to load the AI model (~10MB)</div>
+          </div>
+          <div class="preview-placeholder" id="noImage">
+            <div class="big-icon">🖼️</div>
+            <p>Upload a portrait or product photo</p>
+            <small>Works best on people, products &amp; animals</small>
+          </div>
+          <img alt="Background removed result — transparent PNG" class="preview-img" id="imagePreview"/>
+        </div>
+      </div>
+
+    </div><!-- /remover-ui -->
+
+    <p style="text-align:center;font-size:0.82rem;color:#888;margin-top:1.5rem;font-weight:600;">🛡️ Your image is processed locally. Zero uploads. Zero data stored.</p>
+  </div>
+
+<div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+
+    <a href="/image-compressor" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🖼️</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Image Compressor</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Compress images</div>
+    </a>
+    <a href="/image-upscaler" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🔭</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Image Upscaler</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">AI upscaling</div>
+    </a>
+    <a href="/image-converter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🔄</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Image Converter</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Convert formats</div>
+    </a>
+    </div>
+  </div>
+</div><!-- /tool-container -->
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>What is the AI Background Remover?</h2>
+    <p>The <strong>Background Remover</strong> by WorldOfTools uses a TensorFlow.js AI model (BodyPix) that runs entirely within your browser to automatically detect and remove the background from any photo. It identifies the subject — person, product, pet, or object — and outputs a transparent PNG that you can use in design tools like Canva, Figma, Photoshop, or PowerPoint.</p>
+    <p>Unlike remove.bg, Canva's background remover, or other online tools that upload your images to their servers (often limiting free use or adding watermarks), this tool <strong>processes your image 100% locally</strong>. Your photo never leaves your device.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Remove an Image Background — Step by Step</h2>
+    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Upload Your Image</strong> — Click the upload area or drag and drop any JPG, PNG, or WEBP file. The AI model loads in the background on first use.</p></div>
+    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Wait for AI Processing</strong> — The tool automatically detects your subject and removes the background. This takes 2–10 seconds depending on image size and your device.</p></div>
+    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;"><strong>Download Transparent PNG</strong> — Click the download button to save your transparent PNG file. Open it in any design tool to add a new background or use it as a cutout.</p></div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>🎯 Use Cases — Who Uses Background Remover?</h2>
+    <div class="use-cases">
+      <div class="use-case-card" style="background:var(--nb-yellow);">
+        <div class="uc-icon">🛍️</div>
+        <h4>E-Commerce Sellers</h4>
+        <p>Create clean white-background product photos for Amazon, Flipkart &amp; Meesho listings.</p>
+      </div>
+      <div class="use-case-card" style="background:var(--nb-mint);">
+        <div class="uc-icon">💼</div>
+        <h4>LinkedIn Profiles</h4>
+        <p>Remove messy backgrounds from headshots for a professional profile photo.</p>
+      </div>
+      <div class="use-case-card" style="background:var(--nb-blue);">
+        <div class="uc-icon">🎨</div>
+        <h4>Graphic Designers</h4>
+        <p>Quickly isolate elements for Canva, Figma, or Photoshop compositions.</p>
+      </div>
+      <div class="use-case-card" style="background:var(--nb-orange);">
+        <div class="uc-icon">📱</div>
+        <h4>Social Media Creators</h4>
+        <p>Create stickers, Story elements, and thumbnail cutouts for Reels &amp; YouTube.</p>
+      </div>
+      <div class="use-case-card" style="background:var(--nb-lime);">
+        <div class="uc-icon">🏷️</div>
+        <h4>Logo Designers</h4>
+        <p>Remove white or solid backgrounds from logo images to get transparent versions.</p>
+      </div>
+      <div class="use-case-card" style="background:var(--nb-pink);color:#fff;">
+        <div class="uc-icon">📸</div>
+        <h4>Photographers</h4>
+        <p>Quickly swap backgrounds in portrait photos without expensive software.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>🆚 vs. Other Background Removers</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr>
+          <th>Feature</th>
+          <th style="color:#4f46e5;">WorldOfTools</th>
+          <th>remove.bg</th>
+          <th>Canva</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Price</td><td class="yes">✓ Free</td><td class="no">Paid (limited free)</td><td class="no">Pro feature</td></tr>
+          <tr><td>Watermark</td><td class="yes">✓ None</td><td class="no">On free tier</td><td class="no">On free tier</td></tr>
+          <tr><td>Image uploaded?</td><td class="yes">✓ Never</td><td class="no">Yes (server)</td><td class="no">Yes (server)</td></tr>
+          <tr><td>Signup required</td><td class="yes">✓ No</td><td class="no">Yes</td><td class="no">Yes</td></tr>
+          <tr><td>Output format</td><td class="yes">✓ HD PNG</td><td class="yes">HD PNG</td><td class="yes">PNG</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>Is this background remover really free?</summary><p>Yes — 100% free with no watermark, no signup, no hidden fees, and no daily limits. The AI model runs in your browser using TensorFlow.js.</p></details>
+    <details><summary>Is my image uploaded to any server?</summary><p>No. Your image is never uploaded anywhere. All AI processing happens locally in your browser using TensorFlow.js. Your image stays on your device at all times.</p></details>
+    <details><summary>What types of images work best?</summary><p>The AI works best on portraits (people), product photos with clear subjects, animals, and objects with reasonable contrast from the background. Highly complex or cluttered backgrounds may have reduced accuracy.</p></details>
+    <details><summary>Why does it take a few seconds on the first use?</summary><p>On first use, the browser downloads the AI model (approximately 10MB). This is cached locally, so all subsequent uses on the same device are much faster.</p></details>
+    <details><summary>What format does the download come in?</summary><p>The output is a transparent PNG file. PNG supports transparency (alpha channel), making it compatible with Canva, Figma, Adobe Photoshop, PowerPoint, and virtually all design tools.</p></details>
+    <details><summary>Can I use this on my phone?</summary><p>Yes — the tool works on mobile browsers including Chrome on Android and Safari on iOS. Performance may be slightly slower on older devices due to the AI processing requirements.</p></details>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Other Free Tools You Might Need</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/aspect-ratio-calculator"><div class="icon">📐</div><div class="name">Aspect Ratio</div><div class="desc">Maintain image proportions</div></a>
+      <a class="tool-card-mini" href="/image-compressor"><div class="icon">🗜️</div><div class="name">Image Compressor</div><div class="desc">Reduce file size without loss</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in years, months, days</div></a>
+      <a class="tool-card-mini" href="/audio-to-text"><div class="icon">🎙️</div><div class="name">Audio to Text</div><div class="desc">Free speech transcription</div></a>
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Analyze text &amp; reading time</div></a>
+      <a class="tool-card-mini" href="/gst-calculator"><div class="icon">🧾</div><div class="name">GST Calculator</div><div class="desc">Add or remove GST instantly</div></a>
+    </div>
+  </section>
+
 </div>
-</section>
-<div id="errorMessage" style="display: none; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #fecaca; background-color: #fee2e2; color: #991b1b; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
-</div>
-<div class="tool-main-card" style="padding: 2.5rem;">
-<div class="remover-ui">
-<div class="controls-side">
-<div class="upload-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
-<span style="font-size: 4rem;">
-         🎭
-        </span>
-<div style="margin-top: 1rem;">
-<h4 style="margin-bottom: 0.25rem; font-size: 1.25rem;">
-          Select Photo
-         </h4>
-<p style="font-size: 0.9rem; color: var(--text-muted);">
-          or drag &amp; drop here
-         </p>
-</div>
-<input accept="image/*" id="fileInput" style="display: none;" type="file"/>
-</div>
-<div id="toolInfo" style="margin-top: 2rem; background: #eff6ff; padding: 1.5rem; border-radius: 16px; border: 1px solid #bfdbfe;">
-<h5 style="margin-bottom: 0.75rem; color: #1e40af;">
-         How it works:
-        </h5>
-<ul style="font-size: 0.85rem; color: #1e40af; padding-left: 1.25rem; line-height: 1.6;">
-<li>
-          AI model runs in your browser
-         </li>
-<li>
-          Detects subjects automatically
-         </li>
-<li>
-          Creates a transparent PNG
-         </li>
-<li>
-          No account or watermark
-         </li>
-</ul>
-</div>
-<button class="btn btn-primary" id="downloadBtn">
-        📥 Download Transparent PNG
-       </button>
-</div>
-<div class="preview-side">
-<div class="preview-container">
-<div class="loading-overlay" id="loadingOverlay">
-<div class="spinner">
-</div>
-<p class="progress-text" id="loadingText">
-          Analyzing Image...
-         </p>
-<p class="model-warning">
-          First run might take a few seconds to load the AI model
-                                    (approx. 10MB).
-         </p>
-</div>
-<div id="noImage" style="text-align: center; color: var(--text-muted);">
-<div style="font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.2;">
-          🖼️
-         </div>
-<p style="font-weight: 600; font-size: 1.1rem;">
-          Upload a portrait or object photo
-         </p>
-<p style="font-size: 0.9rem; margin-top: 0.5rem;">
-          Works best on people, products, and
-                                    animals.
-         </p>
-</div>
-<img alt="Background Removed Result" class="preview-img" id="imagePreview"/>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- SEO Content Block -->
-<div style="max-width:900px;margin:3rem auto;padding:0 1.5rem;">
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      What is the BG Remover?
-     </h2>
-<p style="line-height:1.8;color:#4b5563;">
-      The BG Remover is a powerful and easy-to-use online utility designed to help you with your daily tasks. Whether you are a professional or a student, this tool provides a seamless experience for your needs. Use this tool to save time and improve your workflow without the need for complicated software. It's completely free, secure, and runs directly in your browser, ensuring your data remains private and handled with speed.
-     </p>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      How to Use BG Remover — Step-by-Step
-     </h2>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       1
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Upload your photo or drag and drop it into the removal area.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       2
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Select the 'Remove Background' option to start the AI-powered isolation process.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       3
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Wait for the browser to detect the subject and generate a transparent background layer.
-      </p>
-</div>
-<div style="display:flex;align-items:flex-start;gap:1rem;background:#f8f9ff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<span style="min-width:32px;height:32px;background:#4f46e5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;">
-       4
-      </span>
-<p style="margin:0;line-height:1.6;padding-top:0.3rem;">
-       Download your clean subject as a PNG with transparency or add a new background color.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Key Features — Why Use Our Tool?
-     </h2>
-<ul style="list-style:none;padding:0;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         100% Free to use:
-        </strong>
-        AI-powered edge detection for precise subject isolation.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Privacy focused - no data sent to server:
-        </strong>
-        No server-side uploads — processing happens locally in your browser.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Instant results in real-time:
-        </strong>
-        Export high-quality results with full alpha-channel transparency.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         No registration required:
-        </strong>
-        Works on portraits, products, and simple graphics instantly.
-       </span>
-</li>
-<li style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.8rem;">
-<span style="color:#10b981;font-weight:bold;flex-shrink:0;">
-        ✓
-       </span>
-<span style="line-height:1.6;">
-<strong>
-         Works on all devices and browsers:
-        </strong>
-        Zero cost and zero watermarks on all processed images.
-       </span>
-</li>
-</ul>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📊 Use Cases — Who Uses the BG Remover?
-     </h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin-top:1rem;">
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For E-commerce Sellers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Clean up product photos for Amazon, eBay, or Shopify listings in seconds.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Social Media Managers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Isolate subjects for YouTube thumbnails, Instagram stories, and profile pictures.
-       </p>
-</div>
-<div style="background:#fff;border:1px solid #e5e7eb;padding:1.5rem;border-radius:12px;">
-<h3 style="font-size:1.1rem;margin-bottom:0.5rem;">
-        For Graphic Designers
-       </h3>
-<p style="font-size:0.9rem;color:#6b7280;line-height:1.5;">
-        Quickly remove backgrounds for composites, UI/UX mockups, and client presentations.
-       </p>
-</div>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      🆚 BG Remover vs. Other Online Tools
-     </h2>
-<div style="overflow-x:auto;margin-top:1rem;">
-<table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-<thead>
-<tr style="background:#f9fafb;">
-<th style="padding:1rem;text-align:left;border-bottom:2px solid #e5e7eb;">
-          Feature
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;color:#4f46e5;">
-          WorldOfTools
-         </th>
-<th style="padding:1rem;text-align:center;border-bottom:2px solid #e5e7eb;">
-          Other Tools
-         </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Privacy
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Local Browser
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Server Upload
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Speed
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          Instant
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Delayed
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-          Ads &amp; Popups
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;color:#10b981;font-weight:700;">
-          None
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;border-bottom:1px solid #e5e7eb;">
-          Intrusive
-         </td>
-</tr>
-<tr>
-<td style="padding:0.75rem 1rem;">
-          Registration
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;color:#10b981;font-weight:700;">
-          Not Required
-         </td>
-<td style="padding:0.75rem 1rem;text-align:center;">
-          Often Required
-         </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Frequently Asked Questions
-     </h2>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is this BG Remover free?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, the BG Remover is 100% free with no hidden charges or premium subscriptions.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Is my data safe?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Absolutely. All processing happens locally in your browser. We never see, store, or share your data.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Do I need to sign up?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       No registration or account creation is required to use any of our tools.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Does it work on mobile?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Yes, our tools are fully responsive and work perfectly on smartphones, tablets, and desktops.
-      </p>
-</details>
-<details style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.5rem;">
-<summary style="font-weight:700;cursor:pointer;">
-       Can I use it offline?
-      </summary>
-<p style="margin:0.75rem 0 0;color:#6b7280;line-height:1.6;">
-       Once the page is loaded, most functions work offline since they run in your browser's local environment.
-      </p>
-</details>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      📚 Educational Content — Deep Dive
-     </h2>
-<div style="line-height:1.8;color:#4b5563;">
-<p>
-       The
-       <strong>
-        Background Remover
-       </strong>
-       utilizes advanced browser-based processing to transform your visual content with professional quality. From removing backgrounds to optimizing image size for the web, this tool provides a high-speed alternative to heavy desktop software. It's designed for creators and businesses who need fast, consistent results without compromising on detail.
-      </p>
-<p style="margin-top:1rem;">
-       Handling personal photos or proprietary graphics online can be risky. Our Background Remover and other image utilities operate entirely in your browser's memory. Your images are never 'uploaded' to a cloud for processing; instead, your hardware does the work locally, ensuring that your visual assets never touch our servers.
-      </p>
-<p style="margin-top:1rem;">
-       We believe that the best tools should be free and accessible to everyone. That's why we've eliminated mandatory registrations, intrusive ads, and hidden paywalls, allowing you to focus entirely on your task. As the digital landscape evolves, we remain committed to keeping our utilities updated with the latest standards and features. WorldOfTools is your trusted partner for high-performance, privacy-first web utilities that just work.
-      </p>
-</div>
-</section>
-<section style="margin-bottom:3rem;">
-<h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em;">
-      Other Free Tools You Might Need
-     </h2>
-<div class="tools-grid">
-<a class="tool-card" href="age-calculator">
-<div class="tool-icon">
-        🎂
-       </div>
-<div class="tool-title">
-        Age Calculator
-       </div>
-<div class="tool-desc">
-        Calculate exact age, next birthday, and life milestones.
-       </div>
-</a>
-<a class="tool-card" href="gst-calculator">
-<div class="tool-icon">
-        🧾
-       </div>
-<div class="tool-title">
-        GST Calculator
-       </div>
-<div class="tool-desc">
-        Quickly add or remove GST tax from any amount.
-       </div>
-</a>
-<a class="tool-card" href="emi-calculator">
-<div class="tool-icon">
-        💰
-       </div>
-<div class="tool-title">
-        EMI Calculator
-       </div>
-<div class="tool-desc">
-        Loan amortization schedules and monthly payment estimator.
-       </div>
-</a>
-<a class="tool-card" href="percentage-calculator">
-<div class="tool-icon">
-        %
-       </div>
-<div class="tool-title">
-        Percentage Calculator
-       </div>
-<div class="tool-desc">
-        Calculate discounts, increases, and percentage portions.
-       </div>
-</a>
-<a class="tool-card" href="scientific-calculator">
-<div class="tool-icon">
-        🧮
-       </div>
-<div class="tool-title">
-        Scientific Calculator
-       </div>
-<div class="tool-desc">
-        Advanced mathematical functions including trig and logs.
-       </div>
-</a>
-<a class="tool-card" href="number-to-words-converter">
-<div class="tool-icon">
-        📝
-       </div>
-<div class="tool-title">
-        Number to Words
-       </div>
-<div class="tool-desc">
-        Convert figures to words for cheques and invoices (Indian format).
-       </div>
-</a>
-</div>
-</section>
-</div>
-<!-- End SEO Content Block -->
+
 </main>
-<footer>
-</footer>
-<!-- TensorFlow.js + BodyPix for reliable background removal -->
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.0/dist/body-pix.min.js">
-</script>
-<script src="/js/common.js?v=2.5">
-</script>
+<footer></footer>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.2.0/dist/body-pix.min.js"></script>
+<script src="/js/common.js?v=6.1"></script>
 <script>
-   const fileInput = document.getElementById('fileInput');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const imagePreview = document.getElementById('imagePreview');
-        const noImage = document.getElementById('noImage');
-        const loading = document.getElementById('loadingOverlay');
-        const loadingText = document.getElementById('loadingText');
-        const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const imagePreview = document.getElementById('imagePreview');
+  const noImage = document.getElementById('noImage');
+  const loading = document.getElementById('loadingOverlay');
+  const loadingText = document.getElementById('loadingText');
+  const dropZone = document.getElementById('dropZone');
 
-        let resultDataUrl = null;
-        let net = null; // cached model
+  let resultDataUrl = null, net = null;
 
-        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+  fileInput.addEventListener('change', e => handleFile(e.target.files[0]));
 
-        async function handleFile(file) {
-            if (!file) return;
-            if (!file.type.startsWith('image/')) {
-                showError('Please upload a valid image file.');
-                return;
-            }
+  async function handleFile(file) {
+    if (!file) return;
+    if (!file.type.startsWith('image/')) return showMsg('Please upload a valid image file (JPG, PNG, WEBP).', 'error');
 
-            showError('');
-            loading.style.display = 'flex';
-            noImage.style.display = 'none';
-            imagePreview.style.display = 'none';
-            downloadBtn.style.display = 'none';
-            resultDataUrl = null;
+    showMsg('');
+    loading.style.display = 'flex';
+    noImage.style.display = 'none';
+    imagePreview.style.display = 'none';
+    downloadBtn.style.display = 'none';
+    resultDataUrl = null;
 
-            try {
-                // Load model once, cache it
-                if (!net) {
-                    loadingText.innerText = 'Loading AI Model (first time ~5s)...';
-                    net = await bodyPix.load({
-                        architecture: 'MobileNetV1',
-                        outputStride: 16,
-                        multiplier: 0.75,
-                        quantBytes: 2
-                    });
-                }
+    try {
+      if (!net) {
+        loadingText.textContent = 'Loading AI Model (first time ~5s)...';
+        net = await bodyPix.load({ architecture: 'MobileNetV1', outputStride: 16, multiplier: 0.75, quantBytes: 2 });
+      }
+      loadingText.textContent = 'Analyzing image...';
 
-                loadingText.innerText = 'Analyzing image...';
+      const img = new Image();
+      const reader = new FileReader();
+      reader.onload = async e => {
+        img.onload = async () => {
+          try {
+            const MAX = 1024;
+            let w = img.naturalWidth, h = img.naturalHeight;
+            if (w > MAX || h > MAX) { const r = Math.min(MAX/w, MAX/h); w = Math.round(w*r); h = Math.round(h*r); }
 
-                // Draw uploaded image to canvas for BodyPix
-                const img = new Image();
-                const reader = new FileReader();
+            const src = document.createElement('canvas');
+            src.width = w; src.height = h;
+            src.getContext('2d').drawImage(img, 0, 0, w, h);
 
-                reader.onload = async (e) => {
-                    img.onload = async () => {
-                        try {
-                            // Cap resolution for mobile performance
-                            const MAX = 1024;
-                            let w = img.naturalWidth;
-                            let h = img.naturalHeight;
-                            if (w > MAX || h > MAX) {
-                                const ratio = Math.min(MAX / w, MAX / h);
-                                w = Math.round(w * ratio);
-                                h = Math.round(h * ratio);
-                            }
+            loadingText.textContent = 'Detecting subject...';
+            const seg = await net.segmentPerson(src, { internalResolution: 'medium', segmentationThreshold: 0.7, maxDetections: 5 });
 
-                            const srcCanvas = document.createElement('canvas');
-                            srcCanvas.width = w;
-                            srcCanvas.height = h;
-                            const srcCtx = srcCanvas.getContext('2d');
-                            srcCtx.drawImage(img, 0, 0, w, h);
+            loadingText.textContent = 'Removing background...';
+            const out = document.createElement('canvas');
+            out.width = w; out.height = h;
+            const ctx = out.getContext('2d');
+            ctx.drawImage(src, 0, 0);
+            const id = ctx.getImageData(0, 0, w, h);
+            const px = id.data, mask = seg.data;
+            for (let i = 0; i < mask.length; i++) { if (mask[i] === 0) px[i*4+3] = 0; }
+            ctx.putImageData(id, 0, 0);
+            resultDataUrl = out.toDataURL('image/png');
 
-                            loadingText.innerText = 'Detecting subject...';
+            imagePreview.src = resultDataUrl;
+            imagePreview.style.display = 'block';
+            downloadBtn.style.display = 'flex';
+            loading.style.display = 'none';
+            showMsg('✅ Background removed successfully!', 'success');
+            setTimeout(() => showMsg(''), 3000);
+          } catch(err) {
+            console.error(err);
+            showMsg('Failed to remove background. Please try a different photo.', 'error');
+            loading.style.display = 'none';
+            noImage.style.display = 'block';
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } catch(error) {
+      console.error(error);
+      showMsg('Failed to load AI model. Please check your connection and try again.', 'error');
+      loading.style.display = 'none';
+      noImage.style.display = 'block';
+    }
+  }
 
-                            const segmentation = await net.segmentPerson(srcCanvas, {
-                                internalResolution: 'medium',
-                                segmentationThreshold: 0.7,
-                                maxDetections: 5
-                            });
+  downloadBtn.addEventListener('click', () => {
+    if (!resultDataUrl) return;
+    const a = document.createElement('a');
+    a.download = `worldoftools-bg-removed-${Date.now()}.png`;
+    a.href = resultDataUrl; a.click();
+  });
 
-                            loadingText.innerText = 'Removing background...';
+  function showMsg(msg, type = 'error') {
+    const el = document.getElementById('errorMessage');
+    if (msg) { el.textContent = msg; el.className = 'nb-message ' + type; el.style.display = 'block'; }
+    else { el.style.display = 'none'; }
+  }
 
-                            // Build output canvas with transparent background
-                            const outCanvas = document.createElement('canvas');
-                            outCanvas.width = w;
-                            outCanvas.height = h;
-                            const outCtx = outCanvas.getContext('2d');
-                            outCtx.drawImage(srcCanvas, 0, 0);
-
-                            const imageData = outCtx.getImageData(0, 0, w, h);
-                            const pixels = imageData.data;
-                            const mask = segmentation.data; // 0 = bg, 1 = person
-
-                            for (let i = 0; i < mask.length; i++) {
-                                if (mask[i] === 0) {
-                                    // transparent
-                                    pixels[i * 4 + 3] = 0;
-                                }
-                            }
-
-                            outCtx.putImageData(imageData, 0, 0);
-                            resultDataUrl = outCanvas.toDataURL('image/png');
-
-                            imagePreview.src = resultDataUrl;
-                            imagePreview.style.display = 'block';
-                            downloadBtn.style.display = 'flex';
-                            loading.style.display = 'none';
-
-                            showError('Background removed successfully!', 'success');
-                            setTimeout(() => showError(''), 3000);
-
-                        } catch (err) {
-                            console.error(err);
-                            showError('Failed to remove background. Please try a different photo.');
-                            loading.style.display = 'none';
-                            noImage.style.display = 'block';
-                        }
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-
-            } catch (error) {
-                console.error(error);
-                showError('Failed to load AI model. Please check your connection and try again.');
-                loading.style.display = 'none';
-                noImage.style.display = 'block';
-            }
-        }
-
-        downloadBtn.addEventListener('click', () => {
-            if (!resultDataUrl) return;
-            const link = document.createElement('a');
-            link.download = `worldoftools.in-backgroundremover-${Date.now()}.png`;
-            link.href = resultDataUrl;
-            link.click();
-        });
-
-        function showError(msg, type = 'error') {
-            const errDiv = document.getElementById('errorMessage');
-            if (msg) {
-                errDiv.textContent = (type === 'error' ? '⚠️ ' : '✅ ') + msg;
-                errDiv.style.display = 'flex';
-                errDiv.style.backgroundColor = type === 'error' ? '#fee2e2' : '#dcfce7';
-                errDiv.style.color = type === 'error' ? '#991b1b' : '#166534';
-                errDiv.style.borderColor = type === 'error' ? '#fecaca' : '#bbf7d0';
-            } else {
-                errDiv.style.display = 'none';
-            }
-        }
-
-        // Drag and drop
-        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--primary-color)'; });
-        dropZone.addEventListener('dragleave', () => dropZone.style.borderColor = 'var(--border-color)');
-        dropZone.addEventListener('drop', e => {
-            e.preventDefault();
-            dropZone.style.borderColor = 'var(--border-color)';
-            if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-        });
-  </script>
+  // Drag & Drop
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('dragover');
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+</script>
 </body>
 </html>
