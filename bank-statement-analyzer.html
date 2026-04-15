@@ -336,6 +336,35 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
 .rate-bar{height:100%;border-radius:99px;transition:width 0.5s;}
 .rate-value{font-size:0.82rem;font-weight:700;min-width:50px;text-align:right;}
 
+/* ── Data Quality Banner ── */
+.dq-banner{display:none;border:2.5px solid #000;border-radius:14px;padding:0.9rem 1.1rem;margin-bottom:1.25rem;box-shadow:4px 4px 0 #000;font-size:0.88rem;font-weight:600;line-height:1.6;align-items:flex-start;gap:0.75rem;}
+.dq-banner.warn{background:#fff7ed;border-color:#d97706;}
+.dq-banner.info{background:var(--nb-blue);border-color:#000;}
+.dq-banner-icon{font-size:1.4rem;flex-shrink:0;margin-top:0.05rem;}
+.dq-banner-body{flex:1;}
+.dq-banner-title{font-weight:800;font-size:0.9rem;margin-bottom:0.2rem;}
+.dq-banner-hint{font-size:0.82rem;color:#555;margin-top:0.25rem;}
+.dq-banner-actions{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.6rem;}
+
+/* ── Overall Confidence Pill ── */
+.conf-pill{display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.9rem;border-radius:99px;border:2px solid #000;font-size:0.78rem;font-weight:800;box-shadow:2px 2px 0 #000;}
+.conf-pill.high{background:var(--nb-lime);}
+.conf-pill.medium{background:var(--nb-yellow);}
+.conf-pill.low{background:#ffe0e0;}
+.conf-pill .conf-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid #000;}
+.conf-pill.high .conf-dot{background:#059669;}
+.conf-pill.medium .conf-dot{background:#d97706;}
+.conf-pill.low .conf-dot{background:#dc2626;}
+
+/* ── Chart Empty State ── */
+.chart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;color:#888;padding:1rem;gap:0.5rem;}
+.chart-empty-icon{font-size:2rem;}
+.chart-empty-title{font-weight:700;font-size:0.88rem;color:#555;}
+.chart-empty-hint{font-size:0.78rem;color:#888;line-height:1.4;}
+
+/* ── Sample Data Hint ── */
+.sample-hint{display:flex;align-items:center;gap:0.65rem;justify-content:center;margin-top:0.85rem;font-size:0.85rem;color:#555;font-weight:600;flex-wrap:wrap;}
+
 /* ── Mobile ── */
 @media(max-width:480px){
   .nb-card-lg{padding:1.1rem;}
@@ -413,6 +442,11 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
       <div style="margin-top:0.9rem;" class="nb-info">
         💡 <strong>PDF:</strong> Upload your bank's PDF statement directly — no conversion needed. Or export as CSV/Excel from net banking → Statements. Works with SBI, HDFC, ICICI, Axis, Kotak, PNB, BOB, Canara, Yes Bank, and all Indian banks.
       </div>
+      <div class="sample-hint">
+        <span>Don't have a statement handy?</span>
+        <button class="nb-btn nb-btn-purple nb-btn-sm" onclick="loadSampleData()" id="sampleDataBtn">🎯 Try with Sample Data</button>
+        <span style="font-size:0.75rem;color:#888;">— See a full demo with realistic transactions</span>
+      </div>
     </div>
 
     <!-- PDF PAGE SELECTOR -->
@@ -454,6 +488,17 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
   <!-- DASHBOARD -->
   <div id="dashboard" class="printArea">
 
+    <!-- Data Quality Banner -->
+    <div class="dq-banner" id="dqBanner">
+      <div class="dq-banner-icon" id="dqBannerIcon">⚠️</div>
+      <div class="dq-banner-body">
+        <div class="dq-banner-title" id="dqBannerTitle">Limited data detected</div>
+        <div id="dqBannerMsg"></div>
+        <div class="dq-banner-hint" id="dqBannerHint"></div>
+        <div class="dq-banner-actions" id="dqBannerActions"></div>
+      </div>
+    </div>
+
     <!-- Header -->
     <div class="dashboard-header animate-in">
       <div>
@@ -461,6 +506,7 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
         <div class="dashboard-meta" id="dashMeta"></div>
       </div>
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+        <span id="overallConfPill"></span>
         <div class="export-dropdown-wrap" style="position:relative;">
           <button class="nb-btn nb-btn-mint nb-btn-sm" onclick="toggleExportMenu(event)" id="exportMenuBtn">⬇ Export ▾</button>
           <div id="exportMenu" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:2.5px solid #000;border-radius:12px;box-shadow:4px 4px 0 #000;min-width:160px;z-index:999;overflow:hidden;">
@@ -495,18 +541,18 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
       <div class="charts-grid">
         <div class="chart-card">
           <div class="chart-title">💸 Spending by Category</div>
-          <div class="chart-container"><canvas id="catPieChart"></canvas></div>
+          <div class="chart-container" id="catPieWrap"><canvas id="catPieChart"></canvas></div>
         </div>
         <div class="chart-card">
           <div class="chart-title">📅 Monthly Cash Flow</div>
-          <div class="chart-container"><canvas id="monthlyBarChart"></canvas></div>
+          <div class="chart-container" id="monthlyBarWrap"><canvas id="monthlyBarChart"></canvas></div>
         </div>
       </div>
 
       <!-- Savings Rate Trend -->
       <div class="nb-card" style="margin-bottom:1.25rem;" id="savingsTrendCard">
         <div class="section-heading">📈 Savings Rate Trend (Month-on-Month)</div>
-        <div class="chart-container" style="height:180px;"><canvas id="savingsTrendChart"></canvas></div>
+        <div class="chart-container" style="height:180px;" id="savingsTrendWrap"><canvas id="savingsTrendChart"></canvas></div>
       </div>
 
       <!-- Savings Rates -->
@@ -1442,6 +1488,78 @@ function buildTransactions() {
 }
 
 // ═══════════════════════════════════════════════
+// DATA QUALITY ASSESSMENT
+// ═══════════════════════════════════════════════
+function assessDataQuality(txns, expenses) {
+  const count = txns.length;
+  const dates = txns.filter(t => t.date).map(t => t.date);
+  const minDate = dates.length ? new Date(Math.min(...dates)) : null;
+  const maxDate = dates.length ? new Date(Math.max(...dates)) : null;
+  const spanDays = minDate && maxDate ? Math.ceil((maxDate - minDate) / 86400000) + 1 : 0;
+  const spanMonths = spanDays / 30;
+
+  // Count high-confidence categorized transactions
+  const highConf = expenses.filter(t => t.confidence === 'high').length;
+  const medConf  = expenses.filter(t => t.confidence === 'medium').length;
+  const lowConf  = expenses.filter(t => t.confidence === 'low').length;
+  const totalExp = expenses.length || 1;
+  const highPct  = highConf / totalExp;
+
+  // Overall confidence level
+  let overallConf, confLabel, confEmoji;
+  if (count >= 30 && spanMonths >= 1 && highPct >= 0.6) {
+    overallConf = 'high'; confLabel = 'High Confidence'; confEmoji = '✅';
+  } else if (count >= 10 && (spanMonths >= 0.5 || highPct >= 0.4)) {
+    overallConf = 'medium'; confLabel = 'Medium Confidence'; confEmoji = '⚡';
+  } else {
+    overallConf = 'low'; confLabel = 'Low Confidence'; confEmoji = '⚠️';
+  }
+
+  // Data quality issues
+  const issues = [];
+  if (count < 10)  issues.push(`Only ${count} transaction${count===1?'':'s'} found — very limited dataset.`);
+  else if (count < 30) issues.push(`${count} transactions found — insights improve with more data.`);
+  if (spanDays > 0 && spanDays < 14) issues.push(`Data covers only ${spanDays} day${spanDays===1?'':'s'} — best results with 1+ month.`);
+  else if (spanDays > 0 && spanDays < 28) issues.push(`Data covers ~${Math.round(spanMonths*10)/10} month — full-month data gives better patterns.`);
+  if (lowConf / totalExp > 0.5) issues.push(`${Math.round(lowConf/totalExp*100)}% of expenses couldn't be auto-categorized — check Transactions tab to re-categorize.`);
+
+  return { count, spanDays, spanMonths, overallConf, confLabel, confEmoji, issues, highConf, medConf, lowConf, highPct };
+}
+
+function renderDataQualityBanner(dq) {
+  const banner = document.getElementById('dqBanner');
+  const pill = document.getElementById('overallConfPill');
+
+  // Overall confidence pill in header
+  pill.innerHTML = `<span class="conf-pill ${dq.overallConf}" title="Categorization Confidence: ${dq.confLabel}"><span class="conf-dot"></span>${dq.confEmoji} ${dq.confLabel}</span>`;
+
+  if (dq.issues.length === 0) {
+    // Enough data — show a green "all good" info banner briefly then hide
+    banner.className = 'dq-banner info';
+    banner.style.display = 'flex';
+    document.getElementById('dqBannerIcon').textContent = '✅';
+    document.getElementById('dqBannerTitle').textContent = 'Good data quality detected';
+    document.getElementById('dqBannerMsg').textContent = `${dq.count} transactions across ${Math.round(dq.spanMonths*10)/10||'<1'} month(s). Insights are reliable.`;
+    document.getElementById('dqBannerHint').textContent = '';
+    document.getElementById('dqBannerActions').innerHTML = '';
+    setTimeout(() => { banner.style.display = 'none'; }, 5000);
+    return;
+  }
+
+  // Show warning banner
+  banner.className = 'dq-banner warn';
+  banner.style.display = 'flex';
+  document.getElementById('dqBannerIcon').textContent = '⚠️';
+  document.getElementById('dqBannerTitle').textContent = 'Limited data detected — insights may not be fully accurate';
+  document.getElementById('dqBannerMsg').innerHTML = dq.issues.map(i => `• ${i}`).join('<br>');
+  document.getElementById('dqBannerHint').textContent = '📌 Best results with 30+ transactions or 1+ month of data. Upload another statement to merge and improve accuracy.';
+  document.getElementById('dqBannerActions').innerHTML = `
+    <button class="nb-btn nb-btn-sm nb-btn-purple" onclick="loadSampleData()">🎯 Try Sample Data Instead</button>
+    <button class="nb-btn nb-btn-sm" onclick="document.getElementById('dqBanner').style.display='none'">✕ Dismiss</button>
+  `;
+}
+
+// ═══════════════════════════════════════════════
 // DASHBOARD RENDER
 // ═══════════════════════════════════════════════
 function renderDashboard() {
@@ -1456,6 +1574,10 @@ function renderDashboard() {
   const dates = txns.filter(t => t.date).map(t => t.date);
   const minDate = dates.length ? new Date(Math.min(...dates)) : null;
   const maxDate = dates.length ? new Date(Math.max(...dates)) : null;
+
+  // ── Data quality assessment ──
+  const dq = assessDataQuality(txns, expenses);
+  renderDataQualityBanner(dq);
 
   document.getElementById('dashMeta').textContent =
     (minDate && maxDate ? `${fmtDate(minDate)} — ${fmtDate(maxDate)} · ` : '') +
@@ -1489,17 +1611,23 @@ function renderDashboard() {
     </tr>`;
   }).join('');
 
-  // Pie chart
-  if (pieChart) pieChart.destroy();
-  const pieCtx = document.getElementById('catPieChart').getContext('2d');
-  pieChart = new Chart(pieCtx, {
-    type: 'doughnut',
-    data: {
-      labels: sortedCats.slice(0,9).map(([n]) => n),
-      datasets: [{ data: sortedCats.slice(0,9).map(([,d]) => +d.total.toFixed(0)), backgroundColor: sortedCats.slice(0,9).map(([n]) => getCat(n).color), borderColor:'#000', borderWidth:2 }]
-    },
-    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11, family:"'Space Grotesk', sans-serif", weight:'700' }, padding:6 } } } }
-  });
+  // Pie chart — with empty state
+  if (pieChart) { pieChart.destroy(); pieChart = null; }
+  const pieWrap = document.getElementById('catPieWrap');
+  if (sortedCats.length < 2 || expenses.length < 5) {
+    pieWrap.innerHTML = `<div class="chart-empty"><div class="chart-empty-icon">🗂️</div><div class="chart-empty-title">We need more data to categorize your spending</div><div class="chart-empty-hint">Upload a full monthly statement (5+ expense transactions) for an accurate breakdown.</div></div>`;
+  } else {
+    pieWrap.innerHTML = '<canvas id="catPieChart"></canvas>';
+    const pieCtx = document.getElementById('catPieChart').getContext('2d');
+    pieChart = new Chart(pieCtx, {
+      type: 'doughnut',
+      data: {
+        labels: sortedCats.slice(0,9).map(([n]) => n),
+        datasets: [{ data: sortedCats.slice(0,9).map(([,d]) => +d.total.toFixed(0)), backgroundColor: sortedCats.slice(0,9).map(([n]) => getCat(n).color), borderColor:'#000', borderWidth:2 }]
+      },
+      options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11, family:"'Space Grotesk', sans-serif", weight:'700' }, padding:6 } } } }
+    });
+  }
 
   // Monthly bar chart + savings trend data
   const monthlyMap = {};
@@ -1513,18 +1641,24 @@ function renderDashboard() {
   const months = Object.keys(monthlyMap).sort();
   const monthLabels = months.map(m => { const [y,mo]=m.split('-'); return new Date(y,mo-1).toLocaleDateString('en',{month:'short',year:'2-digit'}); });
 
-  if (barChart) barChart.destroy();
-  barChart = new Chart(document.getElementById('monthlyBarChart').getContext('2d'), {
-    type:'bar',
-    data:{
-      labels:monthLabels,
-      datasets:[
-        { label:'Income', data:months.map(m=>+monthlyMap[m].income.toFixed(0)), backgroundColor:'#c3f584', borderColor:'#000', borderWidth:2, borderRadius:4 },
-        { label:'Expense', data:months.map(m=>+monthlyMap[m].expense.toFixed(0)), backgroundColor:'#fca5a5', borderColor:'#000', borderWidth:2, borderRadius:4 }
-      ]
-    },
-    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11, family:"'Space Grotesk', sans-serif", weight:'700' }, padding:6 } } }, scales:{ y:{ ticks:{ callback:v=>'₹'+(v>=1000?(v/1000).toFixed(0)+'K':v), font:{family:"'Space Grotesk', sans-serif"} }, grid:{color:'#f0f0f0'} }, x:{ ticks:{ font:{family:"'Space Grotesk', sans-serif", size:11} } } } }
-  });
+  if (barChart) { barChart.destroy(); barChart = null; }
+  const barWrap = document.getElementById('monthlyBarWrap');
+  if (months.length < 1) {
+    barWrap.innerHTML = `<div class="chart-empty"><div class="chart-empty-icon">📅</div><div class="chart-empty-title">No dated transactions found</div><div class="chart-empty-hint">Make sure your Date column is mapped correctly to see monthly cash flow.</div></div>`;
+  } else {
+    barWrap.innerHTML = '<canvas id="monthlyBarChart"></canvas>';
+    barChart = new Chart(document.getElementById('monthlyBarChart').getContext('2d'), {
+      type:'bar',
+      data:{
+        labels:monthLabels,
+        datasets:[
+          { label:'Income', data:months.map(m=>+monthlyMap[m].income.toFixed(0)), backgroundColor:'#c3f584', borderColor:'#000', borderWidth:2, borderRadius:4 },
+          { label:'Expense', data:months.map(m=>+monthlyMap[m].expense.toFixed(0)), backgroundColor:'#fca5a5', borderColor:'#000', borderWidth:2, borderRadius:4 }
+        ]
+      },
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11, family:"'Space Grotesk', sans-serif", weight:'700' }, padding:6 } } }, scales:{ y:{ ticks:{ callback:v=>'₹'+(v>=1000?(v/1000).toFixed(0)+'K':v), font:{family:"'Space Grotesk', sans-serif"} }, grid:{color:'#f0f0f0'} }, x:{ ticks:{ font:{family:"'Space Grotesk', sans-serif", size:11} } } } }
+    });
+  }
 
   // ── Savings Rate Trend ──
   const savingsRates = months.map(m => {
@@ -1532,10 +1666,12 @@ function renderDashboard() {
     const exp = monthlyMap[m].expense;
     return inc > 0 ? +((inc - exp) / inc * 100).toFixed(1) : 0;
   });
-  if (savingsTrendChart) savingsTrendChart.destroy();
+  if (savingsTrendChart) { savingsTrendChart.destroy(); savingsTrendChart = null; }
   const trendCard = document.getElementById('savingsTrendCard');
+  const trendWrap = document.getElementById('savingsTrendWrap');
   if (months.length >= 2) {
     trendCard.style.display = 'block';
+    trendWrap.innerHTML = '<canvas id="savingsTrendChart"></canvas>';
     savingsTrendChart = new Chart(document.getElementById('savingsTrendChart').getContext('2d'), {
       type:'line',
       data:{
@@ -1559,6 +1695,9 @@ function renderDashboard() {
         }
       }
     });
+  } else if (months.length === 1) {
+    trendCard.style.display = 'block';
+    trendWrap.innerHTML = `<div class="chart-empty" style="height:100%;"><div class="chart-empty-icon">📈</div><div class="chart-empty-title">Only 1 month of data</div><div class="chart-empty-hint">Upload statements from multiple months to see your savings rate trend over time.</div></div>`;
   } else {
     trendCard.style.display = 'none';
   }
@@ -2264,7 +2403,128 @@ function hideProgress() {
   document.getElementById('progressFill').style.width='0%';
 }
 
-function resetTool() {
+
+// ═══════════════════════════════════════════════
+// SAMPLE DATA DEMO
+// ═══════════════════════════════════════════════
+function loadSampleData() {
+  resetTool();
+  // 60 hand-crafted realistic transactions across 3 months (Jan–Mar 2025)
+  const raw = [
+    // January
+    ['01 Jan 2025','SALARY CREDIT INFOSYS LTD',  0,     85000, 0],
+    ['02 Jan 2025','SWIGGY ORDER',                580,   0, 0],
+    ['03 Jan 2025','AMAZON PURCHASE',             1450,  0, 0],
+    ['04 Jan 2025','HDFC CREDIT CARD PAYMENT',    8000,  0, 0],
+    ['05 Jan 2025','ZOMATO ORDER',                340,   0, 0],
+    ['06 Jan 2025','NETFLIX SUBSCRIPTION',        649,   0, 0],
+    ['07 Jan 2025','UBER RIDE',                   230,   0, 0],
+    ['08 Jan 2025','BIGBASKET GROCERY',           2850,  0, 0],
+    ['09 Jan 2025','BLINKIT GROCERY',             690,   0, 0],
+    ['10 Jan 2025','ATM CASH WITHDRAWAL',         5000,  0, 0],
+    ['12 Jan 2025','SHELL PETROL PUMP',           3500,  0, 0],
+    ['14 Jan 2025','APOLLO PHARMACY',             890,   0, 0],
+    ['15 Jan 2025','RENT TRANSFER TO LANDLORD',  18000,  0, 0],
+    ['16 Jan 2025','SPOTIFY PREMIUM',             119,   0, 0],
+    ['17 Jan 2025','DMART SUPERMART',             3200,  0, 0],
+    ['18 Jan 2025','OLA RIDE',                    185,   0, 0],
+    ['19 Jan 2025','TATA POWER ELECTRICITY BILL', 1850,  0, 0],
+    ['20 Jan 2025','JIOFIBER BROADBAND',          999,   0, 0],
+    ['22 Jan 2025','DINING SOCIALS RESTAURANT',   2100,  0, 0],
+    ['25 Jan 2025','UNIQLO CLOTHING',             3999,  0, 0],
+    ['27 Jan 2025','DIVIDEND CREDIT HDFC MUTUAL', 0,     1200, 0],
+    ['28 Jan 2025','SWIGGY INSTAMART',            450,   0, 0],
+    ['29 Jan 2025','AMAZON PRIME ANNUAL',         1499,  0, 0],
+    ['30 Jan 2025','AAROGYA HEALTH CHECKUP',      2500,  0, 0],
+    ['31 Jan 2025','MUTUAL FUND TRANSFER SIP',    5000,  0, 0],
+    // February
+    ['01 Feb 2025','SALARY CREDIT INFOSYS LTD',  0,     85000, 0],
+    ['02 Feb 2025','ZOMATO ORDER',                490,   0, 0],
+    ['03 Feb 2025','SWIGGY FOOD ORDER',           620,   0, 0],
+    ['04 Feb 2025','AMAZON SHOPPING',             2750,  0, 0],
+    ['05 Feb 2025','RAPIDO RIDE',                 95,    0, 0],
+    ['06 Feb 2025','BIGBASKET GROCERY',           3100,  0, 0],
+    ['07 Feb 2025','HDFC CREDIT CARD PAYMENT',    8500,  0, 0],
+    ['08 Feb 2025','NETFLIX SUBSCRIPTION',        649,   0, 0],
+    ['10 Feb 2025','SHELL PETROL PUMP',           4000,  0, 0],
+    ['12 Feb 2025','MEDPLUS PHARMACY',            450,   0, 0],
+    ['13 Feb 2025','VALENTINE DINNER',            3800,  0, 0],
+    ['14 Feb 2025','AIRTEL POSTPAID BILL',        799,   0, 0],
+    ['15 Feb 2025','RENT TRANSFER TO LANDLORD',  18000,  0, 0],
+    ['16 Feb 2025','SPOTIFY PREMIUM',             119,   0, 0],
+    ['17 Feb 2025','BLINKIT QUICK COMMERCE',      780,   0, 0],
+    ['18 Feb 2025','RELIANCE DIGITAL ELECTRONICS',8999,  0, 0],
+    ['20 Feb 2025','UBER EATS',                   310,   0, 0],
+    ['22 Feb 2025','TATA POWER ELECTRICITY',      2100,  0, 0],
+    ['24 Feb 2025','JIOFIBER SUBSCRIPTION',       999,   0, 0],
+    ['26 Feb 2025','FREELANCE PAYMENT RECEIVED',  0,     12000, 0],
+    ['27 Feb 2025','MUTUAL FUND SIP TRANSFER',    5000,  0, 0],
+    ['28 Feb 2025','CULT FIT GYM MEMBERSHIP',     1200,  0, 0],
+    // March
+    ['01 Mar 2025','SALARY CREDIT INFOSYS LTD',  0,     85000, 0],
+    ['02 Mar 2025','SWIGGY ORDER',                510,   0, 0],
+    ['03 Mar 2025','AMAZON PURCHASE ELECTRONICS', 4500,  0, 0],
+    ['04 Mar 2025','BLINKIT GROCERY DELIVERY',    895,   0, 0],
+    ['05 Mar 2025','ZOMATO HYPERPURE',            720,   0, 0],
+    ['07 Mar 2025','ATM WITHDRAWAL',              3000,  0, 0],
+    ['08 Mar 2025','SHELL PETROL STATION',        3800,  0, 0],
+    ['10 Mar 2025','HDFC CREDIT CARD PAYMENT',    9200,  0, 0],
+    ['12 Mar 2025','BIGBASKET REGULAR ORDER',     2700,  0, 0],
+    ['13 Mar 2025','APOLLO PHARMACY MEDICINES',   650,   0, 0],
+    ['14 Mar 2025','NETFLIX MONTHLY PLAN',        649,   0, 0],
+    ['15 Mar 2025','RENT TRANSFER LANDLORD',     18000,  0, 0],
+    ['16 Mar 2025','SPOTIFY MUSIC',               119,   0, 0],
+    ['17 Mar 2025','JIOFIBER BROADBAND PLAN',     999,   0, 0],
+    ['18 Mar 2025','AIRTEL MOBILE BILL',          799,   0, 0],
+    ['20 Mar 2025','TATA POWER BILL PAYMENT',     2200,  0, 0],
+    ['21 Mar 2025','HOLI CELEBRATION DINNER',     2800,  0, 0],
+    ['22 Mar 2025','CULT FIT GYM',                1200,  0, 0],
+    ['25 Mar 2025','MYNTRA CLOTHING PURCHASE',    2499,  0, 0],
+    ['26 Mar 2025','MUTUAL FUND SIP HDFC',        5000,  0, 0],
+    ['27 Mar 2025','DIVIDEND RECEIVED AXIS FUND', 0,     800,  0],
+    ['28 Mar 2025','BOOKMYSHOW MOVIE TICKETS',    850,   0, 0],
+    ['30 Mar 2025','CLEARTRIP FLIGHT BOOKING',    7500,  0, 0],
+    ['31 Mar 2025','OLA CABSERVICE',              420,   0, 0],
+  ];
+
+  allTransactions = raw.map((r, idx) => {
+    const [dateStr, desc, debit, credit] = r;
+    const date = parseDate(dateStr);
+    const isCredit = credit > 0 && credit >= debit;
+    const type = isCredit ? 'credit' : 'debit';
+    const amount = isCredit ? credit : debit;
+    const catResult = categorizeWithConf(desc, isCredit);
+    const hash = `${dateStr}|${Math.round(debit+credit)}|${normalizeMerchant(desc).toLowerCase().substring(0,20)}`;
+    return { date, dateStr, desc, debit, credit, balance: 0, type, amount,
+             category: catResult.category, confidence: catResult.confidence, hash };
+  });
+
+  // Sort chronologically
+  allTransactions.sort((a,b) => (a.date||0) - (b.date||0));
+  isMergeMode = false;
+  previousMerchants = new Set();
+
+  // Render dashboard
+  document.getElementById('colMapSection').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('mergeBanner').style.display = 'flex';
+  document.getElementById('mergeCount').textContent = allTransactions.length;
+
+  renderDashboard();
+  renderTransactions();
+
+  // Show demo notice
+  const err = document.getElementById('errorMsg');
+  err.style.display = 'block';
+  err.style.background = '#faf5ff';
+  err.style.borderColor = '#7c3aed';
+  err.style.color = '#5b21b6';
+  err.innerHTML = '🎯 <strong>Demo Mode</strong> — You\'re viewing 74 sample transactions (Jan–Mar 2025). Upload your own statement anytime to replace this demo.';
+
+  document.getElementById('dashboard').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+
   allTransactions=[]; rawHeaders=[]; rawRows=[]; pdfPageData=[]; selectedPages=[];
   previousMerchants=new Set(); isMergeMode=false;
   document.getElementById('dashboard').style.display='none';
