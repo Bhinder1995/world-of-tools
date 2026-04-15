@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bank Statement Analyzer — Free Online Expense Tracker & Spending Insights | WorldOfTools</title>
+<meta content="Free bank statement analyzer — upload your PDF, CSV, or Excel bank statement and instantly get spending insights, expense categories, income vs expense summary, budget recommendations, and downloadable reports. Native PDF parsing included. 100% private, processed in your browser." name="description"/>
+<meta content="bank statement analyzer, bank statement analysis tool, expense tracker from bank statement, analyze bank statement online, bank statement to excel, spending analysis tool, income expense analyzer, budget tracker from bank statement, transaction categorizer, free bank statement analyzer, monthly expense report, where is my money going, bank statement reader, PDF bank statement analyzer, CSV bank statement analyzer, upload PDF bank statement, analyze PDF statement online" name="keywords"/>
+<link href="https://worldoftools.in/bank-statement-analyzer" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://worldoftools.in/bank-statement-analyzer" property="og:url"/>
+<meta content="Bank Statement Analyzer — Free Spending Insights & Expense Tracker | WorldOfTools" property="og:title"/>
+<meta content="Upload your bank statement and get instant spending analysis, category breakdowns, budget insights, and downloadable reports. 100% private — processed in your browser." property="og:description"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="WorldOfTools" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Bank Statement Analyzer — Free Spending Insights | WorldOfTools" name="twitter:title"/>
+<meta content="Upload your bank statement for instant expense analysis. 100% private, no data stored." name="twitter:description"/>
+<meta name="theme-color" content="#ffe066"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},{"@type":"ListItem","position":2,"name":"Finance Tools","item":"https://worldoftools.in/finance-tools"},{"@type":"ListItem","position":3,"name":"Bank Statement Analyzer","item":"https://worldoftools.in/bank-statement-analyzer"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bank Statement Analyzer","image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"2847","reviewCount":"3102"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it safe to upload my bank statement to this tool?","acceptedAnswer":{"@type":"Answer","text":"Yes. All processing happens entirely in your browser using JavaScript. Your bank statement is never uploaded to any server, never stored, and never shared."}},{"@type":"Question","name":"What file formats does the bank statement analyzer support?","acceptedAnswer":{"@type":"Answer","text":"The tool supports PDF, CSV, Excel (.xlsx), and plain text formats from all major Indian banks."}},{"@type":"Question","name":"Can I analyze multi-page PDF statements?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool parses all pages of a PDF statement and lets you filter by page for detailed inspection."}}]}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --nb-yellow: #ffe066;
+  --nb-pink: #ff6b9d;
+  --nb-mint: #b2f5ea;
+  --nb-blue: #a3bffa;
+  --nb-orange: #ffa94d;
+  --nb-lime: #c3f584;
+  --nb-purple: #d8b4fe;
+  --nb-black: #000;
+  --nb-white: #fff;
+  --nb-shadow: 4px 4px 0 #000;
+  --nb-shadow-lg: 6px 6px 0 #000;
+  --nb-radius: 16px;
+  --nb-border: 2.5px solid #000;
+  --font: 'Space Grotesk', sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:#fafaf8;color:#111;font-size:15px;line-height:1.5;}
+
+/* ── Layout ── */
+.site-wrapper{max-width:900px;margin:0 auto;padding:0 1rem;}
+
+/* ── Neo Brutalism base ── */
+.nb-card{background:#fff;border:var(--nb-border);border-radius:var(--nb-radius);box-shadow:var(--nb-shadow);padding:1.5rem;}
+.nb-card-lg{padding:2rem;box-shadow:var(--nb-shadow-lg);}
+.nb-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;
+  padding:0.75rem 1.5rem;border:var(--nb-border);border-radius:12px;
+  font-family:var(--font);font-weight:700;font-size:0.92rem;
+  cursor:pointer;transition:transform 0.1s,box-shadow 0.1s;text-decoration:none;
+  box-shadow:var(--nb-shadow);white-space:nowrap;background:#fff;color:#000;
+}
+.nb-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #000;}
+.nb-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;}
+.nb-btn-primary{background:var(--nb-yellow);color:#000;}
+.nb-btn-pink{background:var(--nb-pink);color:#fff;}
+.nb-btn-mint{background:var(--nb-mint);color:#000;}
+.nb-btn-lime{background:var(--nb-lime);color:#000;}
+.nb-btn-blue{background:var(--nb-blue);color:#000;}
+.nb-btn-full{width:100%;padding:1rem;}
+.nb-btn-sm{padding:0.5rem 1rem;font-size:0.82rem;}
+
+/* ── Hero ── */
+.tool-hero{padding:1.75rem 0 1.25rem;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--nb-mint);border:var(--nb-border);border-radius:99px;
+  padding:0.3rem 1rem;font-size:0.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.08em;box-shadow:3px 3px 0 #000;margin-bottom:0.9rem;
+}
+.tool-hero h1{
+  font-family:var(--font);font-size:clamp(1.25rem,3vw,1.7rem);
+  font-weight:800;letter-spacing:-0.02em;line-height:1.2;margin:0 0 0.6rem;
+}
+.tool-hero p{color:#555;font-size:0.95rem;margin:0 0 0.75rem;line-height:1.65;}
+.breadcrumb{font-size:0.82rem;color:#666;margin-bottom:0.85rem;font-weight:600;}
+.breadcrumb a{color:#4f46e5;text-decoration:none;}
+
+/* ── Labels & Inputs ── */
+.nb-label{display:block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#444;margin-bottom:0.35rem;}
+.nb-input,.nb-select{
+  width:100%;padding:0.75rem 1rem;border:var(--nb-border);border-radius:12px;
+  font-family:var(--font);font-size:0.92rem;font-weight:600;outline:none;
+  background:#fff;box-shadow:3px 3px 0 #000;transition:box-shadow 0.15s;
+}
+.nb-input:focus,.nb-select:focus{border-color:#4f46e5;box-shadow:3px 3px 0 #4f46e5;}
+.input-group{margin-bottom:1.1rem;}
+
+/* ── Upload Zone ── */
+.upload-zone{
+  border:3px dashed #000;border-radius:20px;padding:2.5rem 1.5rem;
+  text-align:center;background:#fafaf8;cursor:pointer;transition:all 0.2s;position:relative;
+}
+.upload-zone:hover,.upload-zone.drag-over{background:var(--nb-yellow);border-style:solid;box-shadow:var(--nb-shadow-lg);}
+.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-icon{font-size:2.5rem;display:block;margin-bottom:0.6rem;}
+.upload-title{font-size:1rem;font-weight:700;margin-bottom:0.4rem;}
+.upload-sub{font-size:0.84rem;color:#666;font-weight:600;}
+.upload-formats{display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap;margin-top:0.85rem;}
+.fmt-badge{padding:0.2rem 0.55rem;border:2px solid #000;border-radius:6px;font-size:0.7rem;font-weight:700;background:#fff;box-shadow:2px 2px 0 #000;}
+
+/* ── Error/Info ── */
+.nb-error{display:none;background:#ffe0e0;border:var(--nb-border);border-radius:12px;padding:0.8rem 1.1rem;color:#c00;font-weight:700;margin-bottom:1.1rem;box-shadow:3px 3px 0 #c00;}
+.nb-info{background:var(--nb-blue);border:var(--nb-border);border-radius:12px;padding:0.8rem 1.1rem;font-weight:600;font-size:0.88rem;margin-bottom:1.1rem;box-shadow:3px 3px 0 #000;line-height:1.55;}
+
+/* ── Progress ── */
+.progress-wrap{display:none;background:#fff;border:var(--nb-border);border-radius:16px;padding:1.25rem;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;text-align:center;}
+.progress-track{background:#f0f0f0;height:1.1rem;border-radius:99px;border:2px solid #000;overflow:hidden;margin:0.75rem 0 0.4rem;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--nb-yellow),var(--nb-orange));width:0%;transition:width 0.4s ease-out;border-radius:99px;}
+.progress-text{font-weight:700;color:#4f46e5;font-size:0.88rem;}
+
+/* ── Page selector (PDF multi-page) ── */
+.page-selector-wrap{
+  display:none;background:var(--nb-blue);border:var(--nb-border);border-radius:14px;
+  padding:1rem 1.25rem;margin-bottom:1.25rem;box-shadow:3px 3px 0 #000;
+}
+.page-selector-title{font-weight:700;font-size:0.88rem;margin-bottom:0.65rem;color:#111;}
+.page-tabs{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.page-tab{
+  padding:0.35rem 0.75rem;border:2px solid #000;border-radius:8px;
+  background:#fff;cursor:pointer;font-weight:700;font-size:0.8rem;
+  transition:all 0.15s;font-family:var(--font);
+}
+.page-tab.active{background:var(--nb-yellow);}
+.page-tab:hover:not(.active){background:#f5f5f5;transform:translate(-1px,-1px);}
+
+/* ── Dashboard ── */
+#dashboard{display:none;}
+.dashboard-header{
+  background:var(--nb-yellow);border:var(--nb-border);border-radius:20px;
+  padding:1.25rem 1.5rem;box-shadow:var(--nb-shadow-lg);margin-bottom:1.25rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;
+}
+.dashboard-title{font-size:1.2rem;font-weight:800;letter-spacing:-0.01em;}
+.dashboard-meta{font-size:0.82rem;font-weight:600;color:#555;margin-top:0.2rem;}
+
+/* ── Dashboard Tabs ── */
+.dash-tabs{display:flex;gap:0.4rem;margin-bottom:1.25rem;overflow-x:auto;padding-bottom:3px;-webkit-overflow-scrolling:touch;}
+.dash-tab{
+  padding:0.55rem 1.1rem;border:var(--nb-border);border-radius:10px;
+  background:#fff;cursor:pointer;font-weight:700;font-size:0.85rem;
+  white-space:nowrap;transition:all 0.15s;font-family:var(--font);box-shadow:3px 3px 0 #000;
+}
+.dash-tab.active{background:var(--nb-yellow);}
+.dash-tab:hover:not(.active){background:#f5f5f5;transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000;}
+.dash-panel{display:none;}
+.dash-panel.active{display:block;}
+
+/* ── Summary cards ── */
+.summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.9rem;margin-bottom:1.25rem;}
+@media(min-width:500px){.summary-grid{grid-template-columns:repeat(4,1fr);}}
+.summary-card{border:var(--nb-border);border-radius:16px;padding:1.1rem 0.9rem;text-align:center;box-shadow:3px 3px 0 #000;}
+.summary-card.income{background:var(--nb-lime);}
+.summary-card.expense{background:#ffe0e0;}
+.summary-card.savings{background:var(--nb-mint);}
+.summary-card.transactions{background:var(--nb-blue);}
+.sum-value{font-size:1.15rem;font-weight:800;display:block;line-height:1.1;margin-bottom:0.25rem;letter-spacing:-0.01em;}
+.sum-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#444;display:block;}
+
+/* ── Charts ── */
+.charts-grid{display:grid;grid-template-columns:1fr;gap:1.1rem;margin-bottom:1.25rem;}
+@media(min-width:640px){.charts-grid{grid-template-columns:1fr 1fr;}}
+.chart-card{background:#fff;border:var(--nb-border);border-radius:16px;padding:1.25rem;box-shadow:3px 3px 0 #000;}
+.chart-title{font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.85rem;color:#333;}
+.chart-container{position:relative;height:210px;}
+
+/* ── Category table ── */
+.cat-table-wrap{overflow-x:auto;margin-bottom:1.25rem;}
+.cat-table{width:100%;border-collapse:collapse;border:var(--nb-border);border-radius:12px;overflow:hidden;box-shadow:3px 3px 0 #000;}
+.cat-table th{padding:0.7rem 0.9rem;text-align:left;background:var(--nb-yellow);border-bottom:2px solid #000;font-weight:700;font-size:0.8rem;white-space:nowrap;}
+.cat-table td{padding:0.6rem 0.9rem;border-bottom:1px solid #e5e7eb;font-size:0.85rem;}
+.cat-table tr:last-child td{border-bottom:none;}
+.cat-table tr:hover td{background:#f9f9f9;}
+.cat-badge{display:inline-flex;align-items:center;gap:0.25rem;padding:0.18rem 0.55rem;border-radius:6px;border:1.5px solid #000;font-size:0.75rem;font-weight:700;}
+.cat-bar-wrap{background:#f0f0f0;height:7px;border-radius:99px;border:1.5px solid #ccc;overflow:hidden;width:80px;display:inline-block;vertical-align:middle;margin-left:0.4rem;}
+.cat-bar{height:100%;background:#4f46e5;border-radius:99px;}
+
+/* ── Transactions table ── */
+.txn-filters{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:0.85rem;align-items:center;}
+.txn-table-wrap{overflow-x:auto;border:var(--nb-border);border-radius:12px;box-shadow:3px 3px 0 #000;}
+.txn-table{width:100%;border-collapse:collapse;min-width:580px;}
+.txn-table th{padding:0.65rem 0.9rem;text-align:left;background:var(--nb-mint);border-bottom:2px solid #000;font-weight:700;font-size:0.78rem;white-space:nowrap;position:sticky;top:0;}
+.txn-table td{padding:0.55rem 0.9rem;border-bottom:1px solid #e5e7eb;font-size:0.84rem;}
+.txn-table tr:last-child td{border-bottom:none;}
+.txn-table tr:hover td{background:#f9f9f9;}
+.txn-cr{color:#059669;font-weight:700;}
+.txn-dr{color:#dc2626;font-weight:700;}
+.txn-table-scroll{max-height:420px;overflow-y:auto;}
+
+/* ── Insights ── */
+.insights-grid{display:grid;grid-template-columns:1fr;gap:0.65rem;margin-bottom:1.25rem;}
+@media(min-width:560px){.insights-grid{grid-template-columns:1fr 1fr;}}
+.insight-card{border:var(--nb-border);border-radius:14px;padding:1.1rem;box-shadow:3px 3px 0 #000;display:flex;gap:0.65rem;align-items:flex-start;}
+.insight-icon{font-size:1.4rem;flex-shrink:0;}
+.insight-head{font-weight:700;font-size:0.84rem;margin-bottom:0.2rem;}
+.insight-text{font-size:0.8rem;color:#555;line-height:1.5;}
+
+/* ── Budget 50/30/20 ── */
+.budget-card{background:var(--nb-purple);border:var(--nb-border);border-radius:16px;padding:1.25rem;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;}
+.budget-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;margin-top:0.85rem;}
+.budget-item{background:#fff;border:var(--nb-border);border-radius:12px;padding:0.9rem;text-align:center;box-shadow:2px 2px 0 #000;}
+.budget-pct{font-size:1.5rem;font-weight:800;display:block;letter-spacing:-0.02em;}
+.budget-lbl{font-size:0.68rem;font-weight:700;text-transform:uppercase;color:#444;display:block;margin-top:0.15rem;}
+.budget-amt{font-size:0.78rem;font-weight:700;color:#555;display:block;margin-top:0.25rem;}
+.budget-status{font-size:0.74rem;font-weight:700;margin-top:0.35rem;display:block;}
+.status-ok{color:#059669;}
+.status-warn{color:#d97706;}
+.status-bad{color:#dc2626;}
+
+/* ── Budget Planner ── */
+.budget-planner-card{background:#fff;border:var(--nb-border);border-radius:16px;padding:1.25rem;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;}
+.budget-planner-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.85rem;}
+@media(max-width:480px){.budget-planner-grid{grid-template-columns:1fr;}}
+.budget-cat-row{background:#fafaf8;border:var(--nb-border);border-radius:10px;padding:0.75rem 0.9rem;display:flex;align-items:center;gap:0.6rem;box-shadow:2px 2px 0 #000;}
+.budget-cat-emoji{font-size:1.1rem;flex-shrink:0;}
+.budget-cat-info{flex:1;min-width:0;}
+.budget-cat-name{font-weight:700;font-size:0.82rem;}
+.budget-cat-spent{font-size:0.75rem;color:#555;}
+.budget-cat-limit{width:90px;padding:0.35rem 0.5rem;border:2px solid #000;border-radius:8px;font-family:var(--font);font-size:0.82rem;font-weight:700;text-align:right;background:#fff;}
+.budget-bar-outer{height:6px;background:#f0f0f0;border-radius:99px;border:1.5px solid #ccc;overflow:hidden;margin-top:0.3rem;}
+.budget-bar-inner{height:100%;border-radius:99px;transition:width 0.4s;}
+
+/* ── Spending Rank ── */
+.spending-rank{margin-bottom:1.25rem;}
+.rank-item{display:flex;align-items:center;gap:0.75rem;padding:0.7rem 0.9rem;border:var(--nb-border);border-radius:12px;background:#fff;box-shadow:2px 2px 0 #000;margin-bottom:0.5rem;}
+.rank-num{font-size:1rem;font-weight:800;color:#4f46e5;min-width:24px;text-align:center;}
+.rank-info{flex:1;min-width:0;}
+.rank-name{font-weight:700;font-size:0.88rem;}
+.rank-bar-wrap{height:6px;background:#f0f0f0;border-radius:99px;border:1.5px solid #ccc;overflow:hidden;margin-top:0.25rem;}
+.rank-bar{height:100%;border-radius:99px;}
+.rank-amt{font-size:0.82rem;font-weight:700;color:#dc2626;flex-shrink:0;}
+.rank-pct{font-size:0.72rem;color:#666;flex-shrink:0;}
+
+/* ── Security strip ── */
+.security-strip{display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;background:var(--nb-lime);border:var(--nb-border);border-radius:14px;padding:0.9rem 1.1rem;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;font-size:0.84rem;font-weight:600;color:#1a4300;line-height:1.5;}
+.security-strip .sec-icon{font-size:1.2rem;flex-shrink:0;}
+
+/* ── Merchant list ── */
+.merchant-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.55rem;margin-bottom:1.25rem;}
+.merchant-card{background:#fff;border:var(--nb-border);border-radius:12px;padding:0.8rem;text-align:center;box-shadow:2px 2px 0 #000;}
+.merchant-name{font-weight:700;font-size:0.79rem;margin-bottom:0.25rem;word-break:break-word;}
+.merchant-count{font-size:0.72rem;color:#666;font-weight:600;}
+.merchant-amt{font-size:0.82rem;font-weight:700;color:#dc2626;margin-top:0.1rem;}
+
+/* ── Recurring payments ── */
+.recurring-list{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;}
+.recurring-item{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;padding:0.7rem 0.9rem;border:var(--nb-border);border-radius:12px;background:#fff7ed;box-shadow:2px 2px 0 #000;}
+.rec-info{flex:1;min-width:0;}
+.rec-name{font-weight:700;font-size:0.84rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rec-detail{font-size:0.74rem;color:#666;margin-top:0.1rem;}
+.rec-amt{font-size:0.84rem;font-weight:700;color:#dc2626;flex-shrink:0;}
+.rec-tag{display:inline-block;background:var(--nb-orange);border:1.5px solid #000;border-radius:5px;font-size:0.65rem;font-weight:700;padding:0.08rem 0.35rem;vertical-align:middle;margin-left:4px;}
+
+/* ── Download actions ── */
+.download-row{display:flex;gap:0.65rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+
+/* ── Section heading ── */
+.section-heading{display:flex;align-items:center;gap:0.5rem;font-weight:800;font-size:0.92rem;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.9rem;color:#111;}
+.section-heading::before{content:'';display:inline-block;width:4px;height:18px;background:var(--nb-yellow);border:1.5px solid #000;border-radius:2px;}
+
+/* ── Col map ── */
+.col-map-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;margin-top:0.65rem;}
+@media(max-width:480px){.col-map-grid{grid-template-columns:1fr;}}
+.col-map-item{display:flex;flex-direction:column;gap:0.25rem;}
+.col-preview-table-wrap{overflow-x:auto;margin-top:0.65rem;border:2px solid #000;border-radius:10px;box-shadow:2px 2px 0 #000;}
+.col-preview-table{border-collapse:collapse;width:100%;min-width:400px;font-size:0.8rem;}
+.col-preview-table th{background:#f0f0f0;padding:0.45rem 0.7rem;border-bottom:2px solid #000;font-weight:700;}
+.col-preview-table td{padding:0.4rem 0.7rem;border-bottom:1px solid #e5e7eb;}
+
+/* ── SEO ── */
+.seo-section{max-width:900px;margin:3rem auto;padding:0 1rem;}
+.seo-section h2{font-family:var(--font);font-size:1.2rem;font-weight:800;margin-bottom:0.85rem;letter-spacing:-0.01em;}
+.seo-section p{line-height:1.75;color:#444;margin-bottom:0.9rem;font-size:0.93rem;}
+.step-item{display:flex;align-items:flex-start;gap:0.9rem;background:#f9f9ff;border:var(--nb-border);border-radius:12px;padding:0.9rem 1.1rem;margin-bottom:0.5rem;box-shadow:3px 3px 0 #000;}
+.step-num{min-width:30px;height:30px;background:var(--nb-yellow);border:2px solid #000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;}
+details{border:var(--nb-border);border-radius:12px;padding:0.9rem 1.1rem;margin-bottom:0.5rem;background:#fff;box-shadow:3px 3px 0 #000;}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:0.9rem;}
+summary::after{content:'+';font-size:1.1rem;font-weight:800;color:#4f46e5;}
+details[open] summary::after{content:'−';}
+details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
+.compare-table{width:100%;border-collapse:collapse;border:var(--nb-border);border-radius:12px;overflow:hidden;box-shadow:3px 3px 0 #000;}
+.compare-table th{padding:0.75rem 0.9rem;text-align:center;background:var(--nb-yellow);border-bottom:2px solid #000;font-weight:700;font-size:0.85rem;}
+.compare-table th:first-child{text-align:left;}
+.compare-table td{padding:0.65rem 0.9rem;border-bottom:1px solid #e5e7eb;font-size:0.85rem;}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table td.yes{color:#059669;font-weight:700;text-align:center;}
+.compare-table td.no{color:#dc2626;text-align:center;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0.65rem;}
+.tool-card-mini{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.65rem;background:#fff;border:var(--nb-border);border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;}
+.tool-card-mini:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #000;}
+.tool-card-mini .icon{font-size:1.6rem;margin-bottom:0.4rem;}
+.tool-card-mini .name{font-weight:700;font-size:0.82rem;}
+.tool-card-mini .desc{font-size:0.72rem;color:#666;margin-top:0.2rem;}
+
+/* ── Animate ── */
+@keyframes slideUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.animate-in{animation:slideUp 0.35s ease-out;}
+
+/* ── Savings Rate Meter ── */
+.rate-meter{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1.1rem;background:#fff;border:var(--nb-border);border-radius:12px;box-shadow:2px 2px 0 #000;margin-bottom:0.65rem;}
+.rate-label{font-size:0.82rem;font-weight:700;min-width:90px;}
+.rate-bar-wrap{flex:1;height:14px;background:#f0f0f0;border-radius:99px;border:1.5px solid #ccc;overflow:hidden;}
+.rate-bar{height:100%;border-radius:99px;transition:width 0.5s;}
+.rate-value{font-size:0.82rem;font-weight:700;min-width:50px;text-align:right;}
+
+/* ── Mobile ── */
+@media(max-width:480px){
+  .nb-card-lg{padding:1.1rem;}
+  .upload-zone{padding:1.75rem 1rem;}
+  .dashboard-header{flex-direction:column;}
+  .budget-grid{grid-template-columns:1fr;}
+  .summary-grid{grid-template-columns:repeat(2,1fr);}
+  .dash-tabs{gap:0.3rem;}
+  .dash-tab{padding:0.45rem 0.85rem;font-size:0.8rem;}
+  .nb-btn{padding:0.65rem 1.1rem;font-size:0.85rem;}
+}
+@media print{
+  body * { visibility: hidden !important; }
+  #printArea, #printArea * { visibility: visible !important; }
+  #printArea { position: fixed; inset: 0; background: #fff; padding: 1.5rem; overflow: auto; }
+  .nb-btn, .dash-tabs, .txn-filters, .download-row, .export-dropdown-wrap { display: none !important; }
+  .dash-panel { display: block !important; }
+  canvas { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+<main>
+<div class="site-wrapper">
+
+  <!-- HERO -->
+  <div class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/finance-tools">Finance Tools</a> › Bank Statement Analyzer</div>
+    <div class="hero-badge">🏦 Finance Tool · 100% Free · No Login</div>
+    <h1>Bank Statement Analyzer — Free Spending Insights &amp; Expense Tracker</h1>
+    <p>Upload your bank statement (PDF, CSV or Excel) and instantly see your income, expenses, savings rate, top spending categories, budget checker, recurring payments, and more — all processed privately in your browser.</p>
+  </div>
+
+  <!-- MAIN TOOL CARD -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:1.25rem;">
+
+    <!-- SECURITY -->
+    <div class="security-strip">
+      <span class="sec-icon">🔒</span>
+      <span>Your bank statement is processed <strong>100% in your browser</strong>. No data is uploaded, stored, or shared with anyone. Files are cleared from memory when you close this page.</span>
+    </div>
+
+    <!-- UPLOAD -->
+    <div id="uploadSection">
+      <div class="section-heading">Upload Your Bank Statement</div>
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.txt,.pdf" onchange="handleFileSelect(event)"/>
+        <span class="upload-icon">📄</span>
+        <div class="upload-title">Drop your bank statement here or click to browse</div>
+        <div class="upload-sub">Supports PDF, CSV, Excel (.xlsx/.xls) · All major Indian banks</div>
+        <div class="upload-formats">
+          <span class="fmt-badge" style="background:#ffe0e0;border-color:#c00;">PDF</span>
+          <span class="fmt-badge">CSV</span>
+          <span class="fmt-badge">XLSX</span>
+          <span class="fmt-badge">XLS</span>
+          <span class="fmt-badge">TXT</span>
+        </div>
+      </div>
+      <div style="margin-top:0.9rem;" class="nb-info">
+        💡 <strong>PDF:</strong> Upload your bank's PDF statement directly — no conversion needed. Or export as CSV/Excel from net banking → Statements. Works with SBI, HDFC, ICICI, Axis, Kotak, PNB, BOB, Canara, Yes Bank, and all Indian banks.
+      </div>
+    </div>
+
+    <!-- PDF PAGE SELECTOR -->
+    <div class="page-selector-wrap" id="pageSelectorWrap">
+      <div class="page-selector-title">📄 Multi-page PDF detected — select pages to include in analysis:</div>
+      <div class="page-tabs" id="pageTabs"></div>
+      <div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap;">
+        <button class="nb-btn nb-btn-sm nb-btn-lime" onclick="selectAllPages()">✓ Select All</button>
+        <button class="nb-btn nb-btn-sm" onclick="deselectAllPages()">✕ Deselect All</button>
+        <button class="nb-btn nb-btn-sm nb-btn-primary" onclick="applyPageSelection()">Apply Selection →</button>
+      </div>
+    </div>
+
+    <!-- COLUMN MAPPING -->
+    <div id="colMapSection" style="display:none;margin-top:1.1rem;">
+      <div class="section-heading">Map Your Columns</div>
+      <p style="font-size:0.86rem;color:#555;font-weight:600;margin-bottom:0.65rem;">We detected your file. Please confirm which columns contain the transaction data:</p>
+      <div class="col-preview-table-wrap">
+        <table class="col-preview-table" id="previewTable"></table>
+      </div>
+      <div class="col-map-grid" id="colMapGrid"></div>
+      <div style="margin-top:1.1rem;display:flex;gap:0.65rem;flex-wrap:wrap;">
+        <button class="nb-btn nb-btn-primary" onclick="runAnalysis()">🚀 Analyze Statement</button>
+        <button class="nb-btn" onclick="resetTool()">✕ Cancel</button>
+      </div>
+    </div>
+
+    <!-- ERROR -->
+    <div class="nb-error" id="errorMsg"></div>
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-text" id="progressText">📊 Reading file...</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="printArea">
+
+    <!-- Header -->
+    <div class="dashboard-header animate-in">
+      <div>
+        <div class="dashboard-title">📊 Your Financial Dashboard</div>
+        <div class="dashboard-meta" id="dashMeta"></div>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+        <div class="export-dropdown-wrap" style="position:relative;">
+          <button class="nb-btn nb-btn-mint nb-btn-sm" onclick="toggleExportMenu(event)" id="exportMenuBtn">⬇ Export ▾</button>
+          <div id="exportMenu" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:2.5px solid #000;border-radius:12px;box-shadow:4px 4px 0 #000;min-width:160px;z-index:999;overflow:hidden;">
+            <button onclick="downloadCSV();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;border-bottom:1.5px solid #e5e7eb;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">📄 Export CSV</button>
+            <button onclick="downloadExcel();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;border-bottom:1.5px solid #e5e7eb;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">📊 Export Excel</button>
+            <button onclick="downloadPDF();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">🖨 Export PDF</button>
+          </div>
+        </div>
+        <button class="nb-btn nb-btn-sm" onclick="printDashboard()">🖨 Print</button>
+        <button class="nb-btn nb-btn-sm" onclick="resetTool()">🔄 New</button>
+      </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="summary-grid animate-in">
+      <div class="summary-card income"><span class="sum-value" id="sumIncome">—</span><span class="sum-label">Total Income</span></div>
+      <div class="summary-card expense"><span class="sum-value" id="sumExpense">—</span><span class="sum-label">Total Expenses</span></div>
+      <div class="summary-card savings"><span class="sum-value" id="sumSavings">—</span><span class="sum-label">Net Savings</span></div>
+      <div class="summary-card transactions"><span class="sum-value" id="sumTxns">—</span><span class="sum-label">Transactions</span></div>
+    </div>
+
+    <!-- Dashboard Tabs -->
+    <div class="dash-tabs animate-in">
+      <button class="dash-tab active" onclick="switchTab('overview')">📊 Overview</button>
+      <button class="dash-tab" onclick="switchTab('spending')">🔥 Top Spending</button>
+      <button class="dash-tab" onclick="switchTab('budget')">💰 Budget Check</button>
+      <button class="dash-tab" onclick="switchTab('recurring')">🔁 Recurring</button>
+      <button class="dash-tab" onclick="switchTab('transactions')">📋 Transactions</button>
+    </div>
+
+    <!-- OVERVIEW TAB -->
+    <div class="dash-panel active animate-in" id="panel-overview">
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-title">💸 Spending by Category</div>
+          <div class="chart-container"><canvas id="catPieChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">📅 Monthly Cash Flow</div>
+          <div class="chart-container"><canvas id="monthlyBarChart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Savings Rates -->
+      <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">Financial Health Meter</div>
+        <div id="healthMeters"></div>
+      </div>
+
+      <!-- Smart Insights -->
+      <div style="margin-bottom:1.25rem;">
+        <div class="section-heading">Smart Insights</div>
+        <div class="insights-grid" id="insightsGrid"></div>
+      </div>
+
+      <!-- Category Breakdown -->
+      <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">Category Breakdown</div>
+        <div class="cat-table-wrap">
+          <table class="cat-table" id="catTable">
+            <thead><tr>
+              <th>Category</th>
+              <th>Txns</th>
+              <th>Amount</th>
+              <th>% of Expenses</th>
+            </tr></thead>
+            <tbody id="catTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPENDING TAB -->
+    <div class="dash-panel" id="panel-spending">
+      <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">Where You Spend the Most</div>
+        <div class="spending-rank" id="spendingRank"></div>
+      </div>
+
+      <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">Top Merchants</div>
+        <div class="merchant-grid" id="merchantGrid"></div>
+      </div>
+
+      <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">Day-of-Week Spending</div>
+        <div class="chart-container" style="height:200px;"><canvas id="dowChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- BUDGET TAB -->
+    <div class="dash-panel" id="panel-budget">
+      <!-- 50/30/20 Rule -->
+      <div class="budget-card">
+        <div class="section-heading">50/30/20 Budget Rule</div>
+        <p style="font-size:0.85rem;color:#333;margin:0 0 0.4rem;font-weight:600;">Based on your income of <strong id="budgetIncomeText">₹0</strong>, here's how your spending compares:</p>
+        <div class="budget-grid">
+          <div class="budget-item">
+            <span class="budget-pct">50%</span>
+            <span class="budget-lbl">Needs</span>
+            <span class="budget-amt" id="budgetNeeds50">₹0 ideal</span>
+            <span class="budget-amt" id="budgetNeedsActual">₹0 actual</span>
+            <span class="budget-status" id="budgetNeedsStatus">—</span>
+          </div>
+          <div class="budget-item">
+            <span class="budget-pct">30%</span>
+            <span class="budget-lbl">Wants</span>
+            <span class="budget-amt" id="budgetWants30">₹0 ideal</span>
+            <span class="budget-amt" id="budgetWantsActual">₹0 actual</span>
+            <span class="budget-status" id="budgetWantsStatus">—</span>
+          </div>
+          <div class="budget-item">
+            <span class="budget-pct">20%</span>
+            <span class="budget-lbl">Savings</span>
+            <span class="budget-amt" id="budgetSavings20">₹0 ideal</span>
+            <span class="budget-amt" id="budgetSavingsActual">₹0 actual</span>
+            <span class="budget-status" id="budgetSavingsStatus">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Budget Planner -->
+      <div class="budget-planner-card">
+        <div class="section-heading">Set Your Category Budgets</div>
+        <p style="font-size:0.83rem;color:#555;margin-bottom:0.75rem;">Set monthly limits per category and see how you're tracking:</p>
+        <div class="budget-planner-grid" id="budgetPlannerGrid"></div>
+        <div style="margin-top:0.85rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <button class="nb-btn nb-btn-primary nb-btn-sm" onclick="applyBudgetLimits()">✓ Apply Limits</button>
+          <button class="nb-btn nb-btn-sm" onclick="resetBudgetLimits()">Reset</button>
+        </div>
+        <div id="budgetSummary" style="margin-top:0.85rem;"></div>
+      </div>
+    </div>
+
+    <!-- RECURRING TAB -->
+    <div class="dash-panel" id="panel-recurring">
+      <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">Recurring Payments Detected</div>
+        <p style="font-size:0.83rem;color:#555;margin-bottom:0.85rem;">Transactions appearing 2 or more times — likely subscriptions, EMIs, or regular bills.</p>
+        <div class="recurring-list" id="recurringList"></div>
+      </div>
+
+      <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">Subscription Tracker</div>
+        <div id="subscriptionTracker"></div>
+      </div>
+    </div>
+
+    <!-- TRANSACTIONS TAB -->
+    <div class="dash-panel" id="panel-transactions">
+      <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">All Transactions</div>
+        <div class="txn-filters">
+          <select class="nb-select" style="width:auto;min-width:155px;" id="filterCat" onchange="renderTransactions()">
+            <option value="">All Categories</option>
+          </select>
+          <select class="nb-select" style="width:auto;min-width:125px;" id="filterType" onchange="renderTransactions()">
+            <option value="">All Types</option>
+            <option value="credit">Income Only</option>
+            <option value="debit">Expenses Only</option>
+          </select>
+          <input class="nb-input" style="width:auto;min-width:160px;" type="text" id="filterSearch" placeholder="Search description..." oninput="renderTransactions()"/>
+          <select class="nb-select" style="width:auto;min-width:130px;" id="filterMonth" onchange="renderTransactions()">
+            <option value="">All Months</option>
+          </select>
+        </div>
+        <div class="txn-table-scroll">
+          <div class="txn-table-wrap">
+            <table class="txn-table">
+              <thead><tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Balance</th>
+              </tr></thead>
+              <tbody id="txnTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="txnCount" style="margin-top:0.65rem;font-size:0.8rem;font-weight:700;color:#666;"></div>
+      </div>
+    </div>
+
+    <!-- Download -->
+    <div class="download-row animate-in">
+      <div class="export-dropdown-wrap" style="position:relative;">
+        <button class="nb-btn nb-btn-primary" onclick="toggleExportMenu(event)">⬇ Export ▾</button>
+        <div id="exportMenu2" style="display:none;position:absolute;bottom:calc(100% + 6px);left:0;background:#fff;border:2.5px solid #000;border-radius:12px;box-shadow:4px 4px 0 #000;min-width:160px;z-index:999;overflow:hidden;">
+          <button onclick="downloadCSV();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;border-bottom:1.5px solid #e5e7eb;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">📄 Export CSV</button>
+          <button onclick="downloadExcel();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;border-bottom:1.5px solid #e5e7eb;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">📊 Export Excel</button>
+          <button onclick="downloadPDF();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">🖨 Export PDF</button>
+        </div>
+      </div>
+      <button class="nb-btn nb-btn-pink" onclick="printDashboard()">🖨 Print Dashboard</button>
+      <button class="nb-btn" onclick="resetTool()">🔄 Analyze Another Statement</button>
+    </div>
+
+  </div><!-- /dashboard -->
+
+</div><!-- /site-wrapper -->
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+  <section style="margin-bottom:2.5rem;">
+    <h2>What is the Bank Statement Analyzer?</h2>
+    <p>The <strong>Bank Statement Analyzer</strong> by WorldOfTools is a free, privacy-first financial tool that helps you understand where your money is going. Upload your bank statement in PDF, CSV or Excel format and instantly get a complete picture of your finances — income, expenses, savings rate, category-wise breakdowns, top merchants, recurring subscriptions, and personalized budget recommendations.</p>
+    <p>Unlike other tools, <strong>everything runs in your browser</strong>. Your financial data is never uploaded to any server, never stored in any database, and never shared with anyone.</p>
+  </section>
+
+  <section style="margin-bottom:2.5rem;">
+    <h2>How to Use the Bank Statement Analyzer</h2>
+    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Export Your Bank Statement</strong> — Login to your bank's net banking portal and download as CSV, Excel, or PDF from Account Summary / Statements section.</p></div>
+    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Upload the File</strong> — Click or drag &amp; drop your PDF, CSV, or Excel file. For multi-page PDFs, you can select which pages to include.</p></div>
+    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Map Your Columns</strong> — Tell the tool which columns represent Date, Description, Debit, Credit, and Balance. Auto-detected for most banks.</p></div>
+    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Get Instant Analysis</strong> — Explore your dashboard with charts, budget checker, spending rank, recurring payments, and more.</p></div>
+  </section>
+
+  <section style="margin-bottom:2.5rem;">
+    <h2>Supported Banks &amp; Formats</h2>
+    <p>Works with CSV and Excel exports from all major Indian banks:</p>
+    <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.4rem;">
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 SBI (State Bank of India)</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 HDFC Bank</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 ICICI Bank</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 Axis Bank</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 Kotak Mahindra Bank</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 Yes Bank</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 PNB</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 Bank of Baroda</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 Canara Bank</li>
+      <li style="display:flex;gap:0.5rem;align-items:center;background:#f9f9ff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;font-weight:700;font-size:0.86rem;box-shadow:2px 2px 0 #000;">🏦 IndusInd Bank</li>
+    </ul>
+  </section>
+
+  <section style="margin-bottom:2.5rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>Is it safe to upload my bank statement here?</summary><p>Yes, completely. All processing runs in your browser using JavaScript — your file never leaves your device. No data is sent to any server, no account is required, and nothing is stored.</p></details>
+    <details><summary>What file formats are supported?</summary><p>PDF (direct upload), CSV, Excel (.xlsx and .xls), and plain text (.txt). PDF parsing works on text-based PDFs from all major Indian banks. Scanned/image PDFs are not supported — use net banking to download a text-based PDF or export as CSV.</p></details>
+    <details><summary>Can I analyze multi-page PDF statements?</summary><p>Yes. When you upload a multi-page PDF, the tool detects all pages and lets you choose which pages to include in the analysis. You can select all pages or specific ones.</p></details>
+    <details><summary>How does expense categorization work?</summary><p>The tool uses keyword matching on transaction descriptions. 15+ categories are supported with hundreds of keywords for Indian merchants and common transactions.</p></details>
+    <details><summary>What is the 50/30/20 budget rule?</summary><p>Allocate 50% of income to Needs (rent, groceries, utilities), 30% to Wants (dining out, entertainment, shopping), and 20% to Savings. The analyzer shows how your actual spending compares.</p></details>
+    <details><summary>Can I set my own budget limits per category?</summary><p>Yes. In the Budget Check tab, you can set a monthly spending limit for each category. The tool will show you how much you've spent vs your limit with a visual progress bar and alert you if you've gone over.</p></details>
+    <details><summary>Can I export or download the analysis?</summary><p>Yes. You can download a complete CSV report with all transactions and their categories, which you can open in Excel or Google Sheets for further analysis.</p></details>
+  </section>
+
+  <section style="margin-bottom:2.5rem;">
+    <h2>🆚 WorldOfTools vs Other Bank Analyzers</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr><th>Feature</th><th style="color:#4f46e5;">WorldOfTools</th><th>Other Tools</th></tr></thead>
+        <tbody>
+          <tr><td>PDF Statement Support</td><td class="yes">✓ Native PDF Parsing</td><td class="no">Upload Elsewhere First</td></tr>
+          <tr><td>Multi-page PDF Selection</td><td class="yes">✓ Page-by-page control</td><td class="no">Not Available</td></tr>
+          <tr><td>Data Privacy</td><td class="yes">✓ 100% Browser-Side</td><td class="no">Server Upload</td></tr>
+          <tr><td>No Account Required</td><td class="yes">✓ Yes</td><td class="no">Login Required</td></tr>
+          <tr><td>Category Budget Planner</td><td class="yes">✓ Per-category limits</td><td class="no">Paid Feature</td></tr>
+          <tr><td>50/30/20 Budget Rule</td><td class="yes">✓ Yes</td><td class="no">Rare</td></tr>
+          <tr><td>Recurring Detection</td><td class="yes">✓ Auto-detected</td><td class="no">Paid Feature</td></tr>
+          <tr><td>CSV Export</td><td class="yes">✓ Free</td><td class="no">Paid</td></tr>
+          <tr><td>Indian Banks Support</td><td class="yes">✓ All Major Banks</td><td class="no">Limited</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-bottom:2.5rem;">
+    <h2>Other Free Finance &amp; Utility Tools</h2>
+    <div class="tools-grid">
+      <a class="tool-card-mini" href="/gst-calculator"><div class="icon">🧾</div><div class="name">GST Calculator</div><div class="desc">Add or remove GST instantly</div></a>
+      <a class="tool-card-mini" href="/emi-calculator"><div class="icon">🏠</div><div class="name">EMI Calculator</div><div class="desc">Home, car &amp; personal loan EMI</div></a>
+      <a class="tool-card-mini" href="/percentage-calculator"><div class="icon">💯</div><div class="name">Percentage Calculator</div><div class="desc">Quick % calculations</div></a>
+      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age from date of birth</div></a>
+      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words &amp; reading time</div></a>
+      <a class="tool-card-mini" href="/income-tax-calculator"><div class="icon">📊</div><div class="name">Income Tax Calculator</div><div class="desc">Old vs new tax regime</div></a>
+    </div>
+  </section>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// GLOBALS
+// ═══════════════════════════════════════════════
+let allTransactions = [];
+let rawHeaders = [];
+let rawRows = [];
+let colMapping = { date:'', desc:'', debit:'', credit:'', balance:'' };
+let pieChart = null, barChart = null, dowChart = null;
+let pdfPageData = []; // {pageNum, textItems}
+let selectedPages = [];
+let budgetLimits = {};
+
+// ═══════════════════════════════════════════════
+// CATEGORY RULES
+// ═══════════════════════════════════════════════
+const CATEGORY_RULES = [
+  { name:'Food & Dining', emoji:'🍔', color:'#ffa94d', bg:'#fff3e0', type:'want', keywords:['swiggy','zomato','dominos','domino','pizza','burger','kfc','mcdonalds','mcdonald','subway','dunkin','starbucks','cafe','restaurant','dhaba','biryani','idli','dosa','hotel','dining','food','eat','hungry','barbeque','bbq','haldiram','mtnl food','maggi','mess','canteen','tiffin','lunch','dinner','breakfast','chai','tea stall','bakery','ice cream','sweets','mithai','juice','beverages'] },
+  { name:'Shopping', emoji:'🛍️', color:'#a3bffa', bg:'#eff6ff', type:'want', keywords:['amazon','flipkart','myntra','ajio','meesho','nykaa','snapdeal','shopclues','tata cliq','tatacliq','reliance','bigbazaar','big bazaar','dmart','mall','shop','store','mart','retail','cloth','fashion','apparel','shoes','footwear','bag','watch','jewel','lifestyle','westside','pantaloons','max fashion','zara','h&m','levi','nike','adidas','puma','reebok','bata','decathlon','croma','vijay sales','reliance digital'] },
+  { name:'Travel', emoji:'✈️', color:'#b2f5ea', bg:'#f0fdf4', type:'want', keywords:['irctc','railway','train','flight','airline','air india','indigo','spicejet','goair','vistara','akasa','bus','ola','uber','rapido','taxi','cab','auto','metro','petrol','fuel','hp fuel','bpcl','iocl','shell','essar','fasttag','fastag','toll','travel','redbus','makemytrip','yatra','cleartrip','booking','airbnb','oyo','resort','lodge','hostel','goibibo','ease my trip'] },
+  { name:'Bills & Utilities', emoji:'⚡', color:'#fde68a', bg:'#fffbeb', type:'need', keywords:['electricity','electric','power','bescom','msedcl','tneb','bses','tpddl','bill','water','gas','cylinder','lpg','bsnl','airtel','jio','vodafone','vi','recharge','prepaid','postpaid','broadband','internet','wifi','dish','dth','tatasky','airtel dth','sun direct','utility','municipal','property tax','house tax','maintenance','society'] },
+  { name:'Subscriptions', emoji:'📺', color:'#d8b4fe', bg:'#faf5ff', type:'want', keywords:['netflix','amazon prime','hotstar','disney','jiocinema','youtube premium','spotify','gaana','wynk','apple','google play','gpay subscription','zee5','sonyliv','voot','aha','mxplayer','ullu','subscription','membership','prime','premium','annual plan','monthly plan','adobe','dropbox','notion','linkedin premium'] },
+  { name:'Healthcare', emoji:'🏥', color:'#86efac', bg:'#f0fdf4', type:'need', keywords:['apollo','medplus','1mg','pharmeasy','netmeds','tata 1mg','chemist','medical','medicine','pharmacy','hospital','clinic','doctor','lab','diagnostic','health','pathology','dentist','optician','gym','cult fit','fitness','yoga','healthify','practo','insurance','mediclaim','health insurance','max healthcare','fortis','aiims','aster','columbia asia'] },
+  { name:'Education', emoji:'📚', color:'#93c5fd', bg:'#eff6ff', type:'need', keywords:['udemy','coursera','byjus','byju','unacademy','vedantu','khan academy','upgrad','skill india','nptel','school','college','university','tuition','coaching','institute','fees','admission','exam','book','stationery','education','learning','course','certificate','diploma','simplilearn','scaler','coding ninja'] },
+  { name:'Entertainment', emoji:'🎮', color:'#fb923c', bg:'#fff7ed', type:'want', keywords:['pvr','inox','cinepolis','movie','cinema','multiplex','steam','playstation','xbox','gaming','game','sport','cricket','ipl','concert','event','bookmyshow','ticketmaster','entertainment','fun','amusement','theme park','zoo','museum','bowling','billiards','snooker','escape room'] },
+  { name:'Transfers', emoji:'↔️', color:'#94a3b8', bg:'#f8fafc', type:'neutral', keywords:['neft','rtgs','imps','upi transfer','transfer to','sent to','received from','self transfer','own account','savings a/c','current a/c','credited by','debited by','fund transfer','wallet'] },
+  { name:'ATM & Cash', emoji:'💵', color:'#fbbf24', bg:'#fffbeb', type:'neutral', keywords:['atm','cash withdrawal','cash deposit','cash','pos cash','atm wd','atm cdm','cash advance'] },
+  { name:'EMI & Loans', emoji:'🏦', color:'#f9a8d4', bg:'#fdf2f8', type:'need', keywords:['emi','loan','equated','installment','repayment','hdfc bank emi','sbi loan','icici emi','axis emi','kotak emi','bank emi','auto debit emi','nach','ecs emi','mortgage','home loan','car loan','personal loan','gold loan','credit card bill','cc bill','card payment'] },
+  { name:'Investments', emoji:'📈', color:'#6ee7b7', bg:'#ecfdf5', type:'saving', keywords:['mutual fund','mf','sip','zerodha','groww','kuvera','paytm money','icicipru','sbi mf','hdfc mf','axis mf','nippon','mirae','navi','smallcase','demat','trading','nse','bse','sensex','nifty','stock','equity','fd','fixed deposit','rd','recurring deposit','ppf','elss','nps','national pension','lic','life insurance','term insurance','endowment','ppf credit'] },
+  { name:'Income', emoji:'💰', color:'#4ade80', bg:'#f0fdf4', type:'income', keywords:['salary','credit by','wages','stipend','income','refund','cashback','reward','interest credit','fd interest','rd interest','ppf credit','dividend','employer','credited','payroll','bonus','incentive','commission','freelance','consulting'] },
+  { name:'Other', emoji:'📦', color:'#cbd5e1', bg:'#f8fafc', type:'neutral', keywords:[] }
+];
+
+function categorize(desc, isCredit) {
+  const d = (desc || '').toLowerCase();
+  // Credit transactions — check income keywords first
+  if (isCredit) {
+    const incomeRule = CATEGORY_RULES.find(r => r.name === 'Income');
+    if (incomeRule.keywords.some(k => d.includes(k))) return 'Income';
+  }
+  for (const cat of CATEGORY_RULES) {
+    if (cat.name === 'Other' || cat.name === 'Income') continue;
+    if (cat.keywords.some(k => d.includes(k))) return cat.name;
+  }
+  // Credit without matching keyword = Income
+  if (isCredit) return 'Income';
+  return 'Other';
+}
+
+function getCat(name) {
+  return CATEGORY_RULES.find(c => c.name === name) || CATEGORY_RULES[CATEGORY_RULES.length - 1];
+}
+
+// ═══════════════════════════════════════════════
+// TAB SWITCHING
+// ═══════════════════════════════════════════════
+function switchTab(tab) {
+  document.querySelectorAll('.dash-tab').forEach((b,i) => {
+    const tabs = ['overview','spending','budget','recurring','transactions'];
+    b.classList.toggle('active', tabs[i] === tab);
+  });
+  document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-' + tab);
+  if (panel) { panel.classList.add('active'); panel.classList.add('animate-in'); }
+}
+
+// ═══════════════════════════════════════════════
+// FILE HANDLING
+// ═══════════════════════════════════════════════
+const uploadZone = document.getElementById('uploadZone');
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
+uploadZone.addEventListener('drop', e => {
+  e.preventDefault(); uploadZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) processFile(file);
+});
+
+function handleFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) processFile(file);
+}
+
+function processFile(file) {
+  showError('');
+  const ext = file.name.split('.').pop().toLowerCase();
+  if (!['csv','xlsx','xls','txt','pdf'].includes(ext)) {
+    showError('Unsupported file format. Please upload PDF, CSV, Excel, or TXT.'); return;
+  }
+  showProgress('📂 Reading file...', 10);
+  const reader = new FileReader();
+
+  if (ext === 'pdf') {
+    reader.onload = e => parsePDF(e.target.result);
+    reader.readAsArrayBuffer(file);
+  } else if (ext === 'csv' || ext === 'txt') {
+    reader.onload = e => parseCSV(e.target.result);
+    reader.readAsText(file);
+  } else {
+    reader.onload = e => parseExcel(e.target.result);
+    reader.readAsArrayBuffer(file);
+  }
+}
+
+// ═══════════════════════════════════════════════
+// CSV PARSER
+// ═══════════════════════════════════════════════
+function parseCSV(text) {
+  showProgress('🔍 Parsing CSV...', 30);
+  // Detect delimiter
+  const firstLine = text.split('\n')[0];
+  const commaCount = (firstLine.match(/,/g) || []).length;
+  const semiCount  = (firstLine.match(/;/g) || []).length;
+  const pipeCount  = (firstLine.match(/\|/g) || []).length;
+  const delim = semiCount > commaCount ? ';' : pipeCount > commaCount ? '|' : ',';
+
+  // Clean BOM
+  const cleaned = text.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  const lines = cleaned.trim().split('\n').filter(l => l.trim());
+  if (lines.length < 2) { showError('File appears empty or has too few rows.'); hideProgress(); return; }
+
+  // Find header row (skip leading bank metadata rows, up to row 20)
+  let headerIdx = 0;
+  const HEADER_KEYS = ['date','txn','transaction','description','narration','particulars','debit','credit','withdrawal','deposit','amount','balance','chq','cheque','ref'];
+  for (let i = 0; i < Math.min(20, lines.length); i++) {
+    const lower = lines[i].toLowerCase();
+    const hits = HEADER_KEYS.filter(k => lower.includes(k)).length;
+    if (hits >= 2) { headerIdx = i; break; }
+  }
+
+  rawHeaders = parseCSVLine(lines[headerIdx], delim).map(h => h.trim().replace(/^"|"$/g,''));
+  rawRows = [];
+  for (let i = headerIdx + 1; i < lines.length; i++) {
+    const row = parseCSVLine(lines[i], delim);
+    if (row.length >= 2 && row.some(c => c.trim())) rawRows.push(row);
+  }
+
+  showProgress('🗂 Mapping columns...', 60);
+  showColMapper();
+}
+
+function parseCSVLine(line, delim) {
+  const result = []; let cur = ''; let inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { if (inQ && line[i+1] === '"') { cur += '"'; i++; } else { inQ = !inQ; } }
+    else if (c === delim && !inQ) { result.push(cur.trim()); cur = ''; }
+    else { cur += c; }
+  }
+  result.push(cur.trim());
+  return result;
+}
+
+// ═══════════════════════════════════════════════
+// EXCEL PARSER
+// ═══════════════════════════════════════════════
+function parseExcel(buffer) {
+  showProgress('📊 Parsing Excel...', 30);
+  try {
+    const wb = XLSX.read(buffer, { type:'array', cellDates:true });
+    // Find the sheet with most data (likely the transactions sheet)
+    let bestSheet = wb.SheetNames[0];
+    let bestCount = 0;
+    for (const name of wb.SheetNames) {
+      const ws = wb.Sheets[name];
+      const data = XLSX.utils.sheet_to_json(ws, { header:1, defval:'' });
+      if (data.length > bestCount) { bestCount = data.length; bestSheet = name; }
+    }
+    const ws = wb.Sheets[bestSheet];
+    const data = XLSX.utils.sheet_to_json(ws, { header:1, defval:'' });
+    if (data.length < 2) { showError('Excel file appears empty.'); hideProgress(); return; }
+
+    const HEADER_KEYS = ['date','txn','description','narration','debit','credit','amount','withdrawal','deposit','balance','particulars'];
+    let headerIdx = 0;
+    for (let i = 0; i < Math.min(20, data.length); i++) {
+      const lower = data[i].join(' ').toLowerCase();
+      const hits = HEADER_KEYS.filter(k => lower.includes(k)).length;
+      if (hits >= 2) { headerIdx = i; break; }
+    }
+    rawHeaders = data[headerIdx].map(h => String(h).trim());
+    rawRows = data.slice(headerIdx + 1).filter(r => r.some(c => String(c).trim()));
+    // Normalize date cells
+    rawRows = rawRows.map(row =>
+      row.map((cell, ci) => {
+        if (cell instanceof Date) {
+          return `${cell.getDate().toString().padStart(2,'0')}/${(cell.getMonth()+1).toString().padStart(2,'0')}/${cell.getFullYear()}`;
+        }
+        return cell;
+      })
+    );
+
+    showProgress('🗂 Mapping columns...', 60);
+    showColMapper();
+  } catch(e) {
+    showError('Failed to parse Excel file: ' + e.message); hideProgress();
+  }
+}
+
+// ═══════════════════════════════════════════════
+// PDF PARSER — multi-page with page selector
+// ═══════════════════════════════════════════════
+async function parsePDF(buffer) {
+  showProgress('📄 Loading PDF...', 10);
+  try {
+    const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+    const numPages = pdf.numPages;
+    pdfPageData = [];
+
+    for (let p = 1; p <= numPages; p++) {
+      showProgress(`📄 Reading page ${p} of ${numPages}...`, 10 + Math.round((p / numPages) * 50));
+      const page = await pdf.getPage(p);
+      const content = await page.getTextContent();
+      const vp = page.getViewport({ scale: 1 });
+      const items = [];
+      for (const item of content.items) {
+        if (item.str && item.str.trim()) {
+          items.push({
+            x: Math.round(item.transform[4]),
+            y: Math.round(vp.height - item.transform[5]),
+            text: item.str.trim(),
+            w: item.width || 0
+          });
+        }
+      }
+      pdfPageData.push({ page: p, items });
+    }
+
+    hideProgress();
+
+    if (numPages > 1) {
+      // Show page selector
+      selectedPages = Array.from({ length: numPages }, (_, i) => i + 1);
+      const wrap = document.getElementById('pageSelectorWrap');
+      const tabs = document.getElementById('pageTabs');
+      tabs.innerHTML = Array.from({ length: numPages }, (_, i) =>
+        `<button class="page-tab active" id="ptab-${i+1}" onclick="togglePage(${i+1})">${i+1}</button>`
+      ).join('');
+      wrap.style.display = 'block';
+    } else {
+      selectedPages = [1];
+      processPDFPages();
+    }
+  } catch(e) {
+    showError('Failed to parse PDF: ' + e.message + '. Make sure it is a text-based (not scanned/image) PDF.');
+    hideProgress();
+  }
+}
+
+function togglePage(num) {
+  const idx = selectedPages.indexOf(num);
+  if (idx === -1) { selectedPages.push(num); selectedPages.sort((a,b)=>a-b); document.getElementById('ptab-'+num).classList.add('active'); }
+  else if (selectedPages.length > 1) { selectedPages.splice(idx,1); document.getElementById('ptab-'+num).classList.remove('active'); }
+}
+function selectAllPages() {
+  selectedPages = pdfPageData.map(p => p.page);
+  document.querySelectorAll('.page-tab').forEach(t => t.classList.add('active'));
+}
+function deselectAllPages() {
+  if (pdfPageData.length > 0) {
+    selectedPages = [pdfPageData[0].page];
+    document.querySelectorAll('.page-tab').forEach((t,i) => t.classList.toggle('active', i===0));
+  }
+}
+function applyPageSelection() {
+  document.getElementById('pageSelectorWrap').style.display = 'none';
+  processPDFPages();
+}
+
+function processPDFPages() {
+  showProgress('🔍 Extracting table structure...', 60);
+  const Y_TOL = 7;
+  const allItems = [];
+  for (const pd of pdfPageData) {
+    if (!selectedPages.includes(pd.page)) continue;
+    for (const item of pd.items) allItems.push({ ...item, page: pd.page });
+  }
+
+  if (allItems.length === 0) { showError('No text found in selected pages.'); return; }
+
+  // Group by line (same page, close Y)
+  allItems.sort((a,b) => a.page !== b.page ? a.page - b.page : a.y !== b.y ? a.y - b.y : a.x - b.x);
+  const lines = [];
+  let curLine = null;
+  for (const item of allItems) {
+    if (!curLine || item.page !== curLine.page || Math.abs(item.y - curLine.baseY) > Y_TOL) {
+      curLine = { baseY: item.y, y: item.y, page: item.page, items: [item] };
+      lines.push(curLine);
+    } else {
+      curLine.items.push(item);
+      curLine.baseY = Math.round((curLine.baseY * (curLine.items.length-1) + item.y) / curLine.items.length);
+    }
+  }
+  for (const line of lines) {
+    line.items.sort((a,b) => a.x - b.x);
+    line.text = line.items.map(i => i.text).join(' ');
+  }
+
+  // Find header row
+  const HKEYS = ['date','narration','description','particulars','debit','credit','withdrawal','deposit','balance','amount','txn','transaction','chq','reference','value dt'];
+  let headerLineIdx = -1, bestHits = 1;
+  for (let i = 0; i < lines.length; i++) {
+    const lower = lines[i].text.toLowerCase();
+    const hits = HKEYS.filter(k => lower.includes(k)).length;
+    if (hits > bestHits) { bestHits = hits; headerLineIdx = i; }
+  }
+
+  if (headerLineIdx === -1) {
+    showError('Could not detect a transaction table in this PDF. Try exporting as CSV from your bank portal instead.');
+    hideProgress(); return;
+  }
+
+  const headerLine = lines[headerLineIdx];
+  rawHeaders = headerLine.items.map(i => i.text.trim());
+
+  // Build column X boundaries with tolerance
+  const colXPositions = headerLine.items.map(i => ({ x: i.x, xEnd: i.x + (i.w || 50), label: i.text.toLowerCase() }));
+
+  // Date regex — supports many formats
+  const DATE_RE = /\b(\d{1,2}[\/-]\d{1,2}[\/-]\d{2,4}|\d{1,2}[\s\-]([A-Za-z]{3})[\s\-]\d{4}|\d{4}[\/-]\d{2}[\/-]\d{2}|\d{8})\b/;
+  const dataLines = lines.slice(headerLineIdx + 1).filter(l => DATE_RE.test(l.text));
+
+  if (dataLines.length === 0) {
+    // Fallback: take all non-header lines that have numeric content
+    const NUM_RE = /\d{3,}/;
+    const fallbackLines = lines.slice(headerLineIdx + 1).filter(l => NUM_RE.test(l.text) && l.items.length >= 3);
+    if (fallbackLines.length > 0) {
+      rawRows = fallbackLines.map(line => buildRow(line, colXPositions));
+    } else {
+      showError('PDF parsed but no transaction rows found. Ensure the PDF is a text-based (not scanned) bank statement.');
+      hideProgress(); return;
+    }
+  } else {
+    rawRows = dataLines.map(line => buildRow(line, colXPositions));
+  }
+
+  rawRows = rawRows.filter(r => r.some(c => c.trim()));
+  showProgress('🗂 Mapping columns...', 85);
+  showColMapper();
+}
+
+function buildRow(line, colXPositions) {
+  const row = new Array(colXPositions.length).fill('');
+  for (const item of line.items) {
+    let bestCol = 0, bestDist = Infinity;
+    for (let ci = 0; ci < colXPositions.length; ci++) {
+      const mid = (colXPositions[ci].x + (colXPositions[ci].xEnd || colXPositions[ci].x + 60)) / 2;
+      const dist = Math.abs(item.x - colXPositions[ci].x);
+      const distMid = Math.abs(item.x - mid);
+      const d = Math.min(dist, distMid);
+      if (d < bestDist) { bestDist = d; bestCol = ci; }
+    }
+    row[bestCol] = row[bestCol] ? row[bestCol] + ' ' + item.text : item.text;
+  }
+  return row;
+}
+
+// ═══════════════════════════════════════════════
+// COLUMN MAPPER
+// ═══════════════════════════════════════════════
+function showColMapper() {
+  hideProgress();
+  const tbl = document.getElementById('previewTable');
+  let html = '<thead><tr>' + rawHeaders.map(h => `<th>${escHtml(h)}</th>`).join('') + '</tr></thead><tbody>';
+  rawRows.slice(0, 5).forEach(row => {
+    html += '<tr>' + rawHeaders.map((_,i) => `<td>${escHtml(String(row[i]||'').substring(0,35))}</td>`).join('') + '</tr>';
+  });
+  html += '</tbody>';
+  tbl.innerHTML = html;
+
+  const lower = rawHeaders.map(h => h.toLowerCase());
+  const findCol = (...terms) => {
+    for (const t of terms) {
+      const idx = lower.findIndex(h => h.includes(t));
+      if (idx !== -1) return rawHeaders[idx];
+    }
+    return '';
+  };
+
+  colMapping.date    = findCol('date','dt','value dt','val date');
+  colMapping.desc    = findCol('description','narration','particulars','remarks','details','narrative','transaction remarks','txn remarks');
+  colMapping.debit   = findCol('debit','withdrawal','dr ','withdraw','amount dr','debit amount','amt dr','dr amount');
+  colMapping.credit  = findCol('credit','deposit','cr ','amount cr','credit amount','amt cr','cr amount');
+  colMapping.balance = findCol('balance','closing','bal','running','avl bal','available');
+
+  if (!colMapping.debit && !colMapping.credit) {
+    colMapping.debit = findCol('amount','amt');
+  }
+
+  const mapGrid = document.getElementById('colMapGrid');
+  const fields = [
+    { key:'date',    label:'📅 Date Column *' },
+    { key:'desc',    label:'📝 Description Column *' },
+    { key:'debit',   label:'📤 Debit / Withdrawal' },
+    { key:'credit',  label:'📥 Credit / Deposit' },
+    { key:'balance', label:'💰 Balance (optional)' }
+  ];
+  mapGrid.innerHTML = fields.map(f => {
+    const opts = '<option value="">— Not Available —</option>' +
+      rawHeaders.map(h => `<option value="${escHtml(h)}" ${colMapping[f.key]===h?'selected':''}>${escHtml(h)}</option>`).join('');
+    return `<div class="col-map-item"><label class="nb-label">${f.label}</label><select class="nb-select" onchange="colMapping['${f.key}']=this.value">${opts}</select></div>`;
+  }).join('');
+
+  document.getElementById('colMapSection').style.display = 'block';
+}
+
+// ═══════════════════════════════════════════════
+// ANALYSIS
+// ═══════════════════════════════════════════════
+function runAnalysis() {
+  if (!colMapping.date) { showError('Please select the Date column.'); return; }
+  if (!colMapping.desc) { showError('Please select the Description column.'); return; }
+  if (!colMapping.debit && !colMapping.credit) { showError('Please select at least a Debit or Credit column.'); return; }
+  showProgress('⚙️ Categorizing transactions...', 40);
+  showError('');
+
+  setTimeout(() => {
+    try {
+      buildTransactions();
+      showProgress('📊 Generating dashboard...', 80);
+      setTimeout(() => {
+        renderDashboard();
+        hideProgress();
+        document.getElementById('colMapSection').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        document.getElementById('dashboard').scrollIntoView({ behavior:'smooth', block:'start' });
+      }, 200);
+    } catch(e) {
+      showError('Analysis failed: ' + e.message);
+      hideProgress();
+    }
+  }, 100);
+}
+
+function buildTransactions() {
+  allTransactions = [];
+  const hIdx = h => rawHeaders.indexOf(h);
+  const dIdx   = hIdx(colMapping.date);
+  const descIdx = hIdx(colMapping.desc);
+  const drIdx  = colMapping.debit  ? hIdx(colMapping.debit)  : -1;
+  const crIdx  = colMapping.credit ? hIdx(colMapping.credit) : -1;
+  const balIdx = colMapping.balance ? hIdx(colMapping.balance) : -1;
+
+  for (const row of rawRows) {
+    const dateStr = String(row[dIdx] || '').trim();
+    const desc    = String(row[descIdx] || '').trim();
+    let debit  = parseAmt(drIdx >= 0 ? row[drIdx] : '');
+    let credit = parseAmt(crIdx >= 0 ? row[crIdx] : '');
+    const balance = parseAmt(balIdx >= 0 ? row[balIdx] : '');
+
+    if (!dateStr && !desc && !debit && !credit) continue;
+    if (!desc && !debit && !credit) continue;
+
+    // Handle single amount column with Dr/Cr indicator in desc
+    if (drIdx >= 0 && drIdx === crIdx) {
+      const lower = desc.toLowerCase();
+      if (lower.includes(' cr') || lower.includes('credit')) { credit = debit; debit = 0; }
+    }
+
+    const parsedDate = parseDate(dateStr);
+    const isCredit = credit > 0 && credit >= debit;
+    const type = isCredit ? 'credit' : 'debit';
+    const amount = isCredit ? credit : debit;
+    const category = categorize(desc, isCredit);
+
+    allTransactions.push({ date: parsedDate, dateStr, desc, debit, credit, balance, type, amount, category });
+  }
+
+  if (allTransactions.length === 0) throw new Error('No valid transactions found. Check your column mapping.');
+
+  allTransactions.sort((a,b) => {
+    if (!a.date && !b.date) return 0;
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return a.date - b.date;
+  });
+}
+
+// ═══════════════════════════════════════════════
+// DASHBOARD RENDER
+// ═══════════════════════════════════════════════
+function renderDashboard() {
+  const txns = allTransactions;
+  const expenses = txns.filter(t => t.type === 'debit' && t.category !== 'Transfers' && t.category !== 'ATM & Cash');
+  const income   = txns.filter(t => t.type === 'credit');
+
+  const totalIncome  = income.reduce((s,t) => s + t.amount, 0);
+  const totalExpense = expenses.reduce((s,t) => s + t.amount, 0);
+  const netSavings   = totalIncome - totalExpense;
+
+  const dates = txns.filter(t => t.date).map(t => t.date);
+  const minDate = dates.length ? new Date(Math.min(...dates)) : null;
+  const maxDate = dates.length ? new Date(Math.max(...dates)) : null;
+
+  document.getElementById('dashMeta').textContent =
+    (minDate && maxDate ? `${fmtDate(minDate)} — ${fmtDate(maxDate)} · ` : '') +
+    `${txns.length} transactions analyzed`;
+  document.getElementById('sumIncome').textContent   = fmtMoney(totalIncome);
+  document.getElementById('sumExpense').textContent  = fmtMoney(totalExpense);
+  document.getElementById('sumSavings').textContent  = (netSavings >= 0 ? '+' : '') + fmtMoney(netSavings);
+  document.getElementById('sumTxns').textContent     = txns.length;
+  document.getElementById('sumSavings').parentElement.style.background = netSavings >= 0 ? '#b2f5ea' : '#ffe0e0';
+
+  // Category breakdown
+  const catMap = {};
+  expenses.forEach(t => {
+    if (!catMap[t.category]) catMap[t.category] = { count:0, total:0 };
+    catMap[t.category].count++;
+    catMap[t.category].total += t.amount;
+  });
+  const sortedCats = Object.entries(catMap).sort((a,b) => b[1].total - a[1].total);
+  const maxCatAmt = sortedCats[0]?.[1]?.total || 1;
+
+  // Category table
+  document.getElementById('catTableBody').innerHTML = sortedCats.map(([name, data]) => {
+    const cat = getCat(name);
+    const pct = totalExpense > 0 ? (data.total / totalExpense * 100).toFixed(1) : '0.0';
+    const barPct = (data.total / maxCatAmt * 100).toFixed(0);
+    return `<tr>
+      <td><span class="cat-badge" style="background:${cat.bg};border-color:${cat.color};">${cat.emoji} ${name}</span></td>
+      <td>${data.count}</td>
+      <td><strong>${fmtMoney(data.total)}</strong></td>
+      <td>${pct}%<span class="cat-bar-wrap"><span class="cat-bar" style="width:${barPct}%;background:${cat.color};"></span></span></td>
+    </tr>`;
+  }).join('');
+
+  // Pie chart
+  if (pieChart) pieChart.destroy();
+  const pieCtx = document.getElementById('catPieChart').getContext('2d');
+  pieChart = new Chart(pieCtx, {
+    type: 'doughnut',
+    data: {
+      labels: sortedCats.slice(0,9).map(([n]) => n),
+      datasets: [{ data: sortedCats.slice(0,9).map(([,d]) => +d.total.toFixed(0)), backgroundColor: sortedCats.slice(0,9).map(([n]) => getCat(n).color), borderColor:'#000', borderWidth:2 }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11, family:"'Space Grotesk', sans-serif", weight:'700' }, padding:6 } } } }
+  });
+
+  // Monthly bar chart
+  const monthlyMap = {};
+  txns.forEach(t => {
+    if (!t.date) return;
+    const key = `${t.date.getFullYear()}-${String(t.date.getMonth()+1).padStart(2,'0')}`;
+    if (!monthlyMap[key]) monthlyMap[key] = { income:0, expense:0 };
+    if (t.type === 'credit') monthlyMap[key].income += t.amount;
+    else if (t.category !== 'Transfers') monthlyMap[key].expense += t.amount;
+  });
+  const months = Object.keys(monthlyMap).sort();
+  const monthLabels = months.map(m => { const [y,mo]=m.split('-'); return new Date(y,mo-1).toLocaleDateString('en',{month:'short',year:'2-digit'}); });
+
+  if (barChart) barChart.destroy();
+  barChart = new Chart(document.getElementById('monthlyBarChart').getContext('2d'), {
+    type:'bar',
+    data:{
+      labels:monthLabels,
+      datasets:[
+        { label:'Income', data:months.map(m=>+monthlyMap[m].income.toFixed(0)), backgroundColor:'#c3f584', borderColor:'#000', borderWidth:2, borderRadius:4 },
+        { label:'Expense', data:months.map(m=>+monthlyMap[m].expense.toFixed(0)), backgroundColor:'#fca5a5', borderColor:'#000', borderWidth:2, borderRadius:4 }
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11, family:"'Space Grotesk', sans-serif", weight:'700' }, padding:6 } } }, scales:{ y:{ ticks:{ callback:v=>'₹'+(v>=1000?(v/1000).toFixed(0)+'K':v), font:{family:"'Space Grotesk', sans-serif"} }, grid:{color:'#f0f0f0'} }, x:{ ticks:{ font:{family:"'Space Grotesk', sans-serif", size:11} } } } }
+  });
+
+  // Health Meters
+  const savRate = totalIncome > 0 ? (netSavings / totalIncome * 100) : 0;
+  const expRate = totalIncome > 0 ? (totalExpense / totalIncome * 100) : 0;
+  const avgDaily = totalExpense / Math.max(1, Math.ceil(((maxDate||new Date()) - (minDate||new Date())) / 86400000) || 30);
+  document.getElementById('healthMeters').innerHTML = `
+    ${meterRow('Savings Rate', savRate.toFixed(1)+'%', Math.min(100,savRate), savRate>=20?'#4ade80':savRate>=10?'#fbbf24':'#f87171')}
+    ${meterRow('Expense-to-Income', expRate.toFixed(1)+'%', Math.min(100,expRate), expRate<=70?'#4ade80':expRate<=90?'#fbbf24':'#f87171')}
+    ${meterRow('Avg Daily Spend', fmtMoney(avgDaily), Math.min(100, avgDaily/500*10), '#a3bffa')}
+  `;
+
+  // Smart Insights
+  const topCat   = sortedCats[0];
+  const subs     = expenses.filter(t => t.category === 'Subscriptions');
+  const subAmt   = subs.reduce((s,t) => s+t.amount, 0);
+  const insights = [
+    { icon:'📊', head:'Average Daily Spending', text:`You spend approximately ${fmtMoney(avgDaily)} per day on average.${avgDaily>2000?' Consider tracking daily expenses to reduce overspending.':' Great control on daily spending!'}` },
+    { icon:'🔥', head:'Top Spending Category', text:topCat?`${getCat(topCat[0]).emoji} ${topCat[0]} is your biggest expense at ${fmtMoney(topCat[1].total)} (${(topCat[1].total/totalExpense*100).toFixed(1)}% of spending).`:'No expense data.' },
+    { icon:'💾', head:'Savings Rate', text:`Your savings rate is ${savRate.toFixed(1)}%. ${savRate>=20?'✅ Excellent! Meeting the 20% target.':savRate>=10?'⚠️ Good start — try to push above 20%.':'❌ Below 10% — look for areas to cut spending.'}` },
+    { icon:'📺', head:'Subscriptions', text:subAmt>0?`You spent ${fmtMoney(subAmt)} on ${subs.length} subscription transactions. Review for unused services.`:'No subscription spending detected.' },
+    { icon:'💡', head:'Budget Tip', text:totalExpense>totalIncome?`⚠️ You spent ${fmtMoney(totalExpense-totalIncome)} more than you earned. Review ${topCat?.[0]||'your top'} expenses.`:`You lived within your means! Consider investing the ${fmtMoney(netSavings)} surplus in SIP or FD.` }
+  ];
+  document.getElementById('insightsGrid').innerHTML = insights.map(i =>
+    `<div class="insight-card"><span class="insight-icon">${i.icon}</span><div><div class="insight-head">${i.head}</div><div class="insight-text">${i.text}</div></div></div>`
+  ).join('');
+
+  // SPENDING RANK
+  document.getElementById('spendingRank').innerHTML = sortedCats.map(([name,data],idx) => {
+    const cat = getCat(name);
+    const pct = totalExpense > 0 ? (data.total/totalExpense*100).toFixed(1) : '0.0';
+    const barPct = (data.total/maxCatAmt*100).toFixed(0);
+    return `<div class="rank-item">
+      <div class="rank-num">#${idx+1}</div>
+      <div class="rank-info">
+        <div class="rank-name">${cat.emoji} ${name} <span style="font-size:0.72rem;color:#666;font-weight:600;">${data.count} transactions</span></div>
+        <div class="rank-bar-wrap"><div class="rank-bar" style="width:${barPct}%;background:${cat.color};"></div></div>
+      </div>
+      <div class="rank-amt">${fmtMoney(data.total)}</div>
+      <div class="rank-pct">${pct}%</div>
+    </div>`;
+  }).join('');
+
+  // Top Merchants
+  const merchantMap = {};
+  expenses.forEach(t => {
+    const key = cleanMerchant(t.desc);
+    if (!merchantMap[key]) merchantMap[key] = { count:0, total:0 };
+    merchantMap[key].count++; merchantMap[key].total += t.amount;
+  });
+  const topMerchants = Object.entries(merchantMap).sort((a,b)=>b[1].total-a[1].total).slice(0,10);
+  document.getElementById('merchantGrid').innerHTML = topMerchants.map(([name,data]) =>
+    `<div class="merchant-card">
+      <div class="merchant-name">${escHtml(name.substring(0,20))}</div>
+      <div class="merchant-count">${data.count} txns</div>
+      <div class="merchant-amt">${fmtMoney(data.total)}</div>
+    </div>`
+  ).join('');
+
+  // Day-of-week chart
+  const dowMap = { 0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0 };
+  expenses.forEach(t => { if (t.date) dowMap[t.date.getDay()] += t.amount; });
+  if (dowChart) dowChart.destroy();
+  dowChart = new Chart(document.getElementById('dowChart').getContext('2d'), {
+    type:'bar',
+    data:{
+      labels:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+      datasets:[{ label:'Spending', data:Object.values(dowMap).map(v=>+v.toFixed(0)), backgroundColor:['#fca5a5','#a3bffa','#a3bffa','#a3bffa','#a3bffa','#c3f584','#c3f584'], borderColor:'#000', borderWidth:2, borderRadius:4 }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ ticks:{ callback:v=>'₹'+(v>=1000?(v/1000).toFixed(0)+'K':v), font:{family:"'Space Grotesk', sans-serif"} }, grid:{color:'#f0f0f0'} }, x:{ ticks:{ font:{family:"'Space Grotesk', sans-serif", size:11, weight:'700'} } } } }
+  });
+
+  // BUDGET 50/30/20
+  const needsCats = ['Bills & Utilities','Healthcare','EMI & Loans','Education'];
+  const wantsCats = ['Food & Dining','Shopping','Travel','Entertainment','Subscriptions'];
+  const needsAmt  = expenses.filter(t=>needsCats.includes(t.category)).reduce((s,t)=>s+t.amount,0);
+  const wantsAmt  = expenses.filter(t=>wantsCats.includes(t.category)).reduce((s,t)=>s+t.amount,0);
+  const savingsAmt = netSavings > 0 ? netSavings : 0;
+  const baseIncome = totalIncome || 1;
+  document.getElementById('budgetIncomeText').textContent = fmtMoney(totalIncome);
+  document.getElementById('budgetNeeds50').textContent = fmtMoney(baseIncome*0.5)+' ideal';
+  document.getElementById('budgetWants30').textContent  = fmtMoney(baseIncome*0.3)+' ideal';
+  document.getElementById('budgetSavings20').textContent = fmtMoney(baseIncome*0.2)+' ideal';
+  document.getElementById('budgetNeedsActual').textContent  = fmtMoney(needsAmt)+' actual';
+  document.getElementById('budgetWantsActual').textContent  = fmtMoney(wantsAmt)+' actual';
+  document.getElementById('budgetSavingsActual').textContent = fmtMoney(savingsAmt)+' actual';
+  const needsPct  = +(needsAmt/baseIncome*100).toFixed(0);
+  const wantsPct  = +(wantsAmt/baseIncome*100).toFixed(0);
+  const savPct    = +(savingsAmt/baseIncome*100).toFixed(0);
+  document.getElementById('budgetNeedsStatus').innerHTML  = statusTag(needsPct,50,false);
+  document.getElementById('budgetWantsStatus').innerHTML  = statusTag(wantsPct,30,false);
+  document.getElementById('budgetSavingsStatus').innerHTML = statusTag(savPct,20,true);
+
+  // Budget Planner
+  buildBudgetPlanner(sortedCats, catMap);
+
+  // Recurring
+  buildRecurring(expenses);
+
+  // Subscription tracker
+  buildSubscriptionTracker(expenses);
+
+  // Populate month filter
+  const monthFilter = document.getElementById('filterMonth');
+  const uniqueMonths = [...new Set(txns.filter(t=>t.date).map(t=>`${t.date.getFullYear()}-${String(t.date.getMonth()+1).padStart(2,'0')}`))].sort();
+  monthFilter.innerHTML = '<option value="">All Months</option>' + uniqueMonths.map(m=>{
+    const [y,mo]=m.split('-'); const label=new Date(y,mo-1).toLocaleDateString('en',{month:'long',year:'numeric'});
+    return `<option value="${m}">${label}</option>`;
+  }).join('');
+
+  // Category filter
+  const cats4filter = ['All Categories', ...new Set(allTransactions.map(t => t.category))];
+  document.getElementById('filterCat').innerHTML = cats4filter.map(c=>`<option value="${c==='All Categories'?'':c}">${c}</option>`).join('');
+
+  renderTransactions();
+}
+
+function meterRow(label, valueStr, pct, color) {
+  return `<div class="rate-meter">
+    <div class="rate-label">${label}</div>
+    <div class="rate-bar-wrap"><div class="rate-bar" style="width:${Math.min(100,Math.max(0,pct))}%;background:${color};"></div></div>
+    <div class="rate-value">${valueStr}</div>
+  </div>`;
+}
+
+function buildBudgetPlanner(sortedCats, catMap) {
+  const grid = document.getElementById('budgetPlannerGrid');
+  grid.innerHTML = sortedCats.map(([name, data]) => {
+    const cat = getCat(name);
+    const saved = budgetLimits[name] || '';
+    return `<div class="budget-cat-row">
+      <div class="budget-cat-emoji">${cat.emoji}</div>
+      <div class="budget-cat-info">
+        <div class="budget-cat-name">${name}</div>
+        <div class="budget-cat-spent">Spent: ${fmtMoney(data.total)}</div>
+        <div class="budget-bar-outer"><div class="budget-bar-inner" id="bbar-${name.replace(/\W/g,'_')}" style="width:0;background:${cat.color};"></div></div>
+      </div>
+      <input class="budget-cat-limit" type="number" id="blimit-${name.replace(/\W/g,'_')}" placeholder="Limit ₹" value="${saved}" min="0" oninput="previewBudget('${name.replace(/'/g,"\\'")}',${data.total})"/>
+    </div>`;
+  }).join('');
+  // Apply saved limits
+  if (Object.keys(budgetLimits).length) applyBudgetLimits();
+}
+
+function previewBudget(name, spent) {
+  const key = name.replace(/\W/g,'_');
+  const input = document.getElementById('blimit-'+key);
+  const bar = document.getElementById('bbar-'+key);
+  if (!input || !bar) return;
+  const limit = parseFloat(input.value);
+  if (!isNaN(limit) && limit > 0) {
+    const pct = Math.min(100, spent/limit*100);
+    bar.style.width = pct + '%';
+    bar.style.background = pct > 100 ? '#f87171' : pct > 80 ? '#fbbf24' : '#4ade80';
+  } else {
+    bar.style.width = '0%';
+  }
+}
+
+function applyBudgetLimits() {
+  const expenses = allTransactions.filter(t=>t.type==='debit'&&t.category!=='Transfers'&&t.category!=='ATM & Cash');
+  const catMap = {};
+  expenses.forEach(t => {
+    if (!catMap[t.category]) catMap[t.category] = 0;
+    catMap[t.category] += t.amount;
+  });
+
+  let overBudget = [], underBudget = [], nolimit = [];
+  for (const [name, spent] of Object.entries(catMap)) {
+    const key = name.replace(/\W/g,'_');
+    const input = document.getElementById('blimit-'+key);
+    if (!input) continue;
+    const limit = parseFloat(input.value);
+    if (!isNaN(limit) && limit > 0) {
+      budgetLimits[name] = limit;
+      previewBudget(name, spent);
+      if (spent > limit) overBudget.push({ name, spent, limit, over: spent-limit });
+      else underBudget.push({ name, spent, limit, under: limit-spent });
+    } else {
+      nolimit.push(name);
+    }
+  }
+
+  let html = '';
+  if (overBudget.length) {
+    html += `<div style="background:#ffe0e0;border:2px solid #dc2626;border-radius:12px;padding:0.85rem 1rem;margin-bottom:0.65rem;">
+      <strong style="color:#dc2626;">⚠️ Over Budget (${overBudget.length} category${overBudget.length>1?'s':''}):</strong>
+      ${overBudget.map(b=>`<div style="font-size:0.82rem;margin-top:0.3rem;"> ${getCat(b.name).emoji} <strong>${b.name}</strong>: spent ${fmtMoney(b.spent)} vs ₹${b.limit.toLocaleString('en-IN')} limit — <span style="color:#dc2626;font-weight:700;">over by ${fmtMoney(b.over)}</span></div>`).join('')}
+    </div>`;
+  }
+  if (underBudget.length) {
+    html += `<div style="background:#f0fdf4;border:2px solid #059669;border-radius:12px;padding:0.85rem 1rem;">
+      <strong style="color:#059669;">✅ Within Budget (${underBudget.length} category${underBudget.length>1?'s':''}):</strong>
+      ${underBudget.map(b=>`<div style="font-size:0.82rem;margin-top:0.3rem;"> ${getCat(b.name).emoji} <strong>${b.name}</strong>: ${fmtMoney(b.spent)} of ₹${b.limit.toLocaleString('en-IN')} — <span style="color:#059669;font-weight:700;">${fmtMoney(b.under)} remaining</span></div>`).join('')}
+    </div>`;
+  }
+  document.getElementById('budgetSummary').innerHTML = html;
+}
+
+function resetBudgetLimits() {
+  budgetLimits = {};
+  document.querySelectorAll('.budget-cat-limit').forEach(el => el.value = '');
+  document.querySelectorAll('.budget-bar-inner').forEach(el => { el.style.width='0'; });
+  document.getElementById('budgetSummary').innerHTML = '';
+}
+
+function buildRecurring(expenses) {
+  const recurMap = {};
+  expenses.forEach(t => {
+    const key = cleanMerchant(t.desc).toLowerCase().substring(0,25);
+    if (!recurMap[key]) recurMap[key] = { count:0, total:0, name:t.desc, amounts:[], dates:[] };
+    recurMap[key].count++;
+    recurMap[key].total += t.amount;
+    recurMap[key].amounts.push(t.amount);
+    if (t.date) recurMap[key].dates.push(t.date);
+  });
+
+  const recurring = Object.values(recurMap)
+    .filter(r => r.count >= 2)
+    .sort((a,b) => b.total-a.total);
+
+  const list = document.getElementById('recurringList');
+  if (recurring.length === 0) {
+    list.innerHTML = '<div style="color:#666;font-size:0.88rem;font-weight:600;padding:0.75rem;">No clear recurring patterns detected. You need more than 1 occurrence of a transaction for it to be flagged.</div>';
+    return;
+  }
+
+  list.innerHTML = recurring.map(r => {
+    const avgAmt = r.total / r.count;
+    return `<div class="recurring-item">
+      <div class="rec-info">
+        <div class="rec-name">${escHtml(cleanMerchant(r.name).substring(0,35))} <span class="rec-tag">×${r.count}</span></div>
+        <div class="rec-detail">Avg ${fmtMoney(avgAmt)} per occurrence · Total ${fmtMoney(r.total)}</div>
+      </div>
+      <div class="rec-amt">${fmtMoney(r.total)}</div>
+    </div>`;
+  }).join('');
+}
+
+function buildSubscriptionTracker(expenses) {
+  const subTxns = expenses.filter(t => t.category === 'Subscriptions');
+  const el = document.getElementById('subscriptionTracker');
+  if (subTxns.length === 0) {
+    el.innerHTML = '<div style="color:#666;font-size:0.88rem;font-weight:600;">No subscription transactions detected in your statement.</div>';
+    return;
+  }
+
+  const subMap = {};
+  subTxns.forEach(t => {
+    const key = cleanMerchant(t.desc).toLowerCase().substring(0,20);
+    if (!subMap[key]) subMap[key] = { name:t.desc, count:0, total:0 };
+    subMap[key].count++; subMap[key].total += t.amount;
+  });
+
+  const total = subTxns.reduce((s,t)=>s+t.amount,0);
+  el.innerHTML = `<div style="font-size:0.88rem;font-weight:700;color:#555;margin-bottom:0.65rem;">Total subscription spend: <strong style="color:#111;">${fmtMoney(total)}</strong> across ${Object.keys(subMap).length} service(s)</div>` +
+    Object.values(subMap).sort((a,b)=>b.total-a.total).map(s =>
+      `<div style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.85rem;border:var(--nb-border);border-radius:10px;background:#faf5ff;box-shadow:2px 2px 0 #000;margin-bottom:0.4rem;">
+        <div><div style="font-weight:700;font-size:0.84rem;">📺 ${escHtml(cleanMerchant(s.name).substring(0,30))}</div><div style="font-size:0.74rem;color:#666;">${s.count} charge${s.count>1?'s':''}</div></div>
+        <div style="font-weight:700;font-size:0.84rem;color:#7c3aed;">${fmtMoney(s.total)}</div>
+      </div>`
+    ).join('');
+}
+
+// ═══════════════════════════════════════════════
+// TRANSACTIONS TABLE
+// ═══════════════════════════════════════════════
+function renderTransactions() {
+  const catFilter   = document.getElementById('filterCat').value;
+  const typeFilter  = document.getElementById('filterType').value;
+  const search      = document.getElementById('filterSearch').value.toLowerCase();
+  const monthFilter = document.getElementById('filterMonth').value;
+
+  const filtered = allTransactions.filter(t => {
+    if (catFilter && t.category !== catFilter) return false;
+    if (typeFilter && t.type !== typeFilter) return false;
+    if (search && !t.desc.toLowerCase().includes(search)) return false;
+    if (monthFilter && t.date) {
+      const key = `${t.date.getFullYear()}-${String(t.date.getMonth()+1).padStart(2,'0')}`;
+      if (key !== monthFilter) return false;
+    }
+    return true;
+  });
+
+  const tbody = document.getElementById('txnTableBody');
+  tbody.innerHTML = filtered.slice(0,500).map(t =>
+    `<tr>
+      <td style="white-space:nowrap;">${t.dateStr||'—'}</td>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escHtml(t.desc)}">${escHtml(t.desc.substring(0,45))}${t.desc.length>45?'…':''}</td>
+      <td><span class="cat-badge" style="background:${getCat(t.category).bg};border-color:${getCat(t.category).color};font-size:0.7rem;">${getCat(t.category).emoji} ${t.category}</span></td>
+      <td class="txn-dr">${t.debit>0?fmtMoney(t.debit):'—'}</td>
+      <td class="txn-cr">${t.credit>0?fmtMoney(t.credit):'—'}</td>
+      <td>${t.balance>0?fmtMoney(t.balance):'—'}</td>
+    </tr>`
+  ).join('');
+
+  document.getElementById('txnCount').textContent =
+    `Showing ${Math.min(filtered.length,500)} of ${filtered.length} transactions${filtered.length>500?' (first 500 shown)':''}`;
+}
+
+// ═══════════════════════════════════════════════
+// EXPORT DROPDOWN
+// ═══════════════════════════════════════════════
+function toggleExportMenu(e) {
+  e.stopPropagation();
+  const wrapper = e.currentTarget.closest('.export-dropdown-wrap');
+  const menu = wrapper ? wrapper.querySelector('[id^="exportMenu"]') : null;
+  if (!menu) return;
+  const isOpen = menu.style.display === 'block';
+  closeExportMenu();
+  if (!isOpen) menu.style.display = 'block';
+}
+function closeExportMenu() {
+  document.querySelectorAll('[id^="exportMenu"]').forEach(m => m.style.display = 'none');
+}
+document.addEventListener('click', function() { closeExportMenu(); });
+
+// ═══════════════════════════════════════════════
+// PRINT DASHBOARD (opens clean results-only window)
+// ═══════════════════════════════════════════════
+function printDashboard() {
+  if (!allTransactions.length) return;
+  const totalIncome = allTransactions.reduce((s,t)=>s+(t.credit||0),0);
+  const totalExpense = allTransactions.reduce((s,t)=>s+(t.debit||0),0);
+  const netSavings = totalIncome - totalExpense;
+
+  const catMap = {};
+  allTransactions.forEach(t => {
+    if (t.debit>0) {
+      if (!catMap[t.category]) catMap[t.category]={count:0,amount:0};
+      catMap[t.category].count++;
+      catMap[t.category].amount+=t.debit;
+    }
+  });
+  const catRows = Object.entries(catMap)
+    .sort((a,b)=>b[1].amount-a[1].amount)
+    .map(([cat,d])=>`<tr><td>${escHtml(cat)}</td><td style="text-align:center">${d.count}</td><td style="text-align:right">&#8377;${Math.round(d.amount).toLocaleString('en-IN')}</td><td style="text-align:center">${totalExpense>0?((d.amount/totalExpense)*100).toFixed(1):0}%</td></tr>`)
+    .join('');
+
+  const insightEls = document.querySelectorAll('#insightsGrid .insight-card');
+  let insightsHtml = '';
+  insightEls.forEach(el => {
+    const head = el.querySelector('.insight-head');
+    const text = el.querySelector('.insight-text');
+    const icon = el.querySelector('.insight-icon');
+    if (head && text) insightsHtml += `<tr><td>${icon?icon.textContent:''} ${escHtml(head.textContent)}</td><td>${escHtml(text.textContent)}</td></tr>`;
+  });
+
+  const txnRows = allTransactions.slice(0,500).map(t=>
+    `<tr><td>${escHtml(t.dateStr||'')}</td><td>${escHtml(t.desc.substring(0,55))}${t.desc.length>55?'&hellip;':''}</td><td>${escHtml(t.category)}</td><td style="color:#dc2626;text-align:right">${t.debit>0?'&#8377;'+Math.round(t.debit).toLocaleString('en-IN'):'&mdash;'}</td><td style="color:#059669;text-align:right">${t.credit>0?'&#8377;'+Math.round(t.credit).toLocaleString('en-IN'):'&mdash;'}</td><td style="text-align:right">${t.balance>0?'&#8377;'+Math.round(t.balance).toLocaleString('en-IN'):'&mdash;'}</td></tr>`
+  ).join('');
+
+  const metaText = (document.getElementById('dashMeta')||{}).textContent||'';
+
+  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Bank Statement Analysis</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,sans-serif;font-size:12px;color:#111;padding:24px;}
+h1{font-size:19px;font-weight:800;margin-bottom:3px;}
+.meta{font-size:11px;color:#666;margin-bottom:18px;}
+.summary{display:flex;gap:10px;margin-bottom:22px;}
+.sum-box{flex:1;border:2px solid #000;border-radius:8px;padding:10px;text-align:center;}
+.sum-box .val{font-size:14px;font-weight:800;display:block;margin-bottom:3px;}
+.sum-box .lbl{font-size:9px;text-transform:uppercase;color:#555;font-weight:700;letter-spacing:.04em;}
+.sum-box.income{background:#c3f584;}.sum-box.expense{background:#ffe0e0;}.sum-box.savings{background:#b2f5ea;}.sum-box.txns{background:#a3bffa;}
+h2{font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:800;border-bottom:2px solid #000;padding-bottom:5px;margin:20px 0 10px;}
+table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:11px;}
+th{background:#ffe066;border:1.5px solid #000;padding:6px 8px;font-weight:700;text-align:left;font-size:10px;}
+td{border:1px solid #ddd;padding:5px 8px;vertical-align:top;}
+tr:nth-child(even) td{background:#f9f9f9;}
+.footer{font-size:10px;color:#aaa;margin-top:16px;border-top:1px solid #e5e5e5;padding-top:8px;}
+@page{margin:1.5cm;}
+</style></head><body>
+<h1>&#128202; Bank Statement Analysis Report</h1>
+<div class="meta">${escHtml(metaText)} &middot; Printed ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
+<div class="summary">
+  <div class="sum-box income"><span class="val">&#8377;${Math.round(totalIncome).toLocaleString('en-IN')}</span><span class="lbl">Total Income</span></div>
+  <div class="sum-box expense"><span class="val">&#8377;${Math.round(totalExpense).toLocaleString('en-IN')}</span><span class="lbl">Total Expenses</span></div>
+  <div class="sum-box savings"><span class="val">&#8377;${Math.round(netSavings).toLocaleString('en-IN')}</span><span class="lbl">Net Savings</span></div>
+  <div class="sum-box txns"><span class="val">${allTransactions.length}</span><span class="lbl">Transactions</span></div>
+</div>
+${insightsHtml?`<h2>Smart Insights</h2><table><thead><tr><th>Insight</th><th>Detail</th></tr></thead><tbody>${insightsHtml}</tbody></table>`:''}
+<h2>Category Breakdown</h2>
+<table><thead><tr><th>Category</th><th style="text-align:center">Transactions</th><th style="text-align:right">Amount Spent</th><th style="text-align:center">% of Expenses</th></tr></thead><tbody>${catRows}</tbody></table>
+<h2>Transactions${allTransactions.length>500?' (first 500)':''}</h2>
+<table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th style="text-align:right">Debit</th><th style="text-align:right">Credit</th><th style="text-align:right">Balance</th></tr></thead><tbody>${txnRows}</tbody></table>
+<div class="footer">Generated by WorldOfTools Bank Statement Analyzer &middot; worldoftools.in &middot; 100% private</div>
+<script>window.onload=function(){window.print();}<\/script>
+</body></html>`;
+
+  const w = window.open('','_blank','width=960,height=750');
+  if (!w) { alert('Please allow popups for this site to use Print Dashboard.'); return; }
+  w.document.write(html);
+  w.document.close();
+}
+
+// ═══════════════════════════════════════════════
+// DOWNLOAD EXCEL
+// ═══════════════════════════════════════════════
+function downloadExcel() {
+  if (!allTransactions.length) return;
+  const headers = ['Date','Description','Category','Type','Debit (INR)','Credit (INR)','Balance (INR)'];
+  const rows = allTransactions.map(t => [
+    t.dateStr||'', t.desc||'', t.category||'', t.type||'',
+    t.debit||0, t.credit||0, t.balance||0
+  ]);
+  const totalIncome = allTransactions.reduce((s,t)=>s+(t.credit||0),0);
+  const totalExpense = allTransactions.reduce((s,t)=>s+(t.debit||0),0);
+  const netSavings = totalIncome - totalExpense;
+  const catMap = {};
+  allTransactions.forEach(t => {
+    if (t.debit > 0) {
+      if (!catMap[t.category]) catMap[t.category] = {count:0, amount:0};
+      catMap[t.category].count++;
+      catMap[t.category].amount += t.debit;
+    }
+  });
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
+  ws['!cols'] = [{wch:14},{wch:40},{wch:18},{wch:10},{wch:14},{wch:14},{wch:14}];
+  XLSX.utils.book_append_sheet(wb, ws, 'Transactions');
+  const summaryData = [
+    ['Bank Statement Analysis Summary'],
+    [],
+    ['Total Income', totalIncome],
+    ['Total Expenses', totalExpense],
+    ['Net Savings', netSavings],
+    ['Savings Rate', totalIncome>0?((netSavings/totalIncome)*100).toFixed(1)+'%':'0%'],
+    ['Total Transactions', allTransactions.length],
+    [],
+    ['Category','Transactions','Amount Spent (INR)','% of Expenses'],
+    ...Object.entries(catMap)
+      .sort((a,b)=>b[1].amount-a[1].amount)
+      .map(([cat,d])=>[cat, d.count, Math.round(d.amount), totalExpense>0?((d.amount/totalExpense)*100).toFixed(1)+'%':'0%'])
+  ];
+  const wsSummary = XLSX.utils.aoa_to_sheet(summaryData);
+  wsSummary['!cols'] = [{wch:28},{wch:14},{wch:20},{wch:16}];
+  XLSX.utils.book_append_sheet(wb, wsSummary, 'Summary');
+  XLSX.writeFile(wb, 'bank-statement-analysis.xlsx');
+}
+
+// ═══════════════════════════════════════════════
+// DOWNLOAD PDF (opens clean print window)
+// ═══════════════════════════════════════════════
+function downloadPDF() {
+  if (!allTransactions.length) return;
+  const totalIncome = allTransactions.reduce((s,t)=>s+(t.credit||0),0);
+  const totalExpense = allTransactions.reduce((s,t)=>s+(t.debit||0),0);
+  const netSavings = totalIncome - totalExpense;
+  const catMap = {};
+  allTransactions.forEach(t => {
+    if (t.debit > 0) {
+      if (!catMap[t.category]) catMap[t.category]={count:0,amount:0};
+      catMap[t.category].count++;
+      catMap[t.category].amount += t.debit;
+    }
+  });
+  const catRows = Object.entries(catMap)
+    .sort((a,b)=>b[1].amount-a[1].amount)
+    .map(([cat,d])=>`<tr><td>${escHtml(cat)}</td><td style="text-align:center">${d.count}</td><td style="text-align:right">&#8377;${Math.round(d.amount).toLocaleString('en-IN')}</td><td style="text-align:center">${totalExpense>0?((d.amount/totalExpense)*100).toFixed(1):0}%</td></tr>`)
+    .join('');
+  const txnRows = allTransactions.slice(0,500).map(t=>
+    `<tr><td>${escHtml(t.dateStr||'')}</td><td>${escHtml(t.desc.substring(0,50))}${t.desc.length>50?'&hellip;':''}</td><td>${escHtml(t.category)}</td><td style="color:#dc2626;text-align:right">${t.debit>0?'&#8377;'+Math.round(t.debit).toLocaleString('en-IN'):'&mdash;'}</td><td style="color:#059669;text-align:right">${t.credit>0?'&#8377;'+Math.round(t.credit).toLocaleString('en-IN'):'&mdash;'}</td><td style="text-align:right">${t.balance>0?'&#8377;'+Math.round(t.balance).toLocaleString('en-IN'):'&mdash;'}</td></tr>`
+  ).join('');
+  const metaText = (document.getElementById('dashMeta')||{}).textContent||'';
+  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Bank Statement Analysis</title>
+<style>
+body{font-family:Arial,sans-serif;font-size:12px;color:#111;margin:0;padding:24px;}
+h1{font-size:20px;margin:0 0 4px;} .meta{font-size:11px;color:#666;margin-bottom:18px;}
+.summary{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+.sum-box{flex:1;min-width:120px;border:2px solid #000;border-radius:8px;padding:10px;text-align:center;}
+.sum-box .val{font-size:14px;font-weight:800;display:block;margin-bottom:3px;}
+.sum-box .lbl{font-size:10px;text-transform:uppercase;color:#555;font-weight:700;}
+.sum-box.income{background:#c3f584;}.sum-box.expense{background:#ffe0e0;}.sum-box.savings{background:#b2f5ea;}.sum-box.txns{background:#a3bffa;}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid #000;padding-bottom:5px;margin:20px 0 10px;}
+table{width:100%;border-collapse:collapse;margin-bottom:22px;font-size:11px;}
+th{background:#ffe066;border:1.5px solid #000;padding:6px 8px;font-weight:700;text-align:left;}
+td{border:1px solid #ddd;padding:5px 8px;word-break:break-word;}
+tr:nth-child(even) td{background:#f9f9f9;}
+.footer{font-size:10px;color:#aaa;margin-top:20px;border-top:1px solid #e5e5e5;padding-top:8px;}
+@media print{body{padding:10px;}}
+</style></head><body>
+<h1>&#128202; Bank Statement Analysis Report</h1>
+<div class="meta">${escHtml(metaText)} &middot; Generated ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
+<div class="summary">
+  <div class="sum-box income"><span class="val">&#8377;${Math.round(totalIncome).toLocaleString('en-IN')}</span><span class="lbl">Total Income</span></div>
+  <div class="sum-box expense"><span class="val">&#8377;${Math.round(totalExpense).toLocaleString('en-IN')}</span><span class="lbl">Total Expenses</span></div>
+  <div class="sum-box savings"><span class="val">&#8377;${Math.round(netSavings).toLocaleString('en-IN')}</span><span class="lbl">Net Savings</span></div>
+  <div class="sum-box txns"><span class="val">${allTransactions.length}</span><span class="lbl">Transactions</span></div>
+</div>
+<h2>Category Breakdown</h2>
+<table><thead><tr><th>Category</th><th style="text-align:center">Transactions</th><th style="text-align:right">Amount Spent</th><th style="text-align:center">% of Expenses</th></tr></thead><tbody>${catRows}</tbody></table>
+<h2>All Transactions${allTransactions.length>500?' (first 500 shown)':''}</h2>
+<table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th style="text-align:right">Debit</th><th style="text-align:right">Credit</th><th style="text-align:right">Balance</th></tr></thead><tbody>${txnRows}</tbody></table>
+<div class="footer">Generated by WorldOfTools Bank Statement Analyzer &middot; worldoftools.in &middot; 100% private, processed in browser</div>
+</body></html>`;
+  const w = window.open('','_blank','width=960,height=750');
+  w.document.write(html);
+  w.document.close();
+  w.focus();
+  setTimeout(()=>{ w.print(); }, 700);
+}
+
+// ═══════════════════════════════════════════════
+// DOWNLOAD CSV
+// ═══════════════════════════════════════════════
+function downloadCSV() {
+  const headers = ['Date','Description','Category','Type','Debit','Credit','Balance'];
+  const rows = allTransactions.map(t =>
+    [t.dateStr,`"${t.desc.replace(/"/g,'""')}"`,t.category,t.type,t.debit||'',t.credit||'',t.balance||''].join(',')
+  );
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download='bank-statement-analysis.csv';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+// ═══════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════
+function parseAmt(val) {
+  if (val===null||val===undefined||val==='') return 0;
+  const s = String(val).replace(/[₹$,\s]/g,'').replace(/\(([^)]+)\)/,'-$1').replace(/[^\d.\-]/g,'');
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : Math.abs(n);
+}
+
+function parseDate(str) {
+  if (!str) return null;
+  const s = str.trim();
+
+  // DD Mon YYYY
+  const m1 = s.match(/^(\d{1,2})[\s\-\/]([A-Za-z]{3,9})[\s\-\/](\d{2,4})$/);
+  if (m1) {
+    const months = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11,january:0,february:1,march:2,april:3,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
+    const mm = months[m1[2].toLowerCase().substring(0,3)];
+    const y = m1[3].length===2 ? 2000 + +m1[3] : +m1[3];
+    if (mm !== undefined) return new Date(y, mm, +m1[1]);
+  }
+  // Mon DD YYYY
+  const m2 = s.match(/^([A-Za-z]{3})[\s\-\/](\d{1,2})[\s\-\/](\d{4})$/);
+  if (m2) {
+    const months = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+    const mm = months[m2[1].toLowerCase()];
+    if (mm !== undefined) return new Date(+m2[3], mm, +m2[2]);
+  }
+
+  const clean = s.replace(/\//g,'-');
+  if (/^\d{2}-\d{2}-\d{4}$/.test(clean)) { const [d,m,y]=clean.split('-'); const dt=new Date(+y,+m-1,+d); if(!isNaN(dt)) return dt; }
+  if (/^\d{4}-\d{2}-\d{2}$/.test(clean)) return new Date(clean);
+  if (/^\d{2}-\d{2}-\d{2}$/.test(clean)) { const [d,m,y]=clean.split('-'); return new Date(2000+(+y),+m-1,+d); }
+  // DDMMYYYY
+  if (/^\d{8}$/.test(s)) { const d=s.substring(0,2),m=s.substring(2,4),y=s.substring(4,8); return new Date(+y,+m-1,+d); }
+
+  const d = new Date(s);
+  return isNaN(d) ? null : d;
+}
+
+function fmtMoney(n) {
+  if (n===undefined||n===null||isNaN(n)) return '₹0';
+  return '₹'+Math.abs(Math.round(n)).toLocaleString('en-IN');
+}
+function fmtDate(d) { return d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); }
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function cleanMerchant(desc) {
+  return desc.replace(/\d{6,}/g,'').replace(/UPI|NEFT|RTGS|IMPS|ACH|ECS|NACH/gi,'').replace(/[\/\-_@#*]/g,' ').replace(/\s+/g,' ').trim().substring(0,30) || desc.substring(0,30);
+}
+
+function statusTag(actual, ideal, higherBetter) {
+  if (higherBetter) {
+    if (actual>=ideal) return `<span class="budget-status status-ok">✅ ${actual}% (on track)</span>`;
+    if (actual>=ideal*0.7) return `<span class="budget-status status-warn">⚠️ ${actual}% (a bit low)</span>`;
+    return `<span class="budget-status status-bad">❌ ${actual}% (too low)</span>`;
+  } else {
+    if (actual<=ideal) return `<span class="budget-status status-ok">✅ ${actual}% (on track)</span>`;
+    if (actual<=ideal*1.2) return `<span class="budget-status status-warn">⚠️ ${actual}% (slightly over)</span>`;
+    return `<span class="budget-status status-bad">❌ ${actual}% (over budget)</span>`;
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  if (msg) { el.textContent='⚠️ '+msg; el.style.display='block'; }
+  else { el.style.display='none'; el.textContent=''; }
+}
+function showProgress(msg, pct) {
+  document.getElementById('progressWrap').style.display='block';
+  document.getElementById('progressText').textContent=msg;
+  document.getElementById('progressFill').style.width=pct+'%';
+}
+function hideProgress() {
+  document.getElementById('progressWrap').style.display='none';
+  document.getElementById('progressFill').style.width='0%';
+}
+
+function resetTool() {
+  allTransactions=[]; rawHeaders=[]; rawRows=[]; pdfPageData=[]; selectedPages=[]; budgetLimits={};
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('colMapSection').style.display='none';
+  document.getElementById('pageSelectorWrap').style.display='none';
+  document.getElementById('fileInput').value='';
+  hideProgress(); showError('');
+  if (pieChart) { pieChart.destroy(); pieChart=null; }
+  if (barChart) { barChart.destroy(); barChart=null; }
+  if (dowChart) { dowChart.destroy(); dowChart=null; }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

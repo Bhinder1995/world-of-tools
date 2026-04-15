@@ -24,7 +24,7 @@
     --nb-lilac:      #f3d0ff;
 
     /* ── Typography ── */
-    --font-heading: 'Syne', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
     --font-body:    'Space Grotesk', sans-serif;
     --nb-letter-spacing: normal;
     --nb-line-height: 1.5;
@@ -749,3 +749,30 @@ h1, h2, h3, h4 {
 }
 
 
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL TYPOGRAPHY STANDARDIZATION — v6.2
+   Force Results and Tool Values to Space Grotesk (!important)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Target all common result and statistic classes used across tools */
+[class*="result-"], 
+[class*="stat-value"], 
+[class*="stat-num"], 
+[class*="num"],
+.main-value,
+.stat-pill .num,
+.calculated-result,
+.final-amount,
+.output-text {
+    font-family: 'Space Grotesk', sans-serif !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* Ensure headings inside tools don't drift back to Syne */
+.tool-container h1, .tool-container h2, .tool-container h3,
+.seo-section h2, .info-grid h3 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+}

@@ -187,7 +187,7 @@ details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
   <div class="result-hero">
     <div class="result-label">Monthly EMI</div>
     <div class="result-emi" id="emiDisplay">—</div>
-    <div class="result-sub" id="emiSub">per month for <span id="tenureResult">—</span></div>
+    <div class="result-sub" id="emiSub">per month for <strong>—</strong></div>
     <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem;">
       <button class="nb-btn nb-btn-mint" onclick="copyResult()">📋 Copy Result</button>
       <button class="nb-btn" onclick="shareResult()">🔗 Share</button>
@@ -379,7 +379,6 @@ function recalculate(userTriggered=false) {
 
   document.getElementById('emiDisplay').textContent = fmt(EMI);
   document.getElementById('emiSub').innerHTML = `per month for <strong>${years} years</strong> (${N} months)`;
-  document.getElementById('tenureResult').textContent = years + ' years';
   document.getElementById('totalPayable').textContent = fmtL(totalPayable);
   document.getElementById('totalInterest').textContent = fmtL(totalInterest);
   document.getElementById('interestPct').textContent = ((totalInterest/P)*100).toFixed(0) + '%';

@@ -11,6 +11,7 @@ const GUIDE_MAP = {
   "background-remover":            "background-remover-guide",
   "barcode-generator":             "barcode-generator-guide",
   "base64-encoder-decoder":        "base64-encoder-decoder-guide",
+  "bank-statement-analyzer":       "bank-statement-analyzer-guide",
   "bmi-calculator":                "bmi-calculator-guide",
   "case-converter":                "case-converter-guide",
   "cgpa-calculator":               "cgpa-calculator-guide",
@@ -78,6 +79,7 @@ const GUIDE_MAP = {
 
 // ─── Related tools map (3 per tool — post-rec widget) ────────────────────────
 const POST_REC_MAP = {
+  "bank-statement-analyzer": [["/emi-calculator","🏠","EMI Calculator","Loan EMI breakdown"],["/sip-calculator","📈","SIP Calculator","Investment returns"],["/gst-calculator","🧾","GST Calculator","Tax tools"]],
   "age-calculator":          [["/bmi-calculator","⚖️","BMI Calculator","Body mass index"],["/gst-calculator","🧾","GST Calculator","Tax calculations"],["/percentage-calculator","💯","% Calculator","Quick percentages"]],
   "gst-calculator":          [["/emi-calculator","🏠","EMI Calculator","Loan EMI breakdown"],["/sip-calculator","📈","SIP Calculator","Investment returns"],["/invoice-generator","🧾","Invoice Maker","PDF invoices"]],
   "emi-calculator":          [["/gst-calculator","🧾","GST Calculator","Tax tool"],["/sip-calculator","📈","SIP Calculator","Mutual fund SIP"],["/loan-comparison-calculator","📊","Loan Compare","Best loan offer"]],
@@ -196,6 +198,7 @@ function injectHeader() {
                                 <div class="dropdown-inner">
                                     <div class="dropdown-col">
                                         <h4><span>🧮</span> Calculators</h4>
+                                        <a href="/bank-statement-analyzer">Statement Analyzer</a>
                                         <a href="/sip-calculator">SIP Calculator</a>
                                         <a href="/gst-calculator">GST Calculator</a>
                                         <a href="/emi-calculator">EMI Calculator</a>
@@ -685,7 +688,30 @@ function injectPostRecommendations() { /* legacy stub — handled by injectPostR
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+            navigator.serviceWorker.register('/service-worker.js').then(reg => {
+                // Check for updates periodically
+                reg.update();
+
+                reg.onupdatefound = () => {
+                    const newWorker = reg.installing;
+                    newWorker.onstatechange = () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            // New worker installed, skipWaiting is called in SW, so it will activate
+                            console.log('New content available, preparing to refresh...');
+                        }
+                    };
+                };
+            }).catch(err => console.error('SW subscription error:', err));
+        });
+
+        // This event fires when the new service worker takes control
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                console.log('New Service Worker activating. Reloading page for instant update...');
+                window.location.reload();
+            }
         });
     }
 }

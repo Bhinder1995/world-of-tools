@@ -29,6 +29,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
 <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
 <link href="/css/style.css?v=6.1" rel="stylesheet"/>
 <link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
@@ -354,7 +355,7 @@
     const vid = document.getElementById('videoPreview');
     const start = parseFloat(document.getElementById('startTime').value)||0;
     const end = parseFloat(document.getElementById('endTime').value)||vid.duration;
-    const bitrate = parseInt(document.getElementById('bitrate').value)||128000;
+    const bitrate = parseInt(document.getElementById('bitrate').value)||128; // kbps
     const fmt = document.getElementById('outFormat').value;
 
     if(start >= end) return showError('Start time must be less than end time.');
@@ -363,92 +364,127 @@
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
     progressWrap.style.display='block';
-    progressFill.style.width='10%';
-    progressText.textContent='Setting up audio context…';
+    progressFill.style.width='5%';
+    progressText.textContent='Initializing conversion engine...';
     showError('');
 
     const convertBtn = document.getElementById('convertBtn');
-    convertBtn.disabled=true; convertBtn.textContent='⏳ Extracting…';
+    convertBtn.disabled=true; convertBtn.textContent='⏳ Processing...';
 
     try {
-      // Use Web Audio API to decode and re-encode
-      progressFill.style.width='25%';
-      progressText.textContent='Reading video file…';
-
+      // 1. ArrayBuffer
+      progressFill.style.width='10%';
+      progressText.textContent='Reading file into memory...';
       const arrayBuffer = await currentFile.arrayBuffer();
+      
+      // 2. AudioContext Decoding
+      progressFill.style.width='20%';
+      progressText.textContent='Decoding audio track (may take a moment)...';
       const audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-
-      progressFill.style.width='45%';
-      progressText.textContent='Decoding audio track…';
-
       const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+      
       const sampleRate = audioBuffer.sampleRate;
       const startSample = Math.floor(start * sampleRate);
       const endSample = Math.min(Math.floor(end * sampleRate), audioBuffer.length);
-      const duration = (endSample - startSample) / sampleRate;
+      const numChannels = audioBuffer.numberOfChannels;
+      
+      // 3. Choice of Encoding
+      if(fmt === 'mp3') {
+        progressText.textContent = 'Encoding to MP3...';
+        const channels = [];
+        for(let i=0; i<numChannels; i++) {
+          channels.push(audioBuffer.getChannelData(i).slice(startSample, endSample));
+        }
+        
+        // Use lamejs for real MP3
+        const mp3encoder = new lamejs.Mp3Encoder(numChannels, sampleRate, bitrate);
+        const mp3Data = [];
+        const sampleBlockSize = 1152; // standard for lame
+        
+        // Convert Float32 to Int16
+        const convertFloatToInt16 = (f32Arr) => {
+          const i16Arr = new Int16Array(f32Arr.length);
+          for(let i=0; i<f32Arr.length; i++) {
+            let s = Math.max(-1, Math.min(1, f32Arr[i]));
+            i16Arr[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+          }
+          return i16Arr;
+        };
 
-      progressFill.style.width='60%';
-      progressText.textContent='Trimming audio…';
+        const left = convertFloatToInt16(channels[0]);
+        const right = numChannels > 1 ? convertFloatToInt16(channels[1]) : left;
 
-      // Create trimmed buffer
-      const trimmed = audioCtx.createBuffer(audioBuffer.numberOfChannels, endSample - startSample, sampleRate);
-      for(let ch=0; ch<audioBuffer.numberOfChannels; ch++) {
-        trimmed.copyToChannel(audioBuffer.getChannelData(ch).slice(startSample, endSample), ch);
+        for(let i=0; i<left.length; i+=sampleBlockSize) {
+          const lChunk = left.subarray(i, i+sampleBlockSize);
+          const rChunk = right.subarray(i, i+sampleBlockSize);
+          const mp3buf = mp3encoder.encodeBuffer(lChunk, rChunk);
+          if(mp3buf.length > 0) mp3Data.push(mp3buf);
+          
+          if(i % (sampleBlockSize * 10) === 0) {
+            const pct = 20 + Math.round((i / left.length) * 75);
+            progressFill.style.width = pct + '%';
+            progressText.textContent = `Encoding MP3... ${Math.round((i/left.length)*100)}%`;
+            await new Promise(r => setTimeout(r, 0)); // Allow UI to update
+          }
+        }
+        
+        const endBuf = mp3encoder.flush();
+        if(endBuf.length > 0) mp3Data.push(endBuf);
+        
+        audioBlob = new Blob(mp3Data, { type: 'audio/mpeg' });
+        audioBlob._ext = 'mp3';
+      } else {
+        // Fallback for WebM/OGG via MediaRecorder (faster but less supported)
+        progressText.textContent = 'Encoding via browser recorder...';
+        const dest = audioCtx.createMediaStreamDestination();
+        const source = audioCtx.createBufferSource();
+        const trimmed = audioCtx.createBuffer(numChannels, endSample - startSample, sampleRate);
+        for(let ch=0; ch<numChannels; ch++) {
+          trimmed.copyToChannel(audioBuffer.getChannelData(ch).slice(startSample, endSample), ch);
+        }
+        source.buffer = trimmed;
+        source.connect(dest);
+        
+        const mime = fmt === 'ogg' ? 'audio/ogg;codecs=vorbis' : 'audio/webm;codecs=opus';
+        const recorder = new MediaRecorder(dest.stream, { mimeType: MediaRecorder.isTypeSupported(mime)?mime:'audio/webm', audioBitsPerSecond: bitrate * 1000 });
+        const chunks = [];
+        recorder.ondataavailable = e => chunks.push(e.data);
+        recorder.onstop = () => {
+          audioBlob = new Blob(chunks, { type: recorder.mimeType });
+          audioBlob._ext = fmt;
+          finalizeOutput(trimmed.duration, bitrate);
+        };
+        recorder.start();
+        source.start(0);
+        source.onended = () => recorder.stop();
+        return; // recorder.onstop handles the rest
       }
 
-      progressFill.style.width='75%';
-      progressText.textContent='Encoding audio…';
-
-      // Encode using OfflineAudioContext -> MediaStreamDestination
-      const mimeTypes = {
-        'mp3': 'audio/mpeg',
-        'webm': 'audio/webm;codecs=opus',
-        'ogg': 'audio/ogg;codecs=vorbis'
-      };
-      const mimeType = mimeTypes[fmt] || 'audio/webm';
-      const supported = MediaRecorder.isTypeSupported(mimeType);
-      const actualMime = supported ? mimeType : 'audio/webm';
-
-      const dest = audioCtx.createMediaStreamDestination();
-      const source = audioCtx.createBufferSource();
-      source.buffer = trimmed;
-      source.connect(dest);
-
-      const recorder = new MediaRecorder(dest.stream, { mimeType: actualMime, audioBitsPerSecond: bitrate });
-      const chunks = [];
-      recorder.ondataavailable = e => { if(e.data.size>0) chunks.push(e.data); };
-
-      recorder.onstop = () => {
-        const ext = actualMime.includes('ogg') ? 'ogg' : actualMime.includes('mpeg') ? 'mp3' : 'webm';
-        audioBlob = new Blob(chunks, { type: actualMime });
-        audioBlobUrl = URL.createObjectURL(audioBlob);
-        document.getElementById('audioPlayer').src = audioBlobUrl;
-        document.getElementById('outSize').textContent = '💾 ' + formatBytes(audioBlob.size);
-        document.getElementById('outDur').textContent = '⏱ ' + formatTime(duration);
-        document.getElementById('outBitrate').textContent = '🎚 ' + (bitrate/1000) + ' kbps';
-        progressFill.style.width='100%';
-        progressText.textContent='✅ Done!';
-        const rc = document.getElementById('resultCard');
-        rc.style.display='block'; rc.classList.add('animate-in');
-        rc.scrollIntoView({ behavior:'smooth', block:'start' });
-        convertBtn.disabled=false; convertBtn.textContent='🎵 Extract Audio';
-        audioCtx.close();
-        // Store ext for download
-        audioBlob._ext = ext;
-      };
-
-      recorder.start();
-      source.start(0);
-      source.onended = () => recorder.stop();
-
-      progressFill.style.width='90%';
-      progressText.textContent='Recording audio output…';
+      finalizeOutput((endSample - startSample)/sampleRate, bitrate);
+      audioCtx.close();
 
     } catch(e) {
-      showError('Could not extract audio: ' + e.message + '. The video may have no audio track, or try a different format.');
+      console.error(e);
+      showError('Conversion failed: ' + e.message);
       progressWrap.style.display='none';
       convertBtn.disabled=false; convertBtn.textContent='🎵 Extract Audio';
     }
+  }
+
+  function finalizeOutput(duration, bitrate) {
+    audioBlobUrl = URL.createObjectURL(audioBlob);
+    document.getElementById('audioPlayer').src = audioBlobUrl;
+    document.getElementById('outSize').textContent = '💾 ' + formatBytes(audioBlob.size);
+    document.getElementById('outDur').textContent = '⏱ ' + formatTime(duration);
+    document.getElementById('outBitrate').textContent = '🎚 ' + bitrate + ' kbps';
+    
+    document.getElementById('progressFill').style.width='100%';
+    document.getElementById('progressText').textContent='✅ Success!';
+    document.getElementById('resultCard').style.display='block';
+    document.getElementById('resultCard').scrollIntoView({ behavior:'smooth', block:'start' });
+    
+    const btn = document.getElementById('convertBtn');
+    btn.disabled=false; btn.textContent='🎵 Extract Audio';
   }
 
   function downloadAudio() {
