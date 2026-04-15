@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Bank Statement Analyzer — Free Online Expense Tracker & Spending Insights | WorldOfTools</title>
+<title>Bank Statement Analyzer — Free Online Expense Tracker &amp; Spending Insights | WorldOfTools</title>
 <meta content="Free bank statement analyzer — upload your PDF, CSV, or Excel bank statement and instantly get spending insights, expense categories, income vs expense summary, budget recommendations, and downloadable reports. Native PDF parsing included. 100% private, processed in your browser." name="description"/>
 <meta content="bank statement analyzer, bank statement analysis tool, expense tracker from bank statement, analyze bank statement online, bank statement to excel, spending analysis tool, income expense analyzer, budget tracker from bank statement, transaction categorizer, free bank statement analyzer, monthly expense report, where is my money going, bank statement reader, PDF bank statement analyzer, CSV bank statement analyzer, upload PDF bank statement, analyze PDF statement online" name="keywords"/>
 <link href="https://worldoftools.in/bank-statement-analyzer" rel="canonical"/>
 <meta content="website" property="og:type"/>
 <meta content="https://worldoftools.in/bank-statement-analyzer" property="og:url"/>
-<meta content="Bank Statement Analyzer — Free Spending Insights & Expense Tracker | WorldOfTools" property="og:title"/>
+<meta content="Bank Statement Analyzer — Free Spending Insights &amp; Expense Tracker | WorldOfTools" property="og:title"/>
 <meta content="Upload your bank statement and get instant spending analysis, category breakdowns, budget insights, and downloadable reports. 100% private — processed in your browser." property="og:description"/>
 <meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
 <meta content="WorldOfTools" property="og:site_name"/>
@@ -65,6 +65,8 @@ body{font-family:var(--font);background:#fafaf8;color:#111;font-size:15px;line-h
 .nb-btn-mint{background:var(--nb-mint);color:#000;}
 .nb-btn-lime{background:var(--nb-lime);color:#000;}
 .nb-btn-blue{background:var(--nb-blue);color:#000;}
+.nb-btn-orange{background:var(--nb-orange);color:#000;}
+.nb-btn-purple{background:var(--nb-purple);color:#000;}
 .nb-btn-full{width:100%;padding:1rem;}
 .nb-btn-sm{padding:0.5rem 1rem;font-size:0.82rem;}
 
@@ -106,6 +108,9 @@ body{font-family:var(--font);background:#fafaf8;color:#111;font-size:15px;line-h
 .upload-sub{font-size:0.84rem;color:#666;font-weight:600;}
 .upload-formats{display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap;margin-top:0.85rem;}
 .fmt-badge{padding:0.2rem 0.55rem;border:2px solid #000;border-radius:6px;font-size:0.7rem;font-weight:700;background:#fff;box-shadow:2px 2px 0 #000;}
+
+/* ── Merge banner ── */
+.merge-banner{display:none;background:var(--nb-purple);border:var(--nb-border);border-radius:14px;padding:0.9rem 1.1rem;margin-bottom:1rem;box-shadow:3px 3px 0 #000;font-size:0.88rem;font-weight:700;align-items:center;gap:0.6rem;flex-wrap:wrap;}
 
 /* ── Error/Info ── */
 .nb-error{display:none;background:#ffe0e0;border:var(--nb-border);border-radius:12px;padding:0.8rem 1.1rem;color:#c00;font-weight:700;margin-bottom:1.1rem;box-shadow:3px 3px 0 #c00;}
@@ -183,10 +188,19 @@ body{font-family:var(--font);background:#fafaf8;color:#111;font-size:15px;line-h
 .cat-bar-wrap{background:#f0f0f0;height:7px;border-radius:99px;border:1.5px solid #ccc;overflow:hidden;width:80px;display:inline-block;vertical-align:middle;margin-left:0.4rem;}
 .cat-bar{height:100%;background:#4f46e5;border-radius:99px;}
 
+/* ── Confidence badge ── */
+.conf-high{background:#d1fae5;color:#065f46;border:1px solid #059669;border-radius:5px;font-size:0.65rem;font-weight:700;padding:0.05rem 0.35rem;display:inline-block;}
+.conf-med{background:#fef3c7;color:#92400e;border:1px solid #d97706;border-radius:5px;font-size:0.65rem;font-weight:700;padding:0.05rem 0.35rem;display:inline-block;}
+.conf-low{background:#fee2e2;color:#991b1b;border:1px solid #dc2626;border-radius:5px;font-size:0.65rem;font-weight:700;padding:0.05rem 0.35rem;display:inline-block;}
+
+/* ── Category re-categorization select ── */
+.recat-select{padding:0.2rem 0.4rem;border:1.5px solid #000;border-radius:6px;font-family:var(--font);font-size:0.72rem;font-weight:700;background:#fff;cursor:pointer;}
+.new-merchant-badge{background:var(--nb-pink);color:#fff;border:1.5px solid #000;border-radius:5px;font-size:0.65rem;font-weight:700;padding:0.05rem 0.35rem;display:inline-block;margin-left:3px;}
+
 /* ── Transactions table ── */
 .txn-filters{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:0.85rem;align-items:center;}
 .txn-table-wrap{overflow-x:auto;border:var(--nb-border);border-radius:12px;box-shadow:3px 3px 0 #000;}
-.txn-table{width:100%;border-collapse:collapse;min-width:580px;}
+.txn-table{width:100%;border-collapse:collapse;min-width:680px;}
 .txn-table th{padding:0.65rem 0.9rem;text-align:left;background:var(--nb-mint);border-bottom:2px solid #000;font-weight:700;font-size:0.78rem;white-space:nowrap;position:sticky;top:0;}
 .txn-table td{padding:0.55rem 0.9rem;border-bottom:1px solid #e5e7eb;font-size:0.84rem;}
 .txn-table tr:last-child td{border-bottom:none;}
@@ -215,6 +229,9 @@ body{font-family:var(--font);background:#fafaf8;color:#111;font-size:15px;line-h
 .status-warn{color:#d97706;}
 .status-bad{color:#dc2626;}
 
+/* ── Velocity strip ── */
+.velocity-strip{background:var(--nb-blue);border:var(--nb-border);border-radius:14px;padding:0.9rem 1.1rem;margin-bottom:1rem;box-shadow:3px 3px 0 #000;font-size:0.85rem;font-weight:600;line-height:1.6;}
+
 /* ── Budget Planner ── */
 .budget-planner-card{background:#fff;border:var(--nb-border);border-radius:16px;padding:1.25rem;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;}
 .budget-planner-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.85rem;}
@@ -227,6 +244,14 @@ body{font-family:var(--font);background:#fafaf8;color:#111;font-size:15px;line-h
 .budget-cat-limit{width:90px;padding:0.35rem 0.5rem;border:2px solid #000;border-radius:8px;font-family:var(--font);font-size:0.82rem;font-weight:700;text-align:right;background:#fff;}
 .budget-bar-outer{height:6px;background:#f0f0f0;border-radius:99px;border:1.5px solid #ccc;overflow:hidden;margin-top:0.3rem;}
 .budget-bar-inner{height:100%;border-radius:99px;transition:width 0.4s;}
+
+/* ── Custom Category Panel ── */
+.custom-cat-panel{background:#fffbeb;border:var(--nb-border);border-radius:16px;padding:1.25rem;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;}
+.custom-cat-list{display:flex;flex-direction:column;gap:0.45rem;margin:0.85rem 0;}
+.custom-cat-item{display:flex;align-items:center;gap:0.6rem;background:#fff;border:var(--nb-border);border-radius:10px;padding:0.55rem 0.85rem;box-shadow:2px 2px 0 #000;font-size:0.83rem;font-weight:700;}
+.custom-cat-del{background:none;border:none;cursor:pointer;font-size:0.85rem;color:#dc2626;font-weight:800;padding:0.1rem 0.35rem;border-radius:5px;transition:background 0.1s;}
+.custom-cat-del:hover{background:#ffe0e0;}
+.custom-cat-inputs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.7rem;}
 
 /* ── Spending Rank ── */
 .spending-rank{margin-bottom:1.25rem;}
@@ -364,6 +389,14 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
     <!-- UPLOAD -->
     <div id="uploadSection">
       <div class="section-heading">Upload Your Bank Statement</div>
+
+      <!-- MERGE BANNER (shown when a statement is already loaded) -->
+      <div class="merge-banner" id="mergeBanner">
+        <span>📊 Dashboard loaded with <strong id="mergeCount">0</strong> transactions.</span>
+        <span>Upload another statement to <strong>merge</strong> it (duplicates removed automatically).</span>
+        <button class="nb-btn nb-btn-sm" onclick="resetTool()" style="margin-left:auto;">🔄 Start Fresh</button>
+      </div>
+
       <div class="upload-zone" id="uploadZone">
         <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.txt,.pdf" onchange="handleFileSelect(event)"/>
         <span class="upload-icon">📄</span>
@@ -433,10 +466,9 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
           <div id="exportMenu" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:2.5px solid #000;border-radius:12px;box-shadow:4px 4px 0 #000;min-width:160px;z-index:999;overflow:hidden;">
             <button onclick="downloadCSV();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;border-bottom:1.5px solid #e5e7eb;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">📄 Export CSV</button>
             <button onclick="downloadExcel();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;border-bottom:1.5px solid #e5e7eb;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">📊 Export Excel</button>
-            <button onclick="downloadPDF();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">🖨 Export PDF</button>
+            <button onclick="printDashboard();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">🖨 Premium Report</button>
           </div>
         </div>
-        <button class="nb-btn nb-btn-sm" onclick="printDashboard()">🖨 Print</button>
         <button class="nb-btn nb-btn-sm" onclick="resetTool()">🔄 New</button>
       </div>
     </div>
@@ -453,7 +485,7 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
     <div class="dash-tabs animate-in">
       <button class="dash-tab active" onclick="switchTab('overview')">📊 Overview</button>
       <button class="dash-tab" onclick="switchTab('spending')">🔥 Top Spending</button>
-      <button class="dash-tab" onclick="switchTab('budget')">💰 Budget Check</button>
+      <button class="dash-tab" onclick="switchTab('budget')">💰 Budget</button>
       <button class="dash-tab" onclick="switchTab('recurring')">🔁 Recurring</button>
       <button class="dash-tab" onclick="switchTab('transactions')">📋 Transactions</button>
     </div>
@@ -469,6 +501,12 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
           <div class="chart-title">📅 Monthly Cash Flow</div>
           <div class="chart-container"><canvas id="monthlyBarChart"></canvas></div>
         </div>
+      </div>
+
+      <!-- Savings Rate Trend -->
+      <div class="nb-card" style="margin-bottom:1.25rem;" id="savingsTrendCard">
+        <div class="section-heading">📈 Savings Rate Trend (Month-on-Month)</div>
+        <div class="chart-container" style="height:180px;"><canvas id="savingsTrendChart"></canvas></div>
       </div>
 
       <!-- Savings Rates -->
@@ -513,6 +551,12 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
       </div>
 
       <div class="nb-card" style="margin-bottom:1.25rem;">
+        <div class="section-heading">🆕 New Merchants This Period</div>
+        <p style="font-size:0.82rem;color:#555;font-weight:600;margin-bottom:0.75rem;">Merchants appearing for the first time in the most recent month of your statement.</p>
+        <div id="newMerchantsGrid" class="merchant-grid"></div>
+      </div>
+
+      <div class="nb-card" style="margin-bottom:1.25rem;">
         <div class="section-heading">Day-of-Week Spending</div>
         <div class="chart-container" style="height:200px;"><canvas id="dowChart"></canvas></div>
       </div>
@@ -520,6 +564,9 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
 
     <!-- BUDGET TAB -->
     <div class="dash-panel" id="panel-budget">
+      <!-- Spending Velocity -->
+      <div class="velocity-strip" id="velocityStrip"></div>
+
       <!-- 50/30/20 Rule -->
       <div class="budget-card">
         <div class="section-heading">50/30/20 Budget Rule</div>
@@ -552,13 +599,25 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
       <!-- Category Budget Planner -->
       <div class="budget-planner-card">
         <div class="section-heading">Set Your Category Budgets</div>
-        <p style="font-size:0.83rem;color:#555;margin-bottom:0.75rem;">Set monthly limits per category and see how you're tracking:</p>
+        <p style="font-size:0.83rem;color:#555;margin-bottom:0.75rem;">Set monthly limits per category. Carry-forward surplus shown if you were under-budget last period.</p>
         <div class="budget-planner-grid" id="budgetPlannerGrid"></div>
         <div style="margin-top:0.85rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
           <button class="nb-btn nb-btn-primary nb-btn-sm" onclick="applyBudgetLimits()">✓ Apply Limits</button>
           <button class="nb-btn nb-btn-sm" onclick="resetBudgetLimits()">Reset</button>
         </div>
         <div id="budgetSummary" style="margin-top:0.85rem;"></div>
+      </div>
+
+      <!-- Custom Categories -->
+      <div class="custom-cat-panel">
+        <div class="section-heading">✨ Custom Categories</div>
+        <p style="font-size:0.83rem;color:#555;margin-bottom:0.5rem;">Create a custom category with keywords to better classify your transactions. Saved locally in your browser.</p>
+        <div class="custom-cat-list" id="customCatList"></div>
+        <div class="custom-cat-inputs">
+          <input class="nb-input" style="flex:1;min-width:120px;" type="text" id="newCatName" placeholder="Category name (e.g. Gym)" maxlength="30"/>
+          <input class="nb-input" style="flex:2;min-width:160px;" type="text" id="newCatKeywords" placeholder="Keywords: gym, cult, fitness" maxlength="200"/>
+          <button class="nb-btn nb-btn-orange nb-btn-sm" onclick="addCustomCategory()" style="white-space:nowrap;">+ Add Category</button>
+        </div>
       </div>
     </div>
 
@@ -601,6 +660,7 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
                 <th>Date</th>
                 <th>Description</th>
                 <th>Category</th>
+                <th>Confidence</th>
                 <th>Debit</th>
                 <th>Credit</th>
                 <th>Balance</th>
@@ -620,11 +680,11 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
         <div id="exportMenu2" style="display:none;position:absolute;bottom:calc(100% + 6px);left:0;background:#fff;border:2.5px solid #000;border-radius:12px;box-shadow:4px 4px 0 #000;min-width:160px;z-index:999;overflow:hidden;">
           <button onclick="downloadCSV();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;border-bottom:1.5px solid #e5e7eb;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">📄 Export CSV</button>
           <button onclick="downloadExcel();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;border-bottom:1.5px solid #e5e7eb;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">📊 Export Excel</button>
-          <button onclick="downloadPDF();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">🖨 Export PDF</button>
+          <button onclick="printDashboard();closeExportMenu();" style="display:flex;align-items:center;gap:0.55rem;width:100%;padding:0.65rem 1rem;border:none;background:#fff;font-family:var(--font);font-size:0.85rem;font-weight:700;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='#fff'">🖨 Premium Report</button>
         </div>
       </div>
-      <button class="nb-btn nb-btn-pink" onclick="printDashboard()">🖨 Print Dashboard</button>
-      <button class="nb-btn" onclick="resetTool()">🔄 Analyze Another Statement</button>
+      <button class="nb-btn nb-btn-pink" onclick="printDashboard()">🖨 Premium Report</button>
+      <button class="nb-btn" onclick="resetTool()">🔄 Analyze Another</button>
     </div>
 
   </div><!-- /dashboard -->
@@ -644,7 +704,7 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
     <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Export Your Bank Statement</strong> — Login to your bank's net banking portal and download as CSV, Excel, or PDF from Account Summary / Statements section.</p></div>
     <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Upload the File</strong> — Click or drag &amp; drop your PDF, CSV, or Excel file. For multi-page PDFs, you can select which pages to include.</p></div>
     <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Map Your Columns</strong> — Tell the tool which columns represent Date, Description, Debit, Credit, and Balance. Auto-detected for most banks.</p></div>
-    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Get Instant Analysis</strong> — Explore your dashboard with charts, budget checker, spending rank, recurring payments, and more.</p></div>
+    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.2rem;font-size:0.9rem;"><strong>Get Instant Analysis</strong> — Explore your dashboard with charts, budget checker, spending rank, recurring payments, and more. Merge multiple statements for a combined view!</p></div>
   </section>
 
   <section style="margin-bottom:2.5rem;">
@@ -668,11 +728,10 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
     <h2>Frequently Asked Questions</h2>
     <details><summary>Is it safe to upload my bank statement here?</summary><p>Yes, completely. All processing runs in your browser using JavaScript — your file never leaves your device. No data is sent to any server, no account is required, and nothing is stored.</p></details>
     <details><summary>What file formats are supported?</summary><p>PDF (direct upload), CSV, Excel (.xlsx and .xls), and plain text (.txt). PDF parsing works on text-based PDFs from all major Indian banks. Scanned/image PDFs are not supported — use net banking to download a text-based PDF or export as CSV.</p></details>
-    <details><summary>Can I analyze multi-page PDF statements?</summary><p>Yes. When you upload a multi-page PDF, the tool detects all pages and lets you choose which pages to include in the analysis. You can select all pages or specific ones.</p></details>
-    <details><summary>How does expense categorization work?</summary><p>The tool uses keyword matching on transaction descriptions. 15+ categories are supported with hundreds of keywords for Indian merchants and common transactions.</p></details>
+    <details><summary>Can I merge multiple bank statements?</summary><p>Yes! After analyzing a statement, simply upload another one and the tool will merge the transactions, automatically removing duplicates based on date, amount, and description. A limit of 2,000 transactions is applied to prevent browser lag.</p></details>
+    <details><summary>How does expense categorization work?</summary><p>The tool uses keyword matching on normalized transaction descriptions. 15+ categories are supported with hundreds of keywords for Indian merchants and common transactions. You can also create custom categories with your own keywords, saved locally.</p></details>
     <details><summary>What is the 50/30/20 budget rule?</summary><p>Allocate 50% of income to Needs (rent, groceries, utilities), 30% to Wants (dining out, entertainment, shopping), and 20% to Savings. The analyzer shows how your actual spending compares.</p></details>
-    <details><summary>Can I set my own budget limits per category?</summary><p>Yes. In the Budget Check tab, you can set a monthly spending limit for each category. The tool will show you how much you've spent vs your limit with a visual progress bar and alert you if you've gone over.</p></details>
-    <details><summary>Can I export or download the analysis?</summary><p>Yes. You can download a complete CSV report with all transactions and their categories, which you can open in Excel or Google Sheets for further analysis.</p></details>
+    <details><summary>Can I export or download the analysis?</summary><p>Yes. You can export as CSV, Excel, or generate a Premium PDF Report with category charts, insights, and all transactions. All generated in your browser — nothing is sent to a server.</p></details>
   </section>
 
   <section style="margin-bottom:2.5rem;">
@@ -682,13 +741,13 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
         <thead><tr><th>Feature</th><th style="color:#4f46e5;">WorldOfTools</th><th>Other Tools</th></tr></thead>
         <tbody>
           <tr><td>PDF Statement Support</td><td class="yes">✓ Native PDF Parsing</td><td class="no">Upload Elsewhere First</td></tr>
-          <tr><td>Multi-page PDF Selection</td><td class="yes">✓ Page-by-page control</td><td class="no">Not Available</td></tr>
+          <tr><td>Multi-Statement Merge</td><td class="yes">✓ With Deduplication</td><td class="no">Not Available</td></tr>
+          <tr><td>Custom Categories</td><td class="yes">✓ Saved Locally</td><td class="no">Paid Feature</td></tr>
           <tr><td>Data Privacy</td><td class="yes">✓ 100% Browser-Side</td><td class="no">Server Upload</td></tr>
           <tr><td>No Account Required</td><td class="yes">✓ Yes</td><td class="no">Login Required</td></tr>
           <tr><td>Category Budget Planner</td><td class="yes">✓ Per-category limits</td><td class="no">Paid Feature</td></tr>
           <tr><td>50/30/20 Budget Rule</td><td class="yes">✓ Yes</td><td class="no">Rare</td></tr>
           <tr><td>Recurring Detection</td><td class="yes">✓ Auto-detected</td><td class="no">Paid Feature</td></tr>
-          <tr><td>CSV Export</td><td class="yes">✓ Free</td><td class="no">Paid</td></tr>
           <tr><td>Indian Banks Support</td><td class="yes">✓ All Major Banks</td><td class="no">Limited</td></tr>
         </tbody>
       </table>
@@ -712,14 +771,41 @@ details p{margin:0.65rem 0 0;color:#555;line-height:1.6;font-size:0.88rem;}
 // ═══════════════════════════════════════════════
 // GLOBALS
 // ═══════════════════════════════════════════════
+const MERGE_LIMIT = 2000; // Max transactions to prevent browser lag
 let allTransactions = [];
 let rawHeaders = [];
 let rawRows = [];
 let colMapping = { date:'', desc:'', debit:'', credit:'', balance:'' };
-let pieChart = null, barChart = null, dowChart = null;
+let pieChart = null, barChart = null, dowChart = null, savingsTrendChart = null;
 let pdfPageData = []; // {pageNum, textItems}
 let selectedPages = [];
 let budgetLimits = {};
+let categoryOverrides = {}; // {txnHash: categoryName} — persisted in localStorage
+let customCategories = [];  // [{name, emoji, keywords}] — persisted in localStorage
+let isMergeMode = false;
+let previousMerchants = new Set(); // merchants from previous statement(s) for "new merchant" detection
+
+// ─── Load persisted data ──────────────────────
+function loadPersistedData() {
+  try {
+    const ov = localStorage.getItem('bsa_cat_overrides');
+    if (ov) categoryOverrides = JSON.parse(ov);
+    const cc = localStorage.getItem('bsa_custom_cats');
+    if (cc) customCategories = JSON.parse(cc);
+    const bl = localStorage.getItem('bsa_budget_limits');
+    if (bl) budgetLimits = JSON.parse(bl);
+  } catch(e) { /* ignore */ }
+}
+function saveCategoryOverrides() {
+  try { localStorage.setItem('bsa_cat_overrides', JSON.stringify(categoryOverrides)); } catch(e){}
+}
+function saveCustomCategories() {
+  try { localStorage.setItem('bsa_custom_cats', JSON.stringify(customCategories)); } catch(e){}
+}
+function saveBudgetLimits() {
+  try { localStorage.setItem('bsa_budget_limits', JSON.stringify(budgetLimits)); } catch(e){}
+}
+loadPersistedData();
 
 // ═══════════════════════════════════════════════
 // CATEGORY RULES
@@ -741,24 +827,152 @@ const CATEGORY_RULES = [
   { name:'Other', emoji:'📦', color:'#cbd5e1', bg:'#f8fafc', type:'neutral', keywords:[] }
 ];
 
-function categorize(desc, isCredit) {
+// ─── Build effective rules (base + custom) ────
+function getEffectiveRules() {
+  return [
+    ...customCategories.map(c => ({
+      name: c.name,
+      emoji: c.emoji || '🏷️',
+      color: c.color || '#cbd5e1',
+      bg: c.bg || '#f8fafc',
+      type: 'neutral',
+      keywords: c.keywords
+    })),
+    ...CATEGORY_RULES
+  ];
+}
+
+// ─── Normalize merchant name ──────────────────
+function normalizeMerchant(desc) {
+  let s = String(desc || '');
+  // Strip UPI transaction IDs: UPI/123456789012/...
+  s = s.replace(/UPI\/\d+\/[^\s]*/gi, '');
+  // Strip numeric transaction/reference IDs (6+ digits)
+  s = s.replace(/\b\d{6,}\b/g, '');
+  // Strip common bank prefixes
+  s = s.replace(/\b(NEFT|RTGS|IMPS|ACH|ECS|NACH|UPI|POS|CR|DR|ATM|INB|MOB|INT|NFS|BIL|CLG|OTC|WDL|DEP)\b/gi, '');
+  // Normalize common Indian merchant names
+  const MERCHANT_MAP = [
+    [/swiggy/i,'Swiggy'], [/zomato/i,'Zomato'], [/amazon/i,'Amazon'],
+    [/flipkart/i,'Flipkart'], [/myntra/i,'Myntra'], [/netflix/i,'Netflix'],
+    [/spotify/i,'Spotify'], [/hotstar|disney/i,'Disney+ Hotstar'],
+    [/amzn|amazon/i,'Amazon'], [/google/i,'Google'], [/apple/i,'Apple'],
+    [/paytm/i,'Paytm'], [/phonepe/i,'PhonePe'], [/gpay|google pay/i,'Google Pay'],
+    [/irctc/i,'IRCTC'], [/indigo/i,'IndiGo'], [/ola\b/i,'Ola Cabs'],
+    [/uber/i,'Uber'], [/rapido/i,'Rapido'], [/bpcl/i,'BPCL Fuel'],
+    [/iocl|indian oil/i,'IndianOil'], [/hdfc/i,'HDFC Bank'],
+    [/sbi/i,'SBI'], [/icici/i,'ICICI Bank'], [/axis bank/i,'Axis Bank'],
+    [/kotak/i,'Kotak Bank'], [/zerodha/i,'Zerodha'], [/groww/i,'Groww'],
+  ];
+  for (const [re, name] of MERCHANT_MAP) {
+    if (re.test(s)) return name;
+  }
+  // Clean up separators and whitespace
+  s = s.replace(/[\/\-_@#*|]/g,' ').replace(/\s+/g,' ').trim();
+  return s.substring(0, 30) || String(desc).substring(0, 30);
+}
+
+// ─── Categorize with confidence ──────────────
+function categorizeWithConf(desc, isCredit) {
   const d = (desc || '').toLowerCase();
-  // Credit transactions — check income keywords first
+  const rules = getEffectiveRules();
+  // Credit: check income first
   if (isCredit) {
-    const incomeRule = CATEGORY_RULES.find(r => r.name === 'Income');
-    if (incomeRule.keywords.some(k => d.includes(k))) return 'Income';
+    const incomeRule = rules.find(r => r.name === 'Income');
+    if (incomeRule && incomeRule.keywords.some(k => d.includes(k))) {
+      return { category:'Income', confidence:'high' };
+    }
   }
-  for (const cat of CATEGORY_RULES) {
+  // Exact keyword match → High confidence
+  for (const cat of rules) {
     if (cat.name === 'Other' || cat.name === 'Income') continue;
-    if (cat.keywords.some(k => d.includes(k))) return cat.name;
+    if (cat.keywords.some(k => d.includes(k))) return { category:cat.name, confidence:'high' };
   }
-  // Credit without matching keyword = Income
-  if (isCredit) return 'Income';
-  return 'Other';
+  // Normalized merchant match → Medium confidence
+  const norm = normalizeMerchant(desc).toLowerCase();
+  for (const cat of rules) {
+    if (cat.name === 'Other' || cat.name === 'Income') continue;
+    if (cat.keywords.some(k => norm.includes(k))) return { category:cat.name, confidence:'medium' };
+  }
+  if (isCredit) return { category:'Income', confidence:'medium' };
+  return { category:'Other', confidence:'low' };
 }
 
 function getCat(name) {
-  return CATEGORY_RULES.find(c => c.name === name) || CATEGORY_RULES[CATEGORY_RULES.length - 1];
+  const all = getEffectiveRules();
+  return all.find(c => c.name === name) || CATEGORY_RULES[CATEGORY_RULES.length - 1];
+}
+
+// ─── Transaction hash for deduplication ──────
+function txnHash(t) {
+  const d = t.dateStr || '';
+  const a = Math.round((t.debit || 0) + (t.credit || 0));
+  const desc = normalizeMerchant(t.desc).toLowerCase().substring(0, 20);
+  return `${d}|${a}|${desc}`;
+}
+
+// ═══════════════════════════════════════════════
+// CUSTOM CATEGORIES
+// ═══════════════════════════════════════════════
+function renderCustomCatList() {
+  const list = document.getElementById('customCatList');
+  if (!list) return;
+  if (customCategories.length === 0) {
+    list.innerHTML = '<div style="font-size:0.82rem;color:#888;font-weight:600;padding:0.4rem 0;">No custom categories yet. Add one below!</div>';
+    return;
+  }
+  list.innerHTML = customCategories.map((c,i) =>
+    `<div class="custom-cat-item">
+      <span>${c.emoji||'🏷️'} <strong>${escHtml(c.name)}</strong></span>
+      <span style="color:#666;font-weight:400;font-size:0.8rem;flex:1;margin-left:0.4rem;">${escHtml((c.keywords||[]).slice(0,4).join(', '))}${(c.keywords||[]).length>4?'…':''}</span>
+      <button class="custom-cat-del" onclick="deleteCustomCat(${i})">✕</button>
+    </div>`
+  ).join('');
+}
+
+function addCustomCategory() {
+  const nameEl = document.getElementById('newCatName');
+  const kwEl = document.getElementById('newCatKeywords');
+  const name = nameEl.value.trim();
+  const kws = kwEl.value.split(',').map(k => k.trim().toLowerCase()).filter(Boolean);
+  if (!name) { showError('Please enter a category name.'); return; }
+  if (kws.length === 0) { showError('Please enter at least one keyword.'); return; }
+  if (customCategories.find(c => c.name.toLowerCase() === name.toLowerCase())) {
+    showError('A category with this name already exists.'); return;
+  }
+  showError('');
+  customCategories.push({ name, emoji:'🏷️', color:'#fca5a5', bg:'#fff1f2', keywords: kws });
+  saveCustomCategories();
+  nameEl.value = ''; kwEl.value = '';
+  renderCustomCatList();
+  // Re-categorize all transactions with new rules
+  if (allTransactions.length) {
+    allTransactions.forEach(t => {
+      if (!categoryOverrides[t.hash]) {
+        const res = categorizeWithConf(t.desc, t.type === 'credit');
+        t.category = res.category; t.confidence = res.confidence;
+      }
+    });
+    renderDashboard();
+  }
+}
+
+function deleteCustomCat(idx) {
+  customCategories.splice(idx, 1);
+  saveCustomCategories();
+  renderCustomCatList();
+  if (allTransactions.length) renderDashboard();
+}
+
+// ═══════════════════════════════════════════════
+// MANUAL RE-CATEGORIZATION (persisted)
+// ═══════════════════════════════════════════════
+function onRecatChange(hash, newCat) {
+  categoryOverrides[hash] = newCat;
+  saveCategoryOverrides();
+  const t = allTransactions.find(t => t.hash === hash);
+  if (t) t.category = newCat;
+  renderDashboard();
 }
 
 // ═══════════════════════════════════════════════
@@ -772,6 +986,7 @@ function switchTab(tab) {
   document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
   const panel = document.getElementById('panel-' + tab);
   if (panel) { panel.classList.add('active'); panel.classList.add('animate-in'); }
+  if (tab === 'budget') renderCustomCatList();
 }
 
 // ═══════════════════════════════════════════════
@@ -791,7 +1006,8 @@ function handleFileSelect(e) {
   if (file) processFile(file);
 }
 
-function processFile(file) {
+function processFile(file, appendMode) {
+  isMergeMode = appendMode || false;
   showError('');
   const ext = file.name.split('.').pop().toLowerCase();
   if (!['csv','xlsx','xls','txt','pdf'].includes(ext)) {
@@ -817,19 +1033,16 @@ function processFile(file) {
 // ═══════════════════════════════════════════════
 function parseCSV(text) {
   showProgress('🔍 Parsing CSV...', 30);
-  // Detect delimiter
   const firstLine = text.split('\n')[0];
   const commaCount = (firstLine.match(/,/g) || []).length;
   const semiCount  = (firstLine.match(/;/g) || []).length;
   const pipeCount  = (firstLine.match(/\|/g) || []).length;
   const delim = semiCount > commaCount ? ';' : pipeCount > commaCount ? '|' : ',';
 
-  // Clean BOM
   const cleaned = text.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
   const lines = cleaned.trim().split('\n').filter(l => l.trim());
   if (lines.length < 2) { showError('File appears empty or has too few rows.'); hideProgress(); return; }
 
-  // Find header row (skip leading bank metadata rows, up to row 20)
   let headerIdx = 0;
   const HEADER_KEYS = ['date','txn','transaction','description','narration','particulars','debit','credit','withdrawal','deposit','amount','balance','chq','cheque','ref'];
   for (let i = 0; i < Math.min(20, lines.length); i++) {
@@ -868,7 +1081,6 @@ function parseExcel(buffer) {
   showProgress('📊 Parsing Excel...', 30);
   try {
     const wb = XLSX.read(buffer, { type:'array', cellDates:true });
-    // Find the sheet with most data (likely the transactions sheet)
     let bestSheet = wb.SheetNames[0];
     let bestCount = 0;
     for (const name of wb.SheetNames) {
@@ -889,9 +1101,8 @@ function parseExcel(buffer) {
     }
     rawHeaders = data[headerIdx].map(h => String(h).trim());
     rawRows = data.slice(headerIdx + 1).filter(r => r.some(c => String(c).trim()));
-    // Normalize date cells
     rawRows = rawRows.map(row =>
-      row.map((cell, ci) => {
+      row.map((cell) => {
         if (cell instanceof Date) {
           return `${cell.getDate().toString().padStart(2,'0')}/${(cell.getMonth()+1).toString().padStart(2,'0')}/${cell.getFullYear()}`;
         }
@@ -938,7 +1149,6 @@ async function parsePDF(buffer) {
     hideProgress();
 
     if (numPages > 1) {
-      // Show page selector
       selectedPages = Array.from({ length: numPages }, (_, i) => i + 1);
       const wrap = document.getElementById('pageSelectorWrap');
       const tabs = document.getElementById('pageTabs');
@@ -987,7 +1197,6 @@ function processPDFPages() {
 
   if (allItems.length === 0) { showError('No text found in selected pages.'); return; }
 
-  // Group by line (same page, close Y)
   allItems.sort((a,b) => a.page !== b.page ? a.page - b.page : a.y !== b.y ? a.y - b.y : a.x - b.x);
   const lines = [];
   let curLine = null;
@@ -1005,7 +1214,6 @@ function processPDFPages() {
     line.text = line.items.map(i => i.text).join(' ');
   }
 
-  // Find header row
   const HKEYS = ['date','narration','description','particulars','debit','credit','withdrawal','deposit','balance','amount','txn','transaction','chq','reference','value dt'];
   let headerLineIdx = -1, bestHits = 1;
   for (let i = 0; i < lines.length; i++) {
@@ -1021,16 +1229,11 @@ function processPDFPages() {
 
   const headerLine = lines[headerLineIdx];
   rawHeaders = headerLine.items.map(i => i.text.trim());
-
-  // Build column X boundaries with tolerance
   const colXPositions = headerLine.items.map(i => ({ x: i.x, xEnd: i.x + (i.w || 50), label: i.text.toLowerCase() }));
-
-  // Date regex — supports many formats
   const DATE_RE = /\b(\d{1,2}[\/-]\d{1,2}[\/-]\d{2,4}|\d{1,2}[\s\-]([A-Za-z]{3})[\s\-]\d{4}|\d{4}[\/-]\d{2}[\/-]\d{2}|\d{8})\b/;
   const dataLines = lines.slice(headerLineIdx + 1).filter(l => DATE_RE.test(l.text));
 
   if (dataLines.length === 0) {
-    // Fallback: take all non-header lines that have numeric content
     const NUM_RE = /\d{3,}/;
     const fallbackLines = lines.slice(headerLineIdx + 1).filter(l => NUM_RE.test(l.text) && l.items.length >= 3);
     if (fallbackLines.length > 0) {
@@ -1133,6 +1336,11 @@ function runAnalysis() {
         document.getElementById('colMapSection').style.display = 'none';
         document.getElementById('dashboard').style.display = 'block';
         document.getElementById('dashboard').scrollIntoView({ behavior:'smooth', block:'start' });
+        // Show merge banner
+        document.getElementById('mergeBanner').style.display = 'flex';
+        document.getElementById('mergeCount').textContent = allTransactions.length;
+        // Reset file input for next upload
+        document.getElementById('fileInput').value = '';
       }, 200);
     } catch(e) {
       showError('Analysis failed: ' + e.message);
@@ -1142,7 +1350,6 @@ function runAnalysis() {
 }
 
 function buildTransactions() {
-  allTransactions = [];
   const hIdx = h => rawHeaders.indexOf(h);
   const dIdx   = hIdx(colMapping.date);
   const descIdx = hIdx(colMapping.desc);
@@ -1150,6 +1357,7 @@ function buildTransactions() {
   const crIdx  = colMapping.credit ? hIdx(colMapping.credit) : -1;
   const balIdx = colMapping.balance ? hIdx(colMapping.balance) : -1;
 
+  const newTxns = [];
   for (const row of rawRows) {
     const dateStr = String(row[dIdx] || '').trim();
     const desc    = String(row[descIdx] || '').trim();
@@ -1160,7 +1368,6 @@ function buildTransactions() {
     if (!dateStr && !desc && !debit && !credit) continue;
     if (!desc && !debit && !credit) continue;
 
-    // Handle single amount column with Dr/Cr indicator in desc
     if (drIdx >= 0 && drIdx === crIdx) {
       const lower = desc.toLowerCase();
       if (lower.includes(' cr') || lower.includes('credit')) { credit = debit; debit = 0; }
@@ -1170,12 +1377,59 @@ function buildTransactions() {
     const isCredit = credit > 0 && credit >= debit;
     const type = isCredit ? 'credit' : 'debit';
     const amount = isCredit ? credit : debit;
-    const category = categorize(desc, isCredit);
+    const catResult = categorizeWithConf(desc, isCredit);
 
-    allTransactions.push({ date: parsedDate, dateStr, desc, debit, credit, balance, type, amount, category });
+    const txn = {
+      date: parsedDate, dateStr, desc, debit, credit, balance,
+      type, amount,
+      category: catResult.category,
+      confidence: catResult.confidence,
+      hash: '' // will fill after
+    };
+    // Temporary hash for override lookup
+    const tempHash = `${dateStr}|${Math.round(debit+credit)}|${normalizeMerchant(desc).toLowerCase().substring(0,20)}`;
+    txn.hash = tempHash;
+    // Apply stored override
+    if (categoryOverrides[tempHash]) txn.category = categoryOverrides[tempHash];
+
+    newTxns.push(txn);
   }
 
-  if (allTransactions.length === 0) throw new Error('No valid transactions found. Check your column mapping.');
+  if (newTxns.length === 0) throw new Error('No valid transactions found. Check your column mapping.');
+
+  if (isMergeMode && allTransactions.length > 0) {
+    // Track existing merchants as "previous" before merging
+    previousMerchants = new Set(
+      allTransactions.filter(t => t.type === 'debit').map(t => normalizeMerchant(t.desc).toLowerCase())
+    );
+    // Deduplicate: build hash set of existing transactions
+    const existingHashes = new Set(allTransactions.map(t => t.hash));
+    let added = 0, dupes = 0;
+    for (const t of newTxns) {
+      if (existingHashes.has(t.hash)) { dupes++; continue; }
+      allTransactions.push(t);
+      added++;
+    }
+    // Enforce MERGE_LIMIT
+    if (allTransactions.length > MERGE_LIMIT) {
+      allTransactions = allTransactions.slice(0, MERGE_LIMIT);
+      showError(`ℹ️ Merged to ${MERGE_LIMIT} transactions (limit applied to prevent lag). ${added} new, ${dupes} duplicates removed.`);
+    } else {
+      // Show brief info
+      document.getElementById('errorMsg').style.display = 'block';
+      document.getElementById('errorMsg').style.background = '#f0fdf4';
+      document.getElementById('errorMsg').style.borderColor = '#059669';
+      document.getElementById('errorMsg').style.color = '#065f46';
+      document.getElementById('errorMsg').textContent = `✅ Merged: +${added} new transactions, ${dupes} duplicates removed. Total: ${allTransactions.length}`;
+      setTimeout(() => showError(''), 4000);
+    }
+  } else {
+    previousMerchants = new Set();
+    allTransactions = newTxns.slice(0, MERGE_LIMIT);
+    if (newTxns.length > MERGE_LIMIT) {
+      showError(`ℹ️ Statement has ${newTxns.length} transactions. Showing first ${MERGE_LIMIT} to prevent browser lag.`);
+    }
+  }
 
   allTransactions.sort((a,b) => {
     if (!a.date && !b.date) return 0;
@@ -1183,6 +1437,8 @@ function buildTransactions() {
     if (!b.date) return -1;
     return a.date - b.date;
   });
+
+  isMergeMode = true; // next upload will be in merge mode
 }
 
 // ═══════════════════════════════════════════════
@@ -1245,7 +1501,7 @@ function renderDashboard() {
     options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11, family:"'Space Grotesk', sans-serif", weight:'700' }, padding:6 } } } }
   });
 
-  // Monthly bar chart
+  // Monthly bar chart + savings trend data
   const monthlyMap = {};
   txns.forEach(t => {
     if (!t.date) return;
@@ -1270,26 +1526,102 @@ function renderDashboard() {
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11, family:"'Space Grotesk', sans-serif", weight:'700' }, padding:6 } } }, scales:{ y:{ ticks:{ callback:v=>'₹'+(v>=1000?(v/1000).toFixed(0)+'K':v), font:{family:"'Space Grotesk', sans-serif"} }, grid:{color:'#f0f0f0'} }, x:{ ticks:{ font:{family:"'Space Grotesk', sans-serif", size:11} } } } }
   });
 
+  // ── Savings Rate Trend ──
+  const savingsRates = months.map(m => {
+    const inc = monthlyMap[m].income;
+    const exp = monthlyMap[m].expense;
+    return inc > 0 ? +((inc - exp) / inc * 100).toFixed(1) : 0;
+  });
+  if (savingsTrendChart) savingsTrendChart.destroy();
+  const trendCard = document.getElementById('savingsTrendCard');
+  if (months.length >= 2) {
+    trendCard.style.display = 'block';
+    savingsTrendChart = new Chart(document.getElementById('savingsTrendChart').getContext('2d'), {
+      type:'line',
+      data:{
+        labels:monthLabels,
+        datasets:[{
+          label:'Savings Rate %',
+          data:savingsRates,
+          borderColor:'#4f46e5', backgroundColor:'rgba(79,70,229,0.08)',
+          borderWidth:3, pointBackgroundColor:'#ffe066', pointBorderColor:'#000',
+          pointRadius:5, fill:true, tension:0.3
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ display:false },
+          tooltip:{ callbacks:{ label: ctx => `Savings: ${ctx.raw}%` } } },
+        scales:{
+          y:{ ticks:{ callback: v => v+'%', font:{family:"'Space Grotesk', sans-serif"} },
+              grid:{color:'#f0f0f0'} },
+          x:{ ticks:{ font:{family:"'Space Grotesk', sans-serif", size:11} } }
+        }
+      }
+    });
+  } else {
+    trendCard.style.display = 'none';
+  }
+
   // Health Meters
   const savRate = totalIncome > 0 ? (netSavings / totalIncome * 100) : 0;
   const expRate = totalIncome > 0 ? (totalExpense / totalIncome * 100) : 0;
-  const avgDaily = totalExpense / Math.max(1, Math.ceil(((maxDate||new Date()) - (minDate||new Date())) / 86400000) || 30);
+  const daysDiff = Math.max(1, Math.ceil(((maxDate||new Date()) - (minDate||new Date())) / 86400000) || 30);
+  const avgDaily = totalExpense / daysDiff;
   document.getElementById('healthMeters').innerHTML = `
     ${meterRow('Savings Rate', savRate.toFixed(1)+'%', Math.min(100,savRate), savRate>=20?'#4ade80':savRate>=10?'#fbbf24':'#f87171')}
     ${meterRow('Expense-to-Income', expRate.toFixed(1)+'%', Math.min(100,expRate), expRate<=70?'#4ade80':expRate<=90?'#fbbf24':'#f87171')}
     ${meterRow('Avg Daily Spend', fmtMoney(avgDaily), Math.min(100, avgDaily/500*10), '#a3bffa')}
   `;
 
+  // ── Spending Velocity ──
+  if (maxDate && minDate) {
+    const totalDays = Math.max(1, Math.ceil((maxDate - minDate) / 86400000) + 1);
+    const today = new Date();
+    const periodEnd = maxDate < today ? maxDate : today;
+    const daysPassed = Math.max(1, Math.ceil((periodEnd - minDate) / 86400000));
+    const avgMonthlySpend = totalExpense / (totalDays / 30);
+    const dailyPace = totalExpense / daysPassed;
+    const projectedMonthly = dailyPace * 30;
+    const currentMonth = `${maxDate.getFullYear()}-${String(maxDate.getMonth()+1).padStart(2,'0')}`;
+    const currentMonthSpend = (monthlyMap[currentMonth] || {}).expense || 0;
+    const currentMonthIncome = (monthlyMap[currentMonth] || {}).income || 0;
+    const currentMonthDays = new Date(maxDate.getFullYear(), maxDate.getMonth()+1, 0).getDate();
+    const currentDay = maxDate.getDate();
+    const pctOfMonth = Math.round(currentDay / currentMonthDays * 100);
+    const pctBudgetUsed = currentMonthIncome > 0 ? Math.round(currentMonthSpend / currentMonthIncome * 100) : 0;
+    const velocityEl = document.getElementById('velocityStrip');
+    velocityEl.innerHTML = `
+      <strong>⚡ Spending Velocity:</strong>&nbsp; 
+      ${pctBudgetUsed > 0 ? `You've used <strong>${pctBudgetUsed}%</strong> of this month's income by day ${currentDay} (<strong>${pctOfMonth}%</strong> through the month). ` : ''}
+      Avg monthly spend: <strong>${fmtMoney(avgMonthlySpend)}</strong>.
+      At current pace, projected this month: <strong>${fmtMoney(projectedMonthly)}</strong>.
+      ${projectedMonthly > avgMonthlySpend * 1.1 ? '⚠️ <span style="color:#92400e;">Spending faster than average!</span>' : '✅ <span style="color:#065f46;">On track.</span>'}
+    `;
+    velocityEl.style.display = 'block';
+  } else {
+    document.getElementById('velocityStrip').style.display = 'none';
+  }
+
   // Smart Insights
   const topCat   = sortedCats[0];
   const subs     = expenses.filter(t => t.category === 'Subscriptions');
   const subAmt   = subs.reduce((s,t) => s+t.amount, 0);
+  // New merchant insight
+  let newMerchantCount = 0;
+  if (previousMerchants.size > 0) {
+    const currentMerchants = new Set(expenses.map(t => normalizeMerchant(t.desc).toLowerCase()));
+    for (const m of currentMerchants) {
+      if (!previousMerchants.has(m)) newMerchantCount++;
+    }
+  }
   const insights = [
     { icon:'📊', head:'Average Daily Spending', text:`You spend approximately ${fmtMoney(avgDaily)} per day on average.${avgDaily>2000?' Consider tracking daily expenses to reduce overspending.':' Great control on daily spending!'}` },
     { icon:'🔥', head:'Top Spending Category', text:topCat?`${getCat(topCat[0]).emoji} ${topCat[0]} is your biggest expense at ${fmtMoney(topCat[1].total)} (${(topCat[1].total/totalExpense*100).toFixed(1)}% of spending).`:'No expense data.' },
     { icon:'💾', head:'Savings Rate', text:`Your savings rate is ${savRate.toFixed(1)}%. ${savRate>=20?'✅ Excellent! Meeting the 20% target.':savRate>=10?'⚠️ Good start — try to push above 20%.':'❌ Below 10% — look for areas to cut spending.'}` },
     { icon:'📺', head:'Subscriptions', text:subAmt>0?`You spent ${fmtMoney(subAmt)} on ${subs.length} subscription transactions. Review for unused services.`:'No subscription spending detected.' },
-    { icon:'💡', head:'Budget Tip', text:totalExpense>totalIncome?`⚠️ You spent ${fmtMoney(totalExpense-totalIncome)} more than you earned. Review ${topCat?.[0]||'your top'} expenses.`:`You lived within your means! Consider investing the ${fmtMoney(netSavings)} surplus in SIP or FD.` }
+    { icon:'💡', head:'Budget Tip', text:totalExpense>totalIncome?`⚠️ You spent ${fmtMoney(totalExpense-totalIncome)} more than you earned. Review ${topCat?.[0]||'your top'} expenses.`:`You lived within your means! Consider investing the ${fmtMoney(netSavings)} surplus in SIP or FD.` },
+    ...(newMerchantCount > 0 ? [{ icon:'🆕', head:'New Merchants', text:`${newMerchantCount} new merchant(s) detected in this statement compared to your previous upload. Check the Spending tab for details.` }] : [])
   ];
   document.getElementById('insightsGrid').innerHTML = insights.map(i =>
     `<div class="insight-card"><span class="insight-icon">${i.icon}</span><div><div class="insight-head">${i.head}</div><div class="insight-text">${i.text}</div></div></div>`
@@ -1314,7 +1646,7 @@ function renderDashboard() {
   // Top Merchants
   const merchantMap = {};
   expenses.forEach(t => {
-    const key = cleanMerchant(t.desc);
+    const key = normalizeMerchant(t.desc);
     if (!merchantMap[key]) merchantMap[key] = { count:0, total:0 };
     merchantMap[key].count++; merchantMap[key].total += t.amount;
   });
@@ -1326,6 +1658,24 @@ function renderDashboard() {
       <div class="merchant-amt">${fmtMoney(data.total)}</div>
     </div>`
   ).join('');
+
+  // New Merchants panel
+  if (previousMerchants.size > 0) {
+    const newMerchantMap = {};
+    expenses.forEach(t => {
+      const key = normalizeMerchant(t.desc);
+      if (!previousMerchants.has(key.toLowerCase())) {
+        if (!newMerchantMap[key]) newMerchantMap[key] = { count:0, total:0 };
+        newMerchantMap[key].count++; newMerchantMap[key].total += t.amount;
+      }
+    });
+    const newM = Object.entries(newMerchantMap).sort((a,b)=>b[1].total-a[1].total).slice(0,8);
+    document.getElementById('newMerchantsGrid').innerHTML = newM.length > 0
+      ? newM.map(([name,data]) => `<div class="merchant-card"><div class="merchant-name">${escHtml(name.substring(0,20))} <span class="new-merchant-badge">NEW</span></div><div class="merchant-count">${data.count} txns</div><div class="merchant-amt">${fmtMoney(data.total)}</div></div>`).join('')
+      : '<div style="font-size:0.85rem;color:#666;font-weight:600;">No new merchants detected in merged statement.</div>';
+  } else {
+    document.getElementById('newMerchantsGrid').innerHTML = '<div style="font-size:0.85rem;color:#666;font-weight:600;">Merge a second statement to see new merchants.</div>';
+  }
 
   // Day-of-week chart
   const dowMap = { 0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0 };
@@ -1364,6 +1714,9 @@ function renderDashboard() {
   // Budget Planner
   buildBudgetPlanner(sortedCats, catMap);
 
+  // Custom cats list
+  renderCustomCatList();
+
   // Recurring
   buildRecurring(expenses);
 
@@ -1398,17 +1751,23 @@ function buildBudgetPlanner(sortedCats, catMap) {
   grid.innerHTML = sortedCats.map(([name, data]) => {
     const cat = getCat(name);
     const saved = budgetLimits[name] || '';
+    // Carry-forward: if saved limit > data.total, show surplus
+    let carryFwd = '';
+    if (saved && !isNaN(parseFloat(saved))) {
+      const surplus = parseFloat(saved) - data.total;
+      if (surplus > 0) carryFwd = `<div style="font-size:0.7rem;color:#059669;font-weight:700;">🎁 Carry-forward: ${fmtMoney(surplus)}</div>`;
+    }
     return `<div class="budget-cat-row">
       <div class="budget-cat-emoji">${cat.emoji}</div>
       <div class="budget-cat-info">
         <div class="budget-cat-name">${name}</div>
         <div class="budget-cat-spent">Spent: ${fmtMoney(data.total)}</div>
+        ${carryFwd}
         <div class="budget-bar-outer"><div class="budget-bar-inner" id="bbar-${name.replace(/\W/g,'_')}" style="width:0;background:${cat.color};"></div></div>
       </div>
       <input class="budget-cat-limit" type="number" id="blimit-${name.replace(/\W/g,'_')}" placeholder="Limit ₹" value="${saved}" min="0" oninput="previewBudget('${name.replace(/'/g,"\\'")}',${data.total})"/>
     </div>`;
   }).join('');
-  // Apply saved limits
   if (Object.keys(budgetLimits).length) applyBudgetLimits();
 }
 
@@ -1450,6 +1809,7 @@ function applyBudgetLimits() {
       nolimit.push(name);
     }
   }
+  saveBudgetLimits();
 
   let html = '';
   if (overBudget.length) {
@@ -1461,7 +1821,7 @@ function applyBudgetLimits() {
   if (underBudget.length) {
     html += `<div style="background:#f0fdf4;border:2px solid #059669;border-radius:12px;padding:0.85rem 1rem;">
       <strong style="color:#059669;">✅ Within Budget (${underBudget.length} category${underBudget.length>1?'s':''}):</strong>
-      ${underBudget.map(b=>`<div style="font-size:0.82rem;margin-top:0.3rem;"> ${getCat(b.name).emoji} <strong>${b.name}</strong>: ${fmtMoney(b.spent)} of ₹${b.limit.toLocaleString('en-IN')} — <span style="color:#059669;font-weight:700;">${fmtMoney(b.under)} remaining</span></div>`).join('')}
+      ${underBudget.map(b=>`<div style="font-size:0.82rem;margin-top:0.3rem;"> ${getCat(b.name).emoji} <strong>${b.name}</strong>: ${fmtMoney(b.spent)} of ₹${b.limit.toLocaleString('en-IN')} — <span style="color:#059669;font-weight:700;">${fmtMoney(b.under)} remaining 🎁</span></div>`).join('')}
     </div>`;
   }
   document.getElementById('budgetSummary').innerHTML = html;
@@ -1469,6 +1829,7 @@ function applyBudgetLimits() {
 
 function resetBudgetLimits() {
   budgetLimits = {};
+  saveBudgetLimits();
   document.querySelectorAll('.budget-cat-limit').forEach(el => el.value = '');
   document.querySelectorAll('.budget-bar-inner').forEach(el => { el.style.width='0'; });
   document.getElementById('budgetSummary').innerHTML = '';
@@ -1477,7 +1838,7 @@ function resetBudgetLimits() {
 function buildRecurring(expenses) {
   const recurMap = {};
   expenses.forEach(t => {
-    const key = cleanMerchant(t.desc).toLowerCase().substring(0,25);
+    const key = normalizeMerchant(t.desc).toLowerCase().substring(0,25);
     if (!recurMap[key]) recurMap[key] = { count:0, total:0, name:t.desc, amounts:[], dates:[] };
     recurMap[key].count++;
     recurMap[key].total += t.amount;
@@ -1499,7 +1860,7 @@ function buildRecurring(expenses) {
     const avgAmt = r.total / r.count;
     return `<div class="recurring-item">
       <div class="rec-info">
-        <div class="rec-name">${escHtml(cleanMerchant(r.name).substring(0,35))} <span class="rec-tag">×${r.count}</span></div>
+        <div class="rec-name">${escHtml(normalizeMerchant(r.name).substring(0,35))} <span class="rec-tag">×${r.count}</span></div>
         <div class="rec-detail">Avg ${fmtMoney(avgAmt)} per occurrence · Total ${fmtMoney(r.total)}</div>
       </div>
       <div class="rec-amt">${fmtMoney(r.total)}</div>
@@ -1517,7 +1878,7 @@ function buildSubscriptionTracker(expenses) {
 
   const subMap = {};
   subTxns.forEach(t => {
-    const key = cleanMerchant(t.desc).toLowerCase().substring(0,20);
+    const key = normalizeMerchant(t.desc).toLowerCase().substring(0,20);
     if (!subMap[key]) subMap[key] = { name:t.desc, count:0, total:0 };
     subMap[key].count++; subMap[key].total += t.amount;
   });
@@ -1526,14 +1887,14 @@ function buildSubscriptionTracker(expenses) {
   el.innerHTML = `<div style="font-size:0.88rem;font-weight:700;color:#555;margin-bottom:0.65rem;">Total subscription spend: <strong style="color:#111;">${fmtMoney(total)}</strong> across ${Object.keys(subMap).length} service(s)</div>` +
     Object.values(subMap).sort((a,b)=>b.total-a.total).map(s =>
       `<div style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.85rem;border:var(--nb-border);border-radius:10px;background:#faf5ff;box-shadow:2px 2px 0 #000;margin-bottom:0.4rem;">
-        <div><div style="font-weight:700;font-size:0.84rem;">📺 ${escHtml(cleanMerchant(s.name).substring(0,30))}</div><div style="font-size:0.74rem;color:#666;">${s.count} charge${s.count>1?'s':''}</div></div>
+        <div><div style="font-weight:700;font-size:0.84rem;">📺 ${escHtml(normalizeMerchant(s.name).substring(0,30))}</div><div style="font-size:0.74rem;color:#666;">${s.count} charge${s.count>1?'s':''}</div></div>
         <div style="font-weight:700;font-size:0.84rem;color:#7c3aed;">${fmtMoney(s.total)}</div>
       </div>`
     ).join('');
 }
 
 // ═══════════════════════════════════════════════
-// TRANSACTIONS TABLE
+// TRANSACTIONS TABLE (with re-categorization)
 // ═══════════════════════════════════════════════
 function renderTransactions() {
   const catFilter   = document.getElementById('filterCat').value;
@@ -1552,17 +1913,30 @@ function renderTransactions() {
     return true;
   });
 
+  const allCatNames = getEffectiveRules().map(r => r.name);
   const tbody = document.getElementById('txnTableBody');
-  tbody.innerHTML = filtered.slice(0,500).map(t =>
-    `<tr>
+  tbody.innerHTML = filtered.slice(0,500).map(t => {
+    const cat = getCat(t.category);
+    const confBadge = t.confidence === 'high'
+      ? '<span class="conf-high">High</span>'
+      : t.confidence === 'medium'
+      ? '<span class="conf-med">Med</span>'
+      : '<span class="conf-low">Low</span>';
+    const catOpts = allCatNames.map(n => `<option value="${escHtml(n)}" ${n===t.category?'selected':''}>${n}</option>`).join('');
+    const isNew = previousMerchants.size > 0 && !previousMerchants.has(normalizeMerchant(t.desc).toLowerCase()) && t.type === 'debit'
+      ? '<span class="new-merchant-badge">NEW</span>' : '';
+    return `<tr>
       <td style="white-space:nowrap;">${t.dateStr||'—'}</td>
-      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escHtml(t.desc)}">${escHtml(t.desc.substring(0,45))}${t.desc.length>45?'…':''}</td>
-      <td><span class="cat-badge" style="background:${getCat(t.category).bg};border-color:${getCat(t.category).color};font-size:0.7rem;">${getCat(t.category).emoji} ${t.category}</span></td>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escHtml(t.desc)}">${escHtml(t.desc.substring(0,40))}${t.desc.length>40?'…':''}${isNew}</td>
+      <td>
+        <select class="recat-select" onchange="onRecatChange('${t.hash}', this.value)" title="Change category">${catOpts}</select>
+      </td>
+      <td>${confBadge}</td>
       <td class="txn-dr">${t.debit>0?fmtMoney(t.debit):'—'}</td>
       <td class="txn-cr">${t.credit>0?fmtMoney(t.credit):'—'}</td>
       <td>${t.balance>0?fmtMoney(t.balance):'—'}</td>
-    </tr>`
-  ).join('');
+    </tr>`;
+  }).join('');
 
   document.getElementById('txnCount').textContent =
     `Showing ${Math.min(filtered.length,500)} of ${filtered.length} transactions${filtered.length>500?' (first 500 shown)':''}`;
@@ -1586,27 +1960,41 @@ function closeExportMenu() {
 document.addEventListener('click', function() { closeExportMenu(); });
 
 // ═══════════════════════════════════════════════
-// PRINT DASHBOARD (opens clean results-only window)
+// PREMIUM PRINT DASHBOARD
 // ═══════════════════════════════════════════════
 function printDashboard() {
   if (!allTransactions.length) return;
-  const totalIncome = allTransactions.reduce((s,t)=>s+(t.credit||0),0);
+  const totalIncome  = allTransactions.reduce((s,t)=>s+(t.credit||0),0);
   const totalExpense = allTransactions.reduce((s,t)=>s+(t.debit||0),0);
-  const netSavings = totalIncome - totalExpense;
+  const netSavings   = totalIncome - totalExpense;
+  const savRate      = totalIncome > 0 ? (netSavings / totalIncome * 100).toFixed(1) : '0.0';
+  const metaText     = (document.getElementById('dashMeta')||{}).textContent||'';
 
+  // Category data
   const catMap = {};
   allTransactions.forEach(t => {
-    if (t.debit>0) {
+    if (t.debit>0 && t.category !== 'Transfers' && t.category !== 'ATM & Cash') {
       if (!catMap[t.category]) catMap[t.category]={count:0,amount:0};
       catMap[t.category].count++;
       catMap[t.category].amount+=t.debit;
     }
   });
-  const catRows = Object.entries(catMap)
-    .sort((a,b)=>b[1].amount-a[1].amount)
-    .map(([cat,d])=>`<tr><td>${escHtml(cat)}</td><td style="text-align:center">${d.count}</td><td style="text-align:right">&#8377;${Math.round(d.amount).toLocaleString('en-IN')}</td><td style="text-align:center">${totalExpense>0?((d.amount/totalExpense)*100).toFixed(1):0}%</td></tr>`)
-    .join('');
+  const sortedCats = Object.entries(catMap).sort((a,b)=>b[1].amount-a[1].amount);
+  const catColors = sortedCats.map(([n]) => getCat(n).color);
 
+  // Monthly data for print bar chart
+  const monthlyMap = {};
+  allTransactions.forEach(t => {
+    if (!t.date) return;
+    const key = `${t.date.getFullYear()}-${String(t.date.getMonth()+1).padStart(2,'0')}`;
+    if (!monthlyMap[key]) monthlyMap[key] = { income:0, expense:0 };
+    if (t.type === 'credit') monthlyMap[key].income += t.amount;
+    else if (t.category !== 'Transfers') monthlyMap[key].expense += t.amount;
+  });
+  const months = Object.keys(monthlyMap).sort();
+  const monthLabels = months.map(m => { const [y,mo]=m.split('-'); return new Date(y,mo-1).toLocaleDateString('en',{month:'short',year:'2-digit'}); });
+
+  // Insights HTML from DOM
   const insightEls = document.querySelectorAll('#insightsGrid .insight-card');
   let insightsHtml = '';
   insightEls.forEach(el => {
@@ -1616,49 +2004,118 @@ function printDashboard() {
     if (head && text) insightsHtml += `<tr><td>${icon?icon.textContent:''} ${escHtml(head.textContent)}</td><td>${escHtml(text.textContent)}</td></tr>`;
   });
 
-  const txnRows = allTransactions.slice(0,500).map(t=>
-    `<tr><td>${escHtml(t.dateStr||'')}</td><td>${escHtml(t.desc.substring(0,55))}${t.desc.length>55?'&hellip;':''}</td><td>${escHtml(t.category)}</td><td style="color:#dc2626;text-align:right">${t.debit>0?'&#8377;'+Math.round(t.debit).toLocaleString('en-IN'):'&mdash;'}</td><td style="color:#059669;text-align:right">${t.credit>0?'&#8377;'+Math.round(t.credit).toLocaleString('en-IN'):'&mdash;'}</td><td style="text-align:right">${t.balance>0?'&#8377;'+Math.round(t.balance).toLocaleString('en-IN'):'&mdash;'}</td></tr>`
+  // Transaction rows (first 300 for print report)
+  const txnRows = allTransactions.slice(0,300).map(t=>
+    `<tr><td>${escHtml(t.dateStr||'')}</td><td>${escHtml(t.desc.substring(0,50))}${t.desc.length>50?'&hellip;':''}</td><td>${escHtml(t.category)}</td><td style="color:#dc2626;text-align:right">${t.debit>0?'&#8377;'+Math.round(t.debit).toLocaleString('en-IN'):'&mdash;'}</td><td style="color:#059669;text-align:right">${t.credit>0?'&#8377;'+Math.round(t.credit).toLocaleString('en-IN'):'&mdash;'}</td></tr>`
   ).join('');
 
-  const metaText = (document.getElementById('dashMeta')||{}).textContent||'';
+  // Category pie canvas data URLs (pass as JSON for print window to render)
+  const catChartData = {
+    labels: sortedCats.slice(0,9).map(([n]) => n),
+    amounts: sortedCats.slice(0,9).map(([,d]) => +d.amount.toFixed(0)),
+    colors: catColors.slice(0,9)
+  };
+  const monthChartData = {
+    labels: monthLabels,
+    income: months.map(m=>+monthlyMap[m].income.toFixed(0)),
+    expense: months.map(m=>+monthlyMap[m].expense.toFixed(0))
+  };
 
-  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Bank Statement Analysis</title>
+  const catRows = sortedCats.map(([cat,d])=>
+    `<tr><td>${escHtml(cat)}</td><td style="text-align:center">${d.count}</td><td style="text-align:right">&#8377;${Math.round(d.amount).toLocaleString('en-IN')}</td><td style="text-align:center">${totalExpense>0?((d.amount/totalExpense)*100).toFixed(1):0}%</td></tr>`
+  ).join('');
+
+  const financialScore = Math.min(100, Math.round(
+    (parseFloat(savRate) >= 20 ? 40 : parseFloat(savRate) / 20 * 40) +
+    (netSavings >= 0 ? 30 : 0) +
+    ((totalExpense / (totalIncome||1)) < 0.8 ? 30 : 15)
+  ));
+  const scoreColor = financialScore >= 75 ? '#059669' : financialScore >= 50 ? '#d97706' : '#dc2626';
+  const scoreLabel = financialScore >= 75 ? 'Excellent' : financialScore >= 50 ? 'Good' : 'Needs Attention';
+
+  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Bank Statement Analysis — Premium Report By WorldOfTools.in</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:Arial,sans-serif;font-size:12px;color:#111;padding:24px;}
-h1{font-size:19px;font-weight:800;margin-bottom:3px;}
-.meta{font-size:11px;color:#666;margin-bottom:18px;}
-.summary{display:flex;gap:10px;margin-bottom:22px;}
-.sum-box{flex:1;border:2px solid #000;border-radius:8px;padding:10px;text-align:center;}
-.sum-box .val{font-size:14px;font-weight:800;display:block;margin-bottom:3px;}
+body{font-family:'Space Grotesk',Arial,sans-serif;font-size:12px;color:#111;background:#fff;padding:28px;}
+.site-top{background:#000;color:#ffe066;text-align:center;padding:6px 12px;border-radius:10px 10px 0 0;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:0;}
+.header{background:#ffe066;border:3px solid #000;border-radius:0 0 16px 16px;padding:18px 22px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;box-shadow:5px 5px 0 #000;}
+.header-title{font-size:20px;font-weight:800;}
+.header-meta{font-size:10px;color:#555;margin-top:4px;font-weight:600;}
+.score-badge{text-align:center;background:#fff;border:2.5px solid #000;border-radius:12px;padding:10px 18px;box-shadow:3px 3px 0 #000;}
+.score-num{font-size:28px;font-weight:800;color:${scoreColor};}
+.score-lbl{font-size:9px;font-weight:700;text-transform:uppercase;color:#555;letter-spacing:.06em;}
+.summary{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+.sum-box{flex:1;min-width:110px;border:2.5px solid #000;border-radius:10px;padding:10px;text-align:center;box-shadow:3px 3px 0 #000;}
+.sum-box .val{font-size:15px;font-weight:800;display:block;margin-bottom:3px;}
 .sum-box .lbl{font-size:9px;text-transform:uppercase;color:#555;font-weight:700;letter-spacing:.04em;}
-.sum-box.income{background:#c3f584;}.sum-box.expense{background:#ffe0e0;}.sum-box.savings{background:#b2f5ea;}.sum-box.txns{background:#a3bffa;}
-h2{font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:800;border-bottom:2px solid #000;padding-bottom:5px;margin:20px 0 10px;}
+.income{background:#c3f584;}.expense{background:#ffe0e0;}.savings-box{background:#b2f5ea;}.txns{background:#a3bffa;}
+h2{font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:800;border-bottom:2.5px solid #000;padding-bottom:5px;margin:20px 0 12px;}
+.charts-row{display:flex;gap:14px;margin-bottom:20px;flex-wrap:wrap;}
+.chart-box{flex:1;min-width:220px;border:2px solid #000;border-radius:12px;padding:12px;box-shadow:3px 3px 0 #000;}
+.chart-box-title{font-size:9px;text-transform:uppercase;font-weight:800;letter-spacing:.07em;margin-bottom:8px;color:#333;}
+canvas.print-chart{width:100%!important;height:180px!important;}
 table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:11px;}
 th{background:#ffe066;border:1.5px solid #000;padding:6px 8px;font-weight:700;text-align:left;font-size:10px;}
 td{border:1px solid #ddd;padding:5px 8px;vertical-align:top;}
 tr:nth-child(even) td{background:#f9f9f9;}
-.footer{font-size:10px;color:#aaa;margin-top:16px;border-top:1px solid #e5e5e5;padding-top:8px;}
-@page{margin:1.5cm;}
+.footer{font-size:10px;color:#555;margin-top:16px;border-top:2px solid #000;padding-top:8px;display:flex;justify-content:space-between;font-weight:600;}
+@page{margin:1.2cm;}
+@media print{.no-print{display:none!important;}body{padding:10px;}}
 </style></head><body>
-<h1>&#128202; Bank Statement Analysis Report</h1>
-<div class="meta">${escHtml(metaText)} &middot; Printed ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
+<div class="site-top">🌐 Bank Statement Analysis — Premium Report &nbsp;|&nbsp; WorldOfTools.in &nbsp;|&nbsp; Free Finance Tools · 100% Private</div>
+<div class="header">
+  <div>
+    <div class="header-title">📊 Bank Statement Analysis — Premium Report</div>
+    <div class="header-meta">${escHtml(metaText)} &middot; Generated ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
+  </div>
+  <div class="score-badge">
+    <div class="score-num">${financialScore}</div>
+    <div class="score-lbl">Financial Score</div>
+    <div style="font-size:10px;font-weight:700;margin-top:2px;color:${scoreColor};">${scoreLabel}</div>
+  </div>
+</div>
 <div class="summary">
   <div class="sum-box income"><span class="val">&#8377;${Math.round(totalIncome).toLocaleString('en-IN')}</span><span class="lbl">Total Income</span></div>
   <div class="sum-box expense"><span class="val">&#8377;${Math.round(totalExpense).toLocaleString('en-IN')}</span><span class="lbl">Total Expenses</span></div>
-  <div class="sum-box savings"><span class="val">&#8377;${Math.round(netSavings).toLocaleString('en-IN')}</span><span class="lbl">Net Savings</span></div>
+  <div class="sum-box savings-box"><span class="val">&#8377;${Math.round(Math.abs(netSavings)).toLocaleString('en-IN')}</span><span class="lbl">${netSavings>=0?'Net Savings':'Net Deficit'}</span></div>
+  <div class="sum-box" style="background:#d8b4fe;border:2.5px solid #000;box-shadow:3px 3px 0 #000;"><span class="val">${savRate}%</span><span class="lbl">Savings Rate</span></div>
   <div class="sum-box txns"><span class="val">${allTransactions.length}</span><span class="lbl">Transactions</span></div>
+</div>
+<div class="charts-row">
+  <div class="chart-box"><div class="chart-box-title">💸 Spending by Category</div><canvas id="printPie" class="print-chart"></canvas></div>
+  <div class="chart-box"><div class="chart-box-title">📅 Monthly Cash Flow</div><canvas id="printBar" class="print-chart"></canvas></div>
 </div>
 ${insightsHtml?`<h2>Smart Insights</h2><table><thead><tr><th>Insight</th><th>Detail</th></tr></thead><tbody>${insightsHtml}</tbody></table>`:''}
 <h2>Category Breakdown</h2>
 <table><thead><tr><th>Category</th><th style="text-align:center">Transactions</th><th style="text-align:right">Amount Spent</th><th style="text-align:center">% of Expenses</th></tr></thead><tbody>${catRows}</tbody></table>
-<h2>Transactions${allTransactions.length>500?' (first 500)':''}</h2>
-<table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th style="text-align:right">Debit</th><th style="text-align:right">Credit</th><th style="text-align:right">Balance</th></tr></thead><tbody>${txnRows}</tbody></table>
-<div class="footer">Generated by WorldOfTools Bank Statement Analyzer &middot; worldoftools.in &middot; 100% private</div>
-<script>window.onload=function(){window.print();}<\/script>
+<h2>Transactions${allTransactions.length>300?' (first 300 of '+allTransactions.length+')':''}</h2>
+<table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th style="text-align:right">Debit</th><th style="text-align:right">Credit</th></tr></thead><tbody>${txnRows}</tbody></table>
+<div class="footer"><span>🌐 <strong>WorldOfTools.in</strong> — Bank Statement Analyzer &middot; worldoftools.in/bank-statement-analyzer &middot; 100% Private, Browser-Only Processing</span><span>Financial Score: ${financialScore}/100 (${scoreLabel})</span></div>
+<script>
+(function(){
+  const catData=${JSON.stringify(catChartData)};
+  const monthData=${JSON.stringify(monthChartData)};
+  new Chart(document.getElementById('printPie').getContext('2d'),{
+    type:'doughnut',
+    data:{ labels:catData.labels, datasets:[{ data:catData.amounts, backgroundColor:catData.colors, borderColor:'#000', borderWidth:2 }] },
+    options:{ responsive:false, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:10 }, padding:5 } } } }
+  });
+  new Chart(document.getElementById('printBar').getContext('2d'),{
+    type:'bar',
+    data:{ labels:monthData.labels, datasets:[
+      { label:'Income', data:monthData.income, backgroundColor:'#c3f584', borderColor:'#000', borderWidth:1.5, borderRadius:3 },
+      { label:'Expense', data:monthData.expense, backgroundColor:'#fca5a5', borderColor:'#000', borderWidth:1.5, borderRadius:3 }
+    ]},
+    options:{ responsive:false, plugins:{ legend:{ position:'bottom', labels:{ font:{size:10}, padding:5 } } }, scales:{ y:{ ticks:{ callback:v=>'₹'+(v>=1000?(v/1000).toFixed(0)+'K':v), font:{size:9} } }, x:{ ticks:{ font:{size:9} } } } }
+  });
+  setTimeout(()=>window.print(), 900);
+})();
+<\/script>
 </body></html>`;
 
-  const w = window.open('','_blank','width=960,height=750');
+  const w = window.open('','_blank','width=1000,height=800');
   if (!w) { alert('Please allow popups for this site to use Print Dashboard.'); return; }
   w.document.write(html);
   w.document.close();
@@ -1669,9 +2126,9 @@ ${insightsHtml?`<h2>Smart Insights</h2><table><thead><tr><th>Insight</th><th>Det
 // ═══════════════════════════════════════════════
 function downloadExcel() {
   if (!allTransactions.length) return;
-  const headers = ['Date','Description','Category','Type','Debit (INR)','Credit (INR)','Balance (INR)'];
+  const headers = ['Date','Description','Category','Confidence','Type','Debit (INR)','Credit (INR)','Balance (INR)'];
   const rows = allTransactions.map(t => [
-    t.dateStr||'', t.desc||'', t.category||'', t.type||'',
+    t.dateStr||'', t.desc||'', t.category||'', t.confidence||'', t.type||'',
     t.debit||0, t.credit||0, t.balance||0
   ]);
   const totalIncome = allTransactions.reduce((s,t)=>s+(t.credit||0),0);
@@ -1679,7 +2136,7 @@ function downloadExcel() {
   const netSavings = totalIncome - totalExpense;
   const catMap = {};
   allTransactions.forEach(t => {
-    if (t.debit > 0) {
+    if (t.debit > 0 && t.category !== 'Transfers' && t.category !== 'ATM & Cash') {
       if (!catMap[t.category]) catMap[t.category] = {count:0, amount:0};
       catMap[t.category].count++;
       catMap[t.category].amount += t.debit;
@@ -1687,9 +2144,12 @@ function downloadExcel() {
   });
   const wb = XLSX.utils.book_new();
   const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
-  ws['!cols'] = [{wch:14},{wch:40},{wch:18},{wch:10},{wch:14},{wch:14},{wch:14}];
+  ws['!cols'] = [{wch:14},{wch:40},{wch:18},{wch:10},{wch:10},{wch:14},{wch:14},{wch:14}];
   XLSX.utils.book_append_sheet(wb, ws, 'Transactions');
   const summaryData = [
+    ['Bank Statement Analysis — Report By WorldOfTools.in'],
+    ['Tool URL: https://worldoftools.in/bank-statement-analyzer | 100% Private, Browser-Only Processing'],
+    [''],
     ['Bank Statement Analysis Summary'],
     [],
     ['Total Income', totalIncome],
@@ -1710,76 +2170,17 @@ function downloadExcel() {
 }
 
 // ═══════════════════════════════════════════════
-// DOWNLOAD PDF (opens clean print window)
-// ═══════════════════════════════════════════════
-function downloadPDF() {
-  if (!allTransactions.length) return;
-  const totalIncome = allTransactions.reduce((s,t)=>s+(t.credit||0),0);
-  const totalExpense = allTransactions.reduce((s,t)=>s+(t.debit||0),0);
-  const netSavings = totalIncome - totalExpense;
-  const catMap = {};
-  allTransactions.forEach(t => {
-    if (t.debit > 0) {
-      if (!catMap[t.category]) catMap[t.category]={count:0,amount:0};
-      catMap[t.category].count++;
-      catMap[t.category].amount += t.debit;
-    }
-  });
-  const catRows = Object.entries(catMap)
-    .sort((a,b)=>b[1].amount-a[1].amount)
-    .map(([cat,d])=>`<tr><td>${escHtml(cat)}</td><td style="text-align:center">${d.count}</td><td style="text-align:right">&#8377;${Math.round(d.amount).toLocaleString('en-IN')}</td><td style="text-align:center">${totalExpense>0?((d.amount/totalExpense)*100).toFixed(1):0}%</td></tr>`)
-    .join('');
-  const txnRows = allTransactions.slice(0,500).map(t=>
-    `<tr><td>${escHtml(t.dateStr||'')}</td><td>${escHtml(t.desc.substring(0,50))}${t.desc.length>50?'&hellip;':''}</td><td>${escHtml(t.category)}</td><td style="color:#dc2626;text-align:right">${t.debit>0?'&#8377;'+Math.round(t.debit).toLocaleString('en-IN'):'&mdash;'}</td><td style="color:#059669;text-align:right">${t.credit>0?'&#8377;'+Math.round(t.credit).toLocaleString('en-IN'):'&mdash;'}</td><td style="text-align:right">${t.balance>0?'&#8377;'+Math.round(t.balance).toLocaleString('en-IN'):'&mdash;'}</td></tr>`
-  ).join('');
-  const metaText = (document.getElementById('dashMeta')||{}).textContent||'';
-  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Bank Statement Analysis</title>
-<style>
-body{font-family:Arial,sans-serif;font-size:12px;color:#111;margin:0;padding:24px;}
-h1{font-size:20px;margin:0 0 4px;} .meta{font-size:11px;color:#666;margin-bottom:18px;}
-.summary{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
-.sum-box{flex:1;min-width:120px;border:2px solid #000;border-radius:8px;padding:10px;text-align:center;}
-.sum-box .val{font-size:14px;font-weight:800;display:block;margin-bottom:3px;}
-.sum-box .lbl{font-size:10px;text-transform:uppercase;color:#555;font-weight:700;}
-.sum-box.income{background:#c3f584;}.sum-box.expense{background:#ffe0e0;}.sum-box.savings{background:#b2f5ea;}.sum-box.txns{background:#a3bffa;}
-h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid #000;padding-bottom:5px;margin:20px 0 10px;}
-table{width:100%;border-collapse:collapse;margin-bottom:22px;font-size:11px;}
-th{background:#ffe066;border:1.5px solid #000;padding:6px 8px;font-weight:700;text-align:left;}
-td{border:1px solid #ddd;padding:5px 8px;word-break:break-word;}
-tr:nth-child(even) td{background:#f9f9f9;}
-.footer{font-size:10px;color:#aaa;margin-top:20px;border-top:1px solid #e5e5e5;padding-top:8px;}
-@media print{body{padding:10px;}}
-</style></head><body>
-<h1>&#128202; Bank Statement Analysis Report</h1>
-<div class="meta">${escHtml(metaText)} &middot; Generated ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
-<div class="summary">
-  <div class="sum-box income"><span class="val">&#8377;${Math.round(totalIncome).toLocaleString('en-IN')}</span><span class="lbl">Total Income</span></div>
-  <div class="sum-box expense"><span class="val">&#8377;${Math.round(totalExpense).toLocaleString('en-IN')}</span><span class="lbl">Total Expenses</span></div>
-  <div class="sum-box savings"><span class="val">&#8377;${Math.round(netSavings).toLocaleString('en-IN')}</span><span class="lbl">Net Savings</span></div>
-  <div class="sum-box txns"><span class="val">${allTransactions.length}</span><span class="lbl">Transactions</span></div>
-</div>
-<h2>Category Breakdown</h2>
-<table><thead><tr><th>Category</th><th style="text-align:center">Transactions</th><th style="text-align:right">Amount Spent</th><th style="text-align:center">% of Expenses</th></tr></thead><tbody>${catRows}</tbody></table>
-<h2>All Transactions${allTransactions.length>500?' (first 500 shown)':''}</h2>
-<table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th style="text-align:right">Debit</th><th style="text-align:right">Credit</th><th style="text-align:right">Balance</th></tr></thead><tbody>${txnRows}</tbody></table>
-<div class="footer">Generated by WorldOfTools Bank Statement Analyzer &middot; worldoftools.in &middot; 100% private, processed in browser</div>
-</body></html>`;
-  const w = window.open('','_blank','width=960,height=750');
-  w.document.write(html);
-  w.document.close();
-  w.focus();
-  setTimeout(()=>{ w.print(); }, 700);
-}
-
-// ═══════════════════════════════════════════════
 // DOWNLOAD CSV
 // ═══════════════════════════════════════════════
 function downloadCSV() {
-  const headers = ['Date','Description','Category','Type','Debit','Credit','Balance'];
+  const metaText = (document.getElementById('dashMeta')||{}).textContent||'';
+  const brandRow = '# Bank Statement Analysis — Report By WorldOfTools.in | https://worldoftools.in/bank-statement-analyzer | 100% Private';
+  const metaRow  = `# ${metaText}`;
+  const headers = ['Date','Description','Category','Confidence','Type','Debit','Credit','Balance'];
   const rows = allTransactions.map(t =>
-    [t.dateStr,`"${t.desc.replace(/"/g,'""')}"`,t.category,t.type,t.debit||'',t.credit||'',t.balance||''].join(',')
+    [t.dateStr,`"${t.desc.replace(/"/g,'""')}"`,t.category,t.confidence||'',t.type,t.debit||'',t.credit||'',t.balance||''].join(',')
   );
-  const csv = [headers.join(','), ...rows].join('\n');
+  const csv = [brandRow, metaRow, headers.join(','), ...rows].join('\n');
   const blob = new Blob([csv],{type:'text/csv'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1802,7 +2203,6 @@ function parseDate(str) {
   if (!str) return null;
   const s = str.trim();
 
-  // DD Mon YYYY
   const m1 = s.match(/^(\d{1,2})[\s\-\/]([A-Za-z]{3,9})[\s\-\/](\d{2,4})$/);
   if (m1) {
     const months = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11,january:0,february:1,march:2,april:3,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
@@ -1810,7 +2210,6 @@ function parseDate(str) {
     const y = m1[3].length===2 ? 2000 + +m1[3] : +m1[3];
     if (mm !== undefined) return new Date(y, mm, +m1[1]);
   }
-  // Mon DD YYYY
   const m2 = s.match(/^([A-Za-z]{3})[\s\-\/](\d{1,2})[\s\-\/](\d{4})$/);
   if (m2) {
     const months = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
@@ -1822,11 +2221,10 @@ function parseDate(str) {
   if (/^\d{2}-\d{2}-\d{4}$/.test(clean)) { const [d,m,y]=clean.split('-'); const dt=new Date(+y,+m-1,+d); if(!isNaN(dt)) return dt; }
   if (/^\d{4}-\d{2}-\d{2}$/.test(clean)) return new Date(clean);
   if (/^\d{2}-\d{2}-\d{2}$/.test(clean)) { const [d,m,y]=clean.split('-'); return new Date(2000+(+y),+m-1,+d); }
-  // DDMMYYYY
   if (/^\d{8}$/.test(s)) { const d=s.substring(0,2),m=s.substring(2,4),y=s.substring(4,8); return new Date(+y,+m-1,+d); }
 
-  const d = new Date(s);
-  return isNaN(d) ? null : d;
+  const dt = new Date(s);
+  return isNaN(dt) ? null : dt;
 }
 
 function fmtMoney(n) {
@@ -1835,10 +2233,6 @@ function fmtMoney(n) {
 }
 function fmtDate(d) { return d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); }
 function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-function cleanMerchant(desc) {
-  return desc.replace(/\d{6,}/g,'').replace(/UPI|NEFT|RTGS|IMPS|ACH|ECS|NACH/gi,'').replace(/[\/\-_@#*]/g,' ').replace(/\s+/g,' ').trim().substring(0,30) || desc.substring(0,30);
-}
 
 function statusTag(actual, ideal, higherBetter) {
   if (higherBetter) {
@@ -1854,7 +2248,10 @@ function statusTag(actual, ideal, higherBetter) {
 
 function showError(msg) {
   const el = document.getElementById('errorMsg');
-  if (msg) { el.textContent='⚠️ '+msg; el.style.display='block'; }
+  if (msg) {
+    el.textContent='⚠️ '+msg; el.style.display='block';
+    el.style.background='#ffe0e0'; el.style.borderColor='#c00'; el.style.color='#c00';
+  }
   else { el.style.display='none'; el.textContent=''; }
 }
 function showProgress(msg, pct) {
@@ -1868,15 +2265,18 @@ function hideProgress() {
 }
 
 function resetTool() {
-  allTransactions=[]; rawHeaders=[]; rawRows=[]; pdfPageData=[]; selectedPages=[]; budgetLimits={};
+  allTransactions=[]; rawHeaders=[]; rawRows=[]; pdfPageData=[]; selectedPages=[];
+  previousMerchants=new Set(); isMergeMode=false;
   document.getElementById('dashboard').style.display='none';
   document.getElementById('colMapSection').style.display='none';
   document.getElementById('pageSelectorWrap').style.display='none';
+  document.getElementById('mergeBanner').style.display='none';
   document.getElementById('fileInput').value='';
   hideProgress(); showError('');
   if (pieChart) { pieChart.destroy(); pieChart=null; }
   if (barChart) { barChart.destroy(); barChart=null; }
   if (dowChart) { dowChart.destroy(); dowChart=null; }
+  if (savingsTrendChart) { savingsTrendChart.destroy(); savingsTrendChart=null; }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'worldoftools-v149';
+const CACHE_NAME = 'worldoftools-v150';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -169,6 +169,7 @@ const ASSETS_TO_CACHE = [
     '/video-to-gif',
     '/video-to-mp3-converter',
     '/keyword-research-tool',
+    '/bank-statement-analyzer',
     '/js/coi-serviceworker.js',
     '/guides/fancy-font-generator-guide',
     '/guides/image-to-text-ocr-guide',
