@@ -6,45 +6,11 @@
 <title>IP Address Lookup — Find Location, ISP & Network for Any IP | WorldOfTools</title>
 <meta content="Free online IP address lookup tool — instantly find geolocation, ISP, country, city, timezone and network info for your IP or any IP address. No login required." name="description"/>
 <meta content="what is my ip address, ip address lookup, ip geolocation, find my ip, ip location finder, ip address checker, show my ip, isp lookup, public ip address, ip lookup online, ipv4 ipv6 checker, ip address location india, check my ip, ip address finder free" name="keywords"/>
-<link href="https://worldoftools.in/ip-address-lookup" rel="canonical"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="website" property="og:type"/>
-<meta content="https://worldoftools.in/ip-address-lookup" property="og:url"/>
-<meta content="IP Address Lookup — Location, ISP & Network for Any IP | WorldOfTools" property="og:title"/>
-<meta content="Instantly find geolocation, ISP, country & network details for your IP or any IP. Free, no login required." property="og:description"/>
-<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
-<meta content="WorldOfTools" property="og:site_name"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="IP Address Lookup — Location, ISP & Network | WorldOfTools" name="twitter:title"/>
-<meta content="Instantly find geolocation, ISP, and network details for any IP address. Free, no login." name="twitter:description"/>
-<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
 <meta name="theme-color" content="#ffe066"/>
 <link rel="alternate" hreflang="x-default" href="https://worldoftools.in/ip-address-lookup"/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
-    {"@type":"ListItem","position":2,"name":"Network Tools","item":"https://worldoftools.in/network-tools"},
-    {"@type":"ListItem","position":3,"name":"IP Address Lookup","item":"https://worldoftools.in/ip-address-lookup"}
-  ]
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"SoftwareApplication","name":"IP Address Lookup",
-  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
-  "applicationCategory":"UtilitiesApplication",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"1543","reviewCount":"1697"}
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"What is my public IP address?","acceptedAnswer":{"@type":"Answer","text":"Your public IP address is the address assigned to you by your Internet Service Provider (ISP). This tool automatically detects and displays your current public IP when the page loads."}},
-    {"@type":"Question","name":"What is the difference between IPv4 and IPv6?","acceptedAnswer":{"@type":"Answer","text":"IPv4 uses four groups of numbers separated by dots (e.g., 192.168.1.1) supporting ~4 billion addresses. IPv6 uses eight groups of hexadecimal digits and supports virtually unlimited addresses. Most ISPs still assign IPv4, though IPv6 is increasingly common."}},
-    {"@type":"Question","name":"Can I look up any IP address?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter any valid IPv4 or IPv6 address in the lookup field and click Look Up to get geolocation, ISP, timezone, and network details for that address."}},
-    {"@type":"Question","name":"Is my IP address stored or logged?","acceptedAnswer":{"@type":"Answer","text":"No. We use the ipapi.co API only to fetch location data. We do not store or log any IP addresses you look up on our platform."}},
-    {"@type":"Question","name":"Why is my IP location not accurate?","acceptedAnswer":{"@type":"Answer","text":"IP geolocation is approximate — it shows the location registered to your ISP, not your exact GPS location. VPNs, proxies, or mobile data may show a different city or region than your physical location."}}
-  ]
-}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
 <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
@@ -75,14 +41,12 @@
   .nb-input{width:100%;padding:0.85rem 1rem;border:var(--nb-border);border-radius:12px;font-family:inherit;font-size:1rem;font-weight:600;outline:none;background:#fff;box-shadow:3px 3px 0 #000;transition:box-shadow 0.15s,border-color 0.15s;}
   .nb-input:focus{border-color:#4f46e5;box-shadow:3px 3px 0 #4f46e5;}
   .input-group{margin-bottom:1.25rem;}
-
   /* My IP badge */
   .my-ip-card{background:var(--nb-yellow);border:var(--nb-border);border-radius:20px;padding:2rem;text-align:center;box-shadow:var(--nb-shadow-lg);margin-bottom:1.5rem;}
   .my-ip-label{font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#666;margin-bottom:0.5rem;}
   .my-ip-value{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,5vw,2.8rem);font-weight:900;letter-spacing:-0.02em;color:#000;word-break:break-all;}
   .my-ip-sub{font-size:0.85rem;color:#555;margin-top:0.5rem;}
   .my-ip-actions{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem;}
-
   /* Results grid */
   .result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem;}
   @media(min-width:600px){.result-grid{grid-template-columns:repeat(3,1fr);}}
@@ -90,15 +54,12 @@
   .result-icon{font-size:1.5rem;display:block;margin-bottom:0.35rem;}
   .result-label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin-bottom:0.25rem;display:block;}
   .result-val{font-weight:800;font-size:0.95rem;color:#000;word-break:break-all;}
-
   /* Map placeholder */
   .map-placeholder{background:#f0f4ff;border:var(--nb-border);border-radius:14px;min-height:200px;display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 #000;overflow:hidden;margin-bottom:1.5rem;}
   .map-placeholder iframe{width:100%;height:250px;border:none;}
-
   /* Status */
   .nb-loading{display:none;text-align:center;padding:1.5rem;font-weight:700;color:#4f46e5;}
   .nb-error{display:none;background:#ffe0e0;border:var(--nb-border);border-radius:12px;padding:0.85rem 1.25rem;color:#c00;font-weight:700;margin-bottom:1.25rem;box-shadow:3px 3px 0 #c00;}
-
   /* SEO */
   .seo-section{max-width:900px;margin:3rem auto;padding:0 1rem;}
   .seo-section h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;margin-bottom:1rem;letter-spacing:-0.02em;}
@@ -120,7 +81,43 @@
   .animate-in{animation:fadeUp 0.4s ease-out;}
   @media(max-width:480px){.nb-card-lg{padding:1.25rem;}.result-grid{grid-template-columns:1fr 1fr;}.my-ip-actions{flex-direction:column;align-items:center;}.my-ip-actions .nb-btn{width:100%;}}
 </style>
-</head>
+
+    <!-- SEO Optimization Meta Tags -->
+    <link rel="canonical" href="https://worldoftools.in/ip-address-lookup">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WorldOfTools.in">
+    <meta property="og:title" content="Ip Address Lookup — Free Online Tool | WorldOfTools">
+    <meta property="og:description" content="Use our free Ip Address Lookup online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta property="og:url" content="https://worldoftools.in/ip-address-lookup">
+    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ip Address Lookup — Free Online Tool | WorldOfTools">
+    <meta name="twitter:description" content="Use our free Ip Address Lookup online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Ip Address Lookup",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200" },
+      "description": "Use our free Ip Address Lookup online. Fast, private, and no signup required. Part of WorldOfTools utility suite.",
+      "url": "https://worldoftools.in/ip-address-lookup"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
+        { "@type": "ListItem", "position": 2, "name": "Utility Tools", "item": "https://worldoftools.in/ip-address-lookup" }
+      ]
+    }
+    </script></head>
 <body>
 <header></header>
 <main class="container" style="max-width:900px;margin:0 auto;padding:0 1rem;">

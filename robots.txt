@@ -1,16 +1,16 @@
-# WorldOfTools - robots.txt
 User-agent: *
 Allow: /
 
-# Specifically Allow AI Indexers
-User-agent: GPTBot
-Allow: /
+# Block non-indexable patterns
+Disallow: /admin/
+Disallow: /api/
+Disallow: /search?
+Disallow: /*?ref=
+Disallow: /*?utm_
+Disallow: /*?print=
 
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
+# Crawl-delay for aggressive bots
+Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://worldoftools.in/sitemap.xml

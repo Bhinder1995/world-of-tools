@@ -6,36 +6,10 @@
 <title>Text Compare Tool — Compare Two Texts &amp; Highlight Differences Online | WorldOfTools</title>
 <meta content="Free online text compare tool — paste two texts and instantly see added, removed &amp; changed lines highlighted. Line-by-line and word-level diff. No login. No upload. 100% private." name="description"/>
 <meta content="text compare tool, text diff online, compare two texts online, find differences between two texts, text difference checker, diff tool online free, document comparison tool, compare two paragraphs, code diff tool, side by side text comparison, online diff checker free, text compare for proofreading, find changes in text, line by line diff, word diff online" name="keywords"/>
-<link href="https://worldoftools.in/text-compare-tool" rel="canonical"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="website" property="og:type"/>
-<meta content="https://worldoftools.in/text-compare-tool" property="og:url"/>
-<meta content="Text Compare Tool — Highlight Differences Instantly | WorldOfTools" property="og:title"/>
-<meta content="Compare two texts side by side and instantly see added, removed &amp; changed lines highlighted. Free, private, no login." property="og:description"/>
-<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
 <meta name="theme-color" content="#ffe066"/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
-    {"@type":"ListItem","position":2,"name":"Text Tools","item":"https://worldoftools.in/text-tools"},
-    {"@type":"ListItem","position":3,"name":"Text Compare Tool","item":"https://worldoftools.in/text-compare-tool"}
-  ]
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Compare Tool",
-  "operatingSystem":"Any","applicationCategory":"UtilitiesApplication",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"1321","reviewCount":"1453"}
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"How does the text compare tool work?","acceptedAnswer":{"@type":"Answer","text":"Paste your original text in the left box and the modified text in the right box, then click Compare. The tool performs a line-by-line diff and highlights added lines in green, removed lines in red, and unchanged lines in white."}},
-    {"@type":"Question","name":"Can I compare code files?","acceptedAnswer":{"@type":"Answer","text":"Yes. This tool works perfectly for comparing code, JSON, HTML, SQL, or any plain text. Paste your code in both panels and click Compare to see the diff."}},
-    {"@type":"Question","name":"Is my text stored or uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. All comparison logic runs entirely in your browser using JavaScript. Your text is never sent to any server, stored, or shared."}}
-  ]
-}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
 <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
@@ -101,7 +75,6 @@
   .panel-label-orig { background:var(--nb-orange); }
   .panel-label-new { background:var(--nb-blue); }
   .char-count { font-size:0.78rem; font-weight:700; color:#888; }
-
   /* Diff output */
   .diff-results { margin-top:1.5rem; }
   .diff-summary { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.5rem; }
@@ -109,7 +82,6 @@
   .diff-stat-card { border:var(--nb-border); border-radius:14px; padding:1rem; text-align:center; box-shadow:3px 3px 0 #000; }
   .diff-stat-val { font-family:'Syne',sans-serif; font-size:1.6rem; font-weight:900; display:block; }
   .diff-stat-lbl { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#555; margin-top:0.2rem; display:block; }
-
   .diff-view-wrap { background:#fafafa; border:var(--nb-border); border-radius:14px; box-shadow:3px 3px 0 #000; overflow:hidden; }
   .diff-view-header { padding:0.85rem 1.25rem; background:var(--nb-yellow); border-bottom:2px solid #000; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; }
   .diff-view-header strong { font-family:'Syne',sans-serif; font-weight:800; font-size:0.95rem; }
@@ -125,14 +97,11 @@
   .diff-line-text { word-break:break-all; white-space:pre-wrap; flex:1; }
   .word-diff-add { background:#86efac; border-radius:3px; padding:0 2px; }
   .word-diff-del { background:#fca5a5; border-radius:3px; padding:0 2px; text-decoration:line-through; }
-
   .identical-banner { background:var(--nb-lime); border:var(--nb-border); border-radius:14px; padding:1.5rem; text-align:center; box-shadow:3px 3px 0 #000; font-weight:800; font-size:1.1rem; }
-
   /* Options bar */
   .options-bar { display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin-bottom:1.25rem; padding:1rem; background:#f9f9ff; border:var(--nb-border); border-radius:12px; box-shadow:3px 3px 0 #000; }
   .nb-checkbox { display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-size:0.88rem; font-weight:700; }
   .nb-checkbox input { width:18px; height:18px; cursor:pointer; accent-color:#4f46e5; }
-
   /* SEO */
   .seo-section { max-width:900px; margin:3rem auto; padding:0 1rem; }
   .seo-section h2 { font-family:'Syne',sans-serif; font-size:1.25rem; font-weight:900; margin-bottom:1rem; letter-spacing:-0.02em; }
@@ -161,7 +130,43 @@
   .animate-in { animation:fadeUp 0.4s ease-out; }
   @media(max-width:480px) { .nb-card-lg{padding:1.25rem;} .diff-summary{gap:0.5rem;} .diff-stat-val{font-size:1.2rem;} }
 </style>
-</head>
+
+    <!-- SEO Optimization Meta Tags -->
+    <link rel="canonical" href="https://worldoftools.in/text-compare-tool">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WorldOfTools.in">
+    <meta property="og:title" content="Text Compare Tool — Free Online Tool | WorldOfTools">
+    <meta property="og:description" content="Use our free Text Compare Tool online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta property="og:url" content="https://worldoftools.in/text-compare-tool">
+    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Text Compare Tool — Free Online Tool | WorldOfTools">
+    <meta name="twitter:description" content="Use our free Text Compare Tool online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Text Compare Tool",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200" },
+      "description": "Use our free Text Compare Tool online. Fast, private, and no signup required. Part of WorldOfTools utility suite.",
+      "url": "https://worldoftools.in/text-compare-tool"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
+        { "@type": "ListItem", "position": 2, "name": "Utility Tools", "item": "https://worldoftools.in/text-compare-tool" }
+      ]
+    }
+    </script></head>
 <body>
 <header></header>
 <main class="container" data-tool-name="Text Compare Tool" data-category-name="Text Tools" data-category-url="/text-tools">

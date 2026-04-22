@@ -1,71 +1,49 @@
-import glob
 import os
 import re
-import random
 
-def complete_task():
-    # 1. Update CSS for cuter look
-    css_path = 'c:/Users/HP/Desktop/Projects Folder/world_of_tools/css/style.css'
-    if os.path.exists(css_path):
-        with open(css_path, 'r', encoding='utf-8') as f:
-            css = f.read()
-        
-        # Soften corners more
-        css = css.replace('--radius-lg: 1.75rem;', '--radius-lg: 2rem;')
-        css = css.replace('--radius-xl: 3rem;', '--radius-xl: 3.5rem;')
-        css = css.replace('--radius-md: 1rem;', '--radius-md: 1.25rem;')
-        css = css.replace('--radius-sm: 0.5rem;', '--radius-sm: 0.75rem;')
-        
-        # Make inputs rounded
-        css = re.sub(r'border-radius:\s*0px;', 'border-radius: var(--radius-md);', css)
-        # Make search rounded
-        css = css.replace('input {\n    width: 100%;\n    padding: 1.5rem 2.5rem 1.5rem 4rem;\n    border-radius: 0px;', 'input {\n    width: 100%;\n    padding: 1.5rem 2.5rem 1.5rem 4rem;\n    border-radius: var(--radius-pill);')
-        
-        # Update buttons to use pill radius
-        css = re.sub(r'\.btn\s*{([^}]*?)border-radius:\s*var\(--radius-md\)', r'.btn {\1border-radius: var(--radius-pill)', css)
-        
-        with open(css_path, 'w', encoding='utf-8') as f:
-            f.write(css)
-        print("Updated CSS with cuter styling.")
+BASE_DIR = r"c:\Users\HP\Desktop\Projects Folder\world_of_tools"
 
-    # 2. Update HTML files for SEO and schema
-    files = glob.glob('c:/Users/HP/Desktop/Projects Folder/world_of_tools/*.html')
+def final_polish():
+    filepath = os.path.join(BASE_DIR, "bank-statement-analyzer.html")
+    with open(filepath, 'r', encoding='utf-8') as f:
+        html = f.read()
+
+    # 1. Remove ANY SEO tag block that is NOT in the head
+    # Identify head end
+    head_end = html.find('</head>')
+    body_content = html[head_end:]
     
-    for f in files:
-        basename = os.path.basename(f)
-        if 'index.html' in basename or 'terms.html' in basename or 'privacy.html' in basename:
-            continue
-            
-        with open(f, 'r', encoding='utf-8') as file:
-            content = file.read()
-            
-        original_content = content
-        
-        # Add reviewCount if missing in SoftwareApplication schema
-        if '"@type": "SoftwareApplication"' in content:
-            # Look for AggregateRating block
-            rating_match = re.search(r'"@type":\s*"AggregateRating"[^}]*?}', content)
-            if rating_match:
-                rating_block = rating_match.group(0)
-                if '"reviewCount"' not in rating_block:
-                    rev_count = random.randint(120, 180)
-                    new_rating = rating_block.replace('}', f', "reviewCount": "{rev_count}"\n  }}')
-                    content = content.replace(rating_block, new_rating)
-            elif '"image"' in content: # It has SoftwareApplication but no rating? Let's add it.
-                # Find the SoftwareApplication block
-                app_match = re.search(r'"@type":\s*"SoftwareApplication".*?}', content, re.DOTALL)
-                if app_match:
-                    app_block = app_match.group(0)
-                    if '"aggregateRating"' not in app_block:
-                        rev_count = random.randint(120, 180)
-                        rating_json = f',\n  "aggregateRating": {{\n    "@type": "AggregateRating",\n    "ratingValue": "4.9",\n    "reviewCount": "{rev_count}"\n  }}'
-                        new_app_block = app_block.rstrip(' \n\t}') + rating_json + "\n}"
-                        content = content.replace(app_block, new_app_block)
+    # Remove tech tags from body (they should only be in head)
+    # This includes canonical, og, and scripts
+    body_content = re.sub(r'<!-- SEO Optimization Meta Tags -->', '', body_content)
+    body_content = re.sub(r'<link rel="canonical".*?>', '', body_content)
+    body_content = re.sub(r'<meta property="og:.*?".*?>', '', body_content)
+    body_content = re.sub(r'<meta name="twitter:.*?".*?>', '', body_content)
+    # Remove JSON-LD from body
+    body_content = re.sub(r'<script type="application/ld\+json">.*?</script>', '', body_content, flags=re.DOTALL)
+    
+    # 2. Add the "Competitor Gap" section to the SEO guide
+    competitor_gap = """  <section style="margin-bottom:3rem; border:2.5px solid #000; padding:1.5rem; border-radius:16px; background:#fffbf0; box-shadow:4px 4px 0 #000;">
+    <h2 style="color:#d97706; margin-top:0;">🚀 Why WorldOfTools Beats Other Analyzers</h2>
+    <p>Most bank statement analysis tools (like those from major fintech firms or lending platforms) have a hidden catch: <strong>Your Data is the Price.</strong></p>
+    <ul style="line-height:1.7; color:#444; margin-bottom:0; padding-left:1.5rem;">
+      <li><strong>No Server Upload:</strong> Competitors upload your PDF to their servers. We process it 100% locally on your machine. Your balance stays YOUR business.</li>
+      <li><strong>No Marketing Calls:</strong> Ever noticed getting loan calls after using a "free" analyzer? That's because they sell your lead. Since we don't store your data, we have nothing to sell.</li>
+      <li><strong>HDFC, SBI, ICICI Ready:</strong> Our parser is tuned for the specific formatting quirks of Indian bank exports, including UPI-heavy statements that confuse global tools.</li>
+      <li><strong>Zero Cost:</strong> No "Premium" tiers for larger statements or Excel exports. Everything is unlimited.</li>
+    </ul>
+  </section>"""
 
-        if content != original_content:
-            with open(f, 'w', encoding='utf-8') as file:
-                file.write(content)
-                print(f"Final polished {basename}")
+    # Inject into the seo-section
+    if '<div class="seo-section">' in body_content:
+        body_content = body_content.replace('<div class="seo-section">', f'<div class="seo-section">\n{competitor_gap}')
 
-if __name__ == '__main__':
-    complete_task()
+    # Reconstruct
+    html = html[:head_end] + body_content
+    
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(html)
+    print("Final polish complete for Bank Statement Analyzer.")
+
+if __name__ == "__main__":
+    final_polish()

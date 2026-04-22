@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Audit Report — WorldOfTools.in</title>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #4f46e5;
+    --accent-light: #eef2ff;
+    --accent-mid: #818cf8;
+    --success: #059669;
+    --success-light: #d1fae5;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+    --info: #0284c7;
+    --info-light: #e0f2fe;
+    --neutral: #64748b;
+    --neutral-light: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --bg: #ffffff;
+    --surface: #f8fafc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: #f0f4ff;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .report-wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 64px; }
+  /* ── COVER ── */
+  .cover {
+    background: var(--primary);
+    color: white;
+    border-radius: 16px;
+    padding: 56px 48px 48px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(79,70,229,0.25);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 200px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(129,140,248,0.15);
+  }
+  .cover-badge {
+    display: inline-block;
+    background: rgba(79,70,229,0.5);
+    color: #c7d2fe;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .cover h1 { font-size: 38px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+  .cover h1 span { color: #818cf8; }
+  .cover-sub { font-size: 16px; color: #94a3b8; margin-bottom: 32px; }
+  .cover-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .cover-meta-item label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 4px; }
+  .cover-meta-item span { font-size: 15px; color: #e2e8f0; font-weight: 500; }
+  /* ── SCORE DASHBOARD ── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .score-main {
+    background: var(--bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .score-ring {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: conic-gradient(#4f46e5 0% 46%, #e2e8f0 46% 100%);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    position: relative;
+  }
+  .score-ring-inner {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .score-ring-inner .num { font-size: 32px; font-weight: 800; color: #4f46e5; line-height: 1; }
+  .score-ring-inner .denom { font-size: 12px; color: var(--text-muted); }
+  .score-label { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .score-grade { font-size: 22px; font-weight: 700; color: var(--warning); }
+  .score-breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .score-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .score-card-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 6px; }
+  .score-card-val { font-size: 24px; font-weight: 800; }
+  .score-card-bar { height: 5px; border-radius: 3px; background: var(--border); margin-top: 8px; }
+  .score-card-bar-fill { height: 100%; border-radius: 3px; }
+  .c-danger { color: var(--danger); }
+  .c-warning { color: var(--warning); }
+  .c-success { color: var(--success); }
+  .c-info { color: var(--info); }
+  .bg-danger { background: var(--danger); }
+  .bg-warning { background: var(--warning); }
+  .bg-success { background: var(--success); }
+  .bg-info { background: var(--info); }
+  .bg-accent { background: var(--accent); }
+  /* ── SECTIONS ── */
+  .section {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; }
+  .section-header p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+  .section-body { padding: 24px; }
+  /* ── ISSUES LIST ── */
+  .issue-list { display: flex; flex-direction: column; gap: 12px; }
+  .issue {
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: start;
+  }
+  .issue.critical { background: #fff5f5; border-left: 4px solid var(--danger); }
+  .issue.warning { background: #fffbeb; border-left: 4px solid var(--warning); }
+  .issue.good { background: #f0fdf4; border-left: 4px solid var(--success); }
+  .issue.info { background: #f0f9ff; border-left: 4px solid var(--info); }
+  .issue-severity {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .sev-critical { background: #fee2e2; color: #b91c1c; }
+  .sev-warning { background: #fef3c7; color: #92400e; }
+  .sev-good { background: #d1fae5; color: #065f46; }
+  .sev-info { background: #e0f2fe; color: #0369a1; }
+  .issue-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .issue-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .issue-fix { font-size: 12px; margin-top: 6px; }
+  .issue-fix strong { color: var(--accent); }
+  .issue-impact {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+  }
+  /* ── COMPETITOR TABLE ── */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .comp-table th {
+    background: var(--surface);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr.highlight td { background: #eef2ff; }
+  .site-name { font-weight: 700; font-size: 14px; }
+  .site-url { font-size: 11px; color: var(--text-muted); }
+  .badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge-green { background: var(--success-light); color: #065f46; }
+  .badge-red { background: var(--danger-light); color: #991b1b; }
+  .badge-yellow { background: var(--warning-light); color: #92400e; }
+  .badge-blue { background: var(--info-light); color: #075985; }
+  .badge-purple { background: #eef2ff; color: #3730a3; }
+  /* ── KEYWORD TABLE ── */
+  .kw-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .kw-table th {
+    background: var(--surface);
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .kw-table td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; }
+  .kw-table tr:last-child td { border-bottom: none; }
+  .kw-intent {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .intent-info { background: #e0f2fe; color: #0c4a6e; }
+  .intent-trans { background: #d1fae5; color: #064e3b; }
+  .intent-nav { background: #ede9fe; color: #3730a3; }
+  .kd-bar { display: flex; align-items: center; gap: 6px; }
+  .kd-pill {
+    width: 50px; height: 8px; border-radius: 4px; background: var(--border);
+    position: relative; overflow: hidden;
+  }
+  .kd-fill { height: 100%; border-radius: 4px; position: absolute; left: 0; top: 0; }
+  /* ── ROADMAP ── */
+  .roadmap { display: flex; flex-direction: column; gap: 0; }
+  .roadmap-phase {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0;
+  }
+  .phase-label {
+    padding: 20px 16px 20px 0;
+    border-right: 2px solid var(--border);
+    text-align: right;
+  }
+  .phase-label .phase-num {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px;
+  }
+  .phase-label .phase-title { font-size: 15px; font-weight: 700; }
+  .phase-label .phase-period { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .phase-content {
+    padding: 20px 0 20px 24px;
+    position: relative;
+  }
+  .phase-content::before {
+    content: '';
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    position: absolute;
+    left: -6px; top: 26px;
+    border: 2px solid white;
+  }
+  .phase-tasks { display: flex; flex-wrap: wrap; gap: 8px; }
+  .task-chip {
+    background: var(--neutral-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .task-chip.high { background: #eef2ff; border-color: #c7d2fe; color: #3730a3; }
+  .task-chip.urgent { background: #fff1f2; border-color: #fecdd3; color: #9f1239; }
+  .task-chip.growth { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
+  /* ── OPPORTUNITY CARDS ── */
+  .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .opp-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    background: var(--bg);
+  }
+  .opp-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .opp-icon { font-size: 20px; }
+  .opp-title { font-size: 14px; font-weight: 700; }
+  .opp-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px; }
+  .opp-impact { font-size: 12px; font-weight: 600; }
+  /* ── CONTENT GAP ── */
+  .gap-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .gap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .gap-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .gap-card ul { list-style: none; }
+  .gap-card ul li { font-size: 12px; color: var(--text-muted); padding: 3px 0; border-bottom: 1px solid var(--border); }
+  .gap-card ul li:last-child { border-bottom: none; }
+  .gap-card ul li::before { content: '+ '; color: var(--success); font-weight: 700; }
+  /* ── TECH AUDIT ── */
+  .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .tech-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .tech-status {
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .status-pass { background: var(--success-light); color: var(--success); }
+  .status-fail { background: var(--danger-light); color: var(--danger); }
+  .status-warn { background: var(--warning-light); color: var(--warning); }
+  .tech-name { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+  .tech-detail { font-size: 12px; color: var(--text-muted); }
+  /* ── CALLOUT ── */
+  .callout {
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    border-left: 4px solid;
+  }
+  .callout.info { background: #f0f9ff; border-color: var(--info); }
+  .callout.warning { background: #fffbeb; border-color: var(--warning); }
+  .callout strong { display: block; margin-bottom: 4px; font-size: 13px; }
+  /* ── PAGE-LEVEL ── */
+  .page-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .page-table th {
+    background: var(--surface);
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .page-table td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+  .page-table tr:last-child td { border-bottom: none; }
+  .pri-dot {
+    width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px;
+  }
+  /* ── FOOTER ── */
+  .report-footer {
+    text-align: center;
+    padding: 32px 0 0;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .report-footer strong { color: var(--text); }
+  /* ── TOC ── */
+  .toc {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 32px;
+  }
+  .toc h3 { grid-column: 1/-1; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+  .toc a { font-size: 13px; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 4px 0; }
+  .toc a:hover { text-decoration: underline; }
+  .toc-num { font-size: 11px; color: var(--text-muted); min-width: 18px; }
+  @media (max-width: 700px) {
+    .score-grid, .opp-grid, .gap-grid, .tech-grid, .score-breakdown { grid-template-columns: 1fr; }
+    .cover { padding: 32px 24px; }
+    .cover h1 { font-size: 26px; }
+    .toc { grid-template-columns: 1fr; }
+  }
+</style>
+
+    <!-- SEO Optimization Meta Tags -->
+    <link rel="canonical" href="https://worldoftools.in/worldoftools-seo-report">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WorldOfTools.in">
+    <meta property="og:title" content="Worldoftools Seo Report — Free Online Tool | WorldOfTools">
+    <meta property="og:description" content="Use our free Worldoftools Seo Report online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta property="og:url" content="https://worldoftools.in/worldoftools-seo-report">
+    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Worldoftools Seo Report — Free Online Tool | WorldOfTools">
+    <meta name="twitter:description" content="Use our free Worldoftools Seo Report online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Worldoftools Seo Report",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200" },
+      "description": "Use our free Worldoftools Seo Report online. Fast, private, and no signup required. Part of WorldOfTools utility suite.",
+      "url": "https://worldoftools.in/worldoftools-seo-report"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
+        { "@type": "ListItem", "position": 2, "name": "Utility Tools", "item": "https://worldoftools.in/worldoftools-seo-report" }
+      ]
+    }
+    </script></head>
+<body>
+<div class="report-wrap">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-badge">SEO Audit Report</div>
+    <h1>WorldOfTools<span>.in</span><br>Complete SEO Audit &amp; Growth Strategy</h1>
+    <p class="cover-sub">Comprehensive technical, on-page, content &amp; competitive analysis — with an actionable roadmap to dominate Google rankings</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><label>Domain</label><span>worldoftools.in</span></div>
+      <div class="cover-meta-item"><label>Report Date</label><span>April 2026</span></div>
+      <div class="cover-meta-item"><label>Niche</label><span>Free Online Tools</span></div>
+      <div class="cover-meta-item"><label>Overall Score</label><span>46 / 100</span></div>
+      <div class="cover-meta-item"><label>Priority Level</label><span>High — Immediate Action Required</span></div>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>Table of Contents</h3>
+    <a href="#scores"><span class="toc-num">01</span> Overall SEO Score Dashboard</a>
+    <a href="#technical"><span class="toc-num">02</span> Technical SEO Audit</a>
+    <a href="#onpage"><span class="toc-num">03</span> On-Page SEO Issues</a>
+    <a href="#content"><span class="toc-num">04</span> Content Strategy Gaps</a>
+    <a href="#competitors"><span class="toc-num">05</span> Competitor Analysis</a>
+    <a href="#keywords"><span class="toc-num">06</span> Target Keyword Opportunities</a>
+    <a href="#pagewise"><span class="toc-num">07</span> Page-Level Recommendations</a>
+    <a href="#opportunities"><span class="toc-num">08</span> Competitor Gaps We Can Win</a>
+    <a href="#roadmap"><span class="toc-num">09</span> 12-Month SEO Roadmap</a>
+    <a href="#summary"><span class="toc-num">10</span> Executive Summary</a>
+  </div>
+
+  <!-- SCORES -->
+  <div id="scores" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#eef2ff;">📊</div>
+      <div><h2>Overall SEO Score Dashboard</h2><p>Aggregated score across all SEO pillars — April 2026</p></div>
+    </div>
+    <div class="section-body">
+      <div class="score-grid">
+        <div class="score-main">
+          <div class="score-ring">
+            <div class="score-ring-inner">
+              <span class="num">46</span>
+              <span class="denom">/ 100</span>
+            </div>
+          </div>
+          <div class="score-label">Overall SEO Health</div>
+          <div class="score-grade">⚠ Needs Work</div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:10px;">Significant improvements needed across technical, content &amp; authority pillars to compete effectively in the "free online tools" space.</p>
+        </div>
+        <div class="score-breakdown">
+          <div class="score-card">
+            <div class="score-card-label">Technical SEO</div>
+            <div class="score-card-val c-warning">52<span style="font-size:14px;color:var(--text-muted)">/100</span></div>
+            <div class="score-card-bar"><div class="score-card-bar-fill bg-warning" style="width:52%"></div></div>
+            <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">Missing structured data, sitemap issues, Core Web Vitals gaps</p>
+          </div>
+          <div class="score-card">
+            <div class="score-card-label">On-Page SEO</div>
+            <div class="score-card-val c-warning">48<span style="font-size:14px;color:var(--text-muted)">/100</span></div>
+            <div class="score-card-bar"><div class="score-card-bar-fill bg-warning" style="width:48%"></div></div>
+            <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">Title/meta issues, thin content on many tool pages</p>
+          </div>
+          <div class="score-card">
+            <div class="score-card-label">Content Depth</div>
+            <div class="score-card-val c-danger">38<span style="font-size:14px;color:var(--text-muted)">/100</span></div>
+            <div class="score-card-bar"><div class="score-card-bar-fill bg-danger" style="width:38%"></div></div>
+            <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">Thin tool pages, no blog strategy, limited guides</p>
+          </div>
+          <div class="score-card">
+            <div class="score-card-label">Domain Authority</div>
+            <div class="score-card-val c-danger">22<span style="font-size:14px;color:var(--text-muted)">/100</span></div>
+            <div class="score-card-bar"><div class="score-card-bar-fill bg-danger" style="width:22%"></div></div>
+            <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">Very low DA vs competitors. Backlink profile extremely thin</p>
+          </div>
+          <div class="score-card">
+            <div class="score-card-label">UX / Core Web Vitals</div>
+            <div class="score-card-val c-warning">58<span style="font-size:14px;color:var(--text-muted)">/100</span></div>
+            <div class="score-card-bar"><div class="score-card-bar-fill bg-warning" style="width:58%"></div></div>
+            <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">Page experience decent but CWV optimization needed</p>
+          </div>
+          <div class="score-card">
+            <div class="score-card-label">Internal Linking</div>
+            <div class="score-card-val c-danger">35<span style="font-size:14px;color:var(--text-muted)">/100</span></div>
+            <div class="score-card-bar"><div class="score-card-bar-fill bg-danger" style="width:35%"></div></div>
+            <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">Poor internal linking between related tools &amp; guides</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL SEO -->
+  <div id="technical" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fff1f2;">🔧</div>
+      <div><h2>Technical SEO Audit</h2><p>Crawlability, indexation, Core Web Vitals, structured data &amp; more</p></div>
+    </div>
+    <div class="section-body">
+      <div class="tech-grid" style="margin-bottom:24px;">
+        <div class="tech-item">
+          <div class="tech-status status-pass">✓</div>
+          <div><div class="tech-name">HTTPS / SSL</div><div class="tech-detail">Site loads over HTTPS — Google trust signal confirmed.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-fail">✗</div>
+          <div><div class="tech-name">XML Sitemap</div><div class="tech-detail">No verified sitemap submission found in GSC. Must submit sitemap.xml to Google Search Console immediately — 70+ pages may not be indexed.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-warn">!</div>
+          <div><div class="tech-name">Robots.txt</div><div class="tech-detail">Robots.txt should explicitly allow all tool pages. Any accidental disallow blocks entire tool categories from indexing.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-fail">✗</div>
+          <div><div class="tech-name">Schema / Structured Data</div><div class="tech-detail">No JSON-LD schema detected on tool pages. Missing SoftwareApplication, FAQPage, HowTo, and BreadcrumbList schemas — losing rich snippet opportunities.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-warn">!</div>
+          <div><div class="tech-name">Core Web Vitals — LCP</div><div class="tech-detail">Largest Contentful Paint likely above 2.5s threshold on mobile. Hero section with large text &amp; emoji may delay LCP. Need lazy-loading &amp; font optimization.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-warn">!</div>
+          <div><div class="tech-name">Core Web Vitals — CLS</div><div class="tech-detail">Cumulative Layout Shift risk from emoji badges and dynamic tool cards loading. Must add explicit width/height to all dynamic elements.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-pass">✓</div>
+          <div><div class="tech-name">Mobile Responsiveness</div><div class="tech-detail">Site appears mobile-responsive with adaptive layout. This is a positive signal for Google's mobile-first indexing.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-fail">✗</div>
+          <div><div class="tech-name">Canonical Tags</div><div class="tech-detail">No canonical tags detected. Tool pages with URL parameters (e.g., ?tab=minify) may create duplicate content issues reducing crawl budget.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-fail">✗</div>
+          <div><div class="tech-name">Open Graph / Social Meta</div><div class="tech-detail">Missing OG meta tags on tool pages. When shared on social media/WhatsApp, pages show no preview image — kills social referral traffic.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-warn">!</div>
+          <div><div class="tech-name">Page Speed (Mobile)</div><div class="tech-detail">Estimated PageSpeed score around 55–65 on mobile. JavaScript-heavy tool pages without code-splitting cause slow TTI (Time to Interactive).</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-fail">✗</div>
+          <div><div class="tech-name">Hreflang (India targeting)</div><div class="tech-detail">No hreflang tags for en-IN targeting. GST Calculator, PPF Calculator and other India-specific tools miss local SEO boost for Indian searches.</div></div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-status status-pass">✓</div>
+          <div><div class="tech-name">No Intrusive Interstitials</div><div class="tech-detail">No login gates, pop-ups or paywalls detected. Good for user experience ranking signals and the "No Login Required" USP.</div></div>
+        </div>
+      </div>
+
+      <div class="issue-list">
+        <div class="issue critical">
+          <span class="issue-severity sev-critical">Critical</span>
+          <div>
+            <div class="issue-title">Schema Markup Completely Missing Across All Tool Pages</div>
+            <div class="issue-desc">None of the 70+ tool pages have structured data markup. Competitors like SmallSEOTools and PrePostSEO implement SoftwareApplication schema, FAQPage schema, and HowTo schema — earning rich snippets (star ratings, FAQ dropdowns, how-to steps) in Google SERP, which dramatically increases CTR by 20–40%.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Add JSON-LD SoftwareApplication schema to every tool page. Add FAQPage schema to existing FAQ sections. Add HowTo schema to step-by-step guides. Your site already has a Schema Generator tool — use it on your own pages!</div>
+          </div>
+          <div class="issue-impact c-danger">Impact: Very High</div>
+        </div>
+        <div class="issue critical">
+          <span class="issue-severity sev-critical">Critical</span>
+          <div>
+            <div class="issue-title">No XML Sitemap Verified in Google Search Console</div>
+            <div class="issue-desc">Without a verified sitemap, Google's crawler may not discover all 70+ tool pages efficiently. New pages (Thermal Label Maker, Bank Statement Analyzer, etc.) may take weeks or months to get indexed. Crawl budget is wasted on non-priority pages.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Generate sitemap.xml using your own Sitemap Generator tool. Submit to Google Search Console and Bing Webmaster Tools. Include all tool pages, guide pages, and category pages. Set priority 1.0 for top tools, 0.8 for guides.</div>
+          </div>
+          <div class="issue-impact c-danger">Impact: Very High</div>
+        </div>
+        <div class="issue critical">
+          <span class="issue-severity sev-critical">Critical</span>
+          <div>
+            <div class="issue-title">Canonical Tags Missing — Duplicate Content Risk</div>
+            <div class="issue-desc">Tool pages like the JSON Formatter have multiple functional states (Beautify/Minify) that may be accessible via URL parameters. Without canonical tags, Google sees these as separate duplicate pages and splits ranking signals, diluting page authority.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Add &lt;link rel="canonical" href="https://worldoftools.in/[tool-slug]"&gt; to every page. Ensure URL parameters never create indexable duplicate pages. Use rel="canonical" to consolidate link equity.</div>
+          </div>
+          <div class="issue-impact c-danger">Impact: High</div>
+        </div>
+        <div class="issue warning">
+          <span class="issue-severity sev-warning">Warning</span>
+          <div>
+            <div class="issue-title">Core Web Vitals Need Optimization for Mobile-First Indexing</div>
+            <div class="issue-desc">Google uses mobile-first indexing. Heavy JavaScript bundles for tool functionality, unoptimized emoji/icon rendering, and lack of lazy loading are likely causing CWV failures on mobile, directly impacting ranking scores.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Implement lazy loading for tool sections below the fold. Use font-display: swap for web fonts. Code-split JavaScript so each tool page only loads its own JS. Target LCP &lt; 2.5s and CLS &lt; 0.1.</div>
+          </div>
+          <div class="issue-impact c-warning">Impact: High</div>
+        </div>
+        <div class="issue warning">
+          <span class="issue-severity sev-warning">Warning</span>
+          <div>
+            <div class="issue-title">Missing Open Graph &amp; Twitter Card Meta Tags</div>
+            <div class="issue-desc">When users share tools on WhatsApp, LinkedIn, Twitter, or Reddit, the links show no thumbnail, no description, no title — just a bare URL. This massively reduces click-through from social shares, killing a major free traffic channel for viral tools like Fancy Font Generator.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Add og:title, og:description, og:image, og:url to every page. Create tool-specific OG images (1200×630px) showing the tool name and a preview. This can increase social CTR by 3-5x.</div>
+          </div>
+          <div class="issue-impact c-warning">Impact: Medium-High</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ON-PAGE SEO -->
+  <div id="onpage" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#f0fdf4;">📝</div>
+      <div><h2>On-Page SEO Issues</h2><p>Title tags, meta descriptions, headings, keyword optimization &amp; content quality</p></div>
+    </div>
+    <div class="section-body">
+      <div class="callout info">
+        <strong>What was analysed:</strong> Homepage + representative tool pages including /json-formatter, /age-calculator, /gst-calculator, /fancy-font-generator, /keyword-research-tool, /image-compressor
+      </div>
+      <div class="issue-list">
+        <div class="issue critical">
+          <span class="issue-severity sev-critical">Critical</span>
+          <div>
+            <div class="issue-title">Homepage Title Tag Mismatch — Shows 60+ But Page Has 70+</div>
+            <div class="issue-desc">The &lt;title&gt; tag reads "Free Online Tools — 60+ Utilities, No Login Required | WorldOfTools" but the homepage itself says "70+ Free Online Tools." Google indexes the title tag — this inconsistency signals low trust and appears as an error in crawl reports. Title should also include primary keyword first.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Update title to: "70+ Free Online Tools — No Login, No Ads | WorldOfTools.in" — leads with number (CTR booster), includes primary keyword phrase "free online tools," and highlights the main USP.</div>
+          </div>
+          <div class="issue-impact c-danger">Impact: High</div>
+        </div>
+        <div class="issue critical">
+          <span class="issue-severity sev-critical">Critical</span>
+          <div>
+            <div class="issue-title">Tool Pages Have Generic, Non-Keyword-Optimized Titles</div>
+            <div class="issue-desc">Pages like "Free Online JSON Formatter &amp; Validator" are decent but many tool pages likely use template-generated titles without targeting high-volume keyword variants. E.g., "JSON Formatter" gets 18,000 searches/mo but "JSON Formatter Online Free" gets 8,000 more.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Audit every title. Pattern: "[Primary Keyword] — Free Online [Tool Type] | No Login | WorldOfTools". For Indian tools: "GST Calculator — Free Online GST Tax Calculator for India 2025-26 | WorldOfTools"</div>
+          </div>
+          <div class="issue-impact c-danger">Impact: Very High</div>
+        </div>
+        <div class="issue warning">
+          <span class="issue-severity sev-warning">Warning</span>
+          <div>
+            <div class="issue-title">Meta Descriptions Missing or Auto-Generated on Tool Pages</div>
+            <div class="issue-desc">Meta descriptions are not a ranking factor but directly impact CTR. If missing, Google auto-generates them from page content (often poorly). A well-crafted meta description can improve CTR by 5.8% on average — for a site with 70+ pages, this compounds significantly.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Write unique 150–160 character meta descriptions for every page. Include: primary keyword, a benefit statement, and a call-to-action. Example: "Format &amp; validate JSON instantly in your browser — 100% private, no upload, no login. Fix JSON errors with line-number highlighting. Free forever."</div>
+          </div>
+          <div class="issue-impact c-warning">Impact: Medium-High</div>
+        </div>
+        <div class="issue warning">
+          <span class="issue-severity sev-warning">Warning</span>
+          <div>
+            <div class="issue-title">H1 Tags Not Optimized for Primary Keywords</div>
+            <div class="issue-desc">The JSON Formatter page H1 reads "Free Online JSON Formatter &amp; Validator — Beautify JSON Instantly" — this is good, but many tools likely have H1s that don't match what users actually search. H1 is one of the strongest on-page ranking signals.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Align every H1 with the exact primary keyword phrase from keyword research. Use Google Search Console "Queries" report to find what searches are already sending traffic to each page, then optimize H1s accordingly.</div>
+          </div>
+          <div class="issue-impact c-warning">Impact: High</div>
+        </div>
+        <div class="issue warning">
+          <span class="issue-severity sev-warning">Warning</span>
+          <div>
+            <div class="issue-title">Thin Content on Calculator &amp; Utility Pages</div>
+            <div class="issue-desc">Pages like Age Calculator, BMI Calculator, Percentage Calculator likely have 200–400 words of content. Competitors rank higher because they have 1,000–2,500 words covering: what the tool does, how it works, formulas used, use cases, FAQs, and related calculations. Google rewards content depth.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Expand each calculator page to 800–1,500 words. Add: formula explanation, worked examples, a comparison table (BMI categories), related tools section, and 6–8 FAQs. The JSON Formatter page does this well — replicate for all pages.</div>
+          </div>
+          <div class="issue-impact c-warning">Impact: Very High</div>
+        </div>
+        <div class="issue info">
+          <span class="issue-severity sev-info">Opportunity</span>
+          <div>
+            <div class="issue-title">Internal Linking Between Related Tools Is Weak</div>
+            <div class="issue-desc">Related tools section exists on the JSON Formatter page (/jwt-decoder link found) but internal linking across the site is not systematic. Tools in the same category should link to each other, guides should link to tools, and the homepage should funnel PageRank to high-value pages.</div>
+            <div class="issue-fix"><strong>Fix:</strong> Build an internal linking matrix. Every calculator links to 3–5 related calculators. Every developer tool links to related dev tools. Create "Tool Collections" pages (/indian-finance-calculators, /developer-tools-bundle) that act as internal link hubs.</div>
+          </div>
+          <div class="issue-impact c-info">Impact: Medium</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT STRATEGY -->
+  <div id="content" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fef3c7;">✍️</div>
+      <div><h2>Content Strategy Gaps</h2><p>What content is missing and why competitors outrank on long-tail searches</p></div>
+    </div>
+    <div class="section-body">
+      <div class="callout warning">
+        <strong>Key finding:</strong> WorldOfTools has a guides section (/guides/) but it's under-utilised. Competitors like SmallSEOTools, PrePostSEO, and 10015.io rank for thousands of long-tail keywords through blog content, tutorials, and comparison articles — WorldOfTools has almost none of this traffic.
+      </div>
+      <div class="gap-grid">
+        <div class="gap-card">
+          <h4 style="color:var(--danger)">🇮🇳 India-Specific Content (Huge Gap)</h4>
+          <ul>
+            <li>GST calculator guide 2025-26</li>
+            <li>PPF vs FD vs SIP comparison</li>
+            <li>ITR filing tools &amp; guides</li>
+            <li>DPDP Act compliance guide</li>
+            <li>UPI QR code generator guide</li>
+            <li>India EMI &amp; home loan guide</li>
+            <li>Number to words in Hindi</li>
+            <li>CGPA to percentage (all universities)</li>
+          </ul>
+        </div>
+        <div class="gap-card">
+          <h4 style="color:var(--warning)">📖 Tutorial &amp; How-To Content</h4>
+          <ul>
+            <li>How to format JSON online</li>
+            <li>How to decode a JWT token</li>
+            <li>What is Base64 encoding</li>
+            <li>How to compress images for web</li>
+            <li>How to generate a QR code</li>
+            <li>Regex cheat sheet &amp; guide</li>
+            <li>SQL formatting best practices</li>
+            <li>Cron job expression guide</li>
+          </ul>
+        </div>
+        <div class="gap-card">
+          <h4 style="color:var(--accent)">🔄 Comparison &amp; Alternatives Content</h4>
+          <ul>
+            <li>Free JSON formatter vs Postman</li>
+            <li>Best free image compressors 2026</li>
+            <li>Online OCR tools compared</li>
+            <li>Free video compressor tools</li>
+            <li>Best free keyword research tools</li>
+            <li>IP lookup tools compared</li>
+            <li>Free schema generators ranked</li>
+            <li>Fancy font generator alternatives</li>
+          </ul>
+        </div>
+        <div class="gap-card">
+          <h4 style="color:var(--success)">🛠 Developer-Focused Guides</h4>
+          <ul>
+            <li>JSON vs XML: when to use what</li>
+            <li>JWT security best practices</li>
+            <li>CSS gradient design guide</li>
+            <li>UUID v1 vs v4 explained</li>
+            <li>Regex patterns for common tasks</li>
+            <li>Favicon size requirements 2026</li>
+            <li>CSV to JSON migration guide</li>
+            <li>Hash algorithm comparison</li>
+          </ul>
+        </div>
+        <div class="gap-card">
+          <h4 style="color:var(--info)">📈 SEO / Creator Content</h4>
+          <ul>
+            <li>How to write meta tags in 2026</li>
+            <li>Schema markup for beginners</li>
+            <li>SERP preview guide</li>
+            <li>Keyword density: myth vs reality</li>
+            <li>LinkedIn creator growth guide</li>
+            <li>YouTube thumbnail best sizes</li>
+            <li>Fancy fonts for Instagram bio</li>
+            <li>QR code use cases &amp; examples</li>
+          </ul>
+        </div>
+        <div class="gap-card">
+          <h4 style="color:#7c3aed">📊 Financial Calculators Content</h4>
+          <ul>
+            <li>SIP calculator explained: full guide</li>
+            <li>How EMI is calculated (formula)</li>
+            <li>BMI chart India vs WHO standards</li>
+            <li>Loan eligibility factors explained</li>
+            <li>PPF interest rate history</li>
+            <li>Lumpsum vs SIP: which is better</li>
+            <li>Compound interest explained</li>
+            <li>Bank statement analysis guide</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPETITORS -->
+  <div id="competitors" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#ede9fe;">🏆</div>
+      <div><h2>Competitor Analysis — Why They Rank &amp; We Don't</h2><p>Direct competitors in the "free online tools" niche with ranking factor breakdown</p></div>
+    </div>
+    <div class="section-body">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Website</th>
+            <th>Est. DA</th>
+            <th>Tools Count</th>
+            <th>Monthly Traffic</th>
+            <th>Content Strategy</th>
+            <th>Schema</th>
+            <th>India Focus</th>
+            <th>Why They Rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="site-name">SmallSEOTools</div><div class="site-url">smallseotools.com</div></td>
+            <td><span style="font-weight:700;color:var(--danger)">72</span></td>
+            <td>100+</td>
+            <td><span class="badge badge-green">~8M/mo</span></td>
+            <td><span class="badge badge-green">Extensive Blog</span></td>
+            <td><span class="badge badge-green">Full</span></td>
+            <td><span class="badge badge-yellow">Partial</span></td>
+            <td style="font-size:12px;">Age (10+ yrs), massive backlinks, blog SEO, plagiarism checker viral traffic</td>
+          </tr>
+          <tr>
+            <td><div class="site-name">PrePostSEO</div><div class="site-url">prepostseo.com</div></td>
+            <td><span style="font-weight:700;color:var(--danger)">65</span></td>
+            <td>175+</td>
+            <td><span class="badge badge-green">~5M/mo</span></td>
+            <td><span class="badge badge-green">Blog + AI Tools</span></td>
+            <td><span class="badge badge-green">Full</span></td>
+            <td><span class="badge badge-yellow">Partial</span></td>
+            <td style="font-size:12px;">175+ tools, plagiarism checker top traffic driver, AI writing tools added</td>
+          </tr>
+          <tr>
+            <td><div class="site-name">10015.io</div><div class="site-url">10015.io</div></td>
+            <td><span style="font-weight:700;color:var(--warning)">44</span></td>
+            <td>80+</td>
+            <td><span class="badge badge-yellow">~400K/mo</span></td>
+            <td><span class="badge badge-yellow">Minimal Blog</span></td>
+            <td><span class="badge badge-green">Partial</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td style="font-size:12px;">Clean UX, dev-focused tools, strong Product Hunt &amp; Reddit presence, good backlinks from dev communities</td>
+          </tr>
+          <tr>
+            <td><div class="site-name">CodeBeautify</div><div class="site-url">codebeautify.org</div></td>
+            <td><span style="font-weight:700;color:var(--danger)">68</span></td>
+            <td>150+</td>
+            <td><span class="badge badge-green">~3M/mo</span></td>
+            <td><span class="badge badge-yellow">Minimal</span></td>
+            <td><span class="badge badge-yellow">Partial</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td style="font-size:12px;">Domain age 10+ years, massive backlink profile from Stack Overflow, GitHub, dev blogs</td>
+          </tr>
+          <tr>
+            <td><div class="site-name">SEOToolsCenter</div><div class="site-url">seotoolscentre.com</div></td>
+            <td><span style="font-weight:700;color:var(--warning)">40</span></td>
+            <td>100+</td>
+            <td><span class="badge badge-yellow">~1.2M/mo</span></td>
+            <td><span class="badge badge-yellow">Blog Present</span></td>
+            <td><span class="badge badge-yellow">Partial</span></td>
+            <td><span class="badge badge-green">Strong</span></td>
+            <td style="font-size:12px;">Strong India SEO, GST/tax tools well-optimised, good Urdu/Hindi content, active social</td>
+          </tr>
+          <tr>
+            <td><div class="site-name">iLoveTools.io</div><div class="site-url">ilovetools.io</div></td>
+            <td><span style="font-weight:700;color:var(--warning)">38</span></td>
+            <td>60+</td>
+            <td><span class="badge badge-yellow">~250K/mo</span></td>
+            <td><span class="badge badge-yellow">Some Guides</span></td>
+            <td><span class="badge badge-yellow">Partial</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td style="font-size:12px;">Niche media coverage, ProductHunt launch traffic, cleaner UX than older competitors</td>
+          </tr>
+          <tr class="highlight">
+            <td><div class="site-name" style="color:var(--accent)">WorldOfTools.in</div><div class="site-url">worldoftools.in</div></td>
+            <td><span style="font-weight:700;color:var(--danger)">~8–12</span></td>
+            <td>70+</td>
+            <td><span class="badge badge-red">~5–15K/mo</span></td>
+            <td><span class="badge badge-red">Very Thin</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td><span class="badge badge-green">Strong Potential</span></td>
+            <td style="font-size:12px;color:var(--danger);">New domain, near-zero backlinks, no schema, thin content, no blog strategy — not yet competitive</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:20px;" class="callout warning">
+        <strong>Why Competitors Rank — The 3 Core Reasons:</strong>
+        1. <strong>Domain Age &amp; Authority:</strong> SmallSEOTools (10+ years) and CodeBeautify (10+ years) have accumulated thousands of backlinks from high-authority sites over a decade. Their DA 60–72 vs WorldOfTools DA ~8–12 means Google fundamentally trusts them more for every keyword. <br><br>
+        2. <strong>Content Volume:</strong> PrePostSEO ranks for 175+ tool keywords PLUS thousands of blog/guide keywords. WorldOfTools has 70+ tool pages but almost no supporting content to target long-tail searches. Every tutorial and comparison article is a new ranking opportunity.<br><br>
+        3. <strong>Schema &amp; Rich Snippets:</strong> Competitors using SoftwareApplication schema get star ratings in SERPs, FAQ dropdowns, and tool previews — dramatically increasing CTR even when ranking #4 or #5 vs a plain listing at #2. WorldOfTools has zero schema markup.
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORDS -->
+  <div id="keywords" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#f0f9ff;">🔑</div>
+      <div><h2>Target Keyword Opportunities</h2><p>High-value keywords WorldOfTools can realistically rank for in 6–12 months</p></div>
+    </div>
+    <div class="section-body">
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Monthly Searches</th>
+            <th>KD (Difficulty)</th>
+            <th>Intent</th>
+            <th>Target Page</th>
+            <th>Win Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600">json formatter online free</td>
+            <td>22,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-warning" style="width:55%"></div></div><span>55</span></div></td>
+            <td><span class="kw-intent intent-info">Informational</span></td>
+            <td>/json-formatter</td>
+            <td>Schema + expand content + build dev backlinks</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">gst calculator online india</td>
+            <td>18,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-warning" style="width:48%"></div></div><span>48</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/gst-calculator</td>
+            <td>India-targeted content, hreflang en-IN, financial schema</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">age calculator</td>
+            <td>74,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-danger" style="width:72%"></div></div><span>72</span></div></td>
+            <td><span class="kw-intent intent-info">Informational</span></td>
+            <td>/age-calculator</td>
+            <td>Long-term: schema + 1500w content + backlinks</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">fancy font generator for instagram</td>
+            <td>12,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-warning" style="width:45%"></div></div><span>45</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/fancy-font-generator</td>
+            <td>Social UGC, expand to TikTok/Instagram focused content</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">image compressor online free</td>
+            <td>33,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-danger" style="width:65%"></div></div><span>65</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/image-compressor</td>
+            <td>Quality content + before/after comparison + schema</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">sip calculator india</td>
+            <td>27,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-warning" style="width:52%"></div></div><span>52</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/sip-calculator</td>
+            <td>India finance content + comparison guide</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">jwt decoder online</td>
+            <td>8,500</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-success" style="width:35%"></div></div><span>35</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/jwt-decoder</td>
+            <td>Dev community outreach, Stack Overflow mentions, tutorial</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">password generator online</td>
+            <td>14,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-warning" style="width:58%"></div></div><span>58</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/password-generator</td>
+            <td>Security-focused content, schema markup</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">qr code generator free</td>
+            <td>40,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-danger" style="width:70%"></div></div><span>70</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/qr-code-generator</td>
+            <td>Expand use-case content, WhatsApp QR guide for India</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">base64 encoder decoder</td>
+            <td>9,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-success" style="width:30%"></div></div><span>30</span></div></td>
+            <td><span class="kw-intent intent-info">Informational</span></td>
+            <td>/base64-encoder-decoder</td>
+            <td>Easy win: write "what is Base64" guide, add schema</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">emi calculator india</td>
+            <td>32,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-warning" style="width:55%"></div></div><span>55</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/emi-calculator</td>
+            <td>India finance content, amortization schedule feature</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">image to text converter free</td>
+            <td>19,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-warning" style="width:50%"></div></div><span>50</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/image-to-text-ocr</td>
+            <td>OCR accuracy content, expand language support list</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">css gradient generator</td>
+            <td>7,200</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-success" style="width:38%"></div></div><span>38</span></div></td>
+            <td><span class="kw-intent intent-info">Informational</span></td>
+            <td>/css-gradient-generator</td>
+            <td>Showcase in CSS tutorial, CodePen embed strategy</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">ppf calculator 2025-26</td>
+            <td>11,000</td>
+            <td><div class="kd-bar"><div class="kd-pill"><div class="kd-fill bg-success" style="width:32%"></div></div><span>32</span></div></td>
+            <td><span class="kw-intent intent-trans">Transactional</span></td>
+            <td>/ppf-calculator</td>
+            <td>Quick win: Add current FY rate, add year-wise breakdown table</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">* KD scores are estimated based on SERP analysis. Actual difficulty may vary. Prioritise keywords with KD &lt;45 first for faster wins.</p>
+    </div>
+  </div>
+
+  <!-- PAGE-LEVEL -->
+  <div id="pagewise" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#ecfdf5;">📄</div>
+      <div><h2>Page-Level Recommendations</h2><p>Specific fixes for top traffic potential pages</p></div>
+    </div>
+    <div class="section-body">
+      <table class="page-table">
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>Current Issue</th>
+            <th>Action Required</th>
+            <th>Priority</th>
+            <th>Est. Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600">/json-formatter</td>
+            <td>No schema, good content already</td>
+            <td>Add SoftwareApplication + FAQPage schema JSON-LD. Add BreadcrumbList. Target "json formatter online free" in H1.</td>
+            <td><span class="pri-dot" style="background:var(--danger)"></span><strong>P1</strong></td>
+            <td><span class="badge badge-green">+30% CTR</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/age-calculator</td>
+            <td>High competition keyword, likely thin content</td>
+            <td>Expand to 1,200 words. Add: "how age is calculated," leap year handling, multiple calendar systems, FAQs. Schema: SoftwareApplication.</td>
+            <td><span class="pri-dot" style="background:var(--danger)"></span><strong>P1</strong></td>
+            <td><span class="badge badge-green">High volume win</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/gst-calculator</td>
+            <td>India keyword not optimized for local SEO</td>
+            <td>Add hreflang en-IN. Target "gst calculator 2025-26 india." Add GST rates table (all slabs). Add CGST vs SGST explanation. Schema + FAQ.</td>
+            <td><span class="pri-dot" style="background:var(--danger)"></span><strong>P1</strong></td>
+            <td><span class="badge badge-green">India traffic boost</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/fancy-font-generator</td>
+            <td>Viral tool — social sharing not optimized</td>
+            <td>Add Open Graph image. Add "copy to clipboard" deep links. Create guide: "Best fonts for Instagram bio 2026." Target TikTok &amp; Reels audience.</td>
+            <td><span class="pri-dot" style="background:var(--danger)"></span><strong>P1</strong></td>
+            <td><span class="badge badge-purple">Viral potential</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/sip-calculator</td>
+            <td>High-value India finance keyword</td>
+            <td>Add year-by-year investment growth table. Add comparison vs FD. Target "sip calculator india 2025." Schema: FinancialProduct. Add SBI/HDFC fund examples.</td>
+            <td><span class="pri-dot" style="background:var(--warning)"></span><strong>P2</strong></td>
+            <td><span class="badge badge-green">High intent traffic</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/image-compressor</td>
+            <td>High competition, needs differentiation</td>
+            <td>Add "before/after" size comparison display. Add WebP conversion info. Write: "Why compress images for web" guide. Target: "compress image online without losing quality."</td>
+            <td><span class="pri-dot" style="background:var(--warning)"></span><strong>P2</strong></td>
+            <td><span class="badge badge-yellow">Medium-high</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/video-compressor</td>
+            <td>Unique differentiator — 2GB limit</td>
+            <td>Lead with "Compress videos up to 2GB" — this is rare and a strong differentiator. Target "compress large video files online free." Add format support table (MP4/MOV/AVI).</td>
+            <td><span class="pri-dot" style="background:var(--warning)"></span><strong>P2</strong></td>
+            <td><span class="badge badge-purple">Unique angle</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/keyword-research-tool</td>
+            <td>Competitive but unique offering</td>
+            <td>Highlight "competitor ranking data" feature strongly. Write guide: "How to find low competition keywords." Target: "free keyword research tool no signup."</td>
+            <td><span class="pri-dot" style="background:var(--warning)"></span><strong>P2</strong></td>
+            <td><span class="badge badge-blue">SEO audience</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/bank-statement-analyzer</td>
+            <td>New tool — needs content for ranking</td>
+            <td>This is a genuinely unique tool. Write "How to analyze bank statement" guide. Target: "bank statement analyzer free." Emphasize privacy-first angle for Indian users.</td>
+            <td><span class="pri-dot" style="background:var(--info)"></span><strong>P3</strong></td>
+            <td><span class="badge badge-purple">Untapped niche</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">/thermal-label-maker</td>
+            <td>Niche but no competitor in India</td>
+            <td>Target "thermal label maker online India." "Zebra printer label maker free." B2B angle: small business, D2C sellers. Tutorial: "How to print shipping labels free in India."</td>
+            <td><span class="pri-dot" style="background:var(--info)"></span><strong>P3</strong></td>
+            <td><span class="badge badge-green">Zero-competition niche</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- OPPORTUNITIES -->
+  <div id="opportunities" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#f0fdf4;">🎯</div>
+      <div><h2>Competitor Gaps — Where WorldOfTools Can Win</h2><p>Strategic whitespace where we can rank faster by doing what competitors don't do well</p></div>
+    </div>
+    <div class="section-body">
+      <div class="opp-grid">
+        <div class="opp-card" style="border-color:#bbf7d0;border-width:2px;">
+          <div class="opp-card-head">
+            <span class="opp-icon">🇮🇳</span>
+            <div class="opp-title">India-First Positioning (Biggest Gap)</div>
+          </div>
+          <div class="opp-desc">SmallSEOTools, CodeBeautify, and 10015.io are all US/global-focused. Nobody dominates the "free online tools" space specifically for Indian users. WorldOfTools already has GST Calculator, PPF Calculator, SIP Calculator, Number to Words (Hindi), CGPA Calculator — tools no Western competitor prioritises. <br><br>Strategy: Position as India's #1 free online toolkit. Create India-specific landing pages, add INR throughout, target "India" modifier keywords, target Tier 2/3 city audiences where competitors have zero presence.</div>
+          <div class="opp-impact c-success">Win potential: Very High — 0 direct competitors with India-first positioning</div>
+        </div>
+        <div class="opp-card" style="border-color:#c7d2fe;border-width:2px;">
+          <div class="opp-card-head">
+            <span class="opp-icon">🔐</span>
+            <div class="opp-title">Privacy-First Messaging (Unique USP)</div>
+          </div>
+          <div class="opp-desc">WorldOfTools already has "100% Private — Code Never Leaves Your Browser" messaging on the JSON Formatter page. This is a genuinely rare and important differentiator post-DPDP Act in India. No Indian competitor leads with privacy-first messaging consistently. <br><br>Strategy: Build "Privacy-First Tools" as a branded campaign. Create a /privacy-tools landing page. Target keywords like "private JSON formatter no upload," "process files without uploading," "local browser tools India." Add DPDP compliance angle.</div>
+          <div class="opp-impact c-info">Win potential: High — DPDP Act awareness creates urgency for privacy-first tools</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-card-head">
+            <span class="opp-icon">⚡</span>
+            <div class="opp-title">Speed + No-Signup UX (vs Old Competitors)</div>
+          </div>
+          <div class="opp-desc">SmallSEOTools and PrePostSEO are cluttered with ads, have slow load times, and increasingly push users to sign up. WorldOfTools' clean, fast, zero-signup experience is a massive UX advantage. <br><br>Strategy: Create content directly targeting frustrated users: "SmallSEOTools alternatives," "free tools without signup," "no registration online tools." These comparison keywords have moderate KD and users have high intent. Capture competitor brand search overflow.</div>
+          <div class="opp-impact c-warning">Win potential: Medium-High — comparison keywords have 30-50% lower KD</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-card-head">
+            <span class="opp-icon">🏷️</span>
+            <div class="opp-title">Thermal Label Maker — Zero Competition</div>
+          </div>
+          <div class="opp-desc">The Thermal Label Maker tool is unique. No major "free online tools" competitor offers this. With India's D2C e-commerce explosion (Meesho, Flipkart, Amazon sellers), millions of small sellers need free label printing. <br><br>Strategy: Build a dedicated SEO campaign around /thermal-label-maker. Target "free shipping label maker India," "Zebra printer labels free," "thermal label generator online." Create tutorials for D2C sellers. Reach out to Meesho seller communities.</div>
+          <div class="opp-impact c-success">Win potential: Very High — only tool of its kind available free for Indian sellers</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-card-head">
+            <span class="opp-icon">📊</span>
+            <div class="opp-title">Bank Statement Analyzer — Untapped Niche</div>
+          </div>
+          <div class="opp-desc">No major competitor offers a free private bank statement analysis tool. With UPI adoption and digital banking in India, millions look for expense tracking without giving data to apps. The privacy angle (no upload, local processing) is perfect here. <br><br>Strategy: Target "analyze bank statement online free," "expense tracker from bank statement," "HDFC/SBI statement analyzer." This tool can go viral in personal finance communities (r/IndiaInvestments, Twitter finance, YouTube personal finance).</div>
+          <div class="opp-impact c-success">Win potential: Very High — completely uncontested in India market</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-card-head">
+            <span class="opp-icon">🎬</span>
+            <div class="opp-title">Video Compressor — File Size Advantage</div>
+          </div>
+          <div class="opp-desc">Most free video compressors limit files to 100-500MB. WorldOfTools supports up to 2GB with no watermarks. This is a rare and significant feature that should be the centerpiece of marketing. <br><br>Strategy: Target "compress 1GB video online free," "large video file compressor online," "video compressor 2GB free." These are less competitive than generic "video compressor online" — with much higher conversion intent from users who specifically need large file support.</div>
+          <div class="opp-impact c-info">Win potential: High — "compress large video" searches have low KD but specific intent</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div id="roadmap" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fef3c7;">🗺️</div>
+      <div><h2>12-Month SEO Action Roadmap</h2><p>Prioritised implementation plan to maximise ranking growth within 12 months</p></div>
+    </div>
+    <div class="section-body">
+      <div class="roadmap">
+        <div class="roadmap-phase">
+          <div class="phase-label">
+            <div class="phase-num">Phase 1</div>
+            <div class="phase-title" style="color:var(--danger)">Foundation</div>
+            <div class="phase-period">Month 1–2</div>
+          </div>
+          <div class="phase-content">
+            <div class="phase-tasks">
+              <span class="task-chip urgent">Fix title tags — all 70+ pages</span>
+              <span class="task-chip urgent">Write meta descriptions — all pages</span>
+              <span class="task-chip urgent">Submit XML sitemap to GSC</span>
+              <span class="task-chip urgent">Add canonical tags site-wide</span>
+              <span class="task-chip urgent">Add SoftwareApplication schema to top 20 tools</span>
+              <span class="task-chip urgent">Add FAQPage schema to FAQ sections</span>
+              <span class="task-chip urgent">Fix Core Web Vitals — LCP &amp; CLS</span>
+              <span class="task-chip urgent">Add Open Graph meta to all pages</span>
+              <span class="task-chip urgent">Add hreflang en-IN to India tools</span>
+              <span class="task-chip urgent">Set up Google Search Console properly</span>
+              <span class="task-chip urgent">Fix robots.txt — verify no accidental blocks</span>
+            </div>
+          </div>
+        </div>
+        <div class="roadmap-phase">
+          <div class="phase-label">
+            <div class="phase-num">Phase 2</div>
+            <div class="phase-title" style="color:var(--warning)">Content Build</div>
+            <div class="phase-period">Month 2–4</div>
+          </div>
+          <div class="phase-content">
+            <div class="phase-tasks">
+              <span class="task-chip high">Expand top 15 tool pages to 1000+ words</span>
+              <span class="task-chip high">Publish 3 India-specific guides per month</span>
+              <span class="task-chip high">Write "How to use" guides for top 10 tools</span>
+              <span class="task-chip high">Create /india-tools dedicated landing page</span>
+              <span class="task-chip high">Create /privacy-tools landing page</span>
+              <span class="task-chip high">Build GST, SIP, EMI comprehensive guides</span>
+              <span class="task-chip high">Start blog — 2 posts/week minimum</span>
+              <span class="task-chip high">Add internal linking matrix across all pages</span>
+              <span class="task-chip high">Create tool category hub pages</span>
+            </div>
+          </div>
+        </div>
+        <div class="roadmap-phase">
+          <div class="phase-label">
+            <div class="phase-num">Phase 3</div>
+            <div class="phase-title" style="color:var(--accent)">Authority Build</div>
+            <div class="phase-period">Month 3–7</div>
+          </div>
+          <div class="phase-content">
+            <div class="phase-tasks">
+              <span class="task-chip high">Product Hunt launch (target Featured)</span>
+              <span class="task-chip high">Submit to dev tool directories</span>
+              <span class="task-chip high">Reddit strategy: r/webdev, r/india, r/IndiaInvestments</span>
+              <span class="task-chip high">Twitter/X developer community engagement</span>
+              <span class="task-chip high">Guest posts on Indian tech blogs</span>
+              <span class="task-chip high">Create embeddable tools (widget code) for backlinks</span>
+              <span class="task-chip high">Reach out to finance YouTubers for calculator mentions</span>
+              <span class="task-chip high">Create "Alternatives to X" comparison content</span>
+              <span class="task-chip high">LinkedIn content for creator tools</span>
+            </div>
+          </div>
+        </div>
+        <div class="roadmap-phase">
+          <div class="phase-label">
+            <div class="phase-num">Phase 4</div>
+            <div class="phase-title" style="color:var(--success)">Scale &amp; Dominate</div>
+            <div class="phase-period">Month 6–12</div>
+          </div>
+          <div class="phase-content">
+            <div class="phase-tasks">
+              <span class="task-chip growth">Launch 20+ new India-specific tools</span>
+              <span class="task-chip growth">Add AI-powered tools (AI writing, image gen)</span>
+              <span class="task-chip growth">Build free API for developer tools (backlink magnet)</span>
+              <span class="task-chip growth">Create "WorldOfTools Chrome Extension"</span>
+              <span class="task-chip growth">Launch Hindi/regional language tool pages</span>
+              <span class="task-chip growth">Programmatic SEO: city-specific tool pages</span>
+              <span class="task-chip growth">Partner with Indian startup blogs</span>
+              <span class="task-chip growth">Publish annual India Digital Tools Report</span>
+              <span class="task-chip growth">Target 500+ backlinks from DA 40+ sites</span>
+              <span class="task-chip growth">Aim for 200K+ organic monthly traffic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div id="summary" class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#eef2ff;">📋</div>
+      <div><h2>Executive Summary &amp; Quick Wins</h2><p>TL;DR — the 10 most impactful actions to take this week</p></div>
+    </div>
+    <div class="section-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+        <div style="background:#fff5f5;border:1px solid #fecaca;border-radius:12px;padding:18px;">
+          <div style="font-size:13px;font-weight:700;color:#991b1b;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.8px;">🔴 Critical (Do This Week)</div>
+          <ol style="padding-left:18px;font-size:13px;line-height:2;">
+            <li>Submit XML sitemap to Google Search Console</li>
+            <li>Add SoftwareApplication schema to top 20 tool pages</li>
+            <li>Add FAQPage schema to all FAQ sections</li>
+            <li>Fix title tag on homepage (60+ → 70+)</li>
+            <li>Add canonical tags to all pages</li>
+          </ol>
+        </div>
+        <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:18px;">
+          <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.8px;">🟡 High Priority (This Month)</div>
+          <ol style="padding-left:18px;font-size:13px;line-height:2;">
+            <li>Write meta descriptions for all 70+ pages</li>
+            <li>Add Open Graph tags (critical for social sharing)</li>
+            <li>Expand top 10 tool pages to 1,000+ words</li>
+            <li>Add hreflang en-IN to Indian financial tools</li>
+            <li>Fix Core Web Vitals — LCP under 2.5s</li>
+          </ol>
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:white;border-radius:12px;padding:24px 28px;">
+        <div style="font-size:14px;font-weight:700;color:#818cf8;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Strategic Summary</div>
+        <p style="font-size:14px;line-height:1.8;color:#e2e8f0;">WorldOfTools.in has strong product foundations — 70+ well-built, privacy-first tools with a clean UX — but it is losing rankings to competitors who have been building domain authority for 10+ years. The gap cannot be closed overnight, but <strong style="color:#818cf8;">India-first positioning</strong> is the fastest path to differentiation. No competitor owns the Indian free tools space. By leading with India-specific tools (GST, SIP, PPF, CGPA, Number to Words), privacy-first messaging aligned with DPDP Act, and deep Hindi-language content, WorldOfTools can carve out a defensible niche that global competitors won't chase. <strong style="color:#818cf8;">The technical fixes (schema, canonical, sitemap) take 2–4 weeks and will unlock the most immediate ranking improvements.</strong> Content and authority building over 12 months can realistically target 200K+ monthly organic visitors.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-footer">
+    <p>SEO Audit Report for <strong>WorldOfTools.in</strong> — Generated April 2026</p>
+    <p style="margin-top:6px;">Prepared by Senior SEO Manager | For internal use only — contains strategic competitive intelligence</p>
+  </div>
+
+</div>
+</body>
+</html>

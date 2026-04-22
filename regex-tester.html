@@ -3,44 +3,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Regex Tester Free Online — Test Regular Expressions in Real-Time | WorldOfTools</title>
+<title>Regex Tester & Debugger — Test Regular Expressions, No Signup Needed | WorldOfTools</title>
 <meta content="Free online regex tester with real-time match highlighting, group capture, plain-English explanation, and cheat sheet. Supports JS, Python &amp; PCRE. No login required." name="description"/>
 <meta content="regex tester online free, regular expression tester, test regex real time, regex match highlighter, regex groups online, regex cheat sheet, online regex debugger, regex tester javascript python, how to test regex, regex validator free" name="keywords"/>
-<link href="https://worldoftools.in/regex-tester" rel="canonical"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="website" property="og:type"/>
-<meta content="https://worldoftools.in/regex-tester" property="og:url"/>
-<meta content="Regex Tester Free Online — Real-Time Match Highlighting | WorldOfTools" property="og:title"/>
-<meta content="Test regular expressions with real-time highlighting, group capture & plain-English explanation. Free, no login." property="og:description"/>
-<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
-<meta content="WorldOfTools" property="og:site_name"/>
-<meta content="summary_large_image" name="twitter:card"/>
 <meta name="theme-color" content="#ffe066"/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
-    {"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://worldoftools.in/developer-tools"},
-    {"@type":"ListItem","position":3,"name":"Regex Tester","item":"https://worldoftools.in/regex-tester"}
-  ]
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Regex Tester",
-  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
-  "applicationCategory":"DeveloperApplication",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"1321","reviewCount":"1453"}
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"What is a regex tester?","acceptedAnswer":{"@type":"Answer","text":"A regex tester is a tool that lets you write a regular expression (pattern) and test it against a string in real-time, showing you which parts of the text match the pattern. This tool highlights matches, shows capture groups, and explains your regex in plain English."}},
-    {"@type":"Question","name":"What regex flavors does this support?","acceptedAnswer":{"@type":"Answer","text":"This tool uses JavaScript's native RegExp engine, which is compatible with most JavaScript and PCRE-style patterns. Common patterns for Python, PHP, and Java also work here."}},
-    {"@type":"Question","name":"What are regex flags?","acceptedAnswer":{"@type":"Answer","text":"Flags modify how a regex matches: 'g' (global) finds all matches, 'i' (case-insensitive) ignores case, 'm' (multiline) treats each line as a separate string, and 's' (dotAll) makes '.' match newlines too."}},
-    {"@type":"Question","name":"What are capture groups in regex?","acceptedAnswer":{"@type":"Answer","text":"Capture groups are defined with parentheses ( ) and let you extract specific parts of a match. Named groups use (?<name>...) syntax. This tool displays all captured groups for each match."}},
-    {"@type":"Question","name":"Is my regex or text stored?","acceptedAnswer":{"@type":"Answer","text":"No. All regex processing happens entirely in your browser using JavaScript. Nothing is sent to any server or stored anywhere."}}
-  ]
-}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
 <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
@@ -66,7 +35,6 @@
   }
   * { box-sizing: border-box; }
   body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
-
   .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
   .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
   .nb-btn {
@@ -82,7 +50,6 @@
   .nb-btn-pink { background: var(--nb-pink); color: #fff; }
   .nb-btn-mint { background: var(--nb-mint); color: #000; }
   .nb-btn-sm { padding: 0.5rem 1rem; font-size: 0.85rem; }
-
   .tool-hero { padding: 2rem 0 1.5rem; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 0.5rem;
@@ -94,7 +61,6 @@
   .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
   .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
   .breadcrumb a { color: #4f46e5; text-decoration: none; }
-
   .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
   .nb-input {
     width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px;
@@ -103,7 +69,6 @@
   }
   .nb-input:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
   .input-group { margin-bottom: 1.25rem; }
-
   /* Regex input with slashes */
   .regex-field-wrap {
     display: flex; align-items: stretch; border: var(--nb-border); border-radius: 12px;
@@ -124,7 +89,6 @@
     font-family: 'Courier New', monospace; font-size: 1rem; font-weight: 700;
     background: #fffbe6; color: #000;
   }
-
   /* Flags row */
   .flags-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
   .flag-chip {
@@ -135,7 +99,6 @@
   }
   .flag-chip.active { background: var(--nb-yellow); }
   .flag-chip:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #000; }
-
   /* Test string textarea */
   .nb-textarea {
     width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px;
@@ -145,7 +108,6 @@
     transition: border-color 0.15s, box-shadow 0.15s;
   }
   .nb-textarea:focus { border-color: #4f46e5; box-shadow: 3px 3px 0 #4f46e5; }
-
   /* Highlighted output */
   .highlight-box {
     width: 100%; padding: 0.85rem 1rem; border: var(--nb-border); border-radius: 12px;
@@ -155,7 +117,6 @@
   }
   .match-hl { background: var(--nb-yellow); border-radius: 3px; padding: 0 2px; border-bottom: 2.5px solid #000; font-weight: 800; }
   .match-hl.alt { background: var(--nb-orange); }
-
   /* Stats bar */
   .stats-bar {
     display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem;
@@ -169,14 +130,12 @@
   .stat-pill.blue { background: var(--nb-blue); }
   .stat-pill.pink { background: var(--nb-pink); color: #fff; }
   .stat-pill.red { background: #ffe0e0; color: #c00; border-color: #c00; box-shadow: 2px 2px 0 #c00; }
-
   /* Groups table */
   .groups-table { width: 100%; border-collapse: collapse; border: var(--nb-border); border-radius: 12px; overflow: hidden; box-shadow: 3px 3px 0 #000; font-size: 0.88rem; }
   .groups-table th { padding: 0.65rem 0.85rem; background: var(--nb-blue); border-bottom: 2px solid #000; font-weight: 800; text-align: left; }
   .groups-table td { padding: 0.6rem 0.85rem; border-bottom: 1px solid #e5e7eb; font-family: 'Courier New', monospace; }
   .groups-table tr:last-child td { border-bottom: none; }
   .groups-table tr:nth-child(even) td { background: #f9f9ff; }
-
   /* Explanation box */
   .explain-box {
     background: var(--nb-lime); border: var(--nb-border); border-radius: 16px;
@@ -185,7 +144,6 @@
   .explain-title { font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: #1a3a00; margin-bottom: 0.6rem; }
   .explain-item { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.4rem; font-size: 0.88rem; line-height: 1.5; }
   .explain-token { font-family: 'Courier New', monospace; font-weight: 800; background: #fff; border: 1.5px solid #000; border-radius: 4px; padding: 0 4px; white-space: nowrap; flex-shrink: 0; }
-
   /* Cheat sheet */
   .cheat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.6rem; }
   .cheat-row {
@@ -196,13 +154,11 @@
   .cheat-row:hover { background: #fffbe6; transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #000; }
   .cheat-code { font-family: 'Courier New', monospace; font-weight: 800; min-width: 60px; font-size: 0.9rem; color: #4f46e5; }
   .cheat-desc { font-size: 0.82rem; color: #444; font-weight: 600; }
-
   /* Tabs */
   .nb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
   .nb-tab-btn { padding: 0.65rem 1.25rem; border: var(--nb-border); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 700; font-size: 0.9rem; white-space: nowrap; transition: all 0.15s; font-family: inherit; box-shadow: 3px 3px 0 #000; }
   .nb-tab-btn.active { background: var(--nb-yellow); border-color: #000; }
   .nb-tab-btn:hover:not(.active) { background: #f5f5f5; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #000; }
-
   /* Presets */
   .preset-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
   .preset-chip {
@@ -211,7 +167,6 @@
     box-shadow: 2px 2px 0 #000; transition: all 0.12s;
   }
   .preset-chip:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #000; }
-
   /* SEO */
   .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
   .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
@@ -229,16 +184,50 @@
   .tool-card-mini .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
   .tool-card-mini .name { font-weight: 700; font-size: 0.85rem; }
   .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
-
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
   .animate-in { animation: fadeUp 0.4s ease-out; }
-
   @media(max-width:480px) {
     .nb-card-lg { padding: 1.25rem; }
     .cheat-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
-</head>
+
+    <!-- SEO Optimization Meta Tags -->
+    <link rel="canonical" href="https://worldoftools.in/regex-tester">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WorldOfTools.in">
+    <meta property="og:title" content="Regex Tester — Free Online Tool | WorldOfTools">
+    <meta property="og:description" content="Use our free Regex Tester online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta property="og:url" content="https://worldoftools.in/regex-tester">
+    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Regex Tester — Free Online Tool | WorldOfTools">
+    <meta name="twitter:description" content="Use our free Regex Tester online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Regex Tester",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200" },
+      "description": "Use our free Regex Tester online. Fast, private, and no signup required. Part of WorldOfTools utility suite.",
+      "url": "https://worldoftools.in/regex-tester"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
+        { "@type": "ListItem", "position": 2, "name": "Utility Tools", "item": "https://worldoftools.in/regex-tester" }
+      ]
+    }
+    </script></head>
 <body>
 <header></header>
 <main class="container" data-category-name="Developer Tools" data-category-url="/developer-tools" data-tool-name="Regex Tester">
@@ -400,54 +389,41 @@
 <div class="seo-section">
 
   <section style="margin-bottom:3rem;">
-    <h2>What is a Regex Tester?</h2>
-    <p>A <strong>Regex Tester</strong> (Regular Expression Tester) is a free developer utility that lets you write, test, and debug regular expressions against any string in real-time. This tool by WorldOfTools shows you exactly which parts of your text match, highlights all captures, lists every group, and explains your pattern in plain English — making regex accessible to both beginners and experts.</p>
-    <p>Regular expressions are used in almost every programming language — JavaScript, Python, PHP, Java, Go, and more. Whether you're validating emails, scraping data, parsing logs, or building search logic, this tool helps you get it right before writing a single line of code.</p>
+    <h2>What is the Regex Tester?</h2>
+    <p>The <strong>Regex Tester</strong> by WorldOfTools is a powerful, real-time developer utility designed for building, debugging, and testing Regular Expressions (Regex). Regular expressions are complex sequences of characters that define a search pattern, universally used in programming languages (JavaScript, Python, PHP, Java) to validate user input, search massive log files, and extract specific data points.</p>
+    <p>Writing Regex can feel like deciphering an alien language. Our tool simplifies this by providing a live visual environment. Simply type your pattern, paste your target text, and watch as matches are highlighted instantly. You can easily toggle global, case-insensitive, and multiline flags to fine-tune your expression's behavior.</p>
   </section>
 
   <section style="margin-bottom:3rem;">
-    <h2>How to Use the Regex Tester — Step by Step</h2>
-    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Enter or Choose a Pattern</strong> — Type your regex in the pattern field, or click one of the Quick Presets (Email, URL, Phone, etc.) to load a tested, production-ready pattern instantly.</p></div>
-    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Set Flags</strong> — Toggle flags like <code>g</code> (global), <code>i</code> (case-insensitive), <code>m</code> (multiline), or <code>s</code> (dotAll) using the clickable chips. The flags input syncs automatically.</p></div>
-    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Paste Your Test String</strong> — Enter the text you want to match against. Highlights appear in real-time as you type — no need to click a button.</p></div>
-    <div class="step-item"><div class="step-num">4</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Inspect Results</strong> — See highlighted matches in the output box. Switch to the <em>Capture Groups</em> tab for group-by-group breakdown, or <em>Explanation</em> for a plain-English parse of your pattern.</p></div>
-  </section>
-
-  <section style="margin-bottom:3rem;">
-    <h2>Key Features</h2>
-    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.75rem;">
-      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Real-Time Match Highlighting</strong> — Matches are highlighted as you type, with alternating colors for adjacent matches so they're easy to distinguish.</span></li>
-      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Capture Group Inspector</strong> — Every match's numbered and named groups are displayed in a table, so you can verify exactly what's being captured.</span></li>
-      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Plain-English Explanation</strong> — Automatically breaks down your pattern token-by-token into human-readable descriptions.</span></li>
-      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>8 Production-Ready Presets</strong> — One-click patterns for email, URL, phone, IPv4, date, hex color, digits, and URL slugs.</span></li>
-      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Interactive Cheat Sheet</strong> — Click any token in the cheat sheet to insert it directly into your pattern. Learn by doing.</span></li>
-      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>100% Private</strong> — Runs entirely in your browser. Your patterns and text are never sent anywhere.</span></li>
+    <h2>Common Regex Use Cases</h2>
+    <ul style="line-height:1.7;color:#444;margin-bottom:1rem;padding-left:1.5rem;">
+      <li><strong>Form Validation:</strong> Ensure a user's input matches standard formats before submitting to a database. The most common validations include Email addresses, Phone numbers, ZIP codes, and strong password enforcement (requiring capitals, numbers, and symbols).</li>
+      <li><strong>Data Extraction (Scraping):</strong> Pull specific information out of massive, unstructured text blocks. For example, extracting all URLs from an HTML file, or pulling all IP addresses from a raw Apache server log.</li>
+      <li><strong>Find and Replace:</strong> Perform advanced text manipulation. For example, finding all dates written in DD/MM/YYYY format and programmatically rearranging them to YYYY-MM-DD.</li>
     </ul>
   </section>
 
   <section style="margin-bottom:3rem;">
     <h2>Frequently Asked Questions</h2>
-    <details><summary>What is a regular expression?</summary><p>A regular expression (regex or regexp) is a sequence of characters that defines a search pattern. It's used to find, match, replace, or validate text. For example, <code>\d{10}</code> matches any 10-digit number — like a phone number.</p></details>
-    <details><summary>What regex flavors does this tool support?</summary><p>This tool uses JavaScript's native RegExp engine, which is compatible with most JavaScript and PCRE-style patterns. Patterns written for Python re, PHP preg_match, and Java Pattern will mostly work here as well.</p></details>
-    <details><summary>What are regex flags and how do I use them?</summary><p><strong>g</strong> (global) finds all matches instead of stopping at the first. <strong>i</strong> makes matching case-insensitive. <strong>m</strong> (multiline) makes ^ and $ match the start/end of each line. <strong>s</strong> (dotAll) makes . also match newline characters.</p></details>
-    <details><summary>What are capture groups?</summary><p>Capture groups are parts of your regex wrapped in parentheses <code>( )</code>. They extract specific portions of a match. For example, in <code>(\w+)@(\w+)</code>, group 1 captures the username and group 2 captures the domain. Named groups use <code>(?&lt;name&gt;...)</code>.</p></details>
-    <details><summary>Is my text or regex stored anywhere?</summary><p>No. All processing runs entirely in your browser using JavaScript's built-in RegExp. Nothing is uploaded, stored, or logged anywhere.</p></details>
-    <details><summary>Why is my regex returning no matches?</summary><p>Common reasons: missing the <code>g</code> flag (only finds first match), wrong case sensitivity (try the <code>i</code> flag), special characters not escaped (use <code>\.</code> for a literal dot), or anchors <code>^</code>/<code>$</code> being too strict. Use the Explanation tab to debug token by token.</p></details>
+    <details><summary>What do the different Flags (g, i, m) mean?</summary><p>Flags change how the engine searches the text. <strong>g (Global)</strong> forces the engine to find all matches, rather than stopping at the first one. <strong>i (Ignore Case)</strong> makes the search case-insensitive, so 'A' matches 'a'. <strong>m (Multiline)</strong> changes the behavior of the anchor tags (^ and $) to match the start and end of individual lines, rather than the entire string.</p></details>
+    <details><summary>Are Regular Expressions identical across all programming languages?</summary><p>Mostly yes, but there are different "flavors." The underlying concepts are universal, but languages like JavaScript, Python, and PCRE (PHP) have slight differences in how they handle advanced features like lookbehinds or named capture groups. Our tester operates using the standard JavaScript Regex engine.</p></details>
+    <details><summary>What is a Capture Group?</summary><p>Capture groups are created by wrapping part of your regex in parentheses <code>(...)</code>. They allow you to extract a specific sub-string from a larger match. For example, when matching a phone number, you might capture just the area code to process it separately in your code.</p></details>
+    <details><summary>Is my pasted data secure?</summary><p>Yes! Developers often need to test regex against proprietary code or sensitive server logs. Our tool uses the browser's native JavaScript `RegExp` object. Everything is processed locally on your machine, ensuring complete privacy.</p></details>
   </section>
 
   <section style="margin-bottom:3rem;">
-    <h2>Other Free Developer Tools</h2>
+    <h2>Explore More Developer Tools</h2>
     <div class="tools-grid">
-      <a class="tool-card-mini" href="/json-formatter"><div class="icon">🗄️</div><div class="name">JSON Formatter</div><div class="desc">Format & validate JSON</div></a>
-      <a class="tool-card-mini" href="/base64-encode-decode"><div class="icon">🔐</div><div class="name">Base64</div><div class="desc">Encode & decode Base64</div></a>
-      <a class="tool-card-mini" href="/url-encode-decode"><div class="icon">🔗</div><div class="name">URL Encoder</div><div class="desc">Encode/decode URLs</div></a>
-      <a class="tool-card-mini" href="/html-encode-decode"><div class="icon">🏷️</div><div class="name">HTML Encoder</div><div class="desc">Escape HTML entities</div></a>
-      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words & chars</div></a>
-      <a class="tool-card-mini" href="/schema-markup-generator"><div class="icon">📊</div><div class="name">Schema Generator</div><div class="desc">Generate JSON-LD markup</div></a>
+      <a class="tool-card-mini" href="/json-formatter"><div class="icon">{ }</div><div class="name">JSON Formatter</div><div class="desc">Beautify JSON code</div></a>
+      <a class="tool-card-mini" href="/jwt-decoder"><div class="icon">🔑</div><div class="name">JWT Decoder</div><div class="desc">Decode web tokens</div></a>
+      <a class="tool-card-mini" href="/base64-encoder-decoder"><div class="icon">🔒</div><div class="name">Base64 Tool</div><div class="desc">Encode/Decode data</div></a>
+      <a class="tool-card-mini" href="/hash-generator"><div class="icon">#️⃣</div><div class="name">Hash Generator</div><div class="desc">MD5/SHA Hashes</div></a>
+      <a class="tool-card-mini" href="/sql-formatter"><div class="icon">🗄️</div><div class="name">SQL Formatter</div><div class="desc">Beautify SQL queries</div></a>
     </div>
   </section>
 
 </div>
+
 </main>
 <footer></footer>
 <script src="/js/common.js?v=6.1"></script>

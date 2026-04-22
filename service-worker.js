@@ -1,4 +1,4 @@
-const CACHE_NAME = 'worldoftools-v152';
+const CACHE_NAME = 'worldoftools-v153';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -30,6 +30,7 @@ const ASSETS_TO_CACHE = [
     '/contact-us',
     '/privacy',
     '/terms',
+    '/faq',
     '/seo-meta-tag-generator',
     
     '/gst-calculator',

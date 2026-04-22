@@ -6,40 +6,10 @@
 <title>Remove Watermark from Image Free Online — Inpaint &amp; Erase Objects | WorldOfTools</title>
 <meta content="Free online watermark remover. Upload an image, paint over the watermark or object to erase, and download the clean result. No login, no upload to server — runs in your browser." name="description"/>
 <meta content="remove watermark from image online free, watermark remover tool, erase watermark photo, image inpainting online, remove text from photo, remove logo from image, clean photo free, remove object from photo online, watermark eraser no login" name="keywords"/>
-<link href="https://worldoftools.in/remove-watermark-from-image" rel="canonical"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="website" property="og:type"/>
-<meta content="https://worldoftools.in/remove-watermark-from-image" property="og:url"/>
-<meta content="Remove Watermark from Image Free Online | WorldOfTools" property="og:title"/>
-<meta content="Paint over watermarks or objects and erase them instantly. Free, no login, browser-based." property="og:description"/>
-<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
-<meta content="WorldOfTools" property="og:site_name"/>
-<meta content="summary_large_image" name="twitter:card"/>
 <meta name="theme-color" content="#ffe066"/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
-    {"@type":"ListItem","position":2,"name":"Image Tools","item":"https://worldoftools.in/image-tools"},
-    {"@type":"ListItem","position":3,"name":"Remove Watermark","item":"https://worldoftools.in/remove-watermark-from-image"}
-  ]
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Watermark Remover",
-  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
-  "applicationCategory":"MultimediaApplication",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"1198","reviewCount":"1317"}
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"How does the watermark remover work?","acceptedAnswer":{"@type":"Answer","text":"You upload an image, paint over the watermark or object you want removed using the brush tool, then click 'Remove'. The tool uses content-aware inpainting — it analyzes surrounding pixels to fill the selected area naturally."}},
-    {"@type":"Question","name":"Is my image uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing runs directly in your browser using the HTML5 Canvas API. Your images are never sent to any server, stored, or shared."}},
-    {"@type":"Question","name":"What types of watermarks can this remove?","acceptedAnswer":{"@type":"Answer","text":"Best results are achieved with text watermarks, semi-transparent logos, timestamps, and small objects on simple backgrounds. Results on complex backgrounds may require multiple passes."}},
-    {"@type":"Question","name":"What image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"You can upload JPG, PNG, WebP, and GIF files. The output is always a high-quality PNG."}}
-  ]
-}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
 <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
@@ -73,7 +43,6 @@
   .breadcrumb a { color: #4f46e5; text-decoration: none; }
   .nb-label { display: block; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin-bottom: 0.4rem; }
   .input-group { margin-bottom: 1.25rem; }
-
   /* Upload zone */
   .upload-zone {
     border: 3px dashed #000; border-radius: 16px; padding: 2.5rem 1.5rem;
@@ -84,7 +53,6 @@
   .upload-icon { font-size: 3rem; display: block; margin-bottom: 0.75rem; }
   .upload-text { font-weight: 800; font-size: 1.1rem; }
   .upload-sub { font-size: 0.85rem; color: #666; font-weight: 600; margin-top: 0.4rem; }
-
   /* Canvas wrapper */
   .canvas-wrap {
     position: relative; border: var(--nb-border); border-radius: 16px;
@@ -94,28 +62,23 @@
   }
   #mainCanvas { display: block; max-width: 100%; cursor: crosshair; touch-action: none; }
   #maskCanvas { position: absolute; top: 0; left: 0; opacity: 0.55; pointer-events: none; max-width: 100%; }
-
   /* Controls */
   .controls-row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; }
   .controls-row label { font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
   .nb-range { -webkit-appearance: none; height: 6px; background: #ddd; border-radius: 3px; border: 2px solid #000; outline: none; cursor: pointer; }
   .nb-range::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: var(--nb-yellow); border: 2.5px solid #000; border-radius: 50%; cursor: pointer; box-shadow: 2px 2px 0 #000; }
-
   /* Mode chips */
   .mode-chip { padding: 0.5rem 1rem; border: var(--nb-border); border-radius: 10px; font-size: 0.85rem; font-weight: 800; cursor: pointer; background: #fff; box-shadow: 2px 2px 0 #000; transition: all 0.12s; }
   .mode-chip.active { background: var(--nb-pink); color: #fff; }
   .mode-chip:hover:not(.active) { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #000; }
-
   /* Compare view */
   .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
   @media(max-width:500px) { .compare-wrap { grid-template-columns: 1fr; } }
   .compare-panel { border: var(--nb-border); border-radius: 14px; overflow: hidden; box-shadow: 3px 3px 0 #000; }
   .compare-label { background: var(--nb-yellow); padding: 0.5rem 1rem; font-weight: 800; font-size: 0.85rem; border-bottom: 2px solid #000; text-align: center; }
   .compare-panel img { width: 100%; display: block; max-height: 300px; object-fit: contain; background: #f0f0f0; }
-
   /* Action bar */
   .action-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem; }
-
   /* SEO */
   .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
   .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
@@ -137,7 +100,43 @@
   .animate-in { animation: fadeUp 0.4s ease-out; }
   @media(max-width:480px) { .nb-card-lg { padding: 1.25rem; } .action-bar { flex-direction: column; } .action-bar .nb-btn { width: 100%; } }
 </style>
-</head>
+
+    <!-- SEO Optimization Meta Tags -->
+    <link rel="canonical" href="https://worldoftools.in/remove-watermark-from-image">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WorldOfTools.in">
+    <meta property="og:title" content="Remove Watermark From Image — Free Online Tool | WorldOfTools">
+    <meta property="og:description" content="Use our free Remove Watermark From Image online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta property="og:url" content="https://worldoftools.in/remove-watermark-from-image">
+    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Remove Watermark From Image — Free Online Tool | WorldOfTools">
+    <meta name="twitter:description" content="Use our free Remove Watermark From Image online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Remove Watermark From Image",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200" },
+      "description": "Use our free Remove Watermark From Image online. Fast, private, and no signup required. Part of WorldOfTools utility suite.",
+      "url": "https://worldoftools.in/remove-watermark-from-image"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
+        { "@type": "ListItem", "position": 2, "name": "Utility Tools", "item": "https://worldoftools.in/remove-watermark-from-image" }
+      ]
+    }
+    </script></head>
 <body>
 <header></header>
 <main class="container" data-category-name="Image Tools" data-category-url="/image-tools" data-tool-name="Remove Watermark from Image">

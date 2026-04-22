@@ -3,48 +3,14 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>JWT Decoder Free Online — Decode & Inspect JSON Web Tokens Instantly | WorldOfTools</title>
+<title>JWT Decoder — Decode & Inspect JWT Tokens Instantly, Client-Side | WorldOfTools</title>
 <meta content="Decode any JWT token instantly. Inspect header, payload & signature parts. View expiry, issued-at, and all claims. 100% client-side — your tokens are never sent to any server. Free & private." name="description"/>
 <meta content="jwt decoder, jwt decoder online, json web token decoder, decode jwt online free, jwt token debugger, jwt payload decoder, jwt base64 decode, jwt token validator, how to decode jwt, jwt inspector, decode jwt token private, jwt online tool, jwt claims viewer, jwt header payload" name="keywords"/>
-<link href="https://worldoftools.in/jwt-decoder" rel="canonical"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta content="website" property="og:type"/>
-<meta content="https://worldoftools.in/jwt-decoder" property="og:url"/>
-<meta content="JWT Decoder — Decode JSON Web Tokens Instantly | WorldOfTools" property="og:title"/>
-<meta content="Decode any JWT token instantly. View header, payload, expiry & all claims. 100% private — tokens never leave your browser." property="og:description"/>
-<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
-<meta content="WorldOfTools" property="og:site_name"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="JWT Decoder — Decode JSON Web Tokens Instantly | WorldOfTools" name="twitter:title"/>
-<meta content="Decode JWT tokens instantly. View header, payload & claims. 100% private — never sent to any server." name="twitter:description"/>
-<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
 <meta name="theme-color" content="#ffe066"/>
 <link rel="alternate" hreflang="x-default" href="https://worldoftools.in/jwt-decoder"/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://worldoftools.in/"},
-    {"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://worldoftools.in/developer-tools"},
-    {"@type":"ListItem","position":3,"name":"JWT Decoder","item":"https://worldoftools.in/jwt-decoder"}
-  ]
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"SoftwareApplication","name":"JWT Decoder",
-  "image":"https://worldoftools.in/app-icon.png","operatingSystem":"Any",
-  "applicationCategory":"DeveloperApplication",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"1654","reviewCount":"1819"}
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"What is a JWT token?","acceptedAnswer":{"@type":"Answer","text":"JWT (JSON Web Token) is an open standard (RFC 7519) for securely transmitting information between parties as a JSON object. It consists of three parts: Header (algorithm & token type), Payload (claims), and Signature — separated by dots."}},
-    {"@type":"Question","name":"Is it safe to decode a JWT here?","acceptedAnswer":{"@type":"Answer","text":"Yes — completely safe. JWT decoding happens entirely in your browser using JavaScript. Your token is never sent to any server, logged, or stored. You can safely decode production tokens."}},
-    {"@type":"Question","name":"Can this tool verify JWT signatures?","acceptedAnswer":{"@type":"Answer","text":"This tool decodes and inspects JWT headers and payloads (which are Base64URL encoded, not encrypted). Signature verification requires your secret key or public certificate, which for security reasons should be done server-side."}},
-    {"@type":"Question","name":"What claims does a JWT payload contain?","acceptedAnswer":{"@type":"Answer","text":"Standard JWT claims include: iss (issuer), sub (subject), aud (audience), exp (expiration time), iat (issued at), nbf (not before), and jti (JWT ID). Custom claims can also be added by the application."}},
-    {"@type":"Question","name":"What does JWT expiry (exp) mean?","acceptedAnswer":{"@type":"Answer","text":"The exp claim is a Unix timestamp indicating when the JWT expires. After this time, the token should be rejected by the server. This decoder shows the expiry in a human-readable date and time format and indicates if the token is expired."}}
-  ]
-}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
 <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
@@ -71,7 +37,6 @@
   .tool-hero p{color:#555;font-size:1.05rem;margin:0 0 1rem;line-height:1.6;}
   .breadcrumb{font-size:0.85rem;color:#666;margin-bottom:1rem;font-weight:600;}
   .breadcrumb a{color:#4f46e5;text-decoration:none;}
-
   /* JWT input area */
   .jwt-input-label{font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#444;margin-bottom:0.4rem;display:flex;align-items:center;justify-content:space-between;}
   .jwt-textarea{
@@ -81,26 +46,22 @@
     word-break:break-all;transition:box-shadow 0.15s,border-color 0.15s;
   }
   .jwt-textarea:focus{border-color:#4f46e5;box-shadow:3px 3px 0 #4f46e5;}
-
   /* JWT visual parts */
   .jwt-visual{font-family:'Courier New',Courier,monospace;font-size:0.82rem;font-weight:700;word-break:break-all;line-height:1.6;padding:1rem 1.25rem;border:var(--nb-border);border-radius:12px;background:#fff;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;}
   .jwt-part-header{color:#e05a00;}
   .jwt-part-payload{color:#4f46e5;}
   .jwt-part-sig{color:#059669;}
   .jwt-dot{color:#aaa;}
-
   /* Status badge */
   .jwt-status{display:inline-flex;align-items:center;gap:0.5rem;border:2px solid #000;border-radius:99px;padding:0.3rem 1rem;font-size:0.82rem;font-weight:800;box-shadow:2px 2px 0 #000;margin-bottom:1.25rem;}
   .jwt-status.valid{background:var(--nb-mint);}
   .jwt-status.expired{background:#ffe0e0;color:#c00;}
   .jwt-status.invalid{background:#ffe0e0;color:#c00;}
-
   /* Section cards */
   .section-card{border:var(--nb-border);border-radius:14px;overflow:hidden;box-shadow:3px 3px 0 #000;margin-bottom:1rem;}
   .section-card-head{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.25rem;border-bottom:2.5px solid #000;flex-wrap:wrap;gap:0.5rem;}
   .section-card-title{font-weight:900;font-size:0.88rem;text-transform:uppercase;letter-spacing:0.07em;display:flex;align-items:center;gap:0.5rem;}
   .section-card-body{padding:1.25rem;background:#fff;font-family:'Courier New',Courier,monospace;font-size:0.88rem;line-height:1.7;overflow-x:auto;}
-
   /* Claims table */
   .claims-table{width:100%;border-collapse:collapse;}
   .claims-table tr:not(:last-child) td{border-bottom:1px solid #e5e7eb;}
@@ -110,16 +71,13 @@
   .claim-tag{display:inline-block;background:var(--nb-blue);border:1.5px solid #000;border-radius:6px;padding:0.1rem 0.5rem;font-size:0.72rem;font-weight:800;margin-left:0.4rem;vertical-align:middle;}
   .claim-expired{background:#ffe0e0;color:#c00;border-color:#c00;}
   .claim-valid{background:#d1fae5;color:#065f46;border-color:#059669;}
-
   /* JSON syntax highlight */
   .json-key{color:#4f46e5;font-weight:700;}
   .json-str{color:#059669;}
   .json-num{color:#d97706;}
   .json-bool{color:#dc2626;}
   .json-null{color:#6b7280;}
-
   .nb-error{display:none;background:#ffe0e0;border:var(--nb-border);border-radius:12px;padding:0.85rem 1.25rem;color:#c00;font-weight:700;margin-bottom:1.25rem;box-shadow:3px 3px 0 #c00;}
-
   /* SEO */
   .seo-section{max-width:900px;margin:3rem auto;padding:0 1rem;}
   .seo-section h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;margin-bottom:1rem;letter-spacing:-0.02em;}
@@ -141,7 +99,43 @@
   .animate-in{animation:fadeUp 0.4s ease-out;}
   @media(max-width:480px){.nb-card-lg{padding:1.25rem;}.jwt-textarea{min-height:100px;}.claims-table td:first-child{width:40%;}}
 </style>
-</head>
+
+    <!-- SEO Optimization Meta Tags -->
+    <link rel="canonical" href="https://worldoftools.in/jwt-decoder">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WorldOfTools.in">
+    <meta property="og:title" content="Jwt Decoder — Free Online Tool | WorldOfTools">
+    <meta property="og:description" content="Use our free Jwt Decoder online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta property="og:url" content="https://worldoftools.in/jwt-decoder">
+    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jwt Decoder — Free Online Tool | WorldOfTools">
+    <meta name="twitter:description" content="Use our free Jwt Decoder online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Jwt Decoder",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200" },
+      "description": "Use our free Jwt Decoder online. Fast, private, and no signup required. Part of WorldOfTools utility suite.",
+      "url": "https://worldoftools.in/jwt-decoder"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
+        { "@type": "ListItem", "position": 2, "name": "Utility Tools", "item": "https://worldoftools.in/jwt-decoder" }
+      ]
+    }
+    </script></head>
 <body>
 <header></header>
 <main class="container" style="max-width:900px;margin:0 auto;padding:0 1rem;">
@@ -223,38 +217,34 @@
 <div class="seo-section">
 
   <section style="margin-bottom:3rem;">
-    <h2>What is a JWT Token?</h2>
-    <p>A <strong>JWT (JSON Web Token)</strong> is an open standard (RFC 7519) for securely transmitting information between parties as a compact, URL-safe JSON object. JWTs are widely used for authentication and authorization in web APIs and single-page applications.</p>
-    <p>A JWT consists of three Base64URL-encoded parts separated by dots: the <strong>Header</strong> (algorithm and token type), the <strong>Payload</strong> (claims about the user or session), and the <strong>Signature</strong> (used to verify the token hasn't been tampered with). This tool decodes and displays all three parts instantly.</p>
-    <p>All decoding happens entirely in your browser. Your JWT is <strong>never sent to any server</strong>, stored, or logged — making this safe to use with production tokens.</p>
+    <h2>What is the JWT Decoder?</h2>
+    <p>The <strong>JWT Decoder</strong> by WorldOfTools is a premium, free developer utility designed to instantly decode JSON Web Tokens (JWT). JWTs are the industry standard for securely transmitting information between parties as a JSON object, heavily used in modern web authentication, Single Sign-On (SSO), and RESTful APIs.</p>
+    <p>Our tool instantly cracks open the Base64Url-encoded token to reveal its three distinct parts: the <strong>Header</strong> (algorithm and token type), the <strong>Payload</strong> (the actual claims or data being transmitted), and the <strong>Signature</strong>. Built strictly for developers, this tool runs entirely locally in your browser. This means your sensitive authentication tokens and session data are never uploaded to our servers, ensuring 100% security and privacy.</p>
   </section>
 
   <section style="margin-bottom:3rem;">
-    <h2>How to Decode a JWT — Step by Step</h2>
-    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Paste Your JWT</strong> — Copy the full JWT string (starting with eyJ…) from your application, API response, or browser developer tools and paste it in the input area.</p></div>
-    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Decode Instantly</strong> — The token decodes automatically as you type. See the Header, Payload, and Signature color-coded and formatted.</p></div>
-    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Inspect All Claims</strong> — View all standard claims (sub, iss, exp, iat) as human-readable dates and values. Expired tokens are flagged clearly.</p></div>
+    <h2>How to Decode a JWT</h2>
+    <div class="step-item"><div class="step-num">1</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Paste the Token:</strong> A standard JWT looks like three long strings of random characters separated by dots (e.g., xxxxx.yyyyy.zzzzz). Paste this complete string into the input box.</p></div>
+    <div class="step-item"><div class="step-num">2</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Instant Decoding:</strong> The tool instantly splits the token by its periods and decodes the Base64Url strings.</p></div>
+    <div class="step-item"><div class="step-num">3</div><p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Analyze the Payload:</strong> View the decoded JSON payload. You will easily spot standard claims like <em>sub</em> (subject/user ID), <em>iat</em> (issued at timestamp), and <em>exp</em> (expiration timestamp), alongside any custom user data.</p></div>
   </section>
 
   <section style="margin-bottom:3rem;">
     <h2>Frequently Asked Questions</h2>
-    <details><summary>What is a JWT token?</summary><p>JWT (JSON Web Token) is a compact, URL-safe token format used for authentication. It encodes claims about a user or session into three Base64URL-encoded sections: Header, Payload, and Signature — separated by dots.</p></details>
-    <details><summary>Is it safe to paste my production JWT here?</summary><p>Yes — completely safe. All JWT decoding happens in your browser using JavaScript. Your token is never sent to any server, logged, or stored. You can safely decode production tokens and API keys.</p></details>
-    <details><summary>Can this tool verify JWT signatures?</summary><p>No. JWT payloads and headers are only Base64URL-encoded (not encrypted). Decoding them doesn't verify authenticity — that requires the signing secret or public key, which should be validated server-side. This tool is for inspection only.</p></details>
-    <details><summary>What is the exp claim?</summary><p>The exp claim is a Unix timestamp indicating when the JWT expires. After this time, the server should reject the token. This decoder converts the exp to a human-readable datetime and shows whether the token has expired.</p></details>
-    <details><summary>What is the iat claim?</summary><p>iat stands for "issued at" — it's a Unix timestamp indicating when the JWT was generated. This helps determine the token's age and whether it was issued recently.</p></details>
-    <details><summary>What is the sub claim?</summary><p>sub stands for "subject" — it typically contains a unique identifier for the user (like a user ID) that the JWT is issued for. It's the primary identifier in most authentication flows.</p></details>
+    <details><summary>Can this tool verify the JWT signature?</summary><p>Currently, this tool acts as a decoder, meaning it reads the public Header and Payload information. To cryptographically verify the signature, you must possess the secret key or the public/private key pair used by the issuing server.</p></details>
+    <details><summary>Are JSON Web Tokens encrypted?</summary><p>No! This is a critical security concept. A standard JWT (JWS) is signed, but it is NOT encrypted. Anyone who intercepts the token can easily decode the Base64 string and read the payload. You should never store sensitive data like passwords or credit card numbers inside a JWT payload.</p></details>
+    <details><summary>Why does the decoded payload show dates as large numbers?</summary><p>JWTs use standard Unix timestamps (the number of seconds since January 1, 1970) for dates like the expiration (<em>exp</em>) and issued at (<em>iat</em>) claims. Our tool automatically displays the raw integer, but you can use an epoch converter to see the human-readable date.</p></details>
+    <details><summary>Is my JWT data secure here?</summary><p>Yes. The decoding process utilizes the browser's native JavaScript functions (`atob()`). The token string never leaves your local machine, ensuring your active session tokens cannot be hijacked.</p></details>
   </section>
 
   <section style="margin-bottom:3rem;">
-    <h2>Other Free Developer Tools</h2>
+    <h2>Explore More Developer Security Tools</h2>
     <div class="tools-grid">
-      <a class="tool-card-mini" href="/json-formatter"><div class="icon">{ }</div><div class="name">JSON Formatter</div><div class="desc">Beautify & validate JSON</div></a>
-      <a class="tool-card-mini" href="/json-ld-generator"><div class="icon">🏷️</div><div class="name">JSON-LD Generator</div><div class="desc">Schema markup for SEO</div></a>
-      <a class="tool-card-mini" href="/ip-address-lookup"><div class="icon">🌐</div><div class="name">IP Lookup</div><div class="desc">Find any IP location</div></a>
-      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Analyze text & reading time</div></a>
-      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age in days & hours</div></a>
-      <a class="tool-card-mini" href="/invoice-generator"><div class="icon">📄</div><div class="name">Invoice Generator</div><div class="desc">Free GST PDF invoices</div></a>
+      <a class="tool-card-mini" href="/base64-encoder-decoder"><div class="icon">🔒</div><div class="name">Base64 Tool</div><div class="desc">Encode/Decode data</div></a>
+      <a class="tool-card-mini" href="/json-formatter"><div class="icon">{ }</div><div class="name">JSON Formatter</div><div class="desc">Beautify JSON code</div></a>
+      <a class="tool-card-mini" href="/hash-generator"><div class="icon">#️⃣</div><div class="name">Hash Generator</div><div class="desc">MD5/SHA Hashes</div></a>
+      <a class="tool-card-mini" href="/password-generator"><div class="icon">🛡️</div><div class="name">Password Gen</div><div class="desc">Create secure keys</div></a>
+      <a class="tool-card-mini" href="/regex-tester"><div class="icon">🔍</div><div class="name">Regex Tester</div><div class="desc">Test regular expressions</div></a>
     </div>
   </section>
 

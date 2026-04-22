@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>India Finance Hub — EMI, SIP, GST, PPF Calculators | WorldOfTools</title>
+<meta content="Dedicated financial calculators for India. Calculate GST, SIP returns, EMI schedules, and PPF maturity instantly." name="description"/>
+<meta content="online calculators india free, gst calculator india, emi calculator online, sip calculator, bmi calculator online, age calculator, cgpa calculator, percentage calculator online, ppf calculator, scientific calculator online, loan emi calculator india, financial calculators free no login, free calculator no signup" name="keywords"/>
+<link href="/logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="/manifest.json" rel="manifest"/>
+<link href="/app-icon.png" rel="apple-touch-icon"/>
+<meta name="theme-color" content="#ffe066"/>
+<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/india-tools"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link href="/css/style.css?v=6.1" rel="stylesheet"/>
+<link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
+<style>
+  :root {
+    --nb-yellow: #ffe066;
+    --nb-pink: #ff6b9d;
+    --nb-mint: #b2f5ea;
+    --nb-blue: #a3bffa;
+    --nb-orange: #ffa94d;
+    --nb-lime: #c3f584;
+    --nb-purple: #d8b4fe;
+    --nb-shadow: 4px 4px 0 #000;
+    --nb-shadow-lg: 6px 6px 0 #000;
+    --nb-radius: 16px;
+    --nb-border: 2.5px solid #000;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #fafaf8; }
+  .nb-card { background: #fff; border: var(--nb-border); border-radius: var(--nb-radius); box-shadow: var(--nb-shadow); padding: 1.5rem; }
+  .nb-card-lg { padding: 2rem; box-shadow: var(--nb-shadow-lg); }
+  .nb-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem; border: var(--nb-border); border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.95rem;
+    cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; text-decoration: none;
+    box-shadow: var(--nb-shadow); white-space: nowrap; color: #000; background: #fff;
+  }
+  .nb-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+  .nb-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .nb-btn-primary { background: var(--nb-yellow); }
+  .tool-hero { padding: 2rem 0 1.5rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--nb-orange); border: var(--nb-border); border-radius: 99px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; }
+  .tool-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size:clamp(1.2rem,2.8vw,1.75rem); font-weight: 800; letter-spacing:-0.01em; line-height: 1.1; margin: 0 0 0.75rem; }
+  .tool-hero p { color: #555; font-size: 1.05rem; margin: 0 0 1rem; line-height: 1.6; }
+  .breadcrumb { font-size: 0.85rem; color: #666; margin-bottom: 1rem; font-weight: 600; }
+  .breadcrumb a { color: #4f46e5; text-decoration: none; }
+  /* Category section header */
+  .cat-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; margin-top: 0.5rem; }
+  .cat-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.9rem; border: var(--nb-border); border-radius: 99px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; box-shadow: 2px 2px 0 #000; }
+  .cat-title { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 900; margin: 0; }
+  /* Calculator cards grid */
+  .calc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  @media(max-width:400px) { .calc-grid { grid-template-columns: 1fr 1fr; } }
+  .calc-card {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: 1.5rem 1rem; background: #fff; border: var(--nb-border); border-radius: 18px;
+    text-decoration: none; color: #000; box-shadow: var(--nb-shadow);
+    transition: transform 0.15s, box-shadow 0.15s; position: relative; overflow: hidden;
+  }
+  .calc-card:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 #000; }
+  .calc-card:active { transform: translate(1px,1px); box-shadow: 2px 2px 0 #000; }
+  .calc-icon { font-size: 2.2rem; margin-bottom: 0.65rem; display: block; }
+  .calc-name { font-weight: 800; font-size: 0.92rem; margin-bottom: 0.3rem; line-height: 1.3; }
+  .calc-desc { font-size: 0.75rem; color: #666; line-height: 1.4; }
+  .calc-badge {
+    position: absolute; top: 0.5rem; right: 0.5rem;
+    font-size: 0.6rem; font-weight: 900; text-transform: uppercase;
+    padding: 0.15rem 0.45rem; border-radius: 4px; border: 1.5px solid #000; letter-spacing: 0.05em;
+  }
+  /* Category explore strip */
+  .explore-strip {
+    background: #f9f9ff; border: var(--nb-border); border-radius: 20px;
+    padding: 2rem; box-shadow: var(--nb-shadow); margin-bottom: 2rem; text-align: center;
+  }
+  .explore-strip h2 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 900; margin: 0 0 1.25rem; }
+  .explore-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+  /* Stats strip */
+  .stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .stat-pill { background: #fff; border: var(--nb-border); border-radius: 14px; padding: 1.25rem 1rem; text-align: center; box-shadow: 3px 3px 0 #000; }
+  .stat-pill .num { font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 900; display: block; color: #4f46e5; }
+  .stat-pill .lbl { font-size: 0.75rem; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.05em; }
+  /* SEO */
+  .seo-section { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+  .seo-section h2 { font-family: 'Syne', sans-serif; font-size:1.25rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .seo-section p { line-height: 1.8; color: #444; margin-bottom: 1rem; }
+  .step-item { display: flex; align-items: flex-start; gap: 1rem; background: #f9f9ff; border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; box-shadow: 3px 3px 0 #000; }
+  .step-num { min-width: 32px; height: 32px; background: var(--nb-yellow); border: 2px solid #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
+  details { border: var(--nb-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 0.6rem; background: #fff; box-shadow: 3px 3px 0 #000; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '+'; font-size: 1.25rem; font-weight: 900; color: #4f46e5; }
+  details[open] summary::after { content: '−'; }
+  details p { margin: 0.75rem 0 0; color: #555; line-height: 1.6; }
+  @media(max-width:480px) { .nb-card-lg { padding: 1.25rem; } .explore-btns { gap: 0.5rem; } }
+</style>
+
+    <!-- SEO Optimization Meta Tags -->
+    <link rel="canonical" href="https://worldoftools.in/india-tools">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WorldOfTools.in">
+    <meta property="og:title" content="India Tools — Free Online Tool | WorldOfTools">
+    <meta property="og:description" content="Use our free India Tools online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta property="og:url" content="https://worldoftools.in/india-tools">
+    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="India Tools — Free Online Tool | WorldOfTools">
+    <meta name="twitter:description" content="Use our free India Tools online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "India Tools",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200" },
+      "description": "Use our free India Tools online. Fast, private, and no signup required. Part of WorldOfTools utility suite.",
+      "url": "https://worldoftools.in/india-tools"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
+        { "@type": "ListItem", "position": 2, "name": "Utility Tools", "item": "https://worldoftools.in/india-tools" }
+      ]
+    }
+    </script></head>
+<body>
+<header></header>
+
+<main class="container" data-category-name="Calculators Online" data-category-url="/calculators-online" data-tool-name="Calculators Online">
+<div class="tool-container">
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="breadcrumb"><a href="/">Home</a> — <span>India Tools</span></div>
+    <div class="hero-badge">Built for India — 100% Free</div>
+    <h1>India Finance & Tax Hub</h1>
+    <p>Calculate your investments, loans, and taxes with ease.</p>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-pill"><span class="num">12+</span><span class="lbl">Calculators</span></div>
+    <div class="stat-pill"><span class="num">0</span><span class="lbl">Stored Data</span></div>
+    <div class="stat-pill"><span class="num">Free</span><span class="lbl">Forever</span></div>
+    <div class="stat-pill"><span class="num">⚡</span><span class="lbl">Instant Results</span></div>
+  </div>
+
+  <!-- FINANCE CALCULATORS -->
+  <div class="nb-card nb-card-lg" style="margin-bottom:1.5rem;">
+    <div class="cat-header">
+      <div class="cat-badge" style="background:var(--nb-yellow);">💰 Finance</div>
+      <h2 class="cat-title">Financial Calculators</h2>
+    </div>
+    <div class="calc-grid">
+      <a class="calc-card" href="/gst-calculator" style="background:#fff7d6;">
+        <div class="calc-badge" style="background:var(--nb-yellow);">Popular</div>
+        <span class="calc-icon">🧾</span>
+        <div class="calc-name">GST Calculator</div>
+        <div class="calc-desc">Add/remove GST. CGST, SGST & IGST breakdown</div>
+      </a>
+      <a class="calc-card" href="/emi-calculator" style="background:#e8f4ff;">
+        <div class="calc-badge" style="background:var(--nb-blue);">Popular</div>
+        <span class="calc-icon">🏦</span>
+        <div class="calc-name">EMI Calculator</div>
+        <div class="calc-desc">Home, car & personal loan EMI with schedule</div>
+      </a>
+      <a class="calc-card" href="/sip-calculator" style="background:#f0fdf4;">
+        <span class="calc-icon">📈</span>
+        <div class="calc-name">SIP Calculator</div>
+        <div class="calc-desc">Mutual fund SIP returns & maturity amount</div>
+      </a>
+      <a class="calc-card" href="/ppf-calculator" style="background:#fdf4ff;">
+        <span class="calc-icon">🛡️</span>
+        <div class="calc-name">PPF Calculator</div>
+        <div class="calc-desc">PPF returns at 7.1% interest over 15 years</div>
+      </a>
+      <a class="calc-card" href="/loan-eligibility-calculator" style="background:#fff1f2;">
+        <span class="calc-icon">🏠</span>
+        <div class="calc-name">Loan Eligibility</div>
+        <div class="calc-desc">Check max loan amount based on income</div>
+      </a>
+      <a class="calc-card" href="/loan-comparison-calculator" style="background:#f0f9ff;">
+        <span class="calc-icon">⚖️</span>
+        <div class="calc-name">Loan Comparison</div>
+        <div class="calc-desc">Compare up to 3 bank loan offers side-by-side</div>
+      </a>
+      <a class="calc-card" href="/percentage-calculator" style="background:#fffbeb;">
+        <span class="calc-icon">%</span>
+        <div class="calc-name">Percentage Calc</div>
+        <div class="calc-desc">% of number, increase, decrease & ratio</div>
+      </a>
+    </div>
+
+    <!-- HEALTH CALCULATORS -->
+    <div class="cat-header" style="margin-top:0.5rem;">
+      <div class="cat-badge" style="background:var(--nb-mint);">❤️ Health</div>
+      <h2 class="cat-title">Health Calculators</h2>
+    </div>
+    <div class="calc-grid">
+      <a class="calc-card" href="/bmi-calculator" style="background:#f0fdf4;">
+        <div class="calc-badge" style="background:var(--nb-mint);">Popular</div>
+        <span class="calc-icon">⚖️</span>
+        <div class="calc-name">BMI Calculator</div>
+        <div class="calc-desc">Body mass index, healthy weight & guidance</div>
+      </a>
+      <a class="calc-card" href="/age-calculator" style="background:#fff7d6;">
+        <div class="calc-badge" style="background:var(--nb-yellow);">Popular</div>
+        <span class="calc-icon">🎂</span>
+        <div class="calc-name">Age Calculator</div>
+        <div class="calc-desc">Exact age, milestones, zodiac & countdown</div>
+      </a>
+    </div>
+
+    <!-- ACADEMIC CALCULATORS -->
+    <div class="cat-header" style="margin-top:0.5rem;">
+      <div class="cat-badge" style="background:var(--nb-purple);">🎓 Academic</div>
+      <h2 class="cat-title">Academic Calculators</h2>
+    </div>
+    <div class="calc-grid">
+      <a class="calc-card" href="/cgpa-calculator" style="background:#fdf4ff;">
+        <span class="calc-icon">🎓</span>
+        <div class="calc-name">CGPA Calculator</div>
+        <div class="calc-desc">CGPA to percentage, GPA conversion India</div>
+      </a>
+      <a class="calc-card" href="/scientific-calculator" style="background:#f8fafc;">
+        <span class="calc-icon">🧮</span>
+        <div class="calc-name">Scientific Calc</div>
+        <div class="calc-desc">Sin, cos, log, powers, roots & more</div>
+      </a>
+      <a class="calc-card" href="/number-to-words-converter" style="background:#fff7d6;">
+        <span class="calc-icon">📝</span>
+        <div class="calc-name">Number to Words</div>
+        <div class="calc-desc">Figures to words for cheques & invoices</div>
+      </a>
+      <a class="calc-card" href="/unit-converter" style="background:#f0f9ff;">
+        <span class="calc-icon">📏</span>
+        <div class="calc-name">Unit Converter</div>
+        <div class="calc-desc">Length, weight, temp, speed & more</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- EXPLORE MORE -->
+  <div class="explore-strip">
+    <h2>Explore More Tool Categories</h2>
+    <div class="explore-btns">
+      <a class="nb-btn nb-btn-primary" href="/developer-tools-online">🛠️ Developer Tools</a>
+      <a class="nb-btn" style="background:var(--nb-mint);" href="/seo-tools-free">📈 SEO Tools</a>
+      <a class="nb-btn" style="background:var(--nb-purple);" href="/text-tools-online">✍️ Text Tools</a>
+      <a class="nb-btn" style="background:var(--nb-pink);color:#fff;" href="/image-compressor">🖼️ Image Tools</a>
+    </div>
+  </div><div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+
+    <a href="/gst-calculator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🧾</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">GST Calculator</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Indian GST tool</div>
+    </a>
+    <a href="/emi-calculator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🏠</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">EMI Calculator</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Loan EMI calculator</div>
+    </a>
+    <a href="/sip-calculator" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+      <div style="font-size:1.6rem;margin-bottom:0.4rem;">📈</div>
+      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">SIP Calculator</div>
+      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Investment planning</div>
+    </a>
+    </div>
+  </div>
+</div><!-- /tool-container -->
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+
+  <section style="margin-bottom:3rem;">
+    <h2>Best Free Online Calculators for India</h2>
+    <p>WorldOfTools offers a comprehensive collection of <strong>12+ free online calculators</strong> built specifically for Indian users. Whether you're calculating GST for your business invoice, planning a home loan EMI, tracking SIP mutual fund returns, checking your BMI, or converting CGPA to percentage — all tools work instantly in your browser with <strong>zero data storage</strong> and no login required.</p>
+    <p>Unlike calculator apps that require downloads or tools that upload your financial data to servers, every calculator on WorldOfTools runs entirely client-side. Your salary figures, investment amounts, loan details, and health data never leave your device.</p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>How to Use These Calculators</h2>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Browse the Categories</strong> — Find your calculator under Finance (GST, EMI, SIP, PPF, Loan), Health (BMI, Age), or Academic (CGPA, Scientific) sections.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Click the Tool</strong> — Each calculator opens instantly. No loading screens, no account prompts, no app download needed.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Enter Your Values</strong> — Type your values and see instant real-time results as you type. No Calculate button needed on most tools.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <p style="margin:0;line-height:1.6;padding-top:0.25rem;"><strong>Copy or Share</strong> — Copy your result to clipboard or share it via WhatsApp. Bookmark this page for quick access to all calculators.</p>
+    </div>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Why Use WorldOfTools Calculators?</h2>
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.75rem;">
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Built for India</strong> — GST follows Indian slab rates (5%, 12%, 18%, 28%) with CGST/SGST/IGST. EMI follows RBI-standard formula. CGPA uses 10-point scale used by Indian universities.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>100% Private</strong> — No financial, health, or personal data is ever stored on our servers. All calculations run locally in your browser.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Instant Results</strong> — Real-time calculation as you type — no waiting, no page reloads, no server round-trips.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>Mobile Friendly</strong> — All calculators are fully responsive and work perfectly on Android, iPhone, tablets and desktop browsers.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start;"><span style="color:#059669;font-weight:900;font-size:1.1rem;flex-shrink:0;">✓</span><span><strong>No Login, No Ads, No Paywalls</strong> — Every calculator is permanently free with no account required and no intrusive advertising.</span></li>
+    </ul>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>Which online calculator is best for India?</summary><p>WorldOfTools offers calculators built specifically for Indian users — GST with CGST/SGST/IGST breakdown, EMI following RBI-standard formula, PPF at the current 7.1% interest rate, CGPA conversion for Indian 10-point grading systems, and GST-inclusive invoice calculations. All completely free.</p></details>
+    <details><summary>How accurate is the GST calculator?</summary><p>The GST calculator follows India's GST council tax slabs (5%, 12%, 18%, 28%) and uses the standard formula for both inclusive and exclusive GST calculation. It shows CGST and SGST (for intra-state) and IGST (for inter-state) breakdowns as per Indian GST rules.</p></details>
+    <details><summary>Is the EMI calculator formula correct?</summary><p>Yes. The EMI is calculated using the standard reducing balance formula: EMI = P × r × (1+r)ⁿ ÷ ((1+r)ⁿ − 1), where P is principal, r is monthly interest rate, and n is number of months — the same formula used by Indian banks following RBI guidelines.</p></details>
+    <details><summary>Can I use these calculators offline?</summary><p>Once the page is loaded, all calculations work offline because they run in your browser's local JavaScript engine. You can even save the page for offline use.</p></details>
+    <details><summary>Is my financial data secure on these tools?</summary><p>Yes. Every calculation runs entirely in your browser. Your salary, loan amounts, SIP amounts, BMI data and any other values are never uploaded to any server, never stored, and never shared with anyone.</p></details>
+  </section>
+
+</div>
+
+</main>
+<footer></footer>
+<script src="/js/common.js?v=6.1"></script>
+</body>
+</html>

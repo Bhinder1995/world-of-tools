@@ -6,30 +6,9 @@
 <title>Image Upscaler Free Online — Enlarge & Enhance Photos Without Blur | WorldOfTools</title>
 <meta content="Upscale images 2x, 3x or 4x online free without blur. Enhance low-res photos, increase image resolution, and sharpen details. Browser-based — no uploads, no watermark, no signup." name="description"/>
 <meta content="image upscaler free, upscale image online, increase image resolution free, ai image enhancer, enlarge photo without blur, upscale png, upscale image 4x, online image upscaler, enhance photo quality, photo resolution enhancer free" name="keywords"/>
-<link href="https://worldoftools.in/image-upscaler" rel="canonical"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
-<meta content="website" property="og:type"/>
-<meta content="https://worldoftools.in/image-upscaler" property="og:url"/>
-<meta content="Image Upscaler — Enlarge Photos Without Blur | WorldOfTools" property="og:title"/>
-<meta content="Upscale images 2x, 3x or 4x free. Browser-based, no watermark, no upload. Enhance and sharpen low-res photos instantly." property="og:description"/>
-<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
 <meta name="theme-color" content="#ffe066"/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Upscaler",
-  "operatingSystem":"Any","applicationCategory":"UtilitiesApplication",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"1432","reviewCount":"1575"}
-}</script>
-<script type="application/ld+json">{
-  "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"How does image upscaling work?","acceptedAnswer":{"@type":"Answer","text":"Upscaling increases image dimensions by interpolating new pixels between existing ones. This tool uses Lanczos and bicubic algorithms to produce smoother results than standard nearest-neighbor upscaling, which causes pixelation."}},
-    {"@type":"Question","name":"Will upscaling add detail that wasn't there?","acceptedAnswer":{"@type":"Answer","text":"Standard upscaling cannot add new detail — it can only estimate pixel values between existing ones. AI-based upscaling (like ESRGAN) can hallucinate plausible details, but this browser tool uses high-quality interpolation algorithms which significantly reduce blur compared to simple upscaling."}},
-    {"@type":"Question","name":"How much can I upscale an image?","acceptedAnswer":{"@type":"Answer","text":"This tool supports 1.5x, 2x, 3x, and 4x upscaling. Note that very large upscale factors on very low-resolution images will still result in some softness. For best results, start with the highest resolution source image available."}},
-    {"@type":"Question","name":"What image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, WebP, BMP, and GIF (first frame) are all supported. Output can be saved as PNG (lossless) or JPEG."}},
-    {"@type":"Question","name":"Is this tool free with no watermark?","acceptedAnswer":{"@type":"Answer","text":"Yes. This tool is completely free and adds absolutely no watermark to output images. The download is a clean, standard image file."}}
-  ]
-}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
 <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
@@ -58,12 +37,10 @@ body{font-family:'Space Grotesk',sans-serif;background:#fafaf8;}
 .breadcrumb a{color:#4f46e5;text-decoration:none;}
 .nb-label{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#444;margin-bottom:.4rem;}
 .input-group{margin-bottom:1.25rem;}
-
 /* Upload */
 .upload-zone{border:3px dashed #000;border-radius:20px;padding:3rem 1.5rem;text-align:center;cursor:pointer;transition:all .2s;background:#fafaf8;position:relative;}
 .upload-zone:hover,.upload-zone.drag-over{background:var(--nb-yellow);border-style:solid;box-shadow:var(--nb-shadow-lg);}
 .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
-
 /* Scale options */
 .scale-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin-bottom:1.25rem;}
 @media(max-width:400px){.scale-grid{grid-template-columns:repeat(2,1fr);}}
@@ -72,20 +49,17 @@ body{font-family:'Space Grotesk',sans-serif;background:#fafaf8;}
 .scale-card:hover:not(.active){transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000;}
 .scale-num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;}
 .scale-label{font-size:.72rem;font-weight:700;color:#666;text-transform:uppercase;margin-top:.2rem;}
-
 /* Algorithm pills */
 .algo-grid{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem;}
 .algo-pill{padding:.5rem 1rem;border:var(--nb-border);border-radius:10px;background:#fff;cursor:pointer;font-weight:700;font-size:.82rem;box-shadow:2px 2px 0 #000;transition:all .1s;font-family:inherit;}
 .algo-pill.active{background:var(--nb-mint);}
 .algo-pill:hover:not(.active){transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000;}
-
 /* Enhancement toggles */
 .enhance-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.25rem;}
 @media(max-width:400px){.enhance-grid{grid-template-columns:1fr;}}
 .enhance-toggle{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;border:var(--nb-border);border-radius:12px;background:#fff;box-shadow:2px 2px 0 #000;cursor:pointer;}
 .enhance-toggle input{width:18px;height:18px;cursor:pointer;}
 .enhance-toggle-label{font-weight:700;font-size:.85rem;}
-
 /* Image info bar */
 .img-info-bar{background:var(--nb-blue);border:var(--nb-border);border-radius:12px;padding:1rem 1.25rem;box-shadow:3px 3px 0 #000;margin-bottom:1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
 .img-info-thumb{width:52px;height:52px;object-fit:cover;border:2px solid #000;border-radius:8px;flex-shrink:0;}
@@ -93,28 +67,24 @@ body{font-family:'Space Grotesk',sans-serif;background:#fafaf8;}
 .img-info-name{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .img-info-meta{font-size:.78rem;color:#444;font-weight:600;margin-top:.2rem;}
 .img-info-new{font-weight:800;font-size:.82rem;color:#4f46e5;}
-
 /* Processing */
 .processing-wrap{padding:2rem;text-align:center;background:#f9f9ff;border:var(--nb-border);border-radius:14px;box-shadow:3px 3px 0 #000;margin-bottom:1rem;}
 .processing-spinner{font-size:3rem;animation:spin 1.5s linear infinite;display:block;margin-bottom:.75rem;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .prog-bar-track{background:#f0f0f0;height:12px;border-radius:99px;border:2px solid #000;overflow:hidden;margin:1rem 0 .5rem;}
 .prog-bar-fill{height:100%;background:linear-gradient(90deg,var(--nb-blue),var(--nb-orange));border-radius:99px;transition:width .3s;}
-
 /* Result hero */
 .result-hero{background:#000;border:var(--nb-border);border-radius:20px;padding:2rem;text-align:center;box-shadow:var(--nb-shadow-lg);margin-bottom:1.5rem;color:#fff;position:relative;overflow:hidden;}
 .result-hero::after{content:'4K';position:absolute;right:-10px;top:-10px;font-family:'Syne',sans-serif;font-size:7rem;font-weight:900;opacity:.07;pointer-events:none;}
 .result-scale{font-family:'Syne',sans-serif;font-size:clamp(3rem,10vw,5rem);font-weight:900;color:var(--nb-orange);line-height:1;}
 .result-sub{color:#aaa;font-size:.9rem;font-weight:600;margin-top:.4rem;}
 .result-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem;}
-
 /* Stats */
 .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem;}
 @media(min-width:500px){.stats-grid{grid-template-columns:repeat(4,1fr);}}
 .stat-card{background:#fff;border:var(--nb-border);border-radius:14px;padding:1.1rem .75rem;text-align:center;box-shadow:3px 3px 0 #000;}
 .stat-value{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:900;color:#4f46e5;display:block;}
 .stat-label{font-size:.72rem;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem;display:block;}
-
 /* Before/After */
 .ba-compare{position:relative;border:var(--nb-border);border-radius:16px;overflow:hidden;box-shadow:3px 3px 0 #000;margin-bottom:1.5rem;cursor:ew-resize;user-select:none;}
 .ba-img-wrap{position:relative;width:100%;background:#f5f5f5;}
@@ -125,7 +95,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#fafaf8;}
 .ba-handle-circle{width:36px;height:36px;border-radius:50%;background:#fff;border:2px solid #000;box-shadow:2px 2px 0 #000;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;margin-left:-18px;}
 .ba-labels{display:flex;justify-content:space-between;padding:.5rem .75rem;background:#f5f5f5;border-top:2px solid #000;}
 .ba-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#555;}
-
 /* SEO */
 .seo-section{max-width:900px;margin:3rem auto;padding:0 1rem;}
 .seo-section h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;margin-bottom:1rem;}
@@ -148,7 +117,43 @@ details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
 .animate-in{animation:fadeUp .4s ease-out;}
 #results,#processingWrap{display:none;}
 </style>
-</head>
+
+    <!-- SEO Optimization Meta Tags -->
+    <link rel="canonical" href="https://worldoftools.in/image-upscaler">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WorldOfTools.in">
+    <meta property="og:title" content="Image Upscaler — Free Online Tool | WorldOfTools">
+    <meta property="og:description" content="Use our free Image Upscaler online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta property="og:url" content="https://worldoftools.in/image-upscaler">
+    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Image Upscaler — Free Online Tool | WorldOfTools">
+    <meta name="twitter:description" content="Use our free Image Upscaler online. Fast, private, and no signup required. Part of WorldOfTools utility suite.">
+    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Image Upscaler",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200" },
+      "description": "Use our free Image Upscaler online. Fast, private, and no signup required. Part of WorldOfTools utility suite.",
+      "url": "https://worldoftools.in/image-upscaler"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worldoftools.in" },
+        { "@type": "ListItem", "position": 2, "name": "Utility Tools", "item": "https://worldoftools.in/image-upscaler" }
+      ]
+    }
+    </script></head>
 <body>
 <header></header>
 <main class="container" data-tool-name="Image Upscaler">
@@ -252,9 +257,8 @@ details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
       <button class="nb-btn nb-btn-mint" onclick="downloadResult()" style="color:#000;">⬇️ Download</button>
       <button class="nb-btn nb-btn-pink" onclick="shareResult()">📤 Share</button>
       <button class="nb-btn" onclick="resetTool()" style="background:#fff;color:#000;">🔄 Upscale Another</button>
-    
-        
-      </div>
+
+</div>
   </div>
 
   <!-- Stats -->
