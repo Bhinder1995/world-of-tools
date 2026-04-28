@@ -234,6 +234,7 @@ function injectHeader() {
                                         <a href="/background-remover">BG Remover</a>
                                         <a href="/image-upscaler">AI Upscaler</a>
                                         <a href="/image-converter">Image Converter</a>
+                                        <a href="/free-url-shortener-online">URL Shortener</a>
                                         <a href="/thermal-label-maker">Label Maker</a>
                                         <a href="/web-utilities-free" class="view-all">View All Utilities →</a>
                                     </div>
