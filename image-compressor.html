@@ -3,18 +3,20 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <link rel="canonical" href="https://worldoftools.in/image-compressor">
+    <link rel="canonical" href="https://www.worldoftools.in/image-compressor">
+<link rel="alternate" hreflang="en-IN" href="https://www.worldoftools.in/image-compressor"/>
+<link rel="alternate" hreflang="x-default" href="https://www.worldoftools.in/image-compressor"/>
 <title>Image Compressor — Compress JPG, PNG & WebP Free, No Upload Needed | WorldOfTools</title>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="WorldOfTools.in">
     <meta property="og:title" content="Image Compressor — Compress JPG, PNG & WebP Free, No Upload Needed | WorldOfTools">
     <meta property="og:description" content="Compress JPG, PNG, and WebP images up to 90% smaller online free. Browser-based — images never uploaded. Batch compress, adjust quality, preview before & after, download instantly. No watermark.">
-    <meta property="og:url" content="https://worldoftools.in/image-compressor">
-    <meta property="og:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta property="og:url" content="https://www.worldoftools.in/image-compressor">
+    <meta property="og:image" content="https://www.worldoftools.in/og/worldoftools-banner.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Image Compressor — Compress JPG, PNG & WebP Free, No Upload Needed | WorldOfTools">
     <meta name="twitter:description" content="Compress JPG, PNG, and WebP images up to 90% smaller online free. Browser-based — images never uploaded. Batch compress, adjust quality, preview before & after, download instantly. No watermark.">
-    <meta name="twitter:image" content="https://worldoftools.in/og/worldoftools-banner.png">
+    <meta name="twitter:image" content="https://www.worldoftools.in/og/worldoftools-banner.png">
 <meta content="Compress JPG, PNG, and WebP images up to 90% smaller online free. Browser-based — images never uploaded. Batch compress, adjust quality, preview before & after, download instantly. No watermark." name="description"/>
 <meta content="image compressor, compress image online free, reduce image size, jpg compressor, png compressor, webp compressor, photo optimizer, compress image without losing quality, bulk image compressor, free image size reducer" name="keywords"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
@@ -137,7 +139,7 @@ details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
       "priceCurrency": "USD"
     },
     "description": "Compress JPG, PNG, and WebP images up to 90% smaller online free. Browser-based \u2014 images never uploaded. Batch compress, adjust quality, preview before & after, download instantly. No watermark.",
-    "url": "https://worldoftools.in/image-compressor"
+    "url": "https://www.worldoftools.in/image-compressor"
   },
   {
     "@context": "https://schema.org",
@@ -193,13 +195,13 @@ details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://worldoftools.in/"
+        "item": "https://www.worldoftools.in/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Image Compressor \u2014 Compress JPG, PNG & WebP Free, No Upload Needed",
-        "item": "https://worldoftools.in/image-compressor"
+        "item": "https://www.worldoftools.in/image-compressor"
       }
     ]
   }
@@ -332,11 +334,11 @@ details p{margin:.75rem 0 0;color:#555;line-height:1.6;}
   <div class="ba-compare">
     <div class="ba-panel">
       <div class="ba-label" style="background:var(--nb-orange);">BEFORE</div>
-      <img id="beforeImg" class="ba-img" alt="Original"/>
+      <img id="beforeImg" class="ba-img" alt="Original"/ loading="lazy">
     </div>
     <div class="ba-panel">
       <div class="ba-label" style="background:var(--nb-lime);">AFTER</div>
-      <img id="afterImg" class="ba-img" alt="Compressed"/>
+      <img id="afterImg" class="ba-img" alt="Compressed"/ loading="lazy">
     </div>
   </div>
 
@@ -477,7 +479,7 @@ function renderBatchList() {
   list.innerHTML = batchFiles.map((f,i) => {
     const url = URL.createObjectURL(f);
     return `<div class="batch-item">
-      <img class="batch-thumb" src="${url}" alt="${f.name}"/>
+      <img class="batch-thumb" src="${url}" alt="${f.name}"/ loading="lazy">
       <div class="batch-info"><div class="batch-name">${f.name}</div><div class="batch-sizes">${fmtBytes(f.size)}</div></div>
       <span class="batch-status status-ready">Ready</span>
       <button onclick="batchFiles.splice(${i},1);renderBatchList();" style="background:none;border:none;cursor:pointer;font-size:1rem;">✕</button>
@@ -575,7 +577,7 @@ async function compressBatch() {
     const origSize = batchFiles[i].size;
     const savedPct = Math.round((1-b.blob.size/origSize)*100);
     return `<div class="batch-item">
-      <img class="batch-thumb" src="${url}" alt="${b.name}"/>
+      <img class="batch-thumb" src="${url}" alt="${b.name}"/ loading="lazy">
       <div class="batch-info"><div class="batch-name">${b.name}</div><div class="batch-sizes">${fmtBytes(origSize)} → ${fmtBytes(b.blob.size)} (${savedPct}% saved)</div></div>
       <a href="${url}" download="${b.name}" class="nb-btn nb-btn-primary" style="padding:.45rem .9rem;font-size:.8rem;">⬇️</a>
     </div>`;
