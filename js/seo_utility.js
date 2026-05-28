@@ -1,109 +1,114 @@
 /**
- * WorldOfTools SEO & UX Utility v1.1
- * Managed Schema, FAQ & Global Hreflang Manager
+ * WorldOfTools SEO & UX Utility v2.0
+ * Managed Schema, FAQ, Hreflang & Breadcrumb Manager
  */
-
 document.addEventListener('DOMContentLoaded', () => {
-    initL10n(); // Global Hreflang & Canonical Logic
+    initL10n();
     initFAQs();
     injectBreadcrumbSchema();
+    injectSoftwareApplicationSchema();
 });
 
-/**
- * Handles Global L10n (hreflang) injection 
- */
-async function initL10n() {
+function initL10n() {
     try {
-        const response = await fetch('/js/l10n_map.json');
-        const map = await response.json();
-        
-        const path = window.location.pathname;
-        const segments = path.split('/').filter(s => s !== '');
-        
-        // Find current tool slug and language
-        let currentLang = 'en';
-        let currentSlug = 'index';
-        
-        if (segments.length > 0 && map.languages.some(l => l.code === segments[0])) {
-            currentLang = segments[0];
-            currentSlug = segments[1] || 'index';
-        } else if (segments.length > 0) {
-            currentSlug = segments[0];
-        }
+        const canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) return;
+        const currentUrl = canonical.getAttribute('href');
+        const path = new URL(currentUrl).pathname.replace(/\/$/, '');
+        const slug = path.split('/').filter(Boolean).pop() || 'index';
 
-        // Logic to find translation group
-        const translationKey = Object.keys(map.translations).find(key => 
-            Object.values(map.translations[key]).includes(currentSlug)
-        );
+        const map = {
+            "en": "https://worldoftools.in",
+            "es": "https://worldoftools.in/es",
+            "pt": "https://worldoftools.in/pt",
+            "hi": "https://worldoftools.in/hi",
+            "fr": "https://worldoftools.in/fr",
+            "de": "https://worldoftools.in/de"
+        };
 
-        if (translationKey) {
-            const group = map.translations[translationKey];
-            map.languages.forEach(lang => {
-                const targetSlug = group[lang.code] || group['en'];
-                const href = lang.code === 'en' 
-                    ? `https://worldoftools.in/${targetSlug === 'index' ? '' : targetSlug}`
-                    : `https://worldoftools.in/${lang.code}/${targetSlug === 'index' ? '' : targetSlug}`;
-                
-                injectHeaderTag('link', {
-                    rel: 'alternate',
-                    hreflang: lang.code,
-                    href: href
-                }, `hreflang-${lang.code}`);
-            });
-
-            // Default x-default
-            injectHeaderTag('link', {
+        Object.entries(map).forEach(([lang, base]) => {
+            const href = slug === 'index' ? base + '/' : base + '/' + slug;
+            injectTag('link', {
                 rel: 'alternate',
-                hreflang: 'x-default',
-                href: `https://worldoftools.in/${group['en'] === 'index' ? '' : group['en']}`
-            }, `hreflang-default`);
-        }
-    } catch (e) { console.error("L10n Init Error", e); }
+                hreflang: lang,
+                href: href
+            }, `hreflang-${lang}`);
+        });
+
+        injectTag('link', {
+            rel: 'alternate',
+            hreflang: 'x-default',
+            href: 'https://worldoftools.in/' + (slug === 'index' ? '' : slug)
+        }, 'hreflang-default');
+    } catch (e) {
+        console.warn('L10n init skipped:', e.message);
+    }
 }
 
-/**
- * Handles FAQ Toggles and Injecting FAQPage JSON-LD
- */
 function initFAQs() {
     const faqDetails = document.querySelectorAll('details');
     if (!faqDetails.length) return;
-
-    const faqItems = [];
-
+    const items = [];
     faqDetails.forEach(detail => {
         const summary = detail.querySelector('summary');
-        const content = detail.querySelector('p') || detail.querySelector('div');
-
-        if (summary && content) {
-            faqItems.push({
+        const p = detail.querySelector('p') || detail.querySelector('div.faq-body');
+        if (summary && p) {
+            items.push({
                 "@type": "Question",
                 "name": summary.textContent.trim(),
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": content.textContent.trim()
+                    "text": p.textContent.trim()
                 }
             });
         }
     });
-
-    if (faqItems.length) {
-        const schema = {
+    if (items.length) {
+        injectSchema({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": faqItems
-        };
-        injectSchema(schema, 'faq-schema');
+            "mainEntity": items
+        }, 'faq-schema');
     }
 }
 
-/**
- * Auto-injects BreadcrumbList Schema based on URL structure
- */
+function injectSoftwareApplicationSchema() {
+    const h1 = document.querySelector('h1');
+    if (!h1) return;
+    const title = h1.textContent.trim();
+    const canonical = document.querySelector('link[rel="canonical"]');
+    const url = canonical ? canonical.getAttribute('href') : window.location.href;
+    const desc = document.querySelector('meta[name="description"]');
+    const description = desc ? desc.getAttribute('content') : '';
+
+    const appSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": title,
+        "url": url,
+        "description": description,
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        }
+    };
+
+    // If it's a calculator, use more specific type
+    if (url.includes('calculator') || title.toLowerCase().includes('calculator')) {
+        appSchema["@type"] = "WebApplication";
+    }
+
+    injectSchema(appSchema, 'software-app-schema');
+}
+
 function injectBreadcrumbSchema() {
     const path = window.location.pathname;
     const segments = path.split('/').filter(s => s !== '');
-    
-    // Localized Breadcrumb Labels
     const labels = {
         'es': { 'home': 'Inicio', 'guides': 'Guías' },
         'pt': { 'home': 'Início', 'guides': 'Guias' },
@@ -112,32 +117,27 @@ function injectBreadcrumbSchema() {
         'de': { 'home': 'Start', 'guides': 'Ratgeber' },
         'en': { 'home': 'Home', 'guides': 'Guides' }
     };
-
     const currentLang = labels[segments[0]] ? segments[0] : 'en';
     const l10n = labels[currentLang];
-
     const crumbs = [{
         "@type": "ListItem",
         "position": 1,
         "name": l10n.home,
         "item": "https://worldoftools.in/" + (currentLang === 'en' ? '' : currentLang + '/')
     }];
-
     if (segments.length > 0) {
-        let currentPath = "https://worldoftools.in/";
         const startIdx = labels[segments[0]] ? 1 : 0;
-        
-        segments.slice(startIdx).forEach((seg, index) => {
-            currentPath += (currentLang === 'en' ? '' : currentLang + '/') + seg;
+        let currentPath = "https://worldoftools.in/";
+        segments.slice(startIdx).forEach((seg) => {
+            currentPath += (currentLang === 'en' ? '' : currentLang + '/') + seg + '/';
             crumbs.push({
                 "@type": "ListItem",
                 "position": crumbs.length + 1,
                 "name": seg.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
-                "item": currentPath
+                "item": currentPath.replace(/\/+$/, '')
             });
         });
     }
-
     injectSchema({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -145,25 +145,21 @@ function injectBreadcrumbSchema() {
     }, 'breadcrumb-schema');
 }
 
-/**
- * Generic Helper to inject JSON-LD into the head
- */
 function injectSchema(data, id) {
     if (document.getElementById(id)) return;
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.id = id;
-    script.text = JSON.stringify(data);
+    script.textContent = JSON.stringify(data);
     document.head.appendChild(script);
 }
 
-/**
- * Helper to inject generic <head> tags
- */
-function injectHeaderTag(tag, attributes, id) {
+function injectTag(tag, attributes, id) {
     if (document.getElementById(id)) return;
     const el = document.createElement(tag);
     el.id = id;
-    for (let key in attributes) el.setAttribute(key, attributes[key]);
+    for (const [key, value] of Object.entries(attributes)) {
+        el.setAttribute(key, value);
+    }
     document.head.appendChild(el);
 }

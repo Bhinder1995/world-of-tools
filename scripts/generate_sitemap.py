@@ -1,5 +1,4 @@
 import os
-import json
 from datetime import datetime
 
 def generate_sitemap(base_path, base_url):
@@ -13,51 +12,45 @@ def generate_sitemap(base_path, base_url):
         'gst-calculator.html': '0.9'
     }
 
+    # Static pages
+    static_pages = ['about-us', 'contact-us', 'faq', 'privacy', 'terms']
+
     print("Scanning directories for HTML files...")
     
     # Scan root directory
     for f in os.listdir(base_path):
         if f.endswith('.html') and os.path.isfile(os.path.join(base_path, f)):
-            url_path = "" if f == "index.html" else f.replace('.html', '')
-            priority = priorities.get(f, '0.8')
+            name = f.replace('.html', '')
+            # Skip non-indexable files and the guide template
+            if name.startswith('guide-template'):
+                continue
+            url_path = "" if f == "index.html" else name
+            is_static = name in static_pages
+            priority = priorities.get(f, '0.7' if is_static else '0.8')
+            changefreq = 'monthly' if is_static else 'weekly'
             urls.append({
                 'loc': f"{base_url}/{url_path}".rstrip('/'),
                 'lastmod': datetime.utcnow().strftime('%Y-%m-%d'),
-                'changefreq': 'weekly',
+                'changefreq': changefreq,
                 'priority': priority
             })
 
     # Scan guides directory
     guides_dir = os.path.join(base_path, 'guides')
     if os.path.exists(guides_dir):
-        for f in os.listdir(guides_dir):
+        for f in sorted(os.listdir(guides_dir)):
             if f.endswith('.html') and os.path.isfile(os.path.join(guides_dir, f)):
-                url_path = f"guides/{f.replace('.html', '')}"
+                name = f.replace('.html', '')
+                # Skip guide-template
+                if name == 'guide-template':
+                    continue
+                url_path = f"guides/{name}"
                 urls.append({
                     'loc': f"{base_url}/{url_path}",
                     'lastmod': datetime.utcnow().strftime('%Y-%m-%d'),
                     'changefreq': 'monthly',
                     'priority': '0.6'
                 })
-
-    # Read Vercel.json for programmatic SEO routes
-    vercel_path = os.path.join(base_path, 'vercel.json')
-    if os.path.exists(vercel_path):
-        with open(vercel_path, 'r', encoding='utf-8') as vf:
-            vercel_data = json.load(vf)
-            rewrites = vercel_data.get('rewrites', [])
-            for r in rewrites:
-                source = r.get('source', '')
-                # Ignore dynamic routes or workers
-                if ':' not in source and not source.startswith('/go'):
-                    # Source already has a leading slash
-                    full_loc = f"{base_url}{source}"
-                    urls.append({
-                        'loc': full_loc,
-                        'lastmod': datetime.utcnow().strftime('%Y-%m-%d'),
-                        'changefreq': 'monthly',
-                        'priority': '0.7'
-                    })
 
     # Generate XML
     xml_lines = [

@@ -31,8 +31,8 @@ def update_og_tags(filepath, base_url="https://worldoftools.in"):
     desc_element = soup.find('meta', attrs={'name': 'description'})
     desc_text = desc_element['content'] if desc_element else title_text
 
-    # Default image
-    og_image = f"{base_url}/app-icon.png"
+    # Default image (use banner for all pages)
+    og_image = f"{base_url}/og/worldoftools-banner.png"
 
     tags_to_inject = [
         # Open Graph
@@ -41,6 +41,8 @@ def update_og_tags(filepath, base_url="https://worldoftools.in"):
         soup.new_tag('meta', property='og:title', content=title_text),
         soup.new_tag('meta', property='og:description', content=desc_text),
         soup.new_tag('meta', property='og:image', content=og_image),
+        soup.new_tag('meta', property='og:image:width', content='1200'),
+        soup.new_tag('meta', property='og:image:height', content='630'),
         soup.new_tag('meta', property='og:site_name', content='WorldOfTools'),
         
         # Twitter

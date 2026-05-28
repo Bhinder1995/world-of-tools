@@ -333,7 +333,12 @@ function injectHeader() {
         </style>
     `;
     const header = document.querySelector('header');
-    if (header) { header.innerHTML = headerHTML; setupDropdown(); setupMobileMenu(); }
+    if (header) {
+        // Replace SEO placeholder nav with full interactive nav
+        header.innerHTML = headerHTML;
+        setupDropdown();
+        setupMobileMenu();
+    }
 }
 
 // ── DROPDOWN — pure click-based, closes on outside click ─────────────────────
