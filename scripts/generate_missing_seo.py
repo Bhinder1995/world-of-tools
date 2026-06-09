@@ -57,7 +57,7 @@ def generate_seo_dict(filename):
     }
 
 def main():
-    base_dir = r"c:\Users\HP\Desktop\Projects Folder\world_of_tools"
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # Load existing covered tools so we don't overwrite
     with open(os.path.join(base_dir, 'seo_content.json'), 'r', encoding='utf-8') as f:

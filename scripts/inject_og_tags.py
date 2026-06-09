@@ -16,13 +16,23 @@ def update_og_tags(filepath, base_url="https://worldoftools.in"):
         
     full_url = f"{base_url}/{url_slug}".rstrip('/')
 
-    # Check if OG tags already exist, if so skip to save time
-    if soup.find('meta', property='og:title'):
-        return False
-
     head = soup.head
     if not head:
         return False
+
+    # Add geo meta tags if missing
+    add_geo_meta(soup, head)
+
+    # Add og:locale if missing
+    if not soup.find('meta', property='og:locale'):
+        locale_tag = soup.new_tag('meta', property='og:locale', content='en_IN')
+        head.append(locale_tag)
+
+    # Check if OG tags already exist, if so only save geo/locale changes
+    if soup.find('meta', property='og:title'):
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(str(soup))
+        return True
 
     # Extract existing title and description
     title_element = soup.find('title')
@@ -63,8 +73,21 @@ def update_og_tags(filepath, base_url="https://worldoftools.in"):
         
     return True
 
+def add_geo_meta(soup, head):
+    geo_tags = {
+        'geo.region': 'IN',
+        'geo.placename': 'India',
+        'geo.position': '20.593684;78.96288',
+        'ICBM': '20.593684, 78.96288'
+    }
+    for name, content in geo_tags.items():
+        existing = soup.find('meta', attrs={'name': name})
+        if not existing:
+            tag = soup.new_tag('meta', attrs={'name': name, 'content': content})
+            head.append(tag)
+
 def main():
-    base_dir = r"c:\Users\HP\Desktop\Projects Folder\world_of_tools"
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     count = 0
     
     for root, dirs, files in os.walk(base_dir):

@@ -1,24 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large" name="robots"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Markdown to HTML Converter — Live Preview & Clean Export | WorldOfTools</title>
-    <meta property="article:published_time" content="2026-05-28T00:00:00+05:30"/>
-<meta content="Free Markdown to HTML converter with live side-by-side preview. Copy clean HTML, download, or view rendered output instantly. No login, no upload, 100% private." name="description"/>
+<title>Markdown to HTML Converter — Live Preview &amp; Export | WorldOfTools</title>
+<meta content="2026-05-28T00:00:00+05:30" property="article:published_time"/>
+<meta content="Convert Markdown to HTML with live side-by-side preview. Copy clean HTML, export or view rendered output. Supports GitHub Flavored Markdown. No login." name="description"/>
 <meta content="markdown to html converter, markdown live preview online, md to html converter, convert markdown to html, github flavored markdown converter, markdown table to html, markdown converter with preview, markdown html online free" name="keywords"/>
 <link href="/logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="/manifest.json" rel="manifest"/>
 <link href="/app-icon.png" rel="apple-touch-icon"/>
-<meta name="theme-color" content="#ffe066"/>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
+<meta content="#ffe066" name="theme-color"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CCYN1G2F05"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CCYN1G2F05');</script>
-<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
-<script defer src="/_vercel/insights/script.js"></script>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9865698259636975"></script>
+<script defer="" src="/_vercel/insights/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&amp;family=Syne:wght@700;800;900&amp;display=swap" media="print" onload="this.media='all'" rel="stylesheet"/>
 <link href="/css/style.css?v=6.1" rel="stylesheet"/>
 <link href="/css/neo-brutalism.css?v=6.1" rel="stylesheet"/>
 <style>
@@ -108,183 +108,166 @@
   .tool-card-mini .desc { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
   @media(max-width:480px) { .action-bar .nb-btn { flex: 1; } .nb-card-lg { padding: 1.25rem; } }
 </style>
-
-    
-
-</head>
+<meta content="IN" name="geo.region"/><meta content="India" name="geo.placename"/><meta content="20.593684;78.96288" name="geo.position"/><meta content="20.593684, 78.96288" name="ICBM"/></head>
 <body>
 <header></header>
 <main class="tool-container" style="max-width:1100px;margin:0 auto;padding:0 1rem 2rem;">
-
 <div class="tool-hero">
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Home</a> › <a href="/text-tools">Text Tools</a> › Markdown to HTML
+<nav aria-label="Breadcrumb" class="breadcrumb">
+<a href="/">Home</a> › <a href="/text-tools">Text Tools</a> › Markdown to HTML
   </nav>
-  <div class="hero-badge">🔄 Developer Tool</div>
-  <h1>Markdown to HTML<br>Converter</h1>
-  <p>Convert Markdown to clean HTML with live side-by-side preview. Supports GitHub Flavored Markdown — tables, code blocks, task lists & more. Copy or download instantly.</p>
+<div class="hero-badge">🔄 Developer Tool</div>
+<h1>Markdown to HTML<br/>Converter</h1>
+<p>Convert Markdown to clean HTML with live side-by-side preview. Supports GitHub Flavored Markdown — tables, code blocks, task lists &amp; more. Copy or download instantly.</p>
+</div>
+<div class="nb-card nb-card-lg" style="margin-bottom:1.5rem;">
+<!-- Options row -->
+<div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;">
+<label class="nb-check"><input checked="" id="livePreview" onchange="toggleLive()" type="checkbox"/> Live Preview</label>
+<label class="nb-check"><input id="addFullDoc" type="checkbox"/> Full HTML Document</label>
+<label class="nb-check"><input checked="" id="sanitizeLinks" type="checkbox"/> Sanitize Links</label>
+</div>
+<!-- Markdown toolbar -->
+<div class="md-toolbar">
+<button class="tb-btn" onclick="insertMd('**','**','Bold')" title="Bold">B</button>
+<button class="tb-btn" onclick="insertMd('*','*','Italic')" style="font-style:italic;" title="Italic">I</button>
+<button class="tb-btn" onclick="insertMd('`','`','code')" title="Inline Code">&lt;/&gt;</button>
+<button class="tb-btn" onclick="insertMd('## ','','Heading')" title="Heading">H2</button>
+<button class="tb-btn" onclick="insertMd('### ','','Heading')" title="Heading">H3</button>
+<button class="tb-btn" onclick="insertMd('\n```\n','\n```\n','code block')" title="Code Block">{ }</button>
+<button class="tb-btn" onclick="insertMd('&gt; ','','blockquote')" title="Quote">"</button>
+<button class="tb-btn" onclick="insertMd('- ','','list item')" title="List">• List</button>
+<button class="tb-btn" onclick="insertMd('[','](url)')" title="Link">🔗</button>
+<button class="tb-btn" onclick="insertMd('![alt','](url)')" title="Image">🖼</button>
+<button class="tb-btn" onclick="insertTable()" title="Table">⊞ Table</button>
+<button class="tb-btn" onclick="insertMd('---\n','')" title="HR">— HR</button>
+</div>
+<div class="editor-layout" style="margin-top:0;">
+<div>
+<div class="pane-header" style="border-radius:0;">
+<span>📝 Markdown Input</span>
+<div style="display:flex;gap:0.5rem;">
+<button class="nb-btn nb-btn-sm" onclick="clearInput()" style="padding:0.3rem 0.75rem;font-size:0.78rem;box-shadow:2px 2px 0 #000;">🗑 Clear</button>
+<button class="nb-btn nb-btn-sm nb-btn-mint" onclick="loadSample()" style="padding:0.3rem 0.75rem;font-size:0.78rem;box-shadow:2px 2px 0 #000;">📄 Sample</button>
+</div>
+</div>
+<textarea class="md-textarea" id="mdInput" oninput="onInput()" placeholder="# Hello World
+
+Type your **Markdown** here and see the live preview..."></textarea>
+</div>
+<div>
+<div class="nb-tabs" style="margin-bottom:0;">
+<button class="nb-tab-btn active" onclick="setOutputTab('preview',this)" style="border-radius:10px 10px 0 0;">👁 Preview</button>
+<button class="nb-tab-btn" onclick="setOutputTab('html',this)" style="border-radius:10px 10px 0 0;">&lt;/&gt; HTML</button>
+</div>
+<div class="preview-pane" id="previewPane"></div>
+<div class="html-pane" id="htmlPane" style="display:none;"></div>
+</div>
+</div>
+<div class="stats-row" id="statsRow">
+<span class="stat-pill" id="statWords">0 words</span>
+<span class="stat-pill" id="statChars">0 chars</span>
+<span class="stat-pill" id="statLines">0 lines</span>
+<span class="stat-pill" id="statHeadings">0 headings</span>
+</div>
+<div class="action-bar">
+<button class="nb-btn nb-btn-primary" onclick="copyHTML()">📋 Copy HTML</button>
+<button class="nb-btn nb-btn-mint" onclick="copyMd()">📋 Copy Markdown</button>
+<button class="nb-btn nb-btn-pink" onclick="downloadHTML()">⬇️ Download .html</button>
+</div>
+</div><div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+<a href="/word-counter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+<div style="font-size:1.6rem;margin-bottom:0.4rem;">📝</div>
+<div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Word Counter</div>
+<div style="font-size:0.73rem;color:#666;line-height:1.3;">Count words</div>
+</a>
+<a href="/css-minifier" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+<div style="font-size:1.6rem;margin-bottom:0.4rem;">🗜️</div>
+<div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">CSS Minifier</div>
+<div style="font-size:0.73rem;color:#666;line-height:1.3;">Minify CSS</div>
+</a>
+<a href="/json-formatter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
+<div style="font-size:1.6rem;margin-bottom:0.4rem;">{ }</div>
+<div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">JSON Formatter</div>
+<div style="font-size:0.73rem;color:#666;line-height:1.3;">Format JSON</div>
+</a>
 </div>
 
-<div class="nb-card nb-card-lg" style="margin-bottom:1.5rem;">
-
-  <!-- Options row -->
-  <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;">
-    <label class="nb-check"><input type="checkbox" id="livePreview" checked onchange="toggleLive()"/> Live Preview</label>
-    <label class="nb-check"><input type="checkbox" id="addFullDoc"/> Full HTML Document</label>
-    <label class="nb-check"><input type="checkbox" id="sanitizeLinks" checked/> Sanitize Links</label>
-  </div>
-
-  <!-- Markdown toolbar -->
-  <div class="md-toolbar">
-    <button class="tb-btn" onclick="insertMd('**','**','Bold')" title="Bold">B</button>
-    <button class="tb-btn" onclick="insertMd('*','*','Italic')" title="Italic" style="font-style:italic;">I</button>
-    <button class="tb-btn" onclick="insertMd('`','`','code')" title="Inline Code">&lt;/&gt;</button>
-    <button class="tb-btn" onclick="insertMd('## ','','Heading')" title="Heading">H2</button>
-    <button class="tb-btn" onclick="insertMd('### ','','Heading')" title="Heading">H3</button>
-    <button class="tb-btn" onclick="insertMd('\n```\n','\n```\n','code block')" title="Code Block">{ }</button>
-    <button class="tb-btn" onclick="insertMd('> ','','blockquote')" title="Quote">"</button>
-    <button class="tb-btn" onclick="insertMd('- ','','list item')" title="List">• List</button>
-    <button class="tb-btn" onclick="insertMd('[','](url)')" title="Link">🔗</button>
-    <button class="tb-btn" onclick="insertMd('![alt','](url)')" title="Image">🖼</button>
-    <button class="tb-btn" onclick="insertTable()" title="Table">⊞ Table</button>
-    <button class="tb-btn" onclick="insertMd('---\n','')" title="HR">— HR</button>
-  </div>
-
-  <div class="editor-layout" style="margin-top:0;">
-    <div>
-      <div class="pane-header" style="border-radius:0;">
-        <span>📝 Markdown Input</span>
-        <div style="display:flex;gap:0.5rem;">
-          <button class="nb-btn nb-btn-sm" style="padding:0.3rem 0.75rem;font-size:0.78rem;box-shadow:2px 2px 0 #000;" onclick="clearInput()">🗑 Clear</button>
-          <button class="nb-btn nb-btn-sm nb-btn-mint" style="padding:0.3rem 0.75rem;font-size:0.78rem;box-shadow:2px 2px 0 #000;" onclick="loadSample()">📄 Sample</button>
-        </div>
-      </div>
-      <textarea class="md-textarea" id="mdInput" placeholder="# Hello World&#10;&#10;Type your **Markdown** here and see the live preview..." oninput="onInput()"></textarea>
-    </div>
-
-    <div>
-      <div class="nb-tabs" style="margin-bottom:0;">
-        <button class="nb-tab-btn active" onclick="setOutputTab('preview',this)" style="border-radius:10px 10px 0 0;">👁 Preview</button>
-        <button class="nb-tab-btn" onclick="setOutputTab('html',this)" style="border-radius:10px 10px 0 0;">&lt;/&gt; HTML</button>
-      </div>
-      <div id="previewPane" class="preview-pane"></div>
-      <div id="htmlPane" class="html-pane" style="display:none;"></div>
-    </div>
-  </div>
-
-  <div class="stats-row" id="statsRow">
-    <span class="stat-pill" id="statWords">0 words</span>
-    <span class="stat-pill" id="statChars">0 chars</span>
-    <span class="stat-pill" id="statLines">0 lines</span>
-    <span class="stat-pill" id="statHeadings">0 headings</span>
-  </div>
-
-  <div class="action-bar">
-    <button class="nb-btn nb-btn-primary" onclick="copyHTML()">📋 Copy HTML</button>
-    <button class="nb-btn nb-btn-mint" onclick="copyMd()">📋 Copy Markdown</button>
-    <button class="nb-btn nb-btn-pink" onclick="downloadHTML()">⬇️ Download .html</button>
-  </div>
-</div><div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-
-    <a href="/word-counter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
-      <div style="font-size:1.6rem;margin-bottom:0.4rem;">📝</div>
-      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">Word Counter</div>
-      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Count words</div>
-    </a>
-    <a href="/css-minifier" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
-      <div style="font-size:1.6rem;margin-bottom:0.4rem;">🗜️</div>
-      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">CSS Minifier</div>
-      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Minify CSS</div>
-    </a>
-    <a href="/json-formatter" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.1rem 0.75rem;background:#fff;border:2.5px solid #000;border-radius:14px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;transition:transform 0.15s,box-shadow 0.15s;flex:1;min-width:120px;">
-      <div style="font-size:1.6rem;margin-bottom:0.4rem;">{ }</div>
-      <div style="font-weight:800;font-size:0.85rem;line-height:1.2;margin-bottom:0.2rem;">JSON Formatter</div>
-      <div style="font-size:0.73rem;color:#666;line-height:1.3;">Format JSON</div>
-    </a>
-    </div>
-  </div>
 </main>
-
 <!-- SEO Content -->
 <div class="seo-section">
-
-  <section style="margin-bottom:3rem;">
-    <h2>What is a Markdown to HTML Converter?</h2>
-    <p>A <strong>Markdown to HTML converter</strong> transforms Markdown syntax — lightweight formatting using symbols like <code>#</code>, <code>**</code>, and <code>-</code> — into valid HTML markup. This tool does it live in your browser with instant side-by-side preview, so you see the rendered output as you type.</p>
-    <p>This tool supports <strong>GitHub Flavored Markdown (GFM)</strong>, including tables, code fences with syntax highlighting themes, task list checkboxes, strikethrough text, and all standard Markdown formatting.</p>
-  </section>
-
-  <section style="margin-bottom:3rem;">
-    <h2>Markdown Syntax Quick Reference</h2>
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;border:var(--nb-border);border-radius:12px;overflow:hidden;box-shadow:3px 3px 0 #000;">
-        <thead><tr style="background:var(--nb-yellow);"><th style="padding:0.75rem;border-bottom:2.5px solid #000;text-align:left;">Markdown</th><th style="padding:0.75rem;border-bottom:2.5px solid #000;text-align:left;">Result</th></tr></thead>
-        <tbody>
-          <tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;"># Heading 1</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;">&lt;h1&gt;Heading 1&lt;/h1&gt;</td></tr>
-          <tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;">**bold text**</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;"><strong>bold text</strong></td></tr>
-          <tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;">*italic text*</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;"><em>italic text</em></td></tr>
-          <tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;">[link](https://...)</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;">Hyperlink</td></tr>
-          <tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;">```code block```</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;">Formatted code</td></tr>
-          <tr><td style="padding:0.65rem;font-family:'Courier New',monospace;">| col | col |</td><td style="padding:0.65rem;">HTML Table</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section style="margin-bottom:3rem;">
-    <h2>Frequently Asked Questions</h2>
-    <details><summary>Which Markdown flavor is supported?</summary><p>This converter uses GitHub Flavored Markdown (GFM) via the Marked.js library — supporting tables, code fences, task lists, strikethrough, and all standard Markdown.</p></details>
-    <details><summary>Can I convert a README.md to HTML?</summary><p>Yes. Paste your README.md contents and get clean HTML output. Perfect for converting GitHub READMEs into documentation pages.</p></details>
-    <details><summary>Is my content stored or sent anywhere?</summary><p>No. All conversion happens locally in your browser using JavaScript. Your Markdown content is never uploaded, stored, or shared.</p></details>
-    <details><summary>Can I download the HTML output?</summary><p>Yes. Click 'Download .html' to save a complete standalone HTML file with basic styling applied. The file opens correctly in any browser.</p></details>
-    <details><summary>Does it support tables and code blocks?</summary><p>Yes. GitHub Flavored Markdown tables are fully supported. Code fences (triple backticks) are rendered as formatted code blocks with dark background.</p></details>
-    <details><summary>What is the "Full HTML Document" option?</summary><p>Enabling this wraps the converted HTML in a complete document structure with &lt;html&gt;, &lt;head&gt;, and &lt;body&gt; tags — ready to save and open as a standalone .html file.</p></details>
-  </section>
-
-  <section style="margin-bottom:3rem;">
-    <h2>Other Free Text Tools</h2>
-    <div class="tools-grid">
-      <a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words & read time</div></a>
-      <a class="tool-card-mini" href="/lorem-ipsum-generator"><div class="icon">📄</div><div class="name">Lorem Ipsum</div><div class="desc">Placeholder text generator</div></a>
-      <a class="tool-card-mini" href="/number-to-words-converter"><div class="icon">🔢</div><div class="name">Number to Words</div><div class="desc">Convert numbers to text</div></a>
-      <a class="tool-card-mini" href="/text-case-converter"><div class="icon">🔡</div><div class="name">Case Converter</div><div class="desc">Change text case</div></a>
-      <a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age calculator</div></a>
-      <a class="tool-card-mini" href="/character-counter"><div class="icon">✏️</div><div class="name">Char Counter</div><div class="desc">Count characters</div></a>
-    </div>
-  </section>
-
+<section style="margin-bottom:3rem;">
+<h2>What is a Markdown to HTML Converter?</h2>
+<p>A <strong>Markdown to HTML converter</strong> transforms Markdown syntax — lightweight formatting using symbols like <code>#</code>, <code>**</code>, and <code>-</code> — into valid HTML markup. This tool does it live in your browser with instant side-by-side preview, so you see the rendered output as you type.</p>
+<p>This tool supports <strong>GitHub Flavored Markdown (GFM)</strong>, including tables, code fences with syntax highlighting themes, task list checkboxes, strikethrough text, and all standard Markdown formatting.</p>
+</section>
+<section style="margin-bottom:3rem;">
+<h2>Markdown Syntax Quick Reference</h2>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;border:var(--nb-border);border-radius:12px;overflow:hidden;box-shadow:3px 3px 0 #000;">
+<thead><tr style="background:var(--nb-yellow);"><th style="padding:0.75rem;border-bottom:2.5px solid #000;text-align:left;">Markdown</th><th style="padding:0.75rem;border-bottom:2.5px solid #000;text-align:left;">Result</th></tr></thead>
+<tbody>
+<tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;"># Heading 1</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;">&lt;h1&gt;Heading 1&lt;/h1&gt;</td></tr>
+<tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;">**bold text**</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;"><strong>bold text</strong></td></tr>
+<tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;">*italic text*</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;"><em>italic text</em></td></tr>
+<tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;">[link](https://...)</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;">Hyperlink</td></tr>
+<tr><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;font-family:'Courier New',monospace;">```code block```</td><td style="padding:0.65rem;border-bottom:1px solid #e5e7eb;">Formatted code</td></tr>
+<tr><td style="padding:0.65rem;font-family:'Courier New',monospace;">| col | col |</td><td style="padding:0.65rem;">HTML Table</td></tr>
+</tbody>
+</table>
 </div>
-
+</section>
+<section style="margin-bottom:3rem;">
+<h2>Frequently Asked Questions</h2>
+<details><summary>Which Markdown flavor is supported?</summary><p>This converter uses GitHub Flavored Markdown (GFM) via the Marked.js library — supporting tables, code fences, task lists, strikethrough, and all standard Markdown.</p></details>
+<details><summary>Can I convert a README.md to HTML?</summary><p>Yes. Paste your README.md contents and get clean HTML output. Perfect for converting GitHub READMEs into documentation pages.</p></details>
+<details><summary>Is my content stored or sent anywhere?</summary><p>No. All conversion happens locally in your browser using JavaScript. Your Markdown content is never uploaded, stored, or shared.</p></details>
+<details><summary>Can I download the HTML output?</summary><p>Yes. Click 'Download .html' to save a complete standalone HTML file with basic styling applied. The file opens correctly in any browser.</p></details>
+<details><summary>Does it support tables and code blocks?</summary><p>Yes. GitHub Flavored Markdown tables are fully supported. Code fences (triple backticks) are rendered as formatted code blocks with dark background.</p></details>
+<details><summary>What is the "Full HTML Document" option?</summary><p>Enabling this wraps the converted HTML in a complete document structure with &lt;html&gt;, &lt;head&gt;, and &lt;body&gt; tags — ready to save and open as a standalone .html file.</p></details>
+</section>
+<section style="margin-bottom:3rem;">
+<h2>Other Free Text Tools</h2>
+<div class="tools-grid">
+<a class="tool-card-mini" href="/word-counter"><div class="icon">📝</div><div class="name">Word Counter</div><div class="desc">Count words &amp; read time</div></a>
+<a class="tool-card-mini" href="/lorem-ipsum-generator"><div class="icon">📄</div><div class="name">Lorem Ipsum</div><div class="desc">Placeholder text generator</div></a>
+<a class="tool-card-mini" href="/number-to-words-converter"><div class="icon">🔢</div><div class="name">Number to Words</div><div class="desc">Convert numbers to text</div></a>
+<a class="tool-card-mini" href="/text-case-converter"><div class="icon">🔡</div><div class="name">Case Converter</div><div class="desc">Change text case</div></a>
+<a class="tool-card-mini" href="/age-calculator"><div class="icon">🎂</div><div class="name">Age Calculator</div><div class="desc">Exact age calculator</div></a>
+<a class="tool-card-mini" href="/character-counter"><div class="icon">✏️</div><div class="name">Char Counter</div><div class="desc">Count characters</div></a>
+</div>
+</section>
+</div>
 <footer style="background:#fff; border-top:2.5px solid #000; padding:4rem 0 2rem; margin-top:5rem;">
-  <div style="max-width:1200px; margin:0 auto; padding:0 1.5rem;">
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:3rem; margin-bottom:4rem;">
-      <div>
-        <div style="font-family:'Syne',sans-serif; font-weight:900; font-size:1.5rem; margin-bottom:1rem;">WorldOfTools</div>
-        <p style="color:#666; line-height:1.6; font-size:0.95rem;">Premium, private, and fast online utility tools. 100% free forever. Made with ❤️ for the global developer and user community.</p>
-      </div>
-      <div>
-        <h4 style="font-weight:800; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.05em; margin-bottom:1.25rem;">Popular Hubs</h4>
-        <ul style="list-style:none; padding:0; margin:0; line-height:2;">
-          <li><a href="/calculators-online" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Financial Calculators</a></li>
-          <li><a href="/developer-tools-online" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Developer Utilities</a></li>
-          <li><a href="/image-tools" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Image Tools</a></li>
-          <li><a href="/text-tools-online" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Text Tools</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="font-weight:800; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.05em; margin-bottom:1.25rem;">Quick Links</h4>
-        <ul style="list-style:none; padding:0; margin:0; line-height:2;">
-          <li><a href="/about-us" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">About Us</a></li>
-          <li><a href="/contact-us" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Contact Us</a></li>
-          <li><a href="/faq" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">FAQ</a></li>
-          <li><a href="/privacy" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Privacy Policy</a></li>
-        </ul>
-      </div>
+<div style="max-width:1200px; margin:0 auto; padding:0 1.5rem;">
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:3rem; margin-bottom:4rem;">
+<div>
+<div style="font-family:'Syne',sans-serif; font-weight:900; font-size:1.5rem; margin-bottom:1rem;">WorldOfTools</div>
+<p style="color:#666; line-height:1.6; font-size:0.95rem;">Premium, private, and fast online utility tools. 100% free forever. Made with ❤️ for the global developer and user community.</p>
+</div>
+<div>
+<h4 style="font-weight:800; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.05em; margin-bottom:1.25rem;">Popular Hubs</h4>
+<ul style="list-style:none; padding:0; margin:0; line-height:2;">
+<li><a href="/calculators-online" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Financial Calculators</a></li>
+<li><a href="/developer-tools-online" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Developer Utilities</a></li>
+<li><a href="/image-tools" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Image Tools</a></li>
+<li><a href="/text-tools-online" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Text Tools</a></li>
+</ul>
+</div>
+<div>
+<h4 style="font-weight:800; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.05em; margin-bottom:1.25rem;">Quick Links</h4>
+<ul style="list-style:none; padding:0; margin:0; line-height:2;">
+<li><a href="/about-us" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">About Us</a></li>
+<li><a href="/contact-us" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Contact Us</a></li>
+<li><a href="/faq" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">FAQ</a></li>
+<li><a href="/privacy" style="text-decoration:none; color:#444; font-weight:600; font-size:0.9rem;">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<div style="border-top:2px solid #eee; padding-top:2rem; text-align:center; font-size:0.85rem; color:#888; font-weight:600;">
+      © 2026 WorldOfTools.in. All rights reserved. Locally processed. Zero-Knowledge tools.
     </div>
-    <div style="border-top:2px solid #eee; padding-top:2rem; text-align:center; font-size:0.85rem; color:#888; font-weight:600;">
-      &copy; 2026 WorldOfTools.in. All rights reserved. Locally processed. Zero-Knowledge tools.
-    </div>
-  </div>
+</div>
 </footer>
 <script src="/js/common.js?v=6.1"></script>
 <script>
@@ -378,10 +361,8 @@ Made with ❤️ at [WorldOfTools](https://worldoftools.in)`;
     <meta name="twitter:title" content="Markdown to HTML Converter — Live Preview & Clean Export | WorldOfTools">
     <meta name="twitter:description" content="Free online markdown to html. 100% secure, no login required.">
     <meta name="twitter:image" content="https://worldoftools.in/app-icon.png">
-    
-    
-    
-
+<meta content="Markdown to HTML Converter — Live Preview &amp; Export | WorldOfTools" name="twitter:title"/>
+<meta content="Markdown to HTML Converter — Live Preview &amp; Export | WorldOfTools" property="og:title"/>
 
 </head>\n<body>\n${html}\n<script src="/js/seo_utility.js?v=2.0" defer></script></body>\n</html>`;
       }
@@ -391,7 +372,7 @@ Made with ❤️ at [WorldOfTools](https://worldoftools.in)`;
 
   function setOutputTab(tab, btn) {
     currentOutputTab = tab;
-    document.querySelectorAll('.nb-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.nb-tab-btn').forEach(b =&gt; b.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('previewPane').style.display = tab === 'preview' ? 'block' : 'none';
     document.getElementById('htmlPane').style.display = tab === 'html' ? 'block' : 'none';
@@ -449,29 +430,29 @@ Made with ❤️ at [WorldOfTools](https://worldoftools.in)`;
     const html = marked.parse(md);
     const addFullDoc = document.getElementById('addFullDoc').checked;
     if (addFullDoc) {
-      return `<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8"/>
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large"/>\n<meta name="viewport" content="width=device-width,initial-scale=1"/>\n<title>Document</title>
-    <meta property="article:published_time" content="2026-05-28T00:00:00+05:30"/>\n<style>body{font-family:sans-serif;max-width:800px;margin:0 auto;padding:2rem;line-height:1.7;}pre{background:#1e1e2e;color:#cdd6f4;padding:1rem;border-radius:8px;overflow-x:auto;}code{background:#f0f0f0;padding:0.1em 0.35em;border-radius:3px;}table{border-collapse:collapse;width:100%;}th,td{border:1px solid #ddd;padding:0.5rem;}th{background:#f5f5f5;}</style>\n
+      return `<!DOCTYPE html>
+\n<html lang="en">\n<head>\n<meta charset="utf-8"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large" name="robots"/>\n<meta content="width=device-width,initial-scale=1" name="viewport"/>\n<title>Document</title>
+<meta content="2026-05-28T00:00:00+05:30" property="article:published_time"/>\n<style>body{font-family:sans-serif;max-width:800px;margin:0 auto;padding:2rem;line-height:1.7;}pre{background:#1e1e2e;color:#cdd6f4;padding:1rem;border-radius:8px;overflow-x:auto;}code{background:#f0f0f0;padding:0.1em 0.35em;border-radius:3px;}table{border-collapse:collapse;width:100%;}th,td{border:1px solid #ddd;padding:0.5rem;}th{background:#f5f5f5;}</style>\n
     <!-- SEO Optimization Meta Tags -->
-    <link rel="canonical" href="https://worldoftools.in/markdown-to-html">
-<link rel="alternate" hreflang="en-IN" href="https://worldoftools.in/markdown-to-html"/>
-<link rel="alternate" hreflang="x-default" href="https://worldoftools.in/markdown-to-html"/>
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="WorldOfTools.in">
-    <meta property="og:title" content="Markdown to HTML Converter — Live Preview & Clean Export | WorldOfTools">
-    <meta property="og:description" content="Free online markdown to html. 100% secure, no login required.">
-    <meta property="og:url" content="https://worldoftools.in/markdown-to-html">
-    <meta property="og:image" content="https://worldoftools.in/app-icon.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="en_IN">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@worldoftools_in">
-    <meta name="twitter:title" content="Markdown to HTML Converter — Live Preview & Clean Export | WorldOfTools">
-    <meta name="twitter:description" content="Free online markdown to html. 100% secure, no login required.">
-    <meta name="twitter:image" content="https://worldoftools.in/app-icon.png">
-    
-    <script type="application/ld+json">
+<link href="https://worldoftools.in/markdown-to-html" rel="canonical"/>
+<link href="https://worldoftools.in/markdown-to-html" hreflang="en-IN" rel="alternate">
+<link href="https://worldoftools.in/markdown-to-html" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="WorldOfTools.in" property="og:site_name"/>
+<meta content="Markdown to HTML Converter — Live Preview &amp; Clean Export | WorldOfTools" property="og:title"/>
+<meta content="Free online markdown to html. 100% secure, no login required." property="og:description"/>
+<meta content="https://worldoftools.in/markdown-to-html" property="og:url"/>
+<meta content="https://worldoftools.in/app-icon.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="en_IN" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@worldoftools_in" name="twitter:site"/>
+<meta content="Markdown to HTML Converter — Live Preview &amp; Clean Export | WorldOfTools" name="twitter:title"/>
+<meta content="Free online markdown to html. 100% secure, no login required." name="twitter:description"/>
+<meta content="https://worldoftools.in/app-icon.png" name="twitter:image"/>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -497,8 +478,6 @@ Made with ❤️ at [WorldOfTools](https://worldoftools.in)`;
   ]
 }
     </script>
-    
-
 <script type="application/ld+json">
 [
   {
@@ -589,22 +568,22 @@ Made with ❤️ at [WorldOfTools](https://worldoftools.in)`;
   }
 ]
 </script>
-</head>\n<body>\n${html}\n<script src="/js/seo_utility.js?v=2.0" defer></script></body>\n</html>`;
+</link></head>\n<body>\n${html}\n<script defer="" src="/js/seo_utility.js?v=2.0"></script></body>\n</html>`;
     }
     return html;
   }
 
   function copyHTML() {
-    navigator.clipboard.writeText(getHTMLOutput()).then(() => {
+    navigator.clipboard.writeText(getHTMLOutput()).then(() =&gt; {
       const btn = event.currentTarget; const orig = btn.textContent;
-      btn.textContent = '✅ Copied!'; setTimeout(() => btn.textContent = orig, 2000);
+      btn.textContent = '✅ Copied!'; setTimeout(() =&gt; btn.textContent = orig, 2000);
     });
   }
 
   function copyMd() {
-    navigator.clipboard.writeText(document.getElementById('mdInput').value).then(() => {
+    navigator.clipboard.writeText(document.getElementById('mdInput').value).then(() =&gt; {
       const btn = event.currentTarget; const orig = btn.textContent;
-      btn.textContent = '✅ Copied!'; setTimeout(() => btn.textContent = orig, 2000);
+      btn.textContent = '✅ Copied!'; setTimeout(() =&gt; btn.textContent = orig, 2000);
     });
   }
 
@@ -617,9 +596,9 @@ Made with ❤️ at [WorldOfTools](https://worldoftools.in)`;
   }
 
   // Init
-  window.addEventListener('load', () => {
+  window.addEventListener('load', () =&gt; {
     loadSample();
   });
-</script>
-<script src="/js/seo_utility.js?v=2.0" defer></script></body>
-</html>
+
+<script defer="" src="/js/seo_utility.js?v=2.0"></script>
+

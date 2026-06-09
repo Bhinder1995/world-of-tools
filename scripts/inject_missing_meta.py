@@ -2,7 +2,7 @@
 import os
 import re
 
-base_dir = r"c:\Users\HP\Desktop\Projects Folder\world_of_tools"
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 site_url = "https://worldoftools.in"
 today = "2026-05-28"
 

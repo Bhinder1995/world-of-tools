@@ -39,7 +39,6 @@ const GUIDE_MAP = {
   "jwt-decoder":                   "jwt-decoder-guide",
   "keyword-density-checker":       "keyword-density-checker-guide",
   "keyword-research-tool":         "keyword-research-guide",
-  "free-url-shortener-online":                "link-shortener-guide",
   "linkedin-creator-suite":        "linkedin-creator-suite-guide",
   "loan-comparison-calculator":    "loan-comparison-calculator-guide",
   "loan-eligibility-calculator":   "loan-eligibility-calculator-guide",
@@ -128,8 +127,7 @@ const POST_REC_MAP = {
   "keyword-density-checker": [["/word-counter","📝","Word Counter","Count words"],["/seo-meta-tag-generator","🏷️","Meta Tags","Create meta tags"],["/serp-preview","🔎","SERP Preview","Google preview"]],
   "keyword-research-tool":   [["/keyword-density-checker","📊","Keyword Density","Analyze density"],["/seo-meta-tag-generator","🏷️","Meta Tags","Create meta tags"],["/serp-preview","🔎","SERP Preview","Google preview"]],
   "schema-generator-online": [["/seo-meta-tag-generator","🏷️","Meta Tag Generator","SEO meta tags"],["/serp-preview","🔎","SERP Preview","Google preview"],["/json-ld-generator","🧩","JSON-LD Generator","Structured data"]],
-  "free-url-shortener-online":          [["/free-url-shortener-online","🔗","URL Shortener","Shorten URLs"],["/qr-code-generator","🔳","QR Generator","Create QR codes"],["/url-encoder-decoder","🔗","URL Encoder","Encode URLs"]],
-  "free-url-shortener-online":[["/free-url-shortener-online","🔗","Link Shortener","Shorten any link"],["/qr-code-generator","🔳","QR Generator","Create QR codes"],["/url-encoder-decoder","🔗","URL Encoder","Encode/decode URLs"]],
+  "free-url-shortener-online":[["/qr-code-generator","🔳","QR Generator","Create QR codes"],["/url-encoder-decoder","🔗","URL Encoder","Encode/decode URLs"],["/barcode-generator","🏷️","Barcode Generator","Generate barcodes"]],
   "aspect-ratio-calculator": [["/image-compressor","🖼️","Image Compressor","Reduce image size"],["/unit-converter","📏","Unit Converter","Convert measurements"],["/scientific-calculator","🔬","Scientific Calc","Advanced math"]],
   "time-zone-converter":     [["/age-calculator","🎂","Age Calculator","Calculate your age"],["/unit-converter","📏","Unit Converter","Convert measurements"],["/cron-expression-generator","⏰","Cron Builder","Schedule jobs"]],
   "cron-expression-generator":[["/time-zone-converter","🌐","Time Zone","Convert timezones"],["/regex-tester","🔍","Regex Tester","Test patterns"],["/json-formatter","{}","JSON Formatter","Format JSON"]],
@@ -521,7 +519,7 @@ function injectGuideButton() {
     if (document.querySelector('.wot-guide-btn')) return;
 
     const btn = document.createElement('a');
-    btn.href      = `/guides/${guideSlug}.html`;
+    btn.href      = `/guides/${guideSlug}`;
     btn.className = 'wot-guide-btn';
     btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> Read Expert Guide`;
 
@@ -693,16 +691,31 @@ function injectPostRecommendations() { /* legacy stub — handled by injectPostR
 
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
+        // Track whether the page was already controlled by a service worker on load
+        const hasController = !!navigator.serviceWorker.controller;
+
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js').then(reg => {
-                // Check for updates periodically
-                reg.update();
+                // Check for updates on page load
+                reg.update().catch(() => {});
+
+                // Check for updates periodically (every 15 minutes)
+                setInterval(() => {
+                    reg.update().catch(() => {});
+                }, 15 * 60 * 1000);
+
+                // Check for updates when the user switches back to the tab
+                document.addEventListener('visibilitychange', () => {
+                    if (document.visibilityState === 'visible') {
+                        reg.update().catch(() => {});
+                    }
+                });
 
                 reg.onupdatefound = () => {
                     const newWorker = reg.installing;
+                    if (!newWorker) return;
                     newWorker.onstatechange = () => {
                         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            // New worker installed, skipWaiting is called in SW, so it will activate
                             console.log('New content available, preparing to refresh...');
                         }
                     };
@@ -713,6 +726,11 @@ function registerServiceWorker() {
         // This event fires when the new service worker takes control
         let refreshing = false;
         navigator.serviceWorker.addEventListener('controllerchange', () => {
+            // If the page was not controlled by a service worker initially (e.g. first load),
+            // do not reload the page when it registers.
+            if (!hasController) {
+                return;
+            }
             if (!refreshing) {
                 refreshing = true;
                 console.log('New Service Worker activating. Reloading page for instant update...');
