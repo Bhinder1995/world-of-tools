@@ -2434,7 +2434,7 @@ ${insightsHtml?`<h2>Smart Insights</h2><table><thead><tr><th>Insight</th><th>Det
     </div>
   </div>
 </footer>
-<script src="/js/seo_utility.js?v=2.0" defer></script><script defer="" src="/js/common.js?v=6.1"></script></main></body></html>`;
+<script src="/js/seo_utility.js?v=2.0" defer><\/script><script defer="" src="/js/common.js?v=6.1"><\/script></main></body></html>`;
 
   const w = window.open('','_blank','width=1000,height=800');
   if (!w) { alert('Please allow popups for this site to use Print Dashboard.'); return; }
@@ -2448,16 +2448,16 @@ ${insightsHtml?`<h2>Smart Insights</h2><table><thead><tr><th>Insight</th><th>Det
 function downloadExcel() {
   if (!allTransactions.length) return;
   const headers = ['Date','Description','Category','Confidence','Type','Debit (INR)','Credit (INR)','Balance (INR)'];
-  const rows = allTransactions.map(t =&gt; [
+  const rows = allTransactions.map(t => [
     t.dateStr||'', t.desc||'', t.category||'', t.confidence||'', t.type||'',
     t.debit||0, t.credit||0, t.balance||0
   ]);
-  const totalIncome = allTransactions.reduce((s,t)=&gt;s+(t.credit||0),0);
-  const totalExpense = allTransactions.reduce((s,t)=&gt;s+(t.debit||0),0);
+  const totalIncome = allTransactions.reduce((s,t)=>s+(t.credit||0),0);
+  const totalExpense = allTransactions.reduce((s,t)=>s+(t.debit||0),0);
   const netSavings = totalIncome - totalExpense;
   const catMap = {};
-  allTransactions.forEach(t =&gt; {
-    if (t.debit &gt; 0 &amp;&amp; t.category !== 'Transfers' &amp;&amp; t.category !== 'ATM &amp; Cash') {
+  allTransactions.forEach(t => {
+    if (t.debit > 0 && t.category !== 'Transfers' && t.category !== 'ATM & Cash') {
       if (!catMap[t.category]) catMap[t.category] = {count:0, amount:0};
       catMap[t.category].count++;
       catMap[t.category].amount += t.debit;
@@ -2476,13 +2476,13 @@ function downloadExcel() {
     ['Total Income', totalIncome],
     ['Total Expenses', totalExpense],
     ['Net Savings', netSavings],
-    ['Savings Rate', totalIncome&gt;0?((netSavings/totalIncome)*100).toFixed(1)+'%':'0%'],
+    ['Savings Rate', totalIncome>0?((netSavings/totalIncome)*100).toFixed(1)+'%':'0%'],
     ['Total Transactions', allTransactions.length],
     [],
     ['Category','Transactions','Amount Spent (INR)','% of Expenses'],
     ...Object.entries(catMap)
-      .sort((a,b)=&gt;b[1].amount-a[1].amount)
-      .map(([cat,d])=&gt;[cat, d.count, Math.round(d.amount), totalExpense&gt;0?((d.amount/totalExpense)*100).toFixed(1)+'%':'0%'])
+      .sort((a,b)=>b[1].amount-a[1].amount)
+      .map(([cat,d])=>[cat, d.count, Math.round(d.amount), totalExpense>0?((d.amount/totalExpense)*100).toFixed(1)+'%':'0%'])
   ];
   const wsSummary = XLSX.utils.aoa_to_sheet(summaryData);
   wsSummary['!cols'] = [{wch:28},{wch:14},{wch:20},{wch:16}];
@@ -2498,7 +2498,7 @@ function downloadCSV() {
   const brandRow = '# Bank Statement Analysis — Report By WorldOfTools.in | https://worldoftools.in/bank-statement-analyzer | 100% Private';
   const metaRow  = `# ${metaText}`;
   const headers = ['Date','Description','Category','Confidence','Type','Debit','Credit','Balance'];
-  const rows = allTransactions.map(t =&gt;
+  const rows = allTransactions.map(t =>
     [t.dateStr,`"${t.desc.replace(/"/g,'""')}"`,t.category,t.confidence||'',t.type,t.debit||'',t.credit||'',t.balance||''].join(',')
   );
   const csv = [brandRow, metaRow, headers.join(','), ...rows].join('\n');
@@ -2553,16 +2553,16 @@ function fmtMoney(n) {
   return '₹'+Math.abs(Math.round(n)).toLocaleString('en-IN');
 }
 function fmtDate(d) { return d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); }
-function escHtml(s) { return String(s).replace(/&amp;/g,'&amp;').replace(//g,'&gt;').replace(/"/g,'"'); }
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 function statusTag(actual, ideal, higherBetter) {
   if (higherBetter) {
-    if (actual&gt;=ideal) return `<span class="budget-status status-ok">✅ ${actual}% (on track)</span>`;
-    if (actual&gt;=ideal*0.7) return `<span class="budget-status status-warn">⚠️ ${actual}% (a bit low)</span>`;
+    if (actual>=ideal) return `<span class="budget-status status-ok">✅ ${actual}% (on track)</span>`;
+    if (actual>=ideal*0.7) return `<span class="budget-status status-warn">⚠️ ${actual}% (a bit low)</span>`;
     return `<span class="budget-status status-bad">❌ ${actual}% (too low)</span>`;
   } else {
-    if (actual&lt;=ideal) return `<span class="budget-status status-ok">✅ ${actual}% (on track)</span>`;
-    if (actual&lt;=ideal*1.2) return `<span class="budget-status status-warn">⚠️ ${actual}% (slightly over)</span>`;
+    if (actual<=ideal) return `<span class="budget-status status-ok">✅ ${actual}% (on track)</span>`;
+    if (actual<=ideal*1.2) return `<span class="budget-status status-warn">⚠️ ${actual}% (slightly over)</span>`;
     return `<span class="budget-status status-bad">❌ ${actual}% (over budget)</span>`;
   }
 }
@@ -2668,10 +2668,10 @@ function loadSampleData() {
     ['31 Mar 2025','OLA CABSERVICE',              420,   0, 0],
   ];
 
-  allTransactions = raw.map((r, idx) =&gt; {
+  allTransactions = raw.map((r, idx) => {
     const [dateStr, desc, debit, credit] = r;
     const date = parseDate(dateStr);
-    const isCredit = credit &gt; 0 &amp;&amp; credit &gt;= debit;
+    const isCredit = credit > 0 && credit >= debit;
     const type = isCredit ? 'credit' : 'debit';
     const amount = isCredit ? credit : debit;
     const catResult = categorizeWithConf(desc, isCredit);
@@ -2681,7 +2681,7 @@ function loadSampleData() {
   });
 
   // Sort chronologically
-  allTransactions.sort((a,b) =&gt; (a.date||0) - (b.date||0));
+  allTransactions.sort((a,b) => (a.date||0) - (b.date||0));
   isMergeMode = false;
   previousMerchants = new Set();
 
@@ -2720,7 +2720,7 @@ function resetTool() {
   if (savingsTrendChart) { savingsTrendChart.destroy(); savingsTrendChart=null; }
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
+</script>
 <footer style="background:#fff; border-top:2.5px solid #000; padding:4rem 0 2rem; margin-top:5rem;">
 <div style="max-width:1200px; margin:0 auto; padding:0 1.5rem;">
 <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:3rem; margin-bottom:4rem;">
