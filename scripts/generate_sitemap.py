@@ -28,8 +28,9 @@ def generate_sitemap(base_path, base_url):
             is_static = name in static_pages
             priority = priorities.get(f, '0.7' if is_static else '0.8')
             changefreq = 'monthly' if is_static else 'weekly'
+            loc = f"{base_url}/" if f == "index.html" else f"{base_url}/{url_path}"
             urls.append({
-                'loc': f"{base_url}/{url_path}".rstrip('/'),
+                'loc': loc,
                 'lastmod': datetime.utcnow().strftime('%Y-%m-%d'),
                 'changefreq': changefreq,
                 'priority': priority
@@ -44,7 +45,7 @@ def generate_sitemap(base_path, base_url):
                 # Skip guide-template
                 if name == 'guide-template':
                     continue
-                url_path = f"guides/{name}"
+                url_path = "guides" if name == "index" else f"guides/{name}"
                 urls.append({
                     'loc': f"{base_url}/{url_path}",
                     'lastmod': datetime.utcnow().strftime('%Y-%m-%d'),

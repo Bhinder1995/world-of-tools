@@ -2,13 +2,11 @@ const CACHE_NAME = 'worldoftools-v2';
 
 const ASSETS_TO_CACHE = [
     '/',
-    '/index.html',
     '/css/style.css',
     '/js/common.js',
     '/logo.svg',
     '/manifest.json',
-    '/guides/',
-    '/guides/index.html',
+    '/guides',
     '/thermal-label-maker',
     '/guides/thermal-label-maker-guide',
     '/app-icon.png',
